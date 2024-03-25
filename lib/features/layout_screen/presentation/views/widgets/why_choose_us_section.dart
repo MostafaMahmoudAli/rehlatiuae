@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -49,7 +48,7 @@ class WhyChooseUsSection extends StatelessWidget {
           children: [
             WhyChooseUSItem(
               text: AppStrings.whyChooseUs247Support,
-              style:  Theme.of(context).textTheme.titleLarge!,
+              style: Theme.of(context).textTheme.titleLarge!,
               descriptionText: AppStrings.whyChooseUs247SupportDescription,
               descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
               child: Image.asset(AppStrings.whyChooseUs247SupportImage),

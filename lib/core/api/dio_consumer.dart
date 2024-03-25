@@ -5,12 +5,10 @@ import 'package:rehlatyuae/core/errors/exceptions.dart';
 import 'api_interceptors.dart';
 import 'end_points.dart';
 
-class DioConsumer implements ApiConsumer
-{
+class DioConsumer implements ApiConsumer {
   final Dio dio;
 
-  DioConsumer({required this.dio})
-  {
+  DioConsumer({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseUrl;
     dio.interceptors.add(DioInterceptor());
     dio.interceptors.add(LogInterceptor(
@@ -34,8 +32,7 @@ class DioConsumer implements ApiConsumer
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e)
-    {
+    } on DioException catch (e) {
       handelDioException(e);
     }
   }
@@ -51,11 +48,10 @@ class DioConsumer implements ApiConsumer
       var response = await dio.post(
         path,
         queryParameters: queryParameters,
-        data: isForm?FormData.fromMap(data!) :data,
+        data: isForm ? FormData.fromMap(data!) : data,
       );
-      response.data;
-    } on DioException catch (e)
-    {
+      return response.data;
+    } on DioException catch (e) {
       handelDioException(e);
     }
   }
@@ -70,12 +66,11 @@ class DioConsumer implements ApiConsumer
     try {
       var response = await dio.put(
         path,
-        data:isForm?FormData.fromMap(data!) : data,
+        data: isForm ? FormData.fromMap(data!) : data,
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e)
-    {
+    } on DioException catch (e) {
       handelDioException(e);
     }
   }
@@ -92,8 +87,7 @@ class DioConsumer implements ApiConsumer
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e)
-    {
+    } on DioException catch (e) {
       handelDioException(e);
     }
   }

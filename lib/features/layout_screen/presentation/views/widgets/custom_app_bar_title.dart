@@ -19,7 +19,7 @@ class CustomAppBarTitle extends StatelessWidget {
           height: 80.0.h,
         ),
         SizedBox(
-          width: 20.0.w,
+          width: 15.0.w,
         ),
         Column(
           children: [

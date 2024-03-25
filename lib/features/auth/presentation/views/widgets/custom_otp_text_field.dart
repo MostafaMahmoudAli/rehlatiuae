@@ -5,7 +5,9 @@ import 'package:otp_text_field/otp_field_style.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 
 class CustomOTPTextField extends StatefulWidget {
-  const CustomOTPTextField({super.key});
+  final void Function(String)? onCompleted;
+
+  const CustomOTPTextField({this.onCompleted, super.key});
 
   @override
   State<CustomOTPTextField> createState() => _CustomOTPTextFieldState();
@@ -55,7 +57,7 @@ class _CustomOTPTextFieldState extends State<CustomOTPTextField> {
                 otp = pin;
               });
             },
-            onCompleted: (pin) {},
+            onCompleted: widget.onCompleted,
           ),
         ),
       ),
