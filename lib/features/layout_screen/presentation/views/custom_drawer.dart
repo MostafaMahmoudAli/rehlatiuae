@@ -6,11 +6,12 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/acc
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/help_drawer_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/legal_drawer_section.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends StatelessWidget
+{
   const CustomDrawer({super.key});
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Drawer(
       width: 270.w,
       child: SingleChildScrollView(

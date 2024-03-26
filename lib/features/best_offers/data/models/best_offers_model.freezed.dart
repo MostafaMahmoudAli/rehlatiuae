@@ -23,14 +23,15 @@ mixin _$BestOffers {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: "oldPrice")
-  int get adultPrice => throw _privateConstructorUsedError;
-  int get childPrice => throw _privateConstructorUsedError;
-  String get imagePath => throw _privateConstructorUsedError;
-  List<AddressModel> get addresses => throw _privateConstructorUsedError;
-  List<ImagesModel> get images => throw _privateConstructorUsedError;
-  bool get isFavourite => throw _privateConstructorUsedError;
+  int? get adultPrice => throw _privateConstructorUsedError;
+  int? get childPrice => throw _privateConstructorUsedError;
+  String? get imagePath => throw _privateConstructorUsedError;
+  List<AddressModel>? get addresses => throw _privateConstructorUsedError;
+  List<ImagesModel>? get images => throw _privateConstructorUsedError;
+  bool? get isFavourite => throw _privateConstructorUsedError;
+  List<Trips>? get offers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,13 +49,14 @@ abstract class $BestOffersCopyWith<$Res> {
       {int id,
       String name,
       String address,
-      String description,
-      @JsonKey(name: "oldPrice") int adultPrice,
-      int childPrice,
-      String imagePath,
-      List<AddressModel> addresses,
-      List<ImagesModel> images,
-      bool isFavourite});
+      String? description,
+      @JsonKey(name: "oldPrice") int? adultPrice,
+      int? childPrice,
+      String? imagePath,
+      List<AddressModel>? addresses,
+      List<ImagesModel>? images,
+      bool? isFavourite,
+      List<Trips>? offers});
 }
 
 /// @nodoc
@@ -73,13 +75,14 @@ class _$BestOffersCopyWithImpl<$Res, $Val extends BestOffers>
     Object? id = null,
     Object? name = null,
     Object? address = null,
-    Object? description = null,
-    Object? adultPrice = null,
-    Object? childPrice = null,
-    Object? imagePath = null,
-    Object? addresses = null,
-    Object? images = null,
-    Object? isFavourite = null,
+    Object? description = freezed,
+    Object? adultPrice = freezed,
+    Object? childPrice = freezed,
+    Object? imagePath = freezed,
+    Object? addresses = freezed,
+    Object? images = freezed,
+    Object? isFavourite = freezed,
+    Object? offers = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -94,34 +97,38 @@ class _$BestOffersCopyWithImpl<$Res, $Val extends BestOffers>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      adultPrice: null == adultPrice
+              as String?,
+      adultPrice: freezed == adultPrice
           ? _value.adultPrice
           : adultPrice // ignore: cast_nullable_to_non_nullable
-              as int,
-      childPrice: null == childPrice
+              as int?,
+      childPrice: freezed == childPrice
           ? _value.childPrice
           : childPrice // ignore: cast_nullable_to_non_nullable
-              as int,
-      imagePath: null == imagePath
+              as int?,
+      imagePath: freezed == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      addresses: null == addresses
+              as String?,
+      addresses: freezed == addresses
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
-              as List<AddressModel>,
-      images: null == images
+              as List<AddressModel>?,
+      images: freezed == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<ImagesModel>,
-      isFavourite: null == isFavourite
+              as List<ImagesModel>?,
+      isFavourite: freezed == isFavourite
           ? _value.isFavourite
           : isFavourite // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
+      offers: freezed == offers
+          ? _value.offers
+          : offers // ignore: cast_nullable_to_non_nullable
+              as List<Trips>?,
     ) as $Val);
   }
 }
@@ -138,13 +145,14 @@ abstract class _$$BestOffersImplCopyWith<$Res>
       {int id,
       String name,
       String address,
-      String description,
-      @JsonKey(name: "oldPrice") int adultPrice,
-      int childPrice,
-      String imagePath,
-      List<AddressModel> addresses,
-      List<ImagesModel> images,
-      bool isFavourite});
+      String? description,
+      @JsonKey(name: "oldPrice") int? adultPrice,
+      int? childPrice,
+      String? imagePath,
+      List<AddressModel>? addresses,
+      List<ImagesModel>? images,
+      bool? isFavourite,
+      List<Trips>? offers});
 }
 
 /// @nodoc
@@ -161,13 +169,14 @@ class __$$BestOffersImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? address = null,
-    Object? description = null,
-    Object? adultPrice = null,
-    Object? childPrice = null,
-    Object? imagePath = null,
-    Object? addresses = null,
-    Object? images = null,
-    Object? isFavourite = null,
+    Object? description = freezed,
+    Object? adultPrice = freezed,
+    Object? childPrice = freezed,
+    Object? imagePath = freezed,
+    Object? addresses = freezed,
+    Object? images = freezed,
+    Object? isFavourite = freezed,
+    Object? offers = freezed,
   }) {
     return _then(_$BestOffersImpl(
       id: null == id
@@ -182,34 +191,38 @@ class __$$BestOffersImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      adultPrice: null == adultPrice
+              as String?,
+      adultPrice: freezed == adultPrice
           ? _value.adultPrice
           : adultPrice // ignore: cast_nullable_to_non_nullable
-              as int,
-      childPrice: null == childPrice
+              as int?,
+      childPrice: freezed == childPrice
           ? _value.childPrice
           : childPrice // ignore: cast_nullable_to_non_nullable
-              as int,
-      imagePath: null == imagePath
+              as int?,
+      imagePath: freezed == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      addresses: null == addresses
+              as String?,
+      addresses: freezed == addresses
           ? _value._addresses
           : addresses // ignore: cast_nullable_to_non_nullable
-              as List<AddressModel>,
-      images: null == images
+              as List<AddressModel>?,
+      images: freezed == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<ImagesModel>,
-      isFavourite: null == isFavourite
+              as List<ImagesModel>?,
+      isFavourite: freezed == isFavourite
           ? _value.isFavourite
           : isFavourite // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
+      offers: freezed == offers
+          ? _value._offers
+          : offers // ignore: cast_nullable_to_non_nullable
+              as List<Trips>?,
     ));
   }
 }
@@ -225,11 +238,13 @@ class _$BestOffersImpl implements _BestOffers {
       @JsonKey(name: "oldPrice") required this.adultPrice,
       required this.childPrice,
       required this.imagePath,
-      required final List<AddressModel> addresses,
-      required final List<ImagesModel> images,
-      required this.isFavourite})
+      required final List<AddressModel>? addresses,
+      required final List<ImagesModel>? images,
+      required this.isFavourite,
+      required final List<Trips>? offers})
       : _addresses = addresses,
-        _images = images;
+        _images = images,
+        _offers = offers;
 
   factory _$BestOffersImpl.fromJson(Map<String, dynamic> json) =>
       _$$BestOffersImplFromJson(json);
@@ -241,36 +256,49 @@ class _$BestOffersImpl implements _BestOffers {
   @override
   final String address;
   @override
-  final String description;
+  final String? description;
   @override
   @JsonKey(name: "oldPrice")
-  final int adultPrice;
+  final int? adultPrice;
   @override
-  final int childPrice;
+  final int? childPrice;
   @override
-  final String imagePath;
-  final List<AddressModel> _addresses;
+  final String? imagePath;
+  final List<AddressModel>? _addresses;
   @override
-  List<AddressModel> get addresses {
+  List<AddressModel>? get addresses {
+    final value = _addresses;
+    if (value == null) return null;
     if (_addresses is EqualUnmodifiableListView) return _addresses;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_addresses);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<ImagesModel> _images;
+  final List<ImagesModel>? _images;
   @override
-  List<ImagesModel> get images {
+  List<ImagesModel>? get images {
+    final value = _images;
+    if (value == null) return null;
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_images);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final bool isFavourite;
+  final bool? isFavourite;
+  final List<Trips>? _offers;
+  @override
+  List<Trips>? get offers {
+    final value = _offers;
+    if (value == null) return null;
+    if (_offers is EqualUnmodifiableListView) return _offers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'BestOffers(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, imagePath: $imagePath, addresses: $addresses, images: $images, isFavourite: $isFavourite)';
+    return 'BestOffers(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, imagePath: $imagePath, addresses: $addresses, images: $images, isFavourite: $isFavourite, offers: $offers)';
   }
 
   @override
@@ -293,7 +321,8 @@ class _$BestOffersImpl implements _BestOffers {
                 .equals(other._addresses, _addresses) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.isFavourite, isFavourite) ||
-                other.isFavourite == isFavourite));
+                other.isFavourite == isFavourite) &&
+            const DeepCollectionEquality().equals(other._offers, _offers));
   }
 
   @JsonKey(ignore: true)
@@ -309,7 +338,8 @@ class _$BestOffersImpl implements _BestOffers {
       imagePath,
       const DeepCollectionEquality().hash(_addresses),
       const DeepCollectionEquality().hash(_images),
-      isFavourite);
+      isFavourite,
+      const DeepCollectionEquality().hash(_offers));
 
   @JsonKey(ignore: true)
   @override
@@ -330,13 +360,14 @@ abstract class _BestOffers implements BestOffers {
       {required final int id,
       required final String name,
       required final String address,
-      required final String description,
-      @JsonKey(name: "oldPrice") required final int adultPrice,
-      required final int childPrice,
-      required final String imagePath,
-      required final List<AddressModel> addresses,
-      required final List<ImagesModel> images,
-      required final bool isFavourite}) = _$BestOffersImpl;
+      required final String? description,
+      @JsonKey(name: "oldPrice") required final int? adultPrice,
+      required final int? childPrice,
+      required final String? imagePath,
+      required final List<AddressModel>? addresses,
+      required final List<ImagesModel>? images,
+      required final bool? isFavourite,
+      required final List<Trips>? offers}) = _$BestOffersImpl;
 
   factory _BestOffers.fromJson(Map<String, dynamic> json) =
       _$BestOffersImpl.fromJson;
@@ -348,20 +379,22 @@ abstract class _BestOffers implements BestOffers {
   @override
   String get address;
   @override
-  String get description;
+  String? get description;
   @override
   @JsonKey(name: "oldPrice")
-  int get adultPrice;
+  int? get adultPrice;
   @override
-  int get childPrice;
+  int? get childPrice;
   @override
-  String get imagePath;
+  String? get imagePath;
   @override
-  List<AddressModel> get addresses;
+  List<AddressModel>? get addresses;
   @override
-  List<ImagesModel> get images;
+  List<ImagesModel>? get images;
   @override
-  bool get isFavourite;
+  bool? get isFavourite;
+  @override
+  List<Trips>? get offers;
   @override
   @JsonKey(ignore: true)
   _$$BestOffersImplCopyWith<_$BestOffersImpl> get copyWith =>

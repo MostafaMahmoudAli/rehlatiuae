@@ -7,7 +7,6 @@ class WhyChooseUSItem extends StatelessWidget {
     super.key,
     required this.child,
     required this.text,
-    required this.style,
      this.descriptionText,
      this.descriptionTextStyle,
   });
@@ -15,7 +14,6 @@ class WhyChooseUSItem extends StatelessWidget {
   final Widget child;
   final String text;
   final String?descriptionText;
-  final TextStyle style;
   final TextStyle?descriptionTextStyle;
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class WhyChooseUSItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   text,
-                  style: style,
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 16.0.sp,),
                 ),
               ),
             ],

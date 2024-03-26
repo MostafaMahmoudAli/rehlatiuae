@@ -32,6 +32,8 @@ class BestTripsSection extends StatelessWidget {
                   imageName: AppStrings.containerTripBackgroundImage,
                   tripPrice:"43",
                   reservationType:"/person",
+                  oldTripPrice: 100,
+                  percentageSave: "Save 45 %" ,
                 );
               },
               separatorBuilder: (context, index) {

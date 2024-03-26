@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
+import 'package:rehlatyuae/features/all_categories/presentation/views/category_name.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/all_trips_screen.dart';
 import 'package:rehlatyuae/features/auth/presentation/views/forget_password_screen.dart';
 import 'package:rehlatyuae/features/auth/presentation/views/login_screen.dart';
@@ -27,6 +28,8 @@ import 'package:rehlatyuae/features/splash_screen/presentation/views/onboarding.
 import 'package:rehlatyuae/features/splash_screen/presentation/views/splash_screen.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/top_destination_screen.dart';
 
+import '../../features/top_destinations_section/presentation/views/city_destination_screen.dart';
+
 abstract class AppRouter {
   static final router = GoRouter(
     routes: [
@@ -38,6 +41,14 @@ abstract class AppRouter {
       GoRoute(
         path: AppStrings.allCategoriesScreen,
         builder: (context, state) => AllCategoriesScreen(),
+      ),
+      GoRoute(
+        path: AppStrings.categoryNameScreen,
+        builder: (context, state) =>  CategoryNameScreen(),
+      ),
+      GoRoute(
+        path: AppStrings.cityDestinationScreen,
+        builder: (context, state) =>  CityDestinationScreen(),
       ),
       GoRoute(
         path: AppStrings.allTripsScreen,

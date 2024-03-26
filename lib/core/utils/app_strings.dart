@@ -330,7 +330,7 @@ Official Channels:
 •	Email - support@Rehlatyuae.com
 ''';
 
-  // aseets images names
+  // assets images names
   static const appLogo = "assets/images/Group.svg";
   static const ourPartnersLogo = "assets/images/download 1.png";
   static const containerTripBackgroundImage = "assets/images/Rectangle 427.png";
@@ -341,17 +341,10 @@ Official Channels:
   static const weHelpYouMakeBestTripImage1 = "assets/images/Rectangle 9897.png";
   static const weHelpYouMakeBestTripImage2 = "assets/images/Rectangle 9899.png";
   static const weHelpYouMakeBestTripImage3 = "assets/images/Rectangle 9898.png";
+  static const whatsUpLogo = "assets/images/410201-PD391H-802-Photoroom.png-Photoroom.png";
 
   //text names
   static const searchTextFieldHintText = "Search by activities...";
-  static const textButtonNameOfHomeScreen = "View all";
-  static const categoriesTitle = "Categories";
-  static const topDestinationTitle = "All Destinations";
-  static const bestOffersTitle = "Best Offers";
-  static const bestTripsTitle = "Best Trips";
-  static const popularExperiencesTitle = "Popular Experiences";
-  static const ourBlogTitle = "Our Blog";
-  static const ourPartnerTitle = "Our Partner";
   static const whyChooseUsTitle = "Why Choose Us";
   static const whyChooseUsFastBooking = "Fast booking";
   static const whyChooseUsFastBookingDescription =
@@ -370,15 +363,27 @@ Official Channels:
       "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada";
   static const weHelpYouMakeBestTripSecondDescription =
       "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
+
+  //Titles
+  static const textButtonNameOfHomeScreen = "View all";
+  static const categoriesTitle = "Categories";
+  static const topDestinationTitle = "All Destinations";
+  static const bestOffersTitle = "Best Offers";
+  static const bestTripsTitle = "Best Trips";
+  static const popularExperiencesTitle = "Popular Experiences";
+  static const ourBlogTitle = "Our Blog";
+  static const ourPartnerTitle = "Our Partner";
   static const actionButtonName = "Explore More";
   static const reviewTitle = "Our Client Reviews";
   static const subscribeToNewsletterTitle = "Subscribe to Newsletter";
   static const reviewTextFieldName = "Your Name";
   static const reviewTextFieldEmail = "Your Email";
-  static const reviewActionButtonName = "Send";
+  static const reviewActionButtonName = "Send Now";
   static const copyRight = "Copyright ©2024. All Rights Reserved. — by Rehlatyuai";
   static const allTripsTitle = "All Trip";
   static const allCategoriesTitle = "All Categories";
+  static const categoryNameTitle = "Categories Name";
+  static const cityDestinationTitle = "City Destination ";
 
   // navigator pages name
   static const homeScreen = "/HomeScreen";
@@ -399,7 +404,6 @@ Official Channels:
   static const editProfileScreen = "/editProfileScreen";
   static const travelDetailsScreen = "/travelDetailsScreen";
   static const blogScreen = "/blogScreen";
-
   static const splashScreen = "/";
   static const onboarding = "/onboarding";
   static const loginScreen = "/loginScreen";
@@ -407,7 +411,11 @@ Official Channels:
   static const forgetPasswordScreen = "/forgetPasswordScreen";
   static const verificationScreen = "/verificationScreen";
   static const updatePasswordScreen = "/updatePasswordScreen";
+  static const categoryNameScreen = "/categoryNameScreen";
+  static const cityDestinationScreen = "/cityDestinationScreen";
 
+
+  //Titles Texts
   static const profile = "Profile";
   static const edit = "Edit";
   static const about = "About";

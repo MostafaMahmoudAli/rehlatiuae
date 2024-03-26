@@ -88,7 +88,6 @@ class WeHelpYouSection extends StatelessWidget {
           children: [
             WhyChooseUSItem(
               text:AppStrings.weHelpYouMakeBestTripSecondDescription,
-              style:Theme.of(context).textTheme.bodyLarge!,
               child: Icon(
                 Icons.check_box_outlined,
                 color:AppColors.textAndBackgroundColorButton,
@@ -97,7 +96,6 @@ class WeHelpYouSection extends StatelessWidget {
             ),
             WhyChooseUSItem(
               text:AppStrings.weHelpYouMakeBestTripSecondDescription,
-              style:Theme.of(context).textTheme.bodyLarge!,
               child: Icon(
                 Icons.check_box_outlined,
                 color: AppColors.textAndBackgroundColorButton,
@@ -113,7 +111,6 @@ class WeHelpYouSection extends StatelessWidget {
           children: [
             WhyChooseUSItem(
               text:AppStrings.weHelpYouMakeBestTripSecondDescription,
-              style:Theme.of(context).textTheme.bodyLarge!,
               child: Icon(
                 Icons.check_box_outlined,
                 color: AppColors.textAndBackgroundColorButton,
@@ -125,7 +122,6 @@ class WeHelpYouSection extends StatelessWidget {
             ),
             WhyChooseUSItem(
               text:AppStrings.weHelpYouMakeBestTripSecondDescription,
-              style:Theme.of(context).textTheme.bodyLarge!,
               child: Icon(
                 Icons.check_box_outlined,
                 color: AppColors.textAndBackgroundColorButton,

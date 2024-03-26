@@ -9,7 +9,8 @@ class TopDestinationSection extends StatelessWidget {
   const TopDestinationSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Column(
       children: [
          CustomRowTitle(
@@ -25,13 +26,19 @@ class TopDestinationSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, index) {
-                return CustomContainerTrip(
-                  width:200.0.w,
-                  cityName: "Dubai",
-                  countryName:"United Arab Emirates",
-                  imageName: AppStrings.containerTripBackgroundImage,
-                  tripPrice:"43",
-                  reservationType:"/person",
+                return InkWell(
+                  onTap: ()
+                  {
+                    context.push(AppStrings.cityDestinationScreen);
+                  },
+                  child: CustomContainerTrip(
+                    width:200.0.w,
+                    cityName: "Dubai",
+                    countryName:"United Arab Emirates",
+                    imageName: AppStrings.containerTripBackgroundImage,
+                    tripPrice:"43",
+                    reservationType:"/person",
+                  ),
                 );
               },
               separatorBuilder: (context, index) {

@@ -26,9 +26,15 @@ class CategoriesSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, index) {
-                return   CategoriesItem(
-                  height:40.0.h,
-                  width: 75.0.w,
+                return   InkWell(
+                  onTap: ()
+                  {
+                    context.push(AppStrings.categoryNameScreen);
+                  },
+                  child: CategoriesItem(
+                    height:40.0.h,
+                    width: 75.0.w,
+                  ),
                 );
               },
               separatorBuilder: (context, index)

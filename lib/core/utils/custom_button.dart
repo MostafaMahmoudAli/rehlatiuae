@@ -34,7 +34,7 @@ class CustomActionButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: style ?? Theme.of(context).textTheme.displayMedium,
+            style: style ?? Theme.of(context).textTheme.displaySmall,
           ),
         ),
       ),

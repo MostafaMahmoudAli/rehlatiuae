@@ -20,13 +20,15 @@ class PopularExperiencesSection extends StatelessWidget {
           },
         ),
         SizedBox(
-          height:160.0.h,
+          height:170.0.h,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return PopularExperiencesContainerItem(
-                  width : 120.0.w,
+                  width : 140.0.w,
+                  percentageSave: "Save 45 %",
+                  oldTripPrice: 100,
                 );
               },
               separatorBuilder: (context, index) {

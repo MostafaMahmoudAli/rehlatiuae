@@ -13,7 +13,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/cat
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/our_blog_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/our_partner_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/reviews_section.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/search_text_feild.dart';
+import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top_destination_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';

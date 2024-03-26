@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -87,55 +88,60 @@ class ReviewsSection extends StatelessWidget {
         ),
         Row(
           children: [
-            Container(
-              width: 100.0.w,
-              height: 40.0.h,
-              padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0.r),
-                border: Border.all(color: AppColors.greySearchText),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: AppStrings.reviewTextFieldName,
-                  hintStyle: Theme.of(context).textTheme.headlineSmall,
+            Expanded(
+              child: Container(
+                width: 100.0.w,
+                height: 60.0.h,
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0.r),
+                  border: Border.all(color: AppColors.greySearchText),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: AppStrings.reviewTextFieldName,
+                    hintStyle: Theme.of(context).textTheme.headlineSmall,
+
+                  ),
                 ),
               ),
             ),
             SizedBox(
               width: 10.0.h,
             ),
-            Container(
-              width: 100.0.w,
-              height: 40.0.h,
-              padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0.r),
-                border: Border.all(color: AppColors.greySearchText),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: AppStrings.reviewTextFieldEmail,
-                  hintStyle: Theme.of(context).textTheme.headlineSmall,
+            Expanded(
+              child: Container(
+                width: 100.0.w,
+                height: 60.0.h,
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0.r),
+                  border: Border.all(color: AppColors.greySearchText),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: AppStrings.reviewTextFieldEmail,
+                    hintStyle: Theme.of(context).textTheme.headlineSmall,
+                  ),
                 ),
               ),
             ),
-            SizedBox(
-              width: 8.0.h,
-            ),
-            CustomActionButton(
-              text: AppStrings.reviewActionButtonName,
-              borderRadius: BorderRadius.circular(10.0.r),
-              backGroundColor: AppColors.textAndBackgroundColorButton,
-              onTap: () {},
-              width: 50.0.w,
-              height: 40.0.h,
-            ),
           ],
+        ),
+        SizedBox(
+          height: 15.0.h,
+        ),
+        CustomActionButton(
+          text: AppStrings.reviewActionButtonName,
+          borderRadius: BorderRadius.circular(8.0.r),
+          backGroundColor: AppColors.textAndBackgroundColorButton,
+          onTap: () {},
+          width: double.infinity,
+          height: 30.0.h,
         ),
         SizedBox(
           height: 50.0.h,
