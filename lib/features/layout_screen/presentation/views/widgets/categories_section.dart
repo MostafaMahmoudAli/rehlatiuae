@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -13,32 +12,29 @@ class CategoriesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         CustomRowTitle(
+        CustomRowTitle(
           text: AppStrings.categoriesTitle,
-          onPressed:()
-          {
+          onPressed: () {
             context.push(AppStrings.allCategoriesScreen);
           },
         ),
         SizedBox(
-          height:40.0.h,
+          height: 40.0.h,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, index) {
-                return   InkWell(
-                  onTap: ()
-                  {
+                return InkWell(
+                  onTap: () {
                     context.push(AppStrings.categoryNameScreen);
                   },
                   child: CategoriesItem(
-                    height:40.0.h,
+                    height: 40.0.h,
                     width: 75.0.w,
                   ),
                 );
               },
-              separatorBuilder: (context, index)
-              {
+              separatorBuilder: (context, index) {
                 return SizedBox(
                   width: 10.0.w,
                 );

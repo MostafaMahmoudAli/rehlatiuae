@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 
 abstract class AuthRepo {
   Future<Either<String, Unit>> forgetPassword({required String email});

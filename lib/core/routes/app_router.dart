@@ -3,6 +3,7 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/category_name.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/all_trips_screen.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/auth/presentation/views/forget_password_screen.dart';
 import 'package:rehlatyuae/features/auth/presentation/views/login_screen.dart';
 import 'package:rehlatyuae/features/auth/presentation/views/register_screen.dart';
@@ -21,7 +22,6 @@ import 'package:rehlatyuae/features/our_blogs/presentation/views/our_blogs_scree
 import 'package:rehlatyuae/features/payment/presentation/views/payment_details_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_options_screen.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/popular_experiences_screen.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/edit_profile_screen.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/profile_screen.dart';
 import 'package:rehlatyuae/features/splash_screen/presentation/views/onboarding.dart';
@@ -44,11 +44,11 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppStrings.categoryNameScreen,
-        builder: (context, state) =>  CategoryNameScreen(),
+        builder: (context, state) => CategoryNameScreen(),
       ),
       GoRoute(
         path: AppStrings.cityDestinationScreen,
-        builder: (context, state) =>  CityDestinationScreen(),
+        builder: (context, state) => CityDestinationScreen(),
       ),
       GoRoute(
         path: AppStrings.allTripsScreen,

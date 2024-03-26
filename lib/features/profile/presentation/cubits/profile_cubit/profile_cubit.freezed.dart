@@ -326,8 +326,6 @@ abstract class _$$LoadedImplCopyWith<$Res> {
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Client client});
-
-  $ClientCopyWith<$Res> get client;
 }
 
 /// @nodoc
@@ -338,22 +336,14 @@ class __$$LoadedImplCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res, 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? client = null,
+    Object? client = freezed,
   }) {
     return _then(_$LoadedImpl(
-      null == client
+      freezed == client
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
               as Client,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ClientCopyWith<$Res> get client {
-    return $ClientCopyWith<$Res>(_value.client, (value) {
-      return _then(_value.copyWith(client: value));
-    });
   }
 }
 
@@ -375,11 +365,11 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.client, client) || other.client == client));
+            const DeepCollectionEquality().equals(other.client, client));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, client);
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(client));
 
   @JsonKey(ignore: true)
   @override

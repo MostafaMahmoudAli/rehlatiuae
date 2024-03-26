@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -14,7 +13,7 @@ class ReviewsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         Text(
+        Text(
           AppStrings.reviewTitle,
           style: Theme.of(context).textTheme.labelMedium,
         ),
@@ -25,7 +24,7 @@ class ReviewsSection extends StatelessWidget {
             "assets/images/Ellipse 1.png",
           ),
         ),
-         Text(
+        Text(
           AppStrings.weHelpYouMakeBestTripDescription,
           style: Theme.of(context).textTheme.bodyLarge,
           overflow: TextOverflow.ellipsis,
@@ -82,7 +81,7 @@ class ReviewsSection extends StatelessWidget {
         SizedBox(
           height: 40.0.h,
         ),
-         Text(
+        Text(
           AppStrings.subscribeToNewsletterTitle,
           style: Theme.of(context).textTheme.labelMedium,
         ),
@@ -103,7 +102,6 @@ class ReviewsSection extends StatelessWidget {
                     border: InputBorder.none,
                     hintText: AppStrings.reviewTextFieldName,
                     hintStyle: Theme.of(context).textTheme.headlineSmall,
-
                   ),
                 ),
               ),
@@ -146,9 +144,11 @@ class ReviewsSection extends StatelessWidget {
         SizedBox(
           height: 50.0.h,
         ),
-         Text(
+        Text(
           AppStrings.copyRight,
-          style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize:14.0.sp,),
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                fontSize: 14.0.sp,
+              ),
         ),
       ],
     );

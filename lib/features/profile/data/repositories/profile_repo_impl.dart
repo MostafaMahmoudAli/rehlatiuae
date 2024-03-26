@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/profile/domain/repositories/profile_repo.dart';
 
 class ProfileRepoImpl implements ProfileRepo {

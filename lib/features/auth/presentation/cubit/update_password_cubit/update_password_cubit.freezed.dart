@@ -24,7 +24,6 @@ mixin _$UpdatePasswordState {
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -42,7 +41,6 @@ mixin _$UpdatePasswordState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -51,7 +49,6 @@ mixin _$UpdatePasswordState {
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -312,8 +309,6 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Client client, String token});
-
-  $ClientCopyWith<$Res> get client;
 }
 
 /// @nodoc
@@ -324,11 +319,11 @@ class __$$SuccessImplCopyWithImpl<$Res> extends _$UpdatePasswordStateCopyWithImp
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? client = null,
+    Object? client = freezed,
     Object? token = null,
   }) {
     return _then(_$SuccessImpl(
-      null == client
+      freezed == client
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
               as Client,
@@ -337,14 +332,6 @@ class __$$SuccessImplCopyWithImpl<$Res> extends _$UpdatePasswordStateCopyWithImp
           : token // ignore: cast_nullable_to_non_nullable
               as String,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ClientCopyWith<$Res> get client {
-    return $ClientCopyWith<$Res>(_value.client, (value) {
-      return _then(_value.copyWith(client: value));
-    });
   }
 }
 
@@ -368,12 +355,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.client, client) || other.client == client) &&
+            const DeepCollectionEquality().equals(other.client, client) &&
             (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, client, token);
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(client), token);
 
   @JsonKey(ignore: true)
   @override
