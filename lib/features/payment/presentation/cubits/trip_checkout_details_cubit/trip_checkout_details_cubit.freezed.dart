@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'send_message_cubit.dart';
+part of 'trip_checkout_details_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SendMessageState {
+mixin _$TripCheckoutDetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -24,6 +24,7 @@ mixin _$SendMessageState {
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -41,6 +42,7 @@ mixin _$SendMessageState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -49,6 +51,7 @@ mixin _$SendMessageState {
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -69,14 +72,16 @@ mixin _$SendMessageState {
 }
 
 /// @nodoc
-abstract class $SendMessageStateCopyWith<$Res> {
-  factory $SendMessageStateCopyWith(SendMessageState value, $Res Function(SendMessageState) then) =
-      _$SendMessageStateCopyWithImpl<$Res, SendMessageState>;
+abstract class $TripCheckoutDetailsStateCopyWith<$Res> {
+  factory $TripCheckoutDetailsStateCopyWith(
+          TripCheckoutDetailsState value, $Res Function(TripCheckoutDetailsState) then) =
+      _$TripCheckoutDetailsStateCopyWithImpl<$Res, TripCheckoutDetailsState>;
 }
 
 /// @nodoc
-class _$SendMessageStateCopyWithImpl<$Res, $Val extends SendMessageState> implements $SendMessageStateCopyWith<$Res> {
-  _$SendMessageStateCopyWithImpl(this._value, this._then);
+class _$TripCheckoutDetailsStateCopyWithImpl<$Res, $Val extends TripCheckoutDetailsState>
+    implements $TripCheckoutDetailsStateCopyWith<$Res> {
+  _$TripCheckoutDetailsStateCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
@@ -91,7 +96,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$InitialImpl>
+class __$$InitialImplCopyWithImpl<$Res> extends _$TripCheckoutDetailsStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(_$InitialImpl _value, $Res Function(_$InitialImpl) _then) : super(_value, _then);
 }
@@ -103,7 +108,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'SendMessageState.initial()';
+    return 'TripCheckoutDetailsState.initial()';
   }
 
   @override
@@ -189,7 +194,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements SendMessageState {
+abstract class _Initial implements TripCheckoutDetailsState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -200,7 +205,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$LoadingImpl>
+class __$$LoadingImplCopyWithImpl<$Res> extends _$TripCheckoutDetailsStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(_$LoadingImpl _value, $Res Function(_$LoadingImpl) _then) : super(_value, _then);
 }
@@ -212,7 +217,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'SendMessageState.loading()';
+    return 'TripCheckoutDetailsState.loading()';
   }
 
   @override
@@ -298,7 +303,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements SendMessageState {
+abstract class _Loading implements TripCheckoutDetailsState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -309,7 +314,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$SuccessImpl>
+class __$$SuccessImplCopyWithImpl<$Res> extends _$TripCheckoutDetailsStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(_$SuccessImpl _value, $Res Function(_$SuccessImpl) _then) : super(_value, _then);
 }
@@ -321,7 +326,7 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'SendMessageState.success()';
+    return 'TripCheckoutDetailsState.success()';
   }
 
   @override
@@ -407,7 +412,7 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements SendMessageState {
+abstract class _Success implements TripCheckoutDetailsState {
   const factory _Success() = _$SuccessImpl;
 }
 
@@ -419,7 +424,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$ErrorImpl>
+class __$$ErrorImplCopyWithImpl<$Res> extends _$TripCheckoutDetailsStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(_$ErrorImpl _value, $Res Function(_$ErrorImpl) _then) : super(_value, _then);
 
@@ -447,7 +452,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'SendMessageState.error(message: $message)';
+    return 'TripCheckoutDetailsState.error(message: $message)';
   }
 
   @override
@@ -541,7 +546,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements SendMessageState {
+abstract class _Error implements TripCheckoutDetailsState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;

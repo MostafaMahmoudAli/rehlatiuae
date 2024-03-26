@@ -4,7 +4,14 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/number_ticket_card.dart';
 
 class CountTicketsSection extends StatefulWidget {
-  const CountTicketsSection({super.key});
+  final void Function(int value) onAdultsCountChange;
+  final void Function(int value) onChildrenCountChange;
+
+  const CountTicketsSection({
+    required this.onChildrenCountChange,
+    required this.onAdultsCountChange,
+    super.key,
+  });
 
   @override
   State<CountTicketsSection> createState() => _CountTicketsSectionState();
@@ -40,6 +47,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
           onIncreasePressed: () {
             setState(() {
               ++adultNumber;
+              widget.onAdultsCountChange(adultNumber);
             });
           },
           onDecreasePressed: adultNumber <= 1
@@ -47,6 +55,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
               : () {
                   setState(() {
                     --adultNumber;
+                    widget.onAdultsCountChange(adultNumber);
                   });
                 },
         ),
@@ -58,6 +67,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
           onIncreasePressed: () {
             setState(() {
               ++childCount;
+              widget.onChildrenCountChange(childCount);
             });
           },
           onDecreasePressed: childCount <= 0
@@ -65,6 +75,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
               : () {
                   setState(() {
                     --childCount;
+                    widget.onChildrenCountChange(childCount);
                   });
                 },
         ),

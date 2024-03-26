@@ -11,6 +11,10 @@ import 'package:rehlatyuae/features/best_offers/data/repositories/best_offers_re
 import 'package:rehlatyuae/features/layout_screen/data/repositories/main_repo_impl.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/send_message_cubit/send_message_cubit.dart';
+import 'package:rehlatyuae/features/payment/data/repositories/payment_repo_impl.dart';
+import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/profile/data/repositories/profile_repo_impl.dart';
 import 'package:rehlatyuae/features/profile/domain/repositories/profile_repo.dart';
 import 'package:rehlatyuae/features/profile/presentation/cubits/edit_profile_cubit/edit_profile_cubit.dart';
@@ -75,4 +79,14 @@ void setupInjector() {
 
   // cubits
   getIt.registerFactory(() => SendMessageCubit(mainRepo: getIt()));
+
+  /// Payment Feature
+  // repositories objects
+  getIt.registerLazySingleton<PaymentRepo>(
+    () => PaymentRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+  );
+
+  // cubits
+  getIt.registerFactory(() => CheckCouponCubit(paymentRepo: getIt()));
+  getIt.registerFactory(() => TripCheckoutDetailsCubit(paymentRepo: getIt()));
 }

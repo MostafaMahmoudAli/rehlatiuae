@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'send_message_cubit.dart';
+part of 'check_coupon_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,20 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SendMessageState {
+mixin _$CheckCouponState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Coupon coupon) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Coupon coupon)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,11 +37,12 @@ mixin _$SendMessageState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Coupon coupon)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -49,6 +51,7 @@ mixin _$SendMessageState {
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -69,14 +72,14 @@ mixin _$SendMessageState {
 }
 
 /// @nodoc
-abstract class $SendMessageStateCopyWith<$Res> {
-  factory $SendMessageStateCopyWith(SendMessageState value, $Res Function(SendMessageState) then) =
-      _$SendMessageStateCopyWithImpl<$Res, SendMessageState>;
+abstract class $CheckCouponStateCopyWith<$Res> {
+  factory $CheckCouponStateCopyWith(CheckCouponState value, $Res Function(CheckCouponState) then) =
+      _$CheckCouponStateCopyWithImpl<$Res, CheckCouponState>;
 }
 
 /// @nodoc
-class _$SendMessageStateCopyWithImpl<$Res, $Val extends SendMessageState> implements $SendMessageStateCopyWith<$Res> {
-  _$SendMessageStateCopyWithImpl(this._value, this._then);
+class _$CheckCouponStateCopyWithImpl<$Res, $Val extends CheckCouponState> implements $CheckCouponStateCopyWith<$Res> {
+  _$CheckCouponStateCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
@@ -91,7 +94,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$InitialImpl>
+class __$$InitialImplCopyWithImpl<$Res> extends _$CheckCouponStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(_$InitialImpl _value, $Res Function(_$InitialImpl) _then) : super(_value, _then);
 }
@@ -103,7 +106,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'SendMessageState.initial()';
+    return 'CheckCouponState.initial()';
   }
 
   @override
@@ -119,7 +122,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Coupon coupon) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -130,7 +133,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Coupon coupon)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -141,7 +144,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Coupon coupon)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -189,7 +192,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements SendMessageState {
+abstract class _Initial implements CheckCouponState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -200,7 +203,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$LoadingImpl>
+class __$$LoadingImplCopyWithImpl<$Res> extends _$CheckCouponStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(_$LoadingImpl _value, $Res Function(_$LoadingImpl) _then) : super(_value, _then);
 }
@@ -212,7 +215,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'SendMessageState.loading()';
+    return 'CheckCouponState.loading()';
   }
 
   @override
@@ -228,7 +231,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Coupon coupon) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -239,7 +242,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Coupon coupon)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -250,7 +253,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Coupon coupon)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -298,7 +301,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements SendMessageState {
+abstract class _Loading implements CheckCouponState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -306,41 +309,77 @@ abstract class _Loading implements SendMessageState {
 abstract class _$$SuccessImplCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(_$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Coupon coupon});
+
+  $CouponCopyWith<$Res> get coupon;
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$SuccessImpl>
+class __$$SuccessImplCopyWithImpl<$Res> extends _$CheckCouponStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(_$SuccessImpl _value, $Res Function(_$SuccessImpl) _then) : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? coupon = null,
+  }) {
+    return _then(_$SuccessImpl(
+      null == coupon
+          ? _value.coupon
+          : coupon // ignore: cast_nullable_to_non_nullable
+              as Coupon,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CouponCopyWith<$Res> get coupon {
+    return $CouponCopyWith<$Res>(_value.coupon, (value) {
+      return _then(_value.copyWith(coupon: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
+  const _$SuccessImpl(this.coupon);
+
+  @override
+  final Coupon coupon;
 
   @override
   String toString() {
-    return 'SendMessageState.success()';
+    return 'CheckCouponState.success(coupon: $coupon)';
   }
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$SuccessImpl);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            (identical(other.coupon, coupon) || other.coupon == coupon));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, coupon);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith => __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Coupon coupon) success,
     required TResult Function(String message) error,
   }) {
-    return success();
+    return success(coupon);
   }
 
   @override
@@ -348,10 +387,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Coupon coupon)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call();
+    return success?.call(coupon);
   }
 
   @override
@@ -359,12 +398,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Coupon coupon)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(coupon);
     }
     return orElse();
   }
@@ -407,8 +446,12 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements SendMessageState {
-  const factory _Success() = _$SuccessImpl;
+abstract class _Success implements CheckCouponState {
+  const factory _Success(final Coupon coupon) = _$SuccessImpl;
+
+  Coupon get coupon;
+  @JsonKey(ignore: true)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -419,7 +462,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$ErrorImpl>
+class __$$ErrorImplCopyWithImpl<$Res> extends _$CheckCouponStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(_$ErrorImpl _value, $Res Function(_$ErrorImpl) _then) : super(_value, _then);
 
@@ -447,7 +490,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'SendMessageState.error(message: $message)';
+    return 'CheckCouponState.error(message: $message)';
   }
 
   @override
@@ -471,7 +514,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Coupon coupon) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -482,7 +525,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Coupon coupon)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -493,7 +536,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Coupon coupon)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -541,7 +584,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements SendMessageState {
+abstract class _Error implements CheckCouponState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
