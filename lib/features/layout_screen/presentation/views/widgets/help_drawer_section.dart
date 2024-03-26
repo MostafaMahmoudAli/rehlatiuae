@@ -72,8 +72,8 @@ class HelpDrawerSection extends StatelessWidget {
               builder: (context) => const CustomBottomSheet(
                 title: 'Send message',
                 avatarText: 'ME',
-                labelButton: 'Send',
                 isPaymentSheet: false,
+                hasButton: false,
                 contentSheet: SendMessageContentSheet(),
               ),
             );

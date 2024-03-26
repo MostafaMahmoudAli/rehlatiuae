@@ -12,4 +12,7 @@ class EndPoints {
   static String forgetPasswordEndPoint = "client/forgetPassword";
   static String verificationEmailEndPoint = "client/password/reset";
   static String resetPasswordEndPoint = "client/password/confirm";
+
+  // Main Feature EndPoints
+  static String sendMessageEndPoint = "home/sendMessage";
 }

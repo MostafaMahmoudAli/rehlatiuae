@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/auth/domain/repositories/auth_repo.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
 
 part 'update_password_cubit.freezed.dart';
 part 'update_password_state.dart';

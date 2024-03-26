@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'profile_cubit.dart';
+part of 'send_message_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,74 +15,71 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ProfileState {
+mixin _$SendMessageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client) loaded,
+    required TResult Function() success,
     required TResult Function(String message) error,
-    required TResult Function() deleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client)? loaded,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
-    TResult? Function()? deleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client)? loaded,
+    TResult Function()? success,
     TResult Function(String message)? error,
-    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
-    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
-    TResult? Function(_DeleteSuccess value)? deleteSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileStateCopyWith<$Res> {
-  factory $ProfileStateCopyWith(ProfileState value, $Res Function(ProfileState) then) =
-      _$ProfileStateCopyWithImpl<$Res, ProfileState>;
+abstract class $SendMessageStateCopyWith<$Res> {
+  factory $SendMessageStateCopyWith(SendMessageState value, $Res Function(SendMessageState) then) =
+      _$SendMessageStateCopyWithImpl<$Res, SendMessageState>;
 }
 
 /// @nodoc
-class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState> implements $ProfileStateCopyWith<$Res> {
-  _$ProfileStateCopyWithImpl(this._value, this._then);
+class _$SendMessageStateCopyWithImpl<$Res, $Val extends SendMessageState> implements $SendMessageStateCopyWith<$Res> {
+  _$SendMessageStateCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
@@ -97,7 +94,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res, _$InitialImpl>
+class __$$InitialImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(_$InitialImpl _value, $Res Function(_$InitialImpl) _then) : super(_value, _then);
 }
@@ -109,7 +106,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'ProfileState.initial()';
+    return 'SendMessageState.initial()';
   }
 
   @override
@@ -125,9 +122,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client) loaded,
+    required TResult Function() success,
     required TResult Function(String message) error,
-    required TResult Function() deleteSuccess,
   }) {
     return initial();
   }
@@ -137,9 +133,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client)? loaded,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
-    TResult? Function()? deleteSuccess,
   }) {
     return initial?.call();
   }
@@ -149,9 +144,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client)? loaded,
+    TResult Function()? success,
     TResult Function(String message)? error,
-    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -165,9 +159,8 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
-    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) {
     return initial(this);
   }
@@ -177,9 +170,8 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
-    TResult? Function(_DeleteSuccess value)? deleteSuccess,
   }) {
     return initial?.call(this);
   }
@@ -189,9 +181,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -201,7 +192,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements ProfileState {
+abstract class _Initial implements SendMessageState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -212,7 +203,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res, _$LoadingImpl>
+class __$$LoadingImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(_$LoadingImpl _value, $Res Function(_$LoadingImpl) _then) : super(_value, _then);
 }
@@ -224,7 +215,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'ProfileState.loading()';
+    return 'SendMessageState.loading()';
   }
 
   @override
@@ -240,9 +231,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client) loaded,
+    required TResult Function() success,
     required TResult Function(String message) error,
-    required TResult Function() deleteSuccess,
   }) {
     return loading();
   }
@@ -252,9 +242,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client)? loaded,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
-    TResult? Function()? deleteSuccess,
   }) {
     return loading?.call();
   }
@@ -264,9 +253,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client)? loaded,
+    TResult Function()? success,
     TResult Function(String message)? error,
-    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -280,9 +268,8 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
-    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) {
     return loading(this);
   }
@@ -292,9 +279,8 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
-    TResult? Function(_DeleteSuccess value)? deleteSuccess,
   }) {
     return loading?.call(this);
   }
@@ -304,9 +290,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -316,86 +301,49 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements ProfileState {
+abstract class _Loading implements SendMessageState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(_$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Client client});
-
-  $ClientCopyWith<$Res> get client;
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(_$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(_$LoadedImpl _value, $Res Function(_$LoadedImpl) _then) : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? client = null,
-  }) {
-    return _then(_$LoadedImpl(
-      null == client
-          ? _value.client
-          : client // ignore: cast_nullable_to_non_nullable
-              as Client,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ClientCopyWith<$Res> get client {
-    return $ClientCopyWith<$Res>(_value.client, (value) {
-      return _then(_value.copyWith(client: value));
-    });
-  }
+class __$$SuccessImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(_$SuccessImpl _value, $Res Function(_$SuccessImpl) _then) : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.client);
-
-  @override
-  final Client client;
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl();
 
   @override
   String toString() {
-    return 'ProfileState.loaded(client: $client)';
+    return 'SendMessageState.success()';
   }
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            (identical(other.client, client) || other.client == client));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$SuccessImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, client);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith => __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client) loaded,
+    required TResult Function() success,
     required TResult Function(String message) error,
-    required TResult Function() deleteSuccess,
   }) {
-    return loaded(client);
+    return success();
   }
 
   @override
@@ -403,11 +351,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client)? loaded,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
-    TResult? Function()? deleteSuccess,
   }) {
-    return loaded?.call(client);
+    return success?.call();
   }
 
   @override
@@ -415,13 +362,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client)? loaded,
+    TResult Function()? success,
     TResult Function(String message)? error,
-    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(client);
+    if (success != null) {
+      return success();
     }
     return orElse();
   }
@@ -431,11 +377,10 @@ class _$LoadedImpl implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
-    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -443,11 +388,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
-    TResult? Function(_DeleteSuccess value)? deleteSuccess,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -455,24 +399,19 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded implements ProfileState {
-  const factory _Loaded(final Client client) = _$LoadedImpl;
-
-  Client get client;
-  @JsonKey(ignore: true)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith => throw _privateConstructorUsedError;
+abstract class _Success implements SendMessageState {
+  const factory _Success() = _$SuccessImpl;
 }
 
 /// @nodoc
@@ -483,7 +422,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res, _$ErrorImpl>
+class __$$ErrorImplCopyWithImpl<$Res> extends _$SendMessageStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(_$ErrorImpl _value, $Res Function(_$ErrorImpl) _then) : super(_value, _then);
 
@@ -511,7 +450,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'ProfileState.error(message: $message)';
+    return 'SendMessageState.error(message: $message)';
   }
 
   @override
@@ -535,9 +474,8 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client) loaded,
+    required TResult Function() success,
     required TResult Function(String message) error,
-    required TResult Function() deleteSuccess,
   }) {
     return error(message);
   }
@@ -547,9 +485,8 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client)? loaded,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
-    TResult? Function()? deleteSuccess,
   }) {
     return error?.call(message);
   }
@@ -559,9 +496,8 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client)? loaded,
+    TResult Function()? success,
     TResult Function(String message)? error,
-    TResult Function()? deleteSuccess,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -575,9 +511,8 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
-    required TResult Function(_DeleteSuccess value) deleteSuccess,
   }) {
     return error(this);
   }
@@ -587,9 +522,8 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
-    TResult? Function(_DeleteSuccess value)? deleteSuccess,
   }) {
     return error?.call(this);
   }
@@ -599,9 +533,8 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -611,126 +544,10 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements ProfileState {
+abstract class _Error implements SendMessageState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$DeleteSuccessImplCopyWith<$Res> {
-  factory _$$DeleteSuccessImplCopyWith(_$DeleteSuccessImpl value, $Res Function(_$DeleteSuccessImpl) then) =
-      __$$DeleteSuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DeleteSuccessImplCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res, _$DeleteSuccessImpl>
-    implements _$$DeleteSuccessImplCopyWith<$Res> {
-  __$$DeleteSuccessImplCopyWithImpl(_$DeleteSuccessImpl _value, $Res Function(_$DeleteSuccessImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$DeleteSuccessImpl implements _DeleteSuccess {
-  const _$DeleteSuccessImpl();
-
-  @override
-  String toString() {
-    return 'ProfileState.deleteSuccess()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$DeleteSuccessImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(Client client) loaded,
-    required TResult Function(String message) error,
-    required TResult Function() deleteSuccess,
-  }) {
-    return deleteSuccess();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(Client client)? loaded,
-    TResult? Function(String message)? error,
-    TResult? Function()? deleteSuccess,
-  }) {
-    return deleteSuccess?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(Client client)? loaded,
-    TResult Function(String message)? error,
-    TResult Function()? deleteSuccess,
-    required TResult orElse(),
-  }) {
-    if (deleteSuccess != null) {
-      return deleteSuccess();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-    required TResult Function(_DeleteSuccess value) deleteSuccess,
-  }) {
-    return deleteSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_DeleteSuccess value)? deleteSuccess,
-  }) {
-    return deleteSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
-    required TResult orElse(),
-  }) {
-    if (deleteSuccess != null) {
-      return deleteSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DeleteSuccess implements ProfileState {
-  const factory _DeleteSuccess() = _$DeleteSuccessImpl;
 }

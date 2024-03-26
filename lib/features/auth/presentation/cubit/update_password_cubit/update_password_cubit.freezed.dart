@@ -309,6 +309,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Client client, String token});
+
+  $ClientCopyWith<$Res> get client;
 }
 
 /// @nodoc
@@ -319,11 +321,11 @@ class __$$SuccessImplCopyWithImpl<$Res> extends _$UpdatePasswordStateCopyWithImp
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? client = freezed,
+    Object? client = null,
     Object? token = null,
   }) {
     return _then(_$SuccessImpl(
-      freezed == client
+      null == client
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
               as Client,
@@ -332,6 +334,14 @@ class __$$SuccessImplCopyWithImpl<$Res> extends _$UpdatePasswordStateCopyWithImp
           : token // ignore: cast_nullable_to_non_nullable
               as String,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClientCopyWith<$Res> get client {
+    return $ClientCopyWith<$Res>(_value.client, (value) {
+      return _then(_value.copyWith(client: value));
+    });
   }
 }
 
@@ -355,12 +365,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other.client, client) &&
+            (identical(other.client, client) || other.client == client) &&
             (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(client), token);
+  int get hashCode => Object.hash(runtimeType, client, token);
 
   @JsonKey(ignore: true)
   @override
