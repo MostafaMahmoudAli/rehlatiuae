@@ -2,15 +2,15 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/message_model/message_model.dart';
-import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
+import 'package:rehlatyuae/features/layout_screen/domain/repositories/layout_repo.dart';
 
 part 'send_message_cubit.freezed.dart';
 part 'send_message_state.dart';
 
 class SendMessageCubit extends Cubit<SendMessageState> {
-  MainRepo mainRepo;
+  LayoutRepository layoutRepo;
 
-  SendMessageCubit({required this.mainRepo}) : super(const SendMessageState.initial());
+  SendMessageCubit({required this.layoutRepo}) : super(const SendMessageState.initial());
 
   final GlobalKey<FormState> sendMessageFormKey = GlobalKey<FormState>();
   final TextEditingController nameEditingController = TextEditingController();
@@ -20,7 +20,7 @@ class SendMessageCubit extends Cubit<SendMessageState> {
   Future<void> sendMessage() async {
     if (!sendMessageFormKey.currentState!.validate()) return;
     _update(const SendMessageState.loading());
-    final results = await mainRepo.sendMessage(
+    final results = await layoutRepo.sendMessage(
       message: Message(
         name: nameEditingController.text,
         email: emailEditingController.text,

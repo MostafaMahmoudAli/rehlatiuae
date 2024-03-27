@@ -8,8 +8,8 @@ import 'package:rehlatyuae/features/auth/presentation/cubit/forget_password_cubi
 import 'package:rehlatyuae/features/auth/presentation/cubit/update_password_cubit/update_password_cubit.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/verification_email_cubit/verification_email_cubit.dart';
 import 'package:rehlatyuae/features/best_offers/data/repositories/best_offers_repo_impl.dart';
-import 'package:rehlatyuae/features/layout_screen/data/repositories/main_repo_impl.dart';
-import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
+import 'package:rehlatyuae/features/layout_screen/domain/repositories/layout_repo.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/layout_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/send_message_cubit/send_message_cubit.dart';
 import 'package:rehlatyuae/features/payment/data/repositories/payment_repo_impl.dart';
 import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
@@ -23,7 +23,6 @@ import 'package:rehlatyuae/features/profile/presentation/cubits/profile_cubit/pr
 import '../../features/best_offers/domain/repositories/best_offers_repo.dart';
 import '../../features/best_offers/presentation/cubits/best_offers_cubit.dart';
 import '../../features/layout_screen/data/repositories/layout_repo_impl.dart';
-import '../../features/layout_screen/domian/repositories/layout_repo.dart';
 import '../../features/our_blogs/data/repositories/blogs_repository_impl.dart';
 import '../../features/our_blogs/domain/repositories/blogs_repository.dart';
 import '../../features/our_blogs/presentation/blogs_cubit.dart';
@@ -52,11 +51,14 @@ void setupInjector() {
       apiConsumer: getIt.get<ApiConsumer>(),
     ),
   );
+  getIt.registerFactory(() => SendMessageCubit(layoutRepo: getIt()));
 
   // cubits
   getIt.registerFactory(() => BestOffersCubit(bestOffersRepo: getIt()));
 
   getIt.registerFactory(() => BlogsCubit(blogsRepository: getIt()));
+
+  getIt.registerFactory(() => LayoutCubit(layoutRepository: getIt()));
 
   /// Profile Feature
   // repositories objects
@@ -78,15 +80,6 @@ void setupInjector() {
   getIt.registerFactory(() => ForgetPasswordCubit(authRepo: getIt()));
   getIt.registerFactory(() => VerificationEmailCubit(authRepo: getIt()));
   getIt.registerFactory(() => UpdatePasswordCubit(authRepo: getIt()));
-
-  /// Main Feature
-  // repositories objects
-  getIt.registerLazySingleton<MainRepo>(
-    () => MainRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
-  );
-
-  // cubits
-  getIt.registerFactory(() => SendMessageCubit(mainRepo: getIt()));
 
   /// Payment Feature
   // repositories objects
