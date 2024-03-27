@@ -1,7 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/category_name.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/all_trips_screen.dart';
@@ -21,7 +19,6 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/main_layout
 import 'package:rehlatyuae/features/layout_screen/presentation/views/travel_details_screen.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/blog_details_screen.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/our_blogs_screen.dart';
-import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_details_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_options_screen.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/popular_experiences_screen.dart';
@@ -81,10 +78,7 @@ abstract class AppRouter {
       /// Payment Screens
       GoRoute(
         path: AppStrings.paymentOptionsScreen,
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt<TripCheckoutDetailsCubit>(),
-          child: const PaymentOptionsScreen(),
-        ),
+        builder: (context, state) => const PaymentOptionsScreen(),
       ),
       GoRoute(
         path: AppStrings.paymentDetailsScreen,

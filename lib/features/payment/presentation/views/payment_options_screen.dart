@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,12 +7,11 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
-import 'package:rehlatyuae/core/utils/pickers.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
-import 'package:rehlatyuae/core/utils/regex.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/count_tickets_section.dart';
+import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_date_booking.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_payment_section.dart';
 
 class PaymentOptionsScreen extends StatelessWidget {
@@ -37,31 +35,7 @@ class PaymentOptionsScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Form(
-                  key: cubit.dateFormKey,
-                  child: PrimaryTextField(
-                    label: AppStrings.yourDateBooking,
-                    hint: AppStrings.selectDate,
-                    controller: cubit.dateEditingController,
-                    readOnly: true,
-                    validator: (value) => AppValidator.validateRequired(value),
-                    onTap: () async {
-                      cubit.dateEditingController.text = await Pickers.choseDate(
-                            context: context,
-                            firstDate: DateTime.now(),
-                            initialDate: DateTime.now(),
-                          ) ??
-                          '';
-                      if (context.mounted) {
-                        cubit.changeChangeDetails();
-                        cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
-                          date: cubit.dateEditingController.text,
-                        );
-                      }
-                    },
-                    suffix: const Icon(CupertinoIcons.calendar),
-                  ),
-                ),
+                FieldDateBooking(cubit: cubit),
                 CountTicketsSection(
                   adultCost: cubit.adultCost,
                   childCost: cubit.childCost,
@@ -69,6 +43,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                     cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
                       quantityAdult: count,
                       subtotalAdult: total,
+                      total: total + cubit.tripCheckoutDetails.subtotalChild,
                     );
                     cubit.changeChangeDetails();
                   },
@@ -76,6 +51,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                     cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
                       quantityChild: count,
                       subtotalChild: total,
+                      total: total + cubit.tripCheckoutDetails.subtotalAdult,
                     );
                     cubit.changeChangeDetails();
                   },

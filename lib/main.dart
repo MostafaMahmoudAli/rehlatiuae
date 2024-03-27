@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/app_theme/app_theme.dart';
 import 'package:rehlatyuae/core/routes/app_router.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
 import 'core/utils/bloc_observer.dart';
 import 'core/utils/injector.dart';
@@ -24,10 +25,17 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp.router(
-            theme: appTheme(),
-            debugShowCheckedModeBanner: false,
-            routerConfig: AppRouter.router,
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => getIt<TripCheckoutDetailsCubit>(),
+              )
+            ],
+            child: MaterialApp.router(
+              theme: appTheme(),
+              debugShowCheckedModeBanner: false,
+              routerConfig: AppRouter.router,
+            ),
           );
         });
   }

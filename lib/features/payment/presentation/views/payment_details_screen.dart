@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
-import 'package:rehlatyuae/core/utils/pickers.dart';
-import 'package:rehlatyuae/core/utils/primary_text_field.dart';
-import 'package:rehlatyuae/features/payment/presentation/views/widgets/credit_debit_cards_section.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_date_booking.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/order_summary_section.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/payment_content_sheet.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_payment_section.dart';
@@ -25,44 +24,32 @@ class PaymentDetailsScreen extends StatelessWidget {
               ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            PrimaryTextField(
-              label: AppStrings.yourDateBooking,
-              hint: "12/12/2024",
-              controller: TextEditingController(),
-              readOnly: true,
-              onTap: () async {
-                var duration = const Duration();
-                await Pickers.choseDate(
-                  context: context,
-                  firstDate: DateTime.now().add(duration),
-                  initialDate: DateTime.now().add(duration),
-                );
-              },
-              suffix: const Icon(CupertinoIcons.calendar),
-            ),
-            SizedBox(
-              height: 15.h,
-            ),
-            const OrderSummarySection(
-              total: '5,451',
-              childrenCount: '2',
-              adultCount: '3',
-              address: "Dobai, United Arab Emarates",
-            ),
-            SizedBox(
-              height: 15.h,
-            ),
-            const CreditDebitCardsSection(
-              total: 'total',
-              childrenCount: 'childrenCount',
-              adultCount: 'adultCount',
-              address: 'address',
-            ),
-            TotalPaymentSection(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              FieldDateBooking(
+                cubit: context.read<TripCheckoutDetailsCubit>(),
+                isFirstScreen: false,
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              OrderSummarySection(
+                total: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.total}',
+                childrenCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityChild}',
+                adultCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityAdult}',
+                address: "Dobai, United Arab Emarates",
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 10.h),
+            child: TotalPaymentSection(
               total: "\$6,699",
               subtitle: "View detailed bill",
               buttonLabel: AppStrings.payment,
@@ -114,8 +101,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                 );
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

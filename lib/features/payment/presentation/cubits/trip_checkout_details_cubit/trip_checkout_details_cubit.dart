@@ -14,6 +14,7 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
   TripCheckoutDetailsCubit({required this.paymentRepo}) : super(const TripCheckoutDetailsState.initial());
 
   final GlobalKey<FormState> dateFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> date2FormKey = GlobalKey<FormState>();
   final TextEditingController descriptionEditingController = TextEditingController();
   final TextEditingController dateEditingController = TextEditingController();
 
