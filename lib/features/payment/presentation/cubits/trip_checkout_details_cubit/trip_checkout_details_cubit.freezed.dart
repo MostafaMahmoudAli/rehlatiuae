@@ -21,15 +21,16 @@ mixin _$TripCheckoutDetailsState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() changeChangeDetails,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? changeChangeDetails,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,25 +39,26 @@ mixin _$TripCheckoutDetailsState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? changeChangeDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ChangeChangeDetails value) changeChangeDetails,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -65,6 +67,7 @@ mixin _$TripCheckoutDetailsState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -125,6 +128,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() changeChangeDetails,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -136,6 +140,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? changeChangeDetails,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -147,6 +152,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? changeChangeDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -162,6 +168,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ChangeChangeDetails value) changeChangeDetails,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -173,6 +180,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -184,6 +192,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -234,6 +243,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() changeChangeDetails,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -245,6 +255,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? changeChangeDetails,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -256,6 +267,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? changeChangeDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -271,6 +283,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ChangeChangeDetails value) changeChangeDetails,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -282,6 +295,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -293,6 +307,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -343,6 +358,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() changeChangeDetails,
     required TResult Function(String message) error,
   }) {
     return success();
@@ -354,6 +370,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? changeChangeDetails,
     TResult? Function(String message)? error,
   }) {
     return success?.call();
@@ -365,6 +382,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? changeChangeDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -380,6 +398,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ChangeChangeDetails value) changeChangeDetails,
     required TResult Function(_Error value) error,
   }) {
     return success(this);
@@ -391,6 +410,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult? Function(_Error value)? error,
   }) {
     return success?.call(this);
@@ -402,6 +422,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -414,6 +435,125 @@ class _$SuccessImpl implements _Success {
 
 abstract class _Success implements TripCheckoutDetailsState {
   const factory _Success() = _$SuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeChangeDetailsImplCopyWith<$Res> {
+  factory _$$ChangeChangeDetailsImplCopyWith(
+          _$ChangeChangeDetailsImpl value, $Res Function(_$ChangeChangeDetailsImpl) then) =
+      __$$ChangeChangeDetailsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ChangeChangeDetailsImplCopyWithImpl<$Res>
+    extends _$TripCheckoutDetailsStateCopyWithImpl<$Res, _$ChangeChangeDetailsImpl>
+    implements _$$ChangeChangeDetailsImplCopyWith<$Res> {
+  __$$ChangeChangeDetailsImplCopyWithImpl(
+      _$ChangeChangeDetailsImpl _value, $Res Function(_$ChangeChangeDetailsImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ChangeChangeDetailsImpl implements _ChangeChangeDetails {
+  const _$ChangeChangeDetailsImpl();
+
+  @override
+  String toString() {
+    return 'TripCheckoutDetailsState.changeChangeDetails()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$ChangeChangeDetailsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() changeChangeDetails,
+    required TResult Function(String message) error,
+  }) {
+    return changeChangeDetails();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? changeChangeDetails,
+    TResult? Function(String message)? error,
+  }) {
+    return changeChangeDetails?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? changeChangeDetails,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (changeChangeDetails != null) {
+      return changeChangeDetails();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ChangeChangeDetails value) changeChangeDetails,
+    required TResult Function(_Error value) error,
+  }) {
+    return changeChangeDetails(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_ChangeChangeDetails value)? changeChangeDetails,
+    TResult? Function(_Error value)? error,
+  }) {
+    return changeChangeDetails?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChangeChangeDetails value)? changeChangeDetails,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (changeChangeDetails != null) {
+      return changeChangeDetails(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeChangeDetails implements TripCheckoutDetailsState {
+  const factory _ChangeChangeDetails() = _$ChangeChangeDetailsImpl;
 }
 
 /// @nodoc
@@ -477,6 +617,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() changeChangeDetails,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -488,6 +629,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? changeChangeDetails,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -499,6 +641,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? changeChangeDetails,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -514,6 +657,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ChangeChangeDetails value) changeChangeDetails,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -525,6 +669,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -536,6 +681,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ChangeChangeDetails value)? changeChangeDetails,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

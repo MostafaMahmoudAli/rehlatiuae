@@ -14,9 +14,9 @@ class PaymentRepoImpl implements PaymentRepo {
   @override
   Future<Either<String, Coupon>> checkCoupon({required String name}) async {
     try {
-      var response = await apiConsumer.post(
-        EndPoints.sendMessageEndPoint,
-        data: {'coupon_name': name},
+      var response = await apiConsumer.get(
+        EndPoints.checkCouponEndPoint,
+        queryParameters: {'coupon_name': name},
       );
       Coupon coupon = Coupon.fromJson(response['data']['coupon']);
       return Right(coupon);

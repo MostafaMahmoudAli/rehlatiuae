@@ -8,5 +8,7 @@ class TripCheckoutDetailsState with _$TripCheckoutDetailsState {
 
   const factory TripCheckoutDetailsState.success() = _Success;
 
+  const factory TripCheckoutDetailsState.changeChangeDetails() = _ChangeChangeDetails;
+
   const factory TripCheckoutDetailsState.error(String message) = _Error;
 }

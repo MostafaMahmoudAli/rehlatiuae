@@ -4,10 +4,14 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/number_ticket_card.dart';
 
 class CountTicketsSection extends StatefulWidget {
-  final void Function(int value) onAdultsCountChange;
-  final void Function(int value) onChildrenCountChange;
+  final double adultCost;
+  final double childCost;
+  final void Function(int count, double total) onAdultsCountChange;
+  final void Function(int count, double total) onChildrenCountChange;
 
   const CountTicketsSection({
+    required this.adultCost,
+    required this.childCost,
     required this.onChildrenCountChange,
     required this.onAdultsCountChange,
     super.key,
@@ -19,7 +23,14 @@ class CountTicketsSection extends StatefulWidget {
 
 class _CountTicketsSectionState extends State<CountTicketsSection> {
   String selectedCard = '';
-  int adultNumber = 1, childCount = 0;
+  int adultCount = 1, childCount = 0;
+  double subtotalAdult = 0, subtotalChild = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    subtotalAdult = widget.adultCost;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,41 +53,53 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
         CountTicketCard(
           name: AppStrings.adult,
           detail: AppStrings.above4Yrs,
-          count: adultNumber,
-          total: adultNumber * 10,
+          count: adultCount,
+          total: subtotalAdult,
           onIncreasePressed: () {
-            setState(() {
-              ++adultNumber;
-              widget.onAdultsCountChange(adultNumber);
-            });
+            setState(
+              () {
+                ++adultCount;
+                subtotalAdult = adultCount * widget.adultCost;
+                widget.onAdultsCountChange(adultCount, subtotalAdult);
+              },
+            );
           },
-          onDecreasePressed: adultNumber <= 1
+          onDecreasePressed: adultCount <= 1
               ? null
               : () {
-                  setState(() {
-                    --adultNumber;
-                    widget.onAdultsCountChange(adultNumber);
-                  });
+                  setState(
+                    () {
+                      --adultCount;
+                      subtotalAdult = adultCount * widget.adultCost;
+                      widget.onAdultsCountChange(adultCount, subtotalAdult);
+                    },
+                  );
                 },
         ),
         CountTicketCard(
           name: AppStrings.children,
           detail: AppStrings.under3Yrs,
           count: childCount,
-          total: childCount * 5,
+          total: subtotalChild,
           onIncreasePressed: () {
-            setState(() {
-              ++childCount;
-              widget.onChildrenCountChange(childCount);
-            });
+            setState(
+              () {
+                ++childCount;
+                subtotalChild = childCount * widget.childCost;
+                widget.onChildrenCountChange(childCount, subtotalChild);
+              },
+            );
           },
           onDecreasePressed: childCount <= 0
               ? null
               : () {
-                  setState(() {
-                    --childCount;
-                    widget.onChildrenCountChange(childCount);
-                  });
+                  setState(
+                    () {
+                      --childCount;
+                      subtotalChild = childCount * widget.childCost;
+                      widget.onChildrenCountChange(childCount, subtotalChild);
+                    },
+                  );
                 },
         ),
         Padding(
@@ -89,7 +112,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Text(
-                "\$0.00",
+                "\$${subtotalAdult + subtotalChild}",
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],

@@ -15,4 +15,6 @@ class EndPoints {
 
   // Main Feature EndPoints
   static String sendMessageEndPoint = "home/sendMessage";
+  static String checkCouponEndPoint = "client/checkCoupon";
+  static String addTripCheckoutDetailsEndPoint = "client/checkoutTrip";
 }

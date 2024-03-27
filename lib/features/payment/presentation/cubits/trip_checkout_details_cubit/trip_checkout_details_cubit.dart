@@ -14,30 +14,41 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
 
   final TextEditingController couponEditingController = TextEditingController();
   final TextEditingController descriptionEditingController = TextEditingController();
-  String? date;
+  final TextEditingController dateEditingController = TextEditingController();
   int adultsCount = 1, childrenCount = 0;
+  double allSubtotal = 0, subtotalAdult = 0, subtotalChild = 0;
 
   Future<void> addTripCheckoutDetails() async {
-    if (date == null) return;
+    if (dateEditingController.text == '') return;
     _update(const TripCheckoutDetailsState.loading());
     final results = await paymentRepo.addTripCheckoutDetails(
       tripCheckoutDetails: TripCheckoutDetails(
         tripId: 1,
-        subtotalAdult: adultsCount * 1,
+        subtotalAdult: subtotalAdult,
         quantityAdult: adultsCount,
-        subtotalChild: childrenCount * 1,
+        subtotalChild: subtotalChild,
         quantityChild: childrenCount,
         finalSubtotal: (adultsCount * 1 + childrenCount * 1),
         couponName: couponEditingController.text,
         discount: 0,
         total: (adultsCount * 1 + childrenCount * 1) * 0.4,
-        date: date!,
+        date: dateEditingController.text,
         description: descriptionEditingController.text,
       ),
     );
     results.fold(
       (message) => _update(TripCheckoutDetailsState.error(message)),
       (unit) => _update(const TripCheckoutDetailsState.success()),
+    );
+  }
+
+  void changeChangeDetails() {
+    allSubtotal = subtotalAdult + subtotalChild;
+    _update(
+      const TripCheckoutDetailsState.changeChangeDetails(),
+    );
+    _update(
+      const TripCheckoutDetailsState.initial(),
     );
   }
 

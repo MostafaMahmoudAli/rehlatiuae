@@ -36,24 +36,37 @@ class PaymentOptionsScreen extends StatelessWidget {
             PrimaryTextField(
               label: AppStrings.yourDateBooking,
               hint: AppStrings.selectDate,
-              controller: TextEditingController(),
+              controller: context.read<TripCheckoutDetailsCubit>().dateEditingController,
               readOnly: true,
               onTap: () async {
-                var duration = const Duration();
-                context.read<TripCheckoutDetailsCubit>().date = await Pickers.choseDate(
-                  context: context,
-                  firstDate: DateTime.now().add(duration),
-                  initialDate: DateTime.now().add(duration),
-                );
+                var cubit = context.read<TripCheckoutDetailsCubit>();
+                cubit.dateEditingController.text = await Pickers.choseDate(
+                      context: context,
+                      firstDate: DateTime.now(),
+                      initialDate: DateTime.now(),
+                    ) ??
+                    '';
+                if (context.mounted) {
+                  cubit.changeChangeDetails();
+                  print('object');
+                }
               },
               suffix: const Icon(CupertinoIcons.calendar),
             ),
             CountTicketsSection(
-              onAdultsCountChange: (value) {
-                context.read<TripCheckoutDetailsCubit>().adultsCount = value;
+              adultCost: 130,
+              childCost: 60,
+              onAdultsCountChange: (count, total) {
+                var cubit = context.read<TripCheckoutDetailsCubit>();
+                cubit.adultsCount = count;
+                cubit.subtotalAdult = total;
+                cubit.changeChangeDetails();
               },
-              onChildrenCountChange: (value) {
-                context.read<TripCheckoutDetailsCubit>().childrenCount = value;
+              onChildrenCountChange: (count, total) {
+                var cubit = context.read<TripCheckoutDetailsCubit>();
+                cubit.childrenCount = count;
+                cubit.subtotalChild = total;
+                cubit.changeChangeDetails();
               },
             ),
             BlocProvider<CheckCouponCubit>(
@@ -63,23 +76,59 @@ class PaymentOptionsScreen extends StatelessWidget {
                 content: AppStrings.yourCoupon,
                 initiallyExpanded: false,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: PrimaryTextField(
-                          controller: context.read<TripCheckoutDetailsCubit>().couponEditingController,
-                          padding: EdgeInsets.symmetric(vertical: 10.h),
-                          textColor: AppColors.white,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      DefaultTextButton(
-                        onPressed: () {},
-                        text: 'Apply',
-                      ),
-                    ],
+                  BlocBuilder<CheckCouponCubit, CheckCouponState>(
+                    builder: (context, state) {
+                      var cubit = context.read<CheckCouponCubit>();
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: PrimaryTextField(
+                                  controller: cubit.couponEditingController,
+                                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                                  textColor: AppColors.white,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              state.maybeWhen(
+                                loading: () => Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    margin: const EdgeInsets.all(15),
+                                    child: const CircularProgressIndicator(
+                                      color: AppColors.textAndBackgroundColorButton,
+                                      strokeWidth: 2,
+                                    ),
+                                  ),
+                                ),
+                                orElse: () => DefaultTextButton(
+                                  onPressed: () async {
+                                    await cubit.checkCoupon();
+                                  },
+                                  text: 'Apply',
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          state.maybeWhen(
+                            success: (coupon) => Text(
+                              "Discount is ${coupon.couponAmount}%",
+                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: AppColors.textAndBackgroundColorButton,
+                                  ),
+                            ),
+                            orElse: () => const SizedBox(),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),
@@ -90,12 +139,16 @@ class PaymentOptionsScreen extends StatelessWidget {
               isTextAria: true,
               controller: context.read<TripCheckoutDetailsCubit>().descriptionEditingController,
             ),
-            TotalPaymentSection(
-              total: "\$6,699",
-              subtitle: "12/12/2024",
-              buttonLabel: AppStrings.nextPayment,
-              onButtonTap: () {
-                context.push('/paymentDetailsScreen');
+            BlocBuilder<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+              builder: (context, state) {
+                return TotalPaymentSection(
+                  total: "\$${context.read<TripCheckoutDetailsCubit>().allSubtotal}",
+                  subtitle: context.read<TripCheckoutDetailsCubit>().dateEditingController.text,
+                  buttonLabel: AppStrings.nextPayment,
+                  onButtonTap: () {
+                    context.push('/paymentDetailsScreen');
+                  },
+                );
               },
             ),
           ],
