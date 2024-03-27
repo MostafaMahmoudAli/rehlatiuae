@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:rehlatyuae/features/payment/data/models/coupon_model/coupon_model.dart';
 import 'package:rehlatyuae/features/payment/data/models/trip_checkout_details_model/trip_checkout_details_model.dart';
 import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
 
@@ -12,28 +13,37 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
 
   TripCheckoutDetailsCubit({required this.paymentRepo}) : super(const TripCheckoutDetailsState.initial());
 
-  final TextEditingController couponEditingController = TextEditingController();
+  final GlobalKey<FormState> dateFormKey = GlobalKey<FormState>();
   final TextEditingController descriptionEditingController = TextEditingController();
   final TextEditingController dateEditingController = TextEditingController();
-  int adultsCount = 1, childrenCount = 0;
-  double allSubtotal = 0, subtotalAdult = 0, subtotalChild = 0;
+
+  Coupon? coupon;
+  double allSubtotal = 130, adultCost = 130, childCost = 60;
+  TripCheckoutDetails tripCheckoutDetails = const TripCheckoutDetails(
+    tripId: 1,
+    subtotalAdult: 130,
+    quantityAdult: 1,
+    subtotalChild: 0,
+    quantityChild: 0,
+    finalSubtotal: 130,
+    couponName: '',
+    discount: 0,
+    total: 130,
+    date: '',
+    description: '',
+  );
 
   Future<void> addTripCheckoutDetails() async {
-    if (dateEditingController.text == '') return;
     _update(const TripCheckoutDetailsState.loading());
+    double discount = coupon != null ? allSubtotal - (allSubtotal * coupon!.couponAmount) : 0;
     final results = await paymentRepo.addTripCheckoutDetails(
-      tripCheckoutDetails: TripCheckoutDetails(
+      tripCheckoutDetails: tripCheckoutDetails.copyWith(
         tripId: 1,
-        subtotalAdult: subtotalAdult,
-        quantityAdult: adultsCount,
-        subtotalChild: subtotalChild,
-        quantityChild: childrenCount,
-        finalSubtotal: (adultsCount * 1 + childrenCount * 1),
-        couponName: couponEditingController.text,
-        discount: 0,
-        total: (adultsCount * 1 + childrenCount * 1) * 0.4,
-        date: dateEditingController.text,
         description: descriptionEditingController.text,
+        discount: discount,
+        couponName: coupon != null ? coupon!.couponName : '',
+        total: tripCheckoutDetails.subtotalAdult + tripCheckoutDetails.subtotalChild,
+        finalSubtotal: tripCheckoutDetails.subtotalAdult + tripCheckoutDetails.subtotalChild - discount,
       ),
     );
     results.fold(
@@ -43,7 +53,9 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
   }
 
   void changeChangeDetails() {
-    allSubtotal = subtotalAdult + subtotalChild;
+    print(tripCheckoutDetails.subtotalAdult);
+    print(tripCheckoutDetails.subtotalChild);
+    allSubtotal = tripCheckoutDetails.subtotalAdult + tripCheckoutDetails.subtotalChild;
     _update(
       const TripCheckoutDetailsState.changeChangeDetails(),
     );
