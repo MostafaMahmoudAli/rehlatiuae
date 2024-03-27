@@ -34,18 +34,23 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     description: '',
   );
 
+  void applyTripDetails() {
+    double discount = coupon != null ? allSubtotal - (allSubtotal * coupon!.couponAmount) : 0;
+    tripCheckoutDetails = tripCheckoutDetails.copyWith(
+      tripId: 1,
+      description: descriptionEditingController.text,
+      discount: discount,
+      couponName: coupon != null ? coupon!.couponName : '',
+      finalSubtotal: tripCheckoutDetails.subtotalAdult + tripCheckoutDetails.subtotalChild,
+      total: tripCheckoutDetails.subtotalAdult + tripCheckoutDetails.subtotalChild - discount,
+    );
+  }
+
   Future<void> addTripCheckoutDetails() async {
     _update(const TripCheckoutDetailsState.loading());
-    double discount = coupon != null ? allSubtotal - (allSubtotal * coupon!.couponAmount) : 0;
+    applyTripDetails();
     final results = await paymentRepo.addTripCheckoutDetails(
-      tripCheckoutDetails: tripCheckoutDetails.copyWith(
-        tripId: 1,
-        description: descriptionEditingController.text,
-        discount: discount,
-        couponName: coupon != null ? coupon!.couponName : '',
-        total: tripCheckoutDetails.subtotalAdult + tripCheckoutDetails.subtotalChild,
-        finalSubtotal: tripCheckoutDetails.subtotalAdult + tripCheckoutDetails.subtotalChild - discount,
-      ),
+      tripCheckoutDetails: tripCheckoutDetails,
     );
     results.fold(
       (message) => _update(TripCheckoutDetailsState.error(message)),
@@ -54,8 +59,6 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
   }
 
   void changeChangeDetails() {
-    print(tripCheckoutDetails.subtotalAdult);
-    print(tripCheckoutDetails.subtotalChild);
     allSubtotal = tripCheckoutDetails.subtotalAdult + tripCheckoutDetails.subtotalChild;
     _update(
       const TripCheckoutDetailsState.changeChangeDetails(),

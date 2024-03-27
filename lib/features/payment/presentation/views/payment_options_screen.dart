@@ -43,7 +43,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                     cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
                       quantityAdult: count,
                       subtotalAdult: total,
-                      total: total + cubit.tripCheckoutDetails.subtotalChild,
+                      finalSubtotal: total + cubit.tripCheckoutDetails.subtotalChild,
                     );
                     cubit.changeChangeDetails();
                   },
@@ -51,7 +51,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                     cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
                       quantityChild: count,
                       subtotalChild: total,
-                      total: total + cubit.tripCheckoutDetails.subtotalAdult,
+                      finalSubtotal: total + cubit.tripCheckoutDetails.subtotalAdult,
                     );
                     cubit.changeChangeDetails();
                   },
@@ -135,6 +135,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                   buttonLabel: AppStrings.nextPayment,
                   onButtonTap: () {
                     if (!cubit.dateFormKey.currentState!.validate()) return;
+                    cubit.applyTripDetails();
                     context.push(AppStrings.paymentDetailsScreen);
                   },
                 ),

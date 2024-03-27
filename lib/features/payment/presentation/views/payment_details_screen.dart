@@ -37,7 +37,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                 height: 15.h,
               ),
               OrderSummarySection(
-                total: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.total}',
+                total: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.finalSubtotal}',
                 childrenCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityChild}',
                 adultCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityAdult}',
                 address: "Dobai, United Arab Emarates",
@@ -50,7 +50,7 @@ class PaymentDetailsScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(bottom: 10.h),
             child: TotalPaymentSection(
-              total: "\$6,699",
+              total: "\$${context.read<TripCheckoutDetailsCubit>().allSubtotal}",
               subtitle: "View detailed bill",
               buttonLabel: AppStrings.payment,
               onButtonTap: () {
@@ -60,18 +60,11 @@ class PaymentDetailsScreen extends StatelessWidget {
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
                   ),
-                  builder: (context) => const CustomBottomSheet(
+                  builder: (context) => CustomBottomSheet(
                     title: 'Payment Details',
                     labelButton: 'Payment',
                     contentSheet: PaymentContentSheet(
-                      totalPayment: "12.00",
-                      date: '12 / 12 / 2021',
-                      tripDate: '12 / 2 / 2024',
-                      details: 'IMG World ',
-                      referenceNum: 'A06453826151',
-                      account: 'Mike Wazowsky',
-                      discount: '1.00',
-                      total: '11.00',
+                      tripCheckoutDetails: context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails,
                     ),
                   ),
                 );
@@ -83,18 +76,11 @@ class PaymentDetailsScreen extends StatelessWidget {
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
                   ),
-                  builder: (context) => const CustomBottomSheet(
+                  builder: (context) => CustomBottomSheet(
                     title: 'Payment Details',
                     labelButton: 'Payment',
                     contentSheet: PaymentContentSheet(
-                      totalPayment: "12.00",
-                      date: '12 / 12 / 2021',
-                      tripDate: '12 / 2 / 2024',
-                      details: 'IMG World',
-                      referenceNum: 'A06453826151',
-                      account: 'Mike Wazowsky',
-                      discount: '1.00',
-                      total: '11.00',
+                      tripCheckoutDetails: context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails,
                     ),
                     avatarColor: AppColors.backgroundAvatarPayment,
                   ),

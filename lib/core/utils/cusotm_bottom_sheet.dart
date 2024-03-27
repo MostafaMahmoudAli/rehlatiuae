@@ -12,7 +12,6 @@ class CustomBottomSheet extends StatelessWidget {
   final Widget contentSheet;
   final Color avatarColor;
   final bool hasButton;
-  final bool isPaymentSheet;
 
   const CustomBottomSheet({
     required this.title,
@@ -21,20 +20,11 @@ class CustomBottomSheet extends StatelessWidget {
     this.avatarText,
     this.avatarColor = AppColors.textAndBackgroundColorButton,
     this.hasButton = true,
-    this.isPaymentSheet = true,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return isPaymentSheet
-        ? SingleChildScrollView(
-            child: body(context),
-          )
-        : body(context);
-  }
-
-  Widget body(BuildContext context) {
     return Column(
       children: [
         Column(

@@ -48,7 +48,6 @@ class HelpDrawerSection extends StatelessWidget {
               builder: (context) => const CustomBottomSheet(
                 title: 'My Booking',
                 avatarText: 'MY',
-                isPaymentSheet: false,
                 contentSheet: MyBookingContentSheet(),
               ),
             );
@@ -72,7 +71,6 @@ class HelpDrawerSection extends StatelessWidget {
               builder: (context) => const CustomBottomSheet(
                 title: 'Send message',
                 avatarText: 'ME',
-                isPaymentSheet: false,
                 hasButton: false,
                 contentSheet: SendMessageContentSheet(),
               ),
