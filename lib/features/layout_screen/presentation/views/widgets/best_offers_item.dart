@@ -3,14 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 
+import '../../../../best_offers/data/models/best_offers_model.dart';
+
 class BestOffersItem extends StatelessWidget {
   const BestOffersItem({
     super.key,
     required this.width,
+    required this.bestOffers,
   });
 
   final double width;
-
+  final BestOffers?bestOffers;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,7 +50,7 @@ class BestOffersItem extends StatelessWidget {
                     borderRadius: BorderRadiusDirectional.circular(15.0.r),
                   ),
                   child: Image.asset(
-                    "assets/images/Rectangle 427.png",
+                    bestOffers?.imagePath ?? "",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -76,7 +79,7 @@ class BestOffersItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "IMG Worlds of Adventure",
+                bestOffers?.name ??  "IMG Worlds of Adventure",
                   maxLines: 1,
                   style: Theme.of(context).textTheme.bodyMedium,
                   textAlign: TextAlign.justify,

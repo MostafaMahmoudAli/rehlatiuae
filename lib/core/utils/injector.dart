@@ -22,6 +22,8 @@ import 'package:rehlatyuae/features/profile/presentation/cubits/profile_cubit/pr
 
 import '../../features/best_offers/domain/repositories/best_offers_repo.dart';
 import '../../features/best_offers/presentation/cubits/best_offers_cubit.dart';
+import '../../features/layout_screen/data/repositories/layout_repo_impl.dart';
+import '../../features/layout_screen/domian/repositories/layout_repo.dart';
 import '../../features/our_blogs/data/repositories/blogs_repository_impl.dart';
 import '../../features/our_blogs/domain/repositories/blogs_repository.dart';
 import '../../features/our_blogs/presentation/blogs_cubit.dart';
@@ -45,6 +47,12 @@ void setupInjector() {
       apiConsumer: getIt.get<ApiConsumer>(),
     ),
   );
+  getIt.registerLazySingleton<LayoutRepository>(
+    () => LayoutRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+    ),
+  );
+
   // cubits
   getIt.registerFactory(() => BestOffersCubit(bestOffersRepo: getIt()));
 

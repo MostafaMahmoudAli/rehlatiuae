@@ -62,7 +62,7 @@ class BestOffersScreen extends StatelessWidget {
               const CustomSizedBox(),
               const BestOffersBody(),
               const CustomSizedBox(),
-              const TopDestinationSection(),
+              const TopDestinationSection(destinations: [],),
               const CustomSizedBox(),
               const BestTripsSection(),
               const CustomSizedBox(),

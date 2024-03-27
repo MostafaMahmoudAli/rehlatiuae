@@ -5,8 +5,14 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/categories_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 
+import '../../../../all_categories/data/models/categories_model.dart';
+
 class CategoriesSection extends StatelessWidget {
-  const CategoriesSection({super.key});
+  const CategoriesSection(
+      {super.key,required this.categories});
+
+  final List<Categories>categories;
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +35,8 @@ class CategoriesSection extends StatelessWidget {
                     context.push(AppStrings.categoryNameScreen);
                   },
                   child: CategoriesItem(
+                    categoryName:categories[index].name,
+                    image:categories[index].imagePath,
                     height: 40.0.h,
                     width: 75.0.w,
                   ),

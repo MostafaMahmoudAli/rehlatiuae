@@ -9,16 +9,18 @@ class CustomContainerTrip extends StatelessWidget {
     required this.imageName,
     required this.cityName,
     required this.countryName,
-    required this.tripPrice,
-    required this.reservationType, this.oldTripPrice, this.percentageSave,
+    this.tripPrice,
+    this.reservationType,
+    this.oldTripPrice,
+    this.percentageSave,
   });
 
   final double width;
   final String imageName;
   final String cityName;
   final String countryName;
-  final String tripPrice;
-  final String reservationType;
+  final String?tripPrice;
+  final String?reservationType;
   final int?oldTripPrice;
   final String?percentageSave ;
 
@@ -112,6 +114,7 @@ class CustomContainerTrip extends StatelessWidget {
               ],
             ),
           ),
+          if((tripPrice!=null || reservationType!=null)&&(tripPrice!.isNotEmpty&&reservationType!.isNotEmpty))
           Positioned(
             bottom: 50,
             right: 10,
@@ -119,14 +122,14 @@ class CustomContainerTrip extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  tripPrice,
+                  tripPrice ?? "",
                   style:Theme.of(context).textTheme.displaySmall,
                 ),
                 SizedBox(
                   height: 4.0.h,
                 ),
                 Text(
-                  reservationType,
+                  reservationType ?? "",
                   style:Theme.of(context).textTheme.displaySmall,
                 ),
               ],

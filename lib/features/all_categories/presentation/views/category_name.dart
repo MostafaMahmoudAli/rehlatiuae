@@ -63,7 +63,7 @@ class CategoryNameScreen extends StatelessWidget {
               const CustomSizedBox(),
               CategoryNameBody(),
               const CustomSizedBox(),
-              const BestOffersSection(),
+              const BestOffersSection(bestOffers: [],),
               const CustomSizedBox(),
               const BestTripsSection(),
               const CustomSizedBox(),

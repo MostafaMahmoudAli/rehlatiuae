@@ -18,6 +18,8 @@ class AllCategoriesBody extends StatelessWidget {
         child:CategoriesItem(
         width: 150.0.w,
         height: 60.0.h,
+          image: '',
+          categoryName: '',
       ),
       ),
       itemCount:8,

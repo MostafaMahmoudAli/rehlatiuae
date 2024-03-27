@@ -18,7 +18,7 @@ class BestOffersRepoImpl implements BestOffersRepo {
         "start": startIndex,
         "limit": limit,
       });
-      final bestOffersList = bestOffers.map((e) => BestOffers.fromJson(e.data)).toList();
+      List<BestOffers> bestOffersList = bestOffers.map((e) => BestOffers.fromJson(e.data)).toList();
       return right(bestOffersList);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);

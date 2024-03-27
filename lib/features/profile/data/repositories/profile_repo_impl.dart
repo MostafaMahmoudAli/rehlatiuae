@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
@@ -19,9 +18,11 @@ class ProfileRepoImpl implements ProfileRepo {
       var client = await apiConsumer.get(
         EndPoints.getProfileEndPoint,
       );
+
       final clientModel = Client.fromJson(client['data']['client']);
       return Right(clientModel);
-    } on ServerExceptions catch (error) {
+    } on ServerExceptions catch (error)
+    {
       return Left(error.errorModel.message);
     }
   }
