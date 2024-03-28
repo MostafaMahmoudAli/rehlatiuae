@@ -13,8 +13,11 @@ import 'package:rehlatyuae/features/auth/presentation/cubit/register_cubit/regis
 import 'package:rehlatyuae/features/auth/presentation/cubit/update_password_cubit/update_password_cubit.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/verification_email_cubit/verification_email_cubit.dart';
 import 'package:rehlatyuae/features/best_offers/data/repositories/best_offers_repo_impl.dart';
+import 'package:rehlatyuae/features/layout_screen/data/repositories/main_repo_impl.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/layout_repo.dart';
+import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/layout_cubit.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/send_message_cubit/send_message_cubit.dart';
 import 'package:rehlatyuae/features/payment/data/repositories/payment_repo_impl.dart';
 import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
@@ -96,6 +99,18 @@ Future<void> setupInjector() async {
   // cubits
   getIt.registerFactory(() => ProfileCubit(profileRepo: getIt()));
   getIt.registerFactory(() => EditProfileCubit(profileRepo: getIt()));
+
+  /// Main Feature
+  // repositories objects
+  getIt.registerLazySingleton<MainRepo>(
+    () => MainRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+      cacheService: getIt<CacheService>(),
+    ),
+  );
+
+  // cubits
+  getIt.registerFactory(() => MainCubit(mainRepo: getIt()));
 
   /// Auth Feature
   // repositories objects
