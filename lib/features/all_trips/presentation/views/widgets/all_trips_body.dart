@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 
 
+import '../../../../../core/utils/error_widget.dart';
 import '../../../../best_trips/presentation/blocs/best_trips_bloc.dart';
 
 class AllTripsBody extends StatefulWidget {
@@ -66,7 +67,7 @@ class _AllTripsBodyState extends State<AllTripsBody> {
               padding: EdgeInsets.zero,
             );
           case BestTripsStatus.error:
-            return ErrorWidget(state.errMessage);
+            return ErrorsWidget(error: state.errMessage,);
         }
       },
     );

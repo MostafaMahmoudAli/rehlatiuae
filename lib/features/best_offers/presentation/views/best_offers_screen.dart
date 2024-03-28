@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
-import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
-import 'package:rehlatyuae/core/utils/popular_experiences.dart';
 import 'package:rehlatyuae/features/best_offers/presentation/views/widgets/best_offers_body.dart';
+import 'package:rehlatyuae/features/best_offers/presentation/views/widgets/best_offers_bottom_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_horizontal.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_trips_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/reviews_section.dart';
 import 'package:rehlatyuae/core/utils/search_text_feild.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top_destination_section.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
 
 class BestOffersScreen extends StatelessWidget {
   BestOffersScreen({super.key});
 
   final TextEditingController _textEditingController = TextEditingController();
-
+  final ScrollController bestOffersScrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +40,7 @@ class BestOffersScreen extends StatelessWidget {
           horizontal: 17.0.w,
         ),
         child: SingleChildScrollView(
+          controller: bestOffersScrollController,
           physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,33 +53,11 @@ class BestOffersScreen extends StatelessWidget {
                 AppStrings.bestOffersTitle,
               ),
               const CustomSizedBox(),
-              const BestOffersBody(),
-              const CustomSizedBox(),
-              const TopDestinationSection(destinations: [],),
-              const CustomSizedBox(),
-              const BestTripsSection(bestTrips: [],),
-              const CustomSizedBox(),
-              const PopularExperiencesSection(popularExperiences: [],),
-              const CustomSizedBox(),
-              const WhyChooseUsSection(),
-              const CustomSizedBox(),
-              const WeHelpYouSection(),
-              CustomActionButton(
-                onTap: ()
-                {
-                  context.push(AppStrings.allTripsScreen);
-                },
-                text: AppStrings.actionButtonName,
-                height: 70.0.h,
-                width: double.infinity,
-                borderRadius: BorderRadius.circular(12.0.r),
-                backGroundColor: AppColors.orange,
-                style: Theme.of(context).textTheme.displayLarge,
+               BestOffersBody(
+                bestOffersScrollController: bestOffersScrollController,
               ),
               const CustomSizedBox(),
-              const BestOffersHorizontal(),
-              const CustomSizedBox(),
-              const ReviewsSection(reviews: [],),
+              const BestOffersBottomSection(),
             ],
           ),
         ),
@@ -94,3 +65,5 @@ class BestOffersScreen extends StatelessWidget {
     );
   }
 }
+
+

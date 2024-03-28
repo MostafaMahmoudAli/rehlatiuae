@@ -1,28 +1,91 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_contanier_item.dart';
 
-class PopularExperiencesBody extends StatelessWidget
-{
-  const PopularExperiencesBody({super.key});
+import '../../../../../core/utils/error_widget.dart';
+import '../../../../../core/utils/injector.dart';
+import '../../../../../core/utils/whats_up_botton.dart';
+import '../../blocs/popular_experiences_bloc.dart';
+
+class PopularExperiencesBody extends StatefulWidget {
+  const PopularExperiencesBody(
+      {super.key, required this.popularExperiencesScrollController});
+
+  final ScrollController? popularExperiencesScrollController;
+
+  @override
+  State<PopularExperiencesBody> createState() => _PopularExperiencesBodyState();
+}
+
+class _PopularExperiencesBodyState extends State<PopularExperiencesBody> {
+  @override
+  void initState() {
+    super.initState();
+    widget.popularExperiencesScrollController?.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.popularExperiencesScrollController
+      ?..removeListener(_onScroll)
+      ..dispose();
+  }
+
+  void _onScroll() {
+    final maxScroll =
+        widget.popularExperiencesScrollController?.position.maxScrollExtent;
+    final currentScroll = widget.popularExperiencesScrollController?.offset;
+    if (currentScroll! >= (maxScroll! * 0.7)) {
+      getIt<PopularExperiencesBloc>().add(GetPopularExperiencesEvent());
+      // context.read<PostsBloc>().add(GetPostsEvent());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount:2,
-        childAspectRatio:3/3,
-        crossAxisSpacing:10.0.w,
-        mainAxisSpacing: 10.0.w,
-      ),
-      itemBuilder: (context,index)=> PopularExperiencesContainerItem(
-        width:140.w,
-        popularExperiences: null,
-      ),
-      itemCount:8,
-      shrinkWrap:true,
-      physics:const ClampingScrollPhysics(),
-      padding:EdgeInsets.zero,
+    return BlocBuilder<PopularExperiencesBloc, PopularExperiencesState>(
+      builder: (context, state) {
+        switch (state.status) {
+          case PopularExperiencesStatus.initial:
+            return const Center(child: CircularProgressIndicator());
+          case PopularExperiencesStatus.loading:
+            return const Center(child: CircularProgressIndicator());
+          case PopularExperiencesStatus.success:
+            return Stack(
+              children: [
+                GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 3 / 3,
+                    crossAxisSpacing: 10.0.w,
+                    mainAxisSpacing: 10.0.w,
+                  ),
+                  itemBuilder: (context, index) => PopularExperiencesContainerItem(
+                    width: 140.w,
+                    popularExperiences: state.popularExperiences[index],
+                    oldTripPrice: state.popularExperiences[index].beforePrice ?? "",
+                    percentageSave: state.popularExperiences[index].saving ??"",
+                  ),
+                  itemCount: state.popularExperiences.length,
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                ),
+                WhatsUpButton(
+                  onTap: (){},
+                  right: 0,
+                  bottom:MediaQuery.sizeOf(context).height*0.25,
+                ),
+              ],
+            );
+          case PopularExperiencesStatus.error:
+            return ErrorsWidget(
+              error: state.errMessage,
+            );
+        }
+      },
     );
   }
 }

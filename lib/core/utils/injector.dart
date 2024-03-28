@@ -13,7 +13,7 @@ import '../../features/auth/presentation/cubit/forget_password_cubit/forget_pass
 import '../../features/auth/presentation/cubit/update_password_cubit/update_password_cubit.dart';
 import '../../features/auth/presentation/cubit/verification_email_cubit/verification_email_cubit.dart';
 import '../../features/best_offers/domain/repositories/best_offers_repo.dart';
-import '../../features/best_offers/presentation/cubits/best_offers_cubit.dart';
+import '../../features/best_offers/presentation/blocs/best_offers_bloc.dart';
 import '../../features/best_trips/data/repositories/best_trips_repo_impl.dart';
 import '../../features/best_trips/domian/repositories/best_trips_repo.dart';
 import '../../features/best_trips/presentation/blocs/best_trips_bloc.dart';
@@ -22,11 +22,17 @@ import '../../features/layout_screen/domian/repositories/layout_repo.dart';
 import '../../features/layout_screen/presentation/cubits/layout_cubit.dart';
 import '../../features/our_blogs/data/repositories/blogs_repository_impl.dart';
 import '../../features/our_blogs/domain/repositories/blogs_repository.dart';
-import '../../features/our_blogs/presentation/blogs_cubit.dart';
+import '../../features/our_blogs/presentation/blocs/blogs_bloc.dart';
+import '../../features/popular_experiences/data/repositories/popular_experiences_repo_impl.dart';
+import '../../features/popular_experiences/domain/repositories/popular_experiences_repo.dart';
+import '../../features/popular_experiences/presentation/blocs/popular_experiences_bloc.dart';
 import '../../features/profile/data/repositories/profile_repo_impl.dart';
 import '../../features/profile/domain/repositories/profile_repo.dart';
 import '../../features/profile/presentation/cubits/edit_profile_cubit/edit_profile_cubit.dart';
 import '../../features/profile/presentation/cubits/profile_cubit/profile_cubit.dart';
+import '../../features/top_destinations_section/data/repositories/all_destinations_repo_impl.dart';
+import '../../features/top_destinations_section/domian/repositories/all_destinations_repo.dart';
+import '../../features/top_destinations_section/presentation/blocs/all_destinations_bloc.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -42,6 +48,7 @@ void setupInjector()
         ),
   );
 
+
   // repositories objects
   getIt.registerLazySingleton<BestOffersRepo>(
         () => BestOffersRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
@@ -52,6 +59,14 @@ void setupInjector()
 
   getIt.registerLazySingleton<BestTripsRepo>(
         () => BestTripsRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+  );
+
+  getIt.registerLazySingleton<ALLDestinationsRepo>(
+        () =>  AllDestinationsRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+  );
+
+  getIt.registerLazySingleton<PopularExperiencesRepo>(
+        () =>  PopularExperiencesRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
   );
 
   getIt.registerLazySingleton<BlogsRepository>(() =>
@@ -76,9 +91,9 @@ void setupInjector()
 
 
   // cubits
-  getIt.registerFactory(() => BestOffersCubit(bestOffersRepo: getIt()));
+  getIt.registerFactory(() => BestOffersBloc(bestOffersRepo: getIt()));
 
-  getIt.registerFactory(() => BlogsCubit(blogsRepository: getIt()));
+  getIt.registerFactory(() => BlogsBloc(blogsRepository: getIt()));
 
   getIt.registerFactory(() => ForgetPasswordCubit(authRepo: getIt()));
 
@@ -95,4 +110,10 @@ void setupInjector()
   getIt.registerFactory(() => CategoriesBloc(categoryRepo:getIt()));
 
   getIt.registerFactory(() => BestTripsBloc(bestTripsRepo:getIt()));
+
+  getIt.registerFactory(() => AllDestinationsBloc(allDestinationsRepo:getIt()));
+
+  getIt.registerFactory(() => PopularExperiencesBloc(popularExperiencesRepo:getIt()));
 }
+
+

@@ -33,7 +33,9 @@ class ProfileScreen extends StatelessWidget {
                 return state.maybeWhen(
                   loaded: (client) => DefaultTextButton(
                     onPressed: () async {
-                      bool isProfileEdited = await context.push(AppStrings.editProfileScreen, extra: client) as bool;
+                      bool isProfileEdited = await context.push(
+                          AppStrings.editProfileScreen,
+                          extra: client) as bool;
                       if (isProfileEdited && context.mounted) {
                         context.read<ProfileCubit>().getProfile();
                       }
@@ -67,7 +69,8 @@ class ProfileScreen extends StatelessWidget {
                 child: CircularProgressIndicator(),
               ),
               loaded: (client) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w).copyWith(bottom: 20.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w)
+                    .copyWith(bottom: 20.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,7 +100,9 @@ class ProfileScreen extends StatelessWidget {
                             labelText: "Yes !",
                             color: AppColors.redAppColor,
                             onTap: () async {
-                              await context.read<ProfileCubit>().deleteAccount();
+                              await context
+                                  .read<ProfileCubit>()
+                                  .deleteAccount();
                             },
                           ),
                         );

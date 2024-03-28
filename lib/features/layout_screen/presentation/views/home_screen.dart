@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
@@ -20,10 +19,10 @@ import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top_destination_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
+import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
 
-class HomeScreen extends StatelessWidget
-{
+class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final TextEditingController _textEditingController = TextEditingController();
@@ -32,19 +31,24 @@ class HomeScreen extends StatelessWidget
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
-      child: BlocBuilder<LayoutCubit, LayoutState>(
+      child: BlocConsumer<LayoutCubit, LayoutState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            error: (errorMessage) => showDialog(
+              context: context,
+              builder: (context) => CustomDialog(
+                title: errorMessage,
+                subtitle: 'Sorry',
+                labelText: 'Close',
+              ),
+            ),
+          );
+        },
         builder: (context, state) {
-          return state.when(
-            initial: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            loading: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            loaded: (layoutModel)
-            {
-              getIt<Logger>().w("Popular experiences ${layoutModel.popularExperience?.length}");
-              return Scaffold(
+          return state.maybeWhen(
+            initial: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            loaded: (layoutModel) => Scaffold(
               body: Padding(
                 padding: EdgeInsets.symmetric(
                   vertical: 20.0.h,
@@ -59,38 +63,39 @@ class HomeScreen extends StatelessWidget
                         controller: _textEditingController,
                       ),
                       const CustomSizedBox(),
-                       CategoriesSection(
-                        categories: layoutModel.categories ??[],
+                      CategoriesSection(
+                        categories: layoutModel.categories ?? [],
                       ),
                       const CustomSizedBox(),
-                       TopDestinationSection(destinations:layoutModel.topDestinations ??[] ,),
+                      TopDestinationSection(
+                        destinations: layoutModel.topDestinations ?? [],
+                      ),
                       const CustomSizedBox(),
-                       BestOffersSection(
-                         bestOffers: layoutModel.bestOffers ?? [],
-                       ),
+                      BestOffersSection(
+                        bestOffers: layoutModel.bestOffers ?? [],
+                      ),
                       const CustomSizedBox(),
-                       BestTripsSection(
+                      BestTripsSection(
                         bestTrips: layoutModel.bestTrips ?? [],
                       ),
                       const CustomSizedBox(),
-                       PopularExperiencesSection(
-                        popularExperiences:layoutModel.popularExperience ?? [] ,
+                      PopularExperiencesSection(
+                        popularExperiences: layoutModel.popularExperience ?? [],
                       ),
                       const CustomSizedBox(),
-                       OurBlogSection(
-                        blogs:layoutModel.blogs ?? [],
+                      OurBlogSection(
+                        blogs: layoutModel.blogs ?? [],
                       ),
                       const CustomSizedBox(),
-                       OurPartnerSection(
-                        ourPartners:layoutModel.ourPartners?? [],
+                      OurPartnerSection(
+                        ourPartners: layoutModel.ourPartners ?? [],
                       ),
                       const CustomSizedBox(),
                       const WhyChooseUsSection(),
                       const CustomSizedBox(),
                       const WeHelpYouSection(),
                       CustomActionButton(
-                        onTap: ()
-                        {
+                        onTap: () {
                           context.push(AppStrings.allTripsScreen);
                         },
                         text: AppStrings.actionButtonName,
@@ -98,27 +103,23 @@ class HomeScreen extends StatelessWidget
                         width: double.infinity,
                         borderRadius: BorderRadius.circular(12.0.r),
                         backGroundColor: AppColors.orange,
-                        style:Theme.of(context).textTheme.displayLarge,
+                        style: Theme.of(context).textTheme.displayLarge,
                       ),
                       const CustomSizedBox(),
                       const BestOffersHorizontal(),
                       const CustomSizedBox(),
-                       ReviewsSection(
-                        reviews:layoutModel.reviews ?? [],
+                      ReviewsSection(
+                        reviews: layoutModel.reviews ?? [],
                       ),
                     ],
                   ),
                 ),
               ),
-            );
-            },
-            error: (errorMessage) => ErrorWidget(
-              errorMessage
             ),
+            orElse: () => const SizedBox(),
           );
         },
       ),
     );
   }
 }
-
