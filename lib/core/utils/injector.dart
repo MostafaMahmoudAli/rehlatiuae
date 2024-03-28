@@ -9,6 +9,7 @@ import 'package:rehlatyuae/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:rehlatyuae/features/auth/domain/repositories/auth_repo.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/forget_password_cubit/forget_password_cubit.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:rehlatyuae/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/update_password_cubit/update_password_cubit.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/verification_email_cubit/verification_email_cubit.dart';
 import 'package:rehlatyuae/features/best_offers/data/repositories/best_offers_repo_impl.dart';
@@ -107,6 +108,7 @@ Future<void> setupInjector() async {
 
   // cubits
   getIt.registerFactory(() => LoginCubit(authRepo: getIt()));
+  getIt.registerFactory(() => RegisterCubit(authRepo: getIt()));
   getIt.registerFactory(() => ForgetPasswordCubit(authRepo: getIt()));
   getIt.registerFactory(() => VerificationEmailCubit(authRepo: getIt()));
   getIt.registerFactory(() => UpdatePasswordCubit(authRepo: getIt()));

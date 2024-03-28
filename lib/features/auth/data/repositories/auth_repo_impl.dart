@@ -45,7 +45,7 @@ class AuthRepoImpl implements AuthRepo {
   }) async {
     try {
       var response = await apiConsumer.post(
-        EndPoints.loginEndPoint,
+        EndPoints.registerEndPoint,
         data: {
           'name': name,
           'email': email,
