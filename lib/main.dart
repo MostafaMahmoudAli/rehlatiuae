@@ -8,10 +8,10 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_de
 import 'core/utils/bloc_observer.dart';
 import 'core/utils/injector.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  setupInjector();
+  await setupInjector();
   runApp(const MyApp());
 }
 
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             child: MaterialApp.router(
               theme: appTheme(),
               debugShowCheckedModeBanner: false,
-              routerConfig: AppRouter.router,
+              routerConfig: getIt<AppRouter>().router,
             ),
           );
         });

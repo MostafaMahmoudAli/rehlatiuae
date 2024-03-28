@@ -10,6 +10,7 @@ class EndPoints {
   static String deleteAccountEndPoint = "client/deleteProfile";
 
   // Auth Feature EndPoints
+  static String loginEndPoint = "client/login";
   static String forgetPasswordEndPoint = "client/forgetPassword";
   static String verificationEmailEndPoint = "client/password/reset";
   static String resetPasswordEndPoint = "client/password/confirm";

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'add_review_cubit.dart';
+part of 'login_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,20 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AddReviewState {
+mixin _$LoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,24 +37,26 @@ mixin _$AddReviewState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +64,7 @@ mixin _$AddReviewState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -69,14 +72,14 @@ mixin _$AddReviewState {
 }
 
 /// @nodoc
-abstract class $AddReviewStateCopyWith<$Res> {
-  factory $AddReviewStateCopyWith(AddReviewState value, $Res Function(AddReviewState) then) =
-      _$AddReviewStateCopyWithImpl<$Res, AddReviewState>;
+abstract class $LoginStateCopyWith<$Res> {
+  factory $LoginStateCopyWith(LoginState value, $Res Function(LoginState) then) =
+      _$LoginStateCopyWithImpl<$Res, LoginState>;
 }
 
 /// @nodoc
-class _$AddReviewStateCopyWithImpl<$Res, $Val extends AddReviewState> implements $AddReviewStateCopyWith<$Res> {
-  _$AddReviewStateCopyWithImpl(this._value, this._then);
+class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState> implements $LoginStateCopyWith<$Res> {
+  _$LoginStateCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
@@ -91,7 +94,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res> extends _$AddReviewStateCopyWithImpl<$Res, _$InitialImpl>
+class __$$InitialImplCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(_$InitialImpl _value, $Res Function(_$InitialImpl) _then) : super(_value, _then);
 }
@@ -103,7 +106,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'AddReviewState.initial()';
+    return 'LoginState.initial()';
   }
 
   @override
@@ -119,7 +122,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -130,7 +133,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -141,7 +144,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -156,7 +159,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -167,7 +170,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -178,7 +181,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -189,7 +192,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements AddReviewState {
+abstract class _Initial implements LoginState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -200,7 +203,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res> extends _$AddReviewStateCopyWithImpl<$Res, _$LoadingImpl>
+class __$$LoadingImplCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(_$LoadingImpl _value, $Res Function(_$LoadingImpl) _then) : super(_value, _then);
 }
@@ -212,7 +215,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'AddReviewState.loading()';
+    return 'LoginState.loading()';
   }
 
   @override
@@ -228,7 +231,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -239,7 +242,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -250,7 +253,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -265,7 +268,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -276,7 +279,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -287,7 +290,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -298,85 +301,86 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements AddReviewState {
+abstract class _Loading implements LoginState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(_$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(_$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Review review});
+  $Res call({AuthenticatedClient authenticatedClient});
 
-  $ReviewCopyWith<$Res> get review;
+  $AuthenticatedClientCopyWith<$Res> get authenticatedClient;
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res> extends _$AddReviewStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(_$LoadedImpl _value, $Res Function(_$LoadedImpl) _then) : super(_value, _then);
+class __$$SuccessImplCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(_$SuccessImpl _value, $Res Function(_$SuccessImpl) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? review = null,
+    Object? authenticatedClient = null,
   }) {
-    return _then(_$LoadedImpl(
-      null == review
-          ? _value.review
-          : review // ignore: cast_nullable_to_non_nullable
-              as Review,
+    return _then(_$SuccessImpl(
+      null == authenticatedClient
+          ? _value.authenticatedClient
+          : authenticatedClient // ignore: cast_nullable_to_non_nullable
+              as AuthenticatedClient,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ReviewCopyWith<$Res> get review {
-    return $ReviewCopyWith<$Res>(_value.review, (value) {
-      return _then(_value.copyWith(review: value));
+  $AuthenticatedClientCopyWith<$Res> get authenticatedClient {
+    return $AuthenticatedClientCopyWith<$Res>(_value.authenticatedClient, (value) {
+      return _then(_value.copyWith(authenticatedClient: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.review);
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl(this.authenticatedClient);
 
   @override
-  final Review review;
+  final AuthenticatedClient authenticatedClient;
 
   @override
   String toString() {
-    return 'AddReviewState.loaded(review: $review)';
+    return 'LoginState.success(authenticatedClient: $authenticatedClient)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            (identical(other.review, review) || other.review == review));
+            other is _$SuccessImpl &&
+            (identical(other.authenticatedClient, authenticatedClient) ||
+                other.authenticatedClient == authenticatedClient));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, review);
+  int get hashCode => Object.hash(runtimeType, authenticatedClient);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith => __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith => __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) {
-    return loaded(review);
+    return success(authenticatedClient);
   }
 
   @override
@@ -384,10 +388,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(review);
+    return success?.call(authenticatedClient);
   }
 
   @override
@@ -395,12 +399,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(review);
+    if (success != null) {
+      return success(authenticatedClient);
     }
     return orElse();
   }
@@ -410,10 +414,10 @@ class _$LoadedImpl implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -421,10 +425,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -432,23 +436,23 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded implements AddReviewState {
-  const factory _Loaded(final Review review) = _$LoadedImpl;
+abstract class _Success implements LoginState {
+  const factory _Success(final AuthenticatedClient authenticatedClient) = _$SuccessImpl;
 
-  Review get review;
+  AuthenticatedClient get authenticatedClient;
   @JsonKey(ignore: true)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -459,7 +463,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res> extends _$AddReviewStateCopyWithImpl<$Res, _$ErrorImpl>
+class __$$ErrorImplCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(_$ErrorImpl _value, $Res Function(_$ErrorImpl) _then) : super(_value, _then);
 
@@ -487,7 +491,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'AddReviewState.error(message: $message)';
+    return 'LoginState.error(message: $message)';
   }
 
   @override
@@ -511,7 +515,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -522,7 +526,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -533,7 +537,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -548,7 +552,7 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -559,7 +563,7 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -570,7 +574,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -581,7 +585,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements AddReviewState {
+abstract class _Error implements LoginState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;

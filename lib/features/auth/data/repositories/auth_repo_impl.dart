@@ -1,14 +1,48 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/features/auth/data/models/authenticated_client_model/authenticated_client_model.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/auth/domain/repositories/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final ApiConsumer apiConsumer;
+  final CacheService cachingService;
 
-  AuthRepoImpl({required this.apiConsumer});
+  AuthRepoImpl({required this.apiConsumer, required this.cachingService});
+
+  @override
+  Future<Either<String, AuthenticatedClient>> login({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      var response = await apiConsumer.post(
+        EndPoints.loginEndPoint,
+        data: {
+          'email': email,
+          'password': password,
+        },
+      );
+      var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
+      await cachingService.setData(
+        key: AppStrings.authenticatedClient,
+        value: json.encode(authenticatedClient.toJson()),
+      );
+      await cachingService.setData(
+        key: AppStrings.initialLocationRoute,
+        value: AppStrings.homeScreen,
+      );
+      return Right(authenticatedClient);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
 
   @override
   Future<Either<String, Unit>> forgetPassword({required String email}) async {
