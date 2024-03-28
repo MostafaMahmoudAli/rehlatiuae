@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                   orElse: () => SingleChildScrollView(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: Form(
-                      key: cubit.loginPasswordFormKey,
+                      key: cubit.loginFormKey,
                       child: Column(
                         children: [
                           SizedBox(height: 75.h),

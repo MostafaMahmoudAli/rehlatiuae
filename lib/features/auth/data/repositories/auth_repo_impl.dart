@@ -30,14 +30,31 @@ class AuthRepoImpl implements AuthRepo {
         },
       );
       var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
-      await cachingService.setData(
-        key: AppStrings.authenticatedClient,
-        value: json.encode(authenticatedClient.toJson()),
+      await _cacheClient(authenticatedClient: authenticatedClient);
+      return Right(authenticatedClient);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+  @override
+  Future<Either<String, AuthenticatedClient>> register({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      var response = await apiConsumer.post(
+        EndPoints.loginEndPoint,
+        data: {
+          'name': name,
+          'email': email,
+          'password': password,
+          'phone': '096663651', // TODO remove after fix it from backend
+        },
       );
-      await cachingService.setData(
-        key: AppStrings.initialLocationRoute,
-        value: AppStrings.homeScreen,
-      );
+      var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
+      await _cacheClient(authenticatedClient: authenticatedClient);
       return Right(authenticatedClient);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
@@ -99,5 +116,16 @@ class AuthRepoImpl implements AuthRepo {
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
+  }
+
+  Future<void> _cacheClient({required AuthenticatedClient authenticatedClient}) async {
+    await cachingService.setData(
+      key: AppStrings.authenticatedClient,
+      value: json.encode(authenticatedClient.toJson()),
+    );
+    await cachingService.setData(
+      key: AppStrings.initialLocationRoute,
+      value: AppStrings.homeScreen,
+    );
   }
 }

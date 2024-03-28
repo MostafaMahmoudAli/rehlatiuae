@@ -8,16 +8,16 @@ part 'login_cubit.freezed.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  AuthRepo authRepo;
+  final AuthRepo authRepo;
 
   LoginCubit({required this.authRepo}) : super(const LoginState.initial());
 
-  final GlobalKey<FormState> loginPasswordFormKey = GlobalKey<FormState>();
-  final TextEditingController passwordEditingController = TextEditingController();
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   final TextEditingController emailEditingController = TextEditingController();
+  final TextEditingController passwordEditingController = TextEditingController();
 
   Future<void> login() async {
-    if (!loginPasswordFormKey.currentState!.validate()) return;
+    if (!loginFormKey.currentState!.validate()) return;
     _update(const LoginState.loading());
     final results = await authRepo.login(
       email: emailEditingController.text,

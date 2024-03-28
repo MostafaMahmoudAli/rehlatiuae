@@ -8,6 +8,12 @@ abstract class AuthRepo {
     required String password,
   });
 
+  Future<Either<String, AuthenticatedClient>> register({
+    required String name,
+    required String email,
+    required String password,
+  });
+
   Future<Either<String, Unit>> forgetPassword({required String email});
 
   Future<Either<String, String>> verificationEmail({
