@@ -414,6 +414,9 @@ Official Channels:
   static const categoryNameScreen = "/categoryNameScreen";
   static const cityDestinationScreen = "/cityDestinationScreen";
 
+  // Keys
+  static const authenticatedClient = "authenticatedClient";
+  static const initialLocationRoute = "initialLocationRoute";
 
   //Titles Texts
   static const profile = "Profile";
