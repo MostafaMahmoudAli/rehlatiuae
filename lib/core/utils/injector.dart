@@ -13,6 +13,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/cubits/layout_cub
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/send_message_cubit/send_message_cubit.dart';
 import 'package:rehlatyuae/features/payment/data/repositories/payment_repo_impl.dart';
 import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit/add_review_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/profile/data/repositories/profile_repo_impl.dart';
@@ -59,6 +60,8 @@ void setupInjector() {
   getIt.registerFactory(() => BlogsCubit(blogsRepository: getIt()));
 
   getIt.registerFactory(() => LayoutCubit(layoutRepository: getIt()));
+
+  getIt.registerFactory(() => AddReviewCubit(layoutRepository: getIt()));
 
   /// Profile Feature
   // repositories objects
