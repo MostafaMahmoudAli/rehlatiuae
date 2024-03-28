@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/categories_item.dart';
 
+import '../../../../../core/utils/error_widget.dart';
 import '../../blocs/categories_bloc.dart';
 
 class AllCategoriesBody extends StatefulWidget {
@@ -66,7 +67,9 @@ class _AllCategoriesBodyState extends State<AllCategoriesBody> {
               padding:EdgeInsets.zero,
             );
           case CategoriesStatus.error:
-          return  ErrorWidget(state.errMessage);
+          return  ErrorsWidget(
+            error: state.errMessage,
+          );
         }
 
       },

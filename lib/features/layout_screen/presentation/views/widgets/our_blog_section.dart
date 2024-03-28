@@ -5,6 +5,7 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/blog_container_item.dart';
 
+import '../../../../all_trips/data/models/trips_model.dart';
 import '../../../../our_blogs/data/models/blogs_model.dart';
 
 class OurBlogSection extends StatelessWidget {
@@ -26,10 +27,13 @@ final List<Blogs>blogs;
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: blogs.length,
-              itemBuilder: (context, index) {
+              itemBuilder: (context, index)
+              {
+                // blogs[index].trips?[index].reviews?[index].starsNumber.toString();
+                // List<Trips>?trips=blogs[index].trips;
                 return  BlogContainerItem(
                   blogs: blogs[index],
-                  reviewStars:  blogs[index].trips?[index].reviews?[index].starsNumber.toString() ?? "",
+                  reviewStars:   "",
                 );
               },
               separatorBuilder: (context, index)

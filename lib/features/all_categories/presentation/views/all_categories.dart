@@ -17,8 +17,8 @@ import '../blocs/categories_bloc.dart';
 
 class AllCategoriesScreen extends StatelessWidget {
    AllCategoriesScreen({super.key});
-  final TextEditingController _textEditingController = TextEditingController();
-   ScrollController scrollCategoriesController = ScrollController();
+   final TextEditingController _textEditingController = TextEditingController();
+   final ScrollController scrollCategoriesController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -62,7 +62,7 @@ class AllCategoriesScreen extends StatelessWidget {
                  AllCategoriesBody(
                   scrollCategoriesController: scrollCategoriesController,
                 ),
-                 CategoriesBottomSection(),
+                 const CategoriesBottomSection(),
               ],
             ),
           ),

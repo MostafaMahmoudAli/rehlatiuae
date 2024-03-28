@@ -73,7 +73,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
-                       " $percentageSave% saved" ,
+                       " $percentageSave% saved",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
@@ -101,7 +101,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    popularExperiences?.name ?? "Dubai",
+                    popularExperiences?.name ?? "",
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                   SizedBox(
@@ -119,7 +119,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                         width: 2.0.w,
                       ),
                       Text(
-                        popularExperiences?.address ?? "United Arab Emirates",
+                        popularExperiences?.address ?? "",
                         style: Theme.of(context).textTheme.bodySmall,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -135,7 +135,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    popularExperiences?.adultPrice.toString() ?? "43",
+                    popularExperiences?.adultPrice.toString() ?? "",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(

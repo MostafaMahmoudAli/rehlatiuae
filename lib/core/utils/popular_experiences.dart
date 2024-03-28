@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_contanier_item.dart';
-
 import '../../features/popular_experiences/data/models/popular_experiences_model.dart';
 
 
@@ -12,8 +11,8 @@ class PopularExperiencesSection extends StatelessWidget {
   const PopularExperiencesSection({super.key, required this.popularExperiences});
   final List<PopularExperiences>?popularExperiences;
   @override
-  Widget build(BuildContext context) {
-    // getIt<Logger>().w("Popular experiences ${popularExperiences?.length}");
+  Widget build(BuildContext context)
+  {
     return Column(
       children: [
         CustomRowTitle(

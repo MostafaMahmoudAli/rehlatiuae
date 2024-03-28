@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ErrorWidget extends StatelessWidget
+class ErrorsWidget extends StatelessWidget
 {
-  const ErrorWidget({
+  const ErrorsWidget({
     super.key,
     required this.error,
   });
