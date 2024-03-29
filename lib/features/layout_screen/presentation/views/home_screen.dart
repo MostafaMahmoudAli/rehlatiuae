@@ -19,6 +19,7 @@ import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top_destination_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
+import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -30,17 +31,24 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
-      child: BlocBuilder<LayoutCubit, LayoutState>(
+      child: BlocConsumer<LayoutCubit, LayoutState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            error: (errorMessage) => showDialog(
+              context: context,
+              builder: (context) => CustomDialog(
+                title: errorMessage,
+                subtitle: 'Sorry',
+                labelText: 'Close',
+              ),
+            ),
+          );
+        },
         builder: (context, state) {
-          return state.when(
-            initial: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            loading: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            loaded: (layoutModel) {
-              return Scaffold(
+          return state.maybeWhen(
+            initial: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            loaded: (layoutModel) => Scaffold(
               body: Padding(
                 padding: EdgeInsets.symmetric(
                   vertical: 20.0.h,
@@ -55,23 +63,33 @@ class HomeScreen extends StatelessWidget {
                         controller: _textEditingController,
                       ),
                       const CustomSizedBox(),
-                       CategoriesSection(
-                        categories: layoutModel.categories ??[],
+                      CategoriesSection(
+                        categories: layoutModel.categories ?? [],
                       ),
                       const CustomSizedBox(),
-                       TopDestinationSection(destinations:layoutModel.topDestinations ??[] ,),
+                      TopDestinationSection(
+                        destinations: layoutModel.topDestinations ?? [],
+                      ),
                       const CustomSizedBox(),
-                       BestOffersSection(
-                         bestOffers: layoutModel.bestOffers ?? [],
-                       ),
+                      BestOffersSection(
+                        bestOffers: layoutModel.bestOffers ?? [],
+                      ),
                       const CustomSizedBox(),
-                      const BestTripsSection(),
+                      BestTripsSection(
+                        bestTrips: layoutModel.bestTrips ?? [],
+                      ),
                       const CustomSizedBox(),
-                      const PopularExperiencesSection(),
+                      PopularExperiencesSection(
+                        popularExperiences: layoutModel.popularExperience ?? [],
+                      ),
                       const CustomSizedBox(),
-                      const OurBlogSection(),
+                      OurBlogSection(
+                        blogs: layoutModel.blogs ?? [],
+                      ),
                       const CustomSizedBox(),
-                      const OurPartnerSection(),
+                      OurPartnerSection(
+                        ourPartners: layoutModel.ourPartners ?? [],
+                      ),
                       const CustomSizedBox(),
                       const WhyChooseUsSection(),
                       const CustomSizedBox(),
@@ -90,38 +108,17 @@ class HomeScreen extends StatelessWidget {
                       const CustomSizedBox(),
                       const BestOffersHorizontal(),
                       const CustomSizedBox(),
-                      const ReviewsSection(),
+                      ReviewsSection(
+                        reviews: layoutModel.reviews ?? [],
+                      ),
                     ],
                   ),
                 ),
               ),
-            );
-            },
-            error: (errorMessage) => ErrorWidget(
-              errorMessage: errorMessage,
             ),
+            orElse: () => const SizedBox(),
           );
         },
-      ),
-    );
-  }
-}
-
-class ErrorWidget extends StatelessWidget
-{
-  const ErrorWidget({
-    super.key,
-    required this.errorMessage,
-  });
-
-  final String errorMessage;
-
-  @override
-  Widget build(BuildContext context)
-  {
-    return ScaffoldMessenger(
-      child: SnackBar(
-        content: Text(errorMessage,),
       ),
     );
   }

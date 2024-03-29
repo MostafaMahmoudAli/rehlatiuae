@@ -25,6 +25,7 @@ mixin _$LayOutModel {
   List<Categories>? get categories => throw _privateConstructorUsedError;
   List<BestOffers>? get bestOffers => throw _privateConstructorUsedError;
   List<BestTrips>? get bestTrips => throw _privateConstructorUsedError;
+  @JsonKey(name: "popularExperiencetrips")
   List<PopularExperiences>? get popularExperience =>
       throw _privateConstructorUsedError;
   List<Blogs>? get blogs => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $LayOutModelCopyWith<$Res> {
       List<Categories>? categories,
       List<BestOffers>? bestOffers,
       List<BestTrips>? bestTrips,
+      @JsonKey(name: "popularExperiencetrips")
       List<PopularExperiences>? popularExperience,
       List<Blogs>? blogs,
       List<OurPartners>? ourPartners,
@@ -126,6 +128,7 @@ abstract class _$$LayOutModelImplCopyWith<$Res>
       List<Categories>? categories,
       List<BestOffers>? bestOffers,
       List<BestTrips>? bestTrips,
+      @JsonKey(name: "popularExperiencetrips")
       List<PopularExperiences>? popularExperience,
       List<Blogs>? blogs,
       List<OurPartners>? ourPartners,
@@ -197,6 +200,7 @@ class _$LayOutModelImpl implements _LayOutModel {
       required final List<Categories>? categories,
       required final List<BestOffers>? bestOffers,
       required final List<BestTrips>? bestTrips,
+      @JsonKey(name: "popularExperiencetrips")
       required final List<PopularExperiences>? popularExperience,
       required final List<Blogs>? blogs,
       required final List<OurPartners>? ourPartners,
@@ -255,6 +259,7 @@ class _$LayOutModelImpl implements _LayOutModel {
 
   final List<PopularExperiences>? _popularExperience;
   @override
+  @JsonKey(name: "popularExperiencetrips")
   List<PopularExperiences>? get popularExperience {
     final value = _popularExperience;
     if (value == null) return null;
@@ -353,6 +358,7 @@ abstract class _LayOutModel implements LayOutModel {
       required final List<Categories>? categories,
       required final List<BestOffers>? bestOffers,
       required final List<BestTrips>? bestTrips,
+      @JsonKey(name: "popularExperiencetrips")
       required final List<PopularExperiences>? popularExperience,
       required final List<Blogs>? blogs,
       required final List<OurPartners>? ourPartners,
@@ -370,6 +376,7 @@ abstract class _LayOutModel implements LayOutModel {
   @override
   List<BestTrips>? get bestTrips;
   @override
+  @JsonKey(name: "popularExperiencetrips")
   List<PopularExperiences>? get popularExperience;
   @override
   List<Blogs>? get blogs;

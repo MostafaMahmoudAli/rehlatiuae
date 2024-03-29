@@ -18,7 +18,8 @@ class LayOutModel with _$LayOutModel
     required final List<Categories>? categories,
     required final List<BestOffers>? bestOffers,
     required final List<BestTrips>? bestTrips,
-    required final List<PopularExperiences>? popularExperience,
+    @JsonKey(name: "popularExperiencetrips")
+    required final List<PopularExperiences>?popularExperience,
     required final List<Blogs>? blogs,
     required final List<OurPartners>? ourPartners,
     required final List<Review>? reviews,

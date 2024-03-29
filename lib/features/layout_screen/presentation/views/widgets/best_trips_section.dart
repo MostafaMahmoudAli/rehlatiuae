@@ -5,9 +5,11 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 
-class BestTripsSection extends StatelessWidget {
-  const BestTripsSection({super.key});
+import '../../../../best_trips/data/models/best_trips_model.dart';
 
+class BestTripsSection extends StatelessWidget {
+  const BestTripsSection({super.key, required this.bestTrips});
+  final List<BestTrips>?bestTrips;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,17 +25,17 @@ class BestTripsSection extends StatelessWidget {
           height: 200.0.h,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: bestTrips!.length,
               itemBuilder: (context, index) {
                 return CustomContainerTrip(
                   width:200.0.w,
-                  cityName: "Dubai",
-                  countryName:"United Arab Emirates",
-                  imageName: AppStrings.containerTripBackgroundImage,
-                  tripPrice:"43",
+                  cityName: bestTrips?[index].name ?? "Dubai",
+                  countryName:bestTrips?[index].address ??"United Arab Emirates",
+                  imageName: bestTrips?[index].imagePath??AppStrings.containerTripBackgroundImage,
+                  tripPrice:bestTrips?[index].adultPrice.toString()??"",
                   reservationType:"/person",
-                  oldTripPrice: 100,
-                  percentageSave: "Save 45 %" ,
+                  oldTripPrice:bestTrips?[index].beforePrice.toString() ?? "",
+                  percentageSave: bestTrips?[index].saving ?? "" ,
                 );
               },
               separatorBuilder: (context, index) {

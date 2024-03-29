@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logger/logger.dart';
 
+import '../../../../core/utils/injector.dart';
 import '../../data/models/layout_model.dart';
 import '../../domain/repositories/layout_repo.dart';
 
@@ -15,9 +17,13 @@ class LayoutCubit extends Cubit<LayoutState> {
   Future<void> fetchLayoutData() async {
     emit(const LayoutState.loading());
     final results = await layoutRepository.fetchLayoutData();
+
     results.fold(
       (errorMessage) => emit(LayoutState.error(errorMessage)),
-      (layoutModel) => emit(LayoutState.loaded(layoutModel)),
+      (layoutModel) {
+        getIt<Logger>().w("Popular experiences ${layoutModel.popularExperience?.length}");
+        emit(LayoutState.loaded(layoutModel));
+      },
     );
   }
 }

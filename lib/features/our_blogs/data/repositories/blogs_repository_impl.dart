@@ -6,23 +6,26 @@ import 'package:rehlatyuae/features/our_blogs/domain/repositories/blogs_reposito
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
 
-class BlogsRepositoryImpl implements BlogsRepository
-{
+class BlogsRepositoryImpl implements BlogsRepository {
   final ApiConsumer apiConsumer;
+
   BlogsRepositoryImpl({required this.apiConsumer});
+
   @override
-  Future<Either<String, List<Blogs>>> fetchBestOffers({int? startIndex = 0, int? limit = 10}) async {
+  Future<Either<String, List<Blogs>>> fetchBlogs(
+      {int? startIndex = 0, int? limit = 10}) async {
     try {
-      var blogs =
-      await apiConsumer.get(EndPoints.blogsEndPoint, queryParameters: {
-        "start": startIndex,
-        "limit": limit,
-      });
-      final blogsList =
-      blogs.map((e) => Blogs.fromJson(e.data)).toList();
+      var blogs = await apiConsumer.get(
+        EndPoints.blogsEndPoint,
+        queryParameters: {
+          "start": startIndex,
+          "limit": limit,
+        },
+      );
+      List<Blogs> blogsList =
+          blogs["data"]["blogs"].map<Blogs>((e) => Blogs.fromJson(e)).toList();
       return right(blogsList);
-    } on ServerExceptions catch (error)
-    {
+    } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
   }

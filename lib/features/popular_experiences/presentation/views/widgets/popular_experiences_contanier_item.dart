@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
+import '../../../data/models/popular_experiences_model.dart';
 
 class PopularExperiencesContainerItem extends StatelessWidget {
   const PopularExperiencesContainerItem({
@@ -11,14 +12,17 @@ class PopularExperiencesContainerItem extends StatelessWidget {
     required this.width,
     this.oldTripPrice,
     this.percentageSave,
+    required this.popularExperiences,
   });
 
   final double width;
-  final int? oldTripPrice;
+  final String? oldTripPrice;
   final String? percentageSave;
+  final PopularExperiences?popularExperiences;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return InkWell(
       onTap: () {
         context.push(AppStrings.travelDetailsScreen);
@@ -34,27 +38,29 @@ class PopularExperiencesContainerItem extends StatelessWidget {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
-              ),
-              child: Image.asset(
-                "assets/images/Rectangle 427.png",
-                fit: BoxFit.cover,
+                image: DecorationImage(
+                  image: NetworkImage(
+                  popularExperiences?.imagePath ?? "",
+                  ),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             if ((oldTripPrice != null || percentageSave != null) &&
-                percentageSave!.isNotEmpty)
+               ( percentageSave!.isNotEmpty||oldTripPrice!.isNotEmpty))
               Positioned(
                 top: 16,
                 left: 6,
                 child: Row(
                   children: [
                     Text(
-                      oldTripPrice.toString(),
+                      oldTripPrice ?? "",
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     Container(
-                      width: 58.0.w,
+                      width: 62.0.w,
                       height: 20.0.h,
                       margin:
                           EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
@@ -67,7 +73,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
-                        percentageSave ?? "",
+                       " $percentageSave% saved",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
@@ -95,7 +101,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Dubai",
+                    popularExperiences?.name ?? "",
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                   SizedBox(
@@ -113,7 +119,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                         width: 2.0.w,
                       ),
                       Text(
-                        "United Arab Emirates",
+                        popularExperiences?.address ?? "",
                         style: Theme.of(context).textTheme.bodySmall,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -129,7 +135,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "43",
+                    popularExperiences?.adultPrice.toString() ?? "",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(

@@ -28,7 +28,7 @@ class CategoriesSection extends StatelessWidget {
           height: 40.0.h,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: categories.length,
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
@@ -38,13 +38,13 @@ class CategoriesSection extends StatelessWidget {
                     categoryName:categories[index].name,
                     image:categories[index].imagePath,
                     height: 40.0.h,
-                    width: 75.0.w,
+                    width: 110.0.w,
                   ),
                 );
               },
               separatorBuilder: (context, index) {
                 return SizedBox(
-                  width: 10.0.w,
+                  width: 5.0.w,
                 );
               }),
         ),

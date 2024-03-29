@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -6,11 +7,14 @@ import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 
-class ReviewsSection extends StatelessWidget {
-  const ReviewsSection({super.key});
+import '../../../data/models/review_model.dart';
 
+class ReviewsSection extends StatelessWidget {
+  const ReviewsSection({super.key, required this.reviews});
+final List<Review>?reviews;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Column(
       children: [
         Text(
@@ -18,19 +22,33 @@ class ReviewsSection extends StatelessWidget {
           style: Theme.of(context).textTheme.labelMedium,
         ),
         const CustomSizedBox(),
-        CustomCircleAvatar(
-          radius: 40.0.r,
-          backgroundImage: const AssetImage(
-            "assets/images/Ellipse 1.png",
+        ListView.separated(
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                CustomCircleAvatar(
+                  radius: 40.0.r,
+                  backgroundImage:NetworkImage(
+                   reviews?[index].client?.imagePath ?? "assets/images/Ellipse 1.png",
+                  ),
+                ),
+                Text(
+                  reviews?[index].description ?? AppStrings.weHelpYouMakeBestTripDescription,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 6,
+                ),
+                const CustomSizedBox(),
+              ],
+            );
+          },
+          separatorBuilder: (context, index) => SizedBox(
+            height: 10.0.h,
           ),
+          itemCount: reviews!.length,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
         ),
-        Text(
-          AppStrings.weHelpYouMakeBestTripDescription,
-          style: Theme.of(context).textTheme.bodyLarge,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 6,
-        ),
-        const CustomSizedBox(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -147,8 +165,8 @@ class ReviewsSection extends StatelessWidget {
         Text(
           AppStrings.copyRight,
           style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                fontSize: 14.0.sp,
-              ),
+            fontSize: 14.0.sp,
+          ),
         ),
       ],
     );

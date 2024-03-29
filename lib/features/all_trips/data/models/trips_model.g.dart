@@ -26,6 +26,9 @@ _$TripsImpl _$$TripsImplFromJson(Map<String, dynamic> json) => _$TripsImpl(
       offers: (json['offers'] as List<dynamic>?)
           ?.map((e) => Trips.fromJson(e as Map<String, dynamic>))
           .toList(),
+      reviews: (json['reviews'] as List<dynamic>?)
+          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$TripsImplToJson(_$TripsImpl instance) =>
@@ -43,4 +46,5 @@ Map<String, dynamic> _$$TripsImplToJson(_$TripsImpl instance) =>
       'images': instance.images,
       'isFavourite': instance.isFavourite,
       'offers': instance.offers,
+      'reviews': instance.reviews,
     };

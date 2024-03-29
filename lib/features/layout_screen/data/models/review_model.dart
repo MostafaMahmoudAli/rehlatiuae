@@ -9,7 +9,7 @@ class Review with _$Review {
   const factory Review({
     final int? id,
     final String? name,
-    final String? starsNumber,
+    final int? starsNumber,
     final String? description,
     final String? imagePath,
     final Client? client,

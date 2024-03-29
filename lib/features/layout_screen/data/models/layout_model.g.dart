@@ -20,7 +20,7 @@ _$LayOutModelImpl _$$LayOutModelImplFromJson(Map<String, dynamic> json) =>
       bestTrips: (json['bestTrips'] as List<dynamic>?)
           ?.map((e) => BestTrips.fromJson(e as Map<String, dynamic>))
           .toList(),
-      popularExperience: (json['popularExperience'] as List<dynamic>?)
+      popularExperience: (json['popularExperiencetrips'] as List<dynamic>?)
           ?.map((e) => PopularExperiences.fromJson(e as Map<String, dynamic>))
           .toList(),
       blogs: (json['blogs'] as List<dynamic>?)
@@ -40,7 +40,7 @@ Map<String, dynamic> _$$LayOutModelImplToJson(_$LayOutModelImpl instance) =>
       'categories': instance.categories,
       'bestOffers': instance.bestOffers,
       'bestTrips': instance.bestTrips,
-      'popularExperience': instance.popularExperience,
+      'popularExperiencetrips': instance.popularExperience,
       'blogs': instance.blogs,
       'ourPartners': instance.ourPartners,
       'reviews': instance.reviews,

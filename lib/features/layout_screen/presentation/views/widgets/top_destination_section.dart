@@ -26,7 +26,7 @@ class TopDestinationSection extends StatelessWidget {
           height: 200.0.h,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: destinations.length,
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: ()
@@ -37,11 +37,12 @@ class TopDestinationSection extends StatelessWidget {
                     width:200.0.w,
                     cityName: destinations[index].name ?? "Dubai",
                     countryName:destinations[index].country ??"United Arab Emirates",
-                    imageName: destinations[index].imagePath ??AppStrings.containerTripBackgroundImage,
+                    imageName: destinations[index].imagePath ?? AppStrings.containerTripBackgroundImage,
                   ),
                 );
               },
-              separatorBuilder: (context, index) {
+              separatorBuilder: (context, index)
+              {
                 return SizedBox(
                   width: 5.0.w,
                 );

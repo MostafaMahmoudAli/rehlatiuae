@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
 
 import '../../../all_trips/data/models/trips_model.dart';
 import '../../../best_offers/data/models/address_model.dart';
@@ -19,10 +20,13 @@ class BestTrips with _$BestTrips
     required final int ?adultPrice,
     required final int ?childPrice,
     required final String ?imagePath,
+    required final String ?beforePrice,
+    required final String ?saving,
     required final List<AddressModel> ?addresses,
     required final List<ImagesModel>? images,
     required final bool? isFavourite,
     required final List<Trips>? offers,
+    required final List<Review>? reviews,
 })=_BestTrips;
 
   factory BestTrips.fromJson(Map<String, dynamic> json) =>

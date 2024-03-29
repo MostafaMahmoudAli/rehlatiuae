@@ -24,7 +24,7 @@ mixin _$Review {
 
   String? get name => throw _privateConstructorUsedError;
 
-  String? get starsNumber => throw _privateConstructorUsedError;
+  int? get starsNumber => throw _privateConstructorUsedError;
 
   String? get description => throw _privateConstructorUsedError;
 
@@ -43,7 +43,7 @@ abstract class $ReviewCopyWith<$Res> {
   factory $ReviewCopyWith(Review value, $Res Function(Review) then) = _$ReviewCopyWithImpl<$Res, Review>;
 
   @useResult
-  $Res call({int? id, String? name, String? starsNumber, String? description, String? imagePath, Client? client});
+  $Res call({int? id, String? name, int? starsNumber, String? description, String? imagePath, Client? client});
 
   $ClientCopyWith<$Res>? get client;
 }
@@ -80,7 +80,7 @@ class _$ReviewCopyWithImpl<$Res, $Val extends Review> implements $ReviewCopyWith
       starsNumber: freezed == starsNumber
           ? _value.starsNumber
           : starsNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -116,7 +116,7 @@ abstract class _$$ReviewImplCopyWith<$Res> implements $ReviewCopyWith<$Res> {
 
   @override
   @useResult
-  $Res call({int? id, String? name, String? starsNumber, String? description, String? imagePath, Client? client});
+  $Res call({int? id, String? name, int? starsNumber, String? description, String? imagePath, Client? client});
 
   @override
   $ClientCopyWith<$Res>? get client;
@@ -149,7 +149,7 @@ class __$$ReviewImplCopyWithImpl<$Res> extends _$ReviewCopyWithImpl<$Res, _$Revi
       starsNumber: freezed == starsNumber
           ? _value.starsNumber
           : starsNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ class _$ReviewImpl implements _Review {
   @override
   final String? name;
   @override
-  final String? starsNumber;
+  final int? starsNumber;
   @override
   final String? description;
   @override
@@ -225,7 +225,7 @@ abstract class _Review implements Review {
   const factory _Review(
       {final int? id,
       final String? name,
-      final String? starsNumber,
+      final int? starsNumber,
       final String? description,
       final String? imagePath,
       final Client? client}) = _$ReviewImpl;
@@ -239,7 +239,7 @@ abstract class _Review implements Review {
   String? get name;
 
   @override
-  String? get starsNumber;
+  int? get starsNumber;
 
   @override
   String? get description;

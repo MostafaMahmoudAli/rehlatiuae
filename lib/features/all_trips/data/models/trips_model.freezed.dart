@@ -34,6 +34,7 @@ mixin _$Trips {
   List<ImagesModel>? get images => throw _privateConstructorUsedError;
   bool? get isFavourite => throw _privateConstructorUsedError;
   List<Trips>? get offers => throw _privateConstructorUsedError;
+  List<Review>? get reviews => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +59,8 @@ abstract class $TripsCopyWith<$Res> {
       List<AddressModel>? addresses,
       List<ImagesModel>? images,
       bool? isFavourite,
-      List<Trips>? offers});
+      List<Trips>? offers,
+      List<Review>? reviews});
 }
 
 /// @nodoc
@@ -87,6 +89,7 @@ class _$TripsCopyWithImpl<$Res, $Val extends Trips>
     Object? images = freezed,
     Object? isFavourite = freezed,
     Object? offers = freezed,
+    Object? reviews = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -141,6 +144,10 @@ class _$TripsCopyWithImpl<$Res, $Val extends Trips>
           ? _value.offers
           : offers // ignore: cast_nullable_to_non_nullable
               as List<Trips>?,
+      reviews: freezed == reviews
+          ? _value.reviews
+          : reviews // ignore: cast_nullable_to_non_nullable
+              as List<Review>?,
     ) as $Val);
   }
 }
@@ -165,7 +172,8 @@ abstract class _$$TripsImplCopyWith<$Res> implements $TripsCopyWith<$Res> {
       List<AddressModel>? addresses,
       List<ImagesModel>? images,
       bool? isFavourite,
-      List<Trips>? offers});
+      List<Trips>? offers,
+      List<Review>? reviews});
 }
 
 /// @nodoc
@@ -192,6 +200,7 @@ class __$$TripsImplCopyWithImpl<$Res>
     Object? images = freezed,
     Object? isFavourite = freezed,
     Object? offers = freezed,
+    Object? reviews = freezed,
   }) {
     return _then(_$TripsImpl(
       id: freezed == id
@@ -246,6 +255,10 @@ class __$$TripsImplCopyWithImpl<$Res>
           ? _value._offers
           : offers // ignore: cast_nullable_to_non_nullable
               as List<Trips>?,
+      reviews: freezed == reviews
+          ? _value._reviews
+          : reviews // ignore: cast_nullable_to_non_nullable
+              as List<Review>?,
     ));
   }
 }
@@ -266,10 +279,12 @@ class _$TripsImpl implements _Trips {
       required final List<AddressModel>? addresses,
       required final List<ImagesModel>? images,
       required this.isFavourite,
-      required final List<Trips>? offers})
+      required final List<Trips>? offers,
+      required final List<Review>? reviews})
       : _addresses = addresses,
         _images = images,
-        _offers = offers;
+        _offers = offers,
+        _reviews = reviews;
 
   factory _$TripsImpl.fromJson(Map<String, dynamic> json) =>
       _$$TripsImplFromJson(json);
@@ -325,9 +340,19 @@ class _$TripsImpl implements _Trips {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<Review>? _reviews;
+  @override
+  List<Review>? get reviews {
+    final value = _reviews;
+    if (value == null) return null;
+    if (_reviews is EqualUnmodifiableListView) return _reviews;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'Trips(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, beforePrice: $beforePrice, saving: $saving, imagePath: $imagePath, addresses: $addresses, images: $images, isFavourite: $isFavourite, offers: $offers)';
+    return 'Trips(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, beforePrice: $beforePrice, saving: $saving, imagePath: $imagePath, addresses: $addresses, images: $images, isFavourite: $isFavourite, offers: $offers, reviews: $reviews)';
   }
 
   @override
@@ -354,7 +379,8 @@ class _$TripsImpl implements _Trips {
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.isFavourite, isFavourite) ||
                 other.isFavourite == isFavourite) &&
-            const DeepCollectionEquality().equals(other._offers, _offers));
+            const DeepCollectionEquality().equals(other._offers, _offers) &&
+            const DeepCollectionEquality().equals(other._reviews, _reviews));
   }
 
   @JsonKey(ignore: true)
@@ -373,7 +399,8 @@ class _$TripsImpl implements _Trips {
       const DeepCollectionEquality().hash(_addresses),
       const DeepCollectionEquality().hash(_images),
       isFavourite,
-      const DeepCollectionEquality().hash(_offers));
+      const DeepCollectionEquality().hash(_offers),
+      const DeepCollectionEquality().hash(_reviews));
 
   @JsonKey(ignore: true)
   @override
@@ -403,7 +430,8 @@ abstract class _Trips implements Trips {
       required final List<AddressModel>? addresses,
       required final List<ImagesModel>? images,
       required final bool? isFavourite,
-      required final List<Trips>? offers}) = _$TripsImpl;
+      required final List<Trips>? offers,
+      required final List<Review>? reviews}) = _$TripsImpl;
 
   factory _Trips.fromJson(Map<String, dynamic> json) = _$TripsImpl.fromJson;
 
@@ -434,6 +462,8 @@ abstract class _Trips implements Trips {
   bool? get isFavourite;
   @override
   List<Trips>? get offers;
+  @override
+  List<Review>? get reviews;
   @override
   @JsonKey(ignore: true)
   _$$TripsImplCopyWith<_$TripsImpl> get copyWith =>
