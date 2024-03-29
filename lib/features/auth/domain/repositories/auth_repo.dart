@@ -20,7 +20,7 @@ abstract class AuthRepo {
     required String code,
   });
 
-  Future<Either<String, AuthenticatedClient>> resetPassword({
+  Future<Either<String, AuthenticatedClient>> updatePassword({
     required String password,
     required String passwordConfirmation,
     required String token,

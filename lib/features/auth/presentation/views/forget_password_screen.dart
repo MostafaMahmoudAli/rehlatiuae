@@ -6,7 +6,6 @@ import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
-import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/forget_password_cubit/forget_password_cubit.dart';
@@ -88,16 +87,16 @@ class ForgetPasswordScreen extends StatelessWidget {
                   SizedBox(
                     height: 80.h,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DefaultTextButton(
-                        onPressed: () {},
-                        text: AppStrings.tryAnotherWay,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     DefaultTextButton(
+                  //       onPressed: () {},
+                  //       text: AppStrings.tryAnotherWay,
+                  //       style: Theme.of(context).textTheme.bodyMedium,
+                  //     ),
+                  //   ],
+                  // ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w).copyWith(
                       top: 30.h,

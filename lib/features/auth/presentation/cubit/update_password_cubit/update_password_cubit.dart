@@ -19,7 +19,7 @@ class UpdatePasswordCubit extends Cubit<UpdatePasswordState> {
   Future<void> updatePassword({required String token}) async {
     if (!updatePasswordFormKey.currentState!.validate()) return;
     _update(const UpdatePasswordState.loading());
-    final results = await authRepo.resetPassword(
+    final results = await authRepo.updatePassword(
       password: passwordEditingController.text,
       passwordConfirmation: passwordConfirmationEditingController.text,
       token: token,

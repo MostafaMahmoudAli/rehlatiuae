@@ -416,6 +416,7 @@ Official Channels:
 
   // Keys
   static const accessToken = "accessToken";
+  static const updatePasswordToken = "updatePasswordToken";
   static const expiresIn = "expiresIn";
   static const client = "client";
   static const initialLocationRoute = "initialLocationRoute";

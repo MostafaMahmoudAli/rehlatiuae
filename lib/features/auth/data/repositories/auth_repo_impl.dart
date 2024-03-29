@@ -49,7 +49,6 @@ class AuthRepoImpl implements AuthRepo {
           'name': name,
           'email': email,
           'password': password,
-          'phone': '096663651', // TODO remove after fix it from backend
         },
       );
       var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
@@ -86,14 +85,19 @@ class AuthRepoImpl implements AuthRepo {
           'code': code,
         },
       );
-      return Right(response['data']['token']);
+      String updatePasswordToken = response['data']['token'];
+      await cacheService.setData(
+        key: AppStrings.updatePasswordToken,
+        value: updatePasswordToken,
+      );
+      return Right(updatePasswordToken);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
   }
 
   @override
-  Future<Either<String, AuthenticatedClient>> resetPassword({
+  Future<Either<String, AuthenticatedClient>> updatePassword({
     required String password,
     required String passwordConfirmation,
     required String token,
@@ -108,6 +112,10 @@ class AuthRepoImpl implements AuthRepo {
       );
       var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
       await _cacheClient(authenticatedClient: authenticatedClient);
+      await cacheService.setData(
+        key: AppStrings.updatePasswordToken,
+        value: null,
+      );
       return Right(authenticatedClient);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);

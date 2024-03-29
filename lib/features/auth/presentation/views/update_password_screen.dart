@@ -36,7 +36,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                       labelText: "Back to Homepage",
                       color: AppColors.green,
                       onTap: () {
-                        context.push(AppStrings.homeScreen);
+                        context.go(AppStrings.homeScreen);
                       },
                     ),
                   ),
