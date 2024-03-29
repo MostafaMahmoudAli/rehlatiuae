@@ -10,6 +10,7 @@ import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
+import 'package:rehlatyuae/core/utils/regex.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -75,6 +76,7 @@ class LoginScreen extends StatelessWidget {
                           SizedBox(height: 30.h),
                           PrimaryTextField(
                             controller: cubit.emailEditingController,
+                            validator: (value) => AppValidator.validateEmail(value),
                             hint: 'youremail@mail.com',
                             padding: EdgeInsets.only(bottom: 20.h),
                             textColor: AppColors.white,
@@ -86,6 +88,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           PrimaryTextField(
                             controller: cubit.passwordEditingController,
+                            validator: (value) => AppValidator.validatePassword(value),
                             hint: 'password',
                             padding: EdgeInsets.zero,
                             textColor: AppColors.white,

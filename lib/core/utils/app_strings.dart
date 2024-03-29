@@ -415,7 +415,9 @@ Official Channels:
   static const cityDestinationScreen = "/cityDestinationScreen";
 
   // Keys
-  static const authenticatedClient = "authenticatedClient";
+  static const accessToken = "accessToken";
+  static const expiresIn = "expiresIn";
+  static const client = "client";
   static const initialLocationRoute = "initialLocationRoute";
 
   //Titles Texts

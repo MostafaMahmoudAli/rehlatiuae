@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rehlatyuae/features/auth/data/models/authenticated_client_model/authenticated_client_model.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
 
 part 'main_cubit.freezed.dart';
@@ -11,7 +11,7 @@ class MainCubit extends Cubit<MainState> {
 
   MainCubit({required this.mainRepo}) : super(const MainState.initial());
 
-  AuthenticatedClient? authenticatedClient;
+  Client? client;
 
   Future<void> initMain() async {
     _update(const MainState.loading());
@@ -19,8 +19,8 @@ class MainCubit extends Cubit<MainState> {
     final results = mainRepo.getAuthenticatedClient();
     results.fold(
       (errorMessage) => _update(MainState.error(errorMessage)),
-      (authenticatedClient) {
-        this.authenticatedClient = authenticatedClient;
+      (client) {
+        this.client = client;
         _update(const MainState.success());
       },
     );

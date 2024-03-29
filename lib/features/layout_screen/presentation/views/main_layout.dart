@@ -43,15 +43,15 @@ class _MainLayoutState extends State<MainLayout> {
                 BlocBuilder<MainCubit, MainState>(
                   builder: (context, state) {
                     var cubit = context.read<MainCubit>();
-                    getIt<Logger>().w(cubit.authenticatedClient);
+                    getIt<Logger>().w(cubit.client);
                     return InkWell(
                       onTap: () {},
-                      child: cubit.authenticatedClient != null
+                      child: cubit.client != null
                           ? CustomCircleAvatar(
                               radius: 25.0.r,
                               backgroundColor: AppColors.whiteAppColor,
                               backgroundImage: CachedNetworkImageProvider(
-                                cubit.authenticatedClient!.client.imagePath,
+                                cubit.client!.imagePath,
                               ),
                             )
                           : CustomCircleAvatar(
