@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
@@ -91,10 +90,7 @@ class BestOffersHorizontalItem extends StatelessWidget {
                     ),
                     Text(
                       "Dubai",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .displaySmall,
+                      style: Theme.of(context).textTheme.displaySmall,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
@@ -106,10 +102,7 @@ class BestOffersHorizontalItem extends StatelessWidget {
                   "This exceptional beach  ",
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodySmall,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 SizedBox(
                   height: 5.0.w,
@@ -118,18 +111,12 @@ class BestOffersHorizontalItem extends StatelessWidget {
                   children: [
                     Text(
                       "48",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .displaySmall,
+                      style: Theme.of(context).textTheme.displaySmall,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       "/Person",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const Spacer(),
@@ -140,10 +127,7 @@ class BestOffersHorizontalItem extends StatelessWidget {
                     ),
                     Text(
                       "4.2 (852)",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .displaySmall,
+                      style: Theme.of(context).textTheme.displaySmall,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
@@ -158,13 +142,13 @@ class BestOffersHorizontalItem extends StatelessWidget {
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     Container(
-                      width:65.0.w,
-                      height:20.0.h,
+                      width: 65.0.w,
+                      height: 20.0.h,
                       margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-                      padding: EdgeInsetsDirectional.symmetric(horizontal:6.0.w,vertical: 1.3.h),
-                     decoration:BoxDecoration(
-                        color:AppColors.green,
-                        borderRadius:BorderRadius.circular(8.0.r),
+                      padding: EdgeInsetsDirectional.symmetric(horizontal: 6.0.w, vertical: 1.3.h),
+                      decoration: BoxDecoration(
+                        color: AppColors.green,
+                        borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
                         "Save 45 %",

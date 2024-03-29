@@ -9,7 +9,7 @@ import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/core/utils/regex.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/profile/presentation/cubits/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/widgets/profile_photo_section.dart';
 

@@ -71,7 +71,7 @@ class OrderSummarySection extends StatelessWidget {
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                         Text(
-                          "${AppStrings.children}: 1",
+                          "${AppStrings.children}: $childrenCount",
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                       ],

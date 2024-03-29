@@ -26,14 +26,14 @@ abstract class AppValidator {
 
   static String? validateRequired(String? value) {
     if (value == null || value.isEmpty) {
-      return 'this field is required';
+      return 'This field is required';
     }
     return null;
   }
 
   static String? validateNumber(String? value) {
     if (value == null || value.isEmpty) {
-      return 'this field is required';
+      return 'This field is required';
     }
     if (!RegExp(numberRegex).hasMatch(value)) {
       return "it isn't number";
