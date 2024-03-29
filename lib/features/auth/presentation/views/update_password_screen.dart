@@ -24,7 +24,7 @@ class UpdatePasswordScreen extends StatelessWidget {
         child: BlocConsumer<UpdatePasswordCubit, UpdatePasswordState>(
           listener: (context, state) {
             state.whenOrNull(
-              success: (client, token) {
+              success: (authenticatedClient) {
                 showDialog(
                   context: context,
                   barrierDismissible: false,

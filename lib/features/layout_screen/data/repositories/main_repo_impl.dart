@@ -17,7 +17,7 @@ class MainRepoImpl implements MainRepo {
   });
 
   @override
-  Either<String, Client?> getAuthenticatedClient() {
+  Either<String, Client?> getClient() {
     try {
       var stringData = cacheService.getData<String>(key: AppStrings.client);
       Client? client;

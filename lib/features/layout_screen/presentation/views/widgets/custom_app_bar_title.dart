@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class CustomAppBarTitle extends StatelessWidget {
   const CustomAppBarTitle({super.key});
@@ -43,7 +45,7 @@ class CustomAppBarTitle extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  " Belal",
+                  context.read<MainCubit>().client?.name ?? " Belal",
                   style: TextStyle(
                     color: AppColors.textAndBackgroundColorButton,
                     fontSize: 16.0.sp,

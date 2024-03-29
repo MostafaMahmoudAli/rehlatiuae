@@ -14,9 +14,12 @@ class MainCubit extends Cubit<MainState> {
   Client? client;
 
   Future<void> initMain() async {
+    getCachedClient();
+  }
+
+  void getCachedClient() {
     _update(const MainState.loading());
-    // Get AuthenticatedClient if already exists
-    final results = mainRepo.getAuthenticatedClient();
+    final results = mainRepo.getClient();
     results.fold(
       (errorMessage) => _update(MainState.error(errorMessage)),
       (client) {

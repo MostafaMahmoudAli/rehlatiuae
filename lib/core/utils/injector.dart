@@ -93,7 +93,10 @@ Future<void> setupInjector() async {
   /// Profile Feature
   // repositories objects
   getIt.registerLazySingleton<ProfileRepo>(
-    () => ProfileRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+    () => ProfileRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+      cacheService: getIt<CacheService>(),
+    ),
   );
 
   // cubits
@@ -117,7 +120,7 @@ Future<void> setupInjector() async {
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
       apiConsumer: getIt.get<ApiConsumer>(),
-      cachingService: getIt.get<CacheService>(),
+      cacheService: getIt.get<CacheService>(),
     ),
   );
 

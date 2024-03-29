@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
+import 'package:rehlatyuae/features/auth/data/models/authenticated_client_model/authenticated_client_model.dart';
 import 'package:rehlatyuae/features/auth/domain/repositories/auth_repo.dart';
 
 part 'update_password_cubit.freezed.dart';
@@ -26,7 +26,7 @@ class UpdatePasswordCubit extends Cubit<UpdatePasswordState> {
     );
     results.fold(
       (message) => _update(UpdatePasswordState.error(message)),
-      (pair) => _update(UpdatePasswordState.success(pair.$1, pair.$2)),
+      (authenticatedClient) => _update(UpdatePasswordState.success(authenticatedClient)),
     );
   }
 

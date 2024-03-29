@@ -8,6 +8,7 @@ import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/profile/presentation/cubits/profile_cubit/profile_cubit.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/widgets/profile_card_details.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/widgets/profile_photo_section.dart';
@@ -58,6 +59,9 @@ class ProfileScreen extends StatelessWidget {
                     labelText: 'Close',
                   ),
                 );
+              },
+              loaded: (client) {
+                context.read<MainCubit>().getCachedClient();
               },
             );
           },
