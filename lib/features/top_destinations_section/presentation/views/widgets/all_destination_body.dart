@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,11 +29,11 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
   }
   void _onScroll()
   {
-    final maxScroll = widget.allDestinationsScrollController?.position.maxScrollExtent;
+    final maxScroll = widget.allDestinationsScrollController?.position.minScrollExtent;
     final currentScroll = widget.allDestinationsScrollController?.offset;
     if(currentScroll! >= (maxScroll!*0.7))
     {
-      getIt<AllDestinationsBloc>().add(GetAllDestinationsEvent());
+      BlocProvider.of<AllDestinationsBloc>(context).add(GetAllDestinationsEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }

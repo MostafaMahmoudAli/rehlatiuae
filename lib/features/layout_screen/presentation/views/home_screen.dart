@@ -61,6 +61,11 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       SearchTextField(
                         controller: _textEditingController,
+                        onTap: ()
+                        {
+                          context.push(AppStrings.searchScreen);
+                        },
+                        readOnly: true,
                       ),
                       const CustomSizedBox(),
                       CategoriesSection(

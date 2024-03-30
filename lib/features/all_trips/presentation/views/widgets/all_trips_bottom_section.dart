@@ -1,7 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
@@ -14,27 +14,22 @@ import '../../../../layout_screen/presentation/cubits/layout_cubit.dart';
 import '../../../../layout_screen/presentation/views/widgets/best_offers_horizontal.dart';
 import '../../../../layout_screen/presentation/views/widgets/best_offers_section.dart';
 import '../../../../layout_screen/presentation/views/widgets/best_trips_section.dart';
-import '../../../../layout_screen/presentation/views/widgets/our_blog_section.dart';
-import '../../../../layout_screen/presentation/views/widgets/our_partner_section.dart';
 import '../../../../layout_screen/presentation/views/widgets/reviews_section.dart';
 import '../../../../layout_screen/presentation/views/widgets/top_destination_section.dart';
 import '../../../../layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import '../../../../layout_screen/presentation/views/widgets/why_choose_us_section.dart';
 
-class CategoriesBottomSection extends StatelessWidget
-{
-  const CategoriesBottomSection({
+class AllTripsBottomSection extends StatelessWidget {
+  const AllTripsBottomSection({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
       child: BlocConsumer<LayoutCubit, LayoutState>(
-        listener: (context,state)
-        {
+        listener: (context, state) {
           state.whenOrNull(
             error: (errorMessage) => showDialog(
               context: context,
@@ -48,42 +43,31 @@ class CategoriesBottomSection extends StatelessWidget
         },
         builder: (context, state) {
           return state.maybeWhen(
-            orElse: ()=>const SizedBox(),
-            initial: ()=> const SizedBox(),
-            loading: ()=> const Center(child: CircularProgressIndicator(),),
-            loaded: (layoutModelSectionData)=> Column(
+            initial: () => const SizedBox(),
+            loading: () => const SizedBox(),
+            loaded: (layoutModelSectionData) => Column(
               children: [
-                 TopDestinationSection(
-                  destinations:layoutModelSectionData.topDestinations ?? [],
+                TopDestinationSection(
+                  destinations: layoutModelSectionData.topDestinations ?? [],
                 ),
                 const CustomSizedBox(),
                  BestOffersSection(
-                  bestOffers:layoutModelSectionData.bestOffers ?? [],
+                  bestOffers:layoutModelSectionData.bestOffers?? [],
                 ),
                 const CustomSizedBox(),
                  BestTripsSection(
-                  bestTrips:layoutModelSectionData.bestTrips?? [],
+                  bestTrips:layoutModelSectionData.bestTrips ?? [],
                 ),
                 const CustomSizedBox(),
-                const PopularExperiencesSection(
-                  popularExperiences: [],
-                ),
-                const CustomSizedBox(),
-                OurBlogSection(
-                  blogs:layoutModelSectionData.blogs?? [],
-                ),
-                const CustomSizedBox(),
-                 OurPartnerSection(
-                  ourPartners:layoutModelSectionData.ourPartners?? [],
+                 PopularExperiencesSection(
+                  popularExperiences:layoutModelSectionData.popularExperience?? [],
                 ),
                 const CustomSizedBox(),
                 const WhyChooseUsSection(),
                 const CustomSizedBox(),
                 const WeHelpYouSection(),
                 CustomActionButton(
-                  onTap: () {
-                    context.push(AppStrings.allTripsScreen);
-                  },
+                  onTap: () {},
                   text: AppStrings.actionButtonName,
                   height: 70.0.h,
                   width: double.infinity,
@@ -99,9 +83,7 @@ class CategoriesBottomSection extends StatelessWidget
                 ),
               ],
             ),
-            error:  (errorMessage) => ErrorWidget(
-                errorMessage
-            ),
+            orElse: () => const SizedBox(),
           );
         },
       ),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -20,7 +21,6 @@ class BestOffersItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150.0.h,
       width: 150.0.w,
       padding: EdgeInsetsDirectional.symmetric(
         horizontal: 8.0.w,
@@ -97,10 +97,12 @@ class BestOffersItem extends StatelessWidget {
                       color: AppColors.textAndBackgroundColorButton,
                       size: 14.0.sp,
                     ),
-                    Text(
-                      bestOffers?.address ??  "Dubai, United Arab Emirates",
-                      style: Theme.of(context).textTheme.titleMedium,
-                      textAlign: TextAlign.justify,
+                    Expanded(
+                      child: Text(
+                        bestOffers?.address ??  "Dubai, United Arab Emirates",
+                        style: Theme.of(context).textTheme.titleMedium,
+                       overflow:TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -133,7 +135,7 @@ class BestOffersItem extends StatelessWidget {
                         borderRadius:BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
-                        bestOffers?.saving ??  "",
+                        "${bestOffers?.saving}% Saved "??  "",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),

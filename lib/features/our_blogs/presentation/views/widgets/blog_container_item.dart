@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -12,8 +13,9 @@ class BlogContainerItem extends StatelessWidget {
     required this.blogs,
     this.reviewStars,
   });
-  final Blogs?blogs;
-  final String?reviewStars;
+
+  final Blogs? blogs;
+  final String? reviewStars;
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +82,16 @@ class BlogContainerItem extends StatelessWidget {
                       Icons.calendar_month,
                       color: AppColors.whiteAppColor,
                     ),
-                    Text(
-                      "2/2/2024",
-                      style: Theme.of(context).textTheme.displaySmall,
+                    Expanded(
+                      child: Text(
+                        blogs?.createdAt?.toString() ??
+                            "",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(fontSize: 10.0.sp),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -109,9 +118,10 @@ class BlogContainerItem extends StatelessWidget {
                     ),
                     Text(
                       maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        blogs?.description ?? "Short Description Short Description Short Description",
-                        style: Theme.of(context).textTheme.displaySmall,
+                      overflow: TextOverflow.ellipsis,
+                      blogs?.description ??
+                          "Short Description Short Description Short Description",
+                      style: Theme.of(context).textTheme.displaySmall,
                     ),
                   ],
                 ),

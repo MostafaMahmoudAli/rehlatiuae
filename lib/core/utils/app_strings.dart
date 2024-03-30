@@ -413,6 +413,7 @@ Official Channels:
   static const updatePasswordScreen = "/updatePasswordScreen";
   static const categoryNameScreen = "/categoryNameScreen";
   static const cityDestinationScreen = "/cityDestinationScreen";
+  static const searchScreen = "/searchScreen";
 
 
   //Titles Texts

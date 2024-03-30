@@ -26,6 +26,10 @@ _$TripsImpl _$$TripsImplFromJson(Map<String, dynamic> json) => _$TripsImpl(
       offers: (json['offers'] as List<dynamic>?)
           ?.map((e) => Trips.fromJson(e as Map<String, dynamic>))
           .toList(),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      reviewAverage: json['reviewAverage'] as int?,
       reviews: (json['reviews'] as List<dynamic>?)
           ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -46,5 +50,7 @@ Map<String, dynamic> _$$TripsImplToJson(_$TripsImpl instance) =>
       'images': instance.images,
       'isFavourite': instance.isFavourite,
       'offers': instance.offers,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'reviewAverage': instance.reviewAverage,
       'reviews': instance.reviews,
     };

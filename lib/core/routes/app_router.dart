@@ -24,6 +24,7 @@ import 'package:rehlatyuae/features/popular_experiences/presentation/views/popul
 import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/edit_profile_screen.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/profile_screen.dart';
+import 'package:rehlatyuae/features/search/presentation/views/search_screen.dart';
 import 'package:rehlatyuae/features/splash_screen/presentation/views/onboarding.dart';
 import 'package:rehlatyuae/features/splash_screen/presentation/views/splash_screen.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/top_destination_screen.dart';
@@ -57,6 +58,10 @@ abstract class AppRouter {
       GoRoute(
         path: AppStrings.bestOffersScreen,
         builder: (context, state) => BestOffersScreen(),
+      ),
+      GoRoute(
+        path: AppStrings.searchScreen,
+        builder: (context, state) => SearchScreen(),
       ),
       GoRoute(
         path: AppStrings.bestTripsScreen,
