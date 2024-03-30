@@ -11,7 +11,7 @@ class Client with _$Client {
     required final int id,
     required final String name,
     required final String email,
-    required final String phone,
+    required final String? phone,
     required final String address,
     @JsonKey(name: "image_path") required final String imagePath,
   }) = _Client;

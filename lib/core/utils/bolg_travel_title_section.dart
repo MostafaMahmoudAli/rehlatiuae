@@ -11,6 +11,7 @@ class BolgTravelTitleSection extends StatelessWidget {
   final String price;
   final String imagePath;
   final bool isTrip;
+  final bool isOffer;
   final void Function()? onLikePressed;
 
   const BolgTravelTitleSection({
@@ -20,13 +21,14 @@ class BolgTravelTitleSection extends StatelessWidget {
     required this.imagePath,
     this.onLikePressed,
     this.isTrip = true,
+    this.isOffer = false,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 408.h,
+      height: isOffer ? 300.h : 400.h,
       child: Stack(
         children: [
           Positioned.fill(
@@ -50,7 +52,7 @@ class BolgTravelTitleSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomIconButton(
-                  icon: Icons.arrow_back,
+                  icon: isOffer ? Icons.clear : Icons.arrow_back,
                   onPressed: () {
                     context.pop();
                   },
@@ -74,17 +76,58 @@ class BolgTravelTitleSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        title,
-                        style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                              color: AppColors.white,
-                              fontWeight: FontWeight.w400,
-                            ),
-                      ),
                       Row(
+                        children: [
+                          Text(
+                            title,
+                            style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                          ),
+                          if (isOffer)
+                            Container(
+                              height: 20.0.h,
+                              margin: EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(8.0.r),
+                              ),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                                    child: Text(
+                                      "\$100",
+                                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                            color: AppColors.black,
+                                            decoration: TextDecoration.lineThrough,
+                                          ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsetsDirectional.symmetric(
+                                      horizontal: 4.0.w,
+                                      vertical: 1.3.h,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.green,
+                                      borderRadius: BorderRadius.circular(8.0.r),
+                                    ),
+                                    child: Text(
+                                      "save 45%",
+                                      style: Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           if (isTrip)

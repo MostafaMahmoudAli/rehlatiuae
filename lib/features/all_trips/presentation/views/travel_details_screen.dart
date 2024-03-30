@@ -8,6 +8,7 @@ import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
+import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_preferences_list.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
   const TravelDetailsScreen({super.key});
@@ -28,6 +29,14 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             price: "79",
             imagePath: AppAssets.travel,
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+            child: Text(
+              "Select your Preferences",
+              style: Theme.of(context).textTheme.labelMedium,
+            ),
+          ),
+          const OfferPreferencesList(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
