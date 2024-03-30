@@ -415,6 +415,12 @@ Official Channels:
   static const cityDestinationScreen = "/cityDestinationScreen";
   static const searchScreen = "/searchScreen";
 
+  // Keys
+  static const accessToken = "accessToken";
+  static const updatePasswordToken = "updatePasswordToken";
+  static const expiresIn = "expiresIn";
+  static const client = "client";
+  static const initialLocationRoute = "initialLocationRoute";
 
   //Titles Texts
   static const profile = "Profile";

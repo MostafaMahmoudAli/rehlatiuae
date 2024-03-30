@@ -20,7 +20,7 @@ mixin _$UpdatePasswordState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client, String token) success,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$UpdatePasswordState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client, String token)? success,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$UpdatePasswordState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client, String token)? success,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client, String token) success,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +137,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client, String token)? success,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +148,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client, String token)? success,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client, String token) success,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -251,7 +251,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client, String token)? success,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -262,7 +262,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client, String token)? success,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -316,46 +316,37 @@ abstract class _Loading implements UpdatePasswordState {
 
 /// @nodoc
 abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+  factory _$$SuccessImplCopyWith(_$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Client client, String token});
+  $Res call({AuthenticatedClient authenticatedClient});
 
-  $ClientCopyWith<$Res> get client;
+  $AuthenticatedClientCopyWith<$Res> get authenticatedClient;
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$UpdatePasswordStateCopyWithImpl<$Res, _$SuccessImpl>
+class __$$SuccessImplCopyWithImpl<$Res> extends _$UpdatePasswordStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
-      : super(_value, _then);
+  __$$SuccessImplCopyWithImpl(_$SuccessImpl _value, $Res Function(_$SuccessImpl) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? client = null,
-    Object? token = null,
+    Object? authenticatedClient = null,
   }) {
     return _then(_$SuccessImpl(
-      null == client
-          ? _value.client
-          : client // ignore: cast_nullable_to_non_nullable
-              as Client,
-      null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == authenticatedClient
+          ? _value.authenticatedClient
+          : authenticatedClient // ignore: cast_nullable_to_non_nullable
+              as AuthenticatedClient,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ClientCopyWith<$Res> get client {
-    return $ClientCopyWith<$Res>(_value.client, (value) {
-      return _then(_value.copyWith(client: value));
+  $AuthenticatedClientCopyWith<$Res> get authenticatedClient {
+    return $AuthenticatedClientCopyWith<$Res>(_value.authenticatedClient, (value) {
+      return _then(_value.copyWith(authenticatedClient: value));
     });
   }
 }
@@ -363,16 +354,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.client, this.token);
+  const _$SuccessImpl(this.authenticatedClient);
 
   @override
-  final Client client;
-  @override
-  final String token;
+  final AuthenticatedClient authenticatedClient;
 
   @override
   String toString() {
-    return 'UpdatePasswordState.success(client: $client, token: $token)';
+    return 'UpdatePasswordState.success(authenticatedClient: $authenticatedClient)';
   }
 
   @override
@@ -380,28 +369,27 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.client, client) || other.client == client) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.authenticatedClient, authenticatedClient) ||
+                other.authenticatedClient == authenticatedClient));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, client, token);
+  int get hashCode => Object.hash(runtimeType, authenticatedClient);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith => __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client, String token) success,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) {
-    return success(client, token);
+    return success(authenticatedClient);
   }
 
   @override
@@ -409,10 +397,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client, String token)? success,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(client, token);
+    return success?.call(authenticatedClient);
   }
 
   @override
@@ -420,12 +408,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client, String token)? success,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(client, token);
+      return success(authenticatedClient);
     }
     return orElse();
   }
@@ -469,14 +457,11 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements UpdatePasswordState {
-  const factory _Success(final Client client, final String token) =
-      _$SuccessImpl;
+  const factory _Success(final AuthenticatedClient authenticatedClient) = _$SuccessImpl;
 
-  Client get client;
-  String get token;
+  AuthenticatedClient get authenticatedClient;
   @JsonKey(ignore: true)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -545,7 +530,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Client client, String token) success,
+    required TResult Function(AuthenticatedClient authenticatedClient) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -556,7 +541,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Client client, String token)? success,
+    TResult? Function(AuthenticatedClient authenticatedClient)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -567,7 +552,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Client client, String token)? success,
+    TResult Function(AuthenticatedClient authenticatedClient)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

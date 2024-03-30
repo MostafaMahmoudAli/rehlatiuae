@@ -3,26 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/row_details.dart';
+import 'package:rehlatyuae/features/payment/data/models/trip_checkout_details_model/trip_checkout_details_model.dart';
 
 class PaymentContentSheet extends StatelessWidget {
-  final String totalPayment;
-  final String date;
-  final String tripDate;
-  final String details;
-  final String referenceNum;
-  final String account;
-  final String discount;
-  final String total;
+  final TripCheckoutDetails tripCheckoutDetails;
+  final String? referenceNum;
 
   const PaymentContentSheet({
-    required this.totalPayment,
-    required this.date,
-    required this.tripDate,
-    required this.details,
-    required this.referenceNum,
-    required this.account,
-    required this.discount,
-    required this.total,
+    required this.tripCheckoutDetails,
+    this.referenceNum,
     super.key,
   });
 
@@ -37,30 +26,27 @@ class PaymentContentSheet extends StatelessWidget {
               ),
         ),
         Text(
-          "\$ $totalPayment",
+          "\$ ${tripCheckoutDetails.total}",
           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                 color: AppColors.black,
               ),
         ),
         RowDetails(
           title: "Date",
-          value: date,
+          value: tripCheckoutDetails.date,
         ),
         RowDetails(
           title: "Details",
-          value: details,
+          value: tripCheckoutDetails.description,
         ),
-        RowDetails(
-          title: "Reference num",
-          value: referenceNum,
-        ),
-        RowDetails(
-          title: "Account",
-          value: account,
-        ),
+        if (referenceNum != null)
+          RowDetails(
+            title: "Reference num",
+            value: referenceNum!,
+          ),
         RowDetails(
           title: "Trip Date",
-          value: tripDate,
+          value: tripCheckoutDetails.date,
         ),
         SizedBox(
           height: 20.h,
@@ -72,15 +58,15 @@ class PaymentContentSheet extends StatelessWidget {
         ),
         RowDetails(
           title: "Total Payment",
-          value: "\$$totalPayment",
+          value: "\$${tripCheckoutDetails.finalSubtotal}",
         ),
         RowDetails(
           title: "Discount",
-          value: "\$$discount",
+          value: "\$${tripCheckoutDetails.discount}",
         ),
         RowDetails(
           title: "Total",
-          value: "\$$total",
+          value: "\$${tripCheckoutDetails.total}",
           textValueColor: AppColors.textAndBackgroundColorButton,
         ),
         SizedBox(

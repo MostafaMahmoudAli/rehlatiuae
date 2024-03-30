@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,14 +6,15 @@ class WhyChooseUSItem extends StatelessWidget {
     super.key,
     required this.child,
     required this.text,
-     this.descriptionText,
-     this.descriptionTextStyle,
+    this.descriptionText,
+    this.descriptionTextStyle,
   });
 
   final Widget child;
   final String text;
-  final String?descriptionText;
-  final TextStyle?descriptionTextStyle;
+  final String? descriptionText;
+  final TextStyle? descriptionTextStyle;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -26,21 +26,27 @@ class WhyChooseUSItem extends StatelessWidget {
               SizedBox(
                 child: child,
               ),
-              SizedBox(width:6.0.w,),
+              SizedBox(
+                width: 6.0.w,
+              ),
               Expanded(
                 child: Text(
                   text,
-                  style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 16.0.sp,),
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                        fontSize: 16.0.sp,
+                      ),
                 ),
               ),
             ],
           ),
-          SizedBox(height:10.0.h,),
-          if(descriptionText != null && descriptionText!.isNotEmpty)
-          Text(
+          SizedBox(
+            height: 10.0.h,
+          ),
+          if (descriptionText != null && descriptionText!.isNotEmpty)
+            Text(
               descriptionText!,
-            style: descriptionTextStyle ,
-          ) ,
+              style: descriptionTextStyle,
+            ),
         ],
       ),
     );

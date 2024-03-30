@@ -24,8 +24,23 @@ class UpdatePasswordScreen extends StatelessWidget {
         child: BlocConsumer<UpdatePasswordCubit, UpdatePasswordState>(
           listener: (context, state) {
             state.whenOrNull(
-              success: (client, token) {
-                context.push(AppStrings.homeScreen);
+              success: (authenticatedClient) {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) => PopScope(
+                    canPop: false,
+                    child: CustomDialog(
+                      title: "Change Password Success",
+                      subtitle: 'Success',
+                      labelText: "Back to Homepage",
+                      color: AppColors.green,
+                      onTap: () {
+                        context.go(AppStrings.homeScreen);
+                      },
+                    ),
+                  ),
+                );
               },
               error: (message) {
                 showDialog(
@@ -100,19 +115,8 @@ class UpdatePasswordScreen extends StatelessWidget {
                       text: AppStrings.updatePassword,
                       borderRadius: BorderRadius.circular(16.sp),
                       backGroundColor: AppColors.textAndBackgroundColorButton,
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => CustomDialog(
-                            title: "Change Password Success",
-                            subtitle: 'Success',
-                            labelText: "Back to Homepage",
-                            color: AppColors.green,
-                            onTap: () async {
-                              await cubit.updatePassword(token: token);
-                            },
-                          ),
-                        );
+                      onTap: () async {
+                        await cubit.updatePassword(token: token);
                       },
                       width: double.infinity,
                       height: 50.h,
