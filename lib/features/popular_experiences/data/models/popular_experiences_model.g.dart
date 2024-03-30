@@ -16,6 +16,8 @@ _$PopularExperiencesImpl _$$PopularExperiencesImplFromJson(
       adultPrice: json['oldPrice'] as int?,
       childPrice: json['childPrice'] as int?,
       imagePath: json['imagePath'] as String?,
+      beforePrice: json['beforePrice'] as String?,
+      saving: json['saving'] as String?,
       addresses: (json['addresses'] as List<dynamic>?)
           ?.map((e) => AddressModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -25,6 +27,9 @@ _$PopularExperiencesImpl _$$PopularExperiencesImplFromJson(
       isFavourite: json['isFavourite'] as bool?,
       offers: (json['offers'] as List<dynamic>?)
           ?.map((e) => Trips.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      reviews: (json['reviews'] as List<dynamic>?)
+          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -38,8 +43,11 @@ Map<String, dynamic> _$$PopularExperiencesImplToJson(
       'oldPrice': instance.adultPrice,
       'childPrice': instance.childPrice,
       'imagePath': instance.imagePath,
+      'beforePrice': instance.beforePrice,
+      'saving': instance.saving,
       'addresses': instance.addresses,
       'images': instance.images,
       'isFavourite': instance.isFavourite,
       'offers': instance.offers,
+      'reviews': instance.reviews,
     };

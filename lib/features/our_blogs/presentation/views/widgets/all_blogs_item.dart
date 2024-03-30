@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 
 class AllBlogsItem extends StatelessWidget {
   const AllBlogsItem({
     super.key,
     required this.width,
+    required this.image,
+     this.rating,
+    required this.createdAt,
+    required this.name,
+    required this.description,
   });
 
   final double width;
+  final String? image;
+  final String? rating;
+  final String? createdAt;
+  final String? name;
+  final String? description;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -24,8 +34,8 @@ class AllBlogsItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.circular(15.0.r),
             ),
-            child: Image.asset(
-               AppStrings.containerTripBackgroundImage,
+            child: Image.network(
+              image ?? "",
               fit: BoxFit.cover,
             ),
           ),
@@ -39,7 +49,7 @@ class AllBlogsItem extends StatelessWidget {
                 color: AppColors.blogItemBackgroundColor.withOpacity(0.3),
                 borderRadius: BorderRadiusDirectional.circular(12.0.r),
               ),
-              child:  Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(
@@ -47,8 +57,8 @@ class AllBlogsItem extends StatelessWidget {
                     color: AppColors.whiteAppColor,
                   ),
                   Text(
-                    "4.8",
-                    style:Theme.of(context).textTheme.displaySmall,
+                    rating ?? "",
+                    style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ],
               ),
@@ -64,7 +74,7 @@ class AllBlogsItem extends StatelessWidget {
                 color: AppColors.blogItemBackgroundColor.withOpacity(0.3),
                 borderRadius: BorderRadiusDirectional.circular(12.0.r),
               ),
-              child:  Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(
@@ -72,8 +82,8 @@ class AllBlogsItem extends StatelessWidget {
                     color: AppColors.whiteAppColor,
                   ),
                   Text(
-                    "2/2/2024",
-                    style:Theme.of(context).textTheme.displaySmall,
+                    createdAt ?? "",
+                    style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ],
               ),
@@ -86,7 +96,7 @@ class AllBlogsItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Blog name",
+                  name ?? "",
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
                 SizedBox(
@@ -95,9 +105,8 @@ class AllBlogsItem extends StatelessWidget {
                 Text(
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    "Short Description Short Description Short Description",
-                    style: Theme.of(context).textTheme.displaySmall
-                ),
+                   description ?? "",
+                    style: Theme.of(context).textTheme.displaySmall),
               ],
             ),
           ),

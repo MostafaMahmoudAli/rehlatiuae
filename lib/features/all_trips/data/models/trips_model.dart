@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
 
 import '../../../best_offers/data/models/address_model.dart';
 import '../../../best_offers/data/models/images_model.dart';
@@ -26,6 +27,7 @@ class Trips with _$Trips
    required final List<ImagesModel>? images,
    required final bool? isFavourite,
    required final List<Trips>? offers,
+   required final List<Review>? reviews,
 })=_Trips;
 
   factory Trips.fromJson(Map<String, dynamic> json) =>

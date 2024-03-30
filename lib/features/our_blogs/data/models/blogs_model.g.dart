@@ -11,7 +11,10 @@ _$BlogsImpl _$$BlogsImplFromJson(Map<String, dynamic> json) => _$BlogsImpl(
       name: json['name'] as String?,
       description: json['description'] as String?,
       imagePath: json['imagePath'] as String?,
-      trips: (json['trips'] as List<dynamic>?)
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      trip: (json['trip'] as List<dynamic>?)
           ?.map((e) => Trips.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -22,5 +25,6 @@ Map<String, dynamic> _$$BlogsImplToJson(_$BlogsImpl instance) =>
       'name': instance.name,
       'description': instance.description,
       'imagePath': instance.imagePath,
-      'trips': instance.trips,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'trip': instance.trip,
     };

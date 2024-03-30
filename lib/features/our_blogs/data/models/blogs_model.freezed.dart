@@ -24,7 +24,8 @@ mixin _$Blogs {
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imagePath => throw _privateConstructorUsedError;
-  List<Trips>? get trips => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  List<Trips>? get trip => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $BlogsCopyWith<$Res> {
       String? name,
       String? description,
       String? imagePath,
-      List<Trips>? trips});
+      DateTime? createdAt,
+      List<Trips>? trip});
 }
 
 /// @nodoc
@@ -61,7 +63,8 @@ class _$BlogsCopyWithImpl<$Res, $Val extends Blogs>
     Object? name = freezed,
     Object? description = freezed,
     Object? imagePath = freezed,
-    Object? trips = freezed,
+    Object? createdAt = freezed,
+    Object? trip = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -80,9 +83,13 @@ class _$BlogsCopyWithImpl<$Res, $Val extends Blogs>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      trips: freezed == trips
-          ? _value.trips
-          : trips // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      trip: freezed == trip
+          ? _value.trip
+          : trip // ignore: cast_nullable_to_non_nullable
               as List<Trips>?,
     ) as $Val);
   }
@@ -100,7 +107,8 @@ abstract class _$$BlogsImplCopyWith<$Res> implements $BlogsCopyWith<$Res> {
       String? name,
       String? description,
       String? imagePath,
-      List<Trips>? trips});
+      DateTime? createdAt,
+      List<Trips>? trip});
 }
 
 /// @nodoc
@@ -118,7 +126,8 @@ class __$$BlogsImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? imagePath = freezed,
-    Object? trips = freezed,
+    Object? createdAt = freezed,
+    Object? trip = freezed,
   }) {
     return _then(_$BlogsImpl(
       id: freezed == id
@@ -137,9 +146,13 @@ class __$$BlogsImplCopyWithImpl<$Res>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      trips: freezed == trips
-          ? _value._trips
-          : trips // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      trip: freezed == trip
+          ? _value._trip
+          : trip // ignore: cast_nullable_to_non_nullable
               as List<Trips>?,
     ));
   }
@@ -149,12 +162,13 @@ class __$$BlogsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BlogsImpl implements _Blogs {
   const _$BlogsImpl(
-      {this.id,
-      this.name,
-      this.description,
-      this.imagePath,
-      final List<Trips>? trips})
-      : _trips = trips;
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.imagePath,
+      required this.createdAt,
+      required final List<Trips>? trip})
+      : _trip = trip;
 
   factory _$BlogsImpl.fromJson(Map<String, dynamic> json) =>
       _$$BlogsImplFromJson(json);
@@ -167,19 +181,21 @@ class _$BlogsImpl implements _Blogs {
   final String? description;
   @override
   final String? imagePath;
-  final List<Trips>? _trips;
   @override
-  List<Trips>? get trips {
-    final value = _trips;
+  final DateTime? createdAt;
+  final List<Trips>? _trip;
+  @override
+  List<Trips>? get trip {
+    final value = _trip;
     if (value == null) return null;
-    if (_trips is EqualUnmodifiableListView) return _trips;
+    if (_trip is EqualUnmodifiableListView) return _trip;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'Blogs(id: $id, name: $name, description: $description, imagePath: $imagePath, trips: $trips)';
+    return 'Blogs(id: $id, name: $name, description: $description, imagePath: $imagePath, createdAt: $createdAt, trip: $trip)';
   }
 
   @override
@@ -193,13 +209,15 @@ class _$BlogsImpl implements _Blogs {
                 other.description == description) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
-            const DeepCollectionEquality().equals(other._trips, _trips));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            const DeepCollectionEquality().equals(other._trip, _trip));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, description, imagePath,
-      const DeepCollectionEquality().hash(_trips));
+      createdAt, const DeepCollectionEquality().hash(_trip));
 
   @JsonKey(ignore: true)
   @override
@@ -217,11 +235,12 @@ class _$BlogsImpl implements _Blogs {
 
 abstract class _Blogs implements Blogs {
   const factory _Blogs(
-      {final int? id,
-      final String? name,
-      final String? description,
-      final String? imagePath,
-      final List<Trips>? trips}) = _$BlogsImpl;
+      {required final int? id,
+      required final String? name,
+      required final String? description,
+      required final String? imagePath,
+      required final DateTime? createdAt,
+      required final List<Trips>? trip}) = _$BlogsImpl;
 
   factory _Blogs.fromJson(Map<String, dynamic> json) = _$BlogsImpl.fromJson;
 
@@ -234,7 +253,9 @@ abstract class _Blogs implements Blogs {
   @override
   String? get imagePath;
   @override
-  List<Trips>? get trips;
+  DateTime? get createdAt;
+  @override
+  List<Trips>? get trip;
   @override
   @JsonKey(ignore: true)
   _$$BlogsImplCopyWith<_$BlogsImpl> get copyWith =>

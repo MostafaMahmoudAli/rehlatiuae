@@ -5,9 +5,11 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 
-class TopDestinationSection extends StatelessWidget {
-  const TopDestinationSection({super.key});
+import '../../../../top_destinations_section/data/models/all_destination_model.dart';
 
+class TopDestinationSection extends StatelessWidget {
+  const TopDestinationSection({super.key,required this.destinations});
+  final List<AllDestinations>destinations;
   @override
   Widget build(BuildContext context)
   {
@@ -24,7 +26,7 @@ class TopDestinationSection extends StatelessWidget {
           height: 200.0.h,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: destinations.length,
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: ()
@@ -33,15 +35,14 @@ class TopDestinationSection extends StatelessWidget {
                   },
                   child: CustomContainerTrip(
                     width:200.0.w,
-                    cityName: "Dubai",
-                    countryName:"United Arab Emirates",
-                    imageName: AppStrings.containerTripBackgroundImage,
-                    tripPrice:"43",
-                    reservationType:"/person",
+                    cityName: destinations[index].name ?? "Dubai",
+                    countryName:destinations[index].country ??"United Arab Emirates",
+                    imageName: destinations[index].imagePath ?? AppStrings.containerTripBackgroundImage,
                   ),
                 );
               },
-              separatorBuilder: (context, index) {
+              separatorBuilder: (context, index)
+              {
                 return SizedBox(
                   width: 5.0.w,
                 );

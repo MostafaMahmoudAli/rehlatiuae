@@ -4,9 +4,12 @@ import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/our_partners_item.dart';
 
-class OurPartnerSection extends StatelessWidget {
-  const OurPartnerSection({super.key});
+import '../../../data/models/our_partners_model.dart';
 
+class OurPartnerSection extends StatelessWidget
+{
+  const OurPartnerSection({super.key, required this.ourPartners});
+  final List<OurPartners>ourPartners;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,13 +21,15 @@ class OurPartnerSection extends StatelessWidget {
             color: AppColors.black,
           ),
         ),
+        SizedBox(height: 10.0.h,),
         SizedBox(
-          height: 75.0.h,
+          height: 100.0.h,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const OurPartnersItem();
+              itemCount: ourPartners.length,
+              itemBuilder: (context, index)
+              {
+                return  OurPartnersItem(ourPartners: ourPartners[index],);
               },
               separatorBuilder: (context, index) {
                 return SizedBox(

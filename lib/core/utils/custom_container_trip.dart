@@ -9,17 +9,19 @@ class CustomContainerTrip extends StatelessWidget {
     required this.imageName,
     required this.cityName,
     required this.countryName,
-    required this.tripPrice,
-    required this.reservationType, this.oldTripPrice, this.percentageSave,
+    this.tripPrice,
+    this.reservationType,
+    this.oldTripPrice,
+    this.percentageSave,
   });
 
   final double width;
-  final String imageName;
-  final String cityName;
-  final String countryName;
-  final String tripPrice;
-  final String reservationType;
-  final int?oldTripPrice;
+  final String?imageName;
+  final String?cityName;
+  final String?countryName;
+  final String?tripPrice;
+  final String?reservationType;
+  final String?oldTripPrice;
   final String?percentageSave ;
 
   @override
@@ -36,8 +38,8 @@ class CustomContainerTrip extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.circular(15.0.r),
             ),
-            child: Image.asset(
-              imageName,
+            child: Image.network(
+              imageName ??"",
               fit: BoxFit.cover,
             ),
           ),
@@ -85,7 +87,7 @@ class CustomContainerTrip extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  cityName,
+                  cityName??"",
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
                 SizedBox(
@@ -103,7 +105,7 @@ class CustomContainerTrip extends StatelessWidget {
                       width: 1.0.w,
                     ),
                     Text(
-                      cityName,
+                      cityName??"",
                       style:Theme.of(context).textTheme.displaySmall,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -112,21 +114,22 @@ class CustomContainerTrip extends StatelessWidget {
               ],
             ),
           ),
+          if((tripPrice!=null || reservationType!=null)&&(tripPrice!.isNotEmpty&&reservationType!.isNotEmpty))
           Positioned(
-            bottom: 50,
+            bottom: 73,
             right: 10,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  tripPrice,
+                  tripPrice ?? "",
                   style:Theme.of(context).textTheme.displaySmall,
                 ),
                 SizedBox(
                   height: 4.0.h,
                 ),
                 Text(
-                  reservationType,
+                  reservationType ?? "",
                   style:Theme.of(context).textTheme.displaySmall,
                 ),
               ],

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/profile/domain/repositories/profile_repo.dart';
 
 part 'profile_cubit.freezed.dart';

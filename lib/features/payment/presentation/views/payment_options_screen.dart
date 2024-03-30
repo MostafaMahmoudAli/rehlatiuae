@@ -1,13 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
-import 'package:rehlatyuae/core/utils/pickers.dart';
+import 'package:rehlatyuae/core/utils/default_text_button.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/count_tickets_section.dart';
+import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_date_booking.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_payment_section.dart';
 
 class PaymentOptionsScreen extends StatelessWidget {
@@ -24,54 +28,121 @@ class PaymentOptionsScreen extends StatelessWidget {
               ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            PrimaryTextField(
-              label: AppStrings.yourDateBooking,
-              hint: AppStrings.selectDate,
-              controller: TextEditingController(),
-              readOnly: true,
-              onTap: () async {
-                var duration = const Duration();
-                await Pickers.choseDate(
-                  context: context,
-                  firstDate: DateTime.now().add(duration),
-                  initialDate: DateTime.now().add(duration),
-                );
-              },
-              suffix: const Icon(CupertinoIcons.calendar),
-            ),
-            const CountTicketsSection(),
-            CustomExpansionTile(
-              title: AppStrings.youHaveCoupon,
-              content: AppStrings.yourCoupon,
-              initiallyExpanded: false,
+      body: BlocBuilder<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+        builder: (context, state) {
+          var cubit = context.read<TripCheckoutDetailsCubit>();
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                FieldDateBooking(cubit: cubit),
+                CountTicketsSection(
+                  adultCost: cubit.adultCost,
+                  childCost: cubit.childCost,
+                  onAdultsCountChange: (count, total) {
+                    cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
+                      quantityAdult: count,
+                      subtotalAdult: total,
+                      finalSubtotal: total + cubit.tripCheckoutDetails.subtotalChild,
+                    );
+                    cubit.changeChangeDetails();
+                  },
+                  onChildrenCountChange: (count, total) {
+                    cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
+                      quantityChild: count,
+                      subtotalChild: total,
+                      finalSubtotal: total + cubit.tripCheckoutDetails.subtotalAdult,
+                    );
+                    cubit.changeChangeDetails();
+                  },
+                ),
+                BlocProvider<CheckCouponCubit>(
+                  create: (context) => getIt<CheckCouponCubit>(),
+                  child: CustomExpansionTile(
+                    title: AppStrings.youHaveCoupon,
+                    content: AppStrings.yourCoupon,
+                    initiallyExpanded: false,
+                    children: [
+                      BlocBuilder<CheckCouponCubit, CheckCouponState>(
+                        builder: (c, state) {
+                          var cubitCoupon = c.read<CheckCouponCubit>();
+                          return Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: PrimaryTextField(
+                                      controller: cubitCoupon.couponEditingController,
+                                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                                      textColor: AppColors.white,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  state.maybeWhen(
+                                    loading: () => Center(
+                                      child: Container(
+                                        width: 25,
+                                        height: 25,
+                                        margin: const EdgeInsets.all(15),
+                                        child: const CircularProgressIndicator(
+                                          color: AppColors.textAndBackgroundColorButton,
+                                          strokeWidth: 2,
+                                        ),
+                                      ),
+                                    ),
+                                    orElse: () => DefaultTextButton(
+                                      onPressed: () async {
+                                        await cubitCoupon.checkCoupon();
+                                      },
+                                      text: 'Apply',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              state.maybeWhen(
+                                success: (coupon) {
+                                  cubit.coupon = coupon;
+                                  return Text(
+                                    "Discount is ${coupon.couponAmount}%",
+                                    style: Theme.of(c).textTheme.bodyLarge!.copyWith(
+                                          color: AppColors.textAndBackgroundColorButton,
+                                        ),
+                                  );
+                                },
+                                orElse: () => const SizedBox(),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
                 PrimaryTextField(
-                  controller: TextEditingController(),
-                  padding: EdgeInsets.symmetric(vertical: 10.h),
-                  textColor: AppColors.white,
-                )
+                  label: AppStrings.description,
+                  hint: AppStrings.pleaseInsertAllNotes,
+                  isTextAria: true,
+                  controller: cubit.descriptionEditingController,
+                ),
+                TotalPaymentSection(
+                  total: "\$${cubit.allSubtotal}",
+                  subtitle: cubit.tripCheckoutDetails.date,
+                  buttonLabel: AppStrings.nextPayment,
+                  onButtonTap: () {
+                    if (!cubit.dateFormKey.currentState!.validate()) return;
+                    cubit.applyTripDetails();
+                    context.push(AppStrings.paymentDetailsScreen);
+                  },
+                ),
               ],
             ),
-            PrimaryTextField(
-              label: AppStrings.description,
-              hint: AppStrings.pleaseInsertAllNotes,
-              isTextAria: true,
-              controller: TextEditingController(),
-            ),
-            TotalPaymentSection(
-              total: "\$6,699",
-              subtitle: "12/12/2024",
-              buttonLabel: AppStrings.nextPayment,
-              onButtonTap: () {
-                context.push('/paymentDetailsScreen');
-              },
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

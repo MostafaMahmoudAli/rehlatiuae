@@ -1,11 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 
 class CategoriesItem extends StatelessWidget {
-  const CategoriesItem({super.key, required this.height, required this.width});
+  const CategoriesItem({super.key, required this.height, required this.width, required this.image, required this.categoryName});
   final double height;
   final double width;
+  final String?image;
+  final String?categoryName;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,17 +22,25 @@ class CategoriesItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            "assets/images/Asset 1-1.png",
-            fit: BoxFit.cover,
+          Expanded(
+            flex: 1,
+            child: Image.network(
+              image!,
+              fit: BoxFit.cover,
+            ),
           ),
           SizedBox(
             width: 4.0.w,
           ),
-           Text(
-            "Waterfall",
-            style:Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 10.0.sp),
-          ),
+           Expanded(
+             flex: 2,
+             child: Text(
+              categoryName ?? "",
+              style:Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 10.0.sp),
+               overflow: TextOverflow.ellipsis,
+               maxLines: 1,
+                       ),
+           ),
         ],
       ),
     );

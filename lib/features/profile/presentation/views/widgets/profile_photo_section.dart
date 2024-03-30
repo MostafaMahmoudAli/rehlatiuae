@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 
 class ProfilePhotoSection extends StatefulWidget {
   final Client client;
