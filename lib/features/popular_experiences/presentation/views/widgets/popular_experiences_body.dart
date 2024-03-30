@@ -38,7 +38,7 @@ class _PopularExperiencesBodyState extends State<PopularExperiencesBody> {
         widget.popularExperiencesScrollController?.position.maxScrollExtent;
     final currentScroll = widget.popularExperiencesScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.7)) {
-      getIt<PopularExperiencesBloc>().add(GetPopularExperiencesEvent());
+      BlocProvider.of<PopularExperiencesBloc>(context).add(GetPopularExperiencesEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }

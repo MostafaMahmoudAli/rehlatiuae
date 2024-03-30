@@ -34,6 +34,8 @@ mixin _$Trips {
   List<ImagesModel>? get images => throw _privateConstructorUsedError;
   bool? get isFavourite => throw _privateConstructorUsedError;
   List<Trips>? get offers => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  int? get reviewAverage => throw _privateConstructorUsedError;
   List<Review>? get reviews => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -60,6 +62,8 @@ abstract class $TripsCopyWith<$Res> {
       List<ImagesModel>? images,
       bool? isFavourite,
       List<Trips>? offers,
+      DateTime? createdAt,
+      int? reviewAverage,
       List<Review>? reviews});
 }
 
@@ -89,6 +93,8 @@ class _$TripsCopyWithImpl<$Res, $Val extends Trips>
     Object? images = freezed,
     Object? isFavourite = freezed,
     Object? offers = freezed,
+    Object? createdAt = freezed,
+    Object? reviewAverage = freezed,
     Object? reviews = freezed,
   }) {
     return _then(_value.copyWith(
@@ -144,6 +150,14 @@ class _$TripsCopyWithImpl<$Res, $Val extends Trips>
           ? _value.offers
           : offers // ignore: cast_nullable_to_non_nullable
               as List<Trips>?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reviewAverage: freezed == reviewAverage
+          ? _value.reviewAverage
+          : reviewAverage // ignore: cast_nullable_to_non_nullable
+              as int?,
       reviews: freezed == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -173,6 +187,8 @@ abstract class _$$TripsImplCopyWith<$Res> implements $TripsCopyWith<$Res> {
       List<ImagesModel>? images,
       bool? isFavourite,
       List<Trips>? offers,
+      DateTime? createdAt,
+      int? reviewAverage,
       List<Review>? reviews});
 }
 
@@ -200,6 +216,8 @@ class __$$TripsImplCopyWithImpl<$Res>
     Object? images = freezed,
     Object? isFavourite = freezed,
     Object? offers = freezed,
+    Object? createdAt = freezed,
+    Object? reviewAverage = freezed,
     Object? reviews = freezed,
   }) {
     return _then(_$TripsImpl(
@@ -255,6 +273,14 @@ class __$$TripsImplCopyWithImpl<$Res>
           ? _value._offers
           : offers // ignore: cast_nullable_to_non_nullable
               as List<Trips>?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reviewAverage: freezed == reviewAverage
+          ? _value.reviewAverage
+          : reviewAverage // ignore: cast_nullable_to_non_nullable
+              as int?,
       reviews: freezed == reviews
           ? _value._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -280,6 +306,8 @@ class _$TripsImpl implements _Trips {
       required final List<ImagesModel>? images,
       required this.isFavourite,
       required final List<Trips>? offers,
+      required this.createdAt,
+      required this.reviewAverage,
       required final List<Review>? reviews})
       : _addresses = addresses,
         _images = images,
@@ -340,6 +368,10 @@ class _$TripsImpl implements _Trips {
     return EqualUnmodifiableListView(value);
   }
 
+  @override
+  final DateTime? createdAt;
+  @override
+  final int? reviewAverage;
   final List<Review>? _reviews;
   @override
   List<Review>? get reviews {
@@ -352,7 +384,7 @@ class _$TripsImpl implements _Trips {
 
   @override
   String toString() {
-    return 'Trips(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, beforePrice: $beforePrice, saving: $saving, imagePath: $imagePath, addresses: $addresses, images: $images, isFavourite: $isFavourite, offers: $offers, reviews: $reviews)';
+    return 'Trips(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, beforePrice: $beforePrice, saving: $saving, imagePath: $imagePath, addresses: $addresses, images: $images, isFavourite: $isFavourite, offers: $offers, createdAt: $createdAt, reviewAverage: $reviewAverage, reviews: $reviews)';
   }
 
   @override
@@ -380,6 +412,10 @@ class _$TripsImpl implements _Trips {
             (identical(other.isFavourite, isFavourite) ||
                 other.isFavourite == isFavourite) &&
             const DeepCollectionEquality().equals(other._offers, _offers) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.reviewAverage, reviewAverage) ||
+                other.reviewAverage == reviewAverage) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews));
   }
 
@@ -400,6 +436,8 @@ class _$TripsImpl implements _Trips {
       const DeepCollectionEquality().hash(_images),
       isFavourite,
       const DeepCollectionEquality().hash(_offers),
+      createdAt,
+      reviewAverage,
       const DeepCollectionEquality().hash(_reviews));
 
   @JsonKey(ignore: true)
@@ -431,6 +469,8 @@ abstract class _Trips implements Trips {
       required final List<ImagesModel>? images,
       required final bool? isFavourite,
       required final List<Trips>? offers,
+      required final DateTime? createdAt,
+      required final int? reviewAverage,
       required final List<Review>? reviews}) = _$TripsImpl;
 
   factory _Trips.fromJson(Map<String, dynamic> json) = _$TripsImpl.fromJson;
@@ -462,6 +502,10 @@ abstract class _Trips implements Trips {
   bool? get isFavourite;
   @override
   List<Trips>? get offers;
+  @override
+  DateTime? get createdAt;
+  @override
+  int? get reviewAverage;
   @override
   List<Review>? get reviews;
   @override

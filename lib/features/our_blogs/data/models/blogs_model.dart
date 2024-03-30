@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../all_trips/data/models/trips_model.dart';
+import '../../../layout_screen/data/models/review_model.dart';
 
 part 'blogs_model.freezed.dart';
 
@@ -13,8 +14,11 @@ class Blogs with _$Blogs {
     required final String? name,
     required final String? description,
     required final String? imagePath,
+    @JsonKey(name: "created_at")
     required final DateTime? createdAt,
-    required final List<Trips>? trip,
+    final int? reviewAverage,
+    final List<Review>? blogReview,
+    required final Trips?trip,
   })= _Blogs;
 
   factory Blogs.fromJson(Map<String, dynamic> json) =>

@@ -10,6 +10,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/home_screen
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/profile_screen.dart';
+import 'package:rehlatyuae/features/search/presentation/views/search_screen.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});

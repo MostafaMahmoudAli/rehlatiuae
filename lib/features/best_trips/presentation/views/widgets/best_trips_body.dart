@@ -5,48 +5,47 @@ import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 
 
 import '../../../../../core/utils/error_widget.dart';
-import '../../../../../core/utils/injector.dart';
-import '../../blocs/all_trips_bloc.dart';
+import '../../../../best_trips/presentation/blocs/best_trips_bloc.dart';
 
-class AllTripsBody extends StatefulWidget {
-  const AllTripsBody({super.key,required this.allTripsScrollController});
-  final  ScrollController?allTripsScrollController;
+class BestTripsBody extends StatefulWidget {
+  const BestTripsBody({super.key,required this.bestTripsScrollController});
+  final  ScrollController?bestTripsScrollController;
   @override
-  State<AllTripsBody> createState() => _AllTripsBodyState();
+  State<BestTripsBody> createState() => _AllTripsBodyState();
 }
 
-class _AllTripsBodyState extends State<AllTripsBody> {
+class _AllTripsBodyState extends State<BestTripsBody> {
   @override
   void initState() {
     super.initState();
-    widget.allTripsScrollController?.addListener(_onScroll);
+    widget.bestTripsScrollController?.addListener(_onScroll);
   }
 
   @override
   void dispose() {
     super.dispose();
-    widget.allTripsScrollController?..removeListener(_onScroll)..dispose();
+    widget.bestTripsScrollController?..removeListener(_onScroll)..dispose();
   }
   void _onScroll()
   {
-    final maxScroll = widget.allTripsScrollController?.position.minScrollExtent;
-    final currentScroll = widget.allTripsScrollController?.offset;
-    if(currentScroll! >= (maxScroll!*0.9))
+    final maxScroll = widget.bestTripsScrollController?.position.minScrollExtent;
+    final currentScroll = widget.bestTripsScrollController?.offset;
+    if(currentScroll! >= (maxScroll!*0.4))
     {
-      BlocProvider.of<AllTripsBloc>(context).add(GetAllTripsEvent());
+      BlocProvider.of<BestTripsBloc>(context).add(GetBestTripsEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AllTripsBloc, AllTripsState>(
+    return BlocBuilder<BestTripsBloc, BestTripsState>(
       builder: (context, state) {
         switch (state.status) {
-          case AllTripsStatus.initial:
+          case BestTripsStatus.initial:
             return const Center(child: CircularProgressIndicator());
-          case AllTripsStatus.loading:
+          case BestTripsStatus.loading:
             return const Center(child: CircularProgressIndicator());
-          case AllTripsStatus.success:
+          case BestTripsStatus.success:
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -56,19 +55,19 @@ class _AllTripsBodyState extends State<AllTripsBody> {
               ),
               itemBuilder: (context, index) => CustomContainerTrip(
                 width: 140.0.w,
-                cityName: state.trips[index].name,
-                countryName:state.trips[index].address,
-                imageName: state.trips[index].imagePath ?? "",
-                tripPrice:state.trips[index].adultPrice.toString(),
+                cityName: state.bestTrips[index].name,
+                countryName:state.bestTrips[index].address,
+                imageName: state.bestTrips[index].imagePath ?? "",
+                tripPrice:state.bestTrips[index].adultPrice.toString(),
                 reservationType: "/person",
               ),
-              itemCount: state.trips.length,
+              itemCount: state.bestTrips.length,
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
               padding: EdgeInsets.zero,
             );
-          case AllTripsStatus.error:
-          return ErrorsWidget(error: state.errMessage,);
+          case BestTripsStatus.error:
+            return ErrorsWidget(error: state.errMessage,);
         }
       },
     );

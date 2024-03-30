@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -81,9 +82,12 @@ class AllBlogsItem extends StatelessWidget {
                     Icons.calendar_month,
                     color: AppColors.whiteAppColor,
                   ),
-                  Text(
-                    createdAt ?? "",
-                    style: Theme.of(context).textTheme.displaySmall,
+                  Expanded(
+                    child: Text(
+                      createdAt ?? "",
+                      style: Theme.of(context).textTheme.displaySmall,
+                      overflow:TextOverflow.ellipsis,
+                    ),
                   ),
                 ],
               ),

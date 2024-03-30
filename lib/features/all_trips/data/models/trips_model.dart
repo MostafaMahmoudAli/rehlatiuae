@@ -27,6 +27,8 @@ class Trips with _$Trips
    required final List<ImagesModel>? images,
    required final bool? isFavourite,
    required final List<Trips>? offers,
+   required  final DateTime? createdAt,
+   required final int? reviewAverage,
    required final List<Review>? reviews,
 })=_Trips;
 

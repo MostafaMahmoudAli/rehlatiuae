@@ -49,7 +49,7 @@ class BestOffersSection extends StatelessWidget {
             ),
             WhatsUpButton(
               onTap: (){},
-              bottom:MediaQuery.sizeOf(context).height*0.16,
+              bottom:MediaQuery.sizeOf(context).height*0.185,
               right: 0,
             ),
 

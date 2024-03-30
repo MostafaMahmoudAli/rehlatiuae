@@ -7,6 +7,8 @@ class EndPoints {
   static String bestTripsEndPoint = "home/bestTrips";
   static String allDestinationsEndPoint = "home/topDestinations";
   static String popularExperiencesEndPoint = "home/popularExperiencetrips";
+  static String searchTripEndPoint = "home/searchTrip";
+  static String allTripEndPoint = "home/trips";
 
   // Profile Feature EndPoints
   static String getProfileEndPoint = "client/user-profile";
