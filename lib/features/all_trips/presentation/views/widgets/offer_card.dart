@@ -4,6 +4,7 @@ import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
+import 'package:rehlatyuae/features/all_trips/presentation/views/offer_details_screen.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_count_tickets_section.dart';
 
 class OfferCard extends StatelessWidget {
@@ -97,7 +98,16 @@ class OfferCard extends StatelessWidget {
                         height: 50.h,
                       ),
                       DefaultTextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                            ),
+                            builder: (context) => const OfferDetailsScreen(),
+                          );
+                        },
                         text: 'view',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                               color: AppColors.white,
