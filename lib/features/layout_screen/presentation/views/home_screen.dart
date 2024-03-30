@@ -66,6 +66,7 @@ class HomeScreen extends StatelessWidget {
                           context.push(AppStrings.searchScreen);
                         },
                         readOnly: true,
+
                       ),
                       const CustomSizedBox(),
                       CategoriesSection(
