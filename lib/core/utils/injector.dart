@@ -4,6 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/dio_consumer.dart';
 import 'package:rehlatyuae/features/best_offers/data/repositories/best_offers_repo_impl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../features/all_categories/data/repositories/category_repo_impl.dart';
 import '../../features/all_categories/domian/repositories/category_repo.dart';
 import '../../features/all_categories/presentation/blocs/categories_bloc.dart';
@@ -18,7 +19,7 @@ import '../../features/best_trips/data/repositories/best_trips_repo_impl.dart';
 import '../../features/best_trips/domian/repositories/best_trips_repo.dart';
 import '../../features/best_trips/presentation/blocs/best_trips_bloc.dart';
 import '../../features/layout_screen/data/repositories/layout_repo_impl.dart';
-import '../../features/layout_screen/domian/repositories/layout_repo.dart';
+import '../../features/layout_screen/domain/repositories/layout_repo.dart';
 import '../../features/layout_screen/presentation/cubits/layout_cubit.dart';
 import '../../features/our_blogs/data/repositories/blogs_repository_impl.dart';
 import '../../features/our_blogs/domain/repositories/blogs_repository.dart';
@@ -33,11 +34,13 @@ import '../../features/profile/presentation/cubits/profile_cubit/profile_cubit.d
 import '../../features/top_destinations_section/data/repositories/all_destinations_repo_impl.dart';
 import '../../features/top_destinations_section/domian/repositories/all_destinations_repo.dart';
 import '../../features/top_destinations_section/presentation/blocs/all_destinations_bloc.dart';
+import '../routes/app_router.dart';
+import '../services/cache_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void setupInjector()
-{
+Future<void> setupInjector()
+async {
   getIt.registerLazySingleton<Logger>(
         () =>Logger(),
   );
@@ -48,6 +51,19 @@ void setupInjector()
         ),
   );
 
+  final SharedPreferences pref = await SharedPreferences.getInstance();
+  getIt.registerLazySingleton<SharedPreferences>(() => pref);
+
+  getIt.registerLazySingleton<CacheService>(
+        () => CacheServiceImpl(
+      pref: getIt<SharedPreferences>(),
+    ),
+  );
+  getIt.registerSingleton<AppRouter>(
+    AppRouter(
+      cacheService: getIt<CacheService>(),
+    ),
+  );
 
   // repositories objects
   getIt.registerLazySingleton<BestOffersRepo>(
@@ -78,13 +94,16 @@ void setupInjector()
     apiConsumer:getIt.get<ApiConsumer>(),
   ),
   );
-  /// Profile Feature
+  // repositories objects
   getIt.registerLazySingleton<ProfileRepo>(
-        () => ProfileRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+        () => ProfileRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+      cacheService: getIt<CacheService>(),
+    ),
   );
   /// Auth Feature
   getIt.registerLazySingleton<AuthRepo>(
-        () => AuthRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+        () => AuthRepoImpl(apiConsumer: getIt.get<ApiConsumer>(), cacheService: getIt<CacheService>(),),
   );
 
 
