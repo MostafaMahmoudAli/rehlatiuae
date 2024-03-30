@@ -25,7 +25,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   void init(Client client) {
     fullNameEditingController.text = client.name;
     emailEditingController.text = client.email;
-    phoneEditingController.text = client.phone;
+    phoneEditingController.text = client.phone ?? '';
     addressEditingController.text = client.address;
   }
 
