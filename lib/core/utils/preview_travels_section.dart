@@ -1,20 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
-import 'package:rehlatyuae/core/utils/custom_button.dart';
-import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
+import 'package:rehlatyuae/features/best_offers/data/models/images_model.dart';
 
 class PreviewTravelsSection extends StatelessWidget {
   final bool hasBookButton;
-  final PopularExperiences? popularExperiences;
+  final List<ImagesModel>? images;
 
   const PreviewTravelsSection({
     this.hasBookButton = true,
-    this.popularExperiences,
+    this.images,
     super.key,
   });
 
@@ -57,66 +52,27 @@ class PreviewTravelsSection extends StatelessWidget {
             ],
           ),
         ),
-        // TODO will remove
-        if (popularExperiences!.images == null)
-          SizedBox(
-            height: 110,
-            child: ListView.separated(
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-              scrollDirection: Axis.horizontal,
-              itemCount: 15,
-              itemBuilder: (context, index) => Container(
-                width: 90,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      'assets/images/preview${index % 4 + 1}.png',
-                    ),
-                    fit: BoxFit.fill,
+        SizedBox(
+          height: 110,
+          child: ListView.separated(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+            scrollDirection: Axis.horizontal,
+            itemCount: images!.length,
+            itemBuilder: (context, index) => Container(
+              width: 90,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(
+                    images![index].imagePath,
                   ),
-                  borderRadius: BorderRadius.circular(9),
+                  fit: BoxFit.fill,
                 ),
+                borderRadius: BorderRadius.circular(9),
               ),
-              separatorBuilder: (context, index) => const SizedBox(width: 12),
             ),
+            separatorBuilder: (context, index) => const SizedBox(width: 12),
           ),
-        if (popularExperiences!.images != null)
-          SizedBox(
-            height: 110,
-            child: ListView.separated(
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-              scrollDirection: Axis.horizontal,
-              itemCount: popularExperiences!.images!.length,
-              itemBuilder: (context, index) => Container(
-                width: 90,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      popularExperiences!.images![index].imagePath,
-                    ),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.circular(9),
-                ),
-              ),
-              separatorBuilder: (context, index) => const SizedBox(width: 12),
-            ),
-          ),
-        if (hasBookButton)
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
-            child: CustomActionButton(
-              text: 'Book Now',
-              borderRadius: BorderRadius.circular(16),
-              backGroundColor: AppColors.textAndBackgroundColorButton,
-              onTap: () {
-                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppStrings.paymentOptionsScreen, extra: popularExperiences);
-              },
-              width: double.infinity,
-              height: 50.h,
-            ),
-          ),
+        ),
       ],
     );
   }

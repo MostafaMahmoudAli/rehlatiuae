@@ -35,7 +35,7 @@ class LoginScreen extends StatelessWidget {
               listener: (context, state) {
                 state.whenOrNull(
                   success: (authenticatedClient) {
-                    context.push(AppStrings.homeScreen);
+                    context.go(AppStrings.homeScreen);
                   },
                   error: (message) {
                     showDialog(

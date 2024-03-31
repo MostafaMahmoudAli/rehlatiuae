@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -21,7 +20,7 @@ class BlogContainerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.blogScreen);
+        context.push(AppStrings.blogScreen, extra: blogs);
       },
       child: SizedBox(
         height: 330.0.h,
@@ -84,12 +83,8 @@ class BlogContainerItem extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        blogs?.createdAt?.toString() ??
-                            "",
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(fontSize: 10.0.sp),
+                        blogs?.createdAt?.toString() ?? "",
+                        style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize: 10.0.sp),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -119,8 +114,7 @@ class BlogContainerItem extends StatelessWidget {
                     Text(
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      blogs?.description ??
-                          "Short Description Short Description Short Description",
+                      blogs?.description ?? "Short Description Short Description Short Description",
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                   ],

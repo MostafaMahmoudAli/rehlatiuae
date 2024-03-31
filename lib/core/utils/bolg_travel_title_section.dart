@@ -35,19 +35,12 @@ class BolgTravelTitleSection extends StatelessWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                image: !isTrip
-                    ? DecorationImage(
-                        image: AssetImage(
-                          imagePath,
-                        ),
-                        fit: BoxFit.fill,
-                      )
-                    : DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          imagePath,
-                        ),
-                        fit: BoxFit.fill,
-                      ),
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(
+                    imagePath,
+                  ),
+                  fit: BoxFit.fill,
+                ),
                 borderRadius: BorderRadius.vertical(
                   bottom: Radius.circular(30.sp),
                 ),
@@ -78,8 +71,14 @@ class BolgTravelTitleSection extends StatelessWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            child: Padding(
+            child: Container(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 35.h),
+              decoration: BoxDecoration(
+                color: Colors.black45,
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(30.sp),
+                ),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -152,7 +151,7 @@ class BolgTravelTitleSection extends StatelessWidget {
                           Text(
                             isTrip ? " /Person" : '7,3 2024',
                             style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                                  color: AppColors.grayLight,
+                                  color: AppColors.white,
                                 ),
                           ),
                         ],

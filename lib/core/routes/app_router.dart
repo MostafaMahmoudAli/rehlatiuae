@@ -18,6 +18,7 @@ import 'package:rehlatyuae/features/info/presentation/views/faq_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/privacy_policy_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/terms_conditions_screen.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/main_layout.dart';
+import 'package:rehlatyuae/features/our_blogs/data/models/blogs_model.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/blog_details_screen.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/our_blogs_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_details_screen.dart';
@@ -125,7 +126,7 @@ class AppRouter {
         ),
         GoRoute(
           path: AppStrings.blogScreen,
-          builder: (context, state) => const BlogDetailsScreen(),
+          builder: (context, state) => BlogDetailsScreen(blogs: state.extra! as Blogs),
         ),
 
         /// Auth Screens
