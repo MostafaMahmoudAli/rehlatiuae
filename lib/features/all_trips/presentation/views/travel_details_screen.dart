@@ -11,9 +11,9 @@ import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_p
 import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
-  final PopularExperiences? popularExperiences;
+  final PopularExperiences? trip;
 
-  const TravelDetailsScreen({super.key, this.popularExperiences});
+  const TravelDetailsScreen({super.key, this.trip});
 
   @override
   State<TravelDetailsScreen> createState() => _TravelDetailsScreenState();
@@ -26,10 +26,10 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
       body: ListView(
         children: [
           BolgTravelTitleSection(
-            title: widget.popularExperiences!.name,
-            address: widget.popularExperiences!.address,
-            price: widget.popularExperiences!.adultPrice.toString(),
-            imagePath: widget.popularExperiences!.imagePath!,
+            title: widget.trip!.name,
+            address: widget.trip!.address,
+            price: widget.trip!.adultPrice.toString(),
+            imagePath: widget.trip!.imagePath!,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -38,27 +38,26 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ),
-          OfferPreferencesList(offers: widget.popularExperiences!.offers),
+          OfferPreferencesList(offers: widget.trip!.offers),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
-              widget.popularExperiences!.description!,
+              widget.trip!.description!,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
             ),
           ),
           ...List.generate(
-            widget.popularExperiences!.addresses!.length,
+            widget.trip!.addresses!.length,
             (index) => CustomExpansionTile(
               initiallyExpanded: index == 0,
-              title: widget.popularExperiences!.addresses![index].name,
-              content: widget.popularExperiences!.addresses![index].description,
+              title: widget.trip!.addresses![index].name,
+              content: widget.trip!.addresses![index].description,
             ),
           ),
-          // TODO
-          PreviewTravelsSection(popularExperiences: widget.popularExperiences),
-          RatingsReviewsSection(reviews: widget.popularExperiences!.reviews),
+          PreviewTravelsSection(popularExperiences: widget.trip),
+          RatingsReviewsSection(reviews: widget.trip!.reviews),
           const ExperiencesSections(),
         ],
       ),

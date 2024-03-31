@@ -121,7 +121,7 @@ class AppRouter {
         ),
         GoRoute(
           path: AppStrings.travelDetailsScreen,
-          builder: (context, state) => TravelDetailsScreen(popularExperiences: state.extra! as PopularExperiences?),
+          builder: (context, state) => TravelDetailsScreen(trip: state.extra! as PopularExperiences?),
         ),
         GoRoute(
           path: AppStrings.blogScreen,
