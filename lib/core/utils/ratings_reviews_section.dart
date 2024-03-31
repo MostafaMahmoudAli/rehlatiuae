@@ -11,10 +11,14 @@ import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/custom_rating_bar.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
+import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit/add_review_cubit.dart';
 
 class RatingsReviewsSection extends StatelessWidget {
+  final List<Review>? reviews;
+
   const RatingsReviewsSection({
+    this.reviews,
     super.key,
   });
 
@@ -196,13 +200,12 @@ class RatingsReviewsSection extends StatelessWidget {
             height: 30.h,
           ),
           ...List.generate(
-            3,
-            (index) => const CommentCard(
-              imageUrl: AppAssets.profile,
-              name: "Lee Mohammad",
-              date: "12/12/2024",
-              comment:
-                  "The mighty Rinjani mountain of Gunung Rinjani is a massive volcano which towers over the island of Lombok. A  you can have in Indonesia. At 3,726 meters tall, Gunung Rinjani is the second highest mountain in Indonesia,",
+            reviews!.length,
+            (index) => CommentCard(
+              imageUrl: reviews![index].client!.imagePath,
+              name: reviews![index].name!,
+              date: reviews![index].name!,
+              comment: reviews![index].description!,
             ),
           ),
         ],

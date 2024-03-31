@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
@@ -9,9 +8,12 @@ import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_preferences_list.dart';
+import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
-  const TravelDetailsScreen({super.key});
+  final PopularExperiences? popularExperiences;
+
+  const TravelDetailsScreen({super.key, this.popularExperiences});
 
   @override
   State<TravelDetailsScreen> createState() => _TravelDetailsScreenState();
@@ -23,11 +25,11 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          const BolgTravelTitleSection(
-            title: "IMG Worlds",
-            address: "Dubai, United Arab Emirates",
-            price: "79",
-            imagePath: AppAssets.travel,
+          BolgTravelTitleSection(
+            title: widget.popularExperiences!.name,
+            address: widget.popularExperiences!.address,
+            price: widget.popularExperiences!.adultPrice.toString(),
+            imagePath: widget.popularExperiences!.imagePath!,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -36,33 +38,26 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ),
-          const OfferPreferencesList(),
+          OfferPreferencesList(offers: widget.popularExperiences!.offers),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
-              'The mighty Rinjani mountain of Gunung Rinjani is a massive volcano which towers over the island of Lombok. A climb to the top is one of the most exhilarating experiences you can have in Indonesia. At 3,726 meters tall, Gunung Rinjani is the second highest mountain in Indonesia',
+              widget.popularExperiences!.description!,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
             ),
           ),
-          const CustomExpansionTile(
-            title: "Highlights",
-            content:
-                "With more techy bells n’ webullish than our free version.With more techy bells n’ webullish than our free version.",
+          ...List.generate(
+            widget.popularExperiences!.addresses!.length,
+            (index) => CustomExpansionTile(
+              initiallyExpanded: index == 0,
+              title: widget.popularExperiences!.addresses![index].name,
+              content: widget.popularExperiences!.addresses![index].description,
+            ),
           ),
-          const CustomExpansionTile(
-            title: "Inclusions",
-            content: "14,000+ Guests served",
-            initiallyExpanded: false,
-          ),
-          const CustomExpansionTile(
-            title: "Cancellation policy",
-            content: "1000+ Reviews on Rehlatyuae by our Travelers",
-            initiallyExpanded: false,
-          ),
-          const PreviewTravelsSection(),
-          const RatingsReviewsSection(),
+          PreviewTravelsSection(images: widget.popularExperiences!.images),
+          RatingsReviewsSection(reviews: widget.popularExperiences!.reviews),
           const ExperiencesSections(),
         ],
       ),
@@ -71,7 +66,10 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
 
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom],
+    );
     super.initState();
   }
 

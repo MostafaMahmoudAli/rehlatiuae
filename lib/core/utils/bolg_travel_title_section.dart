@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,12 +35,19 @@ class BolgTravelTitleSection extends StatelessWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    imagePath,
-                  ),
-                  fit: BoxFit.fill,
-                ),
+                image: !isTrip
+                    ? DecorationImage(
+                        image: AssetImage(
+                          imagePath,
+                        ),
+                        fit: BoxFit.fill,
+                      )
+                    : DecorationImage(
+                        image: CachedNetworkImageProvider(
+                          imagePath,
+                        ),
+                        fit: BoxFit.fill,
+                      ),
                 borderRadius: BorderRadius.vertical(
                   bottom: Radius.circular(30.sp),
                 ),
@@ -81,12 +89,17 @@ class BolgTravelTitleSection extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            title,
-                            style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                          SizedBox(
+                            width: 180.w,
+                            child: Text(
+                              title,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                            ),
                           ),
                           if (isOffer)
                             Container(

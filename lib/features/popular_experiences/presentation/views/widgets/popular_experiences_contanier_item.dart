@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
+
 import '../../../data/models/popular_experiences_model.dart';
 
 class PopularExperiencesContainerItem extends StatelessWidget {
@@ -18,14 +19,13 @@ class PopularExperiencesContainerItem extends StatelessWidget {
   final double width;
   final String? oldTripPrice;
   final String? percentageSave;
-  final PopularExperiences?popularExperiences;
+  final PopularExperiences? popularExperiences;
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.travelDetailsScreen);
+        context.push(AppStrings.travelDetailsScreen, extra: popularExperiences);
       },
       child: SizedBox(
         height: 180.0.h,
@@ -40,14 +40,14 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
                 image: DecorationImage(
                   image: NetworkImage(
-                  popularExperiences?.imagePath ?? "",
+                    popularExperiences?.imagePath ?? "",
                   ),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             if ((oldTripPrice != null || percentageSave != null) &&
-               ( percentageSave!.isNotEmpty||oldTripPrice!.isNotEmpty))
+                (percentageSave!.isNotEmpty || oldTripPrice!.isNotEmpty))
               Positioned(
                 top: 16,
                 left: 6,
@@ -62,8 +62,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                     Container(
                       width: 62.0.w,
                       height: 20.0.h,
-                      margin:
-                          EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
+                      margin: EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
                       padding: EdgeInsetsDirectional.symmetric(
                         horizontal: 4.0.w,
                         vertical: 1.3.h,
@@ -73,7 +72,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
-                       " $percentageSave% saved",
+                        " $percentageSave% saved",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),

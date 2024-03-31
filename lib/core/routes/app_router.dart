@@ -22,6 +22,7 @@ import 'package:rehlatyuae/features/our_blogs/presentation/views/blog_details_sc
 import 'package:rehlatyuae/features/our_blogs/presentation/views/our_blogs_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_details_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_options_screen.dart';
+import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/popular_experiences_screen.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/edit_profile_screen.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/profile_screen.dart';
@@ -120,7 +121,7 @@ class AppRouter {
         ),
         GoRoute(
           path: AppStrings.travelDetailsScreen,
-          builder: (context, state) => const TravelDetailsScreen(),
+          builder: (context, state) => TravelDetailsScreen(popularExperiences: state.extra! as PopularExperiences?),
         ),
         GoRoute(
           path: AppStrings.blogScreen,
