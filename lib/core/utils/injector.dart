@@ -3,8 +3,20 @@ import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/dio_consumer.dart';
+import 'package:rehlatyuae/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:rehlatyuae/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:rehlatyuae/features/best_offers/data/repositories/best_offers_repo_impl.dart';
+import 'package:rehlatyuae/features/layout_screen/data/repositories/main_repo_impl.dart';
+import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/send_message_cubit/send_message_cubit.dart';
+import 'package:rehlatyuae/features/payment/data/repositories/payment_repo_impl.dart';
+import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit/add_review_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../features/all_categories/data/repositories/category_repo_impl.dart';
 import '../../features/all_categories/domian/repositories/category_repo.dart';
 import '../../features/all_categories/presentation/blocs/categories_bloc.dart';
@@ -39,23 +51,21 @@ import '../services/cache_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
-Future<void> setupInjector()
-async {
+Future<void> setupInjector() async {
   getIt.registerLazySingleton<Logger>(
-        () =>Logger(),
+    () => Logger(),
   );
   getIt.registerLazySingleton<ApiConsumer>(
-        () =>
-        DioConsumer(
-          dio: Dio(),
-        ),
+    () => DioConsumer(
+      dio: Dio(),
+    ),
   );
 
   final SharedPreferences pref = await SharedPreferences.getInstance();
   getIt.registerLazySingleton<SharedPreferences>(() => pref);
 
   getIt.registerLazySingleton<CacheService>(
-        () => CacheServiceImpl(
+    () => CacheServiceImpl(
       pref: getIt<SharedPreferences>(),
     ),
   );
@@ -67,72 +77,110 @@ async {
 
   // repositories objects
   getIt.registerLazySingleton<BestOffersRepo>(
-        () => BestOffersRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+    () => BestOffersRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
   );
   getIt.registerLazySingleton<CategoryRepo>(
-        () => CategoryRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+    () => CategoryRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
   );
 
   getIt.registerLazySingleton<BestTripsRepo>(
-        () => BestTripsRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+    () => BestTripsRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
   );
 
   getIt.registerLazySingleton<ALLDestinationsRepo>(
-        () =>  AllDestinationsRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+    () => AllDestinationsRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
   );
 
   getIt.registerLazySingleton<PopularExperiencesRepo>(
-        () =>  PopularExperiencesRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+    () => PopularExperiencesRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
   );
 
-  getIt.registerLazySingleton<BlogsRepository>(() =>
-      BlogsRepositoryImpl(
-        apiConsumer:getIt.get<ApiConsumer>(),
-      ),
-  );
-  getIt.registerLazySingleton<LayoutRepository>(() => LayoutRepoImpl(
-    apiConsumer:getIt.get<ApiConsumer>(),
-  ),
-  );
-  // repositories objects
-  getIt.registerLazySingleton<ProfileRepo>(
-        () => ProfileRepoImpl(
+  getIt.registerLazySingleton<BlogsRepository>(
+    () => BlogsRepositoryImpl(
       apiConsumer: getIt.get<ApiConsumer>(),
-      cacheService: getIt<CacheService>(),
     ),
   );
-  /// Auth Feature
-  getIt.registerLazySingleton<AuthRepo>(
-        () => AuthRepoImpl(apiConsumer: getIt.get<ApiConsumer>(), cacheService: getIt<CacheService>(),),
+  getIt.registerLazySingleton<LayoutRepository>(
+    () => LayoutRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+    ),
   );
-
-
-
 
   // cubits
   getIt.registerFactory(() => BestOffersBloc(bestOffersRepo: getIt()));
 
   getIt.registerFactory(() => BlogsBloc(blogsRepository: getIt()));
 
-  getIt.registerFactory(() => ForgetPasswordCubit(authRepo: getIt()));
+  getIt.registerFactory(() => LayoutCubit(layoutRepository: getIt()));
 
-  getIt.registerFactory(() => VerificationEmailCubit(authRepo: getIt()));
+  getIt.registerFactory(() => CategoriesBloc(categoryRepo: getIt()));
 
-  getIt.registerFactory(() => UpdatePasswordCubit(authRepo: getIt()));
+  getIt.registerFactory(() => BestTripsBloc(bestTripsRepo: getIt()));
 
+  getIt.registerFactory(() => AllDestinationsBloc(allDestinationsRepo: getIt()));
+
+  getIt.registerFactory(() => PopularExperiencesBloc(popularExperiencesRepo: getIt()));
+
+  getIt.registerFactory(
+    () => AddReviewCubit(
+      layoutRepository: getIt(),
+    ),
+  );
+
+  getIt.registerFactory(
+    () => SendMessageCubit(
+      layoutRepo: getIt(),
+    ),
+  );
+
+  /// Profile Feature
+  // repositories objects
+  getIt.registerLazySingleton<ProfileRepo>(
+    () => ProfileRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+      cacheService: getIt<CacheService>(),
+    ),
+  );
+
+  // cubits
   getIt.registerFactory(() => ProfileCubit(profileRepo: getIt()));
-
   getIt.registerFactory(() => EditProfileCubit(profileRepo: getIt()));
 
-  getIt.registerFactory(() => LayoutCubit(layoutRepository:getIt()));
+  /// Main Feature
+  // repositories objects
+  getIt.registerLazySingleton<MainRepo>(
+    () => MainRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+      cacheService: getIt<CacheService>(),
+    ),
+  );
 
-  getIt.registerFactory(() => CategoriesBloc(categoryRepo:getIt()));
+  // cubits
+  getIt.registerFactory(() => MainCubit(mainRepo: getIt()));
 
-  getIt.registerFactory(() => BestTripsBloc(bestTripsRepo:getIt()));
+  /// Auth Feature
+  // repositories objects
+  getIt.registerLazySingleton<AuthRepo>(
+    () => AuthRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+      cacheService: getIt.get<CacheService>(),
+    ),
+  );
 
-  getIt.registerFactory(() => AllDestinationsBloc(allDestinationsRepo:getIt()));
+  // cubits
+  getIt.registerFactory(() => LoginCubit(authRepo: getIt()));
+  getIt.registerFactory(() => RegisterCubit(authRepo: getIt()));
+  getIt.registerFactory(() => ForgetPasswordCubit(authRepo: getIt()));
+  getIt.registerFactory(() => VerificationEmailCubit(authRepo: getIt()));
+  getIt.registerFactory(() => UpdatePasswordCubit(authRepo: getIt()));
 
-  getIt.registerFactory(() => PopularExperiencesBloc(popularExperiencesRepo:getIt()));
+  /// Payment Feature
+  // repositories objects
+  getIt.registerLazySingleton<PaymentRepo>(
+    () => PaymentRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+  );
+
+  // cubits
+  getIt.registerFactory(() => CheckCouponCubit(paymentRepo: getIt()));
+  getIt.registerFactory(() => TripCheckoutDetailsCubit(paymentRepo: getIt()));
 }
-
-

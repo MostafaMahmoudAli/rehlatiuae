@@ -12,7 +12,7 @@ import 'core/utils/injector.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-   setupInjector();
+  await setupInjector();
   runApp(const MyApp());
 }
 
