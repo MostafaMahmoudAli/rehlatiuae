@@ -6,15 +6,15 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
-import 'package:rehlatyuae/features/best_offers/data/models/images_model.dart';
+import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
 
 class PreviewTravelsSection extends StatelessWidget {
   final bool hasBookButton;
-  final List<ImagesModel>? images;
+  final PopularExperiences? popularExperiences;
 
   const PreviewTravelsSection({
     this.hasBookButton = true,
-    this.images,
+    this.popularExperiences,
     super.key,
   });
 
@@ -58,7 +58,7 @@ class PreviewTravelsSection extends StatelessWidget {
           ),
         ),
         // TODO will remove
-        if (images == null)
+        if (popularExperiences!.images == null)
           SizedBox(
             height: 110,
             child: ListView.separated(
@@ -80,19 +80,19 @@ class PreviewTravelsSection extends StatelessWidget {
               separatorBuilder: (context, index) => const SizedBox(width: 12),
             ),
           ),
-        if (images != null)
+        if (popularExperiences!.images != null)
           SizedBox(
             height: 110,
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
               scrollDirection: Axis.horizontal,
-              itemCount: images!.length,
+              itemCount: popularExperiences!.images!.length,
               itemBuilder: (context, index) => Container(
                 width: 90,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
-                      images![index].imagePath,
+                      popularExperiences!.images![index].imagePath,
                     ),
                     fit: BoxFit.fill,
                   ),
@@ -111,7 +111,7 @@ class PreviewTravelsSection extends StatelessWidget {
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppStrings.paymentOptionsScreen);
+                context.push(AppStrings.paymentOptionsScreen, extra: popularExperiences);
               },
               width: double.infinity,
               height: 50.h,

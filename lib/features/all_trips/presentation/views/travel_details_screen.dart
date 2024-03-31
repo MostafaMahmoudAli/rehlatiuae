@@ -56,7 +56,8 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
               content: widget.popularExperiences!.addresses![index].description,
             ),
           ),
-          PreviewTravelsSection(images: widget.popularExperiences!.images),
+          // TODO
+          PreviewTravelsSection(popularExperiences: widget.popularExperiences),
           RatingsReviewsSection(reviews: widget.popularExperiences!.reviews),
           const ExperiencesSections(),
         ],

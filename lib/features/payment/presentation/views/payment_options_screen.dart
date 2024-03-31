@@ -13,9 +13,12 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_de
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/count_tickets_section.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_date_booking.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_payment_section.dart';
+import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
 
 class PaymentOptionsScreen extends StatelessWidget {
-  const PaymentOptionsScreen({super.key});
+  final PopularExperiences? popularExperiences;
+
+  const PaymentOptionsScreen({super.key, this.popularExperiences});
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +40,8 @@ class PaymentOptionsScreen extends StatelessWidget {
               children: [
                 FieldDateBooking(cubit: cubit),
                 CountTicketsSection(
-                  adultCost: cubit.adultCost,
-                  childCost: cubit.childCost,
+                  adultCost: popularExperiences!.adultPrice!.toDouble(),
+                  childCost: popularExperiences!.childPrice!.toDouble(),
                   onAdultsCountChange: (count, total) {
                     cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
                       quantityAdult: count,
@@ -135,7 +138,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                   buttonLabel: AppStrings.nextPayment,
                   onButtonTap: () {
                     if (!cubit.dateFormKey.currentState!.validate()) return;
-                    cubit.applyTripDetails();
+                    cubit.applyTripDetails(tripId: popularExperiences!.id);
                     context.push(AppStrings.paymentDetailsScreen);
                   },
                 ),

@@ -85,7 +85,7 @@ class AppRouter {
         /// Payment Screens
         GoRoute(
           path: AppStrings.paymentOptionsScreen,
-          builder: (context, state) => const PaymentOptionsScreen(),
+          builder: (context, state) => PaymentOptionsScreen(popularExperiences: state.extra! as PopularExperiences?),
         ),
         GoRoute(
           path: AppStrings.paymentDetailsScreen,

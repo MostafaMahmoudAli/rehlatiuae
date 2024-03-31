@@ -12,6 +12,7 @@ class CustomBottomSheet extends StatelessWidget {
   final Widget contentSheet;
   final Color avatarColor;
   final bool hasButton;
+  final void Function()? onButtonPreesd;
 
   const CustomBottomSheet({
     required this.title,
@@ -20,6 +21,7 @@ class CustomBottomSheet extends StatelessWidget {
     this.avatarText,
     this.avatarColor = AppColors.textAndBackgroundColorButton,
     this.hasButton = true,
+    this.onButtonPreesd,
     super.key,
   });
 
@@ -124,7 +126,10 @@ class CustomBottomSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(16.r),
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
-                context.pop();
+                if (onButtonPreesd == null) {
+                  context.pop();
+                }
+                onButtonPreesd?.call();
               },
               width: 250.w,
               height: 50.h,
