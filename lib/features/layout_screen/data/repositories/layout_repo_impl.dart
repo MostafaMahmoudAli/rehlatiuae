@@ -8,10 +8,8 @@ import 'package:rehlatyuae/features/layout_screen/data/models/message_model/mess
 import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_request_model/review_request_model.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/layout_repo.dart';
-
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
-import '../../domain/repositories/layout_repo.dart';
 
 
 class LayoutRepoImpl implements LayoutRepository {

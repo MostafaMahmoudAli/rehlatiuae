@@ -38,7 +38,8 @@ class _PopularExperiencesBodyState extends State<PopularExperiencesBody> {
         widget.popularExperiencesScrollController?.position.maxScrollExtent;
     final currentScroll = widget.popularExperiencesScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.7)) {
-      BlocProvider.of<PopularExperiencesBloc>(context).add(GetPopularExperiencesEvent());
+      BlocProvider.of<PopularExperiencesBloc>(context)
+          .add(GetPopularExperiencesEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
@@ -53,32 +54,23 @@ class _PopularExperiencesBodyState extends State<PopularExperiencesBody> {
           case PopularExperiencesStatus.loading:
             return const Center(child: CircularProgressIndicator());
           case PopularExperiencesStatus.success:
-            return Stack(
-              children: [
-                GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 3 / 3,
-                    crossAxisSpacing: 10.0.w,
-                    mainAxisSpacing: 10.0.w,
-                  ),
-                  itemBuilder: (context, index) => PopularExperiencesContainerItem(
-                    width: 140.w,
-                    popularExperiences: state.popularExperiences[index],
-                    oldTripPrice: state.popularExperiences[index].beforePrice ?? "",
-                    percentageSave: state.popularExperiences[index].saving ??"",
-                  ),
-                  itemCount: state.popularExperiences.length,
-                  shrinkWrap: true,
-                  physics: const ClampingScrollPhysics(),
-                  padding: EdgeInsets.zero,
-                ),
-                WhatsUpButton(
-                  onTap: (){},
-                  right: 0,
-                  bottom:MediaQuery.sizeOf(context).height*0.25,
-                ),
-              ],
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 3 / 3,
+                crossAxisSpacing: 10.0.w,
+                mainAxisSpacing: 10.0.w,
+              ),
+              itemBuilder: (context, index) => PopularExperiencesContainerItem(
+                width: 140.w,
+                popularExperiences: state.popularExperiences[index],
+                oldTripPrice: state.popularExperiences[index].beforePrice ?? "",
+                percentageSave: state.popularExperiences[index].saving ?? "",
+              ),
+              itemCount: state.popularExperiences.length,
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              padding: EdgeInsets.zero,
             );
           case PopularExperiencesStatus.error:
             return ErrorsWidget(

@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 
 import '../../../../best_offers/data/models/best_offers_model.dart';
-import '../../../data/models/review_model.dart';
 
 class BestOffersItem extends StatelessWidget {
   const BestOffersItem({
@@ -17,7 +15,7 @@ class BestOffersItem extends StatelessWidget {
 
   final double width;
   final BestOffers?bestOffers;
-  final Review?review;
+  final int ?review;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +44,7 @@ class BestOffersItem extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                  height: 100.0.h,
+                  height: 140.0.h,
                   width: width,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   decoration: BoxDecoration(
@@ -122,8 +120,8 @@ class BestOffersItem extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      bestOffers?.beforePrice ?? "",
-                      style: Theme.of(context).textTheme.titleSmall,
+                      "\$${bestOffers?.beforePrice}" ,
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith( color: AppColors.black,),
                     ),
                     Container(
                       width:65.0.w,
@@ -135,7 +133,7 @@ class BestOffersItem extends StatelessWidget {
                         borderRadius:BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
-                        "${bestOffers?.saving}% Saved "??  "",
+                        " Save ${bestOffers?.saving}%",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
@@ -147,7 +145,7 @@ class BestOffersItem extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                     bestOffers?.adultPrice.toString() ?? "",
+                      "\$${bestOffers?.adultPrice.toString()}" ,
                       style: Theme.of(context).textTheme.titleSmall,
                       textAlign: TextAlign.justify,
                     ),
@@ -167,7 +165,7 @@ class BestOffersItem extends StatelessWidget {
                           size: 16.0.sp,
                         ),
                         Text(
-                          review?.starsNumber.toString() ??"4.2 (852)",
+                         review.toString(),
                           style: Theme.of(context).textTheme.titleSmall,
                           textAlign: TextAlign.justify,
                         ),

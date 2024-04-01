@@ -26,6 +26,8 @@ class BestOffers with _$BestOffers
    required final List<AddressModel> ?addresses,
    required final List<ImagesModel>? images,
    required final bool? isFavourite,
+   required final DateTime? createdAt,
+   required  final int? reviewAverage,
    required final List<Trips>? offers,
    required final List<Review>? reviews,
 })= _BestOffers;

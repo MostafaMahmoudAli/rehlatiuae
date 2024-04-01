@@ -51,7 +51,7 @@ class _OurBlogsBodyState extends State<OurBlogsBody> {
           BlogsStatus.success => GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 8 / 6,
+                childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.45,
                 crossAxisSpacing: 8.0.w,
                 mainAxisSpacing: 10.0.w,
               ),

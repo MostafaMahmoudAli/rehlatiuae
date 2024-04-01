@@ -22,34 +22,38 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why
 import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget
+{
   HomeScreen({super.key});
 
   final TextEditingController _textEditingController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return BlocProvider(
       create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
       child: BlocConsumer<LayoutCubit, LayoutState>(
-        listener: (context, state) {
+        listener: (context, state)
+        {
           state.whenOrNull(
-            error: (errorMessage) => showDialog(
+            error: (errorMessage) =>showDialog(
               context: context,
-              builder: (context) => CustomDialog(
+              builder: (context) =>CustomDialog(
                 title: errorMessage,
-                subtitle: 'Sorry',
-                labelText: 'Close',
+                subtitle:'Sorry',
+                labelText:'Close',
               ),
             ),
           );
         },
-        builder: (context, state) {
+        builder: (context, state)
+        {
           return state.maybeWhen(
             initial: () => const Center(child: CircularProgressIndicator()),
             loading: () => const Center(child: CircularProgressIndicator()),
             loaded: (layoutModel) => Scaffold(
-              body: Padding(
+              body:Padding(
                 padding: EdgeInsets.symmetric(
                   vertical: 20.0.h,
                   horizontal: 17.0.w,
@@ -60,10 +64,10 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SearchTextField(
-                        controller: _textEditingController,
+                        controller:_textEditingController,
                         onTap: ()
                         {
-                          context.push(AppStrings.searchScreen);
+                          context.push(AppStrings.searchScreen,);
                         },
                         readOnly: true,
 
@@ -86,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const CustomSizedBox(),
                       PopularExperiencesSection(
-                        popularExperiences: layoutModel.popularExperience ?? [],
+                        popularExperiences:layoutModel.popularExperience ?? [],
                       ),
                       const CustomSizedBox(),
                       OurBlogSection(

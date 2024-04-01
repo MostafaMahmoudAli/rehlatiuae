@@ -84,6 +84,14 @@ ThemeData appTheme() {
       ),
 //medium black
 
+      headlineMedium: TextStyle(
+        fontFamily: 'Switzer',
+        fontSize: 12.sp,
+        color: AppColors.white,
+        fontWeight: FontWeight.bold,
+        decoration:TextDecoration.lineThrough,
+      ),
+
       headlineSmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 10.sp,
@@ -96,6 +104,7 @@ ThemeData appTheme() {
         fontSize: 10.sp,
         color: AppColors.whiteAppColor,
       ),
+
     ),
   );
 }

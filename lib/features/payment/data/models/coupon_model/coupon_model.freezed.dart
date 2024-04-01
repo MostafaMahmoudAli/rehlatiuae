@@ -21,29 +21,24 @@ Coupon _$CouponFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Coupon {
   int get id => throw _privateConstructorUsedError;
-
   @JsonKey(name: "coupon_name")
   String get couponName => throw _privateConstructorUsedError;
-
   @JsonKey(name: "coupon_amount")
   int get couponAmount => throw _privateConstructorUsedError;
-
   @JsonKey(name: "coupon_start")
   String get couponStart => throw _privateConstructorUsedError;
-
   @JsonKey(name: "coupon_end")
   String get couponEnd => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $CouponCopyWith<Coupon> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CouponCopyWith<$Res> {
-  factory $CouponCopyWith(Coupon value, $Res Function(Coupon) then) = _$CouponCopyWithImpl<$Res, Coupon>;
-
+  factory $CouponCopyWith(Coupon value, $Res Function(Coupon) then) =
+      _$CouponCopyWithImpl<$Res, Coupon>;
   @useResult
   $Res call(
       {int id,
@@ -54,12 +49,12 @@ abstract class $CouponCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CouponCopyWithImpl<$Res, $Val extends Coupon> implements $CouponCopyWith<$Res> {
+class _$CouponCopyWithImpl<$Res, $Val extends Coupon>
+    implements $CouponCopyWith<$Res> {
   _$CouponCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -99,9 +94,9 @@ class _$CouponCopyWithImpl<$Res, $Val extends Coupon> implements $CouponCopyWith
 
 /// @nodoc
 abstract class _$$CouponImplCopyWith<$Res> implements $CouponCopyWith<$Res> {
-  factory _$$CouponImplCopyWith(_$CouponImpl value, $Res Function(_$CouponImpl) then) =
+  factory _$$CouponImplCopyWith(
+          _$CouponImpl value, $Res Function(_$CouponImpl) then) =
       __$$CouponImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -113,9 +108,12 @@ abstract class _$$CouponImplCopyWith<$Res> implements $CouponCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CouponImplCopyWithImpl<$Res> extends _$CouponCopyWithImpl<$Res, _$CouponImpl>
+class __$$CouponImplCopyWithImpl<$Res>
+    extends _$CouponCopyWithImpl<$Res, _$CouponImpl>
     implements _$$CouponImplCopyWith<$Res> {
-  __$$CouponImplCopyWithImpl(_$CouponImpl _value, $Res Function(_$CouponImpl) _then) : super(_value, _then);
+  __$$CouponImplCopyWithImpl(
+      _$CouponImpl _value, $Res Function(_$CouponImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -161,7 +159,8 @@ class _$CouponImpl implements _Coupon {
       @JsonKey(name: "coupon_start") required this.couponStart,
       @JsonKey(name: "coupon_end") required this.couponEnd});
 
-  factory _$CouponImpl.fromJson(Map<String, dynamic> json) => _$$CouponImplFromJson(json);
+  factory _$CouponImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CouponImplFromJson(json);
 
   @override
   final int id;
@@ -189,20 +188,26 @@ class _$CouponImpl implements _Coupon {
         (other.runtimeType == runtimeType &&
             other is _$CouponImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.couponName, couponName) || other.couponName == couponName) &&
-            (identical(other.couponAmount, couponAmount) || other.couponAmount == couponAmount) &&
-            (identical(other.couponStart, couponStart) || other.couponStart == couponStart) &&
-            (identical(other.couponEnd, couponEnd) || other.couponEnd == couponEnd));
+            (identical(other.couponName, couponName) ||
+                other.couponName == couponName) &&
+            (identical(other.couponAmount, couponAmount) ||
+                other.couponAmount == couponAmount) &&
+            (identical(other.couponStart, couponStart) ||
+                other.couponStart == couponStart) &&
+            (identical(other.couponEnd, couponEnd) ||
+                other.couponEnd == couponEnd));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, couponName, couponAmount, couponStart, couponEnd);
+  int get hashCode => Object.hash(
+      runtimeType, id, couponName, couponAmount, couponStart, couponEnd);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CouponImplCopyWith<_$CouponImpl> get copyWith => __$$CouponImplCopyWithImpl<_$CouponImpl>(this, _$identity);
+  _$$CouponImplCopyWith<_$CouponImpl> get copyWith =>
+      __$$CouponImplCopyWithImpl<_$CouponImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -214,34 +219,31 @@ class _$CouponImpl implements _Coupon {
 
 abstract class _Coupon implements Coupon {
   const factory _Coupon(
-      {required final int id,
-      @JsonKey(name: "coupon_name") required final String couponName,
-      @JsonKey(name: "coupon_amount") required final int couponAmount,
-      @JsonKey(name: "coupon_start") required final String couponStart,
-      @JsonKey(name: "coupon_end") required final String couponEnd}) = _$CouponImpl;
+          {required final int id,
+          @JsonKey(name: "coupon_name") required final String couponName,
+          @JsonKey(name: "coupon_amount") required final int couponAmount,
+          @JsonKey(name: "coupon_start") required final String couponStart,
+          @JsonKey(name: "coupon_end") required final String couponEnd}) =
+      _$CouponImpl;
 
   factory _Coupon.fromJson(Map<String, dynamic> json) = _$CouponImpl.fromJson;
 
   @override
   int get id;
-
   @override
   @JsonKey(name: "coupon_name")
   String get couponName;
-
   @override
   @JsonKey(name: "coupon_amount")
   int get couponAmount;
-
   @override
   @JsonKey(name: "coupon_start")
   String get couponStart;
-
   @override
   @JsonKey(name: "coupon_end")
   String get couponEnd;
-
   @override
   @JsonKey(ignore: true)
-  _$$CouponImplCopyWith<_$CouponImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$CouponImplCopyWith<_$CouponImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

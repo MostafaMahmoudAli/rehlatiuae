@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/city_destination_body.dart';
+import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/city_destination_bottom_section.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/custom_button.dart';
@@ -23,7 +25,7 @@ import '../../../layout_screen/presentation/views/widgets/why_choose_us_section.
 class CityDestinationScreen extends StatelessWidget
 {
    CityDestinationScreen({super.key});
-  final TextEditingController _textEditingController = TextEditingController();
+   final ScrollController cityDestinationScrollController=ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,49 +51,19 @@ class CityDestinationScreen extends StatelessWidget
           horizontal: 17.0.w,
         ),
         child: SingleChildScrollView(
+          controller: cityDestinationScrollController,
           physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SearchTextField(
-                controller: _textEditingController,
-              ),
               const CustomSizedBox(),
               const Text(
                 AppStrings.cityDestinationTitle,
               ),
               const CustomSizedBox(),
-              const CategoryNameBody(),
+               CityDestinationBody(cityDestinationScrollController:cityDestinationScrollController ,),
               const CustomSizedBox(),
-              const BestOffersSection(bestOffers: [],),
-              const CustomSizedBox(),
-              const BestTripsSection(bestTrips: [],),
-              const CustomSizedBox(),
-              const PopularExperiencesSection(popularExperiences: [],),
-              const CustomSizedBox(),
-               OurBlogSection(blogs: [],),
-              const CustomSizedBox(),
-              const OurPartnerSection(ourPartners: [],),
-              const CustomSizedBox(),
-              const WhyChooseUsSection(),
-              const CustomSizedBox(),
-              const WeHelpYouSection(),
-              CustomActionButton(
-                onTap: ()
-                {
-                  context.push(AppStrings.allTripsScreen);
-                },
-                text: AppStrings.actionButtonName,
-                height: 70.0.h,
-                width: double.infinity,
-                borderRadius: BorderRadius.circular(12.0.r),
-                backGroundColor: AppColors.orange,
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-              const CustomSizedBox(),
-              const BestOffersHorizontal(),
-              const CustomSizedBox(),
-              const ReviewsSection(reviews: [],),
+              const CityDestinationBottomSection(),
             ],
           ),
         ),
