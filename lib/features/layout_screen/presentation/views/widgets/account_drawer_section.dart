@@ -30,6 +30,14 @@ class AccountDrawerSection extends StatelessWidget {
             ],
           ),
         ),
+
+           //   DrawerItem(
+          //title: 'Favorite',
+        //  onTap: () { },
+         ////  trailing: ,
+          //  iconPath: '',
+       // ),
+       
         DrawerItem(
           title: 'Credits',
           iconPath: AppAssets.credits,

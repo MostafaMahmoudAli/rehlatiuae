@@ -15,7 +15,8 @@ _$ClientImpl _$$ClientImplFromJson(Map<String, dynamic> json) => _$ClientImpl(
       imagePath: json['image_path'] as String,
     );
 
-Map<String, dynamic> _$$ClientImplToJson(_$ClientImpl instance) => <String, dynamic>{
+Map<String, dynamic> _$$ClientImplToJson(_$ClientImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'email': instance.email,

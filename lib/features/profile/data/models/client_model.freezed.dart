@@ -21,40 +21,39 @@ Client _$ClientFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Client {
   int get id => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get email => throw _privateConstructorUsedError;
-
   String get phone => throw _privateConstructorUsedError;
-
   String get address => throw _privateConstructorUsedError;
-
   @JsonKey(name: "image_path")
   String get imagePath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $ClientCopyWith<Client> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ClientCopyWith<$Res> {
-  factory $ClientCopyWith(Client value, $Res Function(Client) then) = _$ClientCopyWithImpl<$Res, Client>;
-
+  factory $ClientCopyWith(Client value, $Res Function(Client) then) =
+      _$ClientCopyWithImpl<$Res, Client>;
   @useResult
   $Res call(
-      {int id, String name, String email, String phone, String address, @JsonKey(name: "image_path") String imagePath});
+      {int id,
+      String name,
+      String email,
+      String phone,
+      String address,
+      @JsonKey(name: "image_path") String imagePath});
 }
 
 /// @nodoc
-class _$ClientCopyWithImpl<$Res, $Val extends Client> implements $ClientCopyWith<$Res> {
+class _$ClientCopyWithImpl<$Res, $Val extends Client>
+    implements $ClientCopyWith<$Res> {
   _$ClientCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -99,19 +98,27 @@ class _$ClientCopyWithImpl<$Res, $Val extends Client> implements $ClientCopyWith
 
 /// @nodoc
 abstract class _$$ClientImplCopyWith<$Res> implements $ClientCopyWith<$Res> {
-  factory _$$ClientImplCopyWith(_$ClientImpl value, $Res Function(_$ClientImpl) then) =
+  factory _$$ClientImplCopyWith(
+          _$ClientImpl value, $Res Function(_$ClientImpl) then) =
       __$$ClientImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
-      {int id, String name, String email, String phone, String address, @JsonKey(name: "image_path") String imagePath});
+      {int id,
+      String name,
+      String email,
+      String phone,
+      String address,
+      @JsonKey(name: "image_path") String imagePath});
 }
 
 /// @nodoc
-class __$$ClientImplCopyWithImpl<$Res> extends _$ClientCopyWithImpl<$Res, _$ClientImpl>
+class __$$ClientImplCopyWithImpl<$Res>
+    extends _$ClientCopyWithImpl<$Res, _$ClientImpl>
     implements _$$ClientImplCopyWith<$Res> {
-  __$$ClientImplCopyWithImpl(_$ClientImpl _value, $Res Function(_$ClientImpl) _then) : super(_value, _then);
+  __$$ClientImplCopyWithImpl(
+      _$ClientImpl _value, $Res Function(_$ClientImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -163,7 +170,8 @@ class _$ClientImpl implements _Client {
       required this.address,
       @JsonKey(name: "image_path") required this.imagePath});
 
-  factory _$ClientImpl.fromJson(Map<String, dynamic> json) => _$$ClientImplFromJson(json);
+  factory _$ClientImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ClientImplFromJson(json);
 
   @override
   final int id;
@@ -194,17 +202,20 @@ class _$ClientImpl implements _Client {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.imagePath, imagePath) || other.imagePath == imagePath));
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, email, phone, address, imagePath);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, email, phone, address, imagePath);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ClientImplCopyWith<_$ClientImpl> get copyWith => __$$ClientImplCopyWithImpl<_$ClientImpl>(this, _$identity);
+  _$$ClientImplCopyWith<_$ClientImpl> get copyWith =>
+      __$$ClientImplCopyWithImpl<_$ClientImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -216,35 +227,31 @@ class _$ClientImpl implements _Client {
 
 abstract class _Client implements Client {
   const factory _Client(
-      {required final int id,
-      required final String name,
-      required final String email,
-      required final String phone,
-      required final String address,
-      @JsonKey(name: "image_path") required final String imagePath}) = _$ClientImpl;
+          {required final int id,
+          required final String name,
+          required final String email,
+          required final String phone,
+          required final String address,
+          @JsonKey(name: "image_path") required final String imagePath}) =
+      _$ClientImpl;
 
   factory _Client.fromJson(Map<String, dynamic> json) = _$ClientImpl.fromJson;
 
   @override
   int get id;
-
   @override
   String get name;
-
   @override
   String get email;
-
   @override
   String get phone;
-
   @override
   String get address;
-
   @override
   @JsonKey(name: "image_path")
   String get imagePath;
-
   @override
   @JsonKey(ignore: true)
-  _$$ClientImplCopyWith<_$ClientImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$ClientImplCopyWith<_$ClientImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

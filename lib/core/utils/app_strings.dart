@@ -343,6 +343,10 @@ Official Channels:
   static const weHelpYouMakeBestTripImage3 = "assets/images/Rectangle 9898.png";
 
   //text names
+  static String token = "access_token";
+  static String refreshToken = 'refreshToken';
+  static String id = "id";
+  static String expiresIn = "  expires_in";
   static const searchTextFieldHintText = "Search by activities...";
   static const textButtonNameOfHomeScreen = "View all";
   static const categoriesTitle = "Categories";
@@ -376,7 +380,8 @@ Official Channels:
   static const reviewTextFieldName = "Your Name";
   static const reviewTextFieldEmail = "Your Email";
   static const reviewActionButtonName = "Send";
-  static const copyRight = "Copyright ©2024. All Rights Reserved. — by Rehlatyuai";
+  static const copyRight =
+      "Copyright ©2024. All Rights Reserved. — by Rehlatyuai";
   static const allTripsTitle = "All Trip";
   static const allCategoriesTitle = "All Categories";
 
@@ -418,11 +423,13 @@ Official Channels:
   static const editProfile = "Edit Profile";
   static const save = "Save";
   static const forgotPassword = "Forgot Password?";
-  static const enterYourInformation = "Enter your information's below or login with a other account";
+  static const enterYourInformation =
+      "Enter your information's below or login with a other account";
   static const tryAnotherWay = "Try another way";
   static const send = "Send";
   static const verification = "Verification";
-  static const checkYourEmail = "Check your email. We’ve sent you the PIN at your email.";
+  static const checkYourEmail =
+      "Check your email. We’ve sent you the PIN at your email.";
   static const didYouReceive = "Did you receive any code?";
   static const verify = "Verify";
   static const updatePassword = "Update Password";

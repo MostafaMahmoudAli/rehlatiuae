@@ -1,7 +1,6 @@
 class EndPoints {
-  static String baseUrl = "https://rehlatiuae.com/api/v1/";
+  static const baseUrl = "https://rehlatiuae.com/api/v1/";
   static String bestOffersEndPoint = "home/bestOffers";
-  static String login = "client/login";
 
 
   // Profile Feature EndPoints
@@ -13,4 +12,7 @@ class EndPoints {
   static String forgetPasswordEndPoint = "client/forgetPassword";
   static String verificationEmailEndPoint = "client/password/reset";
   static String resetPasswordEndPoint = "client/confirm";
+  static const String login = "client/login";
+  static const String register = "client/register";
+
 }

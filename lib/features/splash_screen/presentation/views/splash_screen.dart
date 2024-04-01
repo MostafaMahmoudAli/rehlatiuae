@@ -16,16 +16,10 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   bool selected = false;
 
-  // late Animation<double> _animation;
-  // late AnimationController _animationController ;
 
   @override
   void initState() {
     super.initState();
-    // _animationController=AnimationController(
-    //   vsync: this ,duration: Duration(seconds: 2));
-    // _animation = Tween<double>(begin: 0,end: 1).animate(_animationController);
-
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     Future.delayed(const Duration(seconds: 5), () {
       GoRouter.of(context).go(AppStrings.onboarding);
@@ -53,7 +47,10 @@ class _SplashScreenState extends State<SplashScreen>
             SizedBox(
               height: 750.h,
               child: Center(
-                child: SvgPicture.asset("assets/images/main_logo.svg"),
+                child: AnimatedSize(
+                  curve: Curves.easeIn,
+                  duration:const Duration(seconds: 4),
+                child: SvgPicture.asset("assets/images/main_logo.svg")),
               ),
             )
           ],

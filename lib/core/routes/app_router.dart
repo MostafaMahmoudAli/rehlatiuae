@@ -2,11 +2,6 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/all_trips_screen.dart';
-import 'package:rehlatyuae/features/auth/presentation/views/forget_password_screen.dart';
-import 'package:rehlatyuae/features/auth/presentation/views/login_screen.dart';
-import 'package:rehlatyuae/features/auth/presentation/views/register_screen.dart';
-import 'package:rehlatyuae/features/auth/presentation/views/update_password_screen.dart';
-import 'package:rehlatyuae/features/auth/presentation/views/verification_screen.dart';
 import 'package:rehlatyuae/features/best_offers/presentation/views/best_offers_screen.dart';
 import 'package:rehlatyuae/features/best_trips/presentation/views/best_trips_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/about_us_screen.dart';
@@ -99,7 +94,8 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppStrings.editProfileScreen,
-        builder: (context, state) => EditProfileScreen(client: state.extra! as Client),
+        builder: (context, state) =>
+            EditProfileScreen(client: state.extra! as Client),
       ),
       GoRoute(
         path: AppStrings.travelDetailsScreen,
@@ -119,26 +115,7 @@ abstract class AppRouter {
         path: AppStrings.onboarding,
         builder: (context, state) => const OnBoarding(),
       ),
-      GoRoute(
-        path: AppStrings.loginScreen,
-        builder: (context, state) => const LoginScreen(),
-      ),
-      GoRoute(
-        path: AppStrings.registerScreen,
-        builder: (context, state) => const RegisterScreen(),
-      ),
-      GoRoute(
-        path: AppStrings.forgetPasswordScreen,
-        builder: (context, state) => const ForgetPasswordScreen(),
-      ),
-      GoRoute(
-        path: AppStrings.verificationScreen,
-        builder: (context, state) => VerificationScreen(email: state.extra as String),
-      ),
-      GoRoute(
-        path: AppStrings.updatePasswordScreen,
-        builder: (context, state) => UpdatePasswordScreen(token: state.extra as String),
-      ),
+  
       // GoRoute(
       //   path: "/register",
       //   builder: (context, state) => const Register(),
