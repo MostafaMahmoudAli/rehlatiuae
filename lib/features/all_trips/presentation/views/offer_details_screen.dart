@@ -8,6 +8,7 @@ import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class OfferDetailsScreen extends StatefulWidget {
   final Trips? trip;
@@ -31,6 +32,9 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
             price: widget.trip!.adultPrice.toString(),
             imagePath: widget.trip!.imagePath!,
             isOffer: true,
+            onLikePressed: () async {
+              await getIt<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 8);
+            },
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),

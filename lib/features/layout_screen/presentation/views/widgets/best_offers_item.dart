@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 import '../../../../best_offers/data/models/best_offers_model.dart';
 
@@ -14,8 +16,9 @@ class BestOffersItem extends StatelessWidget {
   });
 
   final double width;
-  final BestOffers?bestOffers;
-  final int ?review;
+  final BestOffers? bestOffers;
+  final int? review;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +62,9 @@ class BestOffersItem extends StatelessWidget {
                   top: 6,
                   right: 10,
                   child: IconButtonWithWhiteBackground(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await getIt<MainCubit>().addToFavourite(tripId: bestOffers!.id);
+                    },
                     width: 25.0.w,
                     height: 30.0.h,
                     icon: Icon(
@@ -80,7 +85,7 @@ class BestOffersItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                bestOffers?.name ??  "IMG Worlds of Adventure",
+                  bestOffers?.name ?? "IMG Worlds of Adventure",
                   maxLines: 1,
                   style: Theme.of(context).textTheme.bodyMedium,
                   textAlign: TextAlign.justify,
@@ -97,9 +102,9 @@ class BestOffersItem extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        bestOffers?.address ??  "Dubai, United Arab Emirates",
+                        bestOffers?.address ?? "Dubai, United Arab Emirates",
                         style: Theme.of(context).textTheme.titleMedium,
-                       overflow:TextOverflow.ellipsis,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
@@ -116,61 +121,65 @@ class BestOffersItem extends StatelessWidget {
                 SizedBox(
                   height: 5.0.w,
                 ),
-                if((bestOffers?.beforePrice!=null|| bestOffers?.saving!=null))
-                Row(
-                  children: [
-                    Text(
-                      "\$${bestOffers?.beforePrice}" ,
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith( color: AppColors.black,),
-                    ),
-                    Container(
-                      width:65.0.w,
-                      height:20.0.h,
-                      margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-                      padding: EdgeInsetsDirectional.symmetric(horizontal:6.0.w,vertical: 1.3.h),
-                      decoration:BoxDecoration(
-                        color:AppColors.green,
-                        borderRadius:BorderRadius.circular(8.0.r),
+                if ((bestOffers?.beforePrice != null || bestOffers?.saving != null))
+                  Row(
+                    children: [
+                      Text(
+                        "\$${bestOffers?.beforePrice}",
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              color: AppColors.black,
+                            ),
                       ),
-                      child: Text(
-                        " Save ${bestOffers?.saving}%",
-                        style: Theme.of(context).textTheme.bodySmall,
+                      Container(
+                        width: 65.0.w,
+                        height: 20.0.h,
+                        margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                        padding: EdgeInsetsDirectional.symmetric(horizontal: 6.0.w, vertical: 1.3.h),
+                        decoration: BoxDecoration(
+                          color: AppColors.green,
+                          borderRadius: BorderRadius.circular(8.0.r),
+                        ),
+                        child: Text(
+                          " Save ${bestOffers?.saving}%",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 SizedBox(
                   height: 5.0.w,
                 ),
                 Row(
                   children: [
                     Text(
-                      "\$${bestOffers?.adultPrice.toString()}" ,
+                      "\$${bestOffers?.adultPrice.toString()}",
                       style: Theme.of(context).textTheme.titleSmall,
                       textAlign: TextAlign.justify,
                     ),
-                    SizedBox(width: 5.0.w,),
+                    SizedBox(
+                      width: 5.0.w,
+                    ),
                     Text(
-                       "/Person",
+                      "/Person",
                       style: Theme.of(context).textTheme.headlineSmall,
                       textAlign: TextAlign.justify,
                     ),
                     const Spacer(),
-                    if(review != null)
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star_border_outlined,
-                          color: AppColors.textAndBackgroundColorButton,
-                          size: 16.0.sp,
-                        ),
-                        Text(
-                         review.toString(),
-                          style: Theme.of(context).textTheme.titleSmall,
-                          textAlign: TextAlign.justify,
-                        ),
-                      ],
-                    ),
+                    if (review != null)
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.star_border_outlined,
+                            color: AppColors.textAndBackgroundColorButton,
+                            size: 16.0.sp,
+                          ),
+                          Text(
+                            review.toString(),
+                            style: Theme.of(context).textTheme.titleSmall,
+                            textAlign: TextAlign.justify,
+                          ),
+                        ],
+                      ),
                   ],
                 ),
               ],

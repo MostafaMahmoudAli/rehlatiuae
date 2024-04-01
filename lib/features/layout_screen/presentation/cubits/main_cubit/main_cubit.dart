@@ -29,6 +29,10 @@ class MainCubit extends Cubit<MainState> {
     );
   }
 
+  Future<void> addToFavourite({required int tripId}) async {
+    await mainRepo.addToFavourite(tripId: tripId);
+  }
+
   void _update(MainState state) {
     if (!isClosed) {
       emit(state);

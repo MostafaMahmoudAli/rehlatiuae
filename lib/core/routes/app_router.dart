@@ -13,6 +13,7 @@ import 'package:rehlatyuae/features/auth/presentation/views/update_password_scre
 import 'package:rehlatyuae/features/auth/presentation/views/verification_screen.dart';
 import 'package:rehlatyuae/features/best_offers/presentation/views/best_offers_screen.dart';
 import 'package:rehlatyuae/features/best_trips/presentation/views/best_trips_screen.dart';
+import 'package:rehlatyuae/features/favourites/presentation/views/favouries_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/about_us_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/faq_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/privacy_policy_screen.dart';
@@ -158,14 +159,10 @@ class AppRouter {
           path: AppStrings.updatePasswordScreen,
           builder: (context, state) => UpdatePasswordScreen(token: state.extra as String),
         ),
-        // GoRoute(
-        //   path: "/register",
-        //   builder: (context, state) => const Register(),
-        // ),
-        // GoRoute(
-        //   path: "/login",
-        //   builder: (context, state) => const Login(),
-        // ),
+        GoRoute(
+          path: AppStrings.favouritesScreen,
+          builder: (context, state) => FavouritesScreen(),
+        ),
       ],
       initialLocation: initialLocation,
     );

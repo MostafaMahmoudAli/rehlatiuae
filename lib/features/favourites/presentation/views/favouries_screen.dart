@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/favourites/presentation/views/widgets/favourites_body.dart';
 import 'package:rehlatyuae/features/favourites/presentation/views/widgets/favourites_bottom_section.dart';
+
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/custom_circle_avatar.dart';
 import '../../../../core/utils/custom_sized_box.dart';
 import '../../../layout_screen/presentation/views/custom_drawer.dart';
 import '../../../layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
 
 class FavouritesScreen extends StatelessWidget {
-   FavouritesScreen({super.key});
+  FavouritesScreen({super.key});
+
   final ScrollController scrollFavouritesController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +46,12 @@ class FavouritesScreen extends StatelessWidget {
             children: [
               const CustomSizedBox(),
               const Text(
-                AppStrings.categoryNameTitle,
+                "My Favorite",
               ),
               const CustomSizedBox(),
-              FavouritesBody(favouritesScrollController: scrollFavouritesController,),
+              FavouritesBody(
+                favouritesScrollController: scrollFavouritesController,
+              ),
               const CustomSizedBox(),
               const FavouritesBottomSection(),
             ],

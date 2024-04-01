@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/my_booking_content_sheet.dart';
@@ -51,6 +53,18 @@ class HelpDrawerSection extends StatelessWidget {
                 contentSheet: MyBookingContentSheet(),
               ),
             );
+          },
+        ),
+        DrawerItem(
+          title: 'My Favorite',
+          iconPath: AppAssets.myBooking,
+          trailing: const [
+            Icon(
+              Icons.arrow_forward_ios_sharp,
+            ),
+          ],
+          onTap: () {
+            context.push(AppStrings.favouritesScreen);
           },
         ),
         DrawerItem(

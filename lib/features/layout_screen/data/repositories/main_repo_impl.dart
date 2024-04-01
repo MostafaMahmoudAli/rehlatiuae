@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
+import 'package:rehlatyuae/core/api/end_points.dart';
+import 'package:rehlatyuae/core/errors/exceptions.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
@@ -27,6 +29,21 @@ class MainRepoImpl implements MainRepo {
       return Right(client);
     } catch (error) {
       return Left(error.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> addToFavourite({required int tripId}) async {
+    try {
+      await apiConsumer.post(
+        EndPoints.favoriteTrip,
+        data: {
+          'trip_id': tripId,
+        },
+      );
+      return const Right(unit);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
     }
   }
 }

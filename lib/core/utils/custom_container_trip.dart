@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+
 class CustomContainerTrip extends StatelessWidget {
   const CustomContainerTrip({
     super.key,
@@ -13,16 +16,19 @@ class CustomContainerTrip extends StatelessWidget {
     this.reservationType,
     this.oldTripPrice,
     this.percentageSave,
+    this.tripId,
   });
 
   final double width;
-  final String?imageName;
-  final String?cityName;
-  final String?countryName;
-  final String?tripPrice;
-  final String?reservationType;
-  final String?oldTripPrice;
-  final String?percentageSave ;
+  final String? imageName;
+  final String? cityName;
+  final String? countryName;
+  final String? tripPrice;
+  final String? reservationType;
+  final String? oldTripPrice;
+  final String? percentageSave;
+
+  final int? tripId;
 
   @override
   Widget build(BuildContext context) {
@@ -39,44 +45,46 @@ class CustomContainerTrip extends StatelessWidget {
               borderRadius: BorderRadiusDirectional.circular(15.0.r),
             ),
             child: Image.network(
-              imageName ??"",
+              imageName ?? "",
               fit: BoxFit.cover,
             ),
           ),
-          if((oldTripPrice!=null || percentageSave!=null)&&percentageSave!.isNotEmpty)
-          Positioned(
-            top: 20,
-            left: 18,
-            child:  Row(
-              children: [
-                Text(
-                  "\$${oldTripPrice.toString()}",
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                Container(
-                  width:65.0.w,
-                  height:20.0.h,
-                  margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-                  padding: EdgeInsetsDirectional.symmetric(horizontal:6.0.w,vertical: 1.3.h),
-                  decoration:BoxDecoration(
-                    color:AppColors.green,
-                    borderRadius:BorderRadius.circular(8.0.r),
+          if ((oldTripPrice != null || percentageSave != null) && percentageSave!.isNotEmpty)
+            Positioned(
+              top: 20,
+              left: 18,
+              child: Row(
+                children: [
+                  Text(
+                    "\$${oldTripPrice.toString()}",
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  child: Text(
-                   "save $percentageSave%",
-                    style: Theme.of(context).textTheme.bodySmall,
+                  Container(
+                    width: 65.0.w,
+                    height: 20.0.h,
+                    margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                    padding: EdgeInsetsDirectional.symmetric(horizontal: 6.0.w, vertical: 1.3.h),
+                    decoration: BoxDecoration(
+                      color: AppColors.green,
+                      borderRadius: BorderRadius.circular(8.0.r),
+                    ),
+                    child: Text(
+                      "save $percentageSave%",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
           Positioned(
             top: 10,
             right: 18,
             child: CustomIconButton(
               icon: Icons.favorite_outline_outlined,
               iconColor: AppColors.redAppColor,
-              onPressed: () {},
+              onPressed: () async {
+                await getIt<MainCubit>().addToFavourite(tripId: tripId ?? 8);
+              },
               size: 35.0.w,
             ),
           ),
@@ -87,11 +95,11 @@ class CustomContainerTrip extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width:160.0.w,
+                  width: 160.0.w,
                   child: Text(
-                    cityName??"",
+                    cityName ?? "",
                     style: Theme.of(context).textTheme.displayMedium,
-                    overflow:TextOverflow.ellipsis,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 SizedBox(
@@ -109,10 +117,13 @@ class CustomContainerTrip extends StatelessWidget {
                       width: 1.0.w,
                     ),
                     SizedBox(
-                      width:100.0.w,
+                      width: 100.0.w,
                       child: Text(
-                        countryName??"",
-                        style:Theme.of(context).textTheme.displaySmall?.copyWith(color:AppColors.textAndBackgroundColorButton),
+                        countryName ?? "",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(color: AppColors.textAndBackgroundColorButton),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -121,27 +132,27 @@ class CustomContainerTrip extends StatelessWidget {
               ],
             ),
           ),
-          if((tripPrice!=null || reservationType!=null)&&(tripPrice!.isNotEmpty&&reservationType!.isNotEmpty))
-          Positioned(
-            bottom: 73,
-            right: 10,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  tripPrice ?? "",
-                  style:Theme.of(context).textTheme.displaySmall,
-                ),
-                SizedBox(
-                  height: 4.0.h,
-                ),
-                Text(
-                  reservationType ?? "",
-                  style:Theme.of(context).textTheme.displaySmall,
-                ),
-              ],
+          if ((tripPrice != null || reservationType != null) && (tripPrice!.isNotEmpty && reservationType!.isNotEmpty))
+            Positioned(
+              bottom: 73,
+              right: 10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    tripPrice ?? "",
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                  SizedBox(
+                    height: 4.0.h,
+                  ),
+                  Text(
+                    reservationType ?? "",
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                ],
+              ),
             ),
-          ),
         ],
       ),
     );
