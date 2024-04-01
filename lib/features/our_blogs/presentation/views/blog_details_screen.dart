@@ -62,7 +62,11 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
               height: 50.h,
             ),
           ),
-          RatingsReviewsSection(reviews: widget.blogs.blogReview),
+          RatingsReviewsSection(
+            reviews: widget.blogs.blogReview,
+            id: widget.blogs.id,
+            isTrip: false,
+          ),
           const ExperiencesSections(),
         ],
       ),

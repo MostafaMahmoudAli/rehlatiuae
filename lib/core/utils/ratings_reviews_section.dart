@@ -10,10 +10,12 @@ import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit
 class RatingsReviewsSection extends StatelessWidget {
   final List<Review>? reviews;
   final int? id;
+  final bool isTrip;
 
   const RatingsReviewsSection({
     this.reviews,
     this.id,
+    this.isTrip = true,
     super.key,
   });
 
@@ -25,7 +27,11 @@ class RatingsReviewsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ChartRatingSection(),
-          if (context.read<MainCubit>().client != null) ReviewOperationSection(id: id ?? 0),
+          if (context.read<MainCubit>().client != null)
+            ReviewOperationSection(
+              id: id ?? 0,
+              isTrip: isTrip,
+            ),
           ...List.generate(
             reviews!.length,
             (index) => CommentCard(

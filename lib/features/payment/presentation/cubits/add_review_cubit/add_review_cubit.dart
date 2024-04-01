@@ -20,7 +20,11 @@ class AddReviewCubit extends Cubit<AddReviewState> {
   int ratingNumber = 1;
   XFile? pickedImage;
 
-  Future<void> addReview({required int id, required String name}) async {
+  Future<void> addReview({
+    required int id,
+    required String name,
+    required bool isTrip,
+  }) async {
     _update(const AddReviewState.loading());
     final results = await layoutRepository.addReview(
       reviewRequest: ReviewRequest(
@@ -31,6 +35,7 @@ class AddReviewCubit extends Cubit<AddReviewState> {
         imagePath: '',
       ),
       image: pickedImage != null ? File(pickedImage!.path) : null,
+      isTrip: isTrip,
     );
     results.fold(
       (error) => _update(AddReviewState.error(error)),

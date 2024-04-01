@@ -11,8 +11,6 @@ import 'package:rehlatyuae/features/layout_screen/domain/repositories/layout_rep
 
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
-import '../../domain/repositories/layout_repo.dart';
-
 
 class LayoutRepoImpl implements LayoutRepository {
   final ApiConsumer apiConsumer;
@@ -22,20 +20,18 @@ class LayoutRepoImpl implements LayoutRepository {
   });
 
   @override
-  Future<Either<String, LayOutModel>> fetchLayoutData() async
-  {
-      try {
-        var layoutData = await apiConsumer.get(
-          EndPoints.layoutEndPoint,
-        );
+  Future<Either<String, LayOutModel>> fetchLayoutData() async {
+    try {
+      var layoutData = await apiConsumer.get(
+        EndPoints.layoutEndPoint,
+      );
 
-        var layoutModel = LayOutModel.fromJson(layoutData["data"]);
-        return right(layoutModel);
-      }on ServerExceptions catch (error)
-      {
-        return Left(error.errorModel.message);
-      }
+      var layoutModel = LayOutModel.fromJson(layoutData["data"]);
+      return right(layoutModel);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
     }
+  }
 
   @override
   Future<Either<String, Unit>> sendMessage({required Message message}) async {
@@ -51,7 +47,11 @@ class LayoutRepoImpl implements LayoutRepository {
   }
 
   @override
-  Future<Either<String, Review>> addReview({required ReviewRequest reviewRequest, required File? image}) async {
+  Future<Either<String, Review>> addReview({
+    required ReviewRequest reviewRequest,
+    required File? image,
+    required bool isTrip,
+  }) async {
     try {
       Map<String, dynamic> map = reviewRequest.toJson();
       if (image != null) {
@@ -62,8 +62,11 @@ class LayoutRepoImpl implements LayoutRepository {
       } else {
         map.remove('image_path');
       }
+      if (!isTrip) {
+        map['blog_id'] = map['trip_id'];
+      }
       var response = await apiConsumer.post(
-        EndPoints.addReview,
+        isTrip ? EndPoints.addReview : EndPoints.addReviewBlog,
         data: map,
         isForm: true,
       );
@@ -73,4 +76,4 @@ class LayoutRepoImpl implements LayoutRepository {
       return Left(error.errorModel.message);
     }
   }
-  }
+}

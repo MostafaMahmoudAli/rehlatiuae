@@ -19,8 +19,13 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit
 
 class ReviewOperationSection extends StatefulWidget {
   final int id;
+  final bool isTrip;
 
-  const ReviewOperationSection({super.key, required this.id});
+  const ReviewOperationSection({
+    super.key,
+    required this.id,
+    this.isTrip = true,
+  });
 
   @override
   State<ReviewOperationSection> createState() => _ReviewOperationSectionState();
@@ -173,6 +178,7 @@ class _ReviewOperationSectionState extends State<ReviewOperationSection> {
                             await cubit.addReview(
                               id: widget.id,
                               name: context.read<MainCubit>().client!.name,
+                              isTrip: widget.isTrip,
                             );
                           } else {
                             context.push(AppStrings.loginScreen);

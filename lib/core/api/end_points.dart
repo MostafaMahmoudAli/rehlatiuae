@@ -29,4 +29,5 @@ class EndPoints {
 
   // Review trip
   static String addReview = "client/addReview";
+  static String addReviewBlog = "client/addReviewBlog";
 }
