@@ -6,6 +6,9 @@ import 'package:rehlatyuae/core/api/dio_consumer.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:rehlatyuae/features/best_offers/data/repositories/best_offers_repo_impl.dart';
+import 'package:rehlatyuae/features/favourites/data/repositories/favourites_repo_impl.dart';
+import 'package:rehlatyuae/features/favourites/domain/repositories/favourites_repo.dart';
+import 'package:rehlatyuae/features/favourites/presentation/cubits/get_favourite_trips_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/data/repositories/main_repo_impl.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
@@ -157,6 +160,17 @@ Future<void> setupInjector() async {
 
   // cubits
   getIt.registerFactory(() => MainCubit(mainRepo: getIt()));
+
+  /// Favorite Feature
+  // repositories objects
+  getIt.registerLazySingleton<FavouritesRepo>(
+    () => FavouritesRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+    ),
+  );
+
+  // cubits
+  getIt.registerFactory(() => GetFavouriteTripsCubit(favouritesRepo: getIt()));
 
   /// Auth Feature
   // repositories objects

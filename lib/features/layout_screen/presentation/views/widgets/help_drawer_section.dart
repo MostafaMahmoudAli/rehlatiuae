@@ -57,7 +57,7 @@ class HelpDrawerSection extends StatelessWidget {
         ),
         DrawerItem(
           title: 'My Favorite',
-          iconPath: AppAssets.myBooking,
+          iconPath: AppAssets.favorite,
           trailing: const [
             Icon(
               Icons.arrow_forward_ios_sharp,

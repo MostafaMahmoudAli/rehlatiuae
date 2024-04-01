@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rehlatyuae/core/utils/app_colors.dart';
 
 class DrawerItem extends StatelessWidget {
   final String title;
@@ -29,7 +30,10 @@ class DrawerItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SvgPicture.asset(iconPath),
+                    SvgPicture.asset(
+                      iconPath,
+                      color: AppColors.black,
+                    ),
                     SizedBox(
                       width: 10.w,
                     ),

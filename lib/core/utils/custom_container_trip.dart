@@ -17,6 +17,7 @@ class CustomContainerTrip extends StatelessWidget {
     this.oldTripPrice,
     this.percentageSave,
     this.tripId,
+    this.isFavorite = false,
   });
 
   final double width;
@@ -27,6 +28,7 @@ class CustomContainerTrip extends StatelessWidget {
   final String? reservationType;
   final String? oldTripPrice;
   final String? percentageSave;
+  final bool? isFavorite;
 
   final int? tripId;
 
@@ -80,7 +82,7 @@ class CustomContainerTrip extends StatelessWidget {
             top: 10,
             right: 18,
             child: CustomIconButton(
-              icon: Icons.favorite_outline_outlined,
+              icon: isFavorite! ? Icons.favorite : Icons.favorite_outline_outlined,
               iconColor: AppColors.redAppColor,
               onPressed: () async {
                 await getIt<MainCubit>().addToFavourite(tripId: tripId ?? 8);

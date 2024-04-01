@@ -33,4 +33,5 @@ class EndPoints {
   static String addReviewBlog = "client/addReviewBlog";
 
   static String favoriteTrip = "client/favoriteTrip";
+  static String myFavoriteTrip = "client/myFavoriteTrip";
 }
