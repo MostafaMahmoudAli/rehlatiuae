@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_request_model/review_request_model.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/layout_repo.dart';
@@ -17,19 +18,19 @@ class AddReviewCubit extends Cubit<AddReviewState> {
 
   final TextEditingController descriptionEditingController = TextEditingController();
   int ratingNumber = 1;
-  File? image;
+  XFile? pickedImage;
 
-  Future<void> addReview() async {
+  Future<void> addReview({required int id, required String name}) async {
     _update(const AddReviewState.loading());
     final results = await layoutRepository.addReview(
       reviewRequest: ReviewRequest(
-        tripId: 1,
-        name: 'name',
+        tripId: id,
+        name: name,
         description: descriptionEditingController.text,
         starsNumbers: ratingNumber,
         imagePath: '',
       ),
-      image: image,
+      image: pickedImage != null ? File(pickedImage!.path) : null,
     );
     results.fold(
       (error) => _update(AddReviewState.error(error)),

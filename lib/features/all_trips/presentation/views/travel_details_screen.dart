@@ -57,7 +57,10 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             ),
           ),
           PreviewTravelsSection(images: widget.trip!.images),
-          RatingsReviewsSection(reviews: widget.trip!.reviews),
+          RatingsReviewsSection(
+            reviews: widget.trip!.reviews,
+            id: widget.trip!.id,
+          ),
           const ExperiencesSections(),
         ],
       ),
