@@ -316,7 +316,8 @@ abstract class _Loading implements UpdatePasswordState {
 
 /// @nodoc
 abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(_$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AuthenticatedClient authenticatedClient});
@@ -325,9 +326,12 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res> extends _$UpdatePasswordStateCopyWithImpl<$Res, _$SuccessImpl>
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$UpdatePasswordStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(_$SuccessImpl _value, $Res Function(_$SuccessImpl) _then) : super(_value, _then);
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -345,7 +349,8 @@ class __$$SuccessImplCopyWithImpl<$Res> extends _$UpdatePasswordStateCopyWithImp
   @override
   @pragma('vm:prefer-inline')
   $AuthenticatedClientCopyWith<$Res> get authenticatedClient {
-    return $AuthenticatedClientCopyWith<$Res>(_value.authenticatedClient, (value) {
+    return $AuthenticatedClientCopyWith<$Res>(_value.authenticatedClient,
+        (value) {
       return _then(_value.copyWith(authenticatedClient: value));
     });
   }
@@ -379,7 +384,8 @@ class _$SuccessImpl implements _Success {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith => __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -457,11 +463,13 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements UpdatePasswordState {
-  const factory _Success(final AuthenticatedClient authenticatedClient) = _$SuccessImpl;
+  const factory _Success(final AuthenticatedClient authenticatedClient) =
+      _$SuccessImpl;
 
   AuthenticatedClient get authenticatedClient;
   @JsonKey(ignore: true)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

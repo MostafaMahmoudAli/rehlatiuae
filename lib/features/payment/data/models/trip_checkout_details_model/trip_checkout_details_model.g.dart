@@ -6,7 +6,9 @@ part of 'trip_checkout_details_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TripCheckoutDetailsImpl _$$TripCheckoutDetailsImplFromJson(Map<String, dynamic> json) => _$TripCheckoutDetailsImpl(
+_$TripCheckoutDetailsImpl _$$TripCheckoutDetailsImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TripCheckoutDetailsImpl(
       tripId: json['trip_id'] as int,
       subtotalAdult: (json['subtotal_old'] as num).toDouble(),
       quantityAdult: json['quantity_old'] as int,
@@ -20,7 +22,9 @@ _$TripCheckoutDetailsImpl _$$TripCheckoutDetailsImplFromJson(Map<String, dynamic
       description: json['description'] as String,
     );
 
-Map<String, dynamic> _$$TripCheckoutDetailsImplToJson(_$TripCheckoutDetailsImpl instance) => <String, dynamic>{
+Map<String, dynamic> _$$TripCheckoutDetailsImplToJson(
+        _$TripCheckoutDetailsImpl instance) =>
+    <String, dynamic>{
       'trip_id': instance.tripId,
       'subtotal_old': instance.subtotalAdult,
       'quantity_old': instance.quantityAdult,

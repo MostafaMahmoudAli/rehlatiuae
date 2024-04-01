@@ -50,8 +50,8 @@ class CustomContainerTrip extends StatelessWidget {
             child:  Row(
               children: [
                 Text(
-                  oldTripPrice.toString(),
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold,),
+                  "\$${oldTripPrice.toString()}",
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 Container(
                   width:65.0.w,
@@ -63,7 +63,7 @@ class CustomContainerTrip extends StatelessWidget {
                     borderRadius:BorderRadius.circular(8.0.r),
                   ),
                   child: Text(
-                    percentageSave ?? "",
+                   "save $percentageSave%",
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
@@ -86,9 +86,13 @@ class CustomContainerTrip extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  cityName??"",
-                  style: Theme.of(context).textTheme.displayMedium,
+                SizedBox(
+                  width:160.0.w,
+                  child: Text(
+                    cityName??"",
+                    style: Theme.of(context).textTheme.displayMedium,
+                    overflow:TextOverflow.ellipsis,
+                  ),
                 ),
                 SizedBox(
                   height: 5.0.h,
@@ -98,16 +102,19 @@ class CustomContainerTrip extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.location_on_sharp,
-                      color: AppColors.whiteAppColor,
+                      color: AppColors.textAndBackgroundColorButton,
                       size: 14.0.sp,
                     ),
                     SizedBox(
                       width: 1.0.w,
                     ),
-                    Text(
-                      cityName??"",
-                      style:Theme.of(context).textTheme.displaySmall,
-                      overflow: TextOverflow.ellipsis,
+                    SizedBox(
+                      width:100.0.w,
+                      child: Text(
+                        countryName??"",
+                        style:Theme.of(context).textTheme.displaySmall?.copyWith(color:AppColors.textAndBackgroundColorButton),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),

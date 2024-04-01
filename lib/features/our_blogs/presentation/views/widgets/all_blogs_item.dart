@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 
@@ -99,18 +100,26 @@ class AllBlogsItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  name ?? "",
-                  style: Theme.of(context).textTheme.displayMedium,
+                SizedBox(
+                  width: 120.0.w,
+                  child: Text(
+                    name ?? "",
+                    style: Theme.of(context).textTheme.displayMedium,
+                    overflow:TextOverflow.ellipsis,
+                  ),
                 ),
                 SizedBox(
                   height: 6.0.h,
                 ),
-                Text(
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                   description ?? "",
-                    style: Theme.of(context).textTheme.displaySmall),
+                SizedBox(
+                  width:115.0.w,
+                  child: Text(
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                     description ?? "",
+                      style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                ),
               ],
             ),
           ),

@@ -33,6 +33,7 @@ class BestOffersScreen extends StatelessWidget {
               radius: 40.0.r,
               backgroundImage: const AssetImage(
                 "assets/images/Ellipse 1.png",
+
               ),
             ),
           ),

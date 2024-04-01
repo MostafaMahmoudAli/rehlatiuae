@@ -19,10 +19,11 @@ class PopularExperiencesContainerItem extends StatelessWidget {
   final double width;
   final String? oldTripPrice;
   final String? percentageSave;
-  final PopularExperiences? popularExperiences;
+  final PopularExperiences?popularExperiences;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return InkWell(
       onTap: () {
         context.push(AppStrings.travelDetailsScreen, extra: popularExperiences);
@@ -40,29 +41,28 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
                 image: DecorationImage(
                   image: NetworkImage(
-                    popularExperiences?.imagePath ?? "",
+                  popularExperiences?.imagePath ?? "",
                   ),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             if ((oldTripPrice != null || percentageSave != null) &&
-                (percentageSave!.isNotEmpty || oldTripPrice!.isNotEmpty))
+               ( percentageSave!.isNotEmpty||oldTripPrice!.isNotEmpty))
               Positioned(
                 top: 16,
                 left: 6,
                 child: Row(
                   children: [
                     Text(
-                      oldTripPrice ?? "",
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      "\$$oldTripPrice",
+                      style: Theme.of(context).textTheme.headlineMedium!,
                     ),
                     Container(
-                      width: 62.0.w,
+                      width: 60.0.w,
                       height: 20.0.h,
-                      margin: EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
+                      margin:
+                          EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
                       padding: EdgeInsetsDirectional.symmetric(
                         horizontal: 4.0.w,
                         vertical: 1.3.h,
@@ -72,7 +72,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
-                        " $percentageSave% saved",
+                       " save $percentageSave% ",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
@@ -99,9 +99,13 @@ class PopularExperiencesContainerItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    popularExperiences?.name ?? "",
-                    style: Theme.of(context).textTheme.displayMedium,
+                  SizedBox(
+                    width: 120.0.w,
+                    child: Text(
+                      popularExperiences?.name ?? "",
+                      style: Theme.of(context).textTheme.displayMedium,
+                      overflow:TextOverflow.ellipsis,
+                    ),
                   ),
                   SizedBox(
                     height: 5.0.h,
@@ -111,16 +115,19 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.location_on_sharp,
-                        color: AppColors.whiteAppColor,
+                        color: AppColors.textAndBackgroundColorButton,
                         size: 14.0.sp,
                       ),
                       SizedBox(
                         width: 2.0.w,
                       ),
-                      Text(
-                        popularExperiences?.address ?? "",
-                        style: Theme.of(context).textTheme.bodySmall,
-                        overflow: TextOverflow.ellipsis,
+                      SizedBox(
+                        width: 120.0.w,
+                        child: Text(
+                          popularExperiences?.address ?? "",
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color:AppColors.textAndBackgroundColorButton),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
                   ),
@@ -128,8 +135,8 @@ class PopularExperiencesContainerItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 40,
-              right: 8,
+              bottom: MediaQuery.sizeOf(context).height*0.075,
+              right: MediaQuery.sizeOf(context).width*0.02,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -142,7 +149,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                   ),
                   Text(
                     "/Person",
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight:FontWeight.bold),
                   ),
                 ],
               ),

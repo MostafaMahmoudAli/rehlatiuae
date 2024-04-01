@@ -139,7 +139,7 @@ class BestOffersHorizontalItem extends StatelessWidget {
                   children: [
                     Text(
                       "100",
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     Container(
                       width: 65.0.w,
