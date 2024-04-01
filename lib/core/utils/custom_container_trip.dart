@@ -87,7 +87,7 @@ class CustomContainerTrip extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width:160.0.w,
+                  width:120.0.w,
                   child: Text(
                     cityName??"",
                     style: Theme.of(context).textTheme.displayMedium,
@@ -129,7 +129,7 @@ class CustomContainerTrip extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  tripPrice ?? "",
+                 "\$$tripPrice ",
                   style:Theme.of(context).textTheme.displaySmall,
                 ),
                 SizedBox(

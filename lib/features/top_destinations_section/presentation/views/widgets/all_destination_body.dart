@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_container_trip.dart';
 import '../../../../../core/utils/error_widget.dart';
 import '../../../../../core/utils/whats_up_botton.dart';
@@ -56,11 +57,17 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
                     crossAxisSpacing: 10.0.w,
                     mainAxisSpacing: 1.0.w,
                   ),
-                  itemBuilder: (context, index) => CustomContainerTrip(
-                    width: 140.0.w,
-                    cityName: state.allDestination[index].name,
-                    countryName:state.allDestination[index].country,
-                    imageName: state.allDestination[index].imagePath ?? "",
+                  itemBuilder: (context, index) => InkWell(
+                    onTap:()
+                    {
+                      context.push(AppStrings.cityDestinationScreen,extra: state.allDestination[index].id,);
+                    },
+                    child: CustomContainerTrip(
+                      width: 140.0.w,
+                      cityName: state.allDestination[index].name,
+                      countryName:state.allDestination[index].country,
+                      imageName: state.allDestination[index].imagePath ?? "",
+                    ),
                   ),
                   itemCount: state.allDestination.length,
                   shrinkWrap: true,

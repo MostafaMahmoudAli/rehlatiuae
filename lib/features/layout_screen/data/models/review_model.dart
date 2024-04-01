@@ -12,6 +12,8 @@ class Review with _$Review {
     final int? starsNumber,
     final String? description,
     final String? imagePath,
+    @JsonKey(name:"created_at")
+    final String? createdAt,
     final Client? client,
   }) = _Review;
 

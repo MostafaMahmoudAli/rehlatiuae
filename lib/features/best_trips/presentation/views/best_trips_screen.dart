@@ -5,7 +5,6 @@ import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
-import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/all_trips_body.dart';
 import 'package:rehlatyuae/features/best_trips/presentation/views/widgets/best_trips_body.dart';
 import 'package:rehlatyuae/features/best_trips/presentation/views/widgets/best_trips_bottom_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';

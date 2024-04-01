@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 
-import '../../../../best_offers/data/models/best_offers_model.dart';
+import '../../../../all_trips/data/models/trips_model.dart';
+
 
 class BestOffersItem extends StatelessWidget {
   const BestOffersItem({
@@ -14,8 +15,8 @@ class BestOffersItem extends StatelessWidget {
   });
 
   final double width;
-  final BestOffers?bestOffers;
-  final int ?review;
+  final Trips?bestOffers;
+  final double ?review;
   @override
   Widget build(BuildContext context) {
     return Container(

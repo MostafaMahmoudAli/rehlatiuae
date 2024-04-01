@@ -1,10 +1,8 @@
 import 'package:dartz/dartz.dart';
-
-import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
-
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
+import '../../../all_trips/data/models/trips_model.dart';
 import '../../domain/repositories/popular_experiences_repo.dart';
 
 class PopularExperiencesRepoImpl implements PopularExperiencesRepo {
@@ -13,7 +11,7 @@ class PopularExperiencesRepoImpl implements PopularExperiencesRepo {
   PopularExperiencesRepoImpl({required this.apiConsumer});
 
   @override
-  Future<Either<String, List<PopularExperiences>>> fetchPopularExperiences({
+  Future<Either<String, List<Trips>>> fetchPopularExperiences({
     int? startIndex = 0,
     int? limit = 10,
   }) async {
@@ -23,9 +21,9 @@ class PopularExperiencesRepoImpl implements PopularExperiencesRepo {
         "start": startIndex,
         "limit": limit,
       });
-      List<PopularExperiences> popularExperiencesList =
+      List<Trips> popularExperiencesList =
           popularExperiences["data"]["popularExperiencetrips"]
-              .map<PopularExperiences>((e) => PopularExperiences.fromJson(e))
+              .map<Trips>((e) => Trips.fromJson(e))
               .toList();
       return right(popularExperiencesList);
     } on ServerExceptions catch (error) {

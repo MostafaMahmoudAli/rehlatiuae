@@ -6,6 +6,6 @@ abstract class CityDestinationRepo {
   Future<Either<String, CityDestination>> fetchCityDestinations({
     int? startIndex = 0,
     int? limit = 10,
-    String?destinationId,
+    int?destinationId,
   });
 }

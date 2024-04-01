@@ -35,8 +35,9 @@ mixin _$Trips {
   bool? get isFavourite => throw _privateConstructorUsedError;
   List<Trips>? get offers => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
-  int? get reviewAverage => throw _privateConstructorUsedError;
+  double? get reviewAverage => throw _privateConstructorUsedError;
   List<Review>? get reviews => throw _privateConstructorUsedError;
+  ReviewCount? get reviewsCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,8 +64,11 @@ abstract class $TripsCopyWith<$Res> {
       bool? isFavourite,
       List<Trips>? offers,
       DateTime? createdAt,
-      int? reviewAverage,
-      List<Review>? reviews});
+      double? reviewAverage,
+      List<Review>? reviews,
+      ReviewCount? reviewsCount});
+
+  $ReviewCountCopyWith<$Res>? get reviewsCount;
 }
 
 /// @nodoc
@@ -96,6 +100,7 @@ class _$TripsCopyWithImpl<$Res, $Val extends Trips>
     Object? createdAt = freezed,
     Object? reviewAverage = freezed,
     Object? reviews = freezed,
+    Object? reviewsCount = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -157,12 +162,28 @@ class _$TripsCopyWithImpl<$Res, $Val extends Trips>
       reviewAverage: freezed == reviewAverage
           ? _value.reviewAverage
           : reviewAverage // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       reviews: freezed == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
               as List<Review>?,
+      reviewsCount: freezed == reviewsCount
+          ? _value.reviewsCount
+          : reviewsCount // ignore: cast_nullable_to_non_nullable
+              as ReviewCount?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ReviewCountCopyWith<$Res>? get reviewsCount {
+    if (_value.reviewsCount == null) {
+      return null;
+    }
+
+    return $ReviewCountCopyWith<$Res>(_value.reviewsCount!, (value) {
+      return _then(_value.copyWith(reviewsCount: value) as $Val);
+    });
   }
 }
 
@@ -188,8 +209,12 @@ abstract class _$$TripsImplCopyWith<$Res> implements $TripsCopyWith<$Res> {
       bool? isFavourite,
       List<Trips>? offers,
       DateTime? createdAt,
-      int? reviewAverage,
-      List<Review>? reviews});
+      double? reviewAverage,
+      List<Review>? reviews,
+      ReviewCount? reviewsCount});
+
+  @override
+  $ReviewCountCopyWith<$Res>? get reviewsCount;
 }
 
 /// @nodoc
@@ -219,6 +244,7 @@ class __$$TripsImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? reviewAverage = freezed,
     Object? reviews = freezed,
+    Object? reviewsCount = freezed,
   }) {
     return _then(_$TripsImpl(
       id: freezed == id
@@ -280,11 +306,15 @@ class __$$TripsImplCopyWithImpl<$Res>
       reviewAverage: freezed == reviewAverage
           ? _value.reviewAverage
           : reviewAverage // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       reviews: freezed == reviews
           ? _value._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
               as List<Review>?,
+      reviewsCount: freezed == reviewsCount
+          ? _value.reviewsCount
+          : reviewsCount // ignore: cast_nullable_to_non_nullable
+              as ReviewCount?,
     ));
   }
 }
@@ -308,7 +338,8 @@ class _$TripsImpl implements _Trips {
       required final List<Trips>? offers,
       required this.createdAt,
       required this.reviewAverage,
-      required final List<Review>? reviews})
+      required final List<Review>? reviews,
+      required this.reviewsCount})
       : _addresses = addresses,
         _images = images,
         _offers = offers,
@@ -371,7 +402,7 @@ class _$TripsImpl implements _Trips {
   @override
   final DateTime? createdAt;
   @override
-  final int? reviewAverage;
+  final double? reviewAverage;
   final List<Review>? _reviews;
   @override
   List<Review>? get reviews {
@@ -383,8 +414,11 @@ class _$TripsImpl implements _Trips {
   }
 
   @override
+  final ReviewCount? reviewsCount;
+
+  @override
   String toString() {
-    return 'Trips(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, beforePrice: $beforePrice, saving: $saving, imagePath: $imagePath, addresses: $addresses, images: $images, isFavourite: $isFavourite, offers: $offers, createdAt: $createdAt, reviewAverage: $reviewAverage, reviews: $reviews)';
+    return 'Trips(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, beforePrice: $beforePrice, saving: $saving, imagePath: $imagePath, addresses: $addresses, images: $images, isFavourite: $isFavourite, offers: $offers, createdAt: $createdAt, reviewAverage: $reviewAverage, reviews: $reviews, reviewsCount: $reviewsCount)';
   }
 
   @override
@@ -416,7 +450,9 @@ class _$TripsImpl implements _Trips {
                 other.createdAt == createdAt) &&
             (identical(other.reviewAverage, reviewAverage) ||
                 other.reviewAverage == reviewAverage) &&
-            const DeepCollectionEquality().equals(other._reviews, _reviews));
+            const DeepCollectionEquality().equals(other._reviews, _reviews) &&
+            (identical(other.reviewsCount, reviewsCount) ||
+                other.reviewsCount == reviewsCount));
   }
 
   @JsonKey(ignore: true)
@@ -438,7 +474,8 @@ class _$TripsImpl implements _Trips {
       const DeepCollectionEquality().hash(_offers),
       createdAt,
       reviewAverage,
-      const DeepCollectionEquality().hash(_reviews));
+      const DeepCollectionEquality().hash(_reviews),
+      reviewsCount);
 
   @JsonKey(ignore: true)
   @override
@@ -470,8 +507,9 @@ abstract class _Trips implements Trips {
       required final bool? isFavourite,
       required final List<Trips>? offers,
       required final DateTime? createdAt,
-      required final int? reviewAverage,
-      required final List<Review>? reviews}) = _$TripsImpl;
+      required final double? reviewAverage,
+      required final List<Review>? reviews,
+      required final ReviewCount? reviewsCount}) = _$TripsImpl;
 
   factory _Trips.fromJson(Map<String, dynamic> json) = _$TripsImpl.fromJson;
 
@@ -505,9 +543,11 @@ abstract class _Trips implements Trips {
   @override
   DateTime? get createdAt;
   @override
-  int? get reviewAverage;
+  double? get reviewAverage;
   @override
   List<Review>? get reviews;
+  @override
+  ReviewCount? get reviewsCount;
   @override
   @JsonKey(ignore: true)
   _$$TripsImplCopyWith<_$TripsImpl> get copyWith =>

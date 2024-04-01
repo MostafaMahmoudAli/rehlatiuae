@@ -25,6 +25,8 @@ mixin _$Review {
   int? get starsNumber => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imagePath => throw _privateConstructorUsedError;
+  @JsonKey(name: "created_at")
+  String? get createdAt => throw _privateConstructorUsedError;
   Client? get client => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,6 +45,7 @@ abstract class $ReviewCopyWith<$Res> {
       int? starsNumber,
       String? description,
       String? imagePath,
+      @JsonKey(name: "created_at") String? createdAt,
       Client? client});
 
   $ClientCopyWith<$Res>? get client;
@@ -66,6 +69,7 @@ class _$ReviewCopyWithImpl<$Res, $Val extends Review>
     Object? starsNumber = freezed,
     Object? description = freezed,
     Object? imagePath = freezed,
+    Object? createdAt = freezed,
     Object? client = freezed,
   }) {
     return _then(_value.copyWith(
@@ -88,6 +92,10 @@ class _$ReviewCopyWithImpl<$Res, $Val extends Review>
       imagePath: freezed == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
       client: freezed == client
           ? _value.client
@@ -122,6 +130,7 @@ abstract class _$$ReviewImplCopyWith<$Res> implements $ReviewCopyWith<$Res> {
       int? starsNumber,
       String? description,
       String? imagePath,
+      @JsonKey(name: "created_at") String? createdAt,
       Client? client});
 
   @override
@@ -144,6 +153,7 @@ class __$$ReviewImplCopyWithImpl<$Res>
     Object? starsNumber = freezed,
     Object? description = freezed,
     Object? imagePath = freezed,
+    Object? createdAt = freezed,
     Object? client = freezed,
   }) {
     return _then(_$ReviewImpl(
@@ -167,6 +177,10 @@ class __$$ReviewImplCopyWithImpl<$Res>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       client: freezed == client
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
@@ -184,6 +198,7 @@ class _$ReviewImpl implements _Review {
       this.starsNumber,
       this.description,
       this.imagePath,
+      @JsonKey(name: "created_at") this.createdAt,
       this.client});
 
   factory _$ReviewImpl.fromJson(Map<String, dynamic> json) =>
@@ -200,11 +215,14 @@ class _$ReviewImpl implements _Review {
   @override
   final String? imagePath;
   @override
+  @JsonKey(name: "created_at")
+  final String? createdAt;
+  @override
   final Client? client;
 
   @override
   String toString() {
-    return 'Review(id: $id, name: $name, starsNumber: $starsNumber, description: $description, imagePath: $imagePath, client: $client)';
+    return 'Review(id: $id, name: $name, starsNumber: $starsNumber, description: $description, imagePath: $imagePath, createdAt: $createdAt, client: $client)';
   }
 
   @override
@@ -220,13 +238,15 @@ class _$ReviewImpl implements _Review {
                 other.description == description) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.client, client) || other.client == client));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, starsNumber, description, imagePath, client);
+  int get hashCode => Object.hash(runtimeType, id, name, starsNumber,
+      description, imagePath, createdAt, client);
 
   @JsonKey(ignore: true)
   @override
@@ -249,6 +269,7 @@ abstract class _Review implements Review {
       final int? starsNumber,
       final String? description,
       final String? imagePath,
+      @JsonKey(name: "created_at") final String? createdAt,
       final Client? client}) = _$ReviewImpl;
 
   factory _Review.fromJson(Map<String, dynamic> json) = _$ReviewImpl.fromJson;
@@ -263,6 +284,9 @@ abstract class _Review implements Review {
   String? get description;
   @override
   String? get imagePath;
+  @override
+  @JsonKey(name: "created_at")
+  String? get createdAt;
   @override
   Client? get client;
   @override
