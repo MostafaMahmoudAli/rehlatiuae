@@ -41,8 +41,8 @@ class BlogContainerItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 10,
-              left: 10,
+              top: MediaQuery.sizeOf(context).height*0.013,
+              left: MediaQuery.sizeOf(context).width*0.025,
               child: Container(
                 width: 60.0.w,
                 height: 30.0.h,
@@ -66,8 +66,8 @@ class BlogContainerItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 10,
-              right: 17,
+              top:MediaQuery.sizeOf(context).height*0.013,
+              right: MediaQuery.sizeOf(context).width*0.025,
               child: Container(
                 width: 92.0.w,
                 height: 30.0.h,
@@ -107,21 +107,26 @@ class BlogContainerItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      blogs?.name ?? "Blog name",
-                      style: Theme.of(context).textTheme.displayMedium,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+                    SizedBox(
+                      width:220.0.w,
+                      child: Text(
+                        blogs?.name ?? "Blog name",
+                        style: Theme.of(context).textTheme.displayMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
                     SizedBox(
                       height: 6.0.h,
                     ),
-                    Text(
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      blogs?.description ??
-                          "Short Description Short Description Short Description",
-                      style: Theme.of(context).textTheme.displaySmall,
+                    SizedBox(
+                      width:220.0.w,
+                      child: Text(
+                        overflow: TextOverflow.ellipsis,
+                        blogs?.description ??
+                            "Short Description Short Description Short Description",
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
                     ),
                   ],
                 ),

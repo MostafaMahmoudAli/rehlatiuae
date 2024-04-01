@@ -21,27 +21,27 @@ AuthenticatedClient _$AuthenticatedClientFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AuthenticatedClient {
   Client get client => throw _privateConstructorUsedError;
-
   @JsonKey(name: "expires_in")
   int get expiresIn => throw _privateConstructorUsedError;
-
   @JsonKey(name: "access_token")
   String get accessToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
-  $AuthenticatedClientCopyWith<AuthenticatedClient> get copyWith => throw _privateConstructorUsedError;
+  $AuthenticatedClientCopyWith<AuthenticatedClient> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthenticatedClientCopyWith<$Res> {
-  factory $AuthenticatedClientCopyWith(AuthenticatedClient value, $Res Function(AuthenticatedClient) then) =
+  factory $AuthenticatedClientCopyWith(
+          AuthenticatedClient value, $Res Function(AuthenticatedClient) then) =
       _$AuthenticatedClientCopyWithImpl<$Res, AuthenticatedClient>;
-
   @useResult
   $Res call(
-      {Client client, @JsonKey(name: "expires_in") int expiresIn, @JsonKey(name: "access_token") String accessToken});
+      {Client client,
+      @JsonKey(name: "expires_in") int expiresIn,
+      @JsonKey(name: "access_token") String accessToken});
 
   $ClientCopyWith<$Res> get client;
 }
@@ -53,7 +53,6 @@ class _$AuthenticatedClientCopyWithImpl<$Res, $Val extends AuthenticatedClient>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -90,15 +89,17 @@ class _$AuthenticatedClientCopyWithImpl<$Res, $Val extends AuthenticatedClient>
 }
 
 /// @nodoc
-abstract class _$$AuthenticatedClientImplCopyWith<$Res> implements $AuthenticatedClientCopyWith<$Res> {
-  factory _$$AuthenticatedClientImplCopyWith(
-          _$AuthenticatedClientImpl value, $Res Function(_$AuthenticatedClientImpl) then) =
+abstract class _$$AuthenticatedClientImplCopyWith<$Res>
+    implements $AuthenticatedClientCopyWith<$Res> {
+  factory _$$AuthenticatedClientImplCopyWith(_$AuthenticatedClientImpl value,
+          $Res Function(_$AuthenticatedClientImpl) then) =
       __$$AuthenticatedClientImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
-      {Client client, @JsonKey(name: "expires_in") int expiresIn, @JsonKey(name: "access_token") String accessToken});
+      {Client client,
+      @JsonKey(name: "expires_in") int expiresIn,
+      @JsonKey(name: "access_token") String accessToken});
 
   @override
   $ClientCopyWith<$Res> get client;
@@ -108,8 +109,8 @@ abstract class _$$AuthenticatedClientImplCopyWith<$Res> implements $Authenticate
 class __$$AuthenticatedClientImplCopyWithImpl<$Res>
     extends _$AuthenticatedClientCopyWithImpl<$Res, _$AuthenticatedClientImpl>
     implements _$$AuthenticatedClientImplCopyWith<$Res> {
-  __$$AuthenticatedClientImplCopyWithImpl(
-      _$AuthenticatedClientImpl _value, $Res Function(_$AuthenticatedClientImpl) _then)
+  __$$AuthenticatedClientImplCopyWithImpl(_$AuthenticatedClientImpl _value,
+      $Res Function(_$AuthenticatedClientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -144,7 +145,8 @@ class _$AuthenticatedClientImpl implements _AuthenticatedClient {
       @JsonKey(name: "expires_in") required this.expiresIn,
       @JsonKey(name: "access_token") required this.accessToken});
 
-  factory _$AuthenticatedClientImpl.fromJson(Map<String, dynamic> json) => _$$AuthenticatedClientImplFromJson(json);
+  factory _$AuthenticatedClientImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AuthenticatedClientImplFromJson(json);
 
   @override
   final Client client;
@@ -166,8 +168,10 @@ class _$AuthenticatedClientImpl implements _AuthenticatedClient {
         (other.runtimeType == runtimeType &&
             other is _$AuthenticatedClientImpl &&
             (identical(other.client, client) || other.client == client) &&
-            (identical(other.expiresIn, expiresIn) || other.expiresIn == expiresIn) &&
-            (identical(other.accessToken, accessToken) || other.accessToken == accessToken));
+            (identical(other.expiresIn, expiresIn) ||
+                other.expiresIn == expiresIn) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken));
   }
 
   @JsonKey(ignore: true)
@@ -178,7 +182,8 @@ class _$AuthenticatedClientImpl implements _AuthenticatedClient {
   @override
   @pragma('vm:prefer-inline')
   _$$AuthenticatedClientImplCopyWith<_$AuthenticatedClientImpl> get copyWith =>
-      __$$AuthenticatedClientImplCopyWithImpl<_$AuthenticatedClientImpl>(this, _$identity);
+      __$$AuthenticatedClientImplCopyWithImpl<_$AuthenticatedClientImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -190,24 +195,24 @@ class _$AuthenticatedClientImpl implements _AuthenticatedClient {
 
 abstract class _AuthenticatedClient implements AuthenticatedClient {
   const factory _AuthenticatedClient(
-      {required final Client client,
-      @JsonKey(name: "expires_in") required final int expiresIn,
-      @JsonKey(name: "access_token") required final String accessToken}) = _$AuthenticatedClientImpl;
+          {required final Client client,
+          @JsonKey(name: "expires_in") required final int expiresIn,
+          @JsonKey(name: "access_token") required final String accessToken}) =
+      _$AuthenticatedClientImpl;
 
-  factory _AuthenticatedClient.fromJson(Map<String, dynamic> json) = _$AuthenticatedClientImpl.fromJson;
+  factory _AuthenticatedClient.fromJson(Map<String, dynamic> json) =
+      _$AuthenticatedClientImpl.fromJson;
 
   @override
   Client get client;
-
   @override
   @JsonKey(name: "expires_in")
   int get expiresIn;
-
   @override
   @JsonKey(name: "access_token")
   String get accessToken;
-
   @override
   @JsonKey(ignore: true)
-  _$$AuthenticatedClientImplCopyWith<_$AuthenticatedClientImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$AuthenticatedClientImplCopyWith<_$AuthenticatedClientImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

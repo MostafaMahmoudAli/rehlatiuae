@@ -33,6 +33,8 @@ mixin _$BestOffers {
   List<AddressModel>? get addresses => throw _privateConstructorUsedError;
   List<ImagesModel>? get images => throw _privateConstructorUsedError;
   bool? get isFavourite => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  int? get reviewAverage => throw _privateConstructorUsedError;
   List<Trips>? get offers => throw _privateConstructorUsedError;
   List<Review>? get reviews => throw _privateConstructorUsedError;
 
@@ -61,6 +63,8 @@ abstract class $BestOffersCopyWith<$Res> {
       List<AddressModel>? addresses,
       List<ImagesModel>? images,
       bool? isFavourite,
+      DateTime? createdAt,
+      int? reviewAverage,
       List<Trips>? offers,
       List<Review>? reviews});
 }
@@ -90,6 +94,8 @@ class _$BestOffersCopyWithImpl<$Res, $Val extends BestOffers>
     Object? addresses = freezed,
     Object? images = freezed,
     Object? isFavourite = freezed,
+    Object? createdAt = freezed,
+    Object? reviewAverage = freezed,
     Object? offers = freezed,
     Object? reviews = freezed,
   }) {
@@ -142,6 +148,14 @@ class _$BestOffersCopyWithImpl<$Res, $Val extends BestOffers>
           ? _value.isFavourite
           : isFavourite // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reviewAverage: freezed == reviewAverage
+          ? _value.reviewAverage
+          : reviewAverage // ignore: cast_nullable_to_non_nullable
+              as int?,
       offers: freezed == offers
           ? _value.offers
           : offers // ignore: cast_nullable_to_non_nullable
@@ -175,6 +189,8 @@ abstract class _$$BestOffersImplCopyWith<$Res>
       List<AddressModel>? addresses,
       List<ImagesModel>? images,
       bool? isFavourite,
+      DateTime? createdAt,
+      int? reviewAverage,
       List<Trips>? offers,
       List<Review>? reviews});
 }
@@ -202,6 +218,8 @@ class __$$BestOffersImplCopyWithImpl<$Res>
     Object? addresses = freezed,
     Object? images = freezed,
     Object? isFavourite = freezed,
+    Object? createdAt = freezed,
+    Object? reviewAverage = freezed,
     Object? offers = freezed,
     Object? reviews = freezed,
   }) {
@@ -254,6 +272,14 @@ class __$$BestOffersImplCopyWithImpl<$Res>
           ? _value.isFavourite
           : isFavourite // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reviewAverage: freezed == reviewAverage
+          ? _value.reviewAverage
+          : reviewAverage // ignore: cast_nullable_to_non_nullable
+              as int?,
       offers: freezed == offers
           ? _value._offers
           : offers // ignore: cast_nullable_to_non_nullable
@@ -282,6 +308,8 @@ class _$BestOffersImpl implements _BestOffers {
       required final List<AddressModel>? addresses,
       required final List<ImagesModel>? images,
       required this.isFavourite,
+      required this.createdAt,
+      required this.reviewAverage,
       required final List<Trips>? offers,
       required final List<Review>? reviews})
       : _addresses = addresses,
@@ -333,6 +361,10 @@ class _$BestOffersImpl implements _BestOffers {
 
   @override
   final bool? isFavourite;
+  @override
+  final DateTime? createdAt;
+  @override
+  final int? reviewAverage;
   final List<Trips>? _offers;
   @override
   List<Trips>? get offers {
@@ -355,7 +387,7 @@ class _$BestOffersImpl implements _BestOffers {
 
   @override
   String toString() {
-    return 'BestOffers(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, imagePath: $imagePath, beforePrice: $beforePrice, saving: $saving, addresses: $addresses, images: $images, isFavourite: $isFavourite, offers: $offers, reviews: $reviews)';
+    return 'BestOffers(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, imagePath: $imagePath, beforePrice: $beforePrice, saving: $saving, addresses: $addresses, images: $images, isFavourite: $isFavourite, createdAt: $createdAt, reviewAverage: $reviewAverage, offers: $offers, reviews: $reviews)';
   }
 
   @override
@@ -382,6 +414,10 @@ class _$BestOffersImpl implements _BestOffers {
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.isFavourite, isFavourite) ||
                 other.isFavourite == isFavourite) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.reviewAverage, reviewAverage) ||
+                other.reviewAverage == reviewAverage) &&
             const DeepCollectionEquality().equals(other._offers, _offers) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews));
   }
@@ -402,6 +438,8 @@ class _$BestOffersImpl implements _BestOffers {
       const DeepCollectionEquality().hash(_addresses),
       const DeepCollectionEquality().hash(_images),
       isFavourite,
+      createdAt,
+      reviewAverage,
       const DeepCollectionEquality().hash(_offers),
       const DeepCollectionEquality().hash(_reviews));
 
@@ -433,6 +471,8 @@ abstract class _BestOffers implements BestOffers {
       required final List<AddressModel>? addresses,
       required final List<ImagesModel>? images,
       required final bool? isFavourite,
+      required final DateTime? createdAt,
+      required final int? reviewAverage,
       required final List<Trips>? offers,
       required final List<Review>? reviews}) = _$BestOffersImpl;
 
@@ -464,6 +504,10 @@ abstract class _BestOffers implements BestOffers {
   List<ImagesModel>? get images;
   @override
   bool? get isFavourite;
+  @override
+  DateTime? get createdAt;
+  @override
+  int? get reviewAverage;
   @override
   List<Trips>? get offers;
   @override

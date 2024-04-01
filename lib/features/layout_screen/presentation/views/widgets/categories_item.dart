@@ -36,7 +36,7 @@ class CategoriesItem extends StatelessWidget {
              flex: 2,
              child: Text(
               categoryName ?? "",
-              style:Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 10.0.sp),
+              style:Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 10.0.sp,color:AppColors.black),
                overflow: TextOverflow.ellipsis,
                maxLines: 1,
                        ),

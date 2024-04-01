@@ -1,28 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'review_model.dart';
+part of 'city_destination_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ReviewImpl _$$ReviewImplFromJson(Map<String, dynamic> json) => _$ReviewImpl(
+_$CityDestinationImpl _$$CityDestinationImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CityDestinationImpl(
       id: json['id'] as int?,
       name: json['name'] as String?,
-      starsNumber: json['starsNumber'] as int?,
       description: json['description'] as String?,
       imagePath: json['imagePath'] as String?,
-      client: json['client'] == null
-          ? null
-          : Client.fromJson(json['client'] as Map<String, dynamic>),
+      country: json['country'] as String?,
+      trips: (json['trips'] as List<dynamic>?)
+          ?.map((e) => Trips.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$$ReviewImplToJson(_$ReviewImpl instance) =>
+Map<String, dynamic> _$$CityDestinationImplToJson(
+        _$CityDestinationImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'starsNumber': instance.starsNumber,
       'description': instance.description,
       'imagePath': instance.imagePath,
-      'client': instance.client,
+      'country': instance.country,
+      'trips': instance.trips,
     };

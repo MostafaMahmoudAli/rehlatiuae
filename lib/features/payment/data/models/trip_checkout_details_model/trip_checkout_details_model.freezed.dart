@@ -22,48 +22,38 @@ TripCheckoutDetails _$TripCheckoutDetailsFromJson(Map<String, dynamic> json) {
 mixin _$TripCheckoutDetails {
   @JsonKey(name: "trip_id")
   int get tripId => throw _privateConstructorUsedError;
-
   @JsonKey(name: "subtotal_old")
   double get subtotalAdult => throw _privateConstructorUsedError;
-
   @JsonKey(name: "quantity_old")
   int get quantityAdult => throw _privateConstructorUsedError;
-
   @JsonKey(name: "subtotal_child")
   double get subtotalChild => throw _privateConstructorUsedError;
-
   @JsonKey(name: "quantity_young")
   int get quantityChild => throw _privateConstructorUsedError;
-
   @JsonKey(name: "final_subtotal")
   double get finalSubtotal => throw _privateConstructorUsedError;
-
   @JsonKey(name: "coupon_name")
   String get couponName => throw _privateConstructorUsedError;
-
   @JsonKey(name: "discount")
   double get discount => throw _privateConstructorUsedError;
-
   @JsonKey(name: "total")
   double get total => throw _privateConstructorUsedError;
-
   @JsonKey(name: "date")
   String get date => throw _privateConstructorUsedError;
-
   @JsonKey(name: "description")
   String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
-  $TripCheckoutDetailsCopyWith<TripCheckoutDetails> get copyWith => throw _privateConstructorUsedError;
+  $TripCheckoutDetailsCopyWith<TripCheckoutDetails> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $TripCheckoutDetailsCopyWith<$Res> {
-  factory $TripCheckoutDetailsCopyWith(TripCheckoutDetails value, $Res Function(TripCheckoutDetails) then) =
+  factory $TripCheckoutDetailsCopyWith(
+          TripCheckoutDetails value, $Res Function(TripCheckoutDetails) then) =
       _$TripCheckoutDetailsCopyWithImpl<$Res, TripCheckoutDetails>;
-
   @useResult
   $Res call(
       {@JsonKey(name: "trip_id") int tripId,
@@ -86,7 +76,6 @@ class _$TripCheckoutDetailsCopyWithImpl<$Res, $Val extends TripCheckoutDetails>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -155,11 +144,11 @@ class _$TripCheckoutDetailsCopyWithImpl<$Res, $Val extends TripCheckoutDetails>
 }
 
 /// @nodoc
-abstract class _$$TripCheckoutDetailsImplCopyWith<$Res> implements $TripCheckoutDetailsCopyWith<$Res> {
-  factory _$$TripCheckoutDetailsImplCopyWith(
-          _$TripCheckoutDetailsImpl value, $Res Function(_$TripCheckoutDetailsImpl) then) =
+abstract class _$$TripCheckoutDetailsImplCopyWith<$Res>
+    implements $TripCheckoutDetailsCopyWith<$Res> {
+  factory _$$TripCheckoutDetailsImplCopyWith(_$TripCheckoutDetailsImpl value,
+          $Res Function(_$TripCheckoutDetailsImpl) then) =
       __$$TripCheckoutDetailsImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -180,8 +169,8 @@ abstract class _$$TripCheckoutDetailsImplCopyWith<$Res> implements $TripCheckout
 class __$$TripCheckoutDetailsImplCopyWithImpl<$Res>
     extends _$TripCheckoutDetailsCopyWithImpl<$Res, _$TripCheckoutDetailsImpl>
     implements _$$TripCheckoutDetailsImplCopyWith<$Res> {
-  __$$TripCheckoutDetailsImplCopyWithImpl(
-      _$TripCheckoutDetailsImpl _value, $Res Function(_$TripCheckoutDetailsImpl) _then)
+  __$$TripCheckoutDetailsImplCopyWithImpl(_$TripCheckoutDetailsImpl _value,
+      $Res Function(_$TripCheckoutDetailsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -264,7 +253,8 @@ class _$TripCheckoutDetailsImpl implements _TripCheckoutDetails {
       @JsonKey(name: "date") required this.date,
       @JsonKey(name: "description") required this.description});
 
-  factory _$TripCheckoutDetailsImpl.fromJson(Map<String, dynamic> json) => _$$TripCheckoutDetailsImplFromJson(json);
+  factory _$TripCheckoutDetailsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TripCheckoutDetailsImplFromJson(json);
 
   @override
   @JsonKey(name: "trip_id")
@@ -311,28 +301,48 @@ class _$TripCheckoutDetailsImpl implements _TripCheckoutDetails {
         (other.runtimeType == runtimeType &&
             other is _$TripCheckoutDetailsImpl &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
-            (identical(other.subtotalAdult, subtotalAdult) || other.subtotalAdult == subtotalAdult) &&
-            (identical(other.quantityAdult, quantityAdult) || other.quantityAdult == quantityAdult) &&
-            (identical(other.subtotalChild, subtotalChild) || other.subtotalChild == subtotalChild) &&
-            (identical(other.quantityChild, quantityChild) || other.quantityChild == quantityChild) &&
-            (identical(other.finalSubtotal, finalSubtotal) || other.finalSubtotal == finalSubtotal) &&
-            (identical(other.couponName, couponName) || other.couponName == couponName) &&
-            (identical(other.discount, discount) || other.discount == discount) &&
+            (identical(other.subtotalAdult, subtotalAdult) ||
+                other.subtotalAdult == subtotalAdult) &&
+            (identical(other.quantityAdult, quantityAdult) ||
+                other.quantityAdult == quantityAdult) &&
+            (identical(other.subtotalChild, subtotalChild) ||
+                other.subtotalChild == subtotalChild) &&
+            (identical(other.quantityChild, quantityChild) ||
+                other.quantityChild == quantityChild) &&
+            (identical(other.finalSubtotal, finalSubtotal) ||
+                other.finalSubtotal == finalSubtotal) &&
+            (identical(other.couponName, couponName) ||
+                other.couponName == couponName) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.description, description) || other.description == description));
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, tripId, subtotalAdult, quantityAdult, subtotalChild, quantityChild,
-      finalSubtotal, couponName, discount, total, date, description);
+  int get hashCode => Object.hash(
+      runtimeType,
+      tripId,
+      subtotalAdult,
+      quantityAdult,
+      subtotalChild,
+      quantityChild,
+      finalSubtotal,
+      couponName,
+      discount,
+      total,
+      date,
+      description);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TripCheckoutDetailsImplCopyWith<_$TripCheckoutDetailsImpl> get copyWith =>
-      __$$TripCheckoutDetailsImplCopyWithImpl<_$TripCheckoutDetailsImpl>(this, _$identity);
+      __$$TripCheckoutDetailsImplCopyWithImpl<_$TripCheckoutDetailsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -344,65 +354,57 @@ class _$TripCheckoutDetailsImpl implements _TripCheckoutDetails {
 
 abstract class _TripCheckoutDetails implements TripCheckoutDetails {
   const factory _TripCheckoutDetails(
-      {@JsonKey(name: "trip_id") required final int tripId,
-      @JsonKey(name: "subtotal_old") required final double subtotalAdult,
-      @JsonKey(name: "quantity_old") required final int quantityAdult,
-      @JsonKey(name: "subtotal_child") required final double subtotalChild,
-      @JsonKey(name: "quantity_young") required final int quantityChild,
-      @JsonKey(name: "final_subtotal") required final double finalSubtotal,
-      @JsonKey(name: "coupon_name") required final String couponName,
-      @JsonKey(name: "discount") required final double discount,
-      @JsonKey(name: "total") required final double total,
-      @JsonKey(name: "date") required final String date,
-      @JsonKey(name: "description") required final String description}) = _$TripCheckoutDetailsImpl;
+          {@JsonKey(name: "trip_id") required final int tripId,
+          @JsonKey(name: "subtotal_old") required final double subtotalAdult,
+          @JsonKey(name: "quantity_old") required final int quantityAdult,
+          @JsonKey(name: "subtotal_child") required final double subtotalChild,
+          @JsonKey(name: "quantity_young") required final int quantityChild,
+          @JsonKey(name: "final_subtotal") required final double finalSubtotal,
+          @JsonKey(name: "coupon_name") required final String couponName,
+          @JsonKey(name: "discount") required final double discount,
+          @JsonKey(name: "total") required final double total,
+          @JsonKey(name: "date") required final String date,
+          @JsonKey(name: "description") required final String description}) =
+      _$TripCheckoutDetailsImpl;
 
-  factory _TripCheckoutDetails.fromJson(Map<String, dynamic> json) = _$TripCheckoutDetailsImpl.fromJson;
+  factory _TripCheckoutDetails.fromJson(Map<String, dynamic> json) =
+      _$TripCheckoutDetailsImpl.fromJson;
 
   @override
   @JsonKey(name: "trip_id")
   int get tripId;
-
   @override
   @JsonKey(name: "subtotal_old")
   double get subtotalAdult;
-
   @override
   @JsonKey(name: "quantity_old")
   int get quantityAdult;
-
   @override
   @JsonKey(name: "subtotal_child")
   double get subtotalChild;
-
   @override
   @JsonKey(name: "quantity_young")
   int get quantityChild;
-
   @override
   @JsonKey(name: "final_subtotal")
   double get finalSubtotal;
-
   @override
   @JsonKey(name: "coupon_name")
   String get couponName;
-
   @override
   @JsonKey(name: "discount")
   double get discount;
-
   @override
   @JsonKey(name: "total")
   double get total;
-
   @override
   @JsonKey(name: "date")
   String get date;
-
   @override
   @JsonKey(name: "description")
   String get description;
-
   @override
   @JsonKey(ignore: true)
-  _$$TripCheckoutDetailsImplCopyWith<_$TripCheckoutDetailsImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$TripCheckoutDetailsImplCopyWith<_$TripCheckoutDetailsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

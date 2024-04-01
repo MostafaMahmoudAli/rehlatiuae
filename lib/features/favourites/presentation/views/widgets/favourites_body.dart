@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_container_trip.dart';
 
-class CategoryNameBody extends StatelessWidget {
-  const CategoryNameBody({super.key, required this.categoryNameScrollController});
-  final ScrollController categoryNameScrollController;
+class FavouritesBody extends StatelessWidget {
+  const FavouritesBody({super.key, required this.favouritesScrollController});
+final ScrollController favouritesScrollController;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(

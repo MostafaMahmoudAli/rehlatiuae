@@ -37,7 +37,7 @@ class BestOffersSection extends StatelessWidget {
                 return BestOffersItem(
                   width: 74.0.w,
                   bestOffers: bestOffers[index],
-                  // review:bestOffers[index].reviews != null? bestOffers[index].reviews![index] : [][index],
+                  review:bestOffers[index].reviewAverage ?? 0 ,
                 );
               },
               separatorBuilder: (context, index) {
@@ -49,7 +49,7 @@ class BestOffersSection extends StatelessWidget {
             ),
             WhatsUpButton(
               onTap: (){},
-              bottom:MediaQuery.sizeOf(context).height*0.185,
+              bottom:MediaQuery.sizeOf(context).height*0.175,
               right: 0,
             ),
 
