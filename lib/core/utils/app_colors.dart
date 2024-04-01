@@ -12,14 +12,14 @@ class AppColors {
   static const grayLight = Color(0xFF8D94A2);
   static const white = Colors.white;
   static const backgroundWhite = Color(0xFFFAFAFA);
-  static const backgroundAvatarPayment = Color(0xff00A6E7);
+  static const backgroundAvatarPayment = Color(0xFFAE9F60);
   static const black = Colors.black;
   static const greySearchText = Color(0xFF979797);
   static const grey = Colors.grey;
   static const backgroundColor = Colors.white70;
   static const orange = Colors.amber;
   static const yellow = Color(0xffF8E545);
-  static Color green = Colors.green.shade500;
+  static Color green = Colors.green.shade400;
   static Color red = Colors.red.shade900;
   static Color navbackground = Colors.grey.shade900;
 

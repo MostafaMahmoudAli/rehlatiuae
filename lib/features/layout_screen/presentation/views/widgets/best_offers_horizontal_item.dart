@@ -75,7 +75,7 @@ class BestOffersHorizontalItem extends StatelessWidget {
                 Text(
                   "IMG Worlds of Adventure",
                   maxLines: 1,
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight:FontWeight.bold),
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(
@@ -85,10 +85,10 @@ class BestOffersHorizontalItem extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.location_on_sharp,
-                      color: AppColors.textAndBackgroundColorButton,
+                      color: AppColors.whiteAppColor,
                       size: 14.0.sp,
                     ),
-                     Text(
+                    Text(
                       "Dubai",
                       style: Theme.of(context).textTheme.displaySmall,
                       overflow: TextOverflow.ellipsis,
@@ -98,23 +98,23 @@ class BestOffersHorizontalItem extends StatelessWidget {
                 SizedBox(
                   height: 1.5.w,
                 ),
-                 Text(
+                Text(
                   "This exceptional beach  ",
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style:Theme.of(context).textTheme.bodySmall,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 SizedBox(
                   height: 5.0.w,
                 ),
                 Row(
                   children: [
-                     Text(
+                    Text(
                       "48",
                       style: Theme.of(context).textTheme.displaySmall,
                       overflow: TextOverflow.ellipsis,
                     ),
-                     Text(
+                    Text(
                       "/Person",
                       style: Theme.of(context).textTheme.bodySmall,
                       overflow: TextOverflow.ellipsis,
@@ -122,13 +122,38 @@ class BestOffersHorizontalItem extends StatelessWidget {
                     const Spacer(),
                     Icon(
                       Icons.star_border_outlined,
-                      color: AppColors.textAndBackgroundColorButton,
+                      color: AppColors.whiteAppColor,
                       size: 16.0.sp,
                     ),
-                     Text(
+                    Text(
                       "4.2 (852)",
                       style: Theme.of(context).textTheme.displaySmall,
                       overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5.0.w,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "100",
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
+                    Container(
+                      width: 65.0.w,
+                      height: 20.0.h,
+                      margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                      padding: EdgeInsetsDirectional.symmetric(horizontal: 6.0.w, vertical: 1.3.h),
+                      decoration: BoxDecoration(
+                        color: AppColors.green,
+                        borderRadius: BorderRadius.circular(8.0.r),
+                      ),
+                      child: Text(
+                        "Save 45 %",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
                     ),
                   ],
                 ),

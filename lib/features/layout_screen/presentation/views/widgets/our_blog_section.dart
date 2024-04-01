@@ -5,9 +5,12 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/blog_container_item.dart';
 
-class OurBlogSection extends StatelessWidget {
-  const OurBlogSection({super.key});
+import '../../../../all_trips/data/models/trips_model.dart';
+import '../../../../our_blogs/data/models/blogs_model.dart';
 
+class OurBlogSection extends StatelessWidget {
+  const OurBlogSection({super.key, required this.blogs});
+final List<Blogs>blogs;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,9 +26,15 @@ class OurBlogSection extends StatelessWidget {
           height: 330.0.h,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const BlogContainerItem();
+              itemCount: blogs.length,
+              itemBuilder: (context, index)
+              {
+                // blogs[index].trips?[index].reviews?[index].starsNumber.toString();
+                // List<Trips>?trips=blogs[index].trips;
+                return  BlogContainerItem(
+                  blogs: blogs[index],
+                  reviewStars:   "",
+                );
               },
               separatorBuilder: (context, index)
               {

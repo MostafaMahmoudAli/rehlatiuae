@@ -23,7 +23,6 @@ class WhyChooseUsSection extends StatelessWidget {
           children: [
             WhyChooseUSItem(
               text: AppStrings.whyChooseUsFastBooking,
-              style: Theme.of(context).textTheme.titleLarge!,
               descriptionText: AppStrings.whyChooseUsFastBookingDescription,
               descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
               child: Image.asset(AppStrings.whyChooseUsFastBookingImage),
@@ -33,7 +32,6 @@ class WhyChooseUsSection extends StatelessWidget {
             ),
             WhyChooseUSItem(
               text: AppStrings.whyChooseUsEasyToShop,
-              style: Theme.of(context).textTheme.titleLarge!,
               descriptionText: AppStrings.whyChooseUsEasyToShopDescription,
               descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
               child: Image.asset(AppStrings.whyChooseUsEasyToShopImage),
@@ -48,7 +46,6 @@ class WhyChooseUsSection extends StatelessWidget {
           children: [
             WhyChooseUSItem(
               text: AppStrings.whyChooseUs247Support,
-              style: Theme.of(context).textTheme.titleLarge!,
               descriptionText: AppStrings.whyChooseUs247SupportDescription,
               descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
               child: Image.asset(AppStrings.whyChooseUs247SupportImage),
@@ -58,7 +55,6 @@ class WhyChooseUsSection extends StatelessWidget {
             ),
             WhyChooseUSItem(
               text: AppStrings.whyChooseUsUniqueexPerience,
-              style: Theme.of(context).textTheme.titleLarge!,
               descriptionText: AppStrings.whyChooseUsUniqueexPerienceDescription,
               descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
               child: Image.asset(AppStrings.whyChooseUsUniqueexPerienceImage),

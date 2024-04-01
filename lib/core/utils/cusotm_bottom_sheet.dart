@@ -1,4 +1,3 @@
-import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +12,6 @@ class CustomBottomSheet extends StatelessWidget {
   final Widget contentSheet;
   final Color avatarColor;
   final bool hasButton;
-  final bool isPaymentSheet;
 
   const CustomBottomSheet({
     required this.title,
@@ -22,20 +20,11 @@ class CustomBottomSheet extends StatelessWidget {
     this.avatarText,
     this.avatarColor = AppColors.textAndBackgroundColorButton,
     this.hasButton = true,
-    this.isPaymentSheet = true,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return isPaymentSheet
-        ? SingleChildScrollView(
-            child: body(context),
-          )
-        : body(context);
-  }
-
-  Widget body(BuildContext context) {
     return Column(
       children: [
         Column(
@@ -92,18 +81,18 @@ class CustomBottomSheet extends StatelessWidget {
                       ),
                       child: contentSheet,
                     ),
-                    Positioned(
-                      bottom: -10.h,
-                      left: 50.w,
-                      right: 50.w,
-                      child: DottedLine(
-                        dashLength: 25.w,
-                        lineThickness: 25.w,
-                        alignment: WrapAlignment.spaceBetween,
-                        dashColor: AppColors.grey.shade100,
-                        dashRadius: 100.sp,
-                      ),
-                    ),
+                    // Positioned(
+                    //   bottom: -10.h,
+                    //   left: 50.w,
+                    //   right: 50.w,
+                    //   child: DottedLine(
+                    //     dashLength: 25.w,
+                    //     lineThickness: 25.w,
+                    //     alignment: WrapAlignment.spaceBetween,
+                    //     dashColor: AppColors.grey.shade100,
+                    //     dashRadius: 100.sp,
+                    //   ),
+                    // ),
                   ],
                 ),
                 Positioned(

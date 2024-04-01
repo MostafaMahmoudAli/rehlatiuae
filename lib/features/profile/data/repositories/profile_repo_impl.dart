@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -5,13 +6,16 @@ import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/profile/domain/repositories/profile_repo.dart';
 
 class ProfileRepoImpl implements ProfileRepo {
   final ApiConsumer apiConsumer;
+  final CacheService cacheService;
 
-  ProfileRepoImpl({required this.apiConsumer});
+  ProfileRepoImpl({required this.apiConsumer, required this.cacheService});
 
   @override
   Future<Either<String, Client>> getProfile() async {
@@ -19,7 +23,12 @@ class ProfileRepoImpl implements ProfileRepo {
       var client = await apiConsumer.get(
         EndPoints.getProfileEndPoint,
       );
+
       final clientModel = Client.fromJson(client['data']['client']);
+      await cacheService.setData(
+        key: AppStrings.client,
+        value: json.encode(clientModel.toJson()),
+      );
       return Right(clientModel);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);

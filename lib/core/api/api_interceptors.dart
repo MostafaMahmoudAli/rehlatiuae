@@ -1,12 +1,17 @@
 import 'package:dio/dio.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 
 class DioInterceptor extends Interceptor {
-  final Dio api = Dio();
   @override
-  void onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers["Accept-Language"] = "en";
-    options.headers["Authorization"] =
-        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JlaGxhdGl1YWUuY29tL2FwaS92MS9jbGllbnQvbG9naW4iLCJpYXQiOjE3MTEzMTQ2NzksImV4cCI6MTcxMTQwMTA3OSwibmJmIjoxNzExMzE0Njc5LCJqdGkiOiIzWnRtbTlLWlRxQzlqVmlOIiwic3ViIjoiMSIsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzcifQ.4nv8aBREOqgoKGRoEVpF02bKhcae7So-LHVPloBT5KA";
+    String? token = getIt<CacheService>().getData<String>(key: AppStrings.updatePasswordToken);
+    token ??= getIt<CacheService>().getData<String>(key: AppStrings.accessToken);
+    if (token != null) {
+      options.headers["Authorization"] = "Bearer $token";
+    }
+    super.onRequest(options, handler);
   }
 }

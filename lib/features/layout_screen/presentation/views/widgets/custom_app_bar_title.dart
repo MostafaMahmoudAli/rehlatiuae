@@ -44,6 +44,7 @@ class CustomAppBarTitle extends StatelessWidget {
                 ),
                 Text(
                   " Belal",
+                  overflow: TextOverflow.fade,
                   style: TextStyle(
                     color: AppColors.textAndBackgroundColorButton,
                     fontSize: 16.0.sp,

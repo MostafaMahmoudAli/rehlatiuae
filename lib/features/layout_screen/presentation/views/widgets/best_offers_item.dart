@@ -3,14 +3,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 
+import '../../../../best_offers/data/models/best_offers_model.dart';
+import '../../../data/models/review_model.dart';
+
 class BestOffersItem extends StatelessWidget {
   const BestOffersItem({
     super.key,
     required this.width,
+    required this.bestOffers,
+    this.review,
   });
 
   final double width;
-
+  final BestOffers?bestOffers;
+  final Review?review;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +41,7 @@ class BestOffersItem extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            height: 100.0.h,
+            height: 120.0.h,
             width: width,
             child: Stack(
               children: [
@@ -46,8 +52,8 @@ class BestOffersItem extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadiusDirectional.circular(15.0.r),
                   ),
-                  child: Image.asset(
-                    "assets/images/Rectangle 427.png",
+                  child: Image.network(
+                    bestOffers?.imagePath ?? "",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -76,7 +82,7 @@ class BestOffersItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "IMG Worlds of Adventure",
+                bestOffers?.name ??  "IMG Worlds of Adventure",
                   maxLines: 1,
                   style: Theme.of(context).textTheme.bodyMedium,
                   textAlign: TextAlign.justify,
@@ -92,7 +98,7 @@ class BestOffersItem extends StatelessWidget {
                       size: 14.0.sp,
                     ),
                     Text(
-                      "Dubai, United Arab Emirates",
+                      bestOffers?.address ??  "Dubai, United Arab Emirates",
                       style: Theme.of(context).textTheme.titleMedium,
                       textAlign: TextAlign.justify,
                     ),
@@ -102,7 +108,7 @@ class BestOffersItem extends StatelessWidget {
                   height: 2.5.w,
                 ),
                 Text(
-                  "This exceptional beach gets sasafadvd avdsdsfcasvsdvsdvsdvsd",
+                  bestOffers?.description ?? "This exceptional beach gets ",
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: Theme.of(context).textTheme.headlineSmall,
@@ -110,28 +116,60 @@ class BestOffersItem extends StatelessWidget {
                 SizedBox(
                   height: 5.0.w,
                 ),
+                if((bestOffers?.beforePrice!=null|| bestOffers?.saving!=null))
                 Row(
                   children: [
                     Text(
-                      "48",
+                      bestOffers?.beforePrice ?? "",
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    Container(
+                      width:65.0.w,
+                      height:20.0.h,
+                      margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                      padding: EdgeInsetsDirectional.symmetric(horizontal:6.0.w,vertical: 1.3.h),
+                      decoration:BoxDecoration(
+                        color:AppColors.green,
+                        borderRadius:BorderRadius.circular(8.0.r),
+                      ),
+                      child: Text(
+                        bestOffers?.saving ??  "",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5.0.w,
+                ),
+                Row(
+                  children: [
+                    Text(
+                     bestOffers?.adultPrice.toString() ?? "",
                       style: Theme.of(context).textTheme.titleSmall,
                       textAlign: TextAlign.justify,
                     ),
+                    SizedBox(width: 5.0.w,),
                     Text(
-                      "/Person",
+                       "/Person",
                       style: Theme.of(context).textTheme.headlineSmall,
                       textAlign: TextAlign.justify,
                     ),
                     const Spacer(),
-                    Icon(
-                      Icons.star_border_outlined,
-                      color: AppColors.textAndBackgroundColorButton,
-                      size: 16.0.sp,
-                    ),
-                    Text(
-                      "4.2 (852)",
-                      style: Theme.of(context).textTheme.titleSmall,
-                      textAlign: TextAlign.justify,
+                    if(review != null)
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.star_border_outlined,
+                          color: AppColors.textAndBackgroundColorButton,
+                          size: 16.0.sp,
+                        ),
+                        Text(
+                          review?.starsNumber.toString() ??"4.2 (852)",
+                          style: Theme.of(context).textTheme.titleSmall,
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
                     ),
                   ],
                 ),

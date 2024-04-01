@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -6,31 +7,48 @@ import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 
-class ReviewsSection extends StatelessWidget {
-  const ReviewsSection({super.key});
+import '../../../data/models/review_model.dart';
 
+class ReviewsSection extends StatelessWidget {
+  const ReviewsSection({super.key, required this.reviews});
+final List<Review>?reviews;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Column(
       children: [
-         Text(
+        Text(
           AppStrings.reviewTitle,
           style: Theme.of(context).textTheme.labelMedium,
         ),
         const CustomSizedBox(),
-        CustomCircleAvatar(
-          radius: 40.0.r,
-          backgroundImage: const AssetImage(
-            "assets/images/Ellipse 1.png",
+        ListView.separated(
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                CustomCircleAvatar(
+                  radius: 40.0.r,
+                  backgroundImage:NetworkImage(
+                   reviews?[index].client?.imagePath ?? "assets/images/Ellipse 1.png",
+                  ),
+                ),
+                Text(
+                  reviews?[index].description ?? AppStrings.weHelpYouMakeBestTripDescription,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 6,
+                ),
+                const CustomSizedBox(),
+              ],
+            );
+          },
+          separatorBuilder: (context, index) => SizedBox(
+            height: 10.0.h,
           ),
+          itemCount: reviews!.length,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
         ),
-         Text(
-          AppStrings.weHelpYouMakeBestTripDescription,
-          style: Theme.of(context).textTheme.bodyLarge,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 6,
-        ),
-        const CustomSizedBox(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -81,68 +99,74 @@ class ReviewsSection extends StatelessWidget {
         SizedBox(
           height: 40.0.h,
         ),
-         Text(
+        Text(
           AppStrings.subscribeToNewsletterTitle,
           style: Theme.of(context).textTheme.labelMedium,
         ),
         Row(
           children: [
-            Container(
-              width: 100.0.w,
-              height: 40.0.h,
-              padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0.r),
-                border: Border.all(color: AppColors.greySearchText),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: AppStrings.reviewTextFieldName,
-                  hintStyle: Theme.of(context).textTheme.headlineSmall,
+            Expanded(
+              child: Container(
+                width: 100.0.w,
+                height: 60.0.h,
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0.r),
+                  border: Border.all(color: AppColors.greySearchText),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: AppStrings.reviewTextFieldName,
+                    hintStyle: Theme.of(context).textTheme.headlineSmall,
+                  ),
                 ),
               ),
             ),
             SizedBox(
               width: 10.0.h,
             ),
-            Container(
-              width: 100.0.w,
-              height: 40.0.h,
-              padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0.r),
-                border: Border.all(color: AppColors.greySearchText),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: AppStrings.reviewTextFieldEmail,
-                  hintStyle: Theme.of(context).textTheme.headlineSmall,
+            Expanded(
+              child: Container(
+                width: 100.0.w,
+                height: 60.0.h,
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0.r),
+                  border: Border.all(color: AppColors.greySearchText),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: AppStrings.reviewTextFieldEmail,
+                    hintStyle: Theme.of(context).textTheme.headlineSmall,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              width: 8.0.h,
-            ),
-            CustomActionButton(
-              text: AppStrings.reviewActionButtonName,
-              borderRadius: BorderRadius.circular(10.0.r),
-              backGroundColor: AppColors.textAndBackgroundColorButton,
-              onTap: () {},
-              width: 50.0.w,
-              height: 40.0.h,
             ),
           ],
         ),
         SizedBox(
+          height: 15.0.h,
+        ),
+        CustomActionButton(
+          text: AppStrings.reviewActionButtonName,
+          borderRadius: BorderRadius.circular(8.0.r),
+          backGroundColor: AppColors.textAndBackgroundColorButton,
+          onTap: () {},
+          width: double.infinity,
+          height: 30.0.h,
+        ),
+        SizedBox(
           height: 50.0.h,
         ),
-         Text(
+        Text(
           AppStrings.copyRight,
-          style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize:14.0.sp,),
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+            fontSize: 14.0.sp,
+          ),
         ),
       ],
     );
