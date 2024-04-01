@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
-import '../../../../best_trips/data/models/best_trips_model.dart';
+import '../../../../all_trips/data/models/trips_model.dart';
 
 class BestTripsSection extends StatelessWidget {
   const BestTripsSection({super.key, required this.bestTrips});
-  final List<BestTrips>?bestTrips;
+  final List<Trips>?bestTrips;
   @override
   Widget build(BuildContext context)
   {

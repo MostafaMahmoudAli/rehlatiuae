@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
-import '../../../data/models/popular_experiences_model.dart';
+
+import '../../../../all_trips/data/models/trips_model.dart';
 
 class PopularExperiencesContainerItem extends StatelessWidget {
   const PopularExperiencesContainerItem({
@@ -18,7 +19,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
   final double width;
   final String? oldTripPrice;
   final String? percentageSave;
-  final PopularExperiences?popularExperiences;
+  final Trips?popularExperiences;
 
   @override
   Widget build(BuildContext context)

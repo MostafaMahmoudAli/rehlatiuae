@@ -5,9 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
-import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/whats_up_botton.dart';
-import '../../../../best_offers/data/models/best_offers_model.dart';
+import '../../../../all_trips/data/models/trips_model.dart';
 
 class BestOffersSection extends StatelessWidget {
   const BestOffersSection({
@@ -15,7 +14,7 @@ class BestOffersSection extends StatelessWidget {
     required this.bestOffers,
   });
 
-  final List<BestOffers> bestOffers;
+  final List<Trips> bestOffers;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class BestOffersSection extends StatelessWidget {
                 return BestOffersItem(
                   width: 74.0.w,
                   bestOffers: bestOffers[index],
-                  review:bestOffers[index].reviewAverage ?? 0 ,
+                  review:bestOffers[index].reviewAverage ?? 0.0 ,
                 );
               },
               separatorBuilder: (context, index) {

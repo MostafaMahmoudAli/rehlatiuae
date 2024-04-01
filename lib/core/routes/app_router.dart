@@ -29,6 +29,7 @@ import 'package:rehlatyuae/features/splash_screen/presentation/views/onboarding.
 import 'package:rehlatyuae/features/splash_screen/presentation/views/splash_screen.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/top_destination_screen.dart';
 
+import '../../features/all_categories/data/models/categories_model.dart';
 import '../../features/top_destinations_section/presentation/views/city_destination_screen.dart';
 
 class AppRouter {
@@ -50,11 +51,18 @@ class AppRouter {
         ),
         GoRoute(
           path: AppStrings.categoryNameScreen,
-          builder: (context, state) => CategoryNameScreen(),
+          builder: (context, state)
+          {
+            return CategoryNameScreen( category:state.extra as Categories,);
+          },
         ),
         GoRoute(
           path: AppStrings.cityDestinationScreen,
-          builder: (context, state) => CityDestinationScreen(),
+          builder: (context, state)
+          {
+            final id = state.extra as int?;
+            return CityDestinationScreen(cityDestinationId: id ?? 0,);
+          },
         ),
         GoRoute(
           path: AppStrings.allTripsScreen,

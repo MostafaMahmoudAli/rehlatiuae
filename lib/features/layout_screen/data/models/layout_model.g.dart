@@ -15,13 +15,13 @@ _$LayOutModelImpl _$$LayOutModelImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Categories.fromJson(e as Map<String, dynamic>))
           .toList(),
       bestOffers: (json['bestOffers'] as List<dynamic>?)
-          ?.map((e) => BestOffers.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Trips.fromJson(e as Map<String, dynamic>))
           .toList(),
       bestTrips: (json['bestTrips'] as List<dynamic>?)
-          ?.map((e) => BestTrips.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Trips.fromJson(e as Map<String, dynamic>))
           .toList(),
       popularExperience: (json['popularExperiencetrips'] as List<dynamic>?)
-          ?.map((e) => PopularExperiences.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Trips.fromJson(e as Map<String, dynamic>))
           .toList(),
       blogs: (json['blogs'] as List<dynamic>?)
           ?.map((e) => Blogs.fromJson(e as Map<String, dynamic>))

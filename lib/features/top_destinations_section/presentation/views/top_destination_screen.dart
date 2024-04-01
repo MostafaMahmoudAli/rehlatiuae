@@ -12,11 +12,11 @@ import 'package:rehlatyuae/features/top_destinations_section/presentation/views/
 import '../blocs/all_destinations_bloc.dart';
 import 'widgets/all_destination_body.dart';
 
-class TopDestinationScreen extends StatelessWidget
-{
+class TopDestinationScreen extends StatelessWidget {
   TopDestinationScreen({super.key});
 
   final ScrollController allDestinationsScrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,8 @@ class TopDestinationScreen extends StatelessWidget
       ),
       drawer: const CustomDrawer(),
       body: BlocProvider(
-        create:(context)=> getIt<AllDestinationsBloc>()..add(GetAllDestinationsEvent()),
+        create: (context) =>
+            getIt<AllDestinationsBloc>()..add(GetAllDestinationsEvent()),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 20.0.h,
@@ -53,7 +54,9 @@ class TopDestinationScreen extends StatelessWidget
                 const Text(
                   AppStrings.topDestinationTitle,
                 ),
-                AllDestinationBody(allDestinationsScrollController:allDestinationsScrollController),
+                AllDestinationBody(
+                    allDestinationsScrollController: allDestinationsScrollController,
+                ),
                 const AllDestinationBottomSection(),
               ],
             ),
@@ -63,5 +66,3 @@ class TopDestinationScreen extends StatelessWidget
     );
   }
 }
-
-

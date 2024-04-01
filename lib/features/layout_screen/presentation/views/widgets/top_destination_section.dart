@@ -31,7 +31,7 @@ class TopDestinationSection extends StatelessWidget {
                 return InkWell(
                   onTap: ()
                   {
-                    context.push(AppStrings.cityDestinationScreen);
+                    context.push(AppStrings.cityDestinationScreen,extra:destinations[index].id,);
                   },
                   child: CustomContainerTrip(
                     width:200.0.w,

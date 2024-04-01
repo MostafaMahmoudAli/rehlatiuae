@@ -6,7 +6,7 @@ enum PopularExperiencesStatus {initial,loading, success,error}
 class PopularExperiencesState extends Equatable
 {
   final PopularExperiencesStatus status;
-  final List<PopularExperiences> popularExperiences;
+  final List<Trips> popularExperiences;
   final bool hasReachedMax;
   final String errMessage;
 
@@ -19,7 +19,7 @@ class PopularExperiencesState extends Equatable
 
   PopularExperiencesState copyWith({
     PopularExperiencesStatus?status,
-    List<PopularExperiences>?popularExperiences,
+    List<Trips>?popularExperiences,
     bool?hasReachedMax,
     String?errMessage,
   })
