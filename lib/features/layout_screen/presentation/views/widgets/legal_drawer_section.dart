@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/custom_dialog.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
 
 class LegalDrawerSection extends StatelessWidget {
@@ -76,14 +79,29 @@ class LegalDrawerSection extends StatelessWidget {
             context.push('/aboutUsScreen');
           },
         ),
-        const DrawerItem(
+        DrawerItem(
           title: 'Logout',
           iconPath: AppAssets.logout,
-          trailing: [
+          trailing: const [
             Icon(
               Icons.arrow_forward_ios_sharp,
             ),
           ],
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) => CustomDialog(
+                title: "Are you sure from logout",
+                subtitle: 'Logout',
+                labelText: 'Logout',
+                color: AppColors.redAppColor,
+                onTap: () async {
+                  context.pop();
+                  await context.read<MainCubit>().logout();
+                },
+              ),
+            );
+          },
         ),
       ],
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class CustomContainerTrip extends StatelessWidget {
@@ -85,7 +85,7 @@ class CustomContainerTrip extends StatelessWidget {
               icon: isFavorite! ? Icons.favorite : Icons.favorite_outline_outlined,
               iconColor: AppColors.redAppColor,
               onPressed: () async {
-                await getIt<MainCubit>().addToFavourite(tripId: tripId ?? 8);
+                await context.read<MainCubit>().addToFavourite(tripId: tripId ?? 8);
               },
               size: 35.0.w,
             ),

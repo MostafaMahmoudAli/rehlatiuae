@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 import '../../../../best_offers/data/models/best_offers_model.dart';
@@ -63,7 +63,7 @@ class BestOffersItem extends StatelessWidget {
                   right: 10,
                   child: IconButtonWithWhiteBackground(
                     onPressed: () async {
-                      await getIt<MainCubit>().addToFavourite(tripId: bestOffers!.id);
+                      await context.read<MainCubit>().addToFavourite(tripId: bestOffers!.id);
                     },
                     width: 25.0.w,
                     height: 30.0.h,

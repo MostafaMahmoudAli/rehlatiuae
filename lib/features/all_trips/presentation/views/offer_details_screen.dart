@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -33,7 +34,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
             imagePath: widget.trip!.imagePath!,
             isOffer: true,
             onLikePressed: () async {
-              await getIt<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 8);
+              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 8);
             },
           ),
           Padding(

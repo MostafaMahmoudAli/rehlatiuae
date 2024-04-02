@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_preferences_list.dart';
@@ -33,7 +33,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             price: widget.trip!.adultPrice.toString(),
             imagePath: widget.trip!.imagePath!,
             onLikePressed: () async {
-              await getIt<MainCubit>().addToFavourite(tripId: widget.trip!.id);
+              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id);
             },
           ),
           Padding(

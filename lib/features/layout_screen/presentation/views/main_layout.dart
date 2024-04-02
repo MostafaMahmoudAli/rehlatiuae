@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
+import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/home_screen.dart';
@@ -29,10 +30,37 @@ class _MainLayoutState extends State<MainLayout> {
   ];
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: tabs[currentTab],
+      body: BlocConsumer<MainCubit, MainState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            error: (message) {
+              showDialog(
+                context: context,
+                builder: (context) => CustomDialog(
+                  title: message,
+                  subtitle: 'Sorry',
+                  labelText: 'Close',
+                ),
+              );
+            },
+          );
+        },
+        builder: (context, state) {
+          return state.maybeWhen(
+            loading: () => Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 300.h,
+              ),
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+            orElse: () => tabs[currentTab],
+          );
+        },
+      ),
       appBar: currentTab == 4
           ? null
           : AppBar(

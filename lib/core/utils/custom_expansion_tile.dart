@@ -47,8 +47,9 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
         ),
         title: Text(
           widget.title,
-          style: Theme.of(context).textTheme.displayMedium!.copyWith(
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(
                 color: AppColors.white,
+                fontWeight: FontWeight.w700,
               ),
         ),
         onExpansionChanged: (value) {

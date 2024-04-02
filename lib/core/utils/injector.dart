@@ -159,7 +159,12 @@ Future<void> setupInjector() async {
   );
 
   // cubits
-  getIt.registerFactory(() => MainCubit(mainRepo: getIt()));
+  getIt.registerFactory(
+    () => MainCubit(
+      mainRepo: getIt<MainRepo>(),
+      authRepo: getIt<AuthRepo>(),
+    ),
+  );
 
   /// Favorite Feature
   // repositories objects
