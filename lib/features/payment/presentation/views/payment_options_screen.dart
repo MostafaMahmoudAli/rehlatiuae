@@ -8,15 +8,15 @@ import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
+import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/count_tickets_section.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_date_booking.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_payment_section.dart';
-import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
 
 class PaymentOptionsScreen extends StatelessWidget {
-  final PopularExperiences? popularExperiences;
+  final Trips? popularExperiences;
 
   const PaymentOptionsScreen({super.key, this.popularExperiences});
 
@@ -138,7 +138,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                   buttonLabel: AppStrings.nextPayment,
                   onButtonTap: () {
                     if (!cubit.dateFormKey.currentState!.validate()) return;
-                    cubit.applyTripDetails(tripId: popularExperiences!.id);
+                    cubit.applyTripDetails(tripId: popularExperiences!.id??0);
                     context.push(AppStrings.paymentDetailsScreen);
                   },
                 ),

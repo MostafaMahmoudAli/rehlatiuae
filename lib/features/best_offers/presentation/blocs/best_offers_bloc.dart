@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../data/models/best_offers_model.dart';
+import '../../../all_trips/data/models/trips_model.dart';
 import '../../domain/repositories/best_offers_repo.dart';
 
 part 'best_offers_event.dart';

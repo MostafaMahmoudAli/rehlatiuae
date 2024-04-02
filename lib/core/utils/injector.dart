@@ -20,9 +20,15 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cub
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/all_categories/data/repositories/category_name_repo_impl.dart';
 import '../../features/all_categories/data/repositories/category_repo_impl.dart';
+import '../../features/all_categories/domian/repositories/category_name_repo.dart';
 import '../../features/all_categories/domian/repositories/category_repo.dart';
 import '../../features/all_categories/presentation/blocs/categories_bloc.dart';
+import '../../features/all_categories/presentation/blocs/category_name_cubit.dart';
+import '../../features/all_trips/data/repositories/all_trips_repo_impl.dart';
+import '../../features/all_trips/domain/repositories/trips_repository.dart';
+import '../../features/all_trips/presentation/blocs/all_trips_bloc.dart';
 import '../../features/auth/data/repositories/auth_repo_impl.dart';
 import '../../features/auth/domain/repositories/auth_repo.dart';
 import '../../features/auth/presentation/cubit/forget_password_cubit/forget_password_cubit.dart';
@@ -47,8 +53,11 @@ import '../../features/profile/domain/repositories/profile_repo.dart';
 import '../../features/profile/presentation/cubits/edit_profile_cubit/edit_profile_cubit.dart';
 import '../../features/profile/presentation/cubits/profile_cubit/profile_cubit.dart';
 import '../../features/top_destinations_section/data/repositories/all_destinations_repo_impl.dart';
+import '../../features/top_destinations_section/data/repositories/city_destination_repo_impl.dart';
 import '../../features/top_destinations_section/domian/repositories/all_destinations_repo.dart';
+import '../../features/top_destinations_section/domian/repositories/city_destination_repo.dart';
 import '../../features/top_destinations_section/presentation/blocs/all_destinations_bloc.dart';
+import '../../features/top_destinations_section/presentation/blocs/city_destination_cubit.dart';
 import '../routes/app_router.dart';
 import '../services/cache_service.dart';
 
@@ -82,6 +91,10 @@ Future<void> setupInjector() async {
   getIt.registerLazySingleton<BestOffersRepo>(
     () => BestOffersRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
   );
+
+  getIt.registerLazySingleton<AllTripsRepository>(
+        () => AllTripsRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+  );
   getIt.registerLazySingleton<CategoryRepo>(
     () => CategoryRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
   );
@@ -109,6 +122,18 @@ Future<void> setupInjector() async {
     ),
   );
 
+  getIt.registerLazySingleton<CityDestinationRepo>(
+        () => CityDestinationRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<CategoryNameRepo>(
+        () => CategoryNameRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+    ),
+  );
+
   // cubits
   getIt.registerFactory(() => BestOffersBloc(bestOffersRepo: getIt()));
 
@@ -123,6 +148,12 @@ Future<void> setupInjector() async {
   getIt.registerFactory(() => AllDestinationsBloc(allDestinationsRepo: getIt()));
 
   getIt.registerFactory(() => PopularExperiencesBloc(popularExperiencesRepo: getIt()));
+
+  getIt.registerFactory(() => AllTripsBloc(allTripsRepository: getIt()));
+
+  getIt.registerFactory(() => CityDestinationCubit(cityDestinationRepo: getIt()));
+
+  getIt.registerFactory(() => CategoryNameCubit(categoryNameRepo: getIt()));
 
   getIt.registerFactory(
     () => AddReviewCubit(

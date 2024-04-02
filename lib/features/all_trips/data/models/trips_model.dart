@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:rehlatyuae/features/all_trips/data/models/review_count.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
 
 import '../../../best_offers/data/models/address_model.dart';
@@ -28,8 +29,9 @@ class Trips with _$Trips
    required final bool? isFavourite,
    required final List<Trips>? offers,
    required  final DateTime? createdAt,
-   required final int? reviewAverage,
+   required final double? reviewAverage,
    required final List<Review>? reviews,
+   required final ReviewCount? reviewsCount,
 })=_Trips;
 
   factory Trips.fromJson(Map<String, dynamic> json) =>

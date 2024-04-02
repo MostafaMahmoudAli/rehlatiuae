@@ -8,12 +8,12 @@ import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
+import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_preferences_list.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
-import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
-  final PopularExperiences? trip;
+  final Trips? trip;
 
   const TravelDetailsScreen({super.key, this.trip});
 
@@ -28,13 +28,13 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
       body: ListView(
         children: [
           BolgTravelTitleSection(
-            title: widget.trip!.name,
-            address: widget.trip!.address,
+            title: widget.trip!.name??'',
+            address: widget.trip!.address??'',
             price: widget.trip!.adultPrice.toString(),
             imagePath: widget.trip!.imagePath!,
             isFavorite: widget.trip!.isFavourite,
             onLikePressed: () async {
-              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id);
+              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id??0);
             },
           ),
           Padding(

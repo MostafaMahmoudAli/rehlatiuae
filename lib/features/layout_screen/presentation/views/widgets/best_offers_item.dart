@@ -6,7 +6,8 @@ import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
-import '../../../../best_offers/data/models/best_offers_model.dart';
+import '../../../../all_trips/data/models/trips_model.dart';
+
 
 class BestOffersItem extends StatefulWidget {
   const BestOffersItem({
@@ -18,8 +19,8 @@ class BestOffersItem extends StatefulWidget {
   });
 
   final double width;
-  final BestOffers? bestOffers;
-  final int? review;
+  final Trips?bestOffers;
+  final double ?review;
   final bool? isFavorite;
 
   @override
@@ -82,7 +83,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                       setState(() {
                         isFavorite = !isFavorite;
                       });
-                      await context.read<MainCubit>().addToFavourite(tripId: widget.bestOffers!.id);
+                      await context.read<MainCubit>().addToFavourite(tripId: widget.bestOffers!.id??0);
                     },
                     width: 25.0.w,
                     height: 30.0.h,

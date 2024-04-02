@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/all_blogs_item.dart';
 import '../../../../../core/utils/error_widget.dart';
-import '../../../../../core/utils/injector.dart';
 import '../../blocs/blogs_bloc.dart';
 
 class OurBlogsBody extends StatefulWidget {

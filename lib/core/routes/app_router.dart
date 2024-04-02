@@ -3,6 +3,7 @@ import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/category_name.dart';
+import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/all_trips_screen.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/travel_details_screen.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
@@ -24,7 +25,6 @@ import 'package:rehlatyuae/features/our_blogs/presentation/views/blog_details_sc
 import 'package:rehlatyuae/features/our_blogs/presentation/views/our_blogs_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_details_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_options_screen.dart';
-import 'package:rehlatyuae/features/popular_experiences/data/models/popular_experiences_model.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/popular_experiences_screen.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/edit_profile_screen.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/profile_screen.dart';
@@ -32,6 +32,7 @@ import 'package:rehlatyuae/features/splash_screen/presentation/views/onboarding.
 import 'package:rehlatyuae/features/splash_screen/presentation/views/splash_screen.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/top_destination_screen.dart';
 
+import '../../features/all_categories/data/models/categories_model.dart';
 import '../../features/top_destinations_section/presentation/views/city_destination_screen.dart';
 
 class AppRouter {
@@ -53,11 +54,18 @@ class AppRouter {
         ),
         GoRoute(
           path: AppStrings.categoryNameScreen,
-          builder: (context, state) => CategoryNameScreen(),
+          builder: (context, state)
+          {
+            return CategoryNameScreen( category:state.extra as Categories,);
+          },
         ),
         GoRoute(
           path: AppStrings.cityDestinationScreen,
-          builder: (context, state) => CityDestinationScreen(),
+          builder: (context, state)
+          {
+            final id = state.extra as int?;
+            return CityDestinationScreen(cityDestinationId: id ?? 0,);
+          },
         ),
         GoRoute(
           path: AppStrings.allTripsScreen,
@@ -87,7 +95,7 @@ class AppRouter {
         /// Payment Screens
         GoRoute(
           path: AppStrings.paymentOptionsScreen,
-          builder: (context, state) => PaymentOptionsScreen(popularExperiences: state.extra! as PopularExperiences?),
+          builder: (context, state) => PaymentOptionsScreen(popularExperiences: state.extra! as Trips?),
         ),
         GoRoute(
           path: AppStrings.paymentDetailsScreen,
@@ -123,7 +131,7 @@ class AppRouter {
         ),
         GoRoute(
           path: AppStrings.travelDetailsScreen,
-          builder: (context, state) => TravelDetailsScreen(trip: state.extra! as PopularExperiences?),
+          builder: (context, state) => TravelDetailsScreen(trip: state.extra! as Trips?),
         ),
         GoRoute(
           path: AppStrings.blogScreen,

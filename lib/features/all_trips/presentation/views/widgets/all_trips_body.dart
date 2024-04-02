@@ -5,7 +5,6 @@ import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 
 
 import '../../../../../core/utils/error_widget.dart';
-import '../../../../../core/utils/injector.dart';
 import '../../blocs/all_trips_bloc.dart';
 
 class AllTripsBody extends StatefulWidget {

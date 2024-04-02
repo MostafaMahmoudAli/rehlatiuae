@@ -160,7 +160,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    widget.tripPrice ?? "",
+                    "\$${widget.tripPrice}",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(

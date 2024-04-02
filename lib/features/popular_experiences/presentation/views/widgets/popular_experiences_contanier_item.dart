@@ -8,7 +8,7 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
-import '../../../data/models/popular_experiences_model.dart';
+import '../../../../all_trips/data/models/trips_model.dart';
 
 class PopularExperiencesContainerItem extends StatefulWidget {
   const PopularExperiencesContainerItem({
@@ -23,7 +23,7 @@ class PopularExperiencesContainerItem extends StatefulWidget {
   final double width;
   final String? oldTripPrice;
   final String? percentageSave;
-  final PopularExperiences? popularExperiences;
+  final Trips? popularExperiences;
   final bool? isFavorite;
 
   @override
@@ -103,7 +103,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                   setState(() {
                     isFavorite = !isFavorite;
                   });
-                  await context.read<MainCubit>().addToFavourite(tripId: widget.popularExperiences!.id);
+                  await context.read<MainCubit>().addToFavourite(tripId: widget.popularExperiences!.id ?? 0);
                 },
                 width: 30.0.w,
                 height: 35.0.h,

@@ -32,7 +32,7 @@ class CategoriesSection extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    context.push(AppStrings.categoryNameScreen);
+                    context.push(AppStrings.categoryNameScreen,extra:categories?[index]);
                   },
                   child: CategoriesItem(
                     categoryName:categories?[index].name ?? "",

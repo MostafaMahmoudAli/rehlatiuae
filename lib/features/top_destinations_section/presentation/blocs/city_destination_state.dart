@@ -1,6 +1,9 @@
-part of 'city_destination_bloc.dart';
+part of 'city_destination_cubit.dart';
 
-@immutable
-sealed class CityDestinationState {}
-
-final class CityDestinationInitial extends CityDestinationState {}
+@freezed
+class CityDestinationState with _$CityDestinationState {
+  const factory CityDestinationState.initial() = _Initial;
+  const factory CityDestinationState.loading() = _Loading;
+  const factory CityDestinationState.loaded(CityDestination cityDestination) = _Loaded;
+  const factory CityDestinationState.error(String errorMessage) = _Error;
+}

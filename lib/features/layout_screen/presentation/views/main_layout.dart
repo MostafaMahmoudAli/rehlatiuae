@@ -68,7 +68,10 @@ class _MainLayoutState extends State<MainLayout> {
               title: const CustomAppBarTitle(),
               actions: [
                 InkWell(
-                  onTap: () {},
+                  onTap: ()
+                  {
+
+                  },
                   child: context.read<MainCubit>().client != null
                       ? CustomCircleAvatar(
                           radius: 25.0.r,

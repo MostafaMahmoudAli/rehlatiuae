@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_contanier_item.dart';
 
 import '../../../../../core/utils/error_widget.dart';
-import '../../../../../core/utils/injector.dart';
-import '../../../../../core/utils/whats_up_botton.dart';
 import '../../blocs/popular_experiences_bloc.dart';
 
 class PopularExperiencesBody extends StatefulWidget {
