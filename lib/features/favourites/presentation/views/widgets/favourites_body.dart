@@ -50,6 +50,7 @@ class FavouritesBody extends StatelessWidget {
               ),
               itemBuilder: (context, index) => CustomContainerTrip(
                 width: 200.0.w,
+                trip: trips[index],
                 cityName: trips[index].address,
                 countryName: trips[index].address,
                 imageName: trips[index].imagePath,
