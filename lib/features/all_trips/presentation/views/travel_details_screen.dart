@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
+import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
@@ -33,6 +36,8 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             price: widget.trip!.adultPrice.toString(),
             imagePath: widget.trip!.imagePath!,
             isFavorite: widget.trip!.isFavourite,
+            saving: widget.trip!.saving.toString(),
+            beforePrice: widget.trip!.beforePrice.toString(),
             onLikePressed: () async {
               await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
             },
@@ -68,6 +73,20 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             ),
           ),
           PreviewTravelsSection(images: widget.trip!.images),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
+            child: CustomActionButton(
+              text: 'Book Now',
+              borderRadius: BorderRadius.circular(16),
+              backGroundColor: AppColors.textAndBackgroundColorButton,
+              onTap: () {
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+                context.push(AppStrings.paymentOptionsScreen, extra: widget.trip);
+              },
+              width: double.infinity,
+              height: 50.h,
+            ),
+          ),
           RatingsReviewsSection(
             reviews: widget.trip!.reviews,
             id: widget.trip!.id,

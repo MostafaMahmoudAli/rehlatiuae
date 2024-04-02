@@ -59,7 +59,7 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppStrings.paymentOptionsScreen);
+                context.push(AppStrings.paymentOptionsScreen, extra: widget.blogs.trip);
               },
               width: double.infinity,
               height: 50.h,

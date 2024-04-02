@@ -117,7 +117,7 @@ class OfferCard extends StatelessWidget {
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,
                             ),
-                            builder: (context) => OfferDetailsScreen(offer: offer),
+                            builder: (context) => OfferDetailsScreen(offer: offer, trip: trip),
                           );
                         },
                         text: 'view',

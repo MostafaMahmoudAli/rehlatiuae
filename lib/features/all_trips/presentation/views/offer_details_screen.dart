@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
+import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
@@ -32,11 +35,13 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
         children: [
           BolgTravelTitleSection(
             title: widget.offer!.name!,
-            address: widget.offer!.address ?? '',
+            address: widget.trip!.address ?? '',
             price: widget.offer!.adultPrice.toString(),
             imagePath: widget.offer!.imagePath!,
             isOffer: true,
             isFavorite: widget.offer!.isFavourite,
+            saving: widget.offer!.saving.toString(),
+            beforePrice: widget.offer!.beforePrice.toString(),
             onLikePressed: () async {
               await context.read<MainCubit>().addToFavourite(tripId: widget.offer!.id ?? 8);
             },
@@ -59,7 +64,24 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
             ),
           ),
           PreviewTravelsSection(images: widget.trip!.images),
-          RatingsReviewsSection(reviews: widget.trip!.reviews),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
+            child: CustomActionButton(
+              text: 'Book Now',
+              borderRadius: BorderRadius.circular(16),
+              backGroundColor: AppColors.textAndBackgroundColorButton,
+              onTap: () {
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+                context.push(AppStrings.paymentOptionsScreen, extra: widget.trip);
+              },
+              width: double.infinity,
+              height: 50.h,
+            ),
+          ),
+          RatingsReviewsSection(
+            reviews: widget.trip!.reviews,
+            reviewsCount: widget.trip!.reviewsCount,
+          ),
           const ExperiencesSections(),
         ],
       ),
@@ -68,7 +90,10 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
 
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom],
+    );
     super.initState();
   }
 

@@ -10,6 +10,8 @@ class BolgTravelTitleSection extends StatefulWidget {
   final String title;
   final String address;
   final String price;
+  final String? saving;
+  final String? beforePrice;
   final String imagePath;
   final bool isTrip;
   final bool isOffer;
@@ -21,6 +23,8 @@ class BolgTravelTitleSection extends StatefulWidget {
     required this.address,
     required this.price,
     required this.imagePath,
+    this.saving,
+    this.beforePrice,
     this.onLikePressed,
     this.isTrip = true,
     this.isOffer = false,
@@ -121,7 +125,7 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                                   ),
                             ),
                           ),
-                          if (widget.isOffer)
+                          if (widget.isOffer || widget.isTrip)
                             Container(
                               height: 20.0.h,
                               margin: EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
@@ -134,7 +138,7 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 4.w),
                                     child: Text(
-                                      "\$100",
+                                      "\$${widget.beforePrice}",
                                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                                             color: AppColors.black,
                                             decoration: TextDecoration.lineThrough,
@@ -151,7 +155,7 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                                       borderRadius: BorderRadius.circular(8.0.r),
                                     ),
                                     child: Text(
-                                      "save 45%",
+                                      "save ${widget.saving}%",
                                       style: Theme.of(context).textTheme.bodySmall,
                                     ),
                                   ),
