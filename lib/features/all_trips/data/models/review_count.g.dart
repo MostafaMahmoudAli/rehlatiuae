@@ -8,18 +8,18 @@ part of 'review_count.dart';
 
 _$ReviewCountImpl _$$ReviewCountImplFromJson(Map<String, dynamic> json) =>
     _$ReviewCountImpl(
-      oneStar: json['oneStar'] as int?,
-      towStar: json['towStar'] as int?,
-      threeStar: json['threeStar'] as int?,
-      fourStar: json['fourStar'] as int?,
-      fiveStar: json['fiveStar'] as int?,
+      oneStar: json['one_star'] as int?,
+      towStar: json['tow_star'] as int?,
+      threeStar: json['three_star'] as int?,
+      fourStar: json['four_star'] as int?,
+      fiveStar: json['five_star'] as int?,
     );
 
 Map<String, dynamic> _$$ReviewCountImplToJson(_$ReviewCountImpl instance) =>
     <String, dynamic>{
-      'oneStar': instance.oneStar,
-      'towStar': instance.towStar,
-      'threeStar': instance.threeStar,
-      'fourStar': instance.fourStar,
-      'fiveStar': instance.fiveStar,
+      'one_star': instance.oneStar,
+      'tow_star': instance.towStar,
+      'three_star': instance.threeStar,
+      'four_star': instance.fourStar,
+      'five_star': instance.fiveStar,
     };

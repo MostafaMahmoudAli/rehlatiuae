@@ -54,17 +54,17 @@ class AppRouter {
         ),
         GoRoute(
           path: AppStrings.categoryNameScreen,
-          builder: (context, state)
-          {
-            return CategoryNameScreen( category:state.extra as Categories,);
+          builder: (context, state) {
+            return CategoryNameScreen(category: state.extra as Categories);
           },
         ),
         GoRoute(
           path: AppStrings.cityDestinationScreen,
-          builder: (context, state)
-          {
+          builder: (context, state) {
             final id = state.extra as int?;
-            return CityDestinationScreen(cityDestinationId: id ?? 0,);
+            return CityDestinationScreen(
+              cityDestinationId: id ?? 0,
+            );
           },
         ),
         GoRoute(

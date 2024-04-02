@@ -28,23 +28,24 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
       body: ListView(
         children: [
           BolgTravelTitleSection(
-            title: widget.trip!.name??'',
-            address: widget.trip!.address??'',
+            title: widget.trip!.name ?? '',
+            address: widget.trip!.address ?? '',
             price: widget.trip!.adultPrice.toString(),
             imagePath: widget.trip!.imagePath!,
             isFavorite: widget.trip!.isFavourite,
             onLikePressed: () async {
-              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id??0);
+              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
             },
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-            child: Text(
-              "Select your Preferences",
-              style: Theme.of(context).textTheme.labelMedium,
+          if (widget.trip!.offers!.isNotEmpty)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              child: Text(
+                "Select your Preferences",
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
             ),
-          ),
-          OfferPreferencesList(offers: widget.trip!.offers),
+          if (widget.trip!.offers!.isNotEmpty) OfferPreferencesList(offers: widget.trip!.offers),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
@@ -66,6 +67,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
           RatingsReviewsSection(
             reviews: widget.trip!.reviews,
             id: widget.trip!.id,
+            reviewsCount: widget.trip!.reviewsCount,
           ),
           const ExperiencesSections(),
         ],

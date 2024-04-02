@@ -20,10 +20,15 @@ ReviewCount _$ReviewCountFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReviewCount {
+  @JsonKey(name: "one_star")
   int? get oneStar => throw _privateConstructorUsedError;
+  @JsonKey(name: "tow_star")
   int? get towStar => throw _privateConstructorUsedError;
+  @JsonKey(name: "three_star")
   int? get threeStar => throw _privateConstructorUsedError;
+  @JsonKey(name: "four_star")
   int? get fourStar => throw _privateConstructorUsedError;
+  @JsonKey(name: "five_star")
   int? get fiveStar => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,11 +44,11 @@ abstract class $ReviewCountCopyWith<$Res> {
       _$ReviewCountCopyWithImpl<$Res, ReviewCount>;
   @useResult
   $Res call(
-      {int? oneStar,
-      int? towStar,
-      int? threeStar,
-      int? fourStar,
-      int? fiveStar});
+      {@JsonKey(name: "one_star") int? oneStar,
+      @JsonKey(name: "tow_star") int? towStar,
+      @JsonKey(name: "three_star") int? threeStar,
+      @JsonKey(name: "four_star") int? fourStar,
+      @JsonKey(name: "five_star") int? fiveStar});
 }
 
 /// @nodoc
@@ -99,11 +104,11 @@ abstract class _$$ReviewCountImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? oneStar,
-      int? towStar,
-      int? threeStar,
-      int? fourStar,
-      int? fiveStar});
+      {@JsonKey(name: "one_star") int? oneStar,
+      @JsonKey(name: "tow_star") int? towStar,
+      @JsonKey(name: "three_star") int? threeStar,
+      @JsonKey(name: "four_star") int? fourStar,
+      @JsonKey(name: "five_star") int? fiveStar});
 }
 
 /// @nodoc
@@ -152,24 +157,29 @@ class __$$ReviewCountImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReviewCountImpl implements _ReviewCount {
   const _$ReviewCountImpl(
-      {required this.oneStar,
-      required this.towStar,
-      required this.threeStar,
-      required this.fourStar,
-      required this.fiveStar});
+      {@JsonKey(name: "one_star") required this.oneStar,
+      @JsonKey(name: "tow_star") required this.towStar,
+      @JsonKey(name: "three_star") required this.threeStar,
+      @JsonKey(name: "four_star") required this.fourStar,
+      @JsonKey(name: "five_star") required this.fiveStar});
 
   factory _$ReviewCountImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReviewCountImplFromJson(json);
 
   @override
+  @JsonKey(name: "one_star")
   final int? oneStar;
   @override
+  @JsonKey(name: "tow_star")
   final int? towStar;
   @override
+  @JsonKey(name: "three_star")
   final int? threeStar;
   @override
+  @JsonKey(name: "four_star")
   final int? fourStar;
   @override
+  @JsonKey(name: "five_star")
   final int? fiveStar;
 
   @override
@@ -213,24 +223,30 @@ class _$ReviewCountImpl implements _ReviewCount {
 
 abstract class _ReviewCount implements ReviewCount {
   const factory _ReviewCount(
-      {required final int? oneStar,
-      required final int? towStar,
-      required final int? threeStar,
-      required final int? fourStar,
-      required final int? fiveStar}) = _$ReviewCountImpl;
+          {@JsonKey(name: "one_star") required final int? oneStar,
+          @JsonKey(name: "tow_star") required final int? towStar,
+          @JsonKey(name: "three_star") required final int? threeStar,
+          @JsonKey(name: "four_star") required final int? fourStar,
+          @JsonKey(name: "five_star") required final int? fiveStar}) =
+      _$ReviewCountImpl;
 
   factory _ReviewCount.fromJson(Map<String, dynamic> json) =
       _$ReviewCountImpl.fromJson;
 
   @override
+  @JsonKey(name: "one_star")
   int? get oneStar;
   @override
+  @JsonKey(name: "tow_star")
   int? get towStar;
   @override
+  @JsonKey(name: "three_star")
   int? get threeStar;
   @override
+  @JsonKey(name: "four_star")
   int? get fourStar;
   @override
+  @JsonKey(name: "five_star")
   int? get fiveStar;
   @override
   @JsonKey(ignore: true)

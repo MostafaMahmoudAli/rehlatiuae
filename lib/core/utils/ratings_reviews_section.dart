@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/chart_rating_section.dart';
 import 'package:rehlatyuae/core/utils/comment_card.dart';
 import 'package:rehlatyuae/core/utils/review_operation_section.dart';
+import 'package:rehlatyuae/features/all_trips/data/models/review_count.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
@@ -11,11 +12,13 @@ class RatingsReviewsSection extends StatelessWidget {
   final List<Review>? reviews;
   final int? id;
   final bool isTrip;
+  final ReviewCount? reviewsCount;
 
   const RatingsReviewsSection({
     this.reviews,
-    this.id,
     this.isTrip = true,
+    this.reviewsCount,
+    this.id,
     super.key,
   });
 
@@ -26,7 +29,7 @@ class RatingsReviewsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ChartRatingSection(),
+          ChartRatingSection(reviewsCount: reviewsCount),
           if (context.read<MainCubit>().client != null)
             ReviewOperationSection(
               id: id ?? 0,
@@ -37,7 +40,7 @@ class RatingsReviewsSection extends StatelessWidget {
             (index) => CommentCard(
               imageUrl: reviews![index].client!.imagePath,
               name: reviews![index].name!,
-              date: reviews![index].name!,
+              date: reviews![index].createdAt!,
               comment: reviews![index].description!,
             ),
           ),

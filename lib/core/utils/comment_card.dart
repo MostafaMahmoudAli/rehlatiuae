@@ -21,7 +21,7 @@ class CommentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20.h),
+      margin: EdgeInsets.only(bottom: 30.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
