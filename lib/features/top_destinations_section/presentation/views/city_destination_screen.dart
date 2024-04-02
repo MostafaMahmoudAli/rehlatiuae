@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/custom_button.dart';
 import '../../../../core/utils/custom_circle_avatar.dart';
 import '../../../../core/utils/custom_sized_box.dart';
@@ -58,8 +59,8 @@ class CityDestinationScreen extends StatelessWidget
               ),
               const CustomSizedBox(),
               const Text(
-                AppStrings.cityDestinationTitle,
-              ),
+               LocaleKeys.City_Destination 
+                            ),
               const CustomSizedBox(),
               const CategoryNameBody(),
               const CustomSizedBox(),
@@ -69,7 +70,7 @@ class CityDestinationScreen extends StatelessWidget
               const CustomSizedBox(),
               const PopularExperiencesSection(popularExperiences: [],),
               const CustomSizedBox(),
-               OurBlogSection(blogs: [],),
+               const OurBlogSection(blogs: [],),
               const CustomSizedBox(),
               const OurPartnerSection(ourPartners: [],),
               const CustomSizedBox(),
@@ -79,9 +80,9 @@ class CityDestinationScreen extends StatelessWidget
               CustomActionButton(
                 onTap: ()
                 {
-                  context.push(AppStrings.allTripsScreen);
+                  context.push(AppRoutesString.allTripsScreen);
                 },
-                text: AppStrings.actionButtonName,
+                text: LocaleKeys.Explore_More,
                 height: 70.0.h,
                 width: double.infinity,
                 borderRadius: BorderRadius.circular(12.0.r),

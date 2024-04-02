@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_number_ticket_card.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class OfferCountTicketsSection extends StatefulWidget {
   final double adultCost;
@@ -36,8 +36,8 @@ class _OfferCountTicketsSectionState extends State<OfferCountTicketsSection> {
     return Column(
       children: [
         OfferCountTicketCard(
-          name: AppStrings.adult,
-          detail: AppStrings.above4Yrs,
+          name: LocaleKeys.Adult,
+          detail: LocaleKeys.Above_four_yrs,
           count: adultCount,
           total: subtotalAdult,
           onIncreasePressed: () {
@@ -62,8 +62,8 @@ class _OfferCountTicketsSectionState extends State<OfferCountTicketsSection> {
                 },
         ),
         OfferCountTicketCard(
-          name: AppStrings.children,
-          detail: AppStrings.under3Yrs,
+          name: LocaleKeys.Children,
+          detail: LocaleKeys.Under_three_yrs,
           count: childCount,
           total: subtotalChild,
           onIncreasePressed: () {

@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/auth/data/models/authenticated_client_model/authenticated_client_model.dart';
@@ -136,8 +136,8 @@ class AuthRepoImpl implements AuthRepo {
       value: json.encode(authenticatedClient.client.toJson()),
     );
     await cacheService.setData(
-      key: AppStrings.initialLocationRoute,
-      value: AppStrings.homeScreen,
+      key: AppRoutesString.initialLocationRoute,
+      value: AppRoutesString.homeScreen,
     );
   }
 }

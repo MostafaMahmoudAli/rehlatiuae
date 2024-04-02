@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/blog_container_item.dart';
-
-import '../../../../all_trips/data/models/trips_model.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../../../../our_blogs/data/models/blogs_model.dart';
 
 class OurBlogSection extends StatelessWidget {
@@ -16,10 +15,10 @@ final List<Blogs>blogs;
     return Column(
       children: [
         CustomRowTitle(
-          text: AppStrings.ourBlogTitle,
+          text: LocaleKeys.Our_Blog,
           onPressed: ()
           {
-            context.push(AppStrings.ourBlogsScreen);
+            context.push(AppRoutesString.ourBlogsScreen);
           },
         ),
         SizedBox(

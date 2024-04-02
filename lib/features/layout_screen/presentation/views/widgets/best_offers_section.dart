@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
-import '../../../../../core/utils/app_colors.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../../../../../core/utils/whats_up_botton.dart';
 import '../../../../best_offers/data/models/best_offers_model.dart';
 
@@ -22,9 +22,9 @@ class BestOffersSection extends StatelessWidget {
     return Column(
       children: [
         CustomRowTitle(
-          text: AppStrings.bestOffersTitle,
+          text: LocaleKeys.Best_Offers,
           onPressed: () {
-            context.push(AppStrings.bestOffersScreen);
+            context.push(AppRoutesString.bestOffersScreen);
           },
         ),
         Stack(

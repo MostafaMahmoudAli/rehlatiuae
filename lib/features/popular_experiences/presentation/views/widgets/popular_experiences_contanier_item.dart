@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 import '../../../data/models/popular_experiences_model.dart';
 
@@ -25,7 +25,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
   {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.travelDetailsScreen);
+        context.push(AppRoutesString.travelDetailsScreen);
       },
       child: SizedBox(
         height: 180.0.h,

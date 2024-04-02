@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/widgets/category_name_body.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/custom_button.dart';
 import '../../../../core/utils/custom_circle_avatar.dart';
 import '../../../../core/utils/custom_sized_box.dart';
@@ -58,10 +59,10 @@ class CategoryNameScreen extends StatelessWidget {
               ),
               const CustomSizedBox(),
               const Text(
-                AppStrings.categoryNameTitle,
+                LocaleKeys.Categories_Name,
               ),
               const CustomSizedBox(),
-              CategoryNameBody(),
+              const CategoryNameBody(),
               const CustomSizedBox(),
               const BestOffersSection(bestOffers: [],),
               const CustomSizedBox(),
@@ -69,7 +70,7 @@ class CategoryNameScreen extends StatelessWidget {
               const CustomSizedBox(),
               const PopularExperiencesSection(popularExperiences: [],),
               const CustomSizedBox(),
-               OurBlogSection(blogs: [],),
+               const OurBlogSection(blogs: [],),
               const CustomSizedBox(),
               const OurPartnerSection(ourPartners: [],),
               const CustomSizedBox(),
@@ -79,9 +80,9 @@ class CategoryNameScreen extends StatelessWidget {
               CustomActionButton(
                 onTap: ()
                 {
-                  context.push(AppStrings.allTripsScreen);
+                  context.push(AppRoutesString.allTripsScreen);
                 },
-                text: AppStrings.actionButtonName,
+                text: LocaleKeys.Explore_More,
                 height: 70.0.h,
                 width: double.infinity,
                 borderRadius: BorderRadius.circular(12.0.r),

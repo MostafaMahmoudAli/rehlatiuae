@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CustomAppBarTitle extends StatelessWidget {
   const CustomAppBarTitle({super.key});
@@ -36,14 +37,14 @@ class CustomAppBarTitle extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Hello,",
+                  LocaleKeys.Hello,
                   style: TextStyle(
                     color: AppColors.black,
                     fontSize: 16.0.sp,
                   ),
                 ),
                 Text(
-                  " Belal",
+                  LocaleKeys.Belal ,
                   overflow: TextOverflow.fade,
                   style: TextStyle(
                     color: AppColors.textAndBackgroundColorButton,

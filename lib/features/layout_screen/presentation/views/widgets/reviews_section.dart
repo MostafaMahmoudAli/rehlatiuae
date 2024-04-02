@@ -6,6 +6,7 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../data/models/review_model.dart';
 
@@ -18,7 +19,7 @@ final List<Review>?reviews;
     return Column(
       children: [
         Text(
-          AppStrings.reviewTitle,
+          LocaleKeys.Our_Client_Reviews,
           style: Theme.of(context).textTheme.labelMedium,
         ),
         const CustomSizedBox(),
@@ -100,7 +101,7 @@ final List<Review>?reviews;
           height: 40.0.h,
         ),
         Text(
-          AppStrings.subscribeToNewsletterTitle,
+          LocaleKeys.Subscribe_to_Newsletter,
           style: Theme.of(context).textTheme.labelMedium,
         ),
         Row(
@@ -118,7 +119,7 @@ final List<Review>?reviews;
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppStrings.reviewTextFieldName,
+                    hintText: LocaleKeys.Your_Name,
                     hintStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
@@ -140,7 +141,7 @@ final List<Review>?reviews;
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppStrings.reviewTextFieldEmail,
+                    hintText:LocaleKeys.Your_Email,
                     hintStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
@@ -152,7 +153,7 @@ final List<Review>?reviews;
           height: 15.0.h,
         ),
         CustomActionButton(
-          text: AppStrings.reviewActionButtonName,
+          text: LocaleKeys.Send_Now,
           borderRadius: BorderRadius.circular(8.0.r),
           backGroundColor: AppColors.textAndBackgroundColorButton,
           onTap: () {},
@@ -163,7 +164,7 @@ final List<Review>?reviews;
           height: 50.0.h,
         ),
         Text(
-          AppStrings.copyRight,
+          "Copyright ©2024. All Rights Reserved. — by Rehlatyuai",
           style: Theme.of(context).textTheme.headlineSmall!.copyWith(
             fontSize: 14.0.sp,
           ),

@@ -4,6 +4,7 @@ import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/info/presentation/views/widgets/privacy_section.dart';
 import 'package:rehlatyuae/features/info/presentation/views/widgets/title_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});
@@ -20,12 +21,12 @@ class PrivacyPolicyScreen extends StatelessWidget {
         child: ListView(
           children: const [
             TitleSection(
-              title: AppStrings.privacyPolicy,
-              subTitle: AppStrings.privacyPolicy,
+              title: LocaleKeys.Privacy_Policy,
+              subTitle: LocaleKeys.Privacy_Policy,
               imagePath: AppAssets.rectangle,
             ),
             PrivacySection(
-              title: AppStrings.privacyPolicy,
+              title: LocaleKeys.Privacy_Policy,
               content: AppStrings.privacyPolicyContent,
             ),
           ],

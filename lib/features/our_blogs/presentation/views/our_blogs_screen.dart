@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
@@ -11,6 +10,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/cus
 import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/blocs/blogs_bloc.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/blogs_bottom_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import 'widgets/our_blogs_body.dart';
 
@@ -57,8 +57,7 @@ class OurBlogsScreen extends StatelessWidget {
                 ),
                 const CustomSizedBox(),
                 const Text(
-                  AppStrings.ourBlogTitle,
-                ),
+               LocaleKeys.Our_Blog,                ),
                 const CustomSizedBox(),
                  OurBlogsBody(ourBlogsScrollController:blogsScrollController,),
                 const CustomSizedBox(),

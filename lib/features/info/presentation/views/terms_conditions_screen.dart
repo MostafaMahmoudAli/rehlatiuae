@@ -5,6 +5,8 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/info/presentation/views/widgets/privacy_section.dart';
 import 'package:rehlatyuae/features/info/presentation/views/widgets/title_section.dart';
 
+import '../../../../generated/locale_keys.g.dart';
+
 class TermsConditionsScreen extends StatelessWidget {
   const TermsConditionsScreen({super.key});
 
@@ -20,12 +22,12 @@ class TermsConditionsScreen extends StatelessWidget {
         child: ListView(
           children: const [
             TitleSection(
-              title: AppStrings.termsConditions,
-              subTitle: AppStrings.termsConditions,
+              title: LocaleKeys.Terms_Conditions,
+              subTitle: LocaleKeys.Terms_Conditions,
               imagePath: AppAssets.rectangle,
             ),
             PrivacySection(
-              title: AppStrings.termsConditions,
+              title: LocaleKeys.Terms_Conditions,
               content: AppStrings.termsConditionsContent,
             ),
           ],

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
@@ -13,6 +13,7 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/core/utils/regex.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -36,15 +37,15 @@ class RegisterScreen extends StatelessWidget {
               listener: (context, state) {
                 state.whenOrNull(
                   success: (authenticatedClient) {
-                    context.push(AppStrings.homeScreen);
+                    context.push(AppRoutesString.homeScreen);
                   },
                   error: (message) {
                     showDialog(
                       context: context,
                       builder: (context) => CustomDialog(
                         title: message,
-                        subtitle: 'Sorry',
-                        labelText: 'Close',
+                        subtitle: LocaleKeys.Sorry,
+                        labelText: LocaleKeys.Close,
                         color: AppColors.redAppColor,
                       ),
                     );
@@ -69,7 +70,7 @@ class RegisterScreen extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                'Register now',
+                                LocaleKeys.Register_now,
                                 style: Theme.of(context).textTheme.headlineLarge,
                               ),
                             ],
@@ -78,7 +79,7 @@ class RegisterScreen extends StatelessWidget {
                           PrimaryTextField(
                             controller: cubit.nameEditingController,
                             validator: (value) => AppValidator.validateName(value),
-                            hint: 'your name',
+                            hint: LocaleKeys.your_name,
                             padding: EdgeInsets.only(bottom: 20.h),
                             textColor: AppColors.white,
                             suffix: const Icon(
@@ -101,7 +102,7 @@ class RegisterScreen extends StatelessWidget {
                           PrimaryTextField(
                             controller: cubit.passwordEditingController,
                             validator: (value) => AppValidator.validatePassword(value),
-                            hint: 'password',
+                            hint: LocaleKeys.password,
                             padding: EdgeInsets.zero,
                             textColor: AppColors.white,
                             suffix: const Icon(
@@ -115,7 +116,7 @@ class RegisterScreen extends StatelessWidget {
                             onTap: () async {
                               await cubit.register();
                             },
-                            text: 'Sign Up',
+                            text: LocaleKeys.Sign_Up,
                             borderRadius: BorderRadius.circular(12.r),
                             backGroundColor: AppColors.textAndBackgroundColorButton,
                             height: 60.h,
@@ -125,19 +126,19 @@ class RegisterScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'If you have an account?',
+                                LocaleKeys.If_you_have_an_account,
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               DefaultTextButton(
                                 onPressed: () {
                                   context.pop();
                                 },
-                                text: ' Sign In here',
+                                text: LocaleKeys.Sign_In_here,
                               ),
                             ],
                           ),
                           Text(
-                            'By clicking Sing up, you agree to our ',
+                           LocaleKeys.By_clicking_Sing_up,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
@@ -148,17 +149,17 @@ class RegisterScreen extends StatelessWidget {
                                 onPressed: () {
                                   context.push('/termsConditionsScreen');
                                 },
-                                text: 'Terms',
+                                text: LocaleKeys.Terms,
                               ),
                               Text(
-                                'and',
+                                LocaleKeys.and,
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               DefaultTextButton(
                                 onPressed: () {
                                   context.push('/privacyPolicyScreen');
                                 },
-                                text: 'Privacy Policy',
+                                text: LocaleKeys.Privacy_Policy,
                               ),
                             ],
                           ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 
 import '../../../data/models/blogs_model.dart';
 
@@ -19,7 +19,7 @@ class BlogContainerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.blogScreen);
+        context.push(AppRoutesString.blogScreen);
       },
       child: SizedBox(
         height: 330.0.h,

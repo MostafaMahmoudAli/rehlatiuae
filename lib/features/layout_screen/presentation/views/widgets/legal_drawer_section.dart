@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class LegalDrawerSection extends StatelessWidget {
   const LegalDrawerSection({super.key});
@@ -20,7 +21,7 @@ class LegalDrawerSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Legal",
+                LocaleKeys.Legal,
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: AppColors.black,
                     ),
@@ -29,7 +30,7 @@ class LegalDrawerSection extends StatelessWidget {
           ),
         ),
         DrawerItem(
-          title: 'Privacy Policy',
+          title: LocaleKeys.Privacy_Policy,
           iconPath: AppAssets.privacyPolicy,
           trailing: const [
             Icon(
@@ -41,7 +42,7 @@ class LegalDrawerSection extends StatelessWidget {
           },
         ),
         DrawerItem(
-          title: 'Terms of Usage',
+          title: LocaleKeys.Terms_of_Usage,
           iconPath: AppAssets.terms,
           trailing: const [
             Icon(
@@ -56,7 +57,7 @@ class LegalDrawerSection extends StatelessWidget {
           height: 30.h,
         ),
         const DrawerItem(
-          title: 'Update App',
+          title: LocaleKeys.Update_App,
           iconPath: AppAssets.updateApp,
           trailing: [
             Icon(
@@ -65,7 +66,7 @@ class LegalDrawerSection extends StatelessWidget {
           ],
         ),
         DrawerItem(
-          title: 'About App',
+          title: LocaleKeys.About_App,
           iconPath: AppAssets.aboutApp,
           trailing: const [
             Icon(
@@ -77,7 +78,7 @@ class LegalDrawerSection extends StatelessWidget {
           },
         ),
         const DrawerItem(
-          title: 'Logout',
+          title: LocaleKeys.Logout,
           iconPath: AppAssets.logout,
           trailing: [
             Icon(

@@ -9,6 +9,7 @@ import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_preferences_list.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
   const TravelDetailsScreen({super.key});
@@ -25,14 +26,14 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
         children: [
           const BolgTravelTitleSection(
             title: "IMG Worlds",
-            address: "Dubai, United Arab Emirates",
+            address: LocaleKeys.Dubai_United,
             price: "79",
             imagePath: AppAssets.travel,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
-              "Select your Preferences",
+              LocaleKeys.Select_your_Preferences,
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ),
@@ -40,25 +41,24 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
-              'The mighty Rinjani mountain of Gunung Rinjani is a massive volcano which towers over the island of Lombok. A climb to the top is one of the most exhilarating experiences you can have in Indonesia. At 3,726 meters tall, Gunung Rinjani is the second highest mountain in Indonesia',
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      LocaleKeys.The_mighty,
+                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
             ),
           ),
           const CustomExpansionTile(
-            title: "Highlights",
+            title: LocaleKeys.Highlights,
             content:
-                "With more techy bells n’ webullish than our free version.With more techy bells n’ webullish than our free version.",
-          ),
+           LocaleKeys.With_more_techy  ),
           const CustomExpansionTile(
-            title: "Inclusions",
-            content: "14,000+ Guests served",
+            title: LocaleKeys.Inclusions,
+            content: LocaleKeys.Guests_served,
             initiallyExpanded: false,
           ),
           const CustomExpansionTile(
-            title: "Cancellation policy",
-            content: "1000+ Reviews on Rehlatyuae by our Travelers",
+            title: LocaleKeys.Cancellation_policy,
+            content: LocaleKeys.Reviews_Rehlatyuae,
             initiallyExpanded: false,
           ),
           const PreviewTravelsSection(),

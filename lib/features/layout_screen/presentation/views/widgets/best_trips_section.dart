@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../best_trips/data/models/best_trips_model.dart';
 
@@ -15,10 +17,10 @@ class BestTripsSection extends StatelessWidget {
     return Column(
       children: [
         CustomRowTitle(
-          text: AppStrings.bestTripsTitle,
+          text: LocaleKeys.Best_Trips,
           onPressed: ()
           {
-            context.push(AppStrings.bestTripsScreen);
+            context.push(AppRoutesString.bestTripsScreen);
           },
         ),
         SizedBox(
@@ -29,8 +31,8 @@ class BestTripsSection extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CustomContainerTrip(
                   width:200.0.w,
-                  cityName: bestTrips?[index].name ?? "Dubai",
-                  countryName:bestTrips?[index].address ??"United Arab Emirates",
+                  cityName: bestTrips?[index].name ?? LocaleKeys.Dubai,
+                  countryName:bestTrips?[index].address ?? LocaleKeys.United_Arab_Emirates,
                   imageName: bestTrips?[index].imagePath??AppStrings.containerTripBackgroundImage,
                   tripPrice:bestTrips?[index].adultPrice.toString()??"",
                   reservationType:"/person",

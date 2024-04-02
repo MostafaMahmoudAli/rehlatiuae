@@ -6,6 +6,7 @@ import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/currency_content_sheet.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/language_content_sheet.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class AccountDrawerSection extends StatelessWidget {
   const AccountDrawerSection({super.key});
@@ -22,7 +23,7 @@ class AccountDrawerSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "My Account",
+                LocaleKeys.My_Account,
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: AppColors.black,
                     ),
@@ -39,7 +40,7 @@ class AccountDrawerSection extends StatelessWidget {
        // ),
        
         DrawerItem(
-          title: 'Credits',
+          title: LocaleKeys.Credits,
           iconPath: AppAssets.credits,
           trailing: [
             Text(
@@ -49,7 +50,7 @@ class AccountDrawerSection extends StatelessWidget {
           ],
         ),
         DrawerItem(
-          title: 'Currency',
+          title: LocaleKeys.Currency,
           iconPath: AppAssets.currency,
           trailing: [
             Text(
@@ -68,7 +69,7 @@ class AccountDrawerSection extends StatelessWidget {
                 borderRadius: BorderRadius.zero,
               ),
               builder: (context) => const CustomBottomSheet(
-                title: 'Select Currency',
+                title: LocaleKeys.Select_Currency,
                 avatarText: '\$',
                 contentSheet: CurrencyContentSheet(),
               ),
@@ -76,7 +77,7 @@ class AccountDrawerSection extends StatelessWidget {
           },
         ),
         DrawerItem(
-          title: 'Language',
+          title: LocaleKeys.Language,
           iconPath: AppAssets.language,
           trailing: [
             Text(
@@ -95,7 +96,7 @@ class AccountDrawerSection extends StatelessWidget {
                 borderRadius: BorderRadius.zero,
               ),
               builder: (context) => const CustomBottomSheet(
-                title: 'Select Language',
+                title: LocaleKeys.Select_Language,
                 avatarText: 'AR',
                 contentSheet: LanguageContentSheet(),
               ),
@@ -103,7 +104,7 @@ class AccountDrawerSection extends StatelessWidget {
           },
         ),
         DrawerItem(
-          title: 'Notifications',
+          title: LocaleKeys.Notifications,
           iconPath: AppAssets.notifications,
           trailing: [
             Transform.scale(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/all_trips_body.dart';
@@ -10,6 +9,7 @@ import 'package:rehlatyuae/features/best_trips/presentation/views/widgets/best_t
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
 import 'package:rehlatyuae/core/utils/search_text_feild.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../core/utils/injector.dart';
 import '../blocs/best_trips_bloc.dart';
@@ -56,7 +56,7 @@ class BestTripsScreen extends StatelessWidget {
                 ),
                 const CustomSizedBox(),
                 const Text(
-                  AppStrings.bestTripsTitle,
+                  LocaleKeys.Best_Trips,
                 ),
                 const CustomSizedBox(),
                  AllTripsBody(bestTripsScrollController: bestTripsScrollController,),

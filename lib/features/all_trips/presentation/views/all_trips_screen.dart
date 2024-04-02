@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
@@ -16,6 +15,7 @@ import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top_destination_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class AllTripsScreen extends StatelessWidget {
   AllTripsScreen({super.key});
@@ -56,7 +56,7 @@ class AllTripsScreen extends StatelessWidget {
               ),
               const CustomSizedBox(),
               const Text(
-                AppStrings.allTripsTitle,
+                LocaleKeys.All_Trip,
               ),
               const CustomSizedBox(),
               const AllTripsBody(bestTripsScrollController: null,),
@@ -74,7 +74,7 @@ class AllTripsScreen extends StatelessWidget {
               const WeHelpYouSection(),
               CustomActionButton(
                 onTap: () {},
-                text: AppStrings.actionButtonName,
+                text: LocaleKeys.Explore_More,
                 height: 70.0.h,
                 width: double.infinity,
                 borderRadius: BorderRadius.circular(12.0.r),

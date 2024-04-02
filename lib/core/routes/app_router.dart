@@ -1,7 +1,16 @@
 import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
+import 'package:rehlatyuae/features/all_categories/presentation/views/category_name.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/all_trips_screen.dart';
+import 'package:rehlatyuae/features/all_trips/presentation/views/travel_details_screen.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
+import 'package:rehlatyuae/features/auth/presentation/views/forget_password_screen.dart';
+import 'package:rehlatyuae/features/auth/presentation/views/login_screen.dart';
+import 'package:rehlatyuae/features/auth/presentation/views/register_screen.dart';
+import 'package:rehlatyuae/features/auth/presentation/views/update_password_screen.dart';
+import 'package:rehlatyuae/features/auth/presentation/views/verification_screen.dart';
 import 'package:rehlatyuae/features/best_offers/presentation/views/best_offers_screen.dart';
 import 'package:rehlatyuae/features/best_trips/presentation/views/best_trips_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/about_us_screen.dart';
@@ -27,142 +36,124 @@ class AppRouter {
   late GoRouter router;
 
   AppRouter({required CacheService cacheService}) : _cacheService = cacheService {
-    String initialLocation = _cacheService.getData<String>(key: AppStrings.initialLocationRoute) ?? '/';
+    String initialLocation = _cacheService.getData<String>(key: AppRoutesString.initialLocationRoute) ?? '/';
     router = GoRouter(
       routes: [
         /// Trips & Blogs Screens
         GoRoute(
-          path: AppStrings.homeScreen,
+          path: AppRoutesString.homeScreen,
           builder: (context, state) => const MainLayout(),
         ),
         GoRoute(
-          path: AppStrings.allCategoriesScreen,
+          path: AppRoutesString.allCategoriesScreen,
           builder: (context, state) => AllCategoriesScreen(),
         ),
         GoRoute(
-          path: AppStrings.categoryNameScreen,
+          path: AppRoutesString.categoryNameScreen,
           builder: (context, state) => CategoryNameScreen(),
         ),
         GoRoute(
-          path: AppStrings.cityDestinationScreen,
+          path: AppRoutesString.cityDestinationScreen,
           builder: (context, state) => CityDestinationScreen(),
         ),
         GoRoute(
-          path: AppStrings.allTripsScreen,
+          path: AppRoutesString.allTripsScreen,
           builder: (context, state) => AllTripsScreen(),
         ),
         GoRoute(
-          path: AppStrings.bestOffersScreen,
+          path: AppRoutesString.bestOffersScreen,
           builder: (context, state) => BestOffersScreen(),
         ),
         GoRoute(
-          path: AppStrings.bestTripsScreen,
+          path: AppRoutesString.bestTripsScreen,
           builder: (context, state) => BestTripsScreen(),
         ),
         GoRoute(
-          path: AppStrings.ourBlogsScreen,
+          path: AppRoutesString.ourBlogsScreen,
           builder: (context, state) => OurBlogsScreen(),
         ),
         GoRoute(
-          path: AppStrings.popularExperiencesScreen,
+          path: AppRoutesString.popularExperiencesScreen,
           builder: (context, state) => PopularExperiencesScreen(),
         ),
         GoRoute(
-          path: AppStrings.topDestinationScreen,
+          path: AppRoutesString.topDestinationScreen,
           builder: (context, state) => TopDestinationScreen(),
         ),
 
         /// Payment Screens
         GoRoute(
-          path: AppStrings.paymentOptionsScreen,
+          path: AppRoutesString.paymentOptionsScreen,
           builder: (context, state) => const PaymentOptionsScreen(),
         ),
         GoRoute(
-          path: AppStrings.paymentDetailsScreen,
+          path: AppRoutesString.paymentDetailsScreen,
           builder: (context, state) => const PaymentDetailsScreen(),
         ),
 
         /// Info Screens
         GoRoute(
-          path: AppStrings.aboutUsScreen,
+          path: AppRoutesString.aboutUsScreen,
           builder: (context, state) => const AboutUsScreen(),
         ),
         GoRoute(
-          path: AppStrings.termsConditionsScreen,
+          path: AppRoutesString.termsConditionsScreen,
           builder: (context, state) => const TermsConditionsScreen(),
         ),
         GoRoute(
-          path: AppStrings.privacyPolicyScreen,
+          path: AppRoutesString.privacyPolicyScreen,
           builder: (context, state) => const PrivacyPolicyScreen(),
         ),
         GoRoute(
-          path: AppStrings.faqsScreen,
+          path: AppRoutesString.faqsScreen,
           builder: (context, state) => const FAQsScreen(),
         ),
 
         /// Profile Screens
         GoRoute(
-          path: AppStrings.profileScreen,
+          path: AppRoutesString.profileScreen,
           builder: (context, state) => const ProfileScreen(),
         ),
         GoRoute(
-          path: AppStrings.editProfileScreen,
+          path: AppRoutesString.editProfileScreen,
           builder: (context, state) => EditProfileScreen(client: state.extra! as Client),
         ),
         GoRoute(
-          path: AppStrings.travelDetailsScreen,
+          path: AppRoutesString.travelDetailsScreen,
           builder: (context, state) => const TravelDetailsScreen(),
         ),
         GoRoute(
-          path: AppStrings.blogScreen,
+          path: AppRoutesString.blogScreen,
           builder: (context, state) => const BlogDetailsScreen(),
         ),
-      /// Profile Screens
-      GoRoute(
-        path: AppStrings.profileScreen,
-        builder: (context, state) => const ProfileScreen(),
-      ),
-      GoRoute(
-        path: AppStrings.editProfileScreen,
-        builder: (context, state) =>
-            EditProfileScreen(client: state.extra! as Client),
-      ),
-      GoRoute(
-        path: AppStrings.travelDetailsScreen,
-        builder: (context, state) => const TravelDetailsScreen(),
-      ),
-      GoRoute(
-        path: AppStrings.blogScreen,
-        builder: (context, state) => const BlogDetailsScreen(),
-      ),
 
         /// Auth Screens
         GoRoute(
-          path: AppStrings.splashScreen,
+          path: AppRoutesString.splashScreen,
           builder: (context, state) => const SplashScreen(),
         ),
         GoRoute(
-          path: AppStrings.onboarding,
+          path: AppRoutesString.onboarding,
           builder: (context, state) => const OnBoarding(),
         ),
         GoRoute(
-          path: AppStrings.loginScreen,
+          path: AppRoutesString.loginScreen,
           builder: (context, state) => const LoginScreen(),
         ),
         GoRoute(
-          path: AppStrings.registerScreen,
+          path: AppRoutesString.registerScreen,
           builder: (context, state) => const RegisterScreen(),
         ),
         GoRoute(
-          path: AppStrings.forgetPasswordScreen,
+          path: AppRoutesString.forgetPasswordScreen,
           builder: (context, state) => const ForgetPasswordScreen(),
         ),
         GoRoute(
-          path: AppStrings.verificationScreen,
+          path: AppRoutesString.verificationScreen,
           builder: (context, state) => VerificationScreen(email: state.extra as String),
         ),
         GoRoute(
-          path: AppStrings.updatePasswordScreen,
+          path: AppRoutesString.updatePasswordScreen,
           builder: (context, state) => UpdatePasswordScreen(token: state.extra as String),
         ),
         // GoRoute(
@@ -177,24 +168,4 @@ class AppRouter {
       initialLocation: initialLocation,
     );
   }
-      /// Auth Screens
-      GoRoute(
-        path: AppStrings.splashScreen,
-        builder: (context, state) => const SplashScreen(),
-      ),
-      GoRoute(
-        path: AppStrings.onboarding,
-        builder: (context, state) => const OnBoarding(),
-      ),
-
-      // GoRoute(
-      //   path: "/register",
-      //   builder: (context, state) => const Register(),
-      // ),
-      // GoRoute(
-      //   path: "/login",
-      //   builder: (context, state) => const Login(),
-      // ),
-    ],
-  );
 }

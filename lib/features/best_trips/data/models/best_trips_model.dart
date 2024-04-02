@@ -16,6 +16,7 @@ class BestTrips with _$BestTrips
     required final String name,
     required final String address,
     required final String ?description,
+    // ignore: invalid_annotation_target
     @JsonKey(name: "oldPrice")
     required final int ?adultPrice,
     required final int ?childPrice,

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
@@ -12,6 +11,7 @@ import 'package:rehlatyuae/core/utils/regex.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/profile/presentation/cubits/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/widgets/profile_photo_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class EditProfileScreen extends StatelessWidget {
   final Client client;
@@ -25,7 +25,7 @@ class EditProfileScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            AppStrings.editProfile,
+            LocaleKeys.Edit_Profile,
             style: Theme.of(context).textTheme.displayMedium!.copyWith(
                   color: AppColors.black,
                 ),
@@ -45,8 +45,8 @@ class EditProfileScreen extends StatelessWidget {
                   context: context,
                   builder: (context) => CustomDialog(
                     title: message,
-                    subtitle: 'Sorry',
-                    labelText: 'Close',
+                    subtitle: LocaleKeys.Sorry,
+                    labelText: LocaleKeys.Close,
                     color: AppColors.redAppColor,
                   ),
                 );
@@ -56,9 +56,9 @@ class EditProfileScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => CustomDialog(
-                    title: 'Your Profile Updated Successfully',
-                    subtitle: 'Done',
-                    labelText: 'Close',
+                    title: LocaleKeys.Your_Profile_Updated,
+                    subtitle: LocaleKeys.Done,
+                    labelText: LocaleKeys.Close,
                     onTap: () {},
                   ),
                 );
@@ -89,24 +89,24 @@ class EditProfileScreen extends StatelessWidget {
                       children: [
                         PrimaryTextField(
                           controller: cubit.fullNameEditingController,
-                          hint: 'Full Name',
+                          hint: LocaleKeys.Full_Name,
                           validator: (value) => AppValidator.validateName(value),
                         ),
                         PrimaryTextField(
                           controller: cubit.emailEditingController,
-                          hint: 'Your Email',
+                          hint: LocaleKeys.Your_Email,
                           inputType: TextInputType.emailAddress,
                           validator: (value) => AppValidator.validateEmail(value),
                         ),
                         PrimaryTextField(
                           controller: cubit.phoneEditingController,
-                          hint: 'Your Phone Number',
+                          hint: LocaleKeys.Your_Phone_Number,
                           inputType: TextInputType.phone,
                           validator: (value) => AppValidator.validatePhone(value),
                         ),
                         PrimaryTextField(
                           controller: cubit.addressEditingController,
-                          hint: 'Your Address',
+                          hint: LocaleKeys.Your_Address,
                           validator: (value) => AppValidator.validateRequired(value),
                         ),
                       ],
@@ -117,7 +117,7 @@ class EditProfileScreen extends StatelessWidget {
                       top: 30.h,
                     ),
                     child: CustomActionButton(
-                      text: AppStrings.save,
+                      text: LocaleKeys.Save,
                       borderRadius: BorderRadius.circular(16.r),
                       backGroundColor: AppColors.orange,
                       onTap: () async {

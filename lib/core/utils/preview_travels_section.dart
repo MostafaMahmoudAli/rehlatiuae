@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class PreviewTravelsSection extends StatelessWidget {
   final bool hasBookButton;
@@ -24,7 +25,7 @@ class PreviewTravelsSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Preview",
+                LocaleKeys.Preview,
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               Container(
@@ -78,12 +79,12 @@ class PreviewTravelsSection extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
-              text: 'Book Now',
+              text: LocaleKeys.Book_Now,
               borderRadius: BorderRadius.circular(16),
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppStrings.paymentOptionsScreen);
+                context.push(AppRoutesString.paymentOptionsScreen);
               },
               width: double.infinity,
               height: 50.h,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CustomRowTitle extends StatelessWidget {
   const CustomRowTitle({
@@ -25,7 +25,7 @@ class CustomRowTitle extends StatelessWidget {
         ),
         const Spacer(),
         DefaultTextButton(
-          text: AppStrings.textButtonNameOfHomeScreen,
+          text: LocaleKeys.View_all,
           onPressed: onPressed,
         ),
       ],

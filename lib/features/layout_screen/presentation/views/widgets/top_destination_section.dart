@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../top_destinations_section/data/models/all_destination_model.dart';
 
@@ -18,9 +20,9 @@ class TopDestinationSection extends StatelessWidget {
          CustomRowTitle(
           onPressed:()
           {
-            context.push(AppStrings.topDestinationScreen);
+            context.push(AppRoutesString.topDestinationScreen);
           },
-          text: AppStrings.topDestinationTitle,
+          text: LocaleKeys.All_Destinations,
         ),
         SizedBox(
           height: 200.0.h,
@@ -31,12 +33,12 @@ class TopDestinationSection extends StatelessWidget {
                 return InkWell(
                   onTap: ()
                   {
-                    context.push(AppStrings.cityDestinationScreen);
+                    context.push(AppRoutesString.cityDestinationScreen);
                   },
                   child: CustomContainerTrip(
                     width:200.0.w,
-                    cityName: destinations[index].name ?? "Dubai",
-                    countryName:destinations[index].country ??"United Arab Emirates",
+                    cityName: destinations[index].name ?? LocaleKeys.Dubai,
+                    countryName:destinations[index].country ?? LocaleKeys.United_Arab_Emirates,
                     imageName: destinations[index].imagePath ?? AppStrings.containerTripBackgroundImage,
                   ),
                 );

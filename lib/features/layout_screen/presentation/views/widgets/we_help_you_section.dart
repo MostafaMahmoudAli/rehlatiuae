@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_item.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class WeHelpYouSection extends StatelessWidget {
   const WeHelpYouSection({super.key});
@@ -13,7 +14,7 @@ class WeHelpYouSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          AppStrings.weHelpYouMakeBestTrip,
+          LocaleKeys.We_Help_You_Make_Best_Trip,
           style: Theme.of(context).textTheme.labelMedium,
         ),
         SizedBox(

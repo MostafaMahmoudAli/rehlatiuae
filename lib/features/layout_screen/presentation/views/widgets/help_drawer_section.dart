@@ -6,6 +6,7 @@ import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/my_booking_content_sheet.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/send_message_content_sheet.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class HelpDrawerSection extends StatelessWidget {
   const HelpDrawerSection({super.key});
@@ -22,7 +23,7 @@ class HelpDrawerSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Help",
+                LocaleKeys.Help,
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: AppColors.black,
                     ),
@@ -31,7 +32,7 @@ class HelpDrawerSection extends StatelessWidget {
           ),
         ),
         DrawerItem(
-          title: 'My booking',
+          title: LocaleKeys.My_booking,
           iconPath: AppAssets.myBooking,
           trailing: const [
             Icon(
@@ -46,7 +47,7 @@ class HelpDrawerSection extends StatelessWidget {
                 borderRadius: BorderRadius.zero,
               ),
               builder: (context) => const CustomBottomSheet(
-                title: 'My Booking',
+                title: LocaleKeys.My_booking,
                 avatarText: 'MY',
                 contentSheet: MyBookingContentSheet(),
               ),
@@ -54,7 +55,7 @@ class HelpDrawerSection extends StatelessWidget {
           },
         ),
         DrawerItem(
-          title: 'Send message',
+          title: LocaleKeys.Send_message,
           iconPath: AppAssets.sendMessage,
           trailing: const [
             Icon(
@@ -69,7 +70,7 @@ class HelpDrawerSection extends StatelessWidget {
                 borderRadius: BorderRadius.zero,
               ),
               builder: (context) => const CustomBottomSheet(
-                title: 'Send message',
+                title: LocaleKeys.Send_message,
                 avatarText: 'ME',
                 hasButton: false,
                 contentSheet: SendMessageContentSheet(),
