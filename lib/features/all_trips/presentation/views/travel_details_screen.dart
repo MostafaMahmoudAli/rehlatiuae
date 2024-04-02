@@ -45,7 +45,11 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                 style: Theme.of(context).textTheme.labelMedium,
               ),
             ),
-          if (widget.trip!.offers!.isNotEmpty) OfferPreferencesList(offers: widget.trip!.offers),
+          if (widget.trip!.offers!.isNotEmpty)
+            OfferPreferencesList(
+              trip: widget.trip!,
+              offers: widget.trip!.offers,
+            ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(

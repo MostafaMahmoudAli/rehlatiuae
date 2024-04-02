@@ -8,13 +8,16 @@ import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
+import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class OfferDetailsScreen extends StatefulWidget {
+  final Trips? offer;
   final Trips? trip;
 
-  const OfferDetailsScreen({super.key, required this.trip});
+  const OfferDetailsScreen({super.key, required this.offer, this.trip});
 
   @override
   State<OfferDetailsScreen> createState() => _OfferDetailsScreenState();
@@ -23,40 +26,40 @@ class OfferDetailsScreen extends StatefulWidget {
 class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    getIt<Logger>().w(widget.trip.toString());
+    getIt<Logger>().w(widget.offer.toString());
     return Scaffold(
       body: ListView(
         children: [
           BolgTravelTitleSection(
-            title: widget.trip!.name!,
-            address: widget.trip!.address ?? '',
-            price: widget.trip!.adultPrice.toString(),
-            imagePath: widget.trip!.imagePath!,
+            title: widget.offer!.name!,
+            address: widget.offer!.address ?? '',
+            price: widget.offer!.adultPrice.toString(),
+            imagePath: widget.offer!.imagePath!,
             isOffer: true,
-            isFavorite: widget.trip!.isFavourite,
+            isFavorite: widget.offer!.isFavourite,
             onLikePressed: () async {
-              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 8);
+              await context.read<MainCubit>().addToFavourite(tripId: widget.offer!.id ?? 8);
             },
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
-              widget.trip!.description!,
+              widget.offer!.description!,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
             ),
           ),
           ...List.generate(
-            widget.trip!.addresses!.length,
+            widget.offer!.addresses!.length,
             (index) => CustomExpansionTile(
               initiallyExpanded: index == 0,
-              title: widget.trip!.addresses![index].name,
-              content: widget.trip!.addresses![index].description,
+              title: widget.offer!.addresses![index].name,
+              content: widget.offer!.addresses![index].description,
             ),
           ),
-          // PreviewTravelsSection(popularExperiences: widget.trip),
-          // RatingsReviewsSection(reviews: widget.trip!.reviews),
+          PreviewTravelsSection(images: widget.trip!.images),
+          RatingsReviewsSection(reviews: widget.trip!.reviews),
           const ExperiencesSections(),
         ],
       ),

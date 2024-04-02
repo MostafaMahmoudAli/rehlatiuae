@@ -93,7 +93,7 @@ Future<void> setupInjector() async {
   );
 
   getIt.registerLazySingleton<AllTripsRepository>(
-        () => AllTripsRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+    () => AllTripsRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
   );
   getIt.registerLazySingleton<CategoryRepo>(
     () => CategoryRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
@@ -123,13 +123,13 @@ Future<void> setupInjector() async {
   );
 
   getIt.registerLazySingleton<CityDestinationRepo>(
-        () => CityDestinationRepoImpl(
+    () => CityDestinationRepoImpl(
       apiConsumer: getIt.get<ApiConsumer>(),
     ),
   );
 
   getIt.registerLazySingleton<CategoryNameRepo>(
-        () => CategoryNameRepoImpl(
+    () => CategoryNameRepoImpl(
       apiConsumer: getIt.get<ApiConsumer>(),
     ),
   );

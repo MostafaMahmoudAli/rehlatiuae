@@ -10,9 +10,11 @@ import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_c
 
 class OfferCard extends StatelessWidget {
   final Trips offer;
+  final Trips trip;
 
   const OfferCard({
     required this.offer,
+    required this.trip,
     super.key,
   });
 
@@ -115,7 +117,7 @@ class OfferCard extends StatelessWidget {
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,
                             ),
-                            builder: (context) => OfferDetailsScreen(trip: offer),
+                            builder: (context) => OfferDetailsScreen(offer: offer),
                           );
                         },
                         text: 'view',

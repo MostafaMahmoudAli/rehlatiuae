@@ -5,8 +5,10 @@ import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_c
 
 class OfferPreferencesList extends StatelessWidget {
   final List<Trips>? offers;
+  final Trips trip;
 
   const OfferPreferencesList({
+    required this.trip,
     this.offers,
     super.key,
   });
@@ -19,7 +21,10 @@ class OfferPreferencesList extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         scrollDirection: Axis.horizontal,
         itemCount: offers!.length,
-        itemBuilder: (context, index) => OfferCard(offer: offers![index]),
+        itemBuilder: (context, index) => OfferCard(
+          offer: offers![index],
+          trip: trip,
+        ),
         separatorBuilder: (BuildContext context, int index) => SizedBox(
           width: 10.w,
         ),

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/our_blogs/data/models/blogs_model.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/paragraph_section.dart';
@@ -23,6 +25,7 @@ class BlogDetailsScreen extends StatefulWidget {
 class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    getIt<Logger>().w(widget.blogs);
     return Scaffold(
       body: ListView(
         children: [
@@ -65,6 +68,7 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
           RatingsReviewsSection(
             reviews: widget.blogs.blogReview,
             id: widget.blogs.id,
+            reviewsCount: widget.blogs.reviewsCount,
             isTrip: false,
           ),
           const ExperiencesSections(),
