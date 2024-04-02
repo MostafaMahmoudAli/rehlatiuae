@@ -32,6 +32,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             address: widget.trip!.address,
             price: widget.trip!.adultPrice.toString(),
             imagePath: widget.trip!.imagePath!,
+            isFavorite: widget.trip!.isFavourite,
             onLikePressed: () async {
               await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id);
             },

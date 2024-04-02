@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,7 +6,7 @@ import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
-class CustomContainerTrip extends StatelessWidget {
+class CustomContainerTrip extends StatefulWidget {
   const CustomContainerTrip({
     super.key,
     required this.width,
@@ -33,32 +34,45 @@ class CustomContainerTrip extends StatelessWidget {
   final int? tripId;
 
   @override
+  State<CustomContainerTrip> createState() => _CustomContainerTripState();
+}
+
+class _CustomContainerTripState extends State<CustomContainerTrip> {
+  bool isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite ?? false;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 185.0.h,
-      width: width,
+      width: widget.width,
       child: Stack(
         children: [
           Container(
             height: 185.0.h,
-            width: width,
+            width: widget.width,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.circular(15.0.r),
             ),
             child: Image.network(
-              imageName ?? "",
+              widget.imageName ?? "",
               fit: BoxFit.cover,
             ),
           ),
-          if ((oldTripPrice != null || percentageSave != null) && percentageSave!.isNotEmpty)
+          if ((widget.oldTripPrice != null || widget.percentageSave != null) && widget.percentageSave!.isNotEmpty)
             Positioned(
               top: 20,
               left: 18,
               child: Row(
                 children: [
                   Text(
-                    "\$${oldTripPrice.toString()}",
+                    "\$${widget.oldTripPrice.toString()}",
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   Container(
@@ -71,7 +85,7 @@ class CustomContainerTrip extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.0.r),
                     ),
                     child: Text(
-                      "save $percentageSave%",
+                      "save ${widget.percentageSave}%",
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
@@ -82,10 +96,13 @@ class CustomContainerTrip extends StatelessWidget {
             top: 10,
             right: 18,
             child: CustomIconButton(
-              icon: isFavorite! ? Icons.favorite : Icons.favorite_outline_outlined,
+              icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
               iconColor: AppColors.redAppColor,
               onPressed: () async {
-                await context.read<MainCubit>().addToFavourite(tripId: tripId ?? 8);
+                setState(() {
+                  isFavorite = !isFavorite;
+                });
+                await context.read<MainCubit>().addToFavourite(tripId: widget.tripId ?? 8);
               },
               size: 35.0.w,
             ),
@@ -99,7 +116,7 @@ class CustomContainerTrip extends StatelessWidget {
                 SizedBox(
                   width: 160.0.w,
                   child: Text(
-                    cityName ?? "",
+                    widget.cityName ?? "",
                     style: Theme.of(context).textTheme.displayMedium,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -121,7 +138,7 @@ class CustomContainerTrip extends StatelessWidget {
                     SizedBox(
                       width: 100.0.w,
                       child: Text(
-                        countryName ?? "",
+                        widget.countryName ?? "",
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
@@ -134,7 +151,8 @@ class CustomContainerTrip extends StatelessWidget {
               ],
             ),
           ),
-          if ((tripPrice != null || reservationType != null) && (tripPrice!.isNotEmpty && reservationType!.isNotEmpty))
+          if ((widget.tripPrice != null || widget.reservationType != null) &&
+              (widget.tripPrice!.isNotEmpty && widget.reservationType!.isNotEmpty))
             Positioned(
               bottom: 73,
               right: 10,
@@ -142,14 +160,14 @@ class CustomContainerTrip extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    tripPrice ?? "",
+                    widget.tripPrice ?? "",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(
                     height: 4.0.h,
                   ),
                   Text(
-                    reservationType ?? "",
+                    widget.reservationType ?? "",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ],

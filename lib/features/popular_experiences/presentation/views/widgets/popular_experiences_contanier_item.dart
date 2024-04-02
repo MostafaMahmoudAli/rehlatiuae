@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,54 +10,69 @@ import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit
 
 import '../../../data/models/popular_experiences_model.dart';
 
-class PopularExperiencesContainerItem extends StatelessWidget {
+class PopularExperiencesContainerItem extends StatefulWidget {
   const PopularExperiencesContainerItem({
     super.key,
     required this.width,
     this.oldTripPrice,
     this.percentageSave,
     required this.popularExperiences,
+    this.isFavorite = false,
   });
 
   final double width;
   final String? oldTripPrice;
   final String? percentageSave;
   final PopularExperiences? popularExperiences;
+  final bool? isFavorite;
+
+  @override
+  State<PopularExperiencesContainerItem> createState() => _PopularExperiencesContainerItemState();
+}
+
+class _PopularExperiencesContainerItemState extends State<PopularExperiencesContainerItem> {
+  bool isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.travelDetailsScreen, extra: popularExperiences);
+        context.push(AppStrings.travelDetailsScreen, extra: widget.popularExperiences);
       },
       child: SizedBox(
         height: 180.0.h,
-        width: width,
+        width: widget.width,
         child: Stack(
           children: [
             Container(
               height: 180.0.h,
-              width: width,
+              width: widget.width,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
                 image: DecorationImage(
                   image: NetworkImage(
-                    popularExperiences?.imagePath ?? "",
+                    widget.popularExperiences?.imagePath ?? "",
                   ),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            if ((oldTripPrice != null || percentageSave != null) &&
-                (percentageSave!.isNotEmpty || oldTripPrice!.isNotEmpty))
+            if ((widget.oldTripPrice != null || widget.percentageSave != null) &&
+                (widget.percentageSave!.isNotEmpty || widget.oldTripPrice!.isNotEmpty))
               Positioned(
                 top: 16,
                 left: 6,
                 child: Row(
                   children: [
                     Text(
-                      "\$$oldTripPrice",
+                      "\$${widget.oldTripPrice}",
                       style: Theme.of(context).textTheme.headlineMedium!,
                     ),
                     Container(
@@ -72,7 +88,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
-                        " save $percentageSave% ",
+                        " save ${widget.percentageSave}% ",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
@@ -84,12 +100,15 @@ class PopularExperiencesContainerItem extends StatelessWidget {
               right: 8,
               child: IconButtonWithWhiteBackground(
                 onPressed: () async {
-                  await context.read<MainCubit>().addToFavourite(tripId: popularExperiences!.id);
+                  setState(() {
+                    isFavorite = !isFavorite;
+                  });
+                  await context.read<MainCubit>().addToFavourite(tripId: widget.popularExperiences!.id);
                 },
                 width: 30.0.w,
                 height: 35.0.h,
                 icon: Icon(
-                  Icons.favorite_outline,
+                  isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                   color: AppColors.redAppColor,
                   size: 17.0.sp,
                 ),
@@ -104,7 +123,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                   SizedBox(
                     width: 120.0.w,
                     child: Text(
-                      popularExperiences?.name ?? "",
+                      widget.popularExperiences?.name ?? "",
                       style: Theme.of(context).textTheme.displayMedium,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -126,7 +145,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                       SizedBox(
                         width: 120.0.w,
                         child: Text(
-                          popularExperiences?.address ?? "",
+                          widget.popularExperiences?.address ?? "",
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall
@@ -146,7 +165,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    popularExperiences?.adultPrice.toString() ?? "",
+                    widget.popularExperiences?.adultPrice.toString() ?? "",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(

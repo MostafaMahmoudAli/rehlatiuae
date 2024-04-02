@@ -33,6 +33,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
             price: widget.trip!.adultPrice.toString(),
             imagePath: widget.trip!.imagePath!,
             isOffer: true,
+            isFavorite: widget.trip!.isFavourite,
             onLikePressed: () async {
               await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 8);
             },

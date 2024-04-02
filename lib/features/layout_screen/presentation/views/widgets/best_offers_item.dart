@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,17 +8,32 @@ import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit
 
 import '../../../../best_offers/data/models/best_offers_model.dart';
 
-class BestOffersItem extends StatelessWidget {
+class BestOffersItem extends StatefulWidget {
   const BestOffersItem({
     super.key,
     required this.width,
     required this.bestOffers,
     this.review,
+    this.isFavorite = false,
   });
 
   final double width;
   final BestOffers? bestOffers;
   final int? review;
+  final bool? isFavorite;
+
+  @override
+  State<BestOffersItem> createState() => _BestOffersItemState();
+}
+
+class _BestOffersItemState extends State<BestOffersItem> {
+  bool isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,18 +59,18 @@ class BestOffersItem extends StatelessWidget {
         children: [
           SizedBox(
             height: 120.0.h,
-            width: width,
+            width: widget.width,
             child: Stack(
               children: [
                 Container(
                   height: 140.0.h,
-                  width: width,
+                  width: widget.width,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadiusDirectional.circular(15.0.r),
                   ),
                   child: Image.network(
-                    bestOffers?.imagePath ?? "",
+                    widget.bestOffers?.imagePath ?? "",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -63,12 +79,15 @@ class BestOffersItem extends StatelessWidget {
                   right: 10,
                   child: IconButtonWithWhiteBackground(
                     onPressed: () async {
-                      await context.read<MainCubit>().addToFavourite(tripId: bestOffers!.id);
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                      await context.read<MainCubit>().addToFavourite(tripId: widget.bestOffers!.id);
                     },
                     width: 25.0.w,
                     height: 30.0.h,
                     icon: Icon(
-                      Icons.favorite_outline,
+                      isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                       color: AppColors.redAppColor,
                       size: 14.0.sp,
                     ),
@@ -85,7 +104,7 @@ class BestOffersItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  bestOffers?.name ?? "IMG Worlds of Adventure",
+                  widget.bestOffers?.name ?? "IMG Worlds of Adventure",
                   maxLines: 1,
                   style: Theme.of(context).textTheme.bodyMedium,
                   textAlign: TextAlign.justify,
@@ -102,7 +121,7 @@ class BestOffersItem extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        bestOffers?.address ?? "Dubai, United Arab Emirates",
+                        widget.bestOffers?.address ?? "Dubai, United Arab Emirates",
                         style: Theme.of(context).textTheme.titleMedium,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -113,7 +132,7 @@ class BestOffersItem extends StatelessWidget {
                   height: 2.5.w,
                 ),
                 Text(
-                  bestOffers?.description ?? "This exceptional beach gets ",
+                  widget.bestOffers?.description ?? "This exceptional beach gets ",
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: Theme.of(context).textTheme.headlineSmall,
@@ -121,11 +140,11 @@ class BestOffersItem extends StatelessWidget {
                 SizedBox(
                   height: 5.0.w,
                 ),
-                if ((bestOffers?.beforePrice != null || bestOffers?.saving != null))
+                if ((widget.bestOffers?.beforePrice != null || widget.bestOffers?.saving != null))
                   Row(
                     children: [
                       Text(
-                        "\$${bestOffers?.beforePrice}",
+                        "\$${widget.bestOffers?.beforePrice}",
                         style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                               color: AppColors.black,
                             ),
@@ -140,7 +159,7 @@ class BestOffersItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8.0.r),
                         ),
                         child: Text(
-                          " Save ${bestOffers?.saving}%",
+                          " Save ${widget.bestOffers?.saving}%",
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
@@ -152,7 +171,7 @@ class BestOffersItem extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "\$${bestOffers?.adultPrice.toString()}",
+                      "\$${widget.bestOffers?.adultPrice.toString()}",
                       style: Theme.of(context).textTheme.titleSmall,
                       textAlign: TextAlign.justify,
                     ),
@@ -165,7 +184,7 @@ class BestOffersItem extends StatelessWidget {
                       textAlign: TextAlign.justify,
                     ),
                     const Spacer(),
-                    if (review != null)
+                    if (widget.review != null)
                       Row(
                         children: [
                           Icon(
@@ -174,7 +193,7 @@ class BestOffersItem extends StatelessWidget {
                             size: 16.0.sp,
                           ),
                           Text(
-                            review.toString(),
+                            widget.review.toString(),
                             style: Theme.of(context).textTheme.titleSmall,
                             textAlign: TextAlign.justify,
                           ),

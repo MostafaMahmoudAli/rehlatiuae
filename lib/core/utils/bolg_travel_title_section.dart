@@ -6,13 +6,14 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
 
-class BolgTravelTitleSection extends StatelessWidget {
+class BolgTravelTitleSection extends StatefulWidget {
   final String title;
   final String address;
   final String price;
   final String imagePath;
   final bool isTrip;
   final bool isOffer;
+  final bool? isFavorite;
   final void Function()? onLikePressed;
 
   const BolgTravelTitleSection({
@@ -23,13 +24,27 @@ class BolgTravelTitleSection extends StatelessWidget {
     this.onLikePressed,
     this.isTrip = true,
     this.isOffer = false,
+    this.isFavorite = false,
     super.key,
   });
 
   @override
+  State<BolgTravelTitleSection> createState() => _BolgTravelTitleSectionState();
+}
+
+class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
+  bool isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite ?? false;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: isOffer ? 300.h : 400.h,
+      height: widget.isOffer ? 300.h : 400.h,
       child: Stack(
         children: [
           Positioned.fill(
@@ -37,7 +52,7 @@ class BolgTravelTitleSection extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: CachedNetworkImageProvider(
-                    imagePath,
+                    widget.imagePath,
                   ),
                   fit: BoxFit.fill,
                 ),
@@ -53,16 +68,21 @@ class BolgTravelTitleSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomIconButton(
-                  icon: isOffer ? Icons.clear : Icons.arrow_back,
+                  icon: widget.isOffer ? Icons.clear : Icons.arrow_back,
                   onPressed: () {
                     context.pop();
                   },
                 ),
-                if (isTrip)
+                if (widget.isTrip)
                   CustomIconButton(
-                    icon: CupertinoIcons.heart,
+                    icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                     iconColor: AppColors.redAppColor,
-                    onPressed: onLikePressed,
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                      widget.onLikePressed?.call();
+                    },
                   ),
               ],
             ),
@@ -92,7 +112,7 @@ class BolgTravelTitleSection extends StatelessWidget {
                           SizedBox(
                             width: 180.w,
                             child: Text(
-                              title,
+                              widget.title,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                               style: Theme.of(context).textTheme.labelMedium!.copyWith(
@@ -101,7 +121,7 @@ class BolgTravelTitleSection extends StatelessWidget {
                                   ),
                             ),
                           ),
-                          if (isOffer)
+                          if (widget.isOffer)
                             Container(
                               height: 20.0.h,
                               margin: EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
@@ -143,13 +163,13 @@ class BolgTravelTitleSection extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          if (isTrip)
+                          if (widget.isTrip)
                             Text(
-                              "\$$price",
+                              "\$${widget.price}",
                               style: Theme.of(context).textTheme.displayLarge,
                             ),
                           Text(
-                            isTrip ? " /Person" : '7,3 2024',
+                            widget.isTrip ? " /Person" : '7,3 2024',
                             style: Theme.of(context).textTheme.titleMedium!.copyWith(
                                   color: AppColors.white,
                                 ),
@@ -169,7 +189,7 @@ class BolgTravelTitleSection extends StatelessWidget {
                         color: AppColors.textAndBackgroundColorButton,
                       ),
                       Text(
-                        address,
+                        widget.address,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
