@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:currency_converter/currency.dart';
+import 'package:currency_converter/currency_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
@@ -15,8 +17,16 @@ class MainCubit extends Cubit<MainState> {
   MainCubit({required this.mainRepo, required this.authRepo}) : super(const MainState.initial());
   List<Trips> popularExperience = [];
   List<Trips> bestTrips = [];
-
   Client? client;
+  double totalUnPayedBookingInUSD = 12;
+  double? totalUnPayedBooking = 12;
+  Currency currentCurrency = Currency.usd;
+  List<Currency> currencies = [
+    Currency.aed,
+    Currency.usd,
+    Currency.sar,
+    Currency.eur,
+  ];
 
   Future<void> initMain() async {
     getCachedClient();
@@ -48,6 +58,16 @@ class MainCubit extends Cubit<MainState> {
         _update(const MainState.success());
       },
     );
+  }
+
+  Future<void> convert() async {
+    _update(const MainState.loading());
+    totalUnPayedBooking = await CurrencyConverter.convert(
+      from: Currency.usd,
+      to: currentCurrency,
+      amount: totalUnPayedBookingInUSD,
+    );
+    _update(const MainState.success());
   }
 
   void _update(MainState state) {

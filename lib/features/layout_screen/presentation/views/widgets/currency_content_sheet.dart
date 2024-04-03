@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rehlatyuae/core/extensions/currency_extension.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/row_details.dart';
 
 class CurrencyContentSheet extends StatelessWidget {
@@ -9,21 +12,19 @@ class CurrencyContentSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const RowDetails(
-          title: "United Arab Emirates Dirham",
-          value: 'AED',
-        ),
-        const RowDetails(
-          title: "United States Dollar",
-          value: 'USD \$',
-        ),
-        const RowDetails(
-          title: "Saudi Arabian Dollar",
-          value: 'SAR',
-        ),
-        const RowDetails(
-          title: "Euro",
-          value: 'EUR',
+        ...List.generate(
+          context.read<MainCubit>().currencies.length,
+          (index) {
+            var cubit = context.read<MainCubit>();
+            return RowDetails(
+              title: cubit.currencies[index].getCountryName() ?? '',
+              value: cubit.currencies[index].name.toUpperCase(),
+              onTap: () {
+                cubit.currentCurrency = cubit.currencies[index];
+                cubit.convert();
+              },
+            );
+          },
         ),
         SizedBox(
           height: 50.h,

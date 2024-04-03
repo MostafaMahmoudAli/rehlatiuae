@@ -249,6 +249,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  currency_converter:
+    dependency: "direct main"
+    description:
+      name: currency_converter
+      sha256: eb8f6367b15b9da0c3188ae9290c19e439b8c478e137c06cd956b113a4128cde
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   curved_labeled_navigation_bar:
     dependency: "direct main"
     description:

@@ -22,42 +22,43 @@ class CustomAppBarTitle extends StatelessWidget {
         SizedBox(
           width: 15.0.w,
         ),
-        Column(
-          children: [
-            Text(
-              "00,00 USD",
-              style: TextStyle(
-                color: AppColors.black,
-                fontSize: 16.0.sp,
-              ),
-            ),
-            SizedBox(
-              height: 4.0.h,
-            ),
-            Row(
+        BlocBuilder<MainCubit, MainState>(
+          builder: (context, state) {
+            var cubit = context.read<MainCubit>();
+            return Column(
               children: [
                 Text(
-                  "Hello, ",
+                  "${cubit.totalUnPayedBooking} ${cubit.currentCurrency.name.toUpperCase()}",
                   style: TextStyle(
                     color: AppColors.black,
                     fontSize: 16.0.sp,
                   ),
                 ),
-                BlocBuilder<MainCubit, MainState>(
-                  builder: (context, state) {
-                    return Text(
+                SizedBox(
+                  height: 4.0.h,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Hello, ",
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: 16.0.sp,
+                      ),
+                    ),
+                    Text(
                       context.read<MainCubit>().client != null ? context.read<MainCubit>().client!.name : 'there',
                       overflow: TextOverflow.fade,
                       style: TextStyle(
                         color: AppColors.textAndBackgroundColorButton,
                         fontSize: 16.0.sp,
                       ),
-                    );
-                  },
+                    ),
+                  ],
                 ),
               ],
-            ),
-          ],
+            );
+          },
         ),
       ],
     );
