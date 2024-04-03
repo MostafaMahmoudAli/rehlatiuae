@@ -29,7 +29,6 @@ ThemeData appTheme() {
         color: AppColors.black,
         fontWeight: FontWeight.w700,
       ),
-//white w700 large
       displayMedium: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 16.sp,
@@ -42,21 +41,18 @@ ThemeData appTheme() {
         color: AppColors.backgroundWhite,
         fontWeight: FontWeight.w400,
       ),
-//small white
       bodyLarge: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 14.sp,
         color: AppColors.black,
         fontWeight: FontWeight.w400,
       ),
-//large black
       bodyMedium: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 14.sp,
         color: AppColors.black,
         fontWeight: FontWeight.w700,
       ),
-      //white w700 medium
       displaySmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 12.sp,
@@ -68,43 +64,35 @@ ThemeData appTheme() {
         fontSize: 12.sp,
         color: AppColors.textAndBackgroundColorButton,
       ),
-      //text in bottom
       titleSmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 12.sp,
         color: AppColors.black,
         fontWeight: FontWeight.w400,
       ),
-
       labelSmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 12.sp,
         color: AppColors.greySearchText,
         fontWeight: FontWeight.w400,
       ),
-//medium black
-
       headlineMedium: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 12.sp,
         color: AppColors.white,
         fontWeight: FontWeight.bold,
-        decoration:TextDecoration.lineThrough,
+        decoration: TextDecoration.lineThrough,
       ),
-
       headlineSmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 10.sp,
         color: AppColors.grey,
       ),
-//small grey
-
       bodySmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 10.sp,
         color: AppColors.whiteAppColor,
       ),
-
     ),
   );
 }
