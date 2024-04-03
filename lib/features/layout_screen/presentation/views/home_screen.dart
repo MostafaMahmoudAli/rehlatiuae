@@ -24,10 +24,9 @@ import '../cubits/layout_cubit.dart';
 
 class HomeScreen extends StatelessWidget
 {
-  HomeScreen({super.key});
+  HomeScreen({super.key,});
 
   final TextEditingController _textEditingController = TextEditingController();
-
   @override
   Widget build(BuildContext context)
   {
@@ -54,9 +53,9 @@ class HomeScreen extends StatelessWidget
             loading: () => const Center(child: CircularProgressIndicator()),
             loaded: (layoutModel) => Scaffold(
               body:Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 20.0.h,
-                  horizontal: 17.0.w,
+                padding: EdgeInsetsDirectional.only(
+                  top: 20.0.h,
+                  start:17.0.w ,
                 ).copyWith(bottom: 0),
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),

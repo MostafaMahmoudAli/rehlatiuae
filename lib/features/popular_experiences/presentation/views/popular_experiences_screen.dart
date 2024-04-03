@@ -8,7 +8,6 @@ import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
-import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_body.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_bottom_section.dart';
 
@@ -52,9 +51,6 @@ class PopularExperiencesScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchTextField(
-                  controller: _textEditingController,
-                ),
                 const CustomSizedBox(),
                 const Text(
                   AppStrings.popularExperiencesTitle,

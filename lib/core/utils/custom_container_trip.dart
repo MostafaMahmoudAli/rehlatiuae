@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
-class CustomContainerTrip extends StatelessWidget {
+
+class CustomContainerTrip extends StatelessWidget
+{
   const CustomContainerTrip({
     super.key,
     required this.width,
@@ -22,7 +25,7 @@ class CustomContainerTrip extends StatelessWidget {
   final String?tripPrice;
   final String?reservationType;
   final String?oldTripPrice;
-  final String?percentageSave ;
+  final String?percentageSave;
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +40,12 @@ class CustomContainerTrip extends StatelessWidget {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.circular(15.0.r),
-            ),
-            child: Image.network(
-              imageName ??"",
-              fit: BoxFit.cover,
+              image:DecorationImage(
+                fit: BoxFit.cover,
+                image: CachedNetworkImageProvider(
+                  imageName ??"",
+                ),
+              ),
             ),
           ),
           if((oldTripPrice!=null || percentageSave!=null)&&percentageSave!.isNotEmpty)
@@ -56,8 +61,8 @@ class CustomContainerTrip extends StatelessWidget {
                 Container(
                   width:65.0.w,
                   height:20.0.h,
-                  margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-                  padding: EdgeInsetsDirectional.symmetric(horizontal:6.0.w,vertical: 1.3.h),
+                  margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w,),
+                  padding: EdgeInsetsDirectional.symmetric(horizontal:6.0.w,vertical: 1.3.h,),
                   decoration:BoxDecoration(
                     color:AppColors.green,
                     borderRadius:BorderRadius.circular(8.0.r),

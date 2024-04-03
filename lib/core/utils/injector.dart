@@ -16,7 +16,6 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit
 import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../features/all_categories/data/repositories/category_name_repo_impl.dart';
 import '../../features/all_categories/data/repositories/category_repo_impl.dart';
 import '../../features/all_categories/domian/repositories/category_name_repo.dart';
@@ -49,6 +48,9 @@ import '../../features/profile/data/repositories/profile_repo_impl.dart';
 import '../../features/profile/domain/repositories/profile_repo.dart';
 import '../../features/profile/presentation/cubits/edit_profile_cubit/edit_profile_cubit.dart';
 import '../../features/profile/presentation/cubits/profile_cubit/profile_cubit.dart';
+import '../../features/search/data/repositories/search_repo_impl.dart';
+import '../../features/search/domain/repositories/search_repo.dart';
+import '../../features/search/presentation/cubits/search_cubit.dart';
 import '../../features/top_destinations_section/data/repositories/all_destinations_repo_impl.dart';
 import '../../features/top_destinations_section/data/repositories/city_destination_repo_impl.dart';
 import '../../features/top_destinations_section/domian/repositories/all_destinations_repo.dart';
@@ -119,6 +121,11 @@ Future<void> setupInjector() async {
     ),
   );
 
+  getIt.registerLazySingleton<SearchRepo>(
+        () => SearchRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+    ),
+  );
   getIt.registerLazySingleton<CityDestinationRepo>(
         () => CityDestinationRepoImpl(
       apiConsumer: getIt.get<ApiConsumer>(),
@@ -136,7 +143,7 @@ Future<void> setupInjector() async {
 
   getIt.registerFactory(() => BlogsBloc(blogsRepository: getIt()));
 
-  getIt.registerFactory(() => LayoutCubit(layoutRepository: getIt()));
+  getIt.registerLazySingleton(() => LayoutCubit(layoutRepository: getIt()));
 
   getIt.registerFactory(() => CategoriesBloc(categoryRepo: getIt()));
 
@@ -151,6 +158,8 @@ Future<void> setupInjector() async {
   getIt.registerFactory(() => CityDestinationCubit(cityDestinationRepo: getIt()));
 
   getIt.registerFactory(() => CategoryNameCubit(categoryNameRepo: getIt()));
+
+  getIt.registerLazySingleton(() => SearchCubit(searchRepo: getIt()));
 
   getIt.registerFactory(
     () => AddReviewCubit(

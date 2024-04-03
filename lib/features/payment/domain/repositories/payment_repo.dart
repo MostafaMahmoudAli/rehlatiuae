@@ -6,4 +6,6 @@ abstract class PaymentRepo {
   Future<Either<String, Coupon>> checkCoupon({required String name});
 
   Future<Either<String, Unit>> addTripCheckoutDetails({required TripCheckoutDetails tripCheckoutDetails});
+
+  // Future<Either<String, void>> paymentMethod({required int amount,required String currency});
 }

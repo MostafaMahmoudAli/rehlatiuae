@@ -26,6 +26,7 @@ class BestTripsSection extends StatelessWidget {
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: bestTrips!.length,
+              physics:const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return CustomContainerTrip(
                   width:200.0.w,

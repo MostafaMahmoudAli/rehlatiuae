@@ -21,6 +21,7 @@ class AppAssets {
   static const String aboutApp = 'assets/images/about_app.svg';
   static const String logout = 'assets/images/logout.svg';
   static const String mainLogo = 'assets/images/main_logo.svg';
+  static const whatsUpLogo = "assets/images/410201-PD391H-802-Photoroom.png-Photoroom.png";
 
   /// Images
   static const String rectangle = 'assets/images/rectangle.png';

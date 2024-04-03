@@ -51,7 +51,6 @@ class BestOffersSection extends StatelessWidget {
               bottom:MediaQuery.sizeOf(context).height*0.175,
               right: 0,
             ),
-
           ],
         ),
       ],

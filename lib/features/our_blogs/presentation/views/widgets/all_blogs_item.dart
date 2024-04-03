@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -33,10 +34,11 @@ class AllBlogsItem extends StatelessWidget {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.circular(15.0.r),
-            ),
-            child: Image.network(
-              image ?? "",
-              fit: BoxFit.cover,
+              image:DecorationImage(
+                image:CachedNetworkImageProvider(
+                  image ?? "",
+                ) ,
+              ),
             ),
           ),
           Positioned(

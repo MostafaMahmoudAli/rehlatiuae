@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rehlatyuae/core/utils/app_assets.dart';
 
 import 'app_colors.dart';
-import 'app_strings.dart';
 
 class WhatsUpButton extends StatelessWidget {
   const WhatsUpButton(
@@ -39,7 +39,7 @@ class WhatsUpButton extends StatelessWidget {
             ),
           ),
           child: Image.asset(
-            AppStrings.whatsUpLogo,
+            AppAssets.whatsUpLogo,
           ),
         ),
       ),

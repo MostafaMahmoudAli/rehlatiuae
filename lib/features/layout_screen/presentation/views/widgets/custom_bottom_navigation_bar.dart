@@ -67,11 +67,12 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         CurvedNavigationBarItem(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            child: SvgPicture.asset(
-              AppAssets.exploreIcon,
+            child: Image.asset(
+              AppAssets.whatsUpLogo,
+              fit:BoxFit.contain,
             ),
           ),
-          label: "Explore",
+          label: "chat",
           labelStyle: TextStyle(
             color: index == 3 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,

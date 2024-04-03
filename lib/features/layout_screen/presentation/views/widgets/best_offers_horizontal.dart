@@ -14,6 +14,7 @@ class BestOffersHorizontal extends StatelessWidget {
           height: 130.0.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
+            physics:const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return BestOffersHorizontalItem(
                 width: 70.0.w,

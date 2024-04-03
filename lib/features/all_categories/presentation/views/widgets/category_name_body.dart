@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/blocs/category_name_cubit.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_container_trip.dart';
 import '../../../../../core/utils/custom_dialog.dart';
 
@@ -36,8 +35,7 @@ class CategoryNameBody extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 10.0.w,
               mainAxisSpacing: 15.0.w,
-              mainAxisExtent: 170.0.h,
-              childAspectRatio: 7 / 6.6,
+              childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.6,
             ),
             itemBuilder: (context, index) => CustomContainerTrip(
               width: 200.0.w,

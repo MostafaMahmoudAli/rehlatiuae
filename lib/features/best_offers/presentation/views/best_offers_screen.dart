@@ -53,9 +53,6 @@ class BestOffersScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchTextField(
-                  controller: _textEditingController,
-                ),
                 const CustomSizedBox(),
                 const Text(
                   AppStrings.bestOffersTitle,
@@ -74,5 +71,6 @@ class BestOffersScreen extends StatelessWidget {
     );
   }
 }
+
 
 

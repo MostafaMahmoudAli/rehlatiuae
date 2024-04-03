@@ -341,7 +341,6 @@ Official Channels:
   static const weHelpYouMakeBestTripImage1 = "assets/images/Rectangle 9897.png";
   static const weHelpYouMakeBestTripImage2 = "assets/images/Rectangle 9899.png";
   static const weHelpYouMakeBestTripImage3 = "assets/images/Rectangle 9898.png";
-  static const whatsUpLogo = "assets/images/410201-PD391H-802-Photoroom.png-Photoroom.png";
 
   //text names
   static const searchTextFieldHintText = "Search by activities...";
