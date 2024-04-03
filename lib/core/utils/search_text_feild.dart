@@ -6,12 +6,13 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 class SearchTextField extends StatelessWidget {
   const SearchTextField({
     super.key,
-    required this.controller, this.onTap, this.onChanged, this.readOnly,
+    required this.controller, this.onTap, this.onChanged, this.readOnly, this.onSubmitted,
   });
   final TextEditingController? controller;
 final void Function()? onTap;
 final void Function(String)? onChanged;
-final   bool?readOnly;
+final void Function(String)? onSubmitted;
+final bool?readOnly;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,6 +35,7 @@ final   bool?readOnly;
         onTap: onTap,
         onChanged: onChanged,
         readOnly: readOnly ?? false,
+        onSubmitted:onSubmitted,
       ),
     );
   }

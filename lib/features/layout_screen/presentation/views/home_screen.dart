@@ -24,7 +24,8 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why
 import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget
+{
   HomeScreen({super.key});
 
   final TextEditingController _textEditingController = TextEditingController();
@@ -55,10 +56,10 @@ class HomeScreen extends StatelessWidget {
             initial: () => const Center(child: CircularProgressIndicator()),
             loading: () => const Center(child: CircularProgressIndicator()),
             loaded: (layoutModel) => Scaffold(
-              body: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 20.0.h,
-                  horizontal: 17.0.w,
+              body:Padding(
+                padding: EdgeInsetsDirectional.only(
+                  top: 20.0.h,
+                  start:17.0.w ,
                 ).copyWith(bottom: 0),
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
@@ -73,6 +74,7 @@ class HomeScreen extends StatelessWidget {
                           );
                         },
                         readOnly: true,
+
                       ),
                       const CustomSizedBox(),
                       CategoriesSection(

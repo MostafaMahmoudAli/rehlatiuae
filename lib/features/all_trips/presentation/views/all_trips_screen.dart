@@ -10,12 +10,11 @@ import 'package:rehlatyuae/features/all_trips/presentation/blocs/all_trips_bloc.
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/all_trips_body.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/all_trips_bottom_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
-import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 
 class AllTripsScreen extends StatelessWidget {
   AllTripsScreen({super.key});
 
-  final TextEditingController _textEditingController = TextEditingController();
+
   final ScrollController allTripsScrollController =ScrollController();
 
   @override

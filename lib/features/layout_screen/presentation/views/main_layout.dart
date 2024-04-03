@@ -12,6 +12,9 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/cus
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/profile_screen.dart';
 
+import '../../../search/presentation/views/search_screen.dart';
+
+
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
 
@@ -19,11 +22,12 @@ class MainLayout extends StatefulWidget {
   State<MainLayout> createState() => _MainLayoutState();
 }
 
-class _MainLayoutState extends State<MainLayout> {
+class _MainLayoutState extends State<MainLayout>
+{
   int currentTab = 0;
   List<Widget> tabs = [
     HomeScreen(),
-    HomeScreen(),
+    SearchScreen(),
     HomeScreen(),
     HomeScreen(),
     const ProfileScreen(),

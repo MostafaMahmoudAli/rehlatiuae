@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,10 +77,12 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
-              ),
-              child: Image.network(
-                widget.imageName ?? "",
-                fit: BoxFit.cover,
+                image:DecorationImage(
+                  fit: BoxFit.cover,
+                  image: CachedNetworkImageProvider(
+                    widget.imageName ??"",
+                  ),
+                ),
               ),
             ),
             if ((widget.oldTripPrice != null || widget.percentageSave != null) && widget.percentageSave!.isNotEmpty)
@@ -136,7 +139,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 160.0.w,
+                    width: 120.0.w,
                     child: Text(
                       widget.cityName ?? "",
                       style: Theme.of(context).textTheme.displayMedium,

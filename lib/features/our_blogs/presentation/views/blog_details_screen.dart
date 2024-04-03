@@ -68,7 +68,7 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
           RatingsReviewsSection(
             reviews: widget.blogs.blogReview,
             id: widget.blogs.id,
-            reviewsCount: widget.blogs.reviewsCount,
+            reviewsCount: widget.blogs.reviewCount,
             isTrip: false,
           ),
           const ExperiencesSections(),

@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 

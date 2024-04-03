@@ -31,7 +31,8 @@ class _BestOffersBodyState extends State<BestOffersBody> {
   void _onScroll() {
     final maxScroll = widget.bestOffersScrollController?.position.minScrollExtent;
     final currentScroll = widget.bestOffersScrollController?.offset;
-    if (currentScroll! >= (maxScroll! * 0.9)) {
+    if (currentScroll! >= (maxScroll! * 0.9))
+    {
       BlocProvider.of<BestOffersBloc>(context).add(GetBestOffersEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
@@ -42,11 +43,11 @@ class _BestOffersBodyState extends State<BestOffersBody> {
       builder: (context,state)
       {
         return switch(state.status){
-          // TODO: Handle this case.
+
           BestOffersStatus.initial =>  const Center(child: CircularProgressIndicator()),
-          // TODO: Handle this case.
+
           BestOffersStatus.loading => const Center(child: CircularProgressIndicator()),
-          // TODO: Handle this case.
+
           BestOffersStatus.success => GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 1,
@@ -63,7 +64,7 @@ class _BestOffersBodyState extends State<BestOffersBody> {
             physics: const ClampingScrollPhysics(),
             padding: EdgeInsets.zero,
           ),
-          // TODO: Handle this case.
+
           BestOffersStatus.error => ErrorsWidget(
             error: state.errMessage,
           ),

@@ -31,24 +31,22 @@ class CategoryNameBody extends StatelessWidget {
           loading: () => const Center(
             child: CircularProgressIndicator(),
           ),
-          loaded: (categoryNameTrips) => GridView.builder(
+          loaded:(categoryNameTrips)=> GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 10.0.w,
               mainAxisSpacing: 15.0.w,
-              mainAxisExtent: 170.0.h,
-              childAspectRatio: 7 / 6.6,
+              childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.6,
             ),
             itemBuilder: (context, index) => CustomContainerTrip(
               width: 200.0.w,
-              trip: categoryNameTrips[index],
-              cityName: categoryNameTrips[index].name ?? "",
-              countryName: categoryNameTrips[index].description ?? "",
-              imageName: categoryNameTrips[index].imagePath ?? "",
-              tripPrice: categoryNameTrips[index].adultPrice.toString(),
+              cityName:categoryNameTrips[index].name?? "",
+              countryName:categoryNameTrips[index].description?? "",
+              imageName:categoryNameTrips[index].imagePath?? "",
+              tripPrice:categoryNameTrips[index].adultPrice.toString(),
               reservationType: "/person",
             ),
-            itemCount: categoryNameTrips.length,
+            itemCount:categoryNameTrips.length,
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             padding: EdgeInsets.zero,
@@ -56,6 +54,7 @@ class CategoryNameBody extends StatelessWidget {
           orElse: () => const SizedBox(),
         );
       },
+
     );
   }
 }

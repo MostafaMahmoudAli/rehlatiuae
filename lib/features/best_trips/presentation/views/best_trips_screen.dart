@@ -9,7 +9,6 @@ import 'package:rehlatyuae/features/best_trips/presentation/views/widgets/best_t
 import 'package:rehlatyuae/features/best_trips/presentation/views/widgets/best_trips_bottom_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
-import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 
 import '../../../../core/utils/injector.dart';
 import '../blocs/best_trips_bloc.dart';
@@ -17,7 +16,6 @@ import '../blocs/best_trips_bloc.dart';
 class BestTripsScreen extends StatelessWidget {
   BestTripsScreen({super.key});
 
-  final TextEditingController _textEditingController = TextEditingController();
   final ScrollController bestTripsScrollController=ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -51,9 +49,6 @@ class BestTripsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchTextField(
-                  controller: _textEditingController,
-                ),
                 const CustomSizedBox(),
                 const Text(
                   AppStrings.bestTripsTitle,
