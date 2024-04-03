@@ -24,6 +24,7 @@ class CustomContainerTrip extends StatefulWidget {
     this.isFavorite = false,
     this.isTrip = true,
     this.trip,
+    this.onTapFavoriteIcon,
   });
 
   final double width;
@@ -37,7 +38,7 @@ class CustomContainerTrip extends StatefulWidget {
   final String? percentageSave;
   final bool? isFavorite;
   final bool isTrip;
-
+  final void Function()? onTapFavoriteIcon;
   final int? tripId;
 
   @override
@@ -116,6 +117,10 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                   icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                   iconColor: AppColors.redAppColor,
                   onPressed: () async {
+                    if (widget.onTapFavoriteIcon != null) {
+                      widget.onTapFavoriteIcon?.call();
+                      return;
+                    }
                     setState(() {
                       isFavorite = !isFavorite;
                     });

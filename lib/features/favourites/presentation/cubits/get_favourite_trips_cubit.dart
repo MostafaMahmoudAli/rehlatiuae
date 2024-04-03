@@ -20,6 +20,13 @@ class GetFavouriteTripsCubit extends Cubit<GetFavouriteTripsState> {
     );
   }
 
+  void removeTripFromFavourite({required List<Trips> trips, required int index}) {
+    _update(const GetFavouriteTripsState.loading());
+
+    List<Trips> tempTrips = trips.where((element) => element.id != trips[index].id).toList();
+    _update(GetFavouriteTripsState.loaded(tempTrips));
+  }
+
   void _update(GetFavouriteTripsState state) {
     if (!isClosed) {
       emit(state);

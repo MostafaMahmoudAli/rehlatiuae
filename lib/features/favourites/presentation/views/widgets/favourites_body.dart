@@ -57,6 +57,12 @@ class FavouritesBody extends StatelessWidget {
                 tripPrice: trips[index].adultPrice.toString(),
                 reservationType: "/person",
                 isFavorite: true,
+                onTapFavoriteIcon: () {
+                  context.read<GetFavouriteTripsCubit>().removeTripFromFavourite(
+                        trips: trips,
+                        index: index,
+                      );
+                },
               ),
               itemCount: trips.length,
               shrinkWrap: true,
