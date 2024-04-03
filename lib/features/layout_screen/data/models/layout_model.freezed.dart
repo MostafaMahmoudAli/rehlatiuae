@@ -24,7 +24,8 @@ mixin _$LayOutModel {
       throw _privateConstructorUsedError;
   List<Categories>? get categories => throw _privateConstructorUsedError;
   List<BestOffers>? get bestOffers => throw _privateConstructorUsedError;
-  List<BestTrips>? get bestTrips => throw _privateConstructorUsedError;
+  List<BestTrips>? get bestTrips =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "popularExperiencetrips")
   List<PopularExperiences>? get popularExperience =>
       throw _privateConstructorUsedError;
@@ -257,7 +258,9 @@ class _$LayOutModelImpl implements _LayOutModel {
     return EqualUnmodifiableListView(value);
   }
 
+// ignore: invalid_annotation_target
   final List<PopularExperiences>? _popularExperience;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "popularExperiencetrips")
   List<PopularExperiences>? get popularExperience {
@@ -375,7 +378,7 @@ abstract class _LayOutModel implements LayOutModel {
   List<BestOffers>? get bestOffers;
   @override
   List<BestTrips>? get bestTrips;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "popularExperiencetrips")
   List<PopularExperiences>? get popularExperience;
   @override

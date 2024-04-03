@@ -32,13 +32,6 @@ class AccountDrawerSection extends StatelessWidget {
           ),
         ),
 
-           //   DrawerItem(
-          //title: 'Favorite',
-        //  onTap: () { },
-         ////  trailing: ,
-          //  iconPath: '',
-       // ),
-       
         DrawerItem(
           title: LocaleKeys.Credits,
           iconPath: AppAssets.credits,
@@ -89,7 +82,7 @@ class AccountDrawerSection extends StatelessWidget {
             ),
           ],
           onTap: () {
-            showModalBottomSheet(
+            showModalBottomSheet( 
               context: context,
               isScrollControlled: true,
               shape: const RoundedRectangleBorder(

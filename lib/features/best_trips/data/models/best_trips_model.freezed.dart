@@ -23,7 +23,8 @@ mixin _$BestTrips {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  String? get description =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "oldPrice")
   int? get adultPrice => throw _privateConstructorUsedError;
   int? get childPrice => throw _privateConstructorUsedError;
@@ -299,6 +300,7 @@ class _$BestTripsImpl implements _BestTrips {
   final String address;
   @override
   final String? description;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "oldPrice")
   final int? adultPrice;
@@ -446,7 +448,7 @@ abstract class _BestTrips implements BestTrips {
   String get address;
   @override
   String? get description;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "oldPrice")
   int? get adultPrice;
   @override

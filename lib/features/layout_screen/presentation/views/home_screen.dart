@@ -39,8 +39,8 @@ class HomeScreen extends StatelessWidget {
               context: context,
               builder: (context) => CustomDialog(
                 title: errorMessage,
-                subtitle: 'Sorry',
-                labelText: 'Close',
+                subtitle: LocaleKeys.Sorry,
+                labelText: LocaleKeys.Close,
               ),
             ),
           );
