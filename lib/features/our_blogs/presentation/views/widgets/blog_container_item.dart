@@ -20,7 +20,7 @@ class BlogContainerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.blogScreen);
+        context.push(AppStrings.blogScreen, extra: blogs);
       },
       child: SizedBox(
         height: 330.0.h,
@@ -83,12 +83,8 @@ class BlogContainerItem extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        blogs?.createdAt?.toString() ??
-                            "",
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(fontSize: 10.0.sp),
+                        blogs?.createdAt?.toString() ?? "",
+                        style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize: 10.0.sp),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),

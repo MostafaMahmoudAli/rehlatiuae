@@ -1,68 +1,84 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 import '../../../../all_trips/data/models/trips_model.dart';
 
-class PopularExperiencesContainerItem extends StatelessWidget {
+class PopularExperiencesContainerItem extends StatefulWidget {
   const PopularExperiencesContainerItem({
     super.key,
     required this.width,
     this.oldTripPrice,
     this.percentageSave,
     required this.popularExperiences,
+    this.isFavorite = false,
   });
 
   final double width;
   final String? oldTripPrice;
   final String? percentageSave;
-  final Trips?popularExperiences;
+  final Trips? popularExperiences;
+  final bool? isFavorite;
 
   @override
-  Widget build(BuildContext context)
-  {
+  State<PopularExperiencesContainerItem> createState() => _PopularExperiencesContainerItemState();
+}
+
+class _PopularExperiencesContainerItemState extends State<PopularExperiencesContainerItem> {
+  bool isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite ?? false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.travelDetailsScreen);
+        context.push(AppStrings.travelDetailsScreen, extra: widget.popularExperiences);
       },
       child: SizedBox(
         height: 180.0.h,
-        width: width,
+        width: widget.width,
         child: Stack(
           children: [
             Container(
               height: 180.0.h,
-              width: width,
+              width: widget.width,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
                 image: DecorationImage(
                   image: NetworkImage(
-                  popularExperiences?.imagePath ?? "",
+                    widget.popularExperiences?.imagePath ?? "",
                   ),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            if ((oldTripPrice != null || percentageSave != null) &&
-               ( percentageSave!.isNotEmpty||oldTripPrice!.isNotEmpty))
+            if ((widget.oldTripPrice != null || widget.percentageSave != null) &&
+                (widget.percentageSave!.isNotEmpty || widget.oldTripPrice!.isNotEmpty))
               Positioned(
                 top: 16,
                 left: 6,
                 child: Row(
                   children: [
                     Text(
-                      "\$$oldTripPrice",
+                      "\$${widget.oldTripPrice}",
                       style: Theme.of(context).textTheme.headlineMedium!,
                     ),
                     Container(
                       width: 60.0.w,
                       height: 20.0.h,
-                      margin:
-                          EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
+                      margin: EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
                       padding: EdgeInsetsDirectional.symmetric(
                         horizontal: 4.0.w,
                         vertical: 1.3.h,
@@ -72,7 +88,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
-                       " save $percentageSave% ",
+                        " save ${widget.percentageSave}% ",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
@@ -83,11 +99,16 @@ class PopularExperiencesContainerItem extends StatelessWidget {
               top: 8,
               right: 8,
               child: IconButtonWithWhiteBackground(
-                onPressed: () {},
+                onPressed: () async {
+                  setState(() {
+                    isFavorite = !isFavorite;
+                  });
+                  await context.read<MainCubit>().addToFavourite(tripId: widget.popularExperiences!.id ?? 0);
+                },
                 width: 30.0.w,
                 height: 35.0.h,
                 icon: Icon(
-                  Icons.favorite_outline,
+                  isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                   color: AppColors.redAppColor,
                   size: 17.0.sp,
                 ),
@@ -102,9 +123,9 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                   SizedBox(
                     width: 120.0.w,
                     child: Text(
-                      popularExperiences?.name ?? "",
+                      widget.popularExperiences?.name ?? "",
                       style: Theme.of(context).textTheme.displayMedium,
-                      overflow:TextOverflow.ellipsis,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   SizedBox(
@@ -124,8 +145,11 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                       SizedBox(
                         width: 120.0.w,
                         child: Text(
-                          popularExperiences?.address ?? "",
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color:AppColors.textAndBackgroundColorButton),
+                          widget.popularExperiences?.address ?? "",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(color: AppColors.textAndBackgroundColorButton),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -135,13 +159,13 @@ class PopularExperiencesContainerItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: MediaQuery.sizeOf(context).height*0.075,
-              right: MediaQuery.sizeOf(context).width*0.02,
+              bottom: MediaQuery.sizeOf(context).height * 0.075,
+              right: MediaQuery.sizeOf(context).width * 0.02,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    popularExperiences?.adultPrice.toString() ?? "",
+                    widget.popularExperiences?.adultPrice.toString() ?? "",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(
@@ -149,7 +173,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                   ),
                   Text(
                     "/Person",
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight:FontWeight.bold),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

@@ -10,8 +10,13 @@ import '../../../../../core/utils/whats_up_botton.dart';
 import '../../blocs/all_destinations_bloc.dart';
 
 class AllDestinationBody extends StatefulWidget {
-  const AllDestinationBody({super.key,required this.allDestinationsScrollController,});
-  final  ScrollController?allDestinationsScrollController;
+  const AllDestinationBody({
+    super.key,
+    required this.allDestinationsScrollController,
+  });
+
+  final ScrollController? allDestinationsScrollController;
+
   @override
   State<AllDestinationBody> createState() => _AllDestinationBodyState();
 }
@@ -26,18 +31,20 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
   @override
   void dispose() {
     super.dispose();
-    widget.allDestinationsScrollController?..removeListener(_onScroll)..dispose();
+    widget.allDestinationsScrollController
+      ?..removeListener(_onScroll)
+      ..dispose();
   }
-  void _onScroll()
-  {
+
+  void _onScroll() {
     final maxScroll = widget.allDestinationsScrollController?.position.minScrollExtent;
     final currentScroll = widget.allDestinationsScrollController?.offset;
-    if(currentScroll! >= (maxScroll!*0.7))
-    {
+    if (currentScroll! >= (maxScroll! * 0.7)) {
       BlocProvider.of<AllDestinationsBloc>(context).add(GetAllDestinationsEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AllDestinationsBloc, AllDestinationsState>(
@@ -58,15 +65,18 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
                     mainAxisSpacing: 1.0.w,
                   ),
                   itemBuilder: (context, index) => InkWell(
-                    onTap:()
-                    {
-                      context.push(AppStrings.cityDestinationScreen,extra: state.allDestination[index].id,);
+                    onTap: () {
+                      context.push(
+                        AppStrings.cityDestinationScreen,
+                        extra: state.allDestination[index].id,
+                      );
                     },
                     child: CustomContainerTrip(
                       width: 140.0.w,
                       cityName: state.allDestination[index].name,
-                      countryName:state.allDestination[index].country,
+                      countryName: state.allDestination[index].country,
                       imageName: state.allDestination[index].imagePath ?? "",
+                      isTrip: false,
                     ),
                   ),
                   itemCount: state.allDestination.length,
@@ -75,14 +85,16 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
                   padding: EdgeInsets.zero,
                 ),
                 WhatsUpButton(
-                  onTap: (){},
+                  onTap: () {},
                   right: 0,
-                  bottom:MediaQuery.sizeOf(context).height*0.25,
+                  bottom: MediaQuery.sizeOf(context).height * 0.25,
                 ),
               ],
             );
           case AllDestinationsStatus.error:
-            return ErrorsWidget(error: state.errMessage,);
+            return ErrorsWidget(
+              error: state.errMessage,
+            );
         }
       },
     );

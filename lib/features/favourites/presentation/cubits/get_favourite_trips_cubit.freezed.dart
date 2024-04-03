@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'add_review_cubit.dart';
+part of 'get_favourite_trips_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,14 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AddReviewState {
+mixin _$GetFavouriteTripsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
-    required TResult Function() deleted,
-    required TResult Function(Review review) edited,
+    required TResult Function(List<Trips> trips) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,9 +28,7 @@ mixin _$AddReviewState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
-    TResult? Function()? deleted,
-    TResult? Function(Review review)? edited,
+    TResult? Function(List<Trips> trips)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,9 +36,7 @@ mixin _$AddReviewState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
-    TResult Function()? deleted,
-    TResult Function(Review review)? edited,
+    TResult Function(List<Trips> trips)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -52,8 +46,6 @@ mixin _$AddReviewState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Deleted value) deleted,
-    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,8 +54,6 @@ mixin _$AddReviewState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Deleted value)? deleted,
-    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -72,8 +62,6 @@ mixin _$AddReviewState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Deleted value)? deleted,
-    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -81,16 +69,17 @@ mixin _$AddReviewState {
 }
 
 /// @nodoc
-abstract class $AddReviewStateCopyWith<$Res> {
-  factory $AddReviewStateCopyWith(
-          AddReviewState value, $Res Function(AddReviewState) then) =
-      _$AddReviewStateCopyWithImpl<$Res, AddReviewState>;
+abstract class $GetFavouriteTripsStateCopyWith<$Res> {
+  factory $GetFavouriteTripsStateCopyWith(GetFavouriteTripsState value,
+          $Res Function(GetFavouriteTripsState) then) =
+      _$GetFavouriteTripsStateCopyWithImpl<$Res, GetFavouriteTripsState>;
 }
 
 /// @nodoc
-class _$AddReviewStateCopyWithImpl<$Res, $Val extends AddReviewState>
-    implements $AddReviewStateCopyWith<$Res> {
-  _$AddReviewStateCopyWithImpl(this._value, this._then);
+class _$GetFavouriteTripsStateCopyWithImpl<$Res,
+        $Val extends GetFavouriteTripsState>
+    implements $GetFavouriteTripsStateCopyWith<$Res> {
+  _$GetFavouriteTripsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,7 +96,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AddReviewStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$GetFavouriteTripsStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -121,7 +110,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'AddReviewState.initial()';
+    return 'GetFavouriteTripsState.initial()';
   }
 
   @override
@@ -138,9 +127,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
-    required TResult Function() deleted,
-    required TResult Function(Review review) edited,
+    required TResult Function(List<Trips> trips) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -151,9 +138,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
-    TResult? Function()? deleted,
-    TResult? Function(Review review)? edited,
+    TResult? Function(List<Trips> trips)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -164,9 +149,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
-    TResult Function()? deleted,
-    TResult Function(Review review)? edited,
+    TResult Function(List<Trips> trips)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -182,8 +165,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Deleted value) deleted,
-    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -195,8 +176,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Deleted value)? deleted,
-    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -208,8 +187,6 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Deleted value)? deleted,
-    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -220,7 +197,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements AddReviewState {
+abstract class _Initial implements GetFavouriteTripsState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -233,7 +210,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$AddReviewStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$GetFavouriteTripsStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -247,7 +224,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'AddReviewState.loading()';
+    return 'GetFavouriteTripsState.loading()';
   }
 
   @override
@@ -264,9 +241,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
-    required TResult Function() deleted,
-    required TResult Function(Review review) edited,
+    required TResult Function(List<Trips> trips) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -277,9 +252,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
-    TResult? Function()? deleted,
-    TResult? Function(Review review)? edited,
+    TResult? Function(List<Trips> trips)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -290,9 +263,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
-    TResult Function()? deleted,
-    TResult Function(Review review)? edited,
+    TResult Function(List<Trips> trips)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -308,8 +279,6 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Deleted value) deleted,
-    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -321,8 +290,6 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Deleted value)? deleted,
-    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -334,8 +301,6 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Deleted value)? deleted,
-    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -346,7 +311,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements AddReviewState {
+abstract class _Loading implements GetFavouriteTripsState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -356,14 +321,12 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Review review});
-
-  $ReviewCopyWith<$Res> get review;
+  $Res call({List<Trips> trips});
 }
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$AddReviewStateCopyWithImpl<$Res, _$LoadedImpl>
+    extends _$GetFavouriteTripsStateCopyWithImpl<$Res, _$LoadedImpl>
     implements _$$LoadedImplCopyWith<$Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
@@ -372,36 +335,33 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? review = null,
+    Object? trips = null,
   }) {
     return _then(_$LoadedImpl(
-      null == review
-          ? _value.review
-          : review // ignore: cast_nullable_to_non_nullable
-              as Review,
+      null == trips
+          ? _value._trips
+          : trips // ignore: cast_nullable_to_non_nullable
+              as List<Trips>,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ReviewCopyWith<$Res> get review {
-    return $ReviewCopyWith<$Res>(_value.review, (value) {
-      return _then(_value.copyWith(review: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.review);
+  const _$LoadedImpl(final List<Trips> trips) : _trips = trips;
 
+  final List<Trips> _trips;
   @override
-  final Review review;
+  List<Trips> get trips {
+    if (_trips is EqualUnmodifiableListView) return _trips;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_trips);
+  }
 
   @override
   String toString() {
-    return 'AddReviewState.loaded(review: $review)';
+    return 'GetFavouriteTripsState.loaded(trips: $trips)';
   }
 
   @override
@@ -409,11 +369,12 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.review, review) || other.review == review));
+            const DeepCollectionEquality().equals(other._trips, _trips));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, review);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_trips));
 
   @JsonKey(ignore: true)
   @override
@@ -426,12 +387,10 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
-    required TResult Function() deleted,
-    required TResult Function(Review review) edited,
+    required TResult Function(List<Trips> trips) loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(review);
+    return loaded(trips);
   }
 
   @override
@@ -439,12 +398,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
-    TResult? Function()? deleted,
-    TResult? Function(Review review)? edited,
+    TResult? Function(List<Trips> trips)? loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(review);
+    return loaded?.call(trips);
   }
 
   @override
@@ -452,14 +409,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
-    TResult Function()? deleted,
-    TResult Function(Review review)? edited,
+    TResult Function(List<Trips> trips)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(review);
+      return loaded(trips);
     }
     return orElse();
   }
@@ -470,8 +425,6 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Deleted value) deleted,
-    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -483,8 +436,6 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Deleted value)? deleted,
-    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -496,8 +447,6 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Deleted value)? deleted,
-    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -508,305 +457,12 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements AddReviewState {
-  const factory _Loaded(final Review review) = _$LoadedImpl;
+abstract class _Loaded implements GetFavouriteTripsState {
+  const factory _Loaded(final List<Trips> trips) = _$LoadedImpl;
 
-  Review get review;
+  List<Trips> get trips;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$DeletedImplCopyWith<$Res> {
-  factory _$$DeletedImplCopyWith(
-          _$DeletedImpl value, $Res Function(_$DeletedImpl) then) =
-      __$$DeletedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DeletedImplCopyWithImpl<$Res>
-    extends _$AddReviewStateCopyWithImpl<$Res, _$DeletedImpl>
-    implements _$$DeletedImplCopyWith<$Res> {
-  __$$DeletedImplCopyWithImpl(
-      _$DeletedImpl _value, $Res Function(_$DeletedImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$DeletedImpl implements _Deleted {
-  const _$DeletedImpl();
-
-  @override
-  String toString() {
-    return 'AddReviewState.deleted()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DeletedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(Review review) loaded,
-    required TResult Function() deleted,
-    required TResult Function(Review review) edited,
-    required TResult Function(String message) error,
-  }) {
-    return deleted();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
-    TResult? Function()? deleted,
-    TResult? Function(Review review)? edited,
-    TResult? Function(String message)? error,
-  }) {
-    return deleted?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(Review review)? loaded,
-    TResult Function()? deleted,
-    TResult Function(Review review)? edited,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (deleted != null) {
-      return deleted();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Deleted value) deleted,
-    required TResult Function(_Edited value) edited,
-    required TResult Function(_Error value) error,
-  }) {
-    return deleted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Deleted value)? deleted,
-    TResult? Function(_Edited value)? edited,
-    TResult? Function(_Error value)? error,
-  }) {
-    return deleted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Deleted value)? deleted,
-    TResult Function(_Edited value)? edited,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (deleted != null) {
-      return deleted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Deleted implements AddReviewState {
-  const factory _Deleted() = _$DeletedImpl;
-}
-
-/// @nodoc
-abstract class _$$EditedImplCopyWith<$Res> {
-  factory _$$EditedImplCopyWith(
-          _$EditedImpl value, $Res Function(_$EditedImpl) then) =
-      __$$EditedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Review review});
-
-  $ReviewCopyWith<$Res> get review;
-}
-
-/// @nodoc
-class __$$EditedImplCopyWithImpl<$Res>
-    extends _$AddReviewStateCopyWithImpl<$Res, _$EditedImpl>
-    implements _$$EditedImplCopyWith<$Res> {
-  __$$EditedImplCopyWithImpl(
-      _$EditedImpl _value, $Res Function(_$EditedImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? review = null,
-  }) {
-    return _then(_$EditedImpl(
-      null == review
-          ? _value.review
-          : review // ignore: cast_nullable_to_non_nullable
-              as Review,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ReviewCopyWith<$Res> get review {
-    return $ReviewCopyWith<$Res>(_value.review, (value) {
-      return _then(_value.copyWith(review: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$EditedImpl implements _Edited {
-  const _$EditedImpl(this.review);
-
-  @override
-  final Review review;
-
-  @override
-  String toString() {
-    return 'AddReviewState.edited(review: $review)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$EditedImpl &&
-            (identical(other.review, review) || other.review == review));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, review);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$EditedImplCopyWith<_$EditedImpl> get copyWith =>
-      __$$EditedImplCopyWithImpl<_$EditedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(Review review) loaded,
-    required TResult Function() deleted,
-    required TResult Function(Review review) edited,
-    required TResult Function(String message) error,
-  }) {
-    return edited(review);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
-    TResult? Function()? deleted,
-    TResult? Function(Review review)? edited,
-    TResult? Function(String message)? error,
-  }) {
-    return edited?.call(review);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(Review review)? loaded,
-    TResult Function()? deleted,
-    TResult Function(Review review)? edited,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (edited != null) {
-      return edited(review);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Deleted value) deleted,
-    required TResult Function(_Edited value) edited,
-    required TResult Function(_Error value) error,
-  }) {
-    return edited(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Deleted value)? deleted,
-    TResult? Function(_Edited value)? edited,
-    TResult? Function(_Error value)? error,
-  }) {
-    return edited?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Deleted value)? deleted,
-    TResult Function(_Edited value)? edited,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (edited != null) {
-      return edited(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Edited implements AddReviewState {
-  const factory _Edited(final Review review) = _$EditedImpl;
-
-  Review get review;
-  @JsonKey(ignore: true)
-  _$$EditedImplCopyWith<_$EditedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -821,7 +477,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$AddReviewStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$GetFavouriteTripsStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -851,7 +507,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'AddReviewState.error(message: $message)';
+    return 'GetFavouriteTripsState.error(message: $message)';
   }
 
   @override
@@ -876,9 +532,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Review review) loaded,
-    required TResult Function() deleted,
-    required TResult Function(Review review) edited,
+    required TResult Function(List<Trips> trips) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -889,9 +543,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Review review)? loaded,
-    TResult? Function()? deleted,
-    TResult? Function(Review review)? edited,
+    TResult? Function(List<Trips> trips)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -902,9 +554,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Review review)? loaded,
-    TResult Function()? deleted,
-    TResult Function(Review review)? edited,
+    TResult Function(List<Trips> trips)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -920,8 +570,6 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Deleted value) deleted,
-    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -933,8 +581,6 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Deleted value)? deleted,
-    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -946,8 +592,6 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Deleted value)? deleted,
-    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -958,7 +602,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements AddReviewState {
+abstract class _Error implements GetFavouriteTripsState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;

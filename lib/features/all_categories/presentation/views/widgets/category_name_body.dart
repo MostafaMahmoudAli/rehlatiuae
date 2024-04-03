@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/blocs/category_name_cubit.dart';
-import '../../../../../core/utils/app_strings.dart';
+
 import '../../../../../core/utils/custom_container_trip.dart';
 import '../../../../../core/utils/custom_dialog.dart';
 
@@ -31,7 +31,7 @@ class CategoryNameBody extends StatelessWidget {
           loading: () => const Center(
             child: CircularProgressIndicator(),
           ),
-          loaded:(categoryNameTrips)=> GridView.builder(
+          loaded: (categoryNameTrips) => GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 10.0.w,
@@ -41,13 +41,14 @@ class CategoryNameBody extends StatelessWidget {
             ),
             itemBuilder: (context, index) => CustomContainerTrip(
               width: 200.0.w,
-              cityName:categoryNameTrips[index].name?? "",
-              countryName:categoryNameTrips[index].description?? "",
-              imageName:categoryNameTrips[index].imagePath?? "",
-              tripPrice:categoryNameTrips[index].adultPrice.toString(),
+              trip: categoryNameTrips[index],
+              cityName: categoryNameTrips[index].name ?? "",
+              countryName: categoryNameTrips[index].description ?? "",
+              imageName: categoryNameTrips[index].imagePath ?? "",
+              tripPrice: categoryNameTrips[index].adultPrice.toString(),
               reservationType: "/person",
             ),
-            itemCount:categoryNameTrips.length,
+            itemCount: categoryNameTrips.length,
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             padding: EdgeInsets.zero,
@@ -55,7 +56,6 @@ class CategoryNameBody extends StatelessWidget {
           orElse: () => const SizedBox(),
         );
       },
-
     );
   }
 }

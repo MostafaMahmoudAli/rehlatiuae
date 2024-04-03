@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class ExperiencesSections extends StatelessWidget {
   const ExperiencesSections({
@@ -24,13 +26,13 @@ class ExperiencesSections extends StatelessWidget {
           child: ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
             scrollDirection: Axis.horizontal,
-            itemCount: 15,
+            itemCount: context.read<MainCubit>().bestTrips.length,
             itemBuilder: (context, index) => CustomContainerTrip(
               width: 225.w,
-              imageName: 'assets/images/preview1.png',
-              cityName: 'Dubai',
-              countryName: 'United Arab Emirates',
-              tripPrice: '43',
+              imageName: context.read<MainCubit>().bestTrips[index].imagePath,
+              cityName: context.read<MainCubit>().bestTrips[index].name,
+              countryName: context.read<MainCubit>().bestTrips[index].address,
+              tripPrice: context.read<MainCubit>().bestTrips[index].adultPrice?.toString(),
               reservationType: '/Person',
             ),
             separatorBuilder: (context, index) => SizedBox(width: 12.w),
@@ -48,13 +50,13 @@ class ExperiencesSections extends StatelessWidget {
           child: ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
             scrollDirection: Axis.horizontal,
-            itemCount: 15,
+            itemCount: context.read<MainCubit>().popularExperience.length,
             itemBuilder: (context, index) => CustomContainerTrip(
               width: 140.w,
-              imageName: 'assets/images/preview1.png',
-              cityName: 'Dubai',
-              countryName: 'United Arab Emirates',
-              tripPrice: '43',
+              imageName: context.read<MainCubit>().popularExperience[index].imagePath,
+              cityName: context.read<MainCubit>().popularExperience[index].name,
+              countryName: context.read<MainCubit>().popularExperience[index].address,
+              tripPrice: context.read<MainCubit>().popularExperience[index].adultPrice?.toString(),
               reservationType: '/Person',
             ),
             separatorBuilder: (context, index) => SizedBox(width: 12.w),

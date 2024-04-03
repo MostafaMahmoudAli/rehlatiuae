@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
-
-
 import '../../../../../core/utils/error_widget.dart';
 import '../../../../best_trips/presentation/blocs/best_trips_bloc.dart';
 
 class BestTripsBody extends StatefulWidget {
-  const BestTripsBody({super.key,required this.bestTripsScrollController});
-  final  ScrollController?bestTripsScrollController;
+  const BestTripsBody({super.key, required this.bestTripsScrollController});
+
+  final ScrollController? bestTripsScrollController;
+
   @override
   State<BestTripsBody> createState() => _AllTripsBodyState();
 }
@@ -24,18 +24,20 @@ class _AllTripsBodyState extends State<BestTripsBody> {
   @override
   void dispose() {
     super.dispose();
-    widget.bestTripsScrollController?..removeListener(_onScroll)..dispose();
+    widget.bestTripsScrollController
+      ?..removeListener(_onScroll)
+      ..dispose();
   }
-  void _onScroll()
-  {
+
+  void _onScroll() {
     final maxScroll = widget.bestTripsScrollController?.position.minScrollExtent;
     final currentScroll = widget.bestTripsScrollController?.offset;
-    if(currentScroll! >= (maxScroll!*0.4))
-    {
+    if (currentScroll! >= (maxScroll! * 0.4)) {
       BlocProvider.of<BestTripsBloc>(context).add(GetBestTripsEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BestTripsBloc, BestTripsState>(
@@ -55,10 +57,11 @@ class _AllTripsBodyState extends State<BestTripsBody> {
               ),
               itemBuilder: (context, index) => CustomContainerTrip(
                 width: 140.0.w,
+                trip: state.bestTrips[index],
                 cityName: state.bestTrips[index].name,
-                countryName:state.bestTrips[index].address,
+                countryName: state.bestTrips[index].address,
                 imageName: state.bestTrips[index].imagePath ?? "",
-                tripPrice:state.bestTrips[index].adultPrice.toString(),
+                tripPrice: state.bestTrips[index].adultPrice.toString(),
                 reservationType: "/person",
               ),
               itemCount: state.bestTrips.length,
@@ -67,7 +70,9 @@ class _AllTripsBodyState extends State<BestTripsBody> {
               padding: EdgeInsets.zero,
             );
           case BestTripsStatus.error:
-            return ErrorsWidget(error: state.errMessage,);
+            return ErrorsWidget(
+              error: state.errMessage,
+            );
         }
       },
     );
