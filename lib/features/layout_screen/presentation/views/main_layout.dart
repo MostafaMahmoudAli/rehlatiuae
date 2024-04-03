@@ -68,7 +68,11 @@ class _MainLayoutState extends State<MainLayout> {
               title: const CustomAppBarTitle(),
               actions: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {
+                      currentTab = 4;
+                    });
+                  },
                   child: BlocBuilder<MainCubit, MainState>(
                     builder: (context, state) {
                       return state.maybeWhen(
