@@ -48,7 +48,7 @@ class OfferCountTicketCard extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                width: 5.w,
+                width: 20.w,
               ),
               Row(
                 children: [

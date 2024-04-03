@@ -21,7 +21,7 @@ class OfferCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180.w,
+      width: 225.w,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: CachedNetworkImageProvider(
