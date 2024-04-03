@@ -154,7 +154,8 @@ class CodegenLoader extends AssetLoader{
   "Change_Password_Success": "تغيير كلمة المرور بنجاح",
   "By_clicking_Sing_up": "بالنقر فوق تسجيل، أنت توافق على",
   "offer_name": "اسم العرض",
-  "view": "عرض"
+  "view": "عرض",
+  "select": " اختر"
 };
 static const Map<String,dynamic> en = {
   "Easy_to_Shop": "Easy to Shop",
@@ -296,7 +297,8 @@ static const Map<String,dynamic> en = {
   "Change_Password_Success": "Change Password Success",
   "By_clicking_Sing_up": "By clicking Sing up, you agree to our ",
   "offer_name": "offer name",
-  "view": "view"
+  "view": "view",
+  "select": "select"
 };
 static const Map<String,dynamic> ur = {
   "Easy_to_Shop": "خریدنا آسان",
@@ -438,7 +440,8 @@ static const Map<String,dynamic> ur = {
   "Change_Password_Success": "پاس ورڈ کی تبدیلی کامیابی",
   "By_clicking_Sing_up": "سائن اپ کلک کرکے، آپ ہمارے متفق ہوتے ہیں",
   "offer_name": "عرض کا نام",
-  "view": " دیکھیں"
+  "view": " دیکھیں",
+  "select": " منتخب"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en, "ur": ur};
 }

@@ -7,6 +7,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/cur
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/language_content_sheet.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AccountDrawerSection extends StatelessWidget {
   const AccountDrawerSection({super.key});
@@ -23,7 +24,7 @@ class AccountDrawerSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                LocaleKeys.My_Account,
+                LocaleKeys.My_Account.tr(),
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: AppColors.black,
                     ),
@@ -33,7 +34,7 @@ class AccountDrawerSection extends StatelessWidget {
         ),
 
         DrawerItem(
-          title: LocaleKeys.Credits,
+          title: LocaleKeys.Credits.tr(),
           iconPath: AppAssets.credits,
           trailing: [
             Text(
@@ -43,7 +44,7 @@ class AccountDrawerSection extends StatelessWidget {
           ],
         ),
         DrawerItem(
-          title: LocaleKeys.Currency,
+          title: LocaleKeys.Currency.tr(),
           iconPath: AppAssets.currency,
           trailing: [
             Text(
@@ -61,16 +62,16 @@ class AccountDrawerSection extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero,
               ),
-              builder: (context) => const CustomBottomSheet(
-                title: LocaleKeys.Select_Currency,
+              builder: (context) =>  CustomBottomSheet(
+                title: LocaleKeys.Select_Currency.tr()  ,
                 avatarText: '\$',
-                contentSheet: CurrencyContentSheet(),
+                contentSheet: const CurrencyContentSheet(),
               ),
             );
           },
         ),
         DrawerItem(
-          title: LocaleKeys.Language,
+          title: LocaleKeys.Language.tr(),
           iconPath: AppAssets.language,
           trailing: [
             Text(
@@ -88,16 +89,16 @@ class AccountDrawerSection extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero,
               ),
-              builder: (context) => const CustomBottomSheet(
-                title: LocaleKeys.Select_Language,
+              builder: (context) =>  CustomBottomSheet(
+                title: LocaleKeys.Select_Language.tr(),
                 avatarText: 'AR',
-                contentSheet: LanguageContentSheet(),
+                contentSheet: const LanguageContentSheet(),
               ),
             );
           },
         ),
         DrawerItem(
-          title: LocaleKeys.Notifications,
+          title: LocaleKeys.Notifications.tr(),
           iconPath: AppAssets.notifications,
           trailing: [
             Transform.scale(
