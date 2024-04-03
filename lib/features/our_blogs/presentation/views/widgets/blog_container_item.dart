@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -33,10 +34,12 @@ class BlogContainerItem extends StatelessWidget {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
-              ),
-              child: Image.network(
-                blogs?.imagePath ?? "",
-                fit: BoxFit.cover,
+                image: DecorationImage(
+                  fit:BoxFit.cover,
+                  image: CachedNetworkImageProvider(
+                    blogs?.imagePath ?? "",
+                  ),
+                ),
               ),
             ),
             Positioned(

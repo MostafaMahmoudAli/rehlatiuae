@@ -56,10 +56,11 @@ class HomeScreen extends StatelessWidget {
             loading: () => const Center(child: CircularProgressIndicator()),
             loaded: (layoutModel) => Scaffold(
               body: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 20.0.h,
-                  horizontal: 17.0.w,
-                ).copyWith(bottom: 0),
+                padding: EdgeInsetsDirectional.only(
+                  top: 20.0.h,
+                  start: 17.0.w,
+                  bottom: 0,
+                ),
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(

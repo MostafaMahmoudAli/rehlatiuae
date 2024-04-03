@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,10 +78,12 @@ class _BestOffersItemState extends State<BestOffersItem> {
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadiusDirectional.circular(15.0.r),
-                    ),
-                    child: Image.network(
-                      widget.bestOffers?.imagePath ?? "",
-                      fit: BoxFit.cover,
+                      image:DecorationImage(
+                        fit:BoxFit.cover,
+                        image: CachedNetworkImageProvider(
+                          widget.bestOffers?.imagePath ?? "",
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(

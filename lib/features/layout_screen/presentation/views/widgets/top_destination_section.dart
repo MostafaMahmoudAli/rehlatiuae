@@ -27,6 +27,7 @@ class TopDestinationSection extends StatelessWidget {
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: destinations.length,
+              physics:const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {

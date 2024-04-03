@@ -37,4 +37,34 @@ class PaymentRepoImpl implements PaymentRepo {
       return Left(error.errorModel.message);
     }
   }
+  //
+  // @override
+  // Future<Either<String, void>> paymentMethod({required int amount, required String currency})async {
+  //   try {
+  //     String clientSecret= await _getClientSecret((amount*100).toString(), currency);
+  //     await _initializePaymentSheet(clientSecret);
+  //     await Stripe.instance.presentPaymentSheet();
+  //   } catch (error) {
+  //     throw Exception(error.toString());
+  //   }
+  // }
+  //  Future<void>_initializePaymentSheet(String clientSecret)async{
+  //   await Stripe.instance.initPaymentSheet(
+  //     paymentSheetParameters: SetupPaymentSheetParameters(
+  //       paymentIntentClientSecret: clientSecret,
+  //       merchantDisplayName: "",
+  //     ),
+  //   );
+  // }
+  //
+  //  Future<String> _getClientSecret(String amount,String currency)async{
+  //   var response= await apiConsumer.post(
+  //     'https://api.stripe.com/v1/payment_intents',
+  //     queryParameters: {
+  //       'Authorization': 'Bearer ${ApiKeys.secretKey}',
+  //       'Content-Type': 'application/x-www-form-urlencoded'
+  //     },
+  //   );
+  //   return response.data["client_secret"];
+  // }
 }
