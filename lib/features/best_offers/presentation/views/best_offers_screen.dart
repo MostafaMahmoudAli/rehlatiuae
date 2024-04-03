@@ -11,14 +11,12 @@ import 'package:rehlatyuae/features/best_offers/presentation/views/widgets/best_
 import 'package:rehlatyuae/features/best_offers/presentation/views/widgets/best_offers_bottom_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
-import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 
 import '../blocs/best_offers_bloc.dart';
 
 class BestOffersScreen extends StatelessWidget {
   BestOffersScreen({super.key});
 
-  final TextEditingController _textEditingController = TextEditingController();
   final ScrollController bestOffersScrollController = ScrollController();
   @override
   Widget build(BuildContext context) {

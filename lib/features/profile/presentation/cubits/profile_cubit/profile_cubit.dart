@@ -12,11 +12,11 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit({required this.profileRepo}) : super(const ProfileState.initial());
 
   Future<void> getProfile() async {
-    emit(const ProfileState.loading());
+    _update(const ProfileState.loading());
     final results = await profileRepo.getProfile();
     results.fold(
-      (error) => emit(ProfileState.error(error)),
-      (client) => emit(ProfileState.loaded(client)),
+      (error) => _update(ProfileState.error(error)),
+      (client) => _update(ProfileState.loaded(client)),
     );
   }
 

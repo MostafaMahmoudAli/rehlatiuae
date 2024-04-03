@@ -8,6 +8,8 @@ import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/popular_experiences.dart';
+import 'package:rehlatyuae/core/utils/search_text_feild.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_horizontal.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_trips_section.dart';
@@ -15,39 +17,41 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/cat
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/our_blog_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/our_partner_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/reviews_section.dart';
-import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top_destination_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
+
 import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
 
 class HomeScreen extends StatelessWidget
 {
-  HomeScreen({super.key,});
+  HomeScreen({super.key});
 
   final TextEditingController _textEditingController = TextEditingController();
+
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
       child: BlocConsumer<LayoutCubit, LayoutState>(
-        listener: (context, state)
-        {
+        listener: (context, state) {
           state.whenOrNull(
-            error: (errorMessage) =>showDialog(
+            error: (errorMessage) => showDialog(
               context: context,
-              builder: (context) =>CustomDialog(
+              builder: (context) => CustomDialog(
                 title: errorMessage,
-                subtitle:'Sorry',
-                labelText:'Close',
+                subtitle: 'Sorry',
+                labelText: 'Close',
               ),
             ),
+            loaded: (layoutModel) {
+              context.read<MainCubit>().bestTrips = layoutModel.bestTrips ?? [];
+              context.read<MainCubit>().popularExperience = layoutModel.popularExperience ?? [];
+            },
           );
         },
-        builder: (context, state)
-        {
+        builder: (context, state) {
           return state.maybeWhen(
             initial: () => const Center(child: CircularProgressIndicator()),
             loading: () => const Center(child: CircularProgressIndicator()),
@@ -63,10 +67,11 @@ class HomeScreen extends StatelessWidget
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SearchTextField(
-                        controller:_textEditingController,
-                        onTap: ()
-                        {
-                          context.push(AppStrings.searchScreen,);
+                        controller: _textEditingController,
+                        onTap: () {
+                          context.push(
+                            AppStrings.searchScreen,
+                          );
                         },
                         readOnly: true,
 
@@ -89,7 +94,7 @@ class HomeScreen extends StatelessWidget
                       ),
                       const CustomSizedBox(),
                       PopularExperiencesSection(
-                        popularExperiences:layoutModel.popularExperience ?? [],
+                        popularExperiences: layoutModel.popularExperience ?? [],
                       ),
                       const CustomSizedBox(),
                       OurBlogSection(

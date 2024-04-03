@@ -8,16 +8,16 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/cus
 import '../../../../top_destinations_section/data/models/all_destination_model.dart';
 
 class TopDestinationSection extends StatelessWidget {
-  const TopDestinationSection({super.key,required this.destinations});
-  final List<AllDestinations>destinations;
+  const TopDestinationSection({super.key, required this.destinations});
+
+  final List<AllDestinations> destinations;
+
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Column(
       children: [
-         CustomRowTitle(
-          onPressed:()
-          {
+        CustomRowTitle(
+          onPressed: () {
             context.push(AppStrings.topDestinationScreen);
           },
           text: AppStrings.topDestinationTitle,
@@ -30,20 +30,22 @@ class TopDestinationSection extends StatelessWidget {
               physics:const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: ()
-                  {
-                    context.push(AppStrings.cityDestinationScreen,extra:destinations[index].id,);
+                  onTap: () {
+                    context.push(
+                      AppStrings.cityDestinationScreen,
+                      extra: destinations[index].id,
+                    );
                   },
                   child: CustomContainerTrip(
-                    width:200.0.w,
+                    width: 200.0.w,
                     cityName: destinations[index].name ?? "Dubai",
-                    countryName:destinations[index].country ??"United Arab Emirates",
+                    countryName: destinations[index].country ?? "United Arab Emirates",
                     imageName: destinations[index].imagePath ?? AppStrings.containerTripBackgroundImage,
+                    isTrip: false,
                   ),
                 );
               },
-              separatorBuilder: (context, index)
-              {
+              separatorBuilder: (context, index) {
                 return SizedBox(
                   width: 5.0.w,
                 );

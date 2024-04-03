@@ -4,21 +4,24 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
+
 import '../../../../all_trips/data/models/trips_model.dart';
 
 class BestTripsSection extends StatelessWidget {
   const BestTripsSection({super.key, required this.bestTrips});
-  final List<Trips>?bestTrips;
+
+  final List<Trips>? bestTrips;
+
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         CustomRowTitle(
           text: AppStrings.bestTripsTitle,
-          onPressed: ()
-          {
-            context.push(AppStrings.bestTripsScreen,);
+          onPressed: () {
+            context.push(
+              AppStrings.bestTripsScreen,
+            );
           },
         ),
         SizedBox(
@@ -29,14 +32,15 @@ class BestTripsSection extends StatelessWidget {
               physics:const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return CustomContainerTrip(
-                  width:200.0.w,
-                  cityName: bestTrips?[index].name?? "",
-                  countryName:bestTrips?[index].address??"",
-                  imageName: bestTrips?[index].imagePath??"",
-                  tripPrice:bestTrips?[index].adultPrice.toString()??"",
-                  reservationType:"/person",
-                  oldTripPrice:bestTrips?[index].beforePrice.toString() ?? "",
-                  percentageSave: bestTrips?[index].saving ?? "" ,
+                  width: 200.0.w,
+                  trip: bestTrips?[index],
+                  cityName: bestTrips?[index].name ?? "",
+                  countryName: bestTrips?[index].address ?? "",
+                  imageName: bestTrips?[index].imagePath ?? "",
+                  tripPrice: bestTrips?[index].adultPrice.toString() ?? "",
+                  reservationType: "/person",
+                  oldTripPrice: bestTrips?[index].beforePrice.toString() ?? "",
+                  percentageSave: bestTrips?[index].saving ?? "",
                 );
               },
               separatorBuilder: (context, index) {

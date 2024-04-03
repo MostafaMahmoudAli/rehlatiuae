@@ -21,6 +21,8 @@ mixin _$AddReviewState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Review review) loaded,
+    required TResult Function() deleted,
+    required TResult Function(Review review) edited,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +31,8 @@ mixin _$AddReviewState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Review review)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function(Review review)? edited,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +41,8 @@ mixin _$AddReviewState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Review review)? loaded,
+    TResult Function()? deleted,
+    TResult Function(Review review)? edited,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -46,6 +52,8 @@ mixin _$AddReviewState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +62,8 @@ mixin _$AddReviewState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +72,8 @@ mixin _$AddReviewState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -127,6 +139,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Review review) loaded,
+    required TResult Function() deleted,
+    required TResult Function(Review review) edited,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -138,6 +152,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Review review)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function(Review review)? edited,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -149,6 +165,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Review review)? loaded,
+    TResult Function()? deleted,
+    TResult Function(Review review)? edited,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -164,6 +182,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -175,6 +195,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -186,6 +208,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -241,6 +265,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Review review) loaded,
+    required TResult Function() deleted,
+    required TResult Function(Review review) edited,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -252,6 +278,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Review review)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function(Review review)? edited,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -263,6 +291,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Review review)? loaded,
+    TResult Function()? deleted,
+    TResult Function(Review review)? edited,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -278,6 +308,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -289,6 +321,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -300,6 +334,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -391,6 +427,8 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Review review) loaded,
+    required TResult Function() deleted,
+    required TResult Function(Review review) edited,
     required TResult Function(String message) error,
   }) {
     return loaded(review);
@@ -402,6 +440,8 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Review review)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function(Review review)? edited,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(review);
@@ -413,6 +453,8 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Review review)? loaded,
+    TResult Function()? deleted,
+    TResult Function(Review review)? edited,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -428,6 +470,8 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -439,6 +483,8 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -450,6 +496,8 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -466,6 +514,299 @@ abstract class _Loaded implements AddReviewState {
   Review get review;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeletedImplCopyWith<$Res> {
+  factory _$$DeletedImplCopyWith(
+          _$DeletedImpl value, $Res Function(_$DeletedImpl) then) =
+      __$$DeletedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeletedImplCopyWithImpl<$Res>
+    extends _$AddReviewStateCopyWithImpl<$Res, _$DeletedImpl>
+    implements _$$DeletedImplCopyWith<$Res> {
+  __$$DeletedImplCopyWithImpl(
+      _$DeletedImpl _value, $Res Function(_$DeletedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeletedImpl implements _Deleted {
+  const _$DeletedImpl();
+
+  @override
+  String toString() {
+    return 'AddReviewState.deleted()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DeletedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Review review) loaded,
+    required TResult Function() deleted,
+    required TResult Function(Review review) edited,
+    required TResult Function(String message) error,
+  }) {
+    return deleted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(Review review)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function(Review review)? edited,
+    TResult? Function(String message)? error,
+  }) {
+    return deleted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Review review)? loaded,
+    TResult Function()? deleted,
+    TResult Function(Review review)? edited,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Edited value) edited,
+    required TResult Function(_Error value) error,
+  }) {
+    return deleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Edited value)? edited,
+    TResult? Function(_Error value)? error,
+  }) {
+    return deleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Edited value)? edited,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Deleted implements AddReviewState {
+  const factory _Deleted() = _$DeletedImpl;
+}
+
+/// @nodoc
+abstract class _$$EditedImplCopyWith<$Res> {
+  factory _$$EditedImplCopyWith(
+          _$EditedImpl value, $Res Function(_$EditedImpl) then) =
+      __$$EditedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Review review});
+
+  $ReviewCopyWith<$Res> get review;
+}
+
+/// @nodoc
+class __$$EditedImplCopyWithImpl<$Res>
+    extends _$AddReviewStateCopyWithImpl<$Res, _$EditedImpl>
+    implements _$$EditedImplCopyWith<$Res> {
+  __$$EditedImplCopyWithImpl(
+      _$EditedImpl _value, $Res Function(_$EditedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? review = null,
+  }) {
+    return _then(_$EditedImpl(
+      null == review
+          ? _value.review
+          : review // ignore: cast_nullable_to_non_nullable
+              as Review,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ReviewCopyWith<$Res> get review {
+    return $ReviewCopyWith<$Res>(_value.review, (value) {
+      return _then(_value.copyWith(review: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$EditedImpl implements _Edited {
+  const _$EditedImpl(this.review);
+
+  @override
+  final Review review;
+
+  @override
+  String toString() {
+    return 'AddReviewState.edited(review: $review)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditedImpl &&
+            (identical(other.review, review) || other.review == review));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, review);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditedImplCopyWith<_$EditedImpl> get copyWith =>
+      __$$EditedImplCopyWithImpl<_$EditedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Review review) loaded,
+    required TResult Function() deleted,
+    required TResult Function(Review review) edited,
+    required TResult Function(String message) error,
+  }) {
+    return edited(review);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(Review review)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function(Review review)? edited,
+    TResult? Function(String message)? error,
+  }) {
+    return edited?.call(review);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Review review)? loaded,
+    TResult Function()? deleted,
+    TResult Function(Review review)? edited,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (edited != null) {
+      return edited(review);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Edited value) edited,
+    required TResult Function(_Error value) error,
+  }) {
+    return edited(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Edited value)? edited,
+    TResult? Function(_Error value)? error,
+  }) {
+    return edited?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Edited value)? edited,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (edited != null) {
+      return edited(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Edited implements AddReviewState {
+  const factory _Edited(final Review review) = _$EditedImpl;
+
+  Review get review;
+  @JsonKey(ignore: true)
+  _$$EditedImplCopyWith<_$EditedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -536,6 +877,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Review review) loaded,
+    required TResult Function() deleted,
+    required TResult Function(Review review) edited,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -547,6 +890,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(Review review)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function(Review review)? edited,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -558,6 +903,8 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Review review)? loaded,
+    TResult Function()? deleted,
+    TResult Function(Review review)? edited,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -573,6 +920,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Edited value) edited,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -584,6 +933,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Edited value)? edited,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -595,6 +946,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Edited value)? edited,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

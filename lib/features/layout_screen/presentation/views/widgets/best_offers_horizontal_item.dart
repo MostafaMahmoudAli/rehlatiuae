@@ -11,7 +11,6 @@ class BestOffersHorizontalItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 135.0.h,
       width: 220.0.w,
       padding: EdgeInsetsDirectional.symmetric(
         horizontal: 8.0.w,

@@ -11,7 +11,7 @@ class BestOffersHorizontal extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 130.0.h,
+          height: 150.0.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics:const BouncingScrollPhysics(),

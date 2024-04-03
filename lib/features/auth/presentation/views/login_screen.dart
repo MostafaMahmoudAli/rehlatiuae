@@ -12,6 +12,7 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/core/utils/regex.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -35,7 +36,8 @@ class LoginScreen extends StatelessWidget {
               listener: (context, state) {
                 state.whenOrNull(
                   success: (authenticatedClient) {
-                    context.push(AppStrings.homeScreen);
+                    context.read<MainCubit>().getCachedClient();
+                    context.go(AppStrings.homeScreen);
                   },
                   error: (message) {
                     showDialog(

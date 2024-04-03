@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
+import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_date_booking.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/order_summary_section.dart';
@@ -60,12 +62,54 @@ class PaymentDetailsScreen extends StatelessWidget {
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
                   ),
-                  builder: (context) => CustomBottomSheet(
-                    title: 'Payment Details',
-                    labelButton: 'Payment',
-                    contentSheet: PaymentContentSheet(
-                      tripCheckoutDetails: context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails,
-                    ),
+                  builder: (context) => BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+                    listener: (context, state) {
+                      state.whenOrNull(
+                        error: (message) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => CustomDialog(
+                              title: message,
+                              subtitle: 'Sorry',
+                              labelText: 'Close',
+                              color: AppColors.redAppColor,
+                            ),
+                          );
+                        },
+                        success: () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => CustomDialog(
+                              title: 'Payment Success',
+                              subtitle: '${context.read<TripCheckoutDetailsCubit>().allSubtotal}',
+                              labelText: 'Back to Homepage',
+                              onTap: () {
+                                context.go(AppStrings.homeScreen);
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    builder: (context, state) {
+                      var cubit = context.read<TripCheckoutDetailsCubit>();
+                      return state.maybeWhen(
+                        loading: () => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        orElse: () => CustomBottomSheet(
+                          title: 'Payment Details',
+                          labelButton: 'Payment',
+                          contentSheet: PaymentContentSheet(
+                            tripCheckoutDetails: cubit.tripCheckoutDetails,
+                          ),
+                          onButtonPreesd: () async {
+                            cubit.addTripCheckoutDetails();
+                          },
+                        ),
+                      );
+                    },
                   ),
                 );
               },

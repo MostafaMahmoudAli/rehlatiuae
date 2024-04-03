@@ -1,10 +1,11 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rehlatyuae/features/best_offers/data/models/address_model.dart';
 
 import '../../../all_trips/data/models/review_count.dart';
 import '../../../all_trips/data/models/trips_model.dart';
 import '../../../layout_screen/data/models/review_model.dart';
-import 'attachment_model.dart';
 
 part 'blogs_model.freezed.dart';
 

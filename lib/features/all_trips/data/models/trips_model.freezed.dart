@@ -37,6 +37,7 @@ mixin _$Trips {
   DateTime? get createdAt => throw _privateConstructorUsedError;
   double? get reviewAverage => throw _privateConstructorUsedError;
   List<Review>? get reviews => throw _privateConstructorUsedError;
+  @JsonKey(name: "review_count")
   ReviewCount? get reviewsCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -66,7 +67,7 @@ abstract class $TripsCopyWith<$Res> {
       DateTime? createdAt,
       double? reviewAverage,
       List<Review>? reviews,
-      ReviewCount? reviewsCount});
+      @JsonKey(name: "review_count") ReviewCount? reviewsCount});
 
   $ReviewCountCopyWith<$Res>? get reviewsCount;
 }
@@ -211,7 +212,7 @@ abstract class _$$TripsImplCopyWith<$Res> implements $TripsCopyWith<$Res> {
       DateTime? createdAt,
       double? reviewAverage,
       List<Review>? reviews,
-      ReviewCount? reviewsCount});
+      @JsonKey(name: "review_count") ReviewCount? reviewsCount});
 
   @override
   $ReviewCountCopyWith<$Res>? get reviewsCount;
@@ -339,7 +340,7 @@ class _$TripsImpl implements _Trips {
       required this.createdAt,
       required this.reviewAverage,
       required final List<Review>? reviews,
-      required this.reviewsCount})
+      @JsonKey(name: "review_count") required this.reviewsCount})
       : _addresses = addresses,
         _images = images,
         _offers = offers,
@@ -414,6 +415,7 @@ class _$TripsImpl implements _Trips {
   }
 
   @override
+  @JsonKey(name: "review_count")
   final ReviewCount? reviewsCount;
 
   @override
@@ -509,6 +511,7 @@ abstract class _Trips implements Trips {
       required final DateTime? createdAt,
       required final double? reviewAverage,
       required final List<Review>? reviews,
+      @JsonKey(name: "review_count")
       required final ReviewCount? reviewsCount}) = _$TripsImpl;
 
   factory _Trips.fromJson(Map<String, dynamic> json) = _$TripsImpl.fromJson;
@@ -547,6 +550,7 @@ abstract class _Trips implements Trips {
   @override
   List<Review>? get reviews;
   @override
+  @JsonKey(name: "review_count")
   ReviewCount? get reviewsCount;
   @override
   @JsonKey(ignore: true)

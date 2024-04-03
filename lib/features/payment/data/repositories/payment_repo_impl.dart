@@ -29,7 +29,7 @@ class PaymentRepoImpl implements PaymentRepo {
   Future<Either<String, Unit>> addTripCheckoutDetails({required TripCheckoutDetails tripCheckoutDetails}) async {
     try {
       await apiConsumer.post(
-        EndPoints.sendMessageEndPoint,
+        EndPoints.addTripCheckoutDetailsEndPoint,
         data: tripCheckoutDetails.toJson(),
       );
       return const Right(unit);

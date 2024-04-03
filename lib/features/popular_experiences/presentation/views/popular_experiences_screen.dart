@@ -16,7 +16,6 @@ import '../blocs/popular_experiences_bloc.dart';
 class PopularExperiencesScreen extends StatelessWidget {
   PopularExperiencesScreen({super.key});
 
-  final TextEditingController _textEditingController = TextEditingController();
   final ScrollController popularExperiencesScrollController = ScrollController();
 
   @override

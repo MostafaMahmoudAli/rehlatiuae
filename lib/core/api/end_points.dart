@@ -19,6 +19,7 @@ class EndPoints {
   // Auth Feature EndPoints
   static String loginEndPoint = "client/login";
   static String registerEndPoint = "client/register";
+  static String logoutEndPoint = "client/logout";
   static String forgetPasswordEndPoint = "client/forgetPassword";
   static String verificationEmailEndPoint = "client/password/reset";
   static String resetPasswordEndPoint = "client/password/confirm";
@@ -30,4 +31,10 @@ class EndPoints {
 
   // Review trip
   static String addReview = "client/addReview";
+  static String addReviewBlog = "client/addReviewBlog";
+  static String deleteReview = "client/deleteReview";
+  static String deleteReviewBlog = "client/deleteReviewBlog";
+
+  static String favoriteTrip = "client/favoriteTrip";
+  static String myFavoriteTrip = "client/myFavoriteTrip";
 }

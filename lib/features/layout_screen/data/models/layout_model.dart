@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
 import '../../../all_categories/data/models/categories_model.dart';

@@ -14,7 +14,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/cus
 class AllTripsScreen extends StatelessWidget {
   AllTripsScreen({super.key});
 
-  final TextEditingController _textEditingController = TextEditingController();
+
   final ScrollController allTripsScrollController =ScrollController();
 
   @override
