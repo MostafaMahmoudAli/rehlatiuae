@@ -8,9 +8,9 @@ import 'package:rehlatyuae/features/layout_screen/data/models/message_model/mess
 import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_request_model/review_request_model.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/layout_repo.dart';
+
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
-
 
 class LayoutRepoImpl implements LayoutRepository {
   final ApiConsumer apiConsumer;
@@ -20,20 +20,18 @@ class LayoutRepoImpl implements LayoutRepository {
   });
 
   @override
-  Future<Either<String, LayOutModel>> fetchLayoutData() async
-  {
-      try {
-        var layoutData = await apiConsumer.get(
-          EndPoints.layoutEndPoint,
-        );
+  Future<Either<String, LayOutModel>> fetchLayoutData() async {
+    try {
+      var layoutData = await apiConsumer.get(
+        EndPoints.layoutEndPoint,
+      );
 
-        var layoutModel = LayOutModel.fromJson(layoutData["data"]);
-        return right(layoutModel);
-      }on ServerExceptions catch (error)
-      {
-        return Left(error.errorModel.message);
-      }
+      var layoutModel = LayOutModel.fromJson(layoutData["data"]);
+      return right(layoutModel);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
     }
+  }
 
   @override
   Future<Either<String, Unit>> sendMessage({required Message message}) async {
@@ -74,6 +72,24 @@ class LayoutRepoImpl implements LayoutRepository {
       );
       Review review = Review.fromJson(response['data']['review']);
       return Right(review);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> deleteReview({
+    required int? id,
+    required bool isTrip,
+  }) async {
+    try {
+      await apiConsumer.delete(
+        isTrip ? EndPoints.deleteReview : EndPoints.deleteReviewBlog,
+        queryParameters: {
+          isTrip ? 'trip_id' : 'blog_id': id,
+        },
+      );
+      return const Right(unit);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }

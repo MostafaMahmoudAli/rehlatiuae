@@ -43,7 +43,10 @@ class MainCubit extends Cubit<MainState> {
     final results = await authRepo.logout();
     results.fold(
       (message) => _update(MainState.error(message)),
-      (unit) => _update(const MainState.success()),
+      (unit) {
+        client = null;
+        _update(const MainState.success());
+      },
     );
   }
 

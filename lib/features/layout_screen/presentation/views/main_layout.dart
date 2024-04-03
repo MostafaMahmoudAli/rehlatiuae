@@ -68,24 +68,33 @@ class _MainLayoutState extends State<MainLayout> {
               title: const CustomAppBarTitle(),
               actions: [
                 InkWell(
-                  onTap: ()
-                  {
-
-                  },
-                  child: context.read<MainCubit>().client != null
-                      ? CustomCircleAvatar(
+                  onTap: () {},
+                  child: BlocBuilder<MainCubit, MainState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        success: () {
+                          return context.read<MainCubit>().client != null
+                              ? CustomCircleAvatar(
+                                  radius: 25.0.r,
+                                  backgroundColor: AppColors.whiteAppColor,
+                                  backgroundImage: CachedNetworkImageProvider(
+                                    context.read<MainCubit>().client!.imagePath,
+                                  ),
+                                )
+                              : CustomCircleAvatar(
+                                  radius: 25.0.r,
+                                  backgroundImage: const AssetImage(
+                                    "assets/images/Ellipse 1.png",
+                                  ),
+                                );
+                        },
+                        orElse: () => CustomCircleAvatar(
                           radius: 25.0.r,
                           backgroundColor: AppColors.whiteAppColor,
-                          backgroundImage: CachedNetworkImageProvider(
-                            context.read<MainCubit>().client!.imagePath,
-                          ),
-                        )
-                      : CustomCircleAvatar(
-                          radius: 25.0.r,
-                          backgroundImage: const AssetImage(
-                            "assets/images/Ellipse 1.png",
-                          ),
                         ),
+                      );
+                    },
+                  ),
                 ),
                 SizedBox(
                   width: 8.w,
@@ -99,6 +108,7 @@ class _MainLayoutState extends State<MainLayout> {
             currentTab = index;
           });
         },
+        index: currentTab,
       ),
     );
   }

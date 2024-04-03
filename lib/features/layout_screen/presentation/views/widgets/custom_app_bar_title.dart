@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class CustomAppBarTitle extends StatelessWidget {
   const CustomAppBarTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Row(
       children: [
         SvgPicture.asset(
@@ -36,19 +37,23 @@ class CustomAppBarTitle extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Hello,",
+                  "Hello, ",
                   style: TextStyle(
                     color: AppColors.black,
                     fontSize: 16.0.sp,
                   ),
                 ),
-                Text(
-                  " Belal",
-                  overflow: TextOverflow.fade,
-                  style: TextStyle(
-                    color: AppColors.textAndBackgroundColorButton,
-                    fontSize: 16.0.sp,
-                  ),
+                BlocBuilder<MainCubit, MainState>(
+                  builder: (context, state) {
+                    return Text(
+                      context.read<MainCubit>().client != null ? context.read<MainCubit>().client!.name : 'there',
+                      overflow: TextOverflow.fade,
+                      style: TextStyle(
+                        color: AppColors.textAndBackgroundColorButton,
+                        fontSize: 16.0.sp,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

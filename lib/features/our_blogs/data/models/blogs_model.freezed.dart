@@ -26,7 +26,7 @@ mixin _$Blogs {
   String? get imagePath => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
   DateTime? get createdAt => throw _privateConstructorUsedError;
-  int? get reviewAverage => throw _privateConstructorUsedError;
+  double? get reviewAverage => throw _privateConstructorUsedError;
   List<Review>? get blogReview => throw _privateConstructorUsedError;
   Trips? get trip => throw _privateConstructorUsedError;
   @JsonKey(name: "review_count")
@@ -48,7 +48,7 @@ abstract class $BlogsCopyWith<$Res> {
       String? description,
       String? imagePath,
       @JsonKey(name: "created_at") DateTime? createdAt,
-      int? reviewAverage,
+      double? reviewAverage,
       List<Review>? blogReview,
       Trips? trip,
       @JsonKey(name: "review_count") ReviewCount? reviewsCount});
@@ -104,7 +104,7 @@ class _$BlogsCopyWithImpl<$Res, $Val extends Blogs>
       reviewAverage: freezed == reviewAverage
           ? _value.reviewAverage
           : reviewAverage // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       blogReview: freezed == blogReview
           ? _value.blogReview
           : blogReview // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ abstract class _$$BlogsImplCopyWith<$Res> implements $BlogsCopyWith<$Res> {
       String? description,
       String? imagePath,
       @JsonKey(name: "created_at") DateTime? createdAt,
-      int? reviewAverage,
+      double? reviewAverage,
       List<Review>? blogReview,
       Trips? trip,
       @JsonKey(name: "review_count") ReviewCount? reviewsCount});
@@ -214,7 +214,7 @@ class __$$BlogsImplCopyWithImpl<$Res>
       reviewAverage: freezed == reviewAverage
           ? _value.reviewAverage
           : reviewAverage // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       blogReview: freezed == blogReview
           ? _value._blogReview
           : blogReview // ignore: cast_nullable_to_non_nullable
@@ -261,7 +261,7 @@ class _$BlogsImpl implements _Blogs {
   @JsonKey(name: "created_at")
   final DateTime? createdAt;
   @override
-  final int? reviewAverage;
+  final double? reviewAverage;
   final List<Review>? _blogReview;
   @override
   List<Review>? get blogReview {
@@ -340,7 +340,7 @@ abstract class _Blogs implements Blogs {
       required final String? description,
       required final String? imagePath,
       @JsonKey(name: "created_at") required final DateTime? createdAt,
-      final int? reviewAverage,
+      final double? reviewAverage,
       final List<Review>? blogReview,
       required final Trips? trip,
       @JsonKey(name: "review_count")
@@ -360,7 +360,7 @@ abstract class _Blogs implements Blogs {
   @JsonKey(name: "created_at")
   DateTime? get createdAt;
   @override
-  int? get reviewAverage;
+  double? get reviewAverage;
   @override
   List<Review>? get blogReview;
   @override

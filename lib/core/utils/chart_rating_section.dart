@@ -49,9 +49,17 @@ class ChartRatingSection extends StatelessWidget {
             SizedBox(
               width: 5.w,
             ),
-            Text(
-              "$ave ($total)",
-              style: Theme.of(context).textTheme.bodyLarge,
+            Row(
+              children: [
+                Text(
+                  ave.toStringAsFixed(1),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                Text(
+                  " ($total)",
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ],
             ),
           ],
         ),

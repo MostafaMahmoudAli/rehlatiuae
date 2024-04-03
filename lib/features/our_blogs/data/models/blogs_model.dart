@@ -17,7 +17,7 @@ class Blogs with _$Blogs {
     required final String? description,
     required final String? imagePath,
     @JsonKey(name: "created_at") required final DateTime? createdAt,
-    final int? reviewAverage,
+    final double? reviewAverage,
     final List<Review>? blogReview,
     required final Trips? trip,
     @JsonKey(name: "review_count") required final ReviewCount? reviewsCount,

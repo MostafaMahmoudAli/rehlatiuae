@@ -14,7 +14,7 @@ _$BlogsImpl _$$BlogsImplFromJson(Map<String, dynamic> json) => _$BlogsImpl(
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
-      reviewAverage: json['reviewAverage'] as int?,
+      reviewAverage: (json['reviewAverage'] as num?)?.toDouble(),
       blogReview: (json['blogReview'] as List<dynamic>?)
           ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),

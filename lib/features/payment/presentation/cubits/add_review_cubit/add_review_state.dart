@@ -8,5 +8,9 @@ class AddReviewState with _$AddReviewState {
 
   const factory AddReviewState.loaded(Review review) = _Loaded;
 
+  const factory AddReviewState.deleted() = _Deleted;
+
+  const factory AddReviewState.edited(Review review) = _Edited;
+
   const factory AddReviewState.error(String message) = _Error;
 }

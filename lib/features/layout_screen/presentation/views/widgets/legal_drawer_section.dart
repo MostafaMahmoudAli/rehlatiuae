@@ -79,28 +79,34 @@ class LegalDrawerSection extends StatelessWidget {
             context.push('/aboutUsScreen');
           },
         ),
-        DrawerItem(
-          title: 'Logout',
-          iconPath: AppAssets.logout,
-          trailing: const [
-            Icon(
-              Icons.arrow_forward_ios_sharp,
-            ),
-          ],
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (context) => CustomDialog(
-                title: "Are you sure from logout",
-                subtitle: 'Logout',
-                labelText: 'Logout',
-                color: AppColors.redAppColor,
-                onTap: () async {
-                  context.pop();
-                  await context.read<MainCubit>().logout();
-                },
-              ),
-            );
+        BlocBuilder<MainCubit, MainState>(
+          builder: (context, state) {
+            return context.read<MainCubit>().client != null
+                ? DrawerItem(
+                    title: 'Logout',
+                    iconPath: AppAssets.logout,
+                    trailing: const [
+                      Icon(
+                        Icons.arrow_forward_ios_sharp,
+                      ),
+                    ],
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => CustomDialog(
+                          title: "Are you sure from logout",
+                          subtitle: 'Logout',
+                          labelText: 'Logout',
+                          color: AppColors.redAppColor,
+                          onTap: () async {
+                            context.pop();
+                            await context.read<MainCubit>().logout();
+                          },
+                        ),
+                      );
+                    },
+                  )
+                : const SizedBox();
           },
         ),
       ],

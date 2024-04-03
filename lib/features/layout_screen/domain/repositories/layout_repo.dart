@@ -16,4 +16,9 @@ abstract class LayoutRepository {
     required File? image,
     required bool isTrip,
   });
+
+  Future<Either<String, Unit>> deleteReview({
+    required int? id,
+    required bool isTrip,
+  });
 }
