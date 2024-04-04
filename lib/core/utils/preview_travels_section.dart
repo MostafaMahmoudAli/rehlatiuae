@@ -65,16 +65,30 @@ class PreviewTravelsSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             scrollDirection: Axis.horizontal,
             itemCount: images!.length,
-            itemBuilder: (context, index) => Container(
-              width: 90,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(
-                    images![index].imagePath,
+            itemBuilder: (context, index) => InkWell(
+              // onTap: () {
+              //   MultiImageProvider multiImageProvider = MultiImageProvider(
+              //     images!
+              //         .map(
+              //           (e) => CachedNetworkImageProvider(
+              //             e.imagePath,
+              //           ),
+              //         )
+              //         .toList(),
+              //   );
+              //   showImageViewerPager(context, multiImageProvider);
+              // },
+              child: Container(
+                width: 90,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(
+                      images![index].imagePath,
+                    ),
+                    fit: BoxFit.fill,
                   ),
-                  fit: BoxFit.fill,
+                  borderRadius: BorderRadius.circular(9),
                 ),
-                borderRadius: BorderRadius.circular(9),
               ),
             ),
             separatorBuilder: (context, index) => const SizedBox(width: 12),
