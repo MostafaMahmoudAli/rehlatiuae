@@ -1,12 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
-import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/features/best_offers/data/models/images_model.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
@@ -94,21 +89,6 @@ class PreviewTravelsSection extends StatelessWidget {
             separatorBuilder: (context, index) => const SizedBox(width: 12),
           ),
         ),
-        if (hasBookButton)
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
-            child: CustomActionButton(
-              text: LocaleKeys.Book_Now.tr(),
-              borderRadius: BorderRadius.circular(16),
-              backGroundColor: AppColors.textAndBackgroundColorButton,
-              onTap: () {
-                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppRoutesString.paymentOptionsScreen);
-              },
-              width: double.infinity,
-              height: 50.h,
-            ),
-          ),
       ],
     );
   }

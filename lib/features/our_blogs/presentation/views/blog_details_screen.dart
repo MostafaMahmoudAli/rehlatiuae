@@ -10,6 +10,7 @@ import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/our_blogs/data/models/blogs_model.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/paragraph_section.dart';
@@ -47,8 +48,14 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
                   ),
             ),
           ),
-          ParagraphSection(title: LocaleKeys.Exciting_Activities_at.tr(), subTitle: LocaleKeys.The_mighty.tr()),
-          // const PreviewTravelsSection(),
+          ...List.generate(
+            widget.blogs.addresses.length,
+            (index) => ParagraphSection(
+              title: widget.blogs.addresses[index].name,
+              subTitle: widget.blogs.addresses[index].description,
+            ),
+          ),
+          if (widget.blogs.attachments!.isNotEmpty) PreviewTravelsSection(images: widget.blogs.attachments![0].images),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
