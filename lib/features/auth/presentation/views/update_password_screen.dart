@@ -11,6 +11,7 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/update_password_cubit/update_password_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class UpdatePasswordScreen extends StatelessWidget {
   final String token;
@@ -27,6 +28,7 @@ class UpdatePasswordScreen extends StatelessWidget {
           listener: (context, state) {
             state.whenOrNull(
               success: (authenticatedClient) {
+                context.read<MainCubit>().getCachedClient();
                 showDialog(
                   context: context,
                   barrierDismissible: false,

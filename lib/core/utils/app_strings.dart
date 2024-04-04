@@ -1,7 +1,7 @@
 
 class AppStrings {
   static const privacyPolicyContent =
-  '''This page lays out Rehlatyuae privacy policy explaining how your personal information is collected, used, and/or disclosed by Rehlatyuae. Please read it carefully. 
+      '''This page lays out Rehlatyuae privacy policy explaining how your personal information is collected, used, and/or disclosed by Rehlatyuae. Please read it carefully. 
 
 This Privacy Policy applies to our website, and its associated subdomains (collectively, our “Service”) alongside our application, Rehlatyuae. By accessing or using our Service or by contacting or engaging with us directly, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy. If you do not agree to this Privacy Policy, you should not engage with our website, or use our services. Continued use of the website and/or direct engagement with us following the posting of changes to this Privacy Policy that does not significantly affect the use or disclosure of your personal information will mean that you accept those changes.
 1. Definitions and Key Terms 
@@ -328,7 +328,7 @@ Your failure to comply with the applicable local laws or terms set out by the Su
 Official Channels:
 •	Website - Rehlatyuae.com
 •	Phone - +971 4 341 7419
-•	E-mail - support@Rehlatyuae.com
+•	Email - support@Rehlatyuae.com
 ''';
 
   // assets images names
@@ -342,7 +342,6 @@ Official Channels:
   static const weHelpYouMakeBestTripImage1 = "assets/images/Rectangle 9897.png";
   static const weHelpYouMakeBestTripImage2 = "assets/images/Rectangle 9899.png";
   static const weHelpYouMakeBestTripImage3 = "assets/images/Rectangle 9898.png";
-  static const whatsUpLogo = "assets/images/410201-PD391H-802-Photoroom.png-Photoroom.png";
 
   //text names
   static const whyChooseUsFastBookingDescription =
@@ -359,7 +358,9 @@ Official Channels:
   static const weHelpYouMakeBestTripSecondDescription =
       "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
 
-
+  static const cityDestinationScreen = "/cityDestinationScreen";
+  static const searchScreen = "/searchScreen";
+  static const favouritesScreen = "/favouritesScreen";
 
   // Keys
   static const accessToken = "accessToken";
@@ -370,5 +371,5 @@ Official Channels:
 
 
 
-  
+
 }

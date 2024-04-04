@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/all_blogs_item.dart';
 import '../../../../../core/utils/error_widget.dart';
-import '../../../../../core/utils/injector.dart';
 import '../../blocs/blogs_bloc.dart';
 
 class OurBlogsBody extends StatefulWidget {
@@ -34,7 +33,7 @@ class _OurBlogsBodyState extends State<OurBlogsBody> {
     final maxScroll = widget.ourBlogsScrollController?.position.maxScrollExtent;
     final currentScroll = widget.ourBlogsScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.9)) {
-      getIt<BlogsBloc>().add(GetBlogsEvent());
+      BlocProvider.of<BlogsBloc>(context).add(GetBlogsEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
@@ -51,7 +50,7 @@ class _OurBlogsBodyState extends State<OurBlogsBody> {
           BlogsStatus.success => GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 8 / 6,
+                childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.45,
                 crossAxisSpacing: 8.0.w,
                 mainAxisSpacing: 10.0.w,
               ),
@@ -60,7 +59,7 @@ class _OurBlogsBodyState extends State<OurBlogsBody> {
                 return AllBlogsItem(
                   width: 170.0.w,
                   image: state.blogs[index].imagePath ?? "",
-                  // rating: state.blogs[index].trip?[index].reviews?[index].starsNumber.toString(),
+                  rating: state.blogs[index].reviewAverage.toString(),
                   createdAt: state.blogs[index].createdAt.toString(),
                   name: state.blogs[index].name ?? "",
                   description: state.blogs[index].description ?? '',

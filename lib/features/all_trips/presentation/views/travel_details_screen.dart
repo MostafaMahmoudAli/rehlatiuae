@@ -1,19 +1,26 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rehlatyuae/core/utils/app_assets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
+import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
+import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_preferences_list.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
-  const TravelDetailsScreen({super.key});
+  final Trips? trip;
+
+  const TravelDetailsScreen({super.key, this.trip});
 
   @override
   State<TravelDetailsScreen> createState() => _TravelDetailsScreenState();
@@ -25,45 +32,68 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          const BolgTravelTitleSection(
-            title: "IMG Worlds",
-            address: LocaleKeys.Dubai_United,
-            price: "79",
-            imagePath: AppAssets.travel,
+          BolgTravelTitleSection(
+            title: widget.trip!.name ?? '',
+            address: widget.trip!.address ?? '',
+            price: widget.trip!.adultPrice.toString(),
+            imagePath: widget.trip!.imagePath!,
+            isFavorite: widget.trip!.isFavourite,
+            saving: widget.trip!.saving.toString(),
+            beforePrice: widget.trip!.beforePrice.toString(),
+            onLikePressed: () async {
+              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
+            },
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-            child: Text(
-              LocaleKeys.Select_your_Preferences.tr(),
-              style: Theme.of(context).textTheme.labelMedium,
+          if (widget.trip!.offers!.isNotEmpty)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              child: Text(
+                LocaleKeys.Select_your_Preferences.tr(),
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
             ),
-          ),
-          const OfferPreferencesList(),
+          if (widget.trip!.offers!.isNotEmpty)
+            OfferPreferencesList(
+              trip: widget.trip!,
+              offers: widget.trip!.offers,
+            ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
-                      LocaleKeys.The_mighty.tr(),
-                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+              widget.trip!.description!,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
             ),
           ),
-           CustomExpansionTile(
-            title: LocaleKeys.Highlights.tr(),
-            content:
-           LocaleKeys.With_more_techy.tr()  ),
-           CustomExpansionTile(
-            title: LocaleKeys.Inclusions.tr(),
-            content: LocaleKeys.Guests_served.tr(),
-            initiallyExpanded: false,
+          ...List.generate(
+            widget.trip!.addresses!.length,
+            (index) => CustomExpansionTile(
+              initiallyExpanded: index == 0,
+              title: widget.trip!.addresses![index].name,
+              content: widget.trip!.addresses![index].description,
+            ),
           ),
-           CustomExpansionTile(
-            title: LocaleKeys.Cancellation_policy.tr(),
-            content: LocaleKeys.Reviews_Rehlatyuae.tr(),
-            initiallyExpanded: false,
+          PreviewTravelsSection(images: widget.trip!.images),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
+            child: CustomActionButton(
+              text: LocaleKeys.Book_Now.tr(),
+              borderRadius: BorderRadius.circular(16),
+              backGroundColor: AppColors.textAndBackgroundColorButton,
+              onTap: () {
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+                context.push(AppStrings.paymentOptionsScreen, extra: widget.trip);
+              },
+              width: double.infinity,
+              height: 50.h,
+            ),
           ),
-          const PreviewTravelsSection(),
-          const RatingsReviewsSection(),
+          RatingsReviewsSection(
+            reviews: widget.trip!.reviews,
+            id: widget.trip!.id,
+            reviewsCount: widget.trip!.reviewsCount,
+          ),
           const ExperiencesSections(),
         ],
       ),
@@ -72,7 +102,10 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
 
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom],
+    );
     super.initState();
   }
 

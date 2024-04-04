@@ -28,6 +28,7 @@ class OurPartnerSection extends StatelessWidget
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: ourPartners.length,
+              physics:const BouncingScrollPhysics(),
               itemBuilder: (context, index)
               {
                 return  OurPartnersItem(ourPartners: ourPartners[index],);

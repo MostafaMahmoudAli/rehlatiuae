@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 
@@ -12,6 +14,8 @@ class Review with _$Review {
     final int? starsNumber,
     final String? description,
     final String? imagePath,
+    @JsonKey(name:"created_at")
+    final String? createdAt,
     final Client? client,
   }) = _Review;
 

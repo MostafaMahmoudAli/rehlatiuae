@@ -15,6 +15,7 @@ import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/core/utils/regex.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -38,6 +39,7 @@ class RegisterScreen extends StatelessWidget {
               listener: (context, state) {
                 state.whenOrNull(
                   success: (authenticatedClient) {
+                    context.read<MainCubit>().getCachedClient();
                     context.push(AppRoutesString.homeScreen);
                   },
                   error: (message) {

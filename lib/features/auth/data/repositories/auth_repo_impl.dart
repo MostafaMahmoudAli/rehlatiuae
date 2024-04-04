@@ -60,6 +60,20 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
+  Future<Either<String, Unit>> logout() async {
+    try {
+      await apiConsumer.post(
+        EndPoints.logoutEndPoint,
+        data: {},
+      );
+      _clearClient();
+      return const Right(unit);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+  @override
   Future<Either<String, Unit>> forgetPassword({required String email}) async {
     try {
       await apiConsumer.post(
@@ -138,6 +152,16 @@ class AuthRepoImpl implements AuthRepo {
     await cacheService.setData(
       key: AppRoutesString.initialLocationRoute,
       value: AppRoutesString.homeScreen,
+    );
+  }
+
+  Future<void> _clearClient() async {
+    await cacheService.setData(key: AppStrings.accessToken, value: null);
+    await cacheService.setData(key: AppStrings.expiresIn, value: null);
+    await cacheService.setData(key: AppStrings.client, value: null);
+    await cacheService.setData(
+      key: AppStrings.initialLocationRoute,
+      value: AppStrings.homeScreen,
     );
   }
 }

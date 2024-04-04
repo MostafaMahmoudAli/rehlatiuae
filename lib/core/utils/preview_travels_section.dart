@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rehlatyuae/features/best_offers/data/models/images_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -10,9 +11,11 @@ import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class PreviewTravelsSection extends StatelessWidget {
   final bool hasBookButton;
+  final List<ImagesModel>? images;
 
   const PreviewTravelsSection({
     this.hasBookButton = true,
+    this.images,
     super.key,
   });
 
@@ -60,13 +63,13 @@ class PreviewTravelsSection extends StatelessWidget {
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             scrollDirection: Axis.horizontal,
-            itemCount: 15,
+            itemCount: images!.length,
             itemBuilder: (context, index) => Container(
               width: 90,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(
-                    'assets/images/preview${index % 4 + 1}.png',
+                  image: CachedNetworkImageProvider(
+                    images![index].imagePath,
                   ),
                   fit: BoxFit.fill,
                 ),

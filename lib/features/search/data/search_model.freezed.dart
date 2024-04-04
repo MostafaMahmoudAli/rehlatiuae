@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'best_offers_model.dart';
+part of 'search_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,61 +14,55 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-BestOffers _$BestOffersFromJson(Map<String, dynamic> json) {
-  return _BestOffers.fromJson(json);
+SearchModel _$SearchModelFromJson(Map<String, dynamic> json) {
+  return _Search.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BestOffers {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
+mixin _$SearchModel {
+  int? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: "oldPrice")
   int? get adultPrice => throw _privateConstructorUsedError;
   int? get childPrice => throw _privateConstructorUsedError;
+  dynamic get beforePrice => throw _privateConstructorUsedError;
+  dynamic get saving => throw _privateConstructorUsedError;
   String? get imagePath => throw _privateConstructorUsedError;
-  String? get beforePrice => throw _privateConstructorUsedError;
-  String? get saving => throw _privateConstructorUsedError;
   List<AddressModel>? get addresses => throw _privateConstructorUsedError;
   List<ImagesModel>? get images => throw _privateConstructorUsedError;
-  bool? get isFavourite => throw _privateConstructorUsedError;
-  List<Trips>? get offers => throw _privateConstructorUsedError;
-  List<Review>? get reviews => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BestOffersCopyWith<BestOffers> get copyWith =>
+  $SearchModelCopyWith<SearchModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BestOffersCopyWith<$Res> {
-  factory $BestOffersCopyWith(
-          BestOffers value, $Res Function(BestOffers) then) =
-      _$BestOffersCopyWithImpl<$Res, BestOffers>;
+abstract class $SearchModelCopyWith<$Res> {
+  factory $SearchModelCopyWith(
+          SearchModel value, $Res Function(SearchModel) then) =
+      _$SearchModelCopyWithImpl<$Res, SearchModel>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String address,
+      {int? id,
+      String? name,
+      String? address,
       String? description,
       @JsonKey(name: "oldPrice") int? adultPrice,
       int? childPrice,
+      dynamic beforePrice,
+      dynamic saving,
       String? imagePath,
-      String? beforePrice,
-      String? saving,
       List<AddressModel>? addresses,
-      List<ImagesModel>? images,
-      bool? isFavourite,
-      List<Trips>? offers,
-      List<Review>? reviews});
+      List<ImagesModel>? images});
 }
 
 /// @nodoc
-class _$BestOffersCopyWithImpl<$Res, $Val extends BestOffers>
-    implements $BestOffersCopyWith<$Res> {
-  _$BestOffersCopyWithImpl(this._value, this._then);
+class _$SearchModelCopyWithImpl<$Res, $Val extends SearchModel>
+    implements $SearchModelCopyWith<$Res> {
+  _$SearchModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,34 +72,31 @@ class _$BestOffersCopyWithImpl<$Res, $Val extends BestOffers>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? address = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? address = freezed,
     Object? description = freezed,
     Object? adultPrice = freezed,
     Object? childPrice = freezed,
-    Object? imagePath = freezed,
     Object? beforePrice = freezed,
     Object? saving = freezed,
+    Object? imagePath = freezed,
     Object? addresses = freezed,
     Object? images = freezed,
-    Object? isFavourite = freezed,
-    Object? offers = freezed,
-    Object? reviews = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
+              as String?,
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -118,17 +109,17 @@ class _$BestOffersCopyWithImpl<$Res, $Val extends BestOffers>
           ? _value.childPrice
           : childPrice // ignore: cast_nullable_to_non_nullable
               as int?,
-      imagePath: freezed == imagePath
-          ? _value.imagePath
-          : imagePath // ignore: cast_nullable_to_non_nullable
-              as String?,
       beforePrice: freezed == beforePrice
           ? _value.beforePrice
           : beforePrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       saving: freezed == saving
           ? _value.saving
           : saving // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      imagePath: freezed == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
       addresses: freezed == addresses
           ? _value.addresses
@@ -138,86 +129,68 @@ class _$BestOffersCopyWithImpl<$Res, $Val extends BestOffers>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<ImagesModel>?,
-      isFavourite: freezed == isFavourite
-          ? _value.isFavourite
-          : isFavourite // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      offers: freezed == offers
-          ? _value.offers
-          : offers // ignore: cast_nullable_to_non_nullable
-              as List<Trips>?,
-      reviews: freezed == reviews
-          ? _value.reviews
-          : reviews // ignore: cast_nullable_to_non_nullable
-              as List<Review>?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$BestOffersImplCopyWith<$Res>
-    implements $BestOffersCopyWith<$Res> {
-  factory _$$BestOffersImplCopyWith(
-          _$BestOffersImpl value, $Res Function(_$BestOffersImpl) then) =
-      __$$BestOffersImplCopyWithImpl<$Res>;
+abstract class _$$SearchImplCopyWith<$Res>
+    implements $SearchModelCopyWith<$Res> {
+  factory _$$SearchImplCopyWith(
+          _$SearchImpl value, $Res Function(_$SearchImpl) then) =
+      __$$SearchImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String address,
+      {int? id,
+      String? name,
+      String? address,
       String? description,
       @JsonKey(name: "oldPrice") int? adultPrice,
       int? childPrice,
+      dynamic beforePrice,
+      dynamic saving,
       String? imagePath,
-      String? beforePrice,
-      String? saving,
       List<AddressModel>? addresses,
-      List<ImagesModel>? images,
-      bool? isFavourite,
-      List<Trips>? offers,
-      List<Review>? reviews});
+      List<ImagesModel>? images});
 }
 
 /// @nodoc
-class __$$BestOffersImplCopyWithImpl<$Res>
-    extends _$BestOffersCopyWithImpl<$Res, _$BestOffersImpl>
-    implements _$$BestOffersImplCopyWith<$Res> {
-  __$$BestOffersImplCopyWithImpl(
-      _$BestOffersImpl _value, $Res Function(_$BestOffersImpl) _then)
+class __$$SearchImplCopyWithImpl<$Res>
+    extends _$SearchModelCopyWithImpl<$Res, _$SearchImpl>
+    implements _$$SearchImplCopyWith<$Res> {
+  __$$SearchImplCopyWithImpl(
+      _$SearchImpl _value, $Res Function(_$SearchImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? address = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? address = freezed,
     Object? description = freezed,
     Object? adultPrice = freezed,
     Object? childPrice = freezed,
-    Object? imagePath = freezed,
     Object? beforePrice = freezed,
     Object? saving = freezed,
+    Object? imagePath = freezed,
     Object? addresses = freezed,
     Object? images = freezed,
-    Object? isFavourite = freezed,
-    Object? offers = freezed,
-    Object? reviews = freezed,
   }) {
-    return _then(_$BestOffersImpl(
-      id: null == id
+    return _then(_$SearchImpl(
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
+              as String?,
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -230,17 +203,17 @@ class __$$BestOffersImplCopyWithImpl<$Res>
           ? _value.childPrice
           : childPrice // ignore: cast_nullable_to_non_nullable
               as int?,
-      imagePath: freezed == imagePath
-          ? _value.imagePath
-          : imagePath // ignore: cast_nullable_to_non_nullable
-              as String?,
       beforePrice: freezed == beforePrice
           ? _value.beforePrice
           : beforePrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       saving: freezed == saving
           ? _value.saving
           : saving // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      imagePath: freezed == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
       addresses: freezed == addresses
           ? _value._addresses
@@ -250,54 +223,37 @@ class __$$BestOffersImplCopyWithImpl<$Res>
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<ImagesModel>?,
-      isFavourite: freezed == isFavourite
-          ? _value.isFavourite
-          : isFavourite // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      offers: freezed == offers
-          ? _value._offers
-          : offers // ignore: cast_nullable_to_non_nullable
-              as List<Trips>?,
-      reviews: freezed == reviews
-          ? _value._reviews
-          : reviews // ignore: cast_nullable_to_non_nullable
-              as List<Review>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BestOffersImpl implements _BestOffers {
-  const _$BestOffersImpl(
+class _$SearchImpl implements _Search {
+  const _$SearchImpl(
       {required this.id,
       required this.name,
       required this.address,
       required this.description,
       @JsonKey(name: "oldPrice") required this.adultPrice,
       required this.childPrice,
-      required this.imagePath,
       required this.beforePrice,
       required this.saving,
+      this.imagePath,
       required final List<AddressModel>? addresses,
-      required final List<ImagesModel>? images,
-      required this.isFavourite,
-      required final List<Trips>? offers,
-      required final List<Review>? reviews})
+      required final List<ImagesModel>? images})
       : _addresses = addresses,
-        _images = images,
-        _offers = offers,
-        _reviews = reviews;
+        _images = images;
 
-  factory _$BestOffersImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BestOffersImplFromJson(json);
+  factory _$SearchImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String address;
+  final String? address;
   @override
   final String? description;
   @override
@@ -306,11 +262,11 @@ class _$BestOffersImpl implements _BestOffers {
   @override
   final int? childPrice;
   @override
+  final dynamic beforePrice;
+  @override
+  final dynamic saving;
+  @override
   final String? imagePath;
-  @override
-  final String? beforePrice;
-  @override
-  final String? saving;
   final List<AddressModel>? _addresses;
   @override
   List<AddressModel>? get addresses {
@@ -332,37 +288,15 @@ class _$BestOffersImpl implements _BestOffers {
   }
 
   @override
-  final bool? isFavourite;
-  final List<Trips>? _offers;
-  @override
-  List<Trips>? get offers {
-    final value = _offers;
-    if (value == null) return null;
-    if (_offers is EqualUnmodifiableListView) return _offers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Review>? _reviews;
-  @override
-  List<Review>? get reviews {
-    final value = _reviews;
-    if (value == null) return null;
-    if (_reviews is EqualUnmodifiableListView) return _reviews;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
   String toString() {
-    return 'BestOffers(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, imagePath: $imagePath, beforePrice: $beforePrice, saving: $saving, addresses: $addresses, images: $images, isFavourite: $isFavourite, offers: $offers, reviews: $reviews)';
+    return 'SearchModel(id: $id, name: $name, address: $address, description: $description, adultPrice: $adultPrice, childPrice: $childPrice, beforePrice: $beforePrice, saving: $saving, imagePath: $imagePath, addresses: $addresses, images: $images)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BestOffersImpl &&
+            other is _$SearchImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.address, address) || other.address == address) &&
@@ -372,18 +306,14 @@ class _$BestOffersImpl implements _BestOffers {
                 other.adultPrice == adultPrice) &&
             (identical(other.childPrice, childPrice) ||
                 other.childPrice == childPrice) &&
+            const DeepCollectionEquality()
+                .equals(other.beforePrice, beforePrice) &&
+            const DeepCollectionEquality().equals(other.saving, saving) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
-            (identical(other.beforePrice, beforePrice) ||
-                other.beforePrice == beforePrice) &&
-            (identical(other.saving, saving) || other.saving == saving) &&
             const DeepCollectionEquality()
                 .equals(other._addresses, _addresses) &&
-            const DeepCollectionEquality().equals(other._images, _images) &&
-            (identical(other.isFavourite, isFavourite) ||
-                other.isFavourite == isFavourite) &&
-            const DeepCollectionEquality().equals(other._offers, _offers) &&
-            const DeepCollectionEquality().equals(other._reviews, _reviews));
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(ignore: true)
@@ -396,55 +326,48 @@ class _$BestOffersImpl implements _BestOffers {
       description,
       adultPrice,
       childPrice,
+      const DeepCollectionEquality().hash(beforePrice),
+      const DeepCollectionEquality().hash(saving),
       imagePath,
-      beforePrice,
-      saving,
       const DeepCollectionEquality().hash(_addresses),
-      const DeepCollectionEquality().hash(_images),
-      isFavourite,
-      const DeepCollectionEquality().hash(_offers),
-      const DeepCollectionEquality().hash(_reviews));
+      const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BestOffersImplCopyWith<_$BestOffersImpl> get copyWith =>
-      __$$BestOffersImplCopyWithImpl<_$BestOffersImpl>(this, _$identity);
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+      __$$SearchImplCopyWithImpl<_$SearchImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BestOffersImplToJson(
+    return _$$SearchImplToJson(
       this,
     );
   }
 }
 
-abstract class _BestOffers implements BestOffers {
-  const factory _BestOffers(
-      {required final int id,
-      required final String name,
-      required final String address,
+abstract class _Search implements SearchModel {
+  const factory _Search(
+      {required final int? id,
+      required final String? name,
+      required final String? address,
       required final String? description,
       @JsonKey(name: "oldPrice") required final int? adultPrice,
       required final int? childPrice,
-      required final String? imagePath,
-      required final String? beforePrice,
-      required final String? saving,
+      required final dynamic beforePrice,
+      required final dynamic saving,
+      final String? imagePath,
       required final List<AddressModel>? addresses,
-      required final List<ImagesModel>? images,
-      required final bool? isFavourite,
-      required final List<Trips>? offers,
-      required final List<Review>? reviews}) = _$BestOffersImpl;
+      required final List<ImagesModel>? images}) = _$SearchImpl;
 
-  factory _BestOffers.fromJson(Map<String, dynamic> json) =
-      _$BestOffersImpl.fromJson;
+  factory _Search.fromJson(Map<String, dynamic> json) = _$SearchImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get name;
+  String? get name;
   @override
-  String get address;
+  String? get address;
   @override
   String? get description;
   @override
@@ -453,23 +376,17 @@ abstract class _BestOffers implements BestOffers {
   @override
   int? get childPrice;
   @override
+  dynamic get beforePrice;
+  @override
+  dynamic get saving;
+  @override
   String? get imagePath;
-  @override
-  String? get beforePrice;
-  @override
-  String? get saving;
   @override
   List<AddressModel>? get addresses;
   @override
   List<ImagesModel>? get images;
   @override
-  bool? get isFavourite;
-  @override
-  List<Trips>? get offers;
-  @override
-  List<Review>? get reviews;
-  @override
   @JsonKey(ignore: true)
-  _$$BestOffersImplCopyWith<_$BestOffersImpl> get copyWith =>
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

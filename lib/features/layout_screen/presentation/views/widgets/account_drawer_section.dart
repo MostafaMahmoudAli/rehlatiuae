@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/currency_content_sheet.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/language_content_sheet.dart';
@@ -33,40 +35,53 @@ class AccountDrawerSection extends StatelessWidget {
             ],
           ),
         ),
-        DrawerItem(
-          title: LocaleKeys.Credits.tr(),
-          iconPath: AppAssets.credits,
-          trailing: [
-            Text(
-              "\$0.0",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ],
-        ),
-        DrawerItem(
-          title: LocaleKeys.Currency.tr(),
-          iconPath: AppAssets.currency,
-          trailing: [
-            Text(
-              "USD\$",
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            const Icon(
-              Icons.arrow_forward_ios_sharp,
-            ),
-          ],
-          onTap: () {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.zero,
-              ),
-              builder: (context) => CustomBottomSheet(
-                title: LocaleKeys.Select_Currency.tr(),
-                avatarText: '\$',
-                contentSheet: const CurrencyContentSheet(),
-              ),
+        BlocBuilder<MainCubit, MainState>(
+          builder: (context, state) {
+            var cubit = context.read<MainCubit>();
+            return Column(
+              children: [
+                DrawerItem(
+                  title:  LocaleKeys.Credits.tr(),
+                  iconPath: AppAssets.credits,
+                  trailing: [
+                    Text(
+                      "\$${cubit.totalUnPayedBooking}",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
+                DrawerItem(
+                  title:LocaleKeys.Currency.tr(),
+                  iconPath: AppAssets.currency,
+                  trailing: [
+                    Text(
+                      cubit.currentCurrency.name.toUpperCase(),
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    const Icon(
+                      Icons.arrow_forward_ios_sharp,
+                    ),
+                  ],
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                      builder: (context) => BlocBuilder<MainCubit, MainState>(
+                        builder: (context, state) {
+                          return CustomBottomSheet(
+                            title:  LocaleKeys.Select_Currency.tr(),
+                            avatarText: context.read<MainCubit>().currentCurrency.name.toUpperCase(),
+                            contentSheet: const CurrencyContentSheet(),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ],
             );
           },
         ),

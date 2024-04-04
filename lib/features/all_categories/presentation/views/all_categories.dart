@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/widgets/all_categories_body.dart';
@@ -18,7 +19,6 @@ import '../blocs/categories_bloc.dart';
 
 class AllCategoriesScreen extends StatelessWidget {
    AllCategoriesScreen({super.key});
-   final TextEditingController _textEditingController = TextEditingController();
    final ScrollController scrollCategoriesController = ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -52,9 +52,6 @@ class AllCategoriesScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchTextField(
-                  controller: _textEditingController,
-                ),
                 const CustomSizedBox(),
                  Text(
                   LocaleKeys.All_Categories.tr(),

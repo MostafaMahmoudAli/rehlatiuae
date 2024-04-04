@@ -12,6 +12,7 @@ class RowDetails extends StatelessWidget {
   const RowDetails({
     required this.title,
     required this.value,
+    this.onTap,
     this.midValue,
     this.textValueColor = Colors.black,
     super.key, this.onTap,

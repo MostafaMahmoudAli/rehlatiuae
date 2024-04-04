@@ -21,20 +21,18 @@ class LayoutRepoImpl implements LayoutRepository {
   });
 
   @override
-  Future<Either<String, LayOutModel>> fetchLayoutData() async
-  {
-      try {
-        var layoutData = await apiConsumer.get(
-          EndPoints.layoutEndPoint,
-        );
+  Future<Either<String, LayOutModel>> fetchLayoutData() async {
+    try {
+      var layoutData = await apiConsumer.get(
+        EndPoints.layoutEndPoint,
+      );
 
-        var layoutModel = LayOutModel.fromJson(layoutData["data"]);
-        return right(layoutModel);
-      }on ServerExceptions catch (error)
-      {
-        return Left(error.errorModel.message);
-      }
+      var layoutModel = LayOutModel.fromJson(layoutData["data"]);
+      return right(layoutModel);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
     }
+  }
 
   @override
   Future<Either<String, Unit>> sendMessage({required Message message}) async {
@@ -50,7 +48,11 @@ class LayoutRepoImpl implements LayoutRepository {
   }
 
   @override
-  Future<Either<String, Review>> addReview({required ReviewRequest reviewRequest, required File? image}) async {
+  Future<Either<String, Review>> addReview({
+    required ReviewRequest reviewRequest,
+    required File? image,
+    required bool isTrip,
+  }) async {
     try {
       Map<String, dynamic> map = reviewRequest.toJson();
       if (image != null) {
@@ -61,8 +63,11 @@ class LayoutRepoImpl implements LayoutRepository {
       } else {
         map.remove('image_path');
       }
+      if (!isTrip) {
+        map['blog_id'] = map['trip_id'];
+      }
       var response = await apiConsumer.post(
-        EndPoints.addReview,
+        isTrip ? EndPoints.addReview : EndPoints.addReviewBlog,
         data: map,
         isForm: true,
       );
@@ -72,4 +77,22 @@ class LayoutRepoImpl implements LayoutRepository {
       return Left(error.errorModel.message);
     }
   }
+
+  @override
+  Future<Either<String, Unit>> deleteReview({
+    required int? id,
+    required bool isTrip,
+  }) async {
+    try {
+      await apiConsumer.delete(
+        isTrip ? EndPoints.deleteReview : EndPoints.deleteReviewBlog,
+        queryParameters: {
+          isTrip ? 'trip_id' : 'blog_id': id,
+        },
+      );
+      return const Right(unit);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
   }
+}

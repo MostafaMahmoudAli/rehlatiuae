@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -33,10 +34,11 @@ class AllBlogsItem extends StatelessWidget {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.circular(15.0.r),
-            ),
-            child: Image.network(
-              image ?? "",
-              fit: BoxFit.cover,
+              image:DecorationImage(
+                image:CachedNetworkImageProvider(
+                  image ?? "",
+                ) ,
+              ),
             ),
           ),
           Positioned(
@@ -81,9 +83,12 @@ class AllBlogsItem extends StatelessWidget {
                     Icons.calendar_month,
                     color: AppColors.whiteAppColor,
                   ),
-                  Text(
-                    createdAt ?? "",
-                    style: Theme.of(context).textTheme.displaySmall,
+                  Expanded(
+                    child: Text(
+                      createdAt ?? "",
+                      style: Theme.of(context).textTheme.displaySmall,
+                      overflow:TextOverflow.ellipsis,
+                    ),
                   ),
                 ],
               ),
@@ -95,18 +100,26 @@ class AllBlogsItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  name ?? "",
-                  style: Theme.of(context).textTheme.displayMedium,
+                SizedBox(
+                  width: 120.0.w,
+                  child: Text(
+                    name ?? "",
+                    style: Theme.of(context).textTheme.displayMedium,
+                    overflow:TextOverflow.ellipsis,
+                  ),
                 ),
                 SizedBox(
                   height: 6.0.h,
                 ),
-                Text(
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                   description ?? "",
-                    style: Theme.of(context).textTheme.displaySmall),
+                SizedBox(
+                  width:115.0.w,
+                  child: Text(
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                     description ?? "",
+                      style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                ),
               ],
             ),
           ),

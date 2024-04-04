@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
-
-import '../../data/models/popular_experiences_model.dart';
+import '../../../all_trips/data/models/trips_model.dart';
 import '../../domain/repositories/popular_experiences_repo.dart';
 
 part 'popular_experiences_event.dart';

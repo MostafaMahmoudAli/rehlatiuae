@@ -29,11 +29,9 @@ final List<Blogs>blogs;
               itemCount: blogs.length,
               itemBuilder: (context, index)
               {
-                // blogs[index].trips?[index].reviews?[index].starsNumber.toString();
-                // List<Trips>?trips=blogs[index].trips;
                 return  BlogContainerItem(
                   blogs: blogs[index],
-                  reviewStars:   "",
+                  reviewStars:blogs[index].reviewAverage.toString(),
                 );
               },
               separatorBuilder: (context, index)

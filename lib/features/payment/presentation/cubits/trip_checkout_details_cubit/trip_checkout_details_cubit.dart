@@ -34,10 +34,10 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     description: '',
   );
 
-  void applyTripDetails() {
+  void applyTripDetails({required int tripId}) {
     double discount = coupon != null ? allSubtotal - (allSubtotal * coupon!.couponAmount) : 0;
     tripCheckoutDetails = tripCheckoutDetails.copyWith(
-      tripId: 1,
+      tripId: tripId,
       description: descriptionEditingController.text,
       discount: discount,
       couponName: coupon != null ? coupon!.couponName : '',
@@ -48,7 +48,6 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
 
   Future<void> addTripCheckoutDetails() async {
     _update(const TripCheckoutDetailsState.loading());
-    applyTripDetails();
     final results = await paymentRepo.addTripCheckoutDetails(
       tripCheckoutDetails: tripCheckoutDetails,
     );

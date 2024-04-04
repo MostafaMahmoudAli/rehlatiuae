@@ -8,20 +8,23 @@ import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
-import '../../../../best_trips/data/models/best_trips_model.dart';
+import '../../../../all_trips/data/models/trips_model.dart';
 
 class BestTripsSection extends StatelessWidget {
   const BestTripsSection({super.key, required this.bestTrips});
-  final List<BestTrips>?bestTrips;
+
+  final List<Trips>? bestTrips;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomRowTitle(
           text: LocaleKeys.Best_Trips.tr(),
-          onPressed: ()
-          {
-            context.push(AppRoutesString.bestTripsScreen);
+          onPressed: () {
+            context.push(
+                AppRoutesString.bestTripsScreen
+            );
           },
         ),
         SizedBox(
@@ -29,16 +32,18 @@ class BestTripsSection extends StatelessWidget {
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: bestTrips!.length,
+              physics:const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return CustomContainerTrip(
-                  width:200.0.w,
-                  cityName: bestTrips?[index].name ?? LocaleKeys.Dubai.tr(),
-                  countryName:bestTrips?[index].address ?? LocaleKeys.United_Arab_Emirates.tr(),
-                  imageName: bestTrips?[index].imagePath??AppStrings.containerTripBackgroundImage,
-                  tripPrice:bestTrips?[index].adultPrice.toString()??"",
-                  reservationType:"/person",
-                  oldTripPrice:bestTrips?[index].beforePrice.toString() ?? "",
-                  percentageSave: bestTrips?[index].saving ?? "" ,
+                  width: 200.0.w,
+                  trip: bestTrips?[index],
+                  cityName: bestTrips?[index].name ?? "",
+                  countryName: bestTrips?[index].address ?? "",
+                  imageName: bestTrips?[index].imagePath ?? "",
+                  tripPrice: bestTrips?[index].adultPrice.toString() ?? "",
+                  reservationType: "/person",
+                  oldTripPrice: bestTrips?[index].beforePrice.toString() ?? "",
+                  percentageSave: bestTrips?[index].saving ?? "",
                 );
               },
               separatorBuilder: (context, index) {

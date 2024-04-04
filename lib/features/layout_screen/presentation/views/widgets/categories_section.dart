@@ -13,7 +13,7 @@ class CategoriesSection extends StatelessWidget {
   const CategoriesSection(
       {super.key,required this.categories});
 
-  final List<Categories>categories;
+  final List<Categories>?categories;
 
 
   @override
@@ -30,15 +30,15 @@ class CategoriesSection extends StatelessWidget {
           height: 40.0.h,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: categories.length,
+              itemCount: categories?.length ?? 0,
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    context.push(AppRoutesString.categoryNameScreen);
+                    context.push(AppRoutesString.categoryNameScreen,extra:categories?[index]);
                   },
                   child: CategoriesItem(
-                    categoryName:categories[index].name,
-                    image:categories[index].imagePath,
+                    categoryName:categories?[index].name ?? "",
+                    image:categories?[index].imagePath ?? "",
                     height: 40.0.h,
                     width: 110.0.w,
                   ),

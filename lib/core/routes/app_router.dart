@@ -3,6 +3,7 @@ import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/category_name.dart';
+import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/all_trips_screen.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/travel_details_screen.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
@@ -13,11 +14,13 @@ import 'package:rehlatyuae/features/auth/presentation/views/update_password_scre
 import 'package:rehlatyuae/features/auth/presentation/views/verification_screen.dart';
 import 'package:rehlatyuae/features/best_offers/presentation/views/best_offers_screen.dart';
 import 'package:rehlatyuae/features/best_trips/presentation/views/best_trips_screen.dart';
+import 'package:rehlatyuae/features/favourites/presentation/views/favouries_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/about_us_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/faq_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/privacy_policy_screen.dart';
 import 'package:rehlatyuae/features/info/presentation/views/terms_conditions_screen.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/main_layout.dart';
+import 'package:rehlatyuae/features/our_blogs/data/models/blogs_model.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/blog_details_screen.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/our_blogs_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_details_screen.dart';
@@ -29,6 +32,7 @@ import 'package:rehlatyuae/features/splash_screen/presentation/views/onboarding.
 import 'package:rehlatyuae/features/splash_screen/presentation/views/splash_screen.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/top_destination_screen.dart';
 
+import '../../features/all_categories/data/models/categories_model.dart';
 import '../../features/top_destinations_section/presentation/views/city_destination_screen.dart';
 
 class AppRouter {
@@ -50,11 +54,18 @@ class AppRouter {
         ),
         GoRoute(
           path: AppRoutesString.categoryNameScreen,
-          builder: (context, state) => CategoryNameScreen(),
+          builder: (context, state) {
+            return CategoryNameScreen(category: state.extra as Categories);
+          },
         ),
         GoRoute(
           path: AppRoutesString.cityDestinationScreen,
-          builder: (context, state) => CityDestinationScreen(),
+          builder: (context, state) {
+            final id = state.extra as int?;
+            return CityDestinationScreen(
+              cityDestinationId: id ?? 0,
+            );
+          },
         ),
         GoRoute(
           path: AppRoutesString.allTripsScreen,
@@ -84,7 +95,7 @@ class AppRouter {
         /// Payment Screens
         GoRoute(
           path: AppRoutesString.paymentOptionsScreen,
-          builder: (context, state) => const PaymentOptionsScreen(),
+          builder: (context, state) => PaymentOptionsScreen(popularExperiences: state.extra! as Trips?),
         ),
         GoRoute(
           path: AppRoutesString.paymentDetailsScreen,
@@ -120,11 +131,11 @@ class AppRouter {
         ),
         GoRoute(
           path: AppRoutesString.travelDetailsScreen,
-          builder: (context, state) => const TravelDetailsScreen(),
+          builder: (context, state) => TravelDetailsScreen(trip: state.extra! as Trips?),
         ),
         GoRoute(
           path: AppRoutesString.blogScreen,
-          builder: (context, state) => const BlogDetailsScreen(),
+          builder: (context, state) => BlogDetailsScreen(blogs: state.extra! as Blogs),
         ),
 
         /// Auth Screens
@@ -137,7 +148,7 @@ class AppRouter {
           builder: (context, state) => const OnBoarding(),
         ),
         GoRoute(
-          path: AppRoutesString.loginScreen,
+          path: AppStrings.loginScreen,
           builder: (context, state) => const LoginScreen(),
         ),
         GoRoute(
@@ -156,14 +167,10 @@ class AppRouter {
           path: AppRoutesString.updatePasswordScreen,
           builder: (context, state) => UpdatePasswordScreen(token: state.extra as String),
         ),
-        // GoRoute(
-        //   path: "/register",
-        //   builder: (context, state) => const Register(),
-        // ),
-        // GoRoute(
-        //   path: "/login",
-        //   builder: (context, state) => const Login(),
-        // ),
+        GoRoute(
+          path: AppStrings.favouritesScreen,
+          builder: (context, state) => FavouritesScreen(),
+        ),
       ],
       initialLocation: initialLocation,
     );

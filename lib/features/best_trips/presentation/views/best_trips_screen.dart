@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
-import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/all_trips_body.dart';
+import 'package:rehlatyuae/features/best_trips/presentation/views/widgets/best_trips_body.dart';
 import 'package:rehlatyuae/features/best_trips/presentation/views/widgets/best_trips_bottom_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
@@ -18,7 +18,6 @@ import '../blocs/best_trips_bloc.dart';
 class BestTripsScreen extends StatelessWidget {
   BestTripsScreen({super.key});
 
-  final TextEditingController _textEditingController = TextEditingController();
   final ScrollController bestTripsScrollController=ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -52,15 +51,12 @@ class BestTripsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchTextField(
-                  controller: _textEditingController,
-                ),
                 const CustomSizedBox(),
                  Text(
                   LocaleKeys.Best_Trips.tr(),
                 ),
                 const CustomSizedBox(),
-                 AllTripsBody(bestTripsScrollController: bestTripsScrollController,),
+                BestTripsBody(bestTripsScrollController: bestTripsScrollController,),
                 const CustomSizedBox(),
                 const BestTripsBottomSection(),
               ],

@@ -28,7 +28,7 @@ class BestOffersBottomSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
+      create: (context) => getIt<LayoutCubit>(),
       child: BlocConsumer<LayoutCubit, LayoutState>(
         listener: (context, state) {
           state.whenOrNull(

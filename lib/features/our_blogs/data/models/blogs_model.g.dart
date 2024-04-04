@@ -11,15 +11,21 @@ _$BlogsImpl _$$BlogsImplFromJson(Map<String, dynamic> json) => _$BlogsImpl(
       name: json['name'] as String?,
       description: json['description'] as String?,
       imagePath: json['imagePath'] as String?,
-      createdAt: json['createdAt'] == null
+      createdAt: json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
-      blogReview: (json['blogReview'] as List<dynamic>)
-          .map((e) => Review.fromJson(e as Map<String, dynamic>))
+          : DateTime.parse(json['created_at'] as String),
+      reviewAverage: json['reviewAverage'] as int?,
+      blogReview: (json['blogReview'] as List<dynamic>?)
+          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
       trip: json['trip'] == null
           ? null
           : Trips.fromJson(json['trip'] as Map<String, dynamic>),
+      addresses: (json['addresses'] as List<dynamic>)
+          .map((e) => AddressModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      reviewCount:
+          ReviewCount.fromJson(json['review_count'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$BlogsImplToJson(_$BlogsImpl instance) =>
@@ -28,7 +34,10 @@ Map<String, dynamic> _$$BlogsImplToJson(_$BlogsImpl instance) =>
       'name': instance.name,
       'description': instance.description,
       'imagePath': instance.imagePath,
-      'createdAt': instance.createdAt?.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
+      'reviewAverage': instance.reviewAverage,
       'blogReview': instance.blogReview,
       'trip': instance.trip,
+      'addresses': instance.addresses,
+      'review_count': instance.reviewCount,
     };

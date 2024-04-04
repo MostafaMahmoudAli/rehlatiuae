@@ -7,6 +7,7 @@ import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/custom_button.dart';
+import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/custom_sized_box.dart';
 import '../../../../../core/utils/injector.dart';
 import '../../../../../core/utils/popular_experiences.dart';
@@ -31,12 +32,26 @@ class CategoriesBottomSection extends StatelessWidget
   Widget build(BuildContext context)
   {
     return BlocProvider(
-      create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
-      child: BlocBuilder<LayoutCubit, LayoutState>(
+      create: (context) => getIt<LayoutCubit>(),
+      child: BlocConsumer<LayoutCubit, LayoutState>(
+        listener: (context,state)
+        {
+          state.whenOrNull(
+            error: (errorMessage) => showDialog(
+              context: context,
+              builder: (context) => CustomDialog(
+                title: errorMessage,
+                subtitle: 'Sorry',
+                labelText: 'Close',
+              ),
+            ),
+          );
+        },
         builder: (context, state) {
-          return state.when(
+          return state.maybeWhen(
+            orElse: ()=>const SizedBox(),
             initial: ()=> const SizedBox(),
-            loading: ()=> const SizedBox(),
+            loading: ()=> const Center(child: CircularProgressIndicator(),),
             loaded: (layoutModelSectionData)=> Column(
               children: [
                  TopDestinationSection(

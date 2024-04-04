@@ -26,7 +26,7 @@ class BestTripsBottomSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
+      create: (context) => getIt<LayoutCubit>(),
       child: BlocBuilder<LayoutCubit, LayoutState>(
         builder: (context, state) {
           return state.when(

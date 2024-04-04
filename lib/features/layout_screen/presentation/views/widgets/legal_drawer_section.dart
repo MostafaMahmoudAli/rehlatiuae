@@ -1,9 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/custom_dialog.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
@@ -78,14 +81,35 @@ class LegalDrawerSection extends StatelessWidget {
             context.push('/aboutUsScreen');
           },
         ),
-         DrawerItem(
-          title: LocaleKeys.Logout.tr(),
-          iconPath: AppAssets.logout,
-          trailing: const [
-            Icon(
-              Icons.arrow_forward_ios_sharp,
-            ),
-          ],
+        BlocBuilder<MainCubit, MainState>(
+          builder: (context, state) {
+            return context.read<MainCubit>().client != null
+                ? DrawerItem(
+                    title: LocaleKeys.Logout.tr(),
+                    iconPath: AppAssets.logout,
+                    trailing: const [
+                      Icon(
+                        Icons.arrow_forward_ios_sharp,
+                      ),
+                    ],
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => CustomDialog(
+                          title: LocaleKeys.areyyy.tr(),
+                          subtitle: LocaleKeys.Logout.tr(),
+                          labelText: LocaleKeys.Logout.tr(),
+                          color: AppColors.redAppColor,
+                          onTap: () async {
+                            context.pop();
+                            await context.read<MainCubit>().logout();
+                          },
+                        ),
+                      );
+                    },
+                  )
+                : const SizedBox();
+          },
         ),
       ],
     );

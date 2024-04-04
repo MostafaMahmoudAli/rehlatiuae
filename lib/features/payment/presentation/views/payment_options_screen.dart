@@ -9,6 +9,7 @@ import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
+import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/count_tickets_section.dart';
@@ -17,7 +18,9 @@ import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_pay
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class PaymentOptionsScreen extends StatelessWidget {
-  const PaymentOptionsScreen({super.key});
+  final Trips? popularExperiences;
+
+  const PaymentOptionsScreen({super.key, this.popularExperiences});
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +42,8 @@ class PaymentOptionsScreen extends StatelessWidget {
               children: [
                 FieldDateBooking(cubit: cubit),
                 CountTicketsSection(
-                  adultCost: cubit.adultCost,
-                  childCost: cubit.childCost,
+                  adultCost: popularExperiences!.adultPrice!.toDouble(),
+                  childCost: popularExperiences!.childPrice!.toDouble(),
                   onAdultsCountChange: (count, total) {
                     cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
                       quantityAdult: count,
@@ -137,7 +140,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                   buttonLabel: LocaleKeys.Next_payment.tr(),
                   onButtonTap: () {
                     if (!cubit.dateFormKey.currentState!.validate()) return;
-                    cubit.applyTripDetails();
+                    cubit.applyTripDetails(tripId: popularExperiences!.id??0);
                     context.push(AppRoutesString.paymentDetailsScreen);
                   },
                 ),

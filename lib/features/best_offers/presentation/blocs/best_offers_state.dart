@@ -7,7 +7,7 @@ enum BestOffersStatus {initial,loading, success,error}
 class BestOffersState extends Equatable
 {
   final BestOffersStatus status;
-  final List<BestOffers> bestOffers;
+  final List<Trips> bestOffers;
   final bool hasReachedMax;
   final String errMessage;
 
@@ -20,7 +20,7 @@ class BestOffersState extends Equatable
 
   BestOffersState copyWith({
     BestOffersStatus?status,
-    List<BestOffers>?bestOffers,
+    List<Trips>?bestOffers,
     bool?hasReachedMax,
     String?errMessage,
   })

@@ -23,12 +23,10 @@ mixin _$LayOutModel {
   List<AllDestinations>? get topDestinations =>
       throw _privateConstructorUsedError;
   List<Categories>? get categories => throw _privateConstructorUsedError;
-  List<BestOffers>? get bestOffers => throw _privateConstructorUsedError;
-  List<BestTrips>? get bestTrips =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  List<Trips>? get bestOffers => throw _privateConstructorUsedError;
+  List<Trips>? get bestTrips => throw _privateConstructorUsedError;
   @JsonKey(name: "popularExperiencetrips")
-  List<PopularExperiences>? get popularExperience =>
-      throw _privateConstructorUsedError;
+  List<Trips>? get popularExperience => throw _privateConstructorUsedError;
   List<Blogs>? get blogs => throw _privateConstructorUsedError;
   List<OurPartners>? get ourPartners => throw _privateConstructorUsedError;
   List<Review>? get reviews => throw _privateConstructorUsedError;
@@ -48,10 +46,9 @@ abstract class $LayOutModelCopyWith<$Res> {
   $Res call(
       {List<AllDestinations>? topDestinations,
       List<Categories>? categories,
-      List<BestOffers>? bestOffers,
-      List<BestTrips>? bestTrips,
-      @JsonKey(name: "popularExperiencetrips")
-      List<PopularExperiences>? popularExperience,
+      List<Trips>? bestOffers,
+      List<Trips>? bestTrips,
+      @JsonKey(name: "popularExperiencetrips") List<Trips>? popularExperience,
       List<Blogs>? blogs,
       List<OurPartners>? ourPartners,
       List<Review>? reviews});
@@ -91,15 +88,15 @@ class _$LayOutModelCopyWithImpl<$Res, $Val extends LayOutModel>
       bestOffers: freezed == bestOffers
           ? _value.bestOffers
           : bestOffers // ignore: cast_nullable_to_non_nullable
-              as List<BestOffers>?,
+              as List<Trips>?,
       bestTrips: freezed == bestTrips
           ? _value.bestTrips
           : bestTrips // ignore: cast_nullable_to_non_nullable
-              as List<BestTrips>?,
+              as List<Trips>?,
       popularExperience: freezed == popularExperience
           ? _value.popularExperience
           : popularExperience // ignore: cast_nullable_to_non_nullable
-              as List<PopularExperiences>?,
+              as List<Trips>?,
       blogs: freezed == blogs
           ? _value.blogs
           : blogs // ignore: cast_nullable_to_non_nullable
@@ -127,10 +124,9 @@ abstract class _$$LayOutModelImplCopyWith<$Res>
   $Res call(
       {List<AllDestinations>? topDestinations,
       List<Categories>? categories,
-      List<BestOffers>? bestOffers,
-      List<BestTrips>? bestTrips,
-      @JsonKey(name: "popularExperiencetrips")
-      List<PopularExperiences>? popularExperience,
+      List<Trips>? bestOffers,
+      List<Trips>? bestTrips,
+      @JsonKey(name: "popularExperiencetrips") List<Trips>? popularExperience,
       List<Blogs>? blogs,
       List<OurPartners>? ourPartners,
       List<Review>? reviews});
@@ -168,15 +164,15 @@ class __$$LayOutModelImplCopyWithImpl<$Res>
       bestOffers: freezed == bestOffers
           ? _value._bestOffers
           : bestOffers // ignore: cast_nullable_to_non_nullable
-              as List<BestOffers>?,
+              as List<Trips>?,
       bestTrips: freezed == bestTrips
           ? _value._bestTrips
           : bestTrips // ignore: cast_nullable_to_non_nullable
-              as List<BestTrips>?,
+              as List<Trips>?,
       popularExperience: freezed == popularExperience
           ? _value._popularExperience
           : popularExperience // ignore: cast_nullable_to_non_nullable
-              as List<PopularExperiences>?,
+              as List<Trips>?,
       blogs: freezed == blogs
           ? _value._blogs
           : blogs // ignore: cast_nullable_to_non_nullable
@@ -199,10 +195,10 @@ class _$LayOutModelImpl implements _LayOutModel {
   const _$LayOutModelImpl(
       {required final List<AllDestinations>? topDestinations,
       required final List<Categories>? categories,
-      required final List<BestOffers>? bestOffers,
-      required final List<BestTrips>? bestTrips,
+      required final List<Trips>? bestOffers,
+      required final List<Trips>? bestTrips,
       @JsonKey(name: "popularExperiencetrips")
-      required final List<PopularExperiences>? popularExperience,
+      required final List<Trips>? popularExperience,
       required final List<Blogs>? blogs,
       required final List<OurPartners>? ourPartners,
       required final List<Review>? reviews})
@@ -238,9 +234,9 @@ class _$LayOutModelImpl implements _LayOutModel {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<BestOffers>? _bestOffers;
+  final List<Trips>? _bestOffers;
   @override
-  List<BestOffers>? get bestOffers {
+  List<Trips>? get bestOffers {
     final value = _bestOffers;
     if (value == null) return null;
     if (_bestOffers is EqualUnmodifiableListView) return _bestOffers;
@@ -248,9 +244,9 @@ class _$LayOutModelImpl implements _LayOutModel {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<BestTrips>? _bestTrips;
+  final List<Trips>? _bestTrips;
   @override
-  List<BestTrips>? get bestTrips {
+  List<Trips>? get bestTrips {
     final value = _bestTrips;
     if (value == null) return null;
     if (_bestTrips is EqualUnmodifiableListView) return _bestTrips;
@@ -258,12 +254,10 @@ class _$LayOutModelImpl implements _LayOutModel {
     return EqualUnmodifiableListView(value);
   }
 
-// ignore: invalid_annotation_target
-  final List<PopularExperiences>? _popularExperience;
-// ignore: invalid_annotation_target
+  final List<Trips>? _popularExperience;
   @override
   @JsonKey(name: "popularExperiencetrips")
-  List<PopularExperiences>? get popularExperience {
+  List<Trips>? get popularExperience {
     final value = _popularExperience;
     if (value == null) return null;
     if (_popularExperience is EqualUnmodifiableListView)
@@ -359,10 +353,10 @@ abstract class _LayOutModel implements LayOutModel {
   const factory _LayOutModel(
       {required final List<AllDestinations>? topDestinations,
       required final List<Categories>? categories,
-      required final List<BestOffers>? bestOffers,
-      required final List<BestTrips>? bestTrips,
+      required final List<Trips>? bestOffers,
+      required final List<Trips>? bestTrips,
       @JsonKey(name: "popularExperiencetrips")
-      required final List<PopularExperiences>? popularExperience,
+      required final List<Trips>? popularExperience,
       required final List<Blogs>? blogs,
       required final List<OurPartners>? ourPartners,
       required final List<Review>? reviews}) = _$LayOutModelImpl;
@@ -375,12 +369,12 @@ abstract class _LayOutModel implements LayOutModel {
   @override
   List<Categories>? get categories;
   @override
-  List<BestOffers>? get bestOffers;
+  List<Trips>? get bestOffers;
   @override
-  List<BestTrips>? get bestTrips;
-  @override // ignore: invalid_annotation_target
+  List<Trips>? get bestTrips;
+  @override
   @JsonKey(name: "popularExperiencetrips")
-  List<PopularExperiences>? get popularExperience;
+  List<Trips>? get popularExperience;
   @override
   List<Blogs>? get blogs;
   @override
