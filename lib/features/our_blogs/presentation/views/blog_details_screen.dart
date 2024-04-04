@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
@@ -47,11 +47,7 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
                   ),
             ),
           ),
-           ParagraphSection(
-            title: LocaleKeys.Exciting_Activities_at.tr(),
-            subTitle:
-            LocaleKeys.The_mighty.tr()
-           ),
+          ParagraphSection(title: LocaleKeys.Exciting_Activities_at.tr(), subTitle: LocaleKeys.The_mighty.tr()),
           // const PreviewTravelsSection(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
@@ -61,7 +57,7 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppStrings.paymentOptionsScreen, extra: widget.blogs.trip);
+                context.push(AppRoutesString.paymentOptionsScreen, extra: widget.blogs.trip);
               },
               width: double.infinity,
               height: 50.h,

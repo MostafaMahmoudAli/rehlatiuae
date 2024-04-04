@@ -60,7 +60,7 @@ class LegalDrawerSection extends StatelessWidget {
         SizedBox(
           height: 30.h,
         ),
-         DrawerItem(
+        DrawerItem(
           title: LocaleKeys.Update_App.tr(),
           iconPath: AppAssets.updateApp,
           trailing: const [
@@ -96,7 +96,7 @@ class LegalDrawerSection extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (context) => CustomDialog(
-                          title: LocaleKeys.areyyy.tr(),
+                          title: 'are you',
                           subtitle: LocaleKeys.Logout.tr(),
                           labelText: LocaleKeys.Logout.tr(),
                           color: AppColors.redAppColor,

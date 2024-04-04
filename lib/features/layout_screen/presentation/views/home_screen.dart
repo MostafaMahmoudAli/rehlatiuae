@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
@@ -24,11 +26,8 @@ import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
 
-
-class HomeScreen extends StatelessWidget
-{
+class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final TextEditingController _textEditingController = TextEditingController();
@@ -59,11 +58,12 @@ class HomeScreen extends StatelessWidget
             initial: () => const Center(child: CircularProgressIndicator()),
             loading: () => const Center(child: CircularProgressIndicator()),
             loaded: (layoutModel) => Scaffold(
-              body:Padding(
+              body: Padding(
                 padding: EdgeInsetsDirectional.only(
                   top: 20.0.h,
-                  start:17.0.w ,
-                ).copyWith(bottom: 0),
+                  start: 17.0.w,
+                  bottom: 0,
+                ),
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
@@ -77,7 +77,6 @@ class HomeScreen extends StatelessWidget
                           );
                         },
                         readOnly: true,
-
                       ),
                       const CustomSizedBox(),
                       CategoriesSection(

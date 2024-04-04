@@ -7,8 +7,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
@@ -188,7 +188,7 @@ class _ReviewOperationSectionState extends State<ReviewOperationSection> {
                             isTrip: widget.isTrip,
                           );
                         } else {
-                          context.push(AppStrings.loginScreen);
+                          context.push(AppRoutesString.loginScreen);
                         }
                       },
                       width: double.infinity,

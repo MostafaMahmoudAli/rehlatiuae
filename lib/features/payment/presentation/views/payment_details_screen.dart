@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
@@ -21,7 +22,7 @@ class PaymentDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-           LocaleKeys.Payment_Details.tr(),
+          LocaleKeys.Payment_Details.tr(),
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
                 color: AppColors.black,
               ),
@@ -86,7 +87,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                               subtitle: '${context.read<TripCheckoutDetailsCubit>().allSubtotal}',
                               labelText: 'Back to Homepage',
                               onTap: () {
-                                context.go(AppStrings.homeScreen);
+                                context.go(AppRoutesString.homeScreen);
                               },
                             ),
                           );

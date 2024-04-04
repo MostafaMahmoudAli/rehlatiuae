@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -55,33 +54,32 @@ class _OnBoardingState extends State<OnBoarding> {
                 },
                 itemBuilder: (_, currentIndex) {
                   return Stack(
-                    children: [  
-                       Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                              contents[currentIndex].image,
-                            ),
-                            fit: BoxFit.cover),
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                contents[currentIndex].image,
+                              ),
+                              fit: BoxFit.cover),
+                        ),
                       ),
-                    ),
                       Padding(
                         padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                       SizedBox(height: 270.h),
-                  
+                            SizedBox(height: 270.h),
                             Text(
                               contents[currentIndex].title,
                               style: Theme.of(context).textTheme.displayLarge,
                             ),
-                              SizedBox(height: 20.h),
-                             Text(
-                         contents[currentIndex].discription,
-                        style: Theme.of(context).textTheme.displayLarge, ),                  
-                           
+                            SizedBox(height: 20.h),
+                            Text(
+                              contents[currentIndex].discription,
+                              style: Theme.of(context).textTheme.displayLarge,
+                            ),
                             SizedBox(height: 100.h),
                             if (currentIndex == 3)
                               CustomActionButton(
@@ -97,8 +95,8 @@ class _OnBoardingState extends State<OnBoarding> {
                                     //   duration: const Duration(milliseconds: 100),
                                     //   curve: Curves.bounceIn,
                                     // );
-                         
-                                    }), ],
+                                  }),
+                          ],
                         ),
                       ),
                     ],
@@ -107,42 +105,41 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ],
           ),
-
           Stack(
             children: [
-              Padding(padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-              child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                     mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                     SizedBox(  height: 300.h,
-              child: Center(child: SvgPicture.asset("assets/images/main_logo.svg")),
-            ),
-                        
+              Padding(
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 300.h,
+                      child: Center(child: SvgPicture.asset("assets/images/main_logo.svg")),
+                    ),
                     SizedBox(height: 220.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: List.generate(
-                              contents.length,
-                              (index) => buildDot(index, context),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 130.h,
-                          ),
-                          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                            Text('Already have an account?', style: Theme.of(context).textTheme.displaySmall),
-                            DefaultTextButton(
-                              onPressed: () {
-                                GoRouter.of(context).go('/loginScreen');
-                              },
-                              text: 'Login',
-                            )
-                          ]),
-              ],),
-              
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        contents.length,
+                        (index) => buildDot(index, context),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 130.h,
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Text('Already have an account?', style: Theme.of(context).textTheme.displaySmall),
+                      DefaultTextButton(
+                        onPressed: () {
+                          GoRouter.of(context).go('/loginScreen');
+                        },
+                        text: 'Login',
+                      )
+                    ]),
+                  ],
+                ),
               )
-
             ],
           ),
         ],
@@ -157,9 +154,7 @@ class _OnBoardingState extends State<OnBoarding> {
       width: currentIndex == index ? 25.w : 10.w,
       duration: const Duration(milliseconds: 400),
       decoration: BoxDecoration(
-          color: currentIndex == index
-              ? AppColors.textAndBackgroundColorButton
-              : AppColors.white,
+          color: currentIndex == index ? AppColors.textAndBackgroundColorButton : AppColors.white,
           shape: BoxShape.circle),
     );
   }

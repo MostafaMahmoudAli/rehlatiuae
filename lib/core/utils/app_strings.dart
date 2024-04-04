@@ -1,4 +1,3 @@
-
 class AppStrings {
   static const privacyPolicyContent =
       '''This page lays out Rehlatyuae privacy policy explaining how your personal information is collected, used, and/or disclosed by Rehlatyuae. Please read it carefully. 
@@ -357,6 +356,7 @@ Official Channels:
       "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada";
   static const weHelpYouMakeBestTripSecondDescription =
       "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
+  static const actionButtonName = "Explore More";
 
   static const cityDestinationScreen = "/cityDestinationScreen";
   static const searchScreen = "/searchScreen";
@@ -367,9 +367,5 @@ Official Channels:
   static const updatePasswordToken = "updatePasswordToken";
   static const expiresIn = "expiresIn";
   static const client = "client";
-    static const currentLanguage = "currentLanguage";
-
-
-
-
+  static const currentLanguage = "currentLanguage";
 }

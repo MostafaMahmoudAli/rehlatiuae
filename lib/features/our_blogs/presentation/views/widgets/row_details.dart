@@ -15,7 +15,7 @@ class RowDetails extends StatelessWidget {
     this.onTap,
     this.midValue,
     this.textValueColor = Colors.black,
-    super.key, this.onTap,
+    super.key,
   });
 
   @override

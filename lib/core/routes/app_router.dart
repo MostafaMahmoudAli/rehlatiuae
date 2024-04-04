@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/category_name.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
@@ -148,7 +149,7 @@ class AppRouter {
           builder: (context, state) => const OnBoarding(),
         ),
         GoRoute(
-          path: AppStrings.loginScreen,
+          path: AppRoutesString.loginScreen,
           builder: (context, state) => const LoginScreen(),
         ),
         GoRoute(

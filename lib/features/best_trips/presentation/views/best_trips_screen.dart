@@ -9,7 +9,6 @@ import 'package:rehlatyuae/features/best_trips/presentation/views/widgets/best_t
 import 'package:rehlatyuae/features/best_trips/presentation/views/widgets/best_trips_bottom_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
-import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../core/utils/injector.dart';
@@ -18,11 +17,12 @@ import '../blocs/best_trips_bloc.dart';
 class BestTripsScreen extends StatelessWidget {
   BestTripsScreen({super.key});
 
-  final ScrollController bestTripsScrollController=ScrollController();
+  final ScrollController bestTripsScrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context)=>getIt<BestTripsBloc>()..add(GetBestTripsEvent()),
+      create: (context) => getIt<BestTripsBloc>()..add(GetBestTripsEvent()),
       child: Scaffold(
         appBar: AppBar(
           surfaceTintColor: AppColors.whiteAppColor,
@@ -52,11 +52,13 @@ class BestTripsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const CustomSizedBox(),
-                 Text(
+                Text(
                   LocaleKeys.Best_Trips.tr(),
                 ),
                 const CustomSizedBox(),
-                BestTripsBody(bestTripsScrollController: bestTripsScrollController,),
+                BestTripsBody(
+                  bestTripsScrollController: bestTripsScrollController,
+                ),
                 const CustomSizedBox(),
                 const BestTripsBottomSection(),
               ],
@@ -67,4 +69,3 @@ class BestTripsScreen extends StatelessWidget {
     );
   }
 }
-

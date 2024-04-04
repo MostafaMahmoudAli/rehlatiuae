@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
@@ -160,8 +161,8 @@ class AuthRepoImpl implements AuthRepo {
     await cacheService.setData(key: AppStrings.expiresIn, value: null);
     await cacheService.setData(key: AppStrings.client, value: null);
     await cacheService.setData(
-      key: AppStrings.initialLocationRoute,
-      value: AppStrings.homeScreen,
+      key: AppRoutesString.initialLocationRoute,
+      value: AppRoutesString.homeScreen,
     );
   }
 }

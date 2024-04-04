@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
@@ -52,14 +53,14 @@ class HelpDrawerSection extends StatelessWidget {
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.zero,
                 ),
-                builder: (context) =>  CustomBottomSheet(
+                builder: (context) => CustomBottomSheet(
                   title: LocaleKeys.My_booking.tr(),
                   avatarText: 'MY',
                   contentSheet: const MyBookingContentSheet(),
                 ),
               );
             } else {
-              context.push(AppStrings.loginScreen);
+              context.push(AppRoutesString.loginScreen);
             }
           },
         ),
@@ -73,7 +74,7 @@ class HelpDrawerSection extends StatelessWidget {
           ],
           onTap: () {
             context.push(
-              context.read<MainCubit>().client != null ? AppStrings.favouritesScreen : AppStrings.loginScreen,
+              context.read<MainCubit>().client != null ? AppStrings.favouritesScreen : AppRoutesString.loginScreen,
             );
           },
         ),
@@ -92,7 +93,7 @@ class HelpDrawerSection extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero,
               ),
-              builder: (context) =>  CustomBottomSheet(
+              builder: (context) => CustomBottomSheet(
                 title: LocaleKeys.Send_message.tr(),
                 avatarText: 'ME',
                 hasButton: false,

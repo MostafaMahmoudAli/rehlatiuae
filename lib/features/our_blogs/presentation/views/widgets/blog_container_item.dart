@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -34,7 +35,7 @@ class BlogContainerItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
                 image: DecorationImage(
-                  fit:BoxFit.cover,
+                  fit: BoxFit.cover,
                   image: CachedNetworkImageProvider(
                     blogs?.imagePath ?? "",
                   ),
@@ -42,8 +43,8 @@ class BlogContainerItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: MediaQuery.sizeOf(context).height*0.013,
-              left: MediaQuery.sizeOf(context).width*0.025,
+              top: MediaQuery.sizeOf(context).height * 0.013,
+              left: MediaQuery.sizeOf(context).width * 0.025,
               child: Container(
                 width: 60.0.w,
                 height: 30.0.h,
@@ -67,8 +68,8 @@ class BlogContainerItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              top:MediaQuery.sizeOf(context).height*0.013,
-              right: MediaQuery.sizeOf(context).width*0.025,
+              top: MediaQuery.sizeOf(context).height * 0.013,
+              right: MediaQuery.sizeOf(context).width * 0.025,
               child: Container(
                 width: 92.0.w,
                 height: 30.0.h,
@@ -105,7 +106,7 @@ class BlogContainerItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width:220.0.w,
+                      width: 220.0.w,
                       child: Text(
                         blogs?.name ?? "Blog name",
                         style: Theme.of(context).textTheme.displayMedium,
@@ -117,11 +118,10 @@ class BlogContainerItem extends StatelessWidget {
                       height: 6.0.h,
                     ),
                     SizedBox(
-                      width:220.0.w,
+                      width: 220.0.w,
                       child: Text(
                         overflow: TextOverflow.ellipsis,
-                        blogs?.description ??
-                            "Short Description Short Description Short Description",
+                        blogs?.description ?? "Short Description Short Description Short Description",
                         style: Theme.of(context).textTheme.displaySmall,
                       ),
                     ),
