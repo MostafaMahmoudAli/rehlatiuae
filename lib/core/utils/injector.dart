@@ -89,6 +89,8 @@ Future<void> setupInjector() async {
     ),
   );
 
+
+
   // repositories objects
   getIt.registerLazySingleton<BestOffersRepo>(
     () => BestOffersRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),

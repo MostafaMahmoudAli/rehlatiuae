@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/our_partners_item.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../data/models/our_partners_model.dart';
 
@@ -15,9 +16,9 @@ class OurPartnerSection extends StatelessWidget
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          AppStrings.ourPartnerTitle,
-          style: TextStyle(
+         Text(
+          LocaleKeys.Our_Partner.tr(),
+          style: const TextStyle(
             color: AppColors.black,
           ),
         ),

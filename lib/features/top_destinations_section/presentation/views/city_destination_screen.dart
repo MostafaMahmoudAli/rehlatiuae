@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/city_destination_body.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/city_destination_bottom_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/custom_circle_avatar.dart';
 import '../../../../core/utils/custom_dialog.dart';
@@ -38,8 +41,7 @@ class CityDestinationScreen extends StatelessWidget {
       ),
       drawer: const CustomDrawer(),
       body: BlocProvider(
-        create: (context) => getIt<CityDestinationCubit>()
-          ..fetchCityDestinations(destinationId: cityDestinationId),
+        create: (context) => getIt<CityDestinationCubit>()..fetchCityDestinations(destinationId: cityDestinationId),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 20.0.h,
@@ -51,28 +53,26 @@ class CityDestinationScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BlocConsumer<CityDestinationCubit, CityDestinationState>(
-                    listener: (context, state) {
+                BlocConsumer<CityDestinationCubit, CityDestinationState>(listener: (context, state) {
                   state.whenOrNull(
                     error: (errorMessage) => showDialog(
                       context: context,
                       builder: (context) => CustomDialog(
                         title: errorMessage,
-                        subtitle: 'Sorry',
-                        labelText: 'Close',
+                        subtitle: LocaleKeys.Sorry.tr(),
+                        labelText: LocaleKeys.Close.tr(),
                       ),
                     ),
                   );
-                },
-                    builder: (context, state) {
+                }, builder: (context, state) {
                   return state.maybeWhen(
                     loading: () => const Center(
                       child: CircularProgressIndicator(),
                     ),
                     loaded: (cityDestination) => Column(
-                      crossAxisAlignment:CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         Text(
+                        Text(
                           cityDestination.name ?? "",
                         ),
                         const CustomSizedBox(),

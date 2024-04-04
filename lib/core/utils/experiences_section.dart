@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class ExperiencesSections extends StatelessWidget {
@@ -17,7 +19,7 @@ class ExperiencesSections extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Text(
-            "Similar experiences you'd love",
+             LocaleKeys.Similar_experiences_you.tr(),
             style: Theme.of(context).textTheme.labelMedium,
           ),
         ),
@@ -41,7 +43,7 @@ class ExperiencesSections extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w).copyWith(top: 10.h),
           child: Text(
-            "Popular Experiences",
+            LocaleKeys.Popular_Experiences.tr(),
             style: Theme.of(context).textTheme.labelMedium,
           ),
         ),

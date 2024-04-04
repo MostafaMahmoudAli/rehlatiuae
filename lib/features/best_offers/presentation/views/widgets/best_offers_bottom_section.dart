@@ -1,10 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_button.dart';
 import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/custom_sized_box.dart';
@@ -34,8 +36,8 @@ class BestOffersBottomSection extends StatelessWidget {
               context: context,
               builder: (context) => CustomDialog(
                 title: errorMessage,
-                subtitle: 'Sorry',
-                labelText: 'Close',
+                subtitle: LocaleKeys.Sorry.tr(),
+                labelText: LocaleKeys.Close.tr(),
               ),
             ),
           );
@@ -64,9 +66,9 @@ class BestOffersBottomSection extends StatelessWidget {
                 const WeHelpYouSection(),
                 CustomActionButton(
                   onTap: () {
-                    context.push(AppStrings.allTripsScreen);
+                    context.push(AppRoutesString.allTripsScreen);
                   },
-                  text: AppStrings.actionButtonName,
+                  text: LocaleKeys.Explore_More.tr(),
                   height: 70.0.h,
                   width: double.infinity,
                   borderRadius: BorderRadius.circular(12.0.r),

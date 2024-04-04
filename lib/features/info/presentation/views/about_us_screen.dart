@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
@@ -6,6 +7,7 @@ import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/features/info/presentation/views/widgets/title_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
@@ -15,9 +17,9 @@ class AboutUsScreen extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
-          const TitleSection(
-            title: "About Us",
-            subTitle: "About Rehlatyuae",
+           TitleSection(
+            title: LocaleKeys.About_Us.tr(),
+            subTitle: LocaleKeys.About_Rehlatyuae.tr(),
             imagePath: AppAssets.rectangle,
           ),
           Padding(
@@ -25,7 +27,7 @@ class AboutUsScreen extends StatelessWidget {
               top: 34.h,
             ),
             child: Text(
-              'The mighty Rinjani mountain of Gunung Rinjani is a massive volcano which towers over the island of Lombok. A climb to the top is one of the most exhilarating experiences you can have in Indonesia. At 3,726 meters tall, Gunung Rinjani is the second highest mountain in Indonesia, The mighty Rinjani mountain of Gunung Rinjani is a massive volcano which towers over the island of Lombok. A climb to the top is you can have in I',
+               LocaleKeys.The_mighty.tr(),
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
@@ -41,23 +43,23 @@ class AboutUsScreen extends StatelessWidget {
               ),
             ),
             child: Text(
-              'The mighty Rinjani mountain of Gunung Rinjani is a massive volcano which towers over the island of Lombok. A climb to the top is one of the most exhilarating experiences you can have in Indonesia. At 3,726 meters tall, Gunung Rinjani is the second highest mountain in Indonesia, The mighty Rinjani mountain of Gunung Rinjani is a massive volcano which towers over the island of Lombok. A climb to the top is you can have in I',
+              LocaleKeys.The_mighty.tr(),
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.white,
                   ),
             ),
           ),
-          const CustomExpansionTile(
-            title: "Start date Rehlatyuae",
-            content: "2016 Founding Year of Rehlatyuae",
+           CustomExpansionTile(
+            title: LocaleKeys.Start_date_Rehlatyuae.tr(),
+            content: LocaleKeys.Founding_Year_of_Rehlatyuae.tr(),
           ),
-          const CustomExpansionTile(
-            title: "Number of our clients",
-            content: "14,000+ Guests served",
+           CustomExpansionTile(
+            title: LocaleKeys.Number_of_our_clients.tr(),
+            content:  LocaleKeys.Guests_served.tr(),
           ),
-          const CustomExpansionTile(
-            title: "Number of evaluations received",
-            content: "1000+ Reviews on Rehlatyuae by our Travelers",
+           CustomExpansionTile(
+            title: LocaleKeys.Number_of_evaluations_received.tr(),
+            content:  LocaleKeys.Reviews_Rehlatyuae.tr(),
           ),
           const PreviewTravelsSection(hasBookButton: false),
           const ExperiencesSections(),

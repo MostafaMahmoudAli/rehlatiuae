@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_contanier_item.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../../features/all_trips/data/models/trips_model.dart';
 
 
@@ -16,10 +18,10 @@ class PopularExperiencesSection extends StatelessWidget {
     return Column(
       children: [
         CustomRowTitle(
-          text: AppStrings.popularExperiencesTitle,
+          text: LocaleKeys.Popular_Experiences.tr(),
           onPressed: ()
           {
-            context.push(AppStrings.popularExperiencesScreen);
+            context.push(AppRoutesString.popularExperiencesScreen);
           },
         ),
         SizedBox(

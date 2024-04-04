@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../data/models/review_model.dart';
 
@@ -19,7 +20,7 @@ class ReviewsSection extends StatelessWidget {
     return Column(
       children: [
         Text(
-          AppStrings.reviewTitle,
+          LocaleKeys.Our_Client_Reviews.tr(),
           style: Theme.of(context).textTheme.labelMedium,
         ),
         const CustomSizedBox(),
@@ -28,46 +29,48 @@ class ReviewsSection extends StatelessWidget {
           child: ListView.separated(
             itemCount: reviews?.length ?? 0,
             physics: const BouncingScrollPhysics(),
-            scrollDirection:Axis.horizontal,
-            itemBuilder: (context, index)
-            {
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
               return Column(
-                crossAxisAlignment:CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       CustomCircleAvatar(
                         radius: 40.0.r,
                         backgroundImage: CachedNetworkImageProvider(
-                          reviews?[index].client?.imagePath ??
-                              "assets/images/Ellipse 1.png",
+                          reviews?[index].client?.imagePath ?? "assets/images/Ellipse 1.png",
                         ),
                       ),
-                       SizedBox(width: 60.0.w,),
-                      if(reviews?[index].starsNumber!=null)
-                      Row(
-                        children: [
-                          const Icon(
-                              Icons.star,
-                            color:AppColors.yellow,
-                          ),
-                          Text(
-                           " ${reviews?[index].starsNumber.toString()}/5 ",
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ],
+                      SizedBox(
+                        width: 60.0.w,
                       ),
+                      if (reviews?[index].starsNumber != null)
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.star,
+                              color: AppColors.yellow,
+                            ),
+                            Text(
+                              " ${reviews?[index].starsNumber.toString()}/5 ",
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ],
+                        ),
                     ],
                   ),
-                  SizedBox(height: 8.0.h,),
                   SizedBox(
-                    width:210.0.w,
+                    height: 8.0.h,
+                  ),
+                  SizedBox(
+                    width: 210.0.w,
                     child: Expanded(
                       child: Text(
-                       reviews?[index].description ?? "" ,
+                        reviews?[index].description ?? "",
                         style: Theme.of(context).textTheme.bodyLarge,
                         maxLines: 10,
-                        overflow:TextOverflow.ellipsis,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
@@ -83,7 +86,7 @@ class ReviewsSection extends StatelessWidget {
           height: 40.0.h,
         ),
         Text(
-          AppStrings.subscribeToNewsletterTitle,
+          LocaleKeys.Subscribe_to_Newsletter.tr(),
           style: Theme.of(context).textTheme.labelMedium,
         ),
         SizedBox(
@@ -94,7 +97,7 @@ class ReviewsSection extends StatelessWidget {
           height: 50.0.h,
         ),
         Text(
-          AppStrings.copyRight,
+          'copyRight',
           style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                 fontSize: 14.0.sp,
               ),
@@ -126,11 +129,11 @@ class SubscriptionSection extends StatelessWidget {
                   border: Border.all(color: AppColors.greySearchText),
                 ),
                 child: TextField(
-                  maxLines:2,
-                  minLines:1,
+                  maxLines: 2,
+                  minLines: 1,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppStrings.reviewTextFieldName,
+                    hintText: LocaleKeys.Your_Name.tr(),
                     hintStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
@@ -150,11 +153,11 @@ class SubscriptionSection extends StatelessWidget {
                   border: Border.all(color: AppColors.greySearchText),
                 ),
                 child: TextField(
-                  maxLines:2,
-                  minLines:1,
+                  maxLines: 2,
+                  minLines: 1,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppStrings.reviewTextFieldEmail,
+                    hintText: LocaleKeys.Your_Email.tr(),
                     hintStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
@@ -166,7 +169,7 @@ class SubscriptionSection extends StatelessWidget {
           height: 15.0.h,
         ),
         CustomActionButton(
-          text: AppStrings.reviewActionButtonName,
+          text: LocaleKeys.Send_Now.tr(),
           borderRadius: BorderRadius.circular(8.0.r),
           backGroundColor: AppColors.textAndBackgroundColorButton,
           onTap: () {},

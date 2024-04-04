@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class OrderSummarySection extends StatelessWidget {
   final String total;
@@ -56,7 +56,7 @@ class OrderSummarySection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppStrings.orderSummary,
+                     LocaleKeys.Order_Summary,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
@@ -67,11 +67,11 @@ class OrderSummarySection extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${AppStrings.adult}: $adultCount",
+                          "${LocaleKeys.Adult}: $adultCount",
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                         Text(
-                          "${AppStrings.children}: $childrenCount",
+                          "$LocaleKeys.Children}: $childrenCount",
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                       ],
@@ -103,7 +103,7 @@ class OrderSummarySection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppStrings.totalAmount,
+                LocaleKeys.Total_Amount,
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       fontWeight: FontWeight.w700,
                     ),

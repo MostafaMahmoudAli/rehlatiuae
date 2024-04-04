@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
@@ -10,12 +9,12 @@ import 'package:rehlatyuae/features/all_trips/presentation/blocs/all_trips_bloc.
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/all_trips_body.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/all_trips_bottom_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class AllTripsScreen extends StatelessWidget {
   AllTripsScreen({super.key});
 
-
-  final ScrollController allTripsScrollController =ScrollController();
+  final ScrollController allTripsScrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class AllTripsScreen extends StatelessWidget {
       ),
       drawer: const Drawer(),
       body: BlocProvider(
-        create: (context)=>getIt<AllTripsBloc>()..add(GetAllTripsEvent()),
+        create: (context) => getIt<AllTripsBloc>()..add(GetAllTripsEvent()),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 20.0.h,
@@ -51,10 +50,12 @@ class AllTripsScreen extends StatelessWidget {
               children: [
                 const CustomSizedBox(),
                 const Text(
-                  AppStrings.allTripsTitle,
+                  LocaleKeys.All_Trip,
                 ),
                 const CustomSizedBox(),
-                 AllTripsBody(allTripsScrollController: allTripsScrollController,),
+                AllTripsBody(
+                  allTripsScrollController: allTripsScrollController,
+                ),
                 const CustomSizedBox(),
                 const AllTripsBottomSection(),
               ],
@@ -65,5 +66,3 @@ class AllTripsScreen extends StatelessWidget {
     );
   }
 }
-
-

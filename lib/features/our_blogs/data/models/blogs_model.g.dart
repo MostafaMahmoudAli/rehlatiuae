@@ -26,6 +26,9 @@ _$BlogsImpl _$$BlogsImplFromJson(Map<String, dynamic> json) => _$BlogsImpl(
           .toList(),
       reviewCount:
           ReviewCount.fromJson(json['review_count'] as Map<String, dynamic>),
+      attachments: (json['attachments'] as List<dynamic>?)
+          ?.map((e) => Attachment.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$BlogsImplToJson(_$BlogsImpl instance) =>
@@ -40,4 +43,5 @@ Map<String, dynamic> _$$BlogsImplToJson(_$BlogsImpl instance) =>
       'trip': instance.trip,
       'addresses': instance.addresses,
       'review_count': instance.reviewCount,
+      'attachments': instance.attachments,
     };

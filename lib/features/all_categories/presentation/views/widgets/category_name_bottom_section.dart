@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_button.dart';
 import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/custom_sized_box.dart';
@@ -22,8 +22,7 @@ import '../../../../layout_screen/presentation/views/widgets/reviews_section.dar
 import '../../../../layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import '../../../../layout_screen/presentation/views/widgets/why_choose_us_section.dart';
 
-class CategoryNameBottomSection extends StatelessWidget
-{
+class CategoryNameBottomSection extends StatelessWidget {
   const CategoryNameBottomSection({
     super.key,
   });
@@ -51,23 +50,23 @@ class CategoryNameBottomSection extends StatelessWidget
             loaded: (layoutModelSectionData) => Column(
               children: [
                 BestOffersSection(
-                  bestOffers:layoutModelSectionData.bestOffers?? [],
+                  bestOffers: layoutModelSectionData.bestOffers ?? [],
                 ),
                 const CustomSizedBox(),
                 BestTripsSection(
-                  bestTrips:layoutModelSectionData.bestTrips?? [],
+                  bestTrips: layoutModelSectionData.bestTrips ?? [],
                 ),
                 const CustomSizedBox(),
                 PopularExperiencesSection(
-                  popularExperiences:layoutModelSectionData.popularExperience?? [],
+                  popularExperiences: layoutModelSectionData.popularExperience ?? [],
                 ),
                 const CustomSizedBox(),
                 OurBlogSection(
-                  blogs:layoutModelSectionData.blogs?? [],
+                  blogs: layoutModelSectionData.blogs ?? [],
                 ),
                 const CustomSizedBox(),
                 OurPartnerSection(
-                  ourPartners:layoutModelSectionData.ourPartners?? [],
+                  ourPartners: layoutModelSectionData.ourPartners ?? [],
                 ),
                 const CustomSizedBox(),
                 const WhyChooseUsSection(),
@@ -75,7 +74,7 @@ class CategoryNameBottomSection extends StatelessWidget
                 const WeHelpYouSection(),
                 CustomActionButton(
                   onTap: () {
-                    context.push(AppStrings.allTripsScreen);
+                    context.push(AppRoutesString.allTripsScreen);
                   },
                   text: AppStrings.actionButtonName,
                   height: 70.0.h,
@@ -88,11 +87,11 @@ class CategoryNameBottomSection extends StatelessWidget
                 const BestOffersHorizontal(),
                 const CustomSizedBox(),
                 ReviewsSection(
-                  reviews:layoutModelSectionData.reviews?? [],
+                  reviews: layoutModelSectionData.reviews ?? [],
                 ),
                 const CustomSizedBox(),
                 CategoriesSection(
-                  categories:layoutModelSectionData.categories?? [],
+                  categories: layoutModelSectionData.categories ?? [],
                 ),
               ],
             ),

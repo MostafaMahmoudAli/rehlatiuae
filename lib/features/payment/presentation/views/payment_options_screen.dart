@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
@@ -14,6 +15,7 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_de
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/count_tickets_section.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_date_booking.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_payment_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class PaymentOptionsScreen extends StatelessWidget {
   final Trips? popularExperiences;
@@ -25,7 +27,7 @@ class PaymentOptionsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppStrings.paymentOptions,
+         LocaleKeys.Payment_Options.tr(),
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
                 color: AppColors.black,
               ),
@@ -62,8 +64,8 @@ class PaymentOptionsScreen extends StatelessWidget {
                 BlocProvider<CheckCouponCubit>(
                   create: (context) => getIt<CheckCouponCubit>(),
                   child: CustomExpansionTile(
-                    title: AppStrings.youHaveCoupon,
-                    content: AppStrings.yourCoupon,
+                    title: LocaleKeys.You_Have_Coupon.tr(),
+                    content: LocaleKeys.Your_Coupon.tr(),
                     initiallyExpanded: false,
                     children: [
                       BlocBuilder<CheckCouponCubit, CheckCouponState>(
@@ -127,19 +129,19 @@ class PaymentOptionsScreen extends StatelessWidget {
                   ),
                 ),
                 PrimaryTextField(
-                  label: AppStrings.description,
-                  hint: AppStrings.pleaseInsertAllNotes,
+                  label: LocaleKeys.Description.tr(),
+                  hint: LocaleKeys.insert_notes.tr(),
                   isTextAria: true,
                   controller: cubit.descriptionEditingController,
                 ),
                 TotalPaymentSection(
                   total: "\$${cubit.allSubtotal}",
                   subtitle: cubit.tripCheckoutDetails.date,
-                  buttonLabel: AppStrings.nextPayment,
+                  buttonLabel: LocaleKeys.Next_payment.tr(),
                   onButtonTap: () {
                     if (!cubit.dateFormKey.currentState!.validate()) return;
                     cubit.applyTripDetails(tripId: popularExperiences!.id??0);
-                    context.push(AppStrings.paymentDetailsScreen);
+                    context.push(AppRoutesString.paymentDetailsScreen);
                   },
                 ),
               ],

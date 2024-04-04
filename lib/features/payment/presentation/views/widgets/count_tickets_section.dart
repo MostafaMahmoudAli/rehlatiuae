@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/number_ticket_card.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CountTicketsSection extends StatefulWidget {
   final double adultCost;
@@ -44,15 +44,15 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
           child: Row(
             children: [
               Text(
-                AppStrings.selectNumberTicket,
+               LocaleKeys.Select_ticket,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
           ),
         ),
         CountTicketCard(
-          name: AppStrings.adult,
-          detail: AppStrings.above4Yrs,
+          name: LocaleKeys.Adult,
+          detail: LocaleKeys.Above_four_yrs,
           count: adultCount,
           total: subtotalAdult,
           onIncreasePressed: () {
@@ -77,8 +77,8 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                 },
         ),
         CountTicketCard(
-          name: AppStrings.children,
-          detail: AppStrings.under3Yrs,
+          name: LocaleKeys.Children,
+          detail: LocaleKeys.Under_three_yrs,
           count: childCount,
           total: subtotalChild,
           onIncreasePressed: () {

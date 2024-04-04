@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/categories_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../all_categories/data/models/categories_model.dart';
 
@@ -19,9 +21,9 @@ class CategoriesSection extends StatelessWidget {
     return Column(
       children: [
         CustomRowTitle(
-          text: AppStrings.categoriesTitle,
+          text:  LocaleKeys.Categories.tr(),
           onPressed: () {
-            context.push(AppStrings.allCategoriesScreen);
+            context.push(AppRoutesString.allCategoriesScreen);
           },
         ),
         SizedBox(
@@ -32,7 +34,7 @@ class CategoriesSection extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    context.push(AppStrings.categoryNameScreen,extra:categories?[index]);
+                    context.push(AppRoutesString.categoryNameScreen,extra:categories?[index]);
                   },
                   child: CategoriesItem(
                     categoryName:categories?[index].name ?? "",

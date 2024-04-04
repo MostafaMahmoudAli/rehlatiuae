@@ -12,6 +12,7 @@ import 'package:rehlatyuae/features/layout_screen/domain/repositories/layout_rep
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
 
+
 class LayoutRepoImpl implements LayoutRepository {
   final ApiConsumer apiConsumer;
 

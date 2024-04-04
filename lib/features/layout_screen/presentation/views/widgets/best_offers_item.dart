@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
@@ -43,7 +43,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
     return InkWell(
       onTap: () {
         context.push(
-          AppStrings.travelDetailsScreen,
+          AppRoutesString.travelDetailsScreen,
           extra: widget.bestOffers,
         );
       },
@@ -78,8 +78,8 @@ class _BestOffersItemState extends State<BestOffersItem> {
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadiusDirectional.circular(15.0.r),
-                      image:DecorationImage(
-                        fit:BoxFit.cover,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
                         image: CachedNetworkImageProvider(
                           widget.bestOffers?.imagePath ?? "",
                         ),
