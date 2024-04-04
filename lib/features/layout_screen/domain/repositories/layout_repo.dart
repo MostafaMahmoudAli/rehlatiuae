@@ -11,5 +11,14 @@ abstract class LayoutRepository {
 
   Future<Either<String, Unit>> sendMessage({required Message message});
 
-  Future<Either<String, Review>> addReview({required ReviewRequest reviewRequest, required File? image});
+  Future<Either<String, Review>> addReview({
+    required ReviewRequest reviewRequest,
+    required File? image,
+    required bool isTrip,
+  });
+
+  Future<Either<String, Unit>> deleteReview({
+    required int? id,
+    required bool isTrip,
+  });
 }

@@ -21,29 +21,25 @@ ReviewRequest _$ReviewRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ReviewRequest {
   String get name => throw _privateConstructorUsedError;
-
   String get description => throw _privateConstructorUsedError;
-
   @JsonKey(name: "stars_numbers")
   int get starsNumbers => throw _privateConstructorUsedError;
-
   @JsonKey(name: "image_path")
   String get imagePath => throw _privateConstructorUsedError;
-
   @JsonKey(name: "trip_id")
   int get tripId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
-  $ReviewRequestCopyWith<ReviewRequest> get copyWith => throw _privateConstructorUsedError;
+  $ReviewRequestCopyWith<ReviewRequest> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ReviewRequestCopyWith<$Res> {
-  factory $ReviewRequestCopyWith(ReviewRequest value, $Res Function(ReviewRequest) then) =
+  factory $ReviewRequestCopyWith(
+          ReviewRequest value, $Res Function(ReviewRequest) then) =
       _$ReviewRequestCopyWithImpl<$Res, ReviewRequest>;
-
   @useResult
   $Res call(
       {String name,
@@ -54,12 +50,12 @@ abstract class $ReviewRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReviewRequestCopyWithImpl<$Res, $Val extends ReviewRequest> implements $ReviewRequestCopyWith<$Res> {
+class _$ReviewRequestCopyWithImpl<$Res, $Val extends ReviewRequest>
+    implements $ReviewRequestCopyWith<$Res> {
   _$ReviewRequestCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -98,10 +94,11 @@ class _$ReviewRequestCopyWithImpl<$Res, $Val extends ReviewRequest> implements $
 }
 
 /// @nodoc
-abstract class _$$ReviewRequestImplCopyWith<$Res> implements $ReviewRequestCopyWith<$Res> {
-  factory _$$ReviewRequestImplCopyWith(_$ReviewRequestImpl value, $Res Function(_$ReviewRequestImpl) then) =
+abstract class _$$ReviewRequestImplCopyWith<$Res>
+    implements $ReviewRequestCopyWith<$Res> {
+  factory _$$ReviewRequestImplCopyWith(
+          _$ReviewRequestImpl value, $Res Function(_$ReviewRequestImpl) then) =
       __$$ReviewRequestImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -113,9 +110,11 @@ abstract class _$$ReviewRequestImplCopyWith<$Res> implements $ReviewRequestCopyW
 }
 
 /// @nodoc
-class __$$ReviewRequestImplCopyWithImpl<$Res> extends _$ReviewRequestCopyWithImpl<$Res, _$ReviewRequestImpl>
+class __$$ReviewRequestImplCopyWithImpl<$Res>
+    extends _$ReviewRequestCopyWithImpl<$Res, _$ReviewRequestImpl>
     implements _$$ReviewRequestImplCopyWith<$Res> {
-  __$$ReviewRequestImplCopyWithImpl(_$ReviewRequestImpl _value, $Res Function(_$ReviewRequestImpl) _then)
+  __$$ReviewRequestImplCopyWithImpl(
+      _$ReviewRequestImpl _value, $Res Function(_$ReviewRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -162,7 +161,8 @@ class _$ReviewRequestImpl implements _ReviewRequest {
       @JsonKey(name: "image_path") required this.imagePath,
       @JsonKey(name: "trip_id") required this.tripId});
 
-  factory _$ReviewRequestImpl.fromJson(Map<String, dynamic> json) => _$$ReviewRequestImplFromJson(json);
+  factory _$ReviewRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReviewRequestImplFromJson(json);
 
   @override
   final String name;
@@ -189,15 +189,19 @@ class _$ReviewRequestImpl implements _ReviewRequest {
         (other.runtimeType == runtimeType &&
             other is _$ReviewRequestImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) || other.description == description) &&
-            (identical(other.starsNumbers, starsNumbers) || other.starsNumbers == starsNumbers) &&
-            (identical(other.imagePath, imagePath) || other.imagePath == imagePath) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.starsNumbers, starsNumbers) ||
+                other.starsNumbers == starsNumbers) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath) &&
             (identical(other.tripId, tripId) || other.tripId == tripId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, starsNumbers, imagePath, tripId);
+  int get hashCode => Object.hash(
+      runtimeType, name, description, starsNumbers, imagePath, tripId);
 
   @JsonKey(ignore: true)
   @override
@@ -215,33 +219,31 @@ class _$ReviewRequestImpl implements _ReviewRequest {
 
 abstract class _ReviewRequest implements ReviewRequest {
   const factory _ReviewRequest(
-      {required final String name,
-      required final String description,
-      @JsonKey(name: "stars_numbers") required final int starsNumbers,
-      @JsonKey(name: "image_path") required final String imagePath,
-      @JsonKey(name: "trip_id") required final int tripId}) = _$ReviewRequestImpl;
+          {required final String name,
+          required final String description,
+          @JsonKey(name: "stars_numbers") required final int starsNumbers,
+          @JsonKey(name: "image_path") required final String imagePath,
+          @JsonKey(name: "trip_id") required final int tripId}) =
+      _$ReviewRequestImpl;
 
-  factory _ReviewRequest.fromJson(Map<String, dynamic> json) = _$ReviewRequestImpl.fromJson;
+  factory _ReviewRequest.fromJson(Map<String, dynamic> json) =
+      _$ReviewRequestImpl.fromJson;
 
   @override
   String get name;
-
   @override
   String get description;
-
   @override
   @JsonKey(name: "stars_numbers")
   int get starsNumbers;
-
   @override
   @JsonKey(name: "image_path")
   String get imagePath;
-
   @override
   @JsonKey(name: "trip_id")
   int get tripId;
-
   @override
   @JsonKey(ignore: true)
-  _$$ReviewRequestImplCopyWith<_$ReviewRequestImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$ReviewRequestImplCopyWith<_$ReviewRequestImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -1,24 +1,23 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
-import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/all_destination_bottom_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../blocs/all_destinations_bloc.dart';
 import 'widgets/all_destination_body.dart';
 
-class TopDestinationScreen extends StatelessWidget
-{
+class TopDestinationScreen extends StatelessWidget {
   TopDestinationScreen({super.key});
 
-  final TextEditingController _textEditingController = TextEditingController();
   final ScrollController allDestinationsScrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +38,8 @@ class TopDestinationScreen extends StatelessWidget
       ),
       drawer: const CustomDrawer(),
       body: BlocProvider(
-        create:(context)=> getIt<AllDestinationsBloc>()..add(GetAllDestinationsEvent()),
+        create: (context) =>
+            getIt<AllDestinationsBloc>()..add(GetAllDestinationsEvent()),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 20.0.h,
@@ -51,14 +51,14 @@ class TopDestinationScreen extends StatelessWidget
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchTextField(
-                  controller: _textEditingController,
-                ),
                 const CustomSizedBox(),
-                const Text(
-                  AppStrings.topDestinationTitle,
+                Text(
+                  LocaleKeys.All_Destinations.tr(),
                 ),
-                AllDestinationBody(allDestinationsScrollController:allDestinationsScrollController),
+                AllDestinationBody(
+                    allDestinationsScrollController:
+                        allDestinationsScrollController,
+                ),
                 const AllDestinationBottomSection(),
               ],
             ),
@@ -68,5 +68,3 @@ class TopDestinationScreen extends StatelessWidget
     );
   }
 }
-
-

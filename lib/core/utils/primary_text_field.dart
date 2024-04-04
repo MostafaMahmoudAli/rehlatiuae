@@ -17,6 +17,7 @@ class PrimaryTextField extends StatefulWidget {
   final FormFieldValidator? validator;
   final Widget? suffix;
   final EdgeInsets? padding;
+  final FocusNode? focusNode;
   final Color textColor;
   final void Function()? onTap;
 
@@ -36,6 +37,7 @@ class PrimaryTextField extends StatefulWidget {
     this.textColor = AppColors.black,
     this.suffix,
     this.padding,
+    this.focusNode,
     this.onTap,
   });
 
@@ -65,6 +67,7 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
           TextFormField(
             controller: widget.controller,
             validator: widget.validator,
+            focusNode: widget.focusNode,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             textInputAction: widget.textInputAction,
             keyboardType: widget.inputType,

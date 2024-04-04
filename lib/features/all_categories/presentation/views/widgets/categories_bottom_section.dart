@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_button.dart';
+import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/custom_sized_box.dart';
 import '../../../../../core/utils/injector.dart';
 import '../../../../../core/utils/popular_experiences.dart';
@@ -30,12 +32,26 @@ class CategoriesBottomSection extends StatelessWidget
   Widget build(BuildContext context)
   {
     return BlocProvider(
-      create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
-      child: BlocBuilder<LayoutCubit, LayoutState>(
+      create: (context) => getIt<LayoutCubit>(),
+      child: BlocConsumer<LayoutCubit, LayoutState>(
+        listener: (context,state)
+        {
+          state.whenOrNull(
+            error: (errorMessage) => showDialog(
+              context: context,
+              builder: (context) => CustomDialog(
+                title: errorMessage,
+                subtitle: 'Sorry',
+                labelText: 'Close',
+              ),
+            ),
+          );
+        },
         builder: (context, state) {
-          return state.when(
+          return state.maybeWhen(
+            orElse: ()=>const SizedBox(),
             initial: ()=> const SizedBox(),
-            loading: ()=> const SizedBox(),
+            loading: ()=> const Center(child: CircularProgressIndicator(),),
             loaded: (layoutModelSectionData)=> Column(
               children: [
                  TopDestinationSection(
@@ -67,9 +83,9 @@ class CategoriesBottomSection extends StatelessWidget
                 const WeHelpYouSection(),
                 CustomActionButton(
                   onTap: () {
-                    context.push(AppStrings.allTripsScreen);
+                    context.push(AppRoutesString.allTripsScreen);
                   },
-                  text: AppStrings.actionButtonName,
+                  text:LocaleKeys.Explore_More,
                   height: 70.0.h,
                   width: double.infinity,
                   borderRadius: BorderRadius.circular(12.0.r),

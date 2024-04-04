@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,10 +16,10 @@ final OurPartners?ourPartners;
       height:70.0.h,
       decoration:  BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(
+          image: CachedNetworkImageProvider(
             ourPartners?.imagePath??AppStrings.ourPartnersLogo,
           ),
-          fit: BoxFit.contain,
+          fit: BoxFit.cover,
         ),
       ),
     );

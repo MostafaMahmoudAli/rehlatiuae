@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/currency_content_sheet.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/language_content_sheet.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AccountDrawerSection extends StatelessWidget {
   const AccountDrawerSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     return Column(
       children: [
         Padding(
@@ -22,7 +27,7 @@ class AccountDrawerSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "My Account",
+                LocaleKeys.My_Account.tr(),
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: AppColors.black,
                     ),
@@ -30,49 +35,62 @@ class AccountDrawerSection extends StatelessWidget {
             ],
           ),
         ),
-        DrawerItem(
-          title: 'Credits',
-          iconPath: AppAssets.credits,
-          trailing: [
-            Text(
-              "\$0.0",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ],
-        ),
-        DrawerItem(
-          title: 'Currency',
-          iconPath: AppAssets.currency,
-          trailing: [
-            Text(
-              "USD\$",
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            const Icon(
-              Icons.arrow_forward_ios_sharp,
-            ),
-          ],
-          onTap: () {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.zero,
-              ),
-              builder: (context) => const CustomBottomSheet(
-                title: 'Select Currency',
-                avatarText: '\$',
-                contentSheet: CurrencyContentSheet(),
-              ),
+        BlocBuilder<MainCubit, MainState>(
+          builder: (context, state) {
+            var cubit = context.read<MainCubit>();
+            return Column(
+              children: [
+                DrawerItem(
+                  title:  LocaleKeys.Credits.tr(),
+                  iconPath: AppAssets.credits,
+                  trailing: [
+                    Text(
+                      "\$${cubit.totalUnPayedBooking}",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
+                DrawerItem(
+                  title:LocaleKeys.Currency.tr(),
+                  iconPath: AppAssets.currency,
+                  trailing: [
+                    Text(
+                      cubit.currentCurrency.name.toUpperCase(),
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    const Icon(
+                      Icons.arrow_forward_ios_sharp,
+                    ),
+                  ],
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                      builder: (context) => BlocBuilder<MainCubit, MainState>(
+                        builder: (context, state) {
+                          return CustomBottomSheet(
+                            title:  LocaleKeys.Select_Currency.tr(),
+                            avatarText: context.read<MainCubit>().currentCurrency.name.toUpperCase(),
+                            contentSheet: const CurrencyContentSheet(),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ],
             );
           },
         ),
         DrawerItem(
-          title: 'Language',
+          title: LocaleKeys.Language.tr(),
           iconPath: AppAssets.language,
           trailing: [
             Text(
-              "English",
+              LocaleKeys.en.tr(),
               style: Theme.of(context).textTheme.titleSmall,
             ),
             const Icon(
@@ -86,16 +104,16 @@ class AccountDrawerSection extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero,
               ),
-              builder: (context) => const CustomBottomSheet(
-                title: 'Select Language',
+              builder: (context) => CustomBottomSheet(
+                title: LocaleKeys.Select_Language.tr(),
                 avatarText: 'AR',
-                contentSheet: LanguageContentSheet(),
+                contentSheet: const LanguageContentSheet(),
               ),
             );
           },
         ),
         DrawerItem(
-          title: 'Notifications',
+          title: LocaleKeys.Notifications.tr(),
           iconPath: AppAssets.notifications,
           trailing: [
             Transform.scale(

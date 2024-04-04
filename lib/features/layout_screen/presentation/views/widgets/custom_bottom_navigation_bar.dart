@@ -1,25 +1,26 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
-class CustomBottomNavigationBar extends StatefulWidget {
+class CustomBottomNavigationBar extends StatelessWidget {
+  final int index;
   final void Function(int)? onTap;
 
   const CustomBottomNavigationBar({
     required this.onTap,
+    required this.index,
     super.key,
   });
-
-  @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
-}
-
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               AppAssets.homeIcon,
             ),
           ),
-          label: "Home",
+          label: LocaleKeys.Home.tr(),
           labelStyle: TextStyle(
             color: index == 0 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,
@@ -45,7 +46,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               AppAssets.searchIcon,
             ),
           ),
-          label: "Search",
+          label: LocaleKeys.Search.tr(),
           labelStyle: TextStyle(
             color: index == 1 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,
@@ -58,7 +59,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               AppAssets.bookingIcon,
             ),
           ),
-          label: "Booking",
+          label: LocaleKeys.Booking.tr(),
           labelStyle: TextStyle(
             color: index == 2 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,
@@ -67,11 +68,12 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         CurvedNavigationBarItem(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            child: SvgPicture.asset(
-              AppAssets.exploreIcon,
+            child: Image.asset(
+              AppAssets.whatsUpLogo,
+              fit:BoxFit.contain,
             ),
           ),
-          label: "Explore",
+          label:  LocaleKeys.chat.tr(),,
           labelStyle: TextStyle(
             color: index == 3 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,
@@ -84,7 +86,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               AppAssets.accountIcon,
             ),
           ),
-          label: "Account",
+          label: LocaleKeys.Account.tr(),
           labelStyle: TextStyle(
             color: index == 4 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,
@@ -93,10 +95,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       ],
       index: index,
       onTap: (selectedIndex) {
-        setState(() {
-          index = selectedIndex;
-          widget.onTap?.call(index);
-        });
+        onTap?.call(selectedIndex);
+      },
+      letIndexChange: (value) {
+        if (value == 4 && context.read<MainCubit>().client == null) {
+          context.push(AppStrings.loginScreen);
+          return false;
+        }
+        return true;
       },
       backgroundColor: Colors.transparent,
       buttonBackgroundColor: AppColors.textAndBackgroundColorButton,

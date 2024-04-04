@@ -12,14 +12,19 @@ _$ReviewImpl _$$ReviewImplFromJson(Map<String, dynamic> json) => _$ReviewImpl(
       starsNumber: json['starsNumber'] as int?,
       description: json['description'] as String?,
       imagePath: json['imagePath'] as String?,
-      client: json['client'] == null ? null : Client.fromJson(json['client'] as Map<String, dynamic>),
+      createdAt: json['created_at'] as String?,
+      client: json['client'] == null
+          ? null
+          : Client.fromJson(json['client'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ReviewImplToJson(_$ReviewImpl instance) => <String, dynamic>{
+Map<String, dynamic> _$$ReviewImplToJson(_$ReviewImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'starsNumber': instance.starsNumber,
       'description': instance.description,
       'imagePath': instance.imagePath,
+      'created_at': instance.createdAt,
       'client': instance.client,
     };

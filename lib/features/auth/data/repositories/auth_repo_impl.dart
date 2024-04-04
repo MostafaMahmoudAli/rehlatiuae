@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/auth/data/models/authenticated_client_model/authenticated_client_model.dart';
@@ -54,6 +54,20 @@ class AuthRepoImpl implements AuthRepo {
       var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
       await _cacheClient(authenticatedClient: authenticatedClient);
       return Right(authenticatedClient);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> logout() async {
+    try {
+      await apiConsumer.post(
+        EndPoints.logoutEndPoint,
+        data: {},
+      );
+      _clearClient();
+      return const Right(unit);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
@@ -135,6 +149,16 @@ class AuthRepoImpl implements AuthRepo {
       key: AppStrings.client,
       value: json.encode(authenticatedClient.client.toJson()),
     );
+    await cacheService.setData(
+      key: AppRoutesString.initialLocationRoute,
+      value: AppRoutesString.homeScreen,
+    );
+  }
+
+  Future<void> _clearClient() async {
+    await cacheService.setData(key: AppStrings.accessToken, value: null);
+    await cacheService.setData(key: AppStrings.expiresIn, value: null);
+    await cacheService.setData(key: AppStrings.client, value: null);
     await cacheService.setData(
       key: AppStrings.initialLocationRoute,
       value: AppStrings.homeScreen,

@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
-
-
-import '../../data/models/best_trips_model.dart';
+import '../../../all_trips/data/models/trips_model.dart';
 import '../../domian/repositories/best_trips_repo.dart';
 
 part 'best_trips_event.dart';

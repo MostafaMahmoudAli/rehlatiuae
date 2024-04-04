@@ -55,6 +55,7 @@ dependencies:
   image_picker: ^1.0.7
   equatable: ^2.0.5
   logger: ^2.2.0
+  currency_converter: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -70,26 +71,16 @@ flutter_icons:
   ios: true
   image_path: "assets/images/playstore-icon.png"
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
 
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
+
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/translation/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,14 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/forget_password_cubit/forget_password_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});
@@ -24,7 +26,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             state.whenOrNull(
               success: () {
                 context.push(
-                  AppStrings.verificationScreen,
+                  AppRoutesString.verificationScreen,
                   extra: context.read<ForgetPasswordCubit>().emailEditingController.text,
                 );
               },
@@ -33,8 +35,8 @@ class ForgetPasswordScreen extends StatelessWidget {
                   context: context,
                   builder: (context) => CustomDialog(
                     title: message,
-                    subtitle: 'Sorry',
-                    labelText: 'Close',
+                    subtitle:  LocaleKeys.Sorry.tr(),
+                    labelText:  LocaleKeys.Close.tr(),
                     color: AppColors.redAppColor,
                   ),
                 );
@@ -58,7 +60,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          AppStrings.forgotPassword,
+                          LocaleKeys.Forgot_Password.tr(),
                           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                                 color: AppColors.black,
                                 fontSize: 28.sp,
@@ -68,7 +70,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                           height: 7.h,
                         ),
                         Text(
-                          AppStrings.enterYourInformation,
+                          LocaleKeys.Enter_informations.tr(),
                           style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                 color: AppColors.greySearchText,
                               ),
@@ -80,7 +82,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                     key: cubit.forgetPasswordFormKey,
                     child: PrimaryTextField(
                       controller: cubit.emailEditingController,
-                      hint: AppStrings.email,
+                      hint: LocaleKeys.Email.tr(),
                       inputType: TextInputType.emailAddress,
                     ),
                   ),
@@ -102,7 +104,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                       top: 30.h,
                     ),
                     child: CustomActionButton(
-                      text: AppStrings.send,
+                      text: LocaleKeys.Send.tr(),
                       borderRadius: BorderRadius.circular(16.r),
                       backGroundColor: AppColors.textAndBackgroundColorButton,
                       onTap: () async {

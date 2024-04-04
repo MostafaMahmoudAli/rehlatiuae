@@ -7,7 +7,7 @@ enum BestTripsStatus {initial,loading, success, error}
 class BestTripsState extends Equatable
 {
   final BestTripsStatus status;
-  final List<BestTrips> bestTrips;
+  final List<Trips> bestTrips;
   final bool hasReachedMax;
   final String errMessage;
 
@@ -20,7 +20,7 @@ class BestTripsState extends Equatable
 
   BestTripsState copyWith({
     BestTripsStatus?status,
-    List<BestTrips>?bestTrips,
+    List<Trips>?bestTrips,
     bool?hasReachedMax,
     String?errMessage,
   }) {

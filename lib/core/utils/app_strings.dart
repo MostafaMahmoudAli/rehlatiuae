@@ -1,3 +1,4 @@
+
 class AppStrings {
   static const privacyPolicyContent =
       '''This page lays out Rehlatyuae privacy policy explaining how your personal information is collected, used, and/or disclosed by Rehlatyuae. Please read it carefully. 
@@ -341,128 +342,34 @@ Official Channels:
   static const weHelpYouMakeBestTripImage1 = "assets/images/Rectangle 9897.png";
   static const weHelpYouMakeBestTripImage2 = "assets/images/Rectangle 9899.png";
   static const weHelpYouMakeBestTripImage3 = "assets/images/Rectangle 9898.png";
-  static const whatsUpLogo = "assets/images/410201-PD391H-802-Photoroom.png-Photoroom.png";
 
   //text names
-  static const searchTextFieldHintText = "Search by activities...";
-  static const whyChooseUsTitle = "Why Choose Us";
-  static const whyChooseUsFastBooking = "Fast booking";
   static const whyChooseUsFastBookingDescription =
       "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
-  static const whyChooseUsEasyToShop = "Easy to Shop";
   static const whyChooseUsEasyToShopDescription =
       "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
   static const whyChooseUs247Support = "24/7 Support";
   static const whyChooseUs247SupportDescription =
       "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
-  static const whyChooseUsUniqueexPerience = "Unique experience";
   static const whyChooseUsUniqueexPerienceDescription =
       "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
-  static const weHelpYouMakeBestTrip = "We Help You Make Best Trip";
   static const weHelpYouMakeBestTripDescription =
       "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada";
   static const weHelpYouMakeBestTripSecondDescription =
       "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
 
-  //Titles
-  static const textButtonNameOfHomeScreen = "View all";
-  static const categoriesTitle = "Categories";
-  static const topDestinationTitle = "All Destinations";
-  static const bestOffersTitle = "Best Offers";
-  static const bestTripsTitle = "Best Trips";
-  static const popularExperiencesTitle = "Popular Experiences";
-  static const ourBlogTitle = "Our Blog";
-  static const ourPartnerTitle = "Our Partner";
-  static const actionButtonName = "Explore More";
-  static const reviewTitle = "Our Client Reviews";
-  static const subscribeToNewsletterTitle = "Subscribe to Newsletter";
-  static const reviewTextFieldName = "Your Name";
-  static const reviewTextFieldEmail = "Your Email";
-  static const reviewActionButtonName = "Send Now";
-  static const copyRight = "Copyright ©2024. All Rights Reserved. — by Rehlatyuai";
-  static const allTripsTitle = "All Trip";
-  static const allCategoriesTitle = "All Categories";
-  static const categoryNameTitle = "Categories Name";
-  static const cityDestinationTitle = "City Destination ";
-
-  // navigator pages name
-  static const homeScreen = "/HomeScreen";
-  static const allTripsScreen = "/AllTripsScreen";
-  static const allCategoriesScreen = "/AllCategoriesScreen";
-  static const bestOffersScreen = "/BestOffersScreen";
-  static const bestTripsScreen = "/BestTripsScreen";
-  static const ourBlogsScreen = "/OurBlogsScreen";
-  static const popularExperiencesScreen = "/PopularExperiencesScreen";
-  static const topDestinationScreen = "/TopDestinationScreen";
-  static const aboutUsScreen = "/aboutUsScreen";
-  static const termsConditionsScreen = "/termsConditionsScreen";
-  static const privacyPolicyScreen = "/privacyPolicyScreen";
-  static const faqsScreen = "/faqsScreen";
-  static const paymentOptionsScreen = "/paymentOptionsScreen";
-  static const paymentDetailsScreen = "/paymentDetailsScreen";
-  static const profileScreen = "/profileScreen";
-  static const editProfileScreen = "/editProfileScreen";
-  static const travelDetailsScreen = "/travelDetailsScreen";
-  static const blogScreen = "/blogScreen";
-  static const splashScreen = "/";
-  static const onboarding = "/onboarding";
-  static const loginScreen = "/loginScreen";
-  static const registerScreen = "/registerScreen";
-  static const forgetPasswordScreen = "/forgetPasswordScreen";
-  static const verificationScreen = "/verificationScreen";
-  static const updatePasswordScreen = "/updatePasswordScreen";
-  static const categoryNameScreen = "/categoryNameScreen";
   static const cityDestinationScreen = "/cityDestinationScreen";
+  static const searchScreen = "/searchScreen";
+  static const favouritesScreen = "/favouritesScreen";
 
   // Keys
   static const accessToken = "accessToken";
   static const updatePasswordToken = "updatePasswordToken";
   static const expiresIn = "expiresIn";
   static const client = "client";
-  static const initialLocationRoute = "initialLocationRoute";
+    static const currentLanguage = "currentLanguage";
 
-  //Titles Texts
-  static const profile = "Profile";
-  static const edit = "Edit";
-  static const about = "About";
-  static const fullName = "Full Name";
-  static const email = "Email";
-  static const phone = "Phone";
-  static const dateOfBirth = "Date Of Birth";
-  static const editProfile = "Edit Profile";
-  static const save = "Save";
-  static const forgotPassword = "Forgot Password?";
-  static const enterYourInformation = "Enter your information's below or login with a other account";
-  static const tryAnotherWay = "Try another way";
-  static const send = "Send";
-  static const verification = "Verification";
-  static const checkYourEmail = "Check your email. We’ve sent you the PIN at your email.";
-  static const didYouReceive = "Did you receive any code?";
-  static const verify = "Verify";
-  static const updatePassword = "Update Password";
-  static const youCanNowUpdate = "You can now update your password...!";
-  static const newPassword = "New Password";
-  static const renterPassword = "R-enter Password";
-  static const paymentOptions = "Payment Options";
-  static const paymentDetails = "Payment Details";
-  static const yourDateBooking = "Your date booking";
-  static const selectDate = "Select a date";
-  static const selectNumberTicket = "Select Number off ticket";
-  static const adult = "Adult";
-  static const above4Yrs = "Above 4 yrs";
-  static const children = "Children";
-  static const under3Yrs = "Under 3 yrs";
-  static const youHaveCoupon = "You Have Coupon!";
-  static const yourCoupon = "Your Coupon!";
-  static const description = "Description";
-  static const pleaseInsertAllNotes = "Please insert all notes";
-  static const nextPayment = "Next payment";
-  static const orderSummary = "Order Summary";
-  static const totalAmount = "Total Amount";
-  static const creditDebitCards = "Credit & Debit Cards";
-  static const addNewCard = "Add New Card";
-  static const payment = "Payment";
-  static const privacyPolicy = "Privacy Policy";
-  static const termsConditions = "Terms & Conditions";
-  static const faqs = "FAQs";
+
+
+
 }

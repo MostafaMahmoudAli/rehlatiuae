@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
-
-
 import '../../../../../core/utils/error_widget.dart';
-import '../../../../best_trips/presentation/blocs/best_trips_bloc.dart';
+import '../../blocs/all_trips_bloc.dart';
 
 class AllTripsBody extends StatefulWidget {
-  const AllTripsBody({super.key,required this.bestTripsScrollController});
-  final  ScrollController?bestTripsScrollController;
+  const AllTripsBody({super.key, required this.allTripsScrollController});
+
+  final ScrollController? allTripsScrollController;
+
   @override
   State<AllTripsBody> createState() => _AllTripsBodyState();
 }
@@ -18,34 +18,36 @@ class _AllTripsBodyState extends State<AllTripsBody> {
   @override
   void initState() {
     super.initState();
-    widget.bestTripsScrollController?.addListener(_onScroll);
+    widget.allTripsScrollController?.addListener(_onScroll);
   }
 
   @override
   void dispose() {
     super.dispose();
-    widget.bestTripsScrollController?..removeListener(_onScroll)..dispose();
+    widget.allTripsScrollController
+      ?..removeListener(_onScroll)
+      ..dispose();
   }
-  void _onScroll()
-  {
-    final maxScroll = widget.bestTripsScrollController?.position.minScrollExtent;
-    final currentScroll = widget.bestTripsScrollController?.offset;
-    if(currentScroll! >= (maxScroll!*0.4))
-    {
-      BlocProvider.of<BestTripsBloc>(context).add(GetBestTripsEvent());
+
+  void _onScroll() {
+    final maxScroll = widget.allTripsScrollController?.position.minScrollExtent;
+    final currentScroll = widget.allTripsScrollController?.offset;
+    if (currentScroll! >= (maxScroll! * 0.9)) {
+      BlocProvider.of<AllTripsBloc>(context).add(GetAllTripsEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BestTripsBloc, BestTripsState>(
+    return BlocBuilder<AllTripsBloc, AllTripsState>(
       builder: (context, state) {
         switch (state.status) {
-          case BestTripsStatus.initial:
+          case AllTripsStatus.initial:
             return const Center(child: CircularProgressIndicator());
-          case BestTripsStatus.loading:
+          case AllTripsStatus.loading:
             return const Center(child: CircularProgressIndicator());
-          case BestTripsStatus.success:
+          case AllTripsStatus.success:
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -55,19 +57,22 @@ class _AllTripsBodyState extends State<AllTripsBody> {
               ),
               itemBuilder: (context, index) => CustomContainerTrip(
                 width: 140.0.w,
-                cityName: state.bestTrips[index].name,
-                countryName:state.bestTrips[index].address,
-                imageName: state.bestTrips[index].imagePath ?? "",
-                tripPrice:state.bestTrips[index].adultPrice.toString(),
+                trip: state.trips[index],
+                cityName: state.trips[index].name,
+                countryName: state.trips[index].address,
+                imageName: state.trips[index].imagePath ?? "",
+                tripPrice: state.trips[index].adultPrice.toString(),
                 reservationType: "/person",
               ),
-              itemCount: state.bestTrips.length,
+              itemCount: state.trips.length,
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
               padding: EdgeInsets.zero,
             );
-          case BestTripsStatus.error:
-            return ErrorsWidget(error: state.errMessage,);
+          case AllTripsStatus.error:
+            return ErrorsWidget(
+              error: state.errMessage,
+            );
         }
       },
     );

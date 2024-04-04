@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/categories_item.dart';
 
+import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/error_widget.dart';
 import '../../blocs/categories_bloc.dart';
 
@@ -53,12 +55,18 @@ class _AllCategoriesBodyState extends State<AllCategoriesBody> {
                 crossAxisSpacing:14.0.w,
                 mainAxisSpacing: 1.0.w,
               ),
-              itemBuilder: (context,index)=>  Center(
-                child:CategoriesItem(
-                  width: 150.0.w,
-                  height: 60.0.h,
-                  image: state.categories[index].imagePath ?? "",
-                  categoryName:state.categories[index].name ?? "",
+              itemBuilder: (context,index)=>  InkWell(
+                onTap:()
+                {
+                  context.push(AppStrings.categoryNameScreen,extra:state.categories[index]);
+                },
+                child: Center(
+                  child:CategoriesItem(
+                    width: 150.0.w,
+                    height: 60.0.h,
+                    image: state.categories[index].imagePath ?? "",
+                    categoryName:state.categories[index].name ?? "",
+                  ),
                 ),
               ),
               itemCount:state.categories.length,

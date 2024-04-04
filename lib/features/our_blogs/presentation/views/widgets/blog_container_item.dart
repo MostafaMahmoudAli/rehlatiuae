@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 
 import '../../../data/models/blogs_model.dart';
 
@@ -12,14 +12,15 @@ class BlogContainerItem extends StatelessWidget {
     required this.blogs,
     this.reviewStars,
   });
-  final Blogs?blogs;
-  final String?reviewStars;
+
+  final Blogs? blogs;
+  final String? reviewStars;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.blogScreen);
+        context.push(AppRoutesString.blogScreen, extra: blogs);
       },
       child: SizedBox(
         height: 330.0.h,
@@ -32,15 +33,17 @@ class BlogContainerItem extends StatelessWidget {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
-              ),
-              child: Image.network(
-                blogs?.imagePath ?? "",
-                fit: BoxFit.cover,
+                image: DecorationImage(
+                  fit:BoxFit.cover,
+                  image: CachedNetworkImageProvider(
+                    blogs?.imagePath ?? "",
+                  ),
+                ),
               ),
             ),
             Positioned(
-              top: 10,
-              left: 10,
+              top: MediaQuery.sizeOf(context).height*0.013,
+              left: MediaQuery.sizeOf(context).width*0.025,
               child: Container(
                 width: 60.0.w,
                 height: 30.0.h,
@@ -64,8 +67,8 @@ class BlogContainerItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 10,
-              right: 17,
+              top:MediaQuery.sizeOf(context).height*0.013,
+              right: MediaQuery.sizeOf(context).width*0.025,
               child: Container(
                 width: 92.0.w,
                 height: 30.0.h,
@@ -80,9 +83,12 @@ class BlogContainerItem extends StatelessWidget {
                       Icons.calendar_month,
                       color: AppColors.whiteAppColor,
                     ),
-                    Text(
-                      "2/2/2024",
-                      style: Theme.of(context).textTheme.displaySmall,
+                    Expanded(
+                      child: Text(
+                        blogs?.createdAt?.toString() ?? "",
+                        style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize: 10.0.sp),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -98,20 +104,26 @@ class BlogContainerItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      blogs?.name ?? "Blog name",
-                      style: Theme.of(context).textTheme.displayMedium,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+                    SizedBox(
+                      width:220.0.w,
+                      child: Text(
+                        blogs?.name ?? "Blog name",
+                        style: Theme.of(context).textTheme.displayMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
                     SizedBox(
                       height: 6.0.h,
                     ),
-                    Text(
-                      maxLines: 1,
+                    SizedBox(
+                      width:220.0.w,
+                      child: Text(
                         overflow: TextOverflow.ellipsis,
-                        blogs?.description ?? "Short Description Short Description Short Description",
+                        blogs?.description ??
+                            "Short Description Short Description Short Description",
                         style: Theme.of(context).textTheme.displaySmall,
+                      ),
                     ),
                   ],
                 ),
