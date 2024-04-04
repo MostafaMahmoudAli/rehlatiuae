@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gallery_image_viewer/gallery_image_viewer.dart';
 import 'package:rehlatyuae/features/best_offers/data/models/images_model.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
@@ -61,18 +62,18 @@ class PreviewTravelsSection extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: images!.length,
             itemBuilder: (context, index) => InkWell(
-              // onTap: () {
-              //   MultiImageProvider multiImageProvider = MultiImageProvider(
-              //     images!
-              //         .map(
-              //           (e) => CachedNetworkImageProvider(
-              //             e.imagePath,
-              //           ),
-              //         )
-              //         .toList(),
-              //   );
-              //   showImageViewerPager(context, multiImageProvider);
-              // },
+              onTap: () {
+                MultiImageProvider multiImageProvider = MultiImageProvider(
+                  images!
+                      .map(
+                        (e) => CachedNetworkImageProvider(
+                          e.imagePath,
+                        ),
+                      )
+                      .toList(),
+                );
+                showImageViewerPager(context, multiImageProvider);
+              },
               child: Container(
                 width: 90,
                 decoration: BoxDecoration(
