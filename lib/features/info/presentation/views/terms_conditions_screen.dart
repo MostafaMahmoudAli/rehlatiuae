@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
@@ -20,14 +21,14 @@ class TermsConditionsScreen extends StatelessWidget {
         thumbVisibility: true,
         radius: Radius.circular(10.r),
         child: ListView(
-          children: const [
+          children:  [
             TitleSection(
-              title: LocaleKeys.Terms_Conditions,
-              subTitle: LocaleKeys.Terms_Conditions,
+              title: LocaleKeys.Terms_Conditions.tr(),
+              subTitle: LocaleKeys.Terms_Conditions.tr(),
               imagePath: AppAssets.rectangle,
             ),
             PrivacySection(
-              title: LocaleKeys.Terms_Conditions,
+              title: LocaleKeys.Terms_Conditions.tr(),
               content: AppStrings.termsConditionsContent,
             ),
           ],

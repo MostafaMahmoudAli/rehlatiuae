@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            LocaleKeys.Profile,
+            LocaleKeys.Profile.tr(),
             style: Theme.of(context).textTheme.displayMedium!.copyWith(
                   color: AppColors.black,
                 ),
@@ -40,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
                         context.read<ProfileCubit>().getProfile();
                       }
                     },
-                    text: LocaleKeys.Edit,
+                    text: LocaleKeys.Edit.tr(),
                   ),
                   orElse: () => const SizedBox(),
                 );
@@ -56,8 +57,8 @@ class ProfileScreen extends StatelessWidget {
                   context: context,
                   builder: (context) => CustomDialog(
                     title: message,
-                    subtitle: LocaleKeys.Sorry,
-                    labelText: LocaleKeys.Close,
+                    subtitle: LocaleKeys.Sorry.tr(),
+                    labelText: LocaleKeys.Close.tr(),
                   ),
                 );
               },
@@ -82,24 +83,24 @@ class ProfileScreen extends StatelessWidget {
                       height: 20.h,
                     ),
                     ProfileCardDetails(
-                      title: LocaleKeys.Phone,
+                      title: LocaleKeys.Phone.tr(),
                       value: client.phone ?? '',
                     ),
                     ProfileCardDetails(
-                      title: LocaleKeys.Address,
+                      title: LocaleKeys.Address.tr(),
                       value: client.address,
                     ),
                     CustomActionButton(
-                      text: LocaleKeys.Delete_Account,
+                      text: LocaleKeys.Delete_Account.tr(),
                       borderRadius: BorderRadius.circular(16.r),
                       backGroundColor: AppColors.redAppColor,
                       onTap: () {
                         showDialog(
                           context: context,
                           builder: (c) => CustomDialog(
-                            title: LocaleKeys.Are_you_sure_to_delete,
-                            subtitle: LocaleKeys.Are_you_sure,
-                            labelText: LocaleKeys.Yes,
+                            title: LocaleKeys.Are_you_sure_to_delete.tr(),
+                            subtitle: LocaleKeys.Are_you_sure.tr(),
+                            labelText: LocaleKeys.Yes.tr(),
                             color: AppColors.redAppColor,
                             onTap: () async {
                               await context.read<ProfileCubit>().deleteAccount();
@@ -117,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
                         onPressed: () {
                           context.push(AppRoutesString.forgetPasswordScreen);
                         },
-                        text: LocaleKeys.Forgot_Password,
+                        text: LocaleKeys.Forgot_Password.tr(),
                       ),
                     ),
                   ],
@@ -131,7 +132,7 @@ class ProfileScreen extends StatelessWidget {
                     onPressed: () {
                       context.push(AppRoutesString.registerScreen);
                     },
-                    text: LocaleKeys.Register,
+                    text: LocaleKeys.Register.tr(),
                   ),
                 ),
               ),

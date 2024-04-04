@@ -1,10 +1,12 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final void Function(int)? onTap;
@@ -32,7 +34,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               AppAssets.homeIcon,
             ),
           ),
-          label: "Home",
+          label: LocaleKeys.Home.tr(),
           labelStyle: TextStyle(
             color: index == 0 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,
@@ -45,7 +47,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               AppAssets.searchIcon,
             ),
           ),
-          label: "Search",
+          label: LocaleKeys.Search.tr(),
           labelStyle: TextStyle(
             color: index == 1 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,
@@ -58,7 +60,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               AppAssets.bookingIcon,
             ),
           ),
-          label: "Booking",
+          label: LocaleKeys.Booking.tr(),
           labelStyle: TextStyle(
             color: index == 2 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,
@@ -71,7 +73,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               AppAssets.exploreIcon,
             ),
           ),
-          label: "Explore",
+          label: LocaleKeys.Explore.tr(),
           labelStyle: TextStyle(
             color: index == 3 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,
@@ -84,7 +86,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               AppAssets.accountIcon,
             ),
           ),
-          label: "Account",
+          label: LocaleKeys.Account.tr(),
           labelStyle: TextStyle(
             color: index == 4 ? AppColors.textAndBackgroundColorButton : AppColors.white,
             fontSize: 12.sp,

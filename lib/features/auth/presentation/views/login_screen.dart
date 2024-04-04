@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,8 +44,8 @@ class LoginScreen extends StatelessWidget {
                       context: context,
                       builder: (context) => CustomDialog(
                         title: message,
-                        subtitle:  LocaleKeys.Sorry,
-                        labelText:  LocaleKeys.Close,
+                        subtitle:  LocaleKeys.Sorry.tr(),
+                        labelText:  LocaleKeys.Close.tr(),
                         color: AppColors.redAppColor,
                       ),
                     );
@@ -69,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                LocaleKeys.LogIn_today,
+                                LocaleKeys.LogIn_today.tr(),
                                 style: Theme.of(context).textTheme.headlineLarge,
                               ),
                             ],
@@ -90,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                           PrimaryTextField(
                             controller: cubit.passwordEditingController,
                             validator: (value) => AppValidator.validatePassword(value),
-                            hint: LocaleKeys.password,
+                            hint: LocaleKeys.password.tr(),
                             padding: EdgeInsets.zero,
                             textColor: AppColors.white,
                             suffix: const Icon(
@@ -106,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                                 onPressed: () {
                                   context.push('/forgetPasswordScreen');
                                 },
-                                text:  LocaleKeys.Forgot_Password,
+                                text:  LocaleKeys.Forgot_Password.tr(),
                               ),
                             ],
                           ),
@@ -116,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                               await cubit.login();
                               // context.go(AppStrings.homeScreen);
                             },
-                            text: LocaleKeys.LogIn,
+                            text: LocaleKeys.LogIn.tr(),
                             borderRadius: BorderRadius.circular(12.r),
                             backGroundColor: AppColors.textAndBackgroundColorButton,
                             height: 60.h,
@@ -127,14 +128,14 @@ class LoginScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                LocaleKeys.Didnt_have_any_account,
+                                LocaleKeys.Didnt_have_any_account.tr(),
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               DefaultTextButton(
                                 onPressed: () {
                                   context.push('/registerScreen');
                                 },
-                                text: LocaleKeys.Sign_Up_here,
+                                text: LocaleKeys.Sign_Up_here.tr(),
                               ),
                             ],
                           ),

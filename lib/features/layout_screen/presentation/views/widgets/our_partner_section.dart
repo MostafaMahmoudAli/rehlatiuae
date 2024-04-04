@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -15,9 +16,9 @@ class OurPartnerSection extends StatelessWidget
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          LocaleKeys.Our_Partner,
-          style: TextStyle(
+         Text(
+          LocaleKeys.Our_Partner.tr(),
+          style: const TextStyle(
             color: AppColors.black,
           ),
         ),

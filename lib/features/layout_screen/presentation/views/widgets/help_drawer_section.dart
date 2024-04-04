@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
@@ -23,7 +24,7 @@ class HelpDrawerSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                LocaleKeys.Help,
+                LocaleKeys.Help.tr(),
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: AppColors.black,
                     ),
@@ -32,7 +33,7 @@ class HelpDrawerSection extends StatelessWidget {
           ),
         ),
         DrawerItem(
-          title: LocaleKeys.My_booking,
+          title: LocaleKeys.My_booking.tr(),
           iconPath: AppAssets.myBooking,
           trailing: const [
             Icon(
@@ -46,16 +47,16 @@ class HelpDrawerSection extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero,
               ),
-              builder: (context) => const CustomBottomSheet(
-                title: LocaleKeys.My_booking,
+              builder: (context) =>  CustomBottomSheet(
+                title: LocaleKeys.My_booking.tr(),
                 avatarText: 'MY',
-                contentSheet: MyBookingContentSheet(),
+                contentSheet: const MyBookingContentSheet(),
               ),
             );
           },
         ),
         DrawerItem(
-          title: LocaleKeys.Send_message,
+          title: LocaleKeys.Send_message.tr(),
           iconPath: AppAssets.sendMessage,
           trailing: const [
             Icon(
@@ -69,11 +70,11 @@ class HelpDrawerSection extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero,
               ),
-              builder: (context) => const CustomBottomSheet(
-                title: LocaleKeys.Send_message,
+              builder: (context) =>  CustomBottomSheet(
+                title: LocaleKeys.Send_message.tr(),
                 avatarText: 'ME',
                 hasButton: false,
-                contentSheet: SendMessageContentSheet(),
+                contentSheet: const SendMessageContentSheet(),
               ),
             );
           },

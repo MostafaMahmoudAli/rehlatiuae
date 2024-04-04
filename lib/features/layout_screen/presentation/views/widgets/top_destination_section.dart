@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +23,7 @@ class TopDestinationSection extends StatelessWidget {
           {
             context.push(AppRoutesString.topDestinationScreen);
           },
-          text: LocaleKeys.All_Destinations,
+          text: LocaleKeys.All_Destinations.tr(),
         ),
         SizedBox(
           height: 200.0.h,
@@ -37,9 +38,9 @@ class TopDestinationSection extends StatelessWidget {
                   },
                   child: CustomContainerTrip(
                     width:200.0.w,
-                    cityName: destinations[index].name ?? LocaleKeys.Dubai,
-                    countryName:destinations[index].country ?? LocaleKeys.United_Arab_Emirates,
-                    imageName: destinations[index].imagePath ?? AppStrings.containerTripBackgroundImage,
+                    cityName: destinations[index].name ?? LocaleKeys.Dubai.tr(),
+                    countryName:destinations[index].country ?? LocaleKeys.United_Arab_Emirates.tr(),
+                    imageName: destinations[index].imagePath ?? AppStrings.containerTripBackgroundImage.tr(),
                   ),
                 );
               },

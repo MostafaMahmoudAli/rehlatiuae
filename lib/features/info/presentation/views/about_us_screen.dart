@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
@@ -16,9 +17,9 @@ class AboutUsScreen extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
-          const TitleSection(
-            title: LocaleKeys.About_Us,
-            subTitle: LocaleKeys.About_Rehlatyuae,
+           TitleSection(
+            title: LocaleKeys.About_Us.tr(),
+            subTitle: LocaleKeys.About_Rehlatyuae.tr(),
             imagePath: AppAssets.rectangle,
           ),
           Padding(
@@ -26,7 +27,7 @@ class AboutUsScreen extends StatelessWidget {
               top: 34.h,
             ),
             child: Text(
-               LocaleKeys.The_mighty,
+               LocaleKeys.The_mighty.tr(),
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
@@ -42,23 +43,23 @@ class AboutUsScreen extends StatelessWidget {
               ),
             ),
             child: Text(
-              LocaleKeys.The_mighty,
+              LocaleKeys.The_mighty.tr(),
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.white,
                   ),
             ),
           ),
-          const CustomExpansionTile(
-            title: LocaleKeys.Start_date_Rehlatyuae,
-            content: LocaleKeys.Founding_Year_of_Rehlatyuae,
+           CustomExpansionTile(
+            title: LocaleKeys.Start_date_Rehlatyuae.tr(),
+            content: LocaleKeys.Founding_Year_of_Rehlatyuae.tr(),
           ),
-          const CustomExpansionTile(
-            title: LocaleKeys.Number_of_our_clients,
-            content:  LocaleKeys.Guests_served,
+           CustomExpansionTile(
+            title: LocaleKeys.Number_of_our_clients.tr(),
+            content:  LocaleKeys.Guests_served.tr(),
           ),
-          const CustomExpansionTile(
-            title: LocaleKeys.Number_of_evaluations_received,
-            content:  LocaleKeys.Reviews_Rehlatyuae,
+           CustomExpansionTile(
+            title: LocaleKeys.Number_of_evaluations_received.tr(),
+            content:  LocaleKeys.Reviews_Rehlatyuae.tr(),
           ),
           const PreviewTravelsSection(hasBookButton: false),
           const ExperiencesSections(),

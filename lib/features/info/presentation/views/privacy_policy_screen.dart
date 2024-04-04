@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
@@ -19,14 +20,14 @@ class PrivacyPolicyScreen extends StatelessWidget {
         thumbVisibility: true,
         radius: Radius.circular(10.r),
         child: ListView(
-          children: const [
+          children:  [
             TitleSection(
-              title: LocaleKeys.Privacy_Policy,
-              subTitle: LocaleKeys.Privacy_Policy,
-              imagePath: AppAssets.rectangle,
+              title: LocaleKeys.Privacy_Policy.tr(),
+              subTitle: LocaleKeys.Privacy_Policy.tr(),
+              imagePath: AppAssets.rectangle.tr(),
             ),
             PrivacySection(
-              title: LocaleKeys.Privacy_Policy,
+              title: LocaleKeys.Privacy_Policy.tr(),
               content: AppStrings.privacyPolicyContent,
             ),
           ],

@@ -366,6 +366,8 @@ Official Channels:
   static const updatePasswordToken = "updatePasswordToken";
   static const expiresIn = "expiresIn";
   static const client = "client";
+    static const currentLanguage = "currentLanguage";
+
 
 
   

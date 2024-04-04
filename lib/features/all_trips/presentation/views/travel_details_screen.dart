@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,7 +34,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
-              LocaleKeys.Select_your_Preferences,
+              LocaleKeys.Select_your_Preferences.tr(),
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ),
@@ -41,24 +42,24 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
-                      LocaleKeys.The_mighty,
+                      LocaleKeys.The_mighty.tr(),
                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
             ),
           ),
-          const CustomExpansionTile(
-            title: LocaleKeys.Highlights,
+           CustomExpansionTile(
+            title: LocaleKeys.Highlights.tr(),
             content:
-           LocaleKeys.With_more_techy  ),
-          const CustomExpansionTile(
-            title: LocaleKeys.Inclusions,
-            content: LocaleKeys.Guests_served,
+           LocaleKeys.With_more_techy.tr()  ),
+           CustomExpansionTile(
+            title: LocaleKeys.Inclusions.tr(),
+            content: LocaleKeys.Guests_served.tr(),
             initiallyExpanded: false,
           ),
-          const CustomExpansionTile(
-            title: LocaleKeys.Cancellation_policy,
-            content: LocaleKeys.Reviews_Rehlatyuae,
+           CustomExpansionTile(
+            title: LocaleKeys.Cancellation_policy.tr(),
+            content: LocaleKeys.Reviews_Rehlatyuae.tr(),
             initiallyExpanded: false,
           ),
           const PreviewTravelsSection(),

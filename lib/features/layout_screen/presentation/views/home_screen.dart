@@ -22,6 +22,8 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -39,8 +41,8 @@ class HomeScreen extends StatelessWidget {
               context: context,
               builder: (context) => CustomDialog(
                 title: errorMessage,
-                subtitle: LocaleKeys.Sorry,
-                labelText: LocaleKeys.Close,
+                subtitle: LocaleKeys.Sorry.tr(),
+                labelText: LocaleKeys.Close.tr(),
               ),
             ),
           );
@@ -99,7 +101,7 @@ class HomeScreen extends StatelessWidget {
                         onTap: () {
                           context.push(AppRoutesString.allTripsScreen);
                         },
-                        text: LocaleKeys.Explore_More,
+                        text: LocaleKeys.Explore_More.tr(),
                         height: 70.0.h,
                         width: double.infinity,
                         borderRadius: BorderRadius.circular(12.0.r),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -74,7 +75,7 @@ class AllTripsScreen extends StatelessWidget {
               const WeHelpYouSection(),
               CustomActionButton(
                 onTap: () {},
-                text: LocaleKeys.Explore_More,
+                text: LocaleKeys.Explore_More.tr(),
                 height: 70.0.h,
                 width: double.infinity,
                 borderRadius: BorderRadius.circular(12.0.r),

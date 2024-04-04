@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -13,9 +14,9 @@ class WhyChooseUsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          LocaleKeys.Why_Choose_Us,
-          style: TextStyle(
+         Text(
+          LocaleKeys.Why_Choose_Us.tr(),
+          style: const TextStyle(
             color: AppColors.black,
           ),
         ),
@@ -23,7 +24,7 @@ class WhyChooseUsSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             WhyChooseUSItem(
-              text: LocaleKeys.Fast_booking,
+              text: LocaleKeys.Fast_booking.tr(),
               descriptionText: AppStrings.whyChooseUsFastBookingDescription,
               descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
               child: Image.asset(AppStrings.whyChooseUsFastBookingImage),
@@ -32,7 +33,7 @@ class WhyChooseUsSection extends StatelessWidget {
               width: 20.0.w,
             ),
             WhyChooseUSItem(
-              text: LocaleKeys.Easy_to_Shop,
+              text: LocaleKeys.Easy_to_Shop.tr(),
               descriptionText: AppStrings.whyChooseUsEasyToShopDescription,
               descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
               child: Image.asset(AppStrings.whyChooseUsEasyToShopImage),
@@ -55,7 +56,7 @@ class WhyChooseUsSection extends StatelessWidget {
               width: 20.0.w,
             ),
             WhyChooseUSItem(
-              text: LocaleKeys.Unique_experience,
+              text: LocaleKeys.Unique_experience.tr(),
               descriptionText: AppStrings.whyChooseUsUniqueexPerienceDescription,
               descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
               child: Image.asset(AppStrings.whyChooseUsUniqueexPerienceImage),

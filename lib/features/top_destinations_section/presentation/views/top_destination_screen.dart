@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,8 +14,7 @@ import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../blocs/all_destinations_bloc.dart';
 import 'widgets/all_destination_body.dart';
 
-class TopDestinationScreen extends StatelessWidget
-{
+class TopDestinationScreen extends StatelessWidget {
   TopDestinationScreen({super.key});
 
   final TextEditingController _textEditingController = TextEditingController();
@@ -39,7 +39,8 @@ class TopDestinationScreen extends StatelessWidget
       ),
       drawer: const CustomDrawer(),
       body: BlocProvider(
-        create:(context)=> getIt<AllDestinationsBloc>()..add(GetAllDestinationsEvent()),
+        create: (context) =>
+            getIt<AllDestinationsBloc>()..add(GetAllDestinationsEvent()),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 20.0.h,
@@ -55,10 +56,12 @@ class TopDestinationScreen extends StatelessWidget
                   controller: _textEditingController,
                 ),
                 const CustomSizedBox(),
-                const Text(
-                  LocaleKeys.All_Destinations,
+                Text(
+                  LocaleKeys.All_Destinations.tr(),
                 ),
-                AllDestinationBody(allDestinationsScrollController:allDestinationsScrollController),
+                AllDestinationBody(
+                    allDestinationsScrollController:
+                        allDestinationsScrollController),
                 const AllDestinationBottomSection(),
               ],
             ),
@@ -68,5 +71,3 @@ class TopDestinationScreen extends StatelessWidget
     );
   }
 }
-
-

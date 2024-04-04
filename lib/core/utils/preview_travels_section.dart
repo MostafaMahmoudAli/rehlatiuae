@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,7 @@ class PreviewTravelsSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                LocaleKeys.Preview,
+                LocaleKeys.Preview.tr(),
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               Container(
@@ -79,7 +80,7 @@ class PreviewTravelsSection extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
-              text: LocaleKeys.Book_Now,
+              text: LocaleKeys.Book_Now.tr(),
               borderRadius: BorderRadius.circular(16),
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {

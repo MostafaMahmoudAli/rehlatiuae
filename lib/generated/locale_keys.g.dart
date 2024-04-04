@@ -1,7 +1,5 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: constant_identifier_names
-
 abstract class  LocaleKeys {
   static const Easy_to_Shop = 'Easy_to_Shop';
   static const Fast_booking = 'Fast_booking';
@@ -9,7 +7,6 @@ abstract class  LocaleKeys {
   static const Why_Choose_Us = 'Why_Choose_Us';
   static const Unique_experience = 'Unique_experience';
   static const We_Help_You_Make_Best_Trip = 'We_Help_You_Make_Best_Trip';
-  static const View_all = 'View_all';
   static const Categories = 'Categories';
   static const All_Destinations = 'All_Destinations';
   static const Best_Offers = 'Best_Offers';
@@ -123,7 +120,6 @@ abstract class  LocaleKeys {
   static const Are_you_sure = 'Are_you_sure';
   static const Yes = 'Yes';
   static const Register = 'Register';
-  static const Belal = 'Belal';
   static const Hello = 'Hello';
   static const LogIn_today = 'LogIn_today';
   static const LogIn = 'LogIn';
@@ -144,5 +140,21 @@ abstract class  LocaleKeys {
   static const offer_name = 'offer_name';
   static const view = 'view';
   static const select = 'select';
+  static const Message_Send_Successfully = 'Message_Send_Successfully';
+  static const Go_Back = 'Go_Back';
+  static const Your_Message = 'Your_Message';
+  static const Similar_experiences_you = 'Similar_experiences_you';
+  static const Ratings_Reviews = 'Ratings_Reviews';
+  static const Rating_Register_Successfully = 'Rating_Register_Successfully';
+  static const Rating_message = 'Rating_message';
+  static const Rating_Now = 'Rating_Now';
+  static const View_all = 'View_all';
+  static const Home = 'Home';
+  static const Search = 'Search';
+  static const Booking = 'Booking';
+  static const Explore = 'Explore';
+  static const Account = 'Account';
+  static const English = 'English';
+  static const en = 'en';
 
 }

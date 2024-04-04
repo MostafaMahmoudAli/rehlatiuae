@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
@@ -25,7 +26,7 @@ class CustomRowTitle extends StatelessWidget {
         ),
         const Spacer(),
         DefaultTextButton(
-          text: LocaleKeys.View_all,
+          text: LocaleKeys.View_all.tr(),
           onPressed: onPressed,
         ),
       ],

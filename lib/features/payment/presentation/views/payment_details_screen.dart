@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,7 @@ class PaymentDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-           LocaleKeys.Payment_Details,
+           LocaleKeys.Payment_Details.tr(),
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
                 color: AppColors.black,
               ),
@@ -40,7 +41,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                 total: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.finalSubtotal}',
                 childrenCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityChild}',
                 adultCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityAdult}',
-                address: LocaleKeys.Dubai_United,
+                address: LocaleKeys.Dubai_United.tr(),
               ),
               SizedBox(
                 height: 15.h,
@@ -51,8 +52,8 @@ class PaymentDetailsScreen extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 10.h),
             child: TotalPaymentSection(
               total: "\$${context.read<TripCheckoutDetailsCubit>().allSubtotal}",
-              subtitle: LocaleKeys.View_detailed_bill,
-              buttonLabel: LocaleKeys.Payment,
+              subtitle: LocaleKeys.View_detailed_bill.tr(),
+              buttonLabel: LocaleKeys.Payment.tr(),
               onButtonTap: () {
                 showModalBottomSheet(
                   context: context,
@@ -61,8 +62,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.zero,
                   ),
                   builder: (context) => CustomBottomSheet(
-                    title: LocaleKeys.Payment_Details,
-                    labelButton: LocaleKeys.Payment,
+                    title: LocaleKeys.Payment_Details.tr(),
+                    labelButton: LocaleKeys.Payment.tr(),
                     contentSheet: PaymentContentSheet(
                       tripCheckoutDetails: context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails,
                     ),
@@ -77,8 +78,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.zero,
                   ),
                   builder: (context) => CustomBottomSheet(
-                    title: LocaleKeys.Payment_Details,
-                    labelButton: LocaleKeys.Payment,
+                    title: LocaleKeys.Payment_Details.tr(),
+                    labelButton: LocaleKeys.Payment.tr(),
                     contentSheet: PaymentContentSheet(
                       tripCheckoutDetails: context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails,
                     ),

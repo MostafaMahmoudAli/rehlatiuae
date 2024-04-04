@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,9 +24,9 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          const BolgTravelTitleSection(
-            title: LocaleKeys.Blog_name,
-            address: LocaleKeys.Dubai_United,
+           BolgTravelTitleSection(
+            title: LocaleKeys.Blog_name.tr(),
+            address: LocaleKeys.Dubai_United.tr(),
             price: "79",
             imagePath: AppAssets.travel,
             isTrip: false,
@@ -33,26 +34,26 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Text(
-              LocaleKeys.The_mighty,
+              LocaleKeys.The_mighty.tr(),
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
             ),
           ),
-          const ParagraphSection(
-            title: LocaleKeys.Exciting_Activities_at,
+           ParagraphSection(
+            title: LocaleKeys.Exciting_Activities_at.tr(),
             subTitle:
-           LocaleKeys.The_mighty        
+           LocaleKeys.The_mighty.tr()       
             ),
-          const ParagraphSection(
-            title: LocaleKeys.KIDS_ADVENTURE,
+           ParagraphSection(
+            title: LocaleKeys.KIDS_ADVENTURE.tr(),
             subTitle:
-            LocaleKeys.The_mighty   
+            LocaleKeys.The_mighty.tr(),  
            ),
-          const ParagraphSection(
-            title: LocaleKeys.ARABIAN_VILLAGE,
+           ParagraphSection(
+            title: LocaleKeys.ARABIAN_VILLAGE.tr(),
             subTitle:
-            LocaleKeys.The_mighty    
+            LocaleKeys.The_mighty.tr(),    
             ),
           const PreviewTravelsSection(),
           const RatingsReviewsSection(),

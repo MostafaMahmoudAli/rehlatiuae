@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,8 +45,8 @@ class RegisterScreen extends StatelessWidget {
                       context: context,
                       builder: (context) => CustomDialog(
                         title: message,
-                        subtitle: LocaleKeys.Sorry,
-                        labelText: LocaleKeys.Close,
+                        subtitle: LocaleKeys.Sorry.tr(),
+                        labelText: LocaleKeys.Close.tr(),
                         color: AppColors.redAppColor,
                       ),
                     );
@@ -70,7 +71,7 @@ class RegisterScreen extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                LocaleKeys.Register_now,
+                                LocaleKeys.Register_now.tr(),
                                 style: Theme.of(context).textTheme.headlineLarge,
                               ),
                             ],
@@ -79,7 +80,7 @@ class RegisterScreen extends StatelessWidget {
                           PrimaryTextField(
                             controller: cubit.nameEditingController,
                             validator: (value) => AppValidator.validateName(value),
-                            hint: LocaleKeys.your_name,
+                            hint: LocaleKeys.your_name.tr(),
                             padding: EdgeInsets.only(bottom: 20.h),
                             textColor: AppColors.white,
                             suffix: const Icon(
@@ -102,7 +103,7 @@ class RegisterScreen extends StatelessWidget {
                           PrimaryTextField(
                             controller: cubit.passwordEditingController,
                             validator: (value) => AppValidator.validatePassword(value),
-                            hint: LocaleKeys.password,
+                            hint: LocaleKeys.password.tr(),
                             padding: EdgeInsets.zero,
                             textColor: AppColors.white,
                             suffix: const Icon(
@@ -116,7 +117,7 @@ class RegisterScreen extends StatelessWidget {
                             onTap: () async {
                               await cubit.register();
                             },
-                            text: LocaleKeys.Sign_Up,
+                            text: LocaleKeys.Sign_Up.tr(),
                             borderRadius: BorderRadius.circular(12.r),
                             backGroundColor: AppColors.textAndBackgroundColorButton,
                             height: 60.h,
@@ -126,19 +127,19 @@ class RegisterScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                LocaleKeys.If_you_have_an_account,
+                                LocaleKeys.If_you_have_an_account.tr(),
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               DefaultTextButton(
                                 onPressed: () {
                                   context.pop();
                                 },
-                                text: LocaleKeys.Sign_In_here,
+                                text: LocaleKeys.Sign_In_here.tr(),
                               ),
                             ],
                           ),
                           Text(
-                           LocaleKeys.By_clicking_Sing_up,
+                           LocaleKeys.By_clicking_Sing_up.tr(),
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
@@ -149,17 +150,17 @@ class RegisterScreen extends StatelessWidget {
                                 onPressed: () {
                                   context.push('/termsConditionsScreen');
                                 },
-                                text: LocaleKeys.Terms,
+                                text: LocaleKeys.Terms.tr(),
                               ),
                               Text(
-                                LocaleKeys.and,
+                                LocaleKeys.and.tr(),
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               DefaultTextButton(
                                 onPressed: () {
                                   context.push('/privacyPolicyScreen');
                                 },
-                                text: LocaleKeys.Privacy_Policy,
+                                text: LocaleKeys.Privacy_Policy.tr(),
                               ),
                             ],
                           ),

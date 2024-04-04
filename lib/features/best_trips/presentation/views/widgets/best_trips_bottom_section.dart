@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,7 +53,7 @@ class BestTripsBottomSection extends StatelessWidget {
                  onTap: () {
                    context.push(AppRoutesString.allTripsScreen);
                  },
-                 text: LocaleKeys.Explore_More,
+                 text: LocaleKeys.Explore_More.tr(),
                  height: 70.0.h,
                  width: double.infinity,
                  borderRadius: BorderRadius.circular(12.0.r),

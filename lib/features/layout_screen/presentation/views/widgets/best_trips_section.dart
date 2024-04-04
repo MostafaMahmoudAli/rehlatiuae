@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +18,7 @@ class BestTripsSection extends StatelessWidget {
     return Column(
       children: [
         CustomRowTitle(
-          text: LocaleKeys.Best_Trips,
+          text: LocaleKeys.Best_Trips.tr(),
           onPressed: ()
           {
             context.push(AppRoutesString.bestTripsScreen);
@@ -31,8 +32,8 @@ class BestTripsSection extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CustomContainerTrip(
                   width:200.0.w,
-                  cityName: bestTrips?[index].name ?? LocaleKeys.Dubai,
-                  countryName:bestTrips?[index].address ?? LocaleKeys.United_Arab_Emirates,
+                  cityName: bestTrips?[index].name ?? LocaleKeys.Dubai.tr(),
+                  countryName:bestTrips?[index].address ?? LocaleKeys.United_Arab_Emirates.tr(),
                   imageName: bestTrips?[index].imagePath??AppStrings.containerTripBackgroundImage,
                   tripPrice:bestTrips?[index].adultPrice.toString()??"",
                   reservationType:"/person",

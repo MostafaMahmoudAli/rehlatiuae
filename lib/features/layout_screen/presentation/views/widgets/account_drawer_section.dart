@@ -14,6 +14,7 @@ class AccountDrawerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     return Column(
       children: [
         Padding(
@@ -32,7 +33,6 @@ class AccountDrawerSection extends StatelessWidget {
             ],
           ),
         ),
-
         DrawerItem(
           title: LocaleKeys.Credits.tr(),
           iconPath: AppAssets.credits,
@@ -62,8 +62,8 @@ class AccountDrawerSection extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero,
               ),
-              builder: (context) =>  CustomBottomSheet(
-                title: LocaleKeys.Select_Currency.tr()  ,
+              builder: (context) => CustomBottomSheet(
+                title: LocaleKeys.Select_Currency.tr(),
                 avatarText: '\$',
                 contentSheet: const CurrencyContentSheet(),
               ),
@@ -75,7 +75,7 @@ class AccountDrawerSection extends StatelessWidget {
           iconPath: AppAssets.language,
           trailing: [
             Text(
-              "English",
+              LocaleKeys.en.tr(),
               style: Theme.of(context).textTheme.titleSmall,
             ),
             const Icon(
@@ -83,13 +83,13 @@ class AccountDrawerSection extends StatelessWidget {
             ),
           ],
           onTap: () {
-            showModalBottomSheet( 
+            showModalBottomSheet(
               context: context,
               isScrollControlled: true,
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero,
               ),
-              builder: (context) =>  CustomBottomSheet(
+              builder: (context) => CustomBottomSheet(
                 title: LocaleKeys.Select_Language.tr(),
                 avatarText: 'AR',
                 contentSheet: const LanguageContentSheet(),

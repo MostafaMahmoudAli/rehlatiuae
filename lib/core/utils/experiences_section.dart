@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class ExperiencesSections extends StatelessWidget {
   const ExperiencesSections({
@@ -15,7 +17,7 @@ class ExperiencesSections extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Text(
-            "Similar experiences you'd love",
+             LocaleKeys.Similar_experiences_you.tr(),
             style: Theme.of(context).textTheme.labelMedium,
           ),
         ),
@@ -28,8 +30,8 @@ class ExperiencesSections extends StatelessWidget {
             itemBuilder: (context, index) => CustomContainerTrip(
               width: 225.w,
               imageName: 'assets/images/preview1.png',
-              cityName: 'Dubai',
-              countryName: 'United Arab Emirates',
+              cityName: LocaleKeys.Dubai.tr(),
+              countryName: LocaleKeys.United_Arab_Emirates.tr(),
               tripPrice: '43',
               reservationType: '/Person',
             ),
@@ -39,7 +41,7 @@ class ExperiencesSections extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w).copyWith(top: 10.h),
           child: Text(
-            "Popular Experiences",
+            LocaleKeys.Popular_Experiences.tr(),
             style: Theme.of(context).textTheme.labelMedium,
           ),
         ),
@@ -52,8 +54,8 @@ class ExperiencesSections extends StatelessWidget {
             itemBuilder: (context, index) => CustomContainerTrip(
               width: 140.w,
               imageName: 'assets/images/preview1.png',
-              cityName: 'Dubai',
-              countryName: 'United Arab Emirates',
+              cityName: LocaleKeys.Dubai.tr(),
+              countryName: LocaleKeys.United_Arab_Emirates.tr(),
               tripPrice: '43',
               reservationType: '/Person',
             ),

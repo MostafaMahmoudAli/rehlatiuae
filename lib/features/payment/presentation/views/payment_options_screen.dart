@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +24,7 @@ class PaymentOptionsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-         LocaleKeys.Payment_Options,
+         LocaleKeys.Payment_Options.tr(),
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
                 color: AppColors.black,
               ),
@@ -60,8 +61,8 @@ class PaymentOptionsScreen extends StatelessWidget {
                 BlocProvider<CheckCouponCubit>(
                   create: (context) => getIt<CheckCouponCubit>(),
                   child: CustomExpansionTile(
-                    title: LocaleKeys.You_Have_Coupon,
-                    content: LocaleKeys.Your_Coupon,
+                    title: LocaleKeys.You_Have_Coupon.tr(),
+                    content: LocaleKeys.Your_Coupon.tr(),
                     initiallyExpanded: false,
                     children: [
                       BlocBuilder<CheckCouponCubit, CheckCouponState>(
@@ -125,15 +126,15 @@ class PaymentOptionsScreen extends StatelessWidget {
                   ),
                 ),
                 PrimaryTextField(
-                  label: LocaleKeys.Description,
-                  hint: LocaleKeys.insert_notes,
+                  label: LocaleKeys.Description.tr(),
+                  hint: LocaleKeys.insert_notes.tr(),
                   isTextAria: true,
                   controller: cubit.descriptionEditingController,
                 ),
                 TotalPaymentSection(
                   total: "\$${cubit.allSubtotal}",
                   subtitle: cubit.tripCheckoutDetails.date,
-                  buttonLabel: LocaleKeys.Next_payment,
+                  buttonLabel: LocaleKeys.Next_payment.tr(),
                   onButtonTap: () {
                     if (!cubit.dateFormKey.currentState!.validate()) return;
                     cubit.applyTripDetails();

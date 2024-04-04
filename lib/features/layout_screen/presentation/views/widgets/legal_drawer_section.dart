@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -21,7 +22,7 @@ class LegalDrawerSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                LocaleKeys.Legal,
+                LocaleKeys.Legal.tr(),
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: AppColors.black,
                     ),
@@ -30,7 +31,7 @@ class LegalDrawerSection extends StatelessWidget {
           ),
         ),
         DrawerItem(
-          title: LocaleKeys.Privacy_Policy,
+          title: LocaleKeys.Privacy_Policy.tr(),
           iconPath: AppAssets.privacyPolicy,
           trailing: const [
             Icon(
@@ -42,7 +43,7 @@ class LegalDrawerSection extends StatelessWidget {
           },
         ),
         DrawerItem(
-          title: LocaleKeys.Terms_of_Usage,
+          title: LocaleKeys.Terms_of_Usage.tr(),
           iconPath: AppAssets.terms,
           trailing: const [
             Icon(
@@ -56,17 +57,17 @@ class LegalDrawerSection extends StatelessWidget {
         SizedBox(
           height: 30.h,
         ),
-        const DrawerItem(
-          title: LocaleKeys.Update_App,
+         DrawerItem(
+          title: LocaleKeys.Update_App.tr(),
           iconPath: AppAssets.updateApp,
-          trailing: [
+          trailing: const [
             Icon(
               Icons.arrow_forward_ios_sharp,
             ),
           ],
         ),
         DrawerItem(
-          title: LocaleKeys.About_App,
+          title: LocaleKeys.About_App.tr(),
           iconPath: AppAssets.aboutApp,
           trailing: const [
             Icon(
@@ -77,10 +78,10 @@ class LegalDrawerSection extends StatelessWidget {
             context.push('/aboutUsScreen');
           },
         ),
-        const DrawerItem(
-          title: LocaleKeys.Logout,
+         DrawerItem(
+          title: LocaleKeys.Logout.tr(),
           iconPath: AppAssets.logout,
-          trailing: [
+          trailing: const [
             Icon(
               Icons.arrow_forward_ios_sharp,
             ),

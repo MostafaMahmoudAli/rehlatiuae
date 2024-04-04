@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
@@ -19,9 +20,9 @@ class CategoryNameBody extends StatelessWidget {
       ),
       itemBuilder: (context, index) => CustomContainerTrip(
         width: 200.0.w,
-        cityName: LocaleKeys.Dubai,
-        countryName: LocaleKeys.United_Arab_Emirates,
-        imageName: AppStrings.containerTripBackgroundImage,
+        cityName: LocaleKeys.Dubai.tr(),
+        countryName: LocaleKeys.United_Arab_Emirates.tr(),
+        imageName: AppStrings.containerTripBackgroundImage.tr(),
         tripPrice: "43",
         reservationType: "/person",
       ),

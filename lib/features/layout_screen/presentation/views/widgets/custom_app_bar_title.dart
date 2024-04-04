@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,14 +38,14 @@ class CustomAppBarTitle extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  LocaleKeys.Hello,
+                  LocaleKeys.Hello.tr(),
                   style: TextStyle(
                     color: AppColors.black,
                     fontSize: 16.0.sp,
                   ),
                 ),
                 Text(
-                  LocaleKeys.Belal ,
+                  'belal' ,
                   overflow: TextOverflow.fade,
                   style: TextStyle(
                     color: AppColors.textAndBackgroundColorButton,

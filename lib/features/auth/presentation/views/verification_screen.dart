@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,8 +35,8 @@ class VerificationScreen extends StatelessWidget {
                   context: context,
                   builder: (context) => CustomDialog(
                     title: message,
-                    subtitle: LocaleKeys.Sorry,
-                    labelText: LocaleKeys.Close,
+                    subtitle: LocaleKeys.Sorry.tr(),
+                    labelText: LocaleKeys.Close.tr(),
                     color: AppColors.redAppColor,
                   ),
                 );
@@ -54,7 +55,7 @@ class VerificationScreen extends StatelessWidget {
                 ),
                 children: [
                   Text(
-                    LocaleKeys.Verification,
+                    LocaleKeys.Verification.tr(),
                     style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                           color: AppColors.black,
                           fontSize: 28.sp,
@@ -64,7 +65,7 @@ class VerificationScreen extends StatelessWidget {
                     height: 7.h,
                   ),
                   Text(
-                     LocaleKeys.Check_your_email,
+                     LocaleKeys.Check_your_email.tr(),
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: AppColors.greySearchText,
                         ),
@@ -85,7 +86,7 @@ class VerificationScreen extends StatelessWidget {
                     children: [
                       DefaultTextButton(
                         onPressed: () {},
-                        text:  LocaleKeys.Did_you_receive_any_code,
+                        text:  LocaleKeys.Did_you_receive_any_code.tr(),
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
@@ -94,7 +95,7 @@ class VerificationScreen extends StatelessWidget {
                     height: 30.h,
                   ),
                   CustomActionButton(
-                    text: LocaleKeys.Verify,
+                    text: LocaleKeys.Verify.tr(),
                     borderRadius: BorderRadius.circular(16.sp),
                     backGroundColor: AppColors.textAndBackgroundColorButton,
                     onTap: () async {

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -19,7 +19,7 @@ final List<Review>?reviews;
     return Column(
       children: [
         Text(
-          LocaleKeys.Our_Client_Reviews,
+          LocaleKeys.Our_Client_Reviews.tr(),
           style: Theme.of(context).textTheme.labelMedium,
         ),
         const CustomSizedBox(),
@@ -101,7 +101,7 @@ final List<Review>?reviews;
           height: 40.0.h,
         ),
         Text(
-          LocaleKeys.Subscribe_to_Newsletter,
+          LocaleKeys.Subscribe_to_Newsletter.tr(),
           style: Theme.of(context).textTheme.labelMedium,
         ),
         Row(
@@ -119,7 +119,7 @@ final List<Review>?reviews;
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: LocaleKeys.Your_Name,
+                    hintText: LocaleKeys.Your_Name.tr(),
                     hintStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
@@ -141,7 +141,7 @@ final List<Review>?reviews;
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText:LocaleKeys.Your_Email,
+                    hintText:LocaleKeys.Your_Email.tr(),
                     hintStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
@@ -153,7 +153,7 @@ final List<Review>?reviews;
           height: 15.0.h,
         ),
         CustomActionButton(
-          text: LocaleKeys.Send_Now,
+          text: LocaleKeys.Send_Now.tr(),
           borderRadius: BorderRadius.circular(8.0.r),
           backGroundColor: AppColors.textAndBackgroundColorButton,
           onTap: () {},

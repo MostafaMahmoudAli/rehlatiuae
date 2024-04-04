@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,7 @@ class EditProfileScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            LocaleKeys.Edit_Profile,
+            LocaleKeys.Edit_Profile.tr(),
             style: Theme.of(context).textTheme.displayMedium!.copyWith(
                   color: AppColors.black,
                 ),
@@ -45,8 +46,8 @@ class EditProfileScreen extends StatelessWidget {
                   context: context,
                   builder: (context) => CustomDialog(
                     title: message,
-                    subtitle: LocaleKeys.Sorry,
-                    labelText: LocaleKeys.Close,
+                    subtitle: LocaleKeys.Sorry.tr(),
+                    labelText: LocaleKeys.Close.tr(),
                     color: AppColors.redAppColor,
                   ),
                 );
@@ -56,9 +57,9 @@ class EditProfileScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => CustomDialog(
-                    title: LocaleKeys.Your_Profile_Updated,
-                    subtitle: LocaleKeys.Done,
-                    labelText: LocaleKeys.Close,
+                    title: LocaleKeys.Your_Profile_Updated.tr(),
+                    subtitle: LocaleKeys.Done.tr(),
+                    labelText: LocaleKeys.Close.tr(),
                     onTap: () {},
                   ),
                 );
@@ -89,24 +90,24 @@ class EditProfileScreen extends StatelessWidget {
                       children: [
                         PrimaryTextField(
                           controller: cubit.fullNameEditingController,
-                          hint: LocaleKeys.Full_Name,
+                          hint: LocaleKeys.Full_Name.tr(),
                           validator: (value) => AppValidator.validateName(value),
                         ),
                         PrimaryTextField(
                           controller: cubit.emailEditingController,
-                          hint: LocaleKeys.Your_Email,
+                          hint: LocaleKeys.Your_Email.tr(),
                           inputType: TextInputType.emailAddress,
                           validator: (value) => AppValidator.validateEmail(value),
                         ),
                         PrimaryTextField(
                           controller: cubit.phoneEditingController,
-                          hint: LocaleKeys.Your_Phone_Number,
+                          hint: LocaleKeys.Your_Phone_Number.tr(),
                           inputType: TextInputType.phone,
                           validator: (value) => AppValidator.validatePhone(value),
                         ),
                         PrimaryTextField(
                           controller: cubit.addressEditingController,
-                          hint: LocaleKeys.Your_Address,
+                          hint: LocaleKeys.Your_Address.tr(),
                           validator: (value) => AppValidator.validateRequired(value),
                         ),
                       ],
@@ -117,7 +118,7 @@ class EditProfileScreen extends StatelessWidget {
                       top: 30.h,
                     ),
                     child: CustomActionButton(
-                      text: LocaleKeys.Save,
+                      text: LocaleKeys.Save.tr(),
                       borderRadius: BorderRadius.circular(16.r),
                       backGroundColor: AppColors.orange,
                       onTap: () async {

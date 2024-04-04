@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -12,6 +13,7 @@ import 'package:rehlatyuae/core/utils/custom_rating_bar.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit/add_review_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class RatingsReviewsSection extends StatelessWidget {
   const RatingsReviewsSection({
@@ -26,7 +28,7 @@ class RatingsReviewsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Ratings & Reviews",
+           LocaleKeys.Ratings_Reviews.tr(),
             style: Theme.of(context).textTheme.labelMedium,
           ),
           SizedBox(
@@ -103,8 +105,8 @@ class RatingsReviewsSection extends StatelessWidget {
                       context: context,
                       builder: (context) => CustomDialog(
                         title: message,
-                        subtitle: 'Sorry',
-                        labelText: 'Close',
+                        subtitle: LocaleKeys.Sorry.tr(),
+                        labelText: LocaleKeys.Close.tr(),
                         color: AppColors.redAppColor,
                       ),
                     );
@@ -113,9 +115,9 @@ class RatingsReviewsSection extends StatelessWidget {
                     showDialog(
                       context: context,
                       builder: (context) => CustomDialog(
-                        title: 'Rating Register Successfully',
-                        subtitle: 'Done',
-                        labelText: 'Close',
+                        title: LocaleKeys.Rating_Register_Successfully.tr(),
+                        subtitle: LocaleKeys.Done.tr(),
+                        labelText:LocaleKeys.Close.tr(),
                         onTap: () {},
                       ),
                     );
@@ -136,7 +138,7 @@ class RatingsReviewsSection extends StatelessWidget {
                       PrimaryTextField(
                         controller: cubit.descriptionEditingController,
                         padding: EdgeInsets.symmetric(vertical: 20.h),
-                        hint: 'Rating message',
+                        hint: LocaleKeys.Rating_message.tr(),
                         textColor: AppColors.grayLight,
                         isTextAria: true,
                       ),
@@ -176,7 +178,7 @@ class RatingsReviewsSection extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 35.h),
                         child: CustomActionButton(
-                          text: 'Rating Now',
+                          text: LocaleKeys.Rating_Now.tr(),
                           borderRadius: BorderRadius.circular(16),
                           backGroundColor: AppColors.textAndBackgroundColorButton,
                           onTap: () async {
@@ -197,12 +199,12 @@ class RatingsReviewsSection extends StatelessWidget {
           ),
           ...List.generate(
             3,
-            (index) => const CommentCard(
+            (index) =>  CommentCard(
               imageUrl: AppAssets.profile,
               name: "Lee Mohammad",
               date: "12/12/2024",
               comment:
-                  "The mighty Rinjani mountain of Gunung Rinjani is a massive volcano which towers over the island of Lombok. A  you can have in Indonesia. At 3,726 meters tall, Gunung Rinjani is the second highest mountain in Indonesia,",
+                  LocaleKeys.The_mighty.tr(),
             ),
           ),
         ],

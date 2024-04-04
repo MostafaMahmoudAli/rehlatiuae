@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -58,8 +59,8 @@ class CityDestinationScreen extends StatelessWidget
                 controller: _textEditingController,
               ),
               const CustomSizedBox(),
-              const Text(
-               LocaleKeys.City_Destination 
+               Text(
+               LocaleKeys.City_Destination.tr(), 
                             ),
               const CustomSizedBox(),
               const CategoryNameBody(),
@@ -82,7 +83,7 @@ class CityDestinationScreen extends StatelessWidget
                 {
                   context.push(AppRoutesString.allTripsScreen);
                 },
-                text: LocaleKeys.Explore_More,
+                text: LocaleKeys.Explore_More.tr(),
                 height: 70.0.h,
                 width: double.infinity,
                 borderRadius: BorderRadius.circular(12.0.r),

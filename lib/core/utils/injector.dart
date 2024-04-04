@@ -52,6 +52,7 @@ import '../../features/our_blogs/domain/repositories/blogs_repository.dart';
 final GetIt getIt = GetIt.instance;
 
 Future<void> setupInjector() async {
+
   getIt.registerLazySingleton<ApiConsumer>(
     () => DioConsumer(
       dio: Dio(),
@@ -75,6 +76,8 @@ Future<void> setupInjector() async {
       cacheService: getIt<CacheService>(),
     ),
   );
+
+
 
   // repositories objects
   getIt.registerLazySingleton<BestOffersRepo>(

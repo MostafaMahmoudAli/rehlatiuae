@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,9 +33,9 @@ class UpdatePasswordScreen extends StatelessWidget {
                   builder: (context) => PopScope(
                     canPop: false,
                     child: CustomDialog(
-                      title: LocaleKeys.Change_Password_Success,
-                      subtitle: LocaleKeys.Success,
-                      labelText: LocaleKeys.Back_to_Homepage,
+                      title: LocaleKeys.Change_Password_Success.tr(),
+                      subtitle: LocaleKeys.Success.tr(),
+                      labelText: LocaleKeys.Back_to_Homepage.tr(),
                       color: AppColors.green,
                       onTap: () {
                         context.go(AppRoutesString.homeScreen);
@@ -48,8 +49,8 @@ class UpdatePasswordScreen extends StatelessWidget {
                   context: context,
                   builder: (context) => CustomDialog(
                     title: message,
-                    subtitle: LocaleKeys.Sorry,
-                    labelText: LocaleKeys.Close,
+                    subtitle: LocaleKeys.Sorry.tr(),
+                    labelText: LocaleKeys.Close.tr(),
                     color: AppColors.redAppColor,
                   ),
                 );
@@ -73,7 +74,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                         LocaleKeys.Update_Password,
+                         LocaleKeys.Update_Password.tr(),
                           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                                 color: AppColors.black,
                                 fontSize: 28.sp,
@@ -83,7 +84,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                           height: 7.h,
                         ),
                         Text(
-                          LocaleKeys.You_can_now_update_your_password,
+                          LocaleKeys.You_can_now_update_your_password.tr(),
                           style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                 color: AppColors.greySearchText,
                               ),
@@ -97,13 +98,13 @@ class UpdatePasswordScreen extends StatelessWidget {
                       children: [
                         PrimaryTextField(
                           controller: cubit.passwordEditingController,
-                          hint: LocaleKeys.New_Password,
+                          hint: LocaleKeys.New_Password.tr(),
                           isObscureText: true,
                         ),
                         PrimaryTextField(
                           controller: cubit.passwordConfirmationEditingController,
                           isObscureText: true,
-                          hint: LocaleKeys.enter_Password,
+                          hint: LocaleKeys.enter_Password.tr(),
                         ),
                       ],
                     ),
@@ -113,7 +114,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                       top: 30.h,
                     ),
                     child: CustomActionButton(
-                      text: LocaleKeys.Update_Password,
+                      text: LocaleKeys.Update_Password.tr(),
                       borderRadius: BorderRadius.circular(16.sp),
                       backGroundColor: AppColors.textAndBackgroundColorButton,
                       onTap: () async {
