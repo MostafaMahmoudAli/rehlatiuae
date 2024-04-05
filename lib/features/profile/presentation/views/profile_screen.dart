@@ -36,7 +36,8 @@ class ProfileScreen extends StatelessWidget {
                 return state.maybeWhen(
                   loaded: (client) => DefaultTextButton(
                     onPressed: () async {
-                      bool isProfileEdited = await context.push(AppRoutesString.editProfileScreen, extra: client) as bool;
+                      bool isProfileEdited =
+                          await context.push(AppRoutesString.editProfileScreen, extra: client) as bool;
                       if (isProfileEdited && context.mounted) {
                         context.read<ProfileCubit>().getProfile();
                       }
@@ -64,6 +65,10 @@ class ProfileScreen extends StatelessWidget {
               },
               loaded: (client) {
                 context.read<MainCubit>().getCachedClient();
+              },
+              deleteSuccess: () {
+                context.read<MainCubit>().changeCurrentTab(0);
+                context.read<MainCubit>().client = null;
               },
             );
           },
@@ -122,18 +127,6 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-              ),
-              deleteSuccess: () => Center(
-                child: Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(top: 10.h),
-                  child: DefaultTextButton(
-                    onPressed: () {
-                      context.push(AppRoutesString.registerScreen);
-                    },
-                    text: LocaleKeys.Register.tr(),
-                  ),
                 ),
               ),
               orElse: () => const SizedBox(),

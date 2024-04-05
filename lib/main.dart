@@ -16,16 +16,14 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await setupInjector();
-  runApp( EasyLocalization(
-      supportedLocales: const [ 
-        Locale('en'),
-      Locale('ar'),
-        Locale('ur')],
-      path: 'assets/translation/', 
-      fallbackLocale: const Locale('en'),
-     assetLoader: const CodegenLoader(),
-      child: const MyApp()
-    ),);
+  runApp(
+    EasyLocalization(
+        supportedLocales: const [Locale('en'), Locale('ar'), Locale('ur')],
+        path: 'assets/translation/',
+        fallbackLocale: const Locale('en'),
+        assetLoader: const CodegenLoader(),
+        child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -44,7 +42,7 @@ class MyApp extends StatelessWidget {
               create: (context) => getIt<TripCheckoutDetailsCubit>(),
             ),
             BlocProvider<MainCubit>(
-              create: (context) => getIt<MainCubit>()..initMain(),
+              create: (context) => getIt<MainCubit>()..getCachedClient(),
             ),
           ],
           child: MaterialApp.router(

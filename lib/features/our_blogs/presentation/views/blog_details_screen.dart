@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/our_blogs/data/models/blogs_model.dart';
@@ -26,9 +24,11 @@ class BlogDetailsScreen extends StatefulWidget {
 }
 
 class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
+  int totalRating = 0;
+  double aveRating = 0;
+
   @override
   Widget build(BuildContext context) {
-    getIt<Logger>().w(widget.blogs);
     return Scaffold(
       body: ListView(
         children: [
@@ -55,7 +55,11 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
               subTitle: widget.blogs.addresses[index].description,
             ),
           ),
-          if (widget.blogs.attachments!.isNotEmpty) PreviewTravelsSection(images: widget.blogs.attachments![0].images),
+          if (widget.blogs.attachments!.isNotEmpty)
+            PreviewTravelsSection(
+              images: widget.blogs.attachments![0].images,
+              aveRating: aveRating,
+            ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
@@ -75,6 +79,8 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
             id: widget.blogs.id,
             reviewsCount: widget.blogs.reviewCount,
             isTrip: false,
+            totalRating: totalRating,
+            aveRating: aveRating,
           ),
           const ExperiencesSections(),
         ],
@@ -88,7 +94,22 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
     );
-    super.initState();
+    totalRating = widget.blogs.reviewCount.oneStar! +
+        widget.blogs.reviewCount.towStar! +
+        widget.blogs.reviewCount.threeStar! +
+        widget.blogs.reviewCount.fourStar! +
+        widget.blogs.reviewCount.fiveStar!;
+
+    aveRating = 0;
+    if (totalRating != 0) {
+      aveRating = (widget.blogs.reviewCount.oneStar! +
+              widget.blogs.reviewCount.towStar! * 2 +
+              widget.blogs.reviewCount.threeStar! * 3 +
+              widget.blogs.reviewCount.fourStar! * 4 +
+              widget.blogs.reviewCount.fiveStar! * 5) /
+          totalRating;
+      super.initState();
+    }
   }
 
   @override

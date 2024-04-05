@@ -91,6 +91,10 @@ class _BestOffersItemState extends State<BestOffersItem> {
                     right: 10,
                     child: IconButtonWithWhiteBackground(
                       onPressed: () async {
+                        if (context.read<MainCubit>().client == null) {
+                          context.push(AppRoutesString.loginScreen);
+                          return;
+                        }
                         setState(() {
                           isFavorite = !isFavorite;
                         });

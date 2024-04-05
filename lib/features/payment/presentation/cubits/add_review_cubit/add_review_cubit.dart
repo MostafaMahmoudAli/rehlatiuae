@@ -59,7 +59,7 @@ class AddReviewCubit extends Cubit<AddReviewState> {
     );
     results.fold(
       (error) => _update(AddReviewState.error(error)),
-      (review) => _update(const AddReviewState.initial()),
+      (review) => _update(const AddReviewState.deleted()),
     );
   }
 

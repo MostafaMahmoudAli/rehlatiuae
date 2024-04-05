@@ -6,29 +6,18 @@ import 'package:rehlatyuae/features/all_trips/data/models/review_count.dart';
 
 class ChartRatingSection extends StatelessWidget {
   final ReviewCount? reviewsCount;
+  final int totalRating;
+  final double aveRating;
 
   const ChartRatingSection({
     this.reviewsCount,
+    required this.totalRating,
+    required this.aveRating,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    int total = reviewsCount!.oneStar! +
-        reviewsCount!.towStar! +
-        reviewsCount!.threeStar! +
-        reviewsCount!.fourStar! +
-        reviewsCount!.fiveStar!;
-
-    double ave = 0;
-    if (total != 0) {
-      ave = (reviewsCount!.oneStar! +
-              reviewsCount!.towStar! * 2 +
-              reviewsCount!.threeStar! * 3 +
-              reviewsCount!.fourStar! * 4 +
-              reviewsCount!.fiveStar! * 5) /
-          total;
-    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -52,11 +41,11 @@ class ChartRatingSection extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  ave.toStringAsFixed(1),
+                  aveRating.toStringAsFixed(1),
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Text(
-                  " ($total)",
+                  " ($totalRating)",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
@@ -66,27 +55,27 @@ class ChartRatingSection extends StatelessWidget {
         CustomRatingBar(
           starCount: 5,
           ratingCount: reviewsCount!.fiveStar ?? 0,
-          progressPercent: total != 0 ? reviewsCount!.fiveStar! / total : 0,
+          progressPercent: totalRating != 0 ? reviewsCount!.fiveStar! / totalRating : 0,
         ),
         CustomRatingBar(
           starCount: 4,
           ratingCount: reviewsCount!.fourStar ?? 0,
-          progressPercent: total != 0 ? reviewsCount!.fourStar! / total : 0,
+          progressPercent: totalRating != 0 ? reviewsCount!.fourStar! / totalRating : 0,
         ),
         CustomRatingBar(
           starCount: 3,
           ratingCount: reviewsCount!.threeStar ?? 0,
-          progressPercent: total != 0 ? reviewsCount!.threeStar! / total : 0,
+          progressPercent: totalRating != 0 ? reviewsCount!.threeStar! / totalRating : 0,
         ),
         CustomRatingBar(
           starCount: 2,
           ratingCount: reviewsCount!.towStar ?? 0,
-          progressPercent: total != 0 ? reviewsCount!.towStar! / total : 0,
+          progressPercent: totalRating != 0 ? reviewsCount!.towStar! / totalRating : 0,
         ),
         CustomRatingBar(
           starCount: 1,
           ratingCount: reviewsCount!.oneStar ?? 0,
-          progressPercent: total != 0 ? reviewsCount!.oneStar! / total : 0,
+          progressPercent: totalRating != 0 ? reviewsCount!.oneStar! / totalRating : 0,
         ),
         SizedBox(
           height: 30.h,

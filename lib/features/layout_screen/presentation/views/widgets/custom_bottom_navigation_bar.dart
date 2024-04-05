@@ -13,101 +13,97 @@ import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-  final int index;
-  final void Function(int)? onTap;
-
-  const CustomBottomNavigationBar({
-    required this.onTap,
-    required this.index,
-    super.key,
-  });
+  const CustomBottomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CurvedNavigationBar(
-      items: [
-        CurvedNavigationBarItem(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: SvgPicture.asset(
-              AppAssets.homeIcon,
+    return BlocBuilder<MainCubit, MainState>(
+      builder: (context, state) {
+        var cubit = context.read<MainCubit>();
+        return CurvedNavigationBar(
+          items: [
+            CurvedNavigationBarItem(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: SvgPicture.asset(
+                  AppAssets.homeIcon,
+                ),
+              ),
+              label: LocaleKeys.Home.tr(),
+              labelStyle: TextStyle(
+                color: cubit.currentTab == 0 ? AppColors.textAndBackgroundColorButton : AppColors.white,
+                fontSize: 12.sp,
+              ),
             ),
-          ),
-          label: LocaleKeys.Home.tr(),
-          labelStyle: TextStyle(
-            color: index == 0 ? AppColors.textAndBackgroundColorButton : AppColors.white,
-            fontSize: 12.sp,
-          ),
-        ),
-        CurvedNavigationBarItem(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: SvgPicture.asset(
-              AppAssets.searchIcon,
+            CurvedNavigationBarItem(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: SvgPicture.asset(
+                  AppAssets.searchIcon,
+                ),
+              ),
+              label: LocaleKeys.Search.tr(),
+              labelStyle: TextStyle(
+                color: cubit.currentTab == 1 ? AppColors.textAndBackgroundColorButton : AppColors.white,
+                fontSize: 12.sp,
+              ),
             ),
-          ),
-          label: LocaleKeys.Search.tr(),
-          labelStyle: TextStyle(
-            color: index == 1 ? AppColors.textAndBackgroundColorButton : AppColors.white,
-            fontSize: 12.sp,
-          ),
-        ),
-        CurvedNavigationBarItem(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: SvgPicture.asset(
-              AppAssets.bookingIcon,
+            CurvedNavigationBarItem(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: SvgPicture.asset(
+                  AppAssets.bookingIcon,
+                ),
+              ),
+              label: LocaleKeys.Booking.tr(),
+              labelStyle: TextStyle(
+                color: cubit.currentTab == 2 ? AppColors.textAndBackgroundColorButton : AppColors.white,
+                fontSize: 12.sp,
+              ),
             ),
-          ),
-          label: LocaleKeys.Booking.tr(),
-          labelStyle: TextStyle(
-            color: index == 2 ? AppColors.textAndBackgroundColorButton : AppColors.white,
-            fontSize: 12.sp,
-          ),
-        ),
-        CurvedNavigationBarItem(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Image.asset(
-              AppAssets.whatsUpLogo,
-              fit: BoxFit.contain,
+            CurvedNavigationBarItem(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Image.asset(
+                  AppAssets.whatsUpLogo,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              label: 'chat',
+              labelStyle: TextStyle(
+                color: cubit.currentTab == 3 ? AppColors.textAndBackgroundColorButton : AppColors.white,
+                fontSize: 12.sp,
+              ),
             ),
-          ),
-          label: 'chat',
-          labelStyle: TextStyle(
-            color: index == 3 ? AppColors.textAndBackgroundColorButton : AppColors.white,
-            fontSize: 12.sp,
-          ),
-        ),
-        CurvedNavigationBarItem(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: SvgPicture.asset(
-              AppAssets.accountIcon,
+            CurvedNavigationBarItem(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: SvgPicture.asset(
+                  AppAssets.accountIcon,
+                ),
+              ),
+              label: LocaleKeys.Account.tr(),
+              labelStyle: TextStyle(
+                color: cubit.currentTab == 4 ? AppColors.textAndBackgroundColorButton : AppColors.white,
+                fontSize: 12.sp,
+              ),
             ),
-          ),
-          label: LocaleKeys.Account.tr(),
-          labelStyle: TextStyle(
-            color: index == 4 ? AppColors.textAndBackgroundColorButton : AppColors.white,
-            fontSize: 12.sp,
-          ),
-        ),
-      ],
-      index: index,
-      onTap: (selectedIndex) {
-        onTap?.call(selectedIndex);
+          ],
+          index: cubit.currentTab,
+          onTap: cubit.changeCurrentTab,
+          letIndexChange: (value) {
+            if ((value == 4 || value == 2) && cubit.client == null) {
+              context.push(AppRoutesString.loginScreen);
+              return false;
+            }
+            return true;
+          },
+          backgroundColor: Colors.transparent,
+          buttonBackgroundColor: AppColors.textAndBackgroundColorButton,
+          color: AppColors.blogItemBackgroundColor,
+          animationDuration: const Duration(milliseconds: 300),
+        );
       },
-      letIndexChange: (value) {
-        if (value == 4 && context.read<MainCubit>().client == null) {
-          context.push(AppRoutesString.loginScreen);
-          return false;
-        }
-        return true;
-      },
-      backgroundColor: Colors.transparent,
-      buttonBackgroundColor: AppColors.textAndBackgroundColorButton,
-      color: AppColors.blogItemBackgroundColor,
-      animationDuration: const Duration(milliseconds: 300),
     );
   }
 }
