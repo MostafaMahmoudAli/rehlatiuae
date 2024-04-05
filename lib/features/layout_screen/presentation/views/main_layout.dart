@@ -47,56 +47,59 @@ class MainLayout extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        return Scaffold(
-          body: tabs[cubit.currentTab],
-          appBar: cubit.currentTab == 4
-              ? null
-              : AppBar(
-                  surfaceTintColor: AppColors.whiteAppColor,
-                  title: const CustomAppBarTitle(),
-                  actions: [
-                    InkWell(
-                      onTap: () {
-                        if (context.read<MainCubit>().client == null) {
-                          context.push(AppRoutesString.loginScreen);
-                        } else {
-                          cubit.currentTab = 4;
-                        }
-                      },
-                      child: BlocBuilder<MainCubit, MainState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            success: () {
-                              return context.read<MainCubit>().client != null
-                                  ? CustomCircleAvatar(
-                                      radius: 25.0.r,
-                                      backgroundColor: AppColors.whiteAppColor,
-                                      backgroundImage: CachedNetworkImageProvider(
-                                        context.read<MainCubit>().client!.imagePath,
-                                      ),
-                                    )
-                                  : CustomCircleAvatar(
-                                      radius: 25.0.r,
-                                      backgroundImage: const AssetImage(
-                                        "assets/images/Ellipse 1.png",
-                                      ),
-                                    );
-                            },
-                            orElse: () => CustomCircleAvatar(
-                              radius: 25.0.r,
-                              backgroundColor: AppColors.whiteAppColor,
-                            ),
-                          );
+        return state.maybeWhen(
+          success: () => Scaffold(
+            body: tabs[cubit.currentTab],
+            appBar: cubit.currentTab == 4
+                ? null
+                : AppBar(
+                    surfaceTintColor: AppColors.whiteAppColor,
+                    title: const CustomAppBarTitle(),
+                    actions: [
+                      InkWell(
+                        onTap: () {
+                          if (context.read<MainCubit>().client == null) {
+                            context.push(AppRoutesString.loginScreen);
+                          } else {
+                            cubit.currentTab = 4;
+                          }
                         },
+                        child: BlocBuilder<MainCubit, MainState>(
+                          builder: (context, state) {
+                            return state.maybeWhen(
+                              success: () {
+                                return context.read<MainCubit>().client != null
+                                    ? CustomCircleAvatar(
+                                        radius: 25.0.r,
+                                        backgroundColor: AppColors.whiteAppColor,
+                                        backgroundImage: CachedNetworkImageProvider(
+                                          context.read<MainCubit>().client!.imagePath,
+                                        ),
+                                      )
+                                    : CustomCircleAvatar(
+                                        radius: 25.0.r,
+                                        backgroundImage: const AssetImage(
+                                          "assets/images/Ellipse 1.png",
+                                        ),
+                                      );
+                              },
+                              orElse: () => CustomCircleAvatar(
+                                radius: 25.0.r,
+                                backgroundColor: AppColors.whiteAppColor,
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 8.w,
-                    )
-                  ],
-                ),
-          drawer: const CustomDrawer(),
-          bottomNavigationBar: const CustomBottomNavigationBar(),
+                      SizedBox(
+                        width: 8.w,
+                      )
+                    ],
+                  ),
+            drawer: const CustomDrawer(),
+            bottomNavigationBar: const CustomBottomNavigationBar(),
+          ),
+          orElse: () => const SizedBox(),
         );
       },
     );

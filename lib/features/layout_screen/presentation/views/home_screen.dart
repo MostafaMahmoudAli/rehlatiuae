@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
@@ -72,9 +71,7 @@ class HomeScreen extends StatelessWidget {
                       SearchTextField(
                         controller: _textEditingController,
                         onTap: () {
-                          context.push(
-                            AppStrings.searchScreen,
-                          );
+                          context.read<MainCubit>().changeCurrentTab(1);
                         },
                         readOnly: true,
                       ),
