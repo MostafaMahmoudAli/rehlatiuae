@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
@@ -62,9 +63,20 @@ class ProfileRepoImpl implements ProfileRepo {
   Future<Either<String, Unit>> deleteAccount() async {
     try {
       await apiConsumer.delete(EndPoints.deleteAccountEndPoint);
+      await _clearClient();
       return const Right(unit);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
+  }
+
+  Future<void> _clearClient() async {
+    await cacheService.setData(key: AppStrings.accessToken, value: null);
+    await cacheService.setData(key: AppStrings.expiresIn, value: null);
+    await cacheService.setData(key: AppStrings.client, value: null);
+    await cacheService.setData(
+      key: AppRoutesString.initialLocationRoute,
+      value: AppRoutesString.homeScreen,
+    );
   }
 }
