@@ -1,17 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:logger/logger.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/our_blogs/data/models/blogs_model.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/paragraph_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class BlogDetailsScreen extends StatefulWidget {
   final Blogs blogs;
@@ -23,9 +24,11 @@ class BlogDetailsScreen extends StatefulWidget {
 }
 
 class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
+  int totalRating = 0;
+  double aveRating = 0;
+
   @override
   Widget build(BuildContext context) {
-    getIt<Logger>().w(widget.blogs);
     return Scaffold(
       body: ListView(
         children: [
@@ -45,21 +48,29 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
                   ),
             ),
           ),
-          const ParagraphSection(
-            title: "Exciting Activities at A'Famosa Water Park",
-            subTitle:
-                'The mighty Rinjani mountain of Gunung Rinjani is a massive volcano which towers over the island of Lombok. A climb to the top is one of the most exhilarating experiences you can have in Indonesia. At 3,726 meters tall, Gunung Rinjani is the second highest mountain in Indonesia.',
+          ...List.generate(
+            widget.blogs.addresses!.length,
+            (index) => ParagraphSection(
+              title: widget.blogs.addresses![index].name,
+              subTitle: widget.blogs.addresses![index].description,
+            ),
           ),
-          // const PreviewTravelsSection(),
+          if (widget.blogs.attachments!.isNotEmpty)
+            PreviewTravelsSection(
+              images: widget.blogs.attachments![0].images,
+              aveRating: aveRating,
+            ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
-              text: 'Book Now',
+              text: LocaleKeys.Book_Now.tr(),
               borderRadius: BorderRadius.circular(16),
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
-                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppStrings.paymentOptionsScreen, extra: widget.blogs.trip);
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                    overlays: SystemUiOverlay.values);
+                context.push(AppRoutesString.paymentOptionsScreen,
+                    extra: widget.blogs.trip);
               },
               width: double.infinity,
               height: 50.h,
@@ -70,6 +81,8 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
             id: widget.blogs.id,
             reviewsCount: widget.blogs.reviewCount,
             isTrip: false,
+            totalRating: totalRating,
+            aveRating: aveRating,
           ),
           const ExperiencesSections(),
         ],
@@ -83,12 +96,28 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
     );
-    super.initState();
+    totalRating = (widget.blogs.reviewCount?.oneStar ?? 0) +
+        (widget.blogs.reviewCount?.towStar ?? 0) +
+        (widget.blogs.reviewCount?.threeStar ?? 0) +
+        (widget.blogs.reviewCount?.fourStar??0)+
+        (widget.blogs.reviewCount?.fiveStar??0);
+
+    aveRating = 0;
+    if (totalRating != 0) {
+      aveRating = ((widget.blogs.reviewCount?.oneStar??0) +
+             ( widget.blogs.reviewCount?.towStar?? 0 * 2 ) +
+             ( widget.blogs.reviewCount?.threeStar??0 * 3) +
+            (  widget.blogs.reviewCount?.fourStar??0 * 4 )+
+            (  widget.blogs.reviewCount?.fiveStar ??0 * 5)) /
+          totalRating;
+      super.initState();
+    }
   }
 
   @override
   void dispose() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
     super.dispose();
   }
 }

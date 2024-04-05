@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_button.dart';
 import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/custom_sized_box.dart';
@@ -50,16 +50,16 @@ class AllTripsBottomSection extends StatelessWidget {
                   destinations: layoutModelSectionData.topDestinations ?? [],
                 ),
                 const CustomSizedBox(),
-                 BestOffersSection(
-                  bestOffers:layoutModelSectionData.bestOffers?? [],
+                BestOffersSection(
+                  bestOffers: layoutModelSectionData.bestOffers ?? [],
                 ),
                 const CustomSizedBox(),
-                 BestTripsSection(
-                  bestTrips:layoutModelSectionData.bestTrips ?? [],
+                BestTripsSection(
+                  bestTrips: layoutModelSectionData.bestTrips ?? [],
                 ),
                 const CustomSizedBox(),
-                 PopularExperiencesSection(
-                  popularExperiences:layoutModelSectionData.popularExperience?? [],
+                PopularExperiencesSection(
+                  popularExperiences: layoutModelSectionData.popularExperience ?? [],
                 ),
                 const CustomSizedBox(),
                 const WhyChooseUsSection(),
@@ -77,8 +77,8 @@ class AllTripsBottomSection extends StatelessWidget {
                 const CustomSizedBox(),
                 const BestOffersHorizontal(),
                 const CustomSizedBox(),
-                 ReviewsSection(
-                  reviews:layoutModelSectionData.reviews?? [],
+                ReviewsSection(
+                  reviews: layoutModelSectionData.reviews ?? [],
                 ),
               ],
             ),

@@ -1,4 +1,31 @@
-class AppRoutesStrings
-{
+class AppRoutesString {
+  static const homeScreen = "/HomeScreen";
+  static const allTripsScreen = "/AllTripsScreen";
+  static const allCategoriesScreen = "/AllCategoriesScreen";
+  static const bestOffersScreen = "/BestOffersScreen";
+  static const bestTripsScreen = "/BestTripsScreen";
+  static const ourBlogsScreen = "/OurBlogsScreen";
+  static const popularExperiencesScreen = "/PopularExperiencesScreen";
+  static const topDestinationScreen = "/TopDestinationScreen";
+  static const aboutUsScreen = "/aboutUsScreen";
+  static const termsConditionsScreen = "/termsConditionsScreen";
+  static const privacyPolicyScreen = "/privacyPolicyScreen";
+  static const faqsScreen = "/faqsScreen";
+  static const paymentOptionsScreen = "/paymentOptionsScreen";
+  static const paymentDetailsScreen = "/paymentDetailsScreen";
+  static const profileScreen = "/profileScreen";
+  static const editProfileScreen = "/editProfileScreen";
+  static const travelDetailsScreen = "/travelDetailsScreen";
+  static const blogScreen = "/blogScreen";
+  static const splashScreen = "/";
+  static const onboarding = "/onboarding";
+  static const loginScreen = "/loginScreen";
+  static const registerScreen = "/registerScreen";
+  static const forgetPasswordScreen = "/forgetPasswordScreen";
+  static const verificationScreen = "/verificationScreen";
+  static const updatePasswordScreen = "/updatePasswordScreen";
+  static const categoryNameScreen = "/categoryNameScreen";
+  static const cityDestinationScreen = "/cityDestinationScreen";
   static const blogsSearchScreen = "/searchScreen";
+  static const initialLocationRoute = "initialLocationRoute";
 }

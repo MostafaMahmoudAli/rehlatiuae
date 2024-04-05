@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
@@ -14,6 +15,7 @@ import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_preferences_list.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
   final Trips? trip;
@@ -25,6 +27,9 @@ class TravelDetailsScreen extends StatefulWidget {
 }
 
 class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
+  int totalRating = 0;
+  double aveRating = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +51,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
               child: Text(
-                "Select your Preferences",
+                LocaleKeys.Select_your_Preferences.tr(),
                 style: Theme.of(context).textTheme.labelMedium,
               ),
             ),
@@ -72,16 +77,16 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
               content: widget.trip!.addresses![index].description,
             ),
           ),
-          PreviewTravelsSection(images: widget.trip!.images),
+          PreviewTravelsSection(images: widget.trip!.images, aveRating: aveRating),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
-              text: 'Book Now',
+              text: LocaleKeys.Book_Now.tr(),
               borderRadius: BorderRadius.circular(16),
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppStrings.paymentOptionsScreen, extra: widget.trip,);
+                context.push(AppRoutesString.paymentOptionsScreen, extra: widget.trip);
               },
               width: double.infinity,
               height: 50.h,
@@ -91,6 +96,8 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             reviews: widget.trip!.reviews,
             id: widget.trip!.id,
             reviewsCount: widget.trip!.reviewsCount,
+            aveRating: aveRating,
+            totalRating: totalRating,
           ),
           const ExperiencesSections(),
         ],
@@ -104,6 +111,21 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
     );
+    totalRating = widget.trip!.reviewsCount!.oneStar! +
+        widget.trip!.reviewsCount!.towStar! +
+        widget.trip!.reviewsCount!.threeStar! +
+        widget.trip!.reviewsCount!.fourStar! +
+        widget.trip!.reviewsCount!.fiveStar!;
+
+    aveRating = 0;
+    if (totalRating != 0) {
+      aveRating = (widget.trip!.reviewsCount!.oneStar! +
+              widget.trip!.reviewsCount!.towStar! * 2 +
+              widget.trip!.reviewsCount!.threeStar! * 3 +
+              widget.trip!.reviewsCount!.fourStar! * 4 +
+              widget.trip!.reviewsCount!.fiveStar! * 5) /
+          totalRating;
+    }
     super.initState();
   }
 

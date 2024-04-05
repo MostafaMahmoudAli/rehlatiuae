@@ -52,23 +52,26 @@ class _PopularExperiencesBodyState extends State<PopularExperiencesBody> {
           case PopularExperiencesStatus.loading:
             return const Center(child: CircularProgressIndicator());
           case PopularExperiencesStatus.success:
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 3 / 3,
-                crossAxisSpacing: 10.0.w,
-                mainAxisSpacing: 10.0.w,
+            return Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.5,
+                  crossAxisSpacing: 10.0.w,
+                  mainAxisSpacing: 10.0.w,
+                ),
+                itemBuilder: (context, index) => PopularExperiencesContainerItem(
+                  width: 140.w,
+                  popularExperiences: state.popularExperiences[index],
+                  oldTripPrice: state.popularExperiences[index].beforePrice ?? "",
+                  percentageSave: state.popularExperiences[index].saving ?? "",
+                ),
+                itemCount: state.popularExperiences.length,
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                padding: EdgeInsets.zero,
               ),
-              itemBuilder: (context, index) => PopularExperiencesContainerItem(
-                width: 140.w,
-                popularExperiences: state.popularExperiences[index],
-                oldTripPrice: state.popularExperiences[index].beforePrice ?? "",
-                percentageSave: state.popularExperiences[index].saving ?? "",
-              ),
-              itemCount: state.popularExperiences.length,
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              padding: EdgeInsets.zero,
             );
           case PopularExperiencesStatus.error:
             return ErrorsWidget(

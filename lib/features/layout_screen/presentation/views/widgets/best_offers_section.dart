@@ -1,10 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../../../../../core/utils/whats_up_botton.dart';
 import '../../../../all_trips/data/models/trips_model.dart';
 
@@ -21,17 +23,22 @@ class BestOffersSection extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding:  EdgeInsets.symmetric(horizontal:10.0.w),
+          padding:EdgeInsetsDirectional.only(
+              start: 10.0.w,
+            end: 10.0.w,
+            bottom: 10.0.h,
+          ),
           child: CustomRowTitle(
-            text: AppStrings.bestOffersTitle,
+            text: LocaleKeys.Best_Offers.tr(),
             onPressed: () {
-              context.push(AppStrings.bestOffersScreen);
+              context.push(AppRoutesString.bestOffersScreen);
             },
           ),
         ),
         Stack(
           children: [
             ListView.separated(
+              padding:EdgeInsetsDirectional.symmetric(horizontal: 8.0.w),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
@@ -44,7 +51,7 @@ class BestOffersSection extends StatelessWidget {
               },
               separatorBuilder: (context, index) {
                 return SizedBox(
-                  height: 10.0.h,
+                  height: 20.0.h,
                 );
               },
               itemCount: bestOffers.length,

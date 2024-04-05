@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +6,8 @@ import 'package:rehlatyuae/core/app_theme/app_theme.dart';
 import 'package:rehlatyuae/core/routes/app_router.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
+import 'package:rehlatyuae/generated/codegen_loader.g.dart';
+
 import 'core/utils/bloc_observer.dart';
 import 'core/utils/injector.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -16,9 +19,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey=StripeApiKeys.publishableKey;
   stripeSdk.Stripe.init(StripeApiKeys.publishableKey);
+  await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await setupInjector();
-  runApp(const MyApp());
+  runApp(
+    EasyLocalization(
+        supportedLocales: const [Locale('en'), Locale('ar'), Locale('ur')],
+        path: 'assets/translation/',
+        fallbackLocale: const Locale('en'),
+        assetLoader: const CodegenLoader(),
+        child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -41,6 +52,9 @@ class MyApp extends StatelessWidget {
             ),
           ],
           child: MaterialApp.router(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
             theme: appTheme(),
             debugShowCheckedModeBanner: false,
             routerConfig: getIt<AppRouter>().router,

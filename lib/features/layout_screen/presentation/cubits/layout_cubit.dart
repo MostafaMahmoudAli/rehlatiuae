@@ -12,14 +12,12 @@ class LayoutCubit extends Cubit<LayoutState> {
   LayoutCubit({required this.layoutRepository}) : super(const LayoutState.initial());
 
   Future<void> fetchLayoutData() async {
-    emit(const LayoutState.loading());
+    _update(const LayoutState.loading());
     final results = await layoutRepository.fetchLayoutData();
 
     results.fold(
       (errorMessage) => _update(LayoutState.error(errorMessage)),
-      (layoutModel) {
-        _update(LayoutState.loaded(layoutModel));
-      },
+      (layoutModel) => _update(LayoutState.loaded(layoutModel)),
     );
   }
 
@@ -28,4 +26,5 @@ class LayoutCubit extends Cubit<LayoutState> {
       emit(state);
     }
 }
+
 }

@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
@@ -20,12 +21,12 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/rev
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top_destination_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
 
-class HomeScreen extends StatelessWidget
-{
+class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final TextEditingController _textEditingController = TextEditingController();
@@ -41,14 +42,10 @@ class HomeScreen extends StatelessWidget
               context: context,
               builder: (context) => CustomDialog(
                 title: errorMessage,
-                subtitle: 'Sorry',
-                labelText: 'Close',
+                subtitle: LocaleKeys.Sorry.tr(),
+                labelText: LocaleKeys.Close.tr(),
               ),
             ),
-            loaded: (layoutModel) {
-              context.read<MainCubit>().bestTrips = layoutModel.bestTrips ?? [];
-              context.read<MainCubit>().popularExperience = layoutModel.popularExperience ?? [];
-            },
           );
         },
         builder: (context, state) {
@@ -56,7 +53,7 @@ class HomeScreen extends StatelessWidget
             initial: () => const Center(child: CircularProgressIndicator()),
             loading: () => const Center(child: CircularProgressIndicator()),
             loaded: (layoutModel) => Scaffold(
-              body:Padding(
+              body: Padding(
                 padding: EdgeInsetsDirectional.only(
                   top: 20.0.h,
                 ).copyWith(bottom: 0),
@@ -66,11 +63,11 @@ class HomeScreen extends StatelessWidget
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding:  EdgeInsets.symmetric(vertical: 10.0.h,horizontal:10.0.h),
+                        padding:  EdgeInsets.symmetric(vertical: 10.0.h,horizontal:15.0.h),
                         child: SearchTextField(
                           controller: _textEditingController,
                           onTap: () {
-
+                            context.read<MainCubit>().changeCurrentTab(1);
                           },
                           readOnly: true,
                         ),
@@ -107,13 +104,17 @@ class HomeScreen extends StatelessWidget
                       const WhyChooseUsSection(),
                       const CustomSizedBox(),
                       const WeHelpYouSection(),
+                      const CustomSizedBox(),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal:10.0.w),
+                        padding:EdgeInsets.symmetric(
+                            horizontal:20.0.w,
+                          vertical: 10.0.h,
+                        ),
                         child: CustomActionButton(
                           onTap: () {
-                            context.push(AppStrings.allTripsScreen);
+                            context.push(AppRoutesString.allTripsScreen);
                           },
-                          text: AppStrings.actionButtonName,
+                          text: LocaleKeys.Explore_More.tr(),
                           height: 70.0.h,
                           width: double.infinity,
                           borderRadius: BorderRadius.circular(12.0.r),

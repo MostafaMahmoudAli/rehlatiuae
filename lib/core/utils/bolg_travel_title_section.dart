@@ -1,10 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gallery_image_viewer/gallery_image_viewer.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class BolgTravelTitleSection extends StatefulWidget {
   final String title;
@@ -52,16 +56,22 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
       child: Stack(
         children: [
           Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(
-                    widget.imagePath,
+            child: InkWell(
+              onTap: () {
+                final imageProvider = CachedNetworkImageProvider(widget.imagePath);
+                showImageViewer(context, imageProvider);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(
+                      widget.imagePath,
+                    ),
+                    fit: BoxFit.fill,
                   ),
-                  fit: BoxFit.fill,
-                ),
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(30.sp),
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(30.sp),
+                  ),
                 ),
               ),
             ),
@@ -82,6 +92,10 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                     icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                     iconColor: AppColors.redAppColor,
                     onPressed: () {
+                      if (context.read<MainCubit>().client == null) {
+                        context.push(AppRoutesString.loginScreen);
+                        return;
+                      }
                       setState(() {
                         isFavorite = !isFavorite;
                       });

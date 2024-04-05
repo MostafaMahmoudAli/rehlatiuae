@@ -1,14 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gallery_image_viewer/gallery_image_viewer.dart';
 import 'package:rehlatyuae/features/best_offers/data/models/images_model.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class PreviewTravelsSection extends StatelessWidget {
-  final bool hasBookButton;
   final List<ImagesModel>? images;
+  final double aveRating;
 
   const PreviewTravelsSection({
-    this.hasBookButton = true,
+    required this.aveRating,
     this.images,
     super.key,
   });
@@ -23,7 +26,7 @@ class PreviewTravelsSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Preview",
+                LocaleKeys.Preview.tr(),
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               Container(
@@ -43,7 +46,7 @@ class PreviewTravelsSection extends StatelessWidget {
                       width: 5.w,
                     ),
                     Text(
-                      "4,8",
+                      aveRating.toStringAsFixed(1),
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ],
@@ -58,16 +61,30 @@ class PreviewTravelsSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             scrollDirection: Axis.horizontal,
             itemCount: images!.length,
-            itemBuilder: (context, index) => Container(
-              width: 90,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(
-                    images![index].imagePath,
+            itemBuilder: (context, index) => InkWell(
+              onTap: () {
+                MultiImageProvider multiImageProvider = MultiImageProvider(
+                  images!
+                      .map(
+                        (e) => CachedNetworkImageProvider(
+                          e.imagePath,
+                        ),
+                      )
+                      .toList(),
+                );
+                showImageViewerPager(context, multiImageProvider);
+              },
+              child: Container(
+                width: 90,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(
+                      images![index].imagePath,
+                    ),
+                    fit: BoxFit.fill,
                   ),
-                  fit: BoxFit.fill,
+                  borderRadius: BorderRadius.circular(9),
                 ),
-                borderRadius: BorderRadius.circular(9),
               ),
             ),
             separatorBuilder: (context, index) => const SizedBox(width: 12),

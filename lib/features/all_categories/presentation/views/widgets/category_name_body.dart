@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/blocs/category_name_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../../core/utils/custom_container_trip.dart';
 import '../../../../../core/utils/custom_dialog.dart';
@@ -20,8 +22,8 @@ class CategoryNameBody extends StatelessWidget {
             context: context,
             builder: (context) => CustomDialog(
               title: errorMessage,
-              subtitle: 'Sorry',
-              labelText: 'Close',
+              subtitle: LocaleKeys.Sorry.tr(),
+              labelText: LocaleKeys.Close.tr(),
             ),
           ),
         );
@@ -31,22 +33,23 @@ class CategoryNameBody extends StatelessWidget {
           loading: () => const Center(
             child: CircularProgressIndicator(),
           ),
-          loaded:(categoryNameTrips)=> GridView.builder(
+          loaded: (categoryNameTrips) => GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 10.0.w,
               mainAxisSpacing: 15.0.w,
-              childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.6,
+              childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.6,
             ),
             itemBuilder: (context, index) => CustomContainerTrip(
               width: 200.0.w,
-              cityName:categoryNameTrips[index].name?? "",
-              countryName:categoryNameTrips[index].description?? "",
-              imageName:categoryNameTrips[index].imagePath?? "",
-              tripPrice:categoryNameTrips[index].adultPrice.toString(),
+              cityName: categoryNameTrips[index].name ?? "",
+              countryName: categoryNameTrips[index].description ?? "",
+              imageName: categoryNameTrips[index].imagePath ?? "",
+              tripPrice: categoryNameTrips[index].adultPrice.toString(),
               reservationType: "/person",
+              trip: categoryNameTrips[index],
             ),
-            itemCount:categoryNameTrips.length,
+            itemCount: categoryNameTrips.length,
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             padding: EdgeInsets.zero,
@@ -54,7 +57,6 @@ class CategoryNameBody extends StatelessWidget {
           orElse: () => const SizedBox(),
         );
       },
-
     );
   }
 }

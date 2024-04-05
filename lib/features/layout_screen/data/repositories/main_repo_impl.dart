@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:currency_converter/currency.dart';
+import 'package:currency_converter/currency_converter.dart';
 import 'package:dartz/dartz.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
@@ -44,6 +46,68 @@ class MainRepoImpl implements MainRepo {
       return const Right(unit);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
+    }
+  }
+
+  @override
+  Either<String, (Currency, double)> getCurrentCurrencyAndTotalUnPaid() {
+    try {
+      var stringCurrency = cacheService.getData<String>(
+        key: AppStrings.currentCurrency,
+      );
+      Currency currency = Currency.usd;
+      if (stringCurrency != null) {
+        currency = fromName(stringCurrency);
+      }
+      double totalUnPayedBooking = cacheService.getData<double>(
+            key: AppStrings.totalUnPaidBooking,
+          ) ??
+          0;
+      return Right(
+        (currency, totalUnPayedBooking),
+      );
+    } catch (error) {
+      return Left(error.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, double?>> convertCurrency({
+    required Currency targetCurrency,
+    required double totalAmount,
+  }) async {
+    try {
+      final total = await CurrencyConverter.convert(
+        from: Currency.usd,
+        to: targetCurrency,
+        amount: totalAmount,
+      );
+      cacheService.setData(
+        key: AppStrings.currentCurrency,
+        value: targetCurrency.name,
+      );
+      cacheService.setData(
+        key: AppStrings.totalUnPaidBooking,
+        value: total,
+      );
+      return Right(total);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+  Currency fromName(String name) {
+    switch (name) {
+      case 'aed':
+        return Currency.aed;
+      case 'usd':
+        return Currency.usd;
+      case 'sar':
+        return Currency.sar;
+      case 'eur':
+        return Currency.eur;
+      default:
+        return Currency.usd;
     }
   }
 }

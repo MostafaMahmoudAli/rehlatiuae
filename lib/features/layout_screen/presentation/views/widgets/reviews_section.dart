@@ -1,14 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
+import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/regex.dart';
 import '../../../data/models/review_model.dart';
@@ -24,13 +26,14 @@ class ReviewsSection extends StatelessWidget {
     return Column(
       children: [
         Text(
-          AppStrings.reviewTitle,
+          LocaleKeys.Our_Client_Reviews.tr(),
           style: Theme.of(context).textTheme.labelMedium,
         ),
         const CustomSizedBox(),
         SizedBox(
           height: 350.0.h,
           child: ListView.separated(
+            padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
             itemCount: reviews?.length ?? 0,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -44,8 +47,7 @@ class ReviewsSection extends StatelessWidget {
                       CustomCircleAvatar(
                         radius: 40.0.r,
                         backgroundImage: CachedNetworkImageProvider(
-                          reviews?[index].client?.imagePath ??
-                              "assets/images/Ellipse 1.png",
+                          reviews?[index].client?.imagePath ?? "assets/images/Ellipse 1.png",
                         ),
                       ),
                       SizedBox(
@@ -54,7 +56,7 @@ class ReviewsSection extends StatelessWidget {
                       SizedBox(
                         width: 210.0.w,
                         child: Text(
-                          reviews?[index].description ??
+                          // reviews?[index].description ??
                           AppStrings.weHelpYouMakeBestTripDescription,
                           style: Theme.of(context).textTheme.bodyLarge,
                           maxLines: 10,
@@ -99,10 +101,10 @@ class ReviewsSection extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 40.0.h,
+          height: 20.0.h,
         ),
         Text(
-          AppStrings.subscribeToNewsletterTitle,
+          LocaleKeys.Subscribe_to_Newsletter.tr(),
           style: Theme.of(context).textTheme.labelMedium,
         ),
         SizedBox(
@@ -113,7 +115,7 @@ class ReviewsSection extends StatelessWidget {
           height: 50.0.h,
         ),
         Text(
-          AppStrings.copyRight,
+          'copyRight',
           style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                 fontSize: 14.0.sp,
               ),
@@ -140,8 +142,8 @@ class SubscriptionSection extends StatelessWidget {
                 context: context,
                 builder: (context) => CustomDialog(
                   title: message,
-                  subtitle: 'Sorry',
-                  labelText: 'Close',
+                  subtitle: LocaleKeys.Sorry.tr(),
+                  labelText: LocaleKeys.Close.tr(),
                   color: AppColors.redAppColor,
                 ),
               );
@@ -184,7 +186,7 @@ class SubscriptionSection extends StatelessWidget {
                           minLines: 1,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: AppStrings.reviewTextFieldName,
+                            hintText:"name  Salmaaaaaaaaaaaa" ,
                             hintStyle:
                                 Theme.of(context).textTheme.headlineSmall,
                           ),
@@ -215,7 +217,7 @@ class SubscriptionSection extends StatelessWidget {
                               AppValidator.validateEmail(value),
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: AppStrings.reviewTextFieldEmail,
+                            hintText: LocaleKeys.Email.tr(),
                             hintStyle:
                                 Theme.of(context).textTheme.headlineSmall,
                           ),
@@ -225,7 +227,7 @@ class SubscriptionSection extends StatelessWidget {
                         height: 15.0.h,
                       ),
                       CustomActionButton(
-                        text: AppStrings.reviewActionButtonName,
+                        text: LocaleKeys.Send_Now.tr(),
                         borderRadius: BorderRadius.circular(8.0.r),
                         backGroundColor: AppColors.textAndBackgroundColorButton,
                         onTap: () async {

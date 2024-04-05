@@ -4,6 +4,13 @@ import 'package:rehlatyuae/core/utils/app_colors.dart';
 
 ThemeData appTheme() {
   return ThemeData(
+    appBarTheme: const AppBarTheme(
+      elevation: 0.0,
+      shadowColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+      scrolledUnderElevation: 0.0,
+      backgroundColor: Colors.transparent
+    ),
     primaryColor: AppColors.textAndBackgroundColorButton,
     scaffoldBackgroundColor: AppColors.backgroundWhite,
     // colorScheme: ColorScheme.fromSwatch(

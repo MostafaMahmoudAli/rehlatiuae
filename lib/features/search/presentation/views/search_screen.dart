@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import '../../../../core/utils/custom_container_trip.dart';
 import '../../../../core/utils/custom_dialog.dart';

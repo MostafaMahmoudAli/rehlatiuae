@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
 
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_button.dart';
 import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/custom_sized_box.dart';
@@ -47,48 +48,54 @@ class CityDestinationBottomSection extends StatelessWidget {
             loaded: (layoutModelSectionData) => Column(
               children: [
                 BestOffersSection(
-                  bestOffers:layoutModelSectionData.bestOffers?? [],
+                  bestOffers: layoutModelSectionData.bestOffers ?? [],
                 ),
                 const CustomSizedBox(),
                 BestTripsSection(
-                  bestTrips:layoutModelSectionData.bestTrips?? [],
+                  bestTrips: layoutModelSectionData.bestTrips ?? [],
                 ),
                 const CustomSizedBox(),
                 PopularExperiencesSection(
-                  popularExperiences:layoutModelSectionData.popularExperience?? [],
+                  popularExperiences: layoutModelSectionData.popularExperience ?? [],
                 ),
                 const CustomSizedBox(),
                 OurBlogSection(
-                  blogs:layoutModelSectionData.blogs?? [],
+                  blogs: layoutModelSectionData.blogs ?? [],
                 ),
                 const CustomSizedBox(),
                 OurPartnerSection(
-                  ourPartners:layoutModelSectionData.ourPartners?? [],
+                  ourPartners: layoutModelSectionData.ourPartners ?? [],
                 ),
                 const CustomSizedBox(),
                 const WhyChooseUsSection(),
                 const CustomSizedBox(),
                 const WeHelpYouSection(),
-                CustomActionButton(
-                  onTap: () {
-                    context.push(AppStrings.allTripsScreen);
-                  },
-                  text: AppStrings.actionButtonName,
-                  height: 70.0.h,
-                  width: double.infinity,
-                  borderRadius: BorderRadius.circular(12.0.r),
-                  backGroundColor: AppColors.orange,
-                  style: Theme.of(context).textTheme.displayLarge,
+                Padding(
+                  padding:EdgeInsets.symmetric(
+                    horizontal:15.0.w,
+                    vertical: 10.0.h,
+                  ),
+                  child: CustomActionButton(
+                    onTap: () {
+                      context.push(AppRoutesString.allTripsScreen);
+                    },
+                    text: AppStrings.actionButtonName,
+                    height: 70.0.h,
+                    width: double.infinity,
+                    borderRadius: BorderRadius.circular(12.0.r),
+                    backGroundColor: AppColors.orange,
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
                 ),
                 const CustomSizedBox(),
                 const BestOffersHorizontal(),
                 const CustomSizedBox(),
                 ReviewsSection(
-                  reviews:layoutModelSectionData.reviews?? [],
+                  reviews: layoutModelSectionData.reviews ?? [],
                 ),
                 const CustomSizedBox(),
                 CategoriesSection(
-                  categories:layoutModelSectionData.categories?? [],
+                  categories: layoutModelSectionData.categories ?? [],
                 ),
               ],
             ),

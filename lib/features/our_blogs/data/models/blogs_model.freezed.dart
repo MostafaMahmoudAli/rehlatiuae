@@ -32,6 +32,7 @@ mixin _$Blogs {
   List<AddressModel>? get addresses => throw _privateConstructorUsedError;
   @JsonKey(name: "review_count")
   ReviewCount? get reviewCount => throw _privateConstructorUsedError;
+  List<Attachment>? get attachments => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +54,8 @@ abstract class $BlogsCopyWith<$Res> {
       List<Review>? blogReview,
       Trips? trip,
       List<AddressModel>? addresses,
-      @JsonKey(name: "review_count") ReviewCount? reviewCount});
+      @JsonKey(name: "review_count") ReviewCount? reviewCount,
+      List<Attachment>? attachments});
 
   $TripsCopyWith<$Res>? get trip;
   $ReviewCountCopyWith<$Res>? get reviewCount;
@@ -82,6 +84,7 @@ class _$BlogsCopyWithImpl<$Res, $Val extends Blogs>
     Object? trip = freezed,
     Object? addresses = freezed,
     Object? reviewCount = freezed,
+    Object? attachments = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -124,6 +127,10 @@ class _$BlogsCopyWithImpl<$Res, $Val extends Blogs>
           ? _value.reviewCount
           : reviewCount // ignore: cast_nullable_to_non_nullable
               as ReviewCount?,
+      attachments: freezed == attachments
+          ? _value.attachments
+          : attachments // ignore: cast_nullable_to_non_nullable
+              as List<Attachment>?,
     ) as $Val);
   }
 
@@ -169,7 +176,8 @@ abstract class _$$BlogsImplCopyWith<$Res> implements $BlogsCopyWith<$Res> {
       List<Review>? blogReview,
       Trips? trip,
       List<AddressModel>? addresses,
-      @JsonKey(name: "review_count") ReviewCount? reviewCount});
+      @JsonKey(name: "review_count") ReviewCount? reviewCount,
+      List<Attachment>? attachments});
 
   @override
   $TripsCopyWith<$Res>? get trip;
@@ -198,6 +206,7 @@ class __$$BlogsImplCopyWithImpl<$Res>
     Object? trip = freezed,
     Object? addresses = freezed,
     Object? reviewCount = freezed,
+    Object? attachments = freezed,
   }) {
     return _then(_$BlogsImpl(
       id: freezed == id
@@ -240,6 +249,10 @@ class __$$BlogsImplCopyWithImpl<$Res>
           ? _value.reviewCount
           : reviewCount // ignore: cast_nullable_to_non_nullable
               as ReviewCount?,
+      attachments: freezed == attachments
+          ? _value._attachments
+          : attachments // ignore: cast_nullable_to_non_nullable
+              as List<Attachment>?,
     ));
   }
 }
@@ -257,9 +270,11 @@ class _$BlogsImpl implements _Blogs {
       final List<Review>? blogReview,
       this.trip,
       final List<AddressModel>? addresses,
-      @JsonKey(name: "review_count") this.reviewCount})
+      @JsonKey(name: "review_count") this.reviewCount,
+      final List<Attachment>? attachments})
       : _blogReview = blogReview,
-        _addresses = addresses;
+        _addresses = addresses,
+        _attachments = attachments;
 
   factory _$BlogsImpl.fromJson(Map<String, dynamic> json) =>
       _$$BlogsImplFromJson(json);
@@ -302,10 +317,19 @@ class _$BlogsImpl implements _Blogs {
   @override
   @JsonKey(name: "review_count")
   final ReviewCount? reviewCount;
+  final List<Attachment>? _attachments;
+  @override
+  List<Attachment>? get attachments {
+    final value = _attachments;
+    if (value == null) return null;
+    if (_attachments is EqualUnmodifiableListView) return _attachments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Blogs(id: $id, name: $name, description: $description, imagePath: $imagePath, createdAt: $createdAt, reviewAverage: $reviewAverage, blogReview: $blogReview, trip: $trip, addresses: $addresses, reviewCount: $reviewCount)';
+    return 'Blogs(id: $id, name: $name, description: $description, imagePath: $imagePath, createdAt: $createdAt, reviewAverage: $reviewAverage, blogReview: $blogReview, trip: $trip, addresses: $addresses, reviewCount: $reviewCount, attachments: $attachments)';
   }
 
   @override
@@ -329,7 +353,9 @@ class _$BlogsImpl implements _Blogs {
             const DeepCollectionEquality()
                 .equals(other._addresses, _addresses) &&
             (identical(other.reviewCount, reviewCount) ||
-                other.reviewCount == reviewCount));
+                other.reviewCount == reviewCount) &&
+            const DeepCollectionEquality()
+                .equals(other._attachments, _attachments));
   }
 
   @JsonKey(ignore: true)
@@ -345,7 +371,8 @@ class _$BlogsImpl implements _Blogs {
       const DeepCollectionEquality().hash(_blogReview),
       trip,
       const DeepCollectionEquality().hash(_addresses),
-      reviewCount);
+      reviewCount,
+      const DeepCollectionEquality().hash(_attachments));
 
   @JsonKey(ignore: true)
   @override
@@ -363,17 +390,17 @@ class _$BlogsImpl implements _Blogs {
 
 abstract class _Blogs implements Blogs {
   const factory _Blogs(
-          {required final int? id,
-          required final String? name,
-          required final String? description,
-          required final String? imagePath,
-          @JsonKey(name: "created_at") required final DateTime? createdAt,
-          final int? reviewAverage,
-          final List<Review>? blogReview,
-          final Trips? trip,
-          final List<AddressModel>? addresses,
-          @JsonKey(name: "review_count") final ReviewCount? reviewCount}) =
-      _$BlogsImpl;
+      {required final int? id,
+      required final String? name,
+      required final String? description,
+      required final String? imagePath,
+      @JsonKey(name: "created_at") required final DateTime? createdAt,
+      final int? reviewAverage,
+      final List<Review>? blogReview,
+      final Trips? trip,
+      final List<AddressModel>? addresses,
+      @JsonKey(name: "review_count") final ReviewCount? reviewCount,
+      final List<Attachment>? attachments}) = _$BlogsImpl;
 
   factory _Blogs.fromJson(Map<String, dynamic> json) = _$BlogsImpl.fromJson;
 
@@ -399,6 +426,8 @@ abstract class _Blogs implements Blogs {
   @override
   @JsonKey(name: "review_count")
   ReviewCount? get reviewCount;
+  @override
+  List<Attachment>? get attachments;
   @override
   @JsonKey(ignore: true)
   _$$BlogsImplCopyWith<_$BlogsImpl> get copyWith =>

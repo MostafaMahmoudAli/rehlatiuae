@@ -48,26 +48,29 @@ class _AllTripsBodyState extends State<BestTripsBody> {
           case BestTripsStatus.loading:
             return const Center(child: CircularProgressIndicator());
           case BestTripsStatus.success:
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2.2 / 3,
-                crossAxisSpacing: 10.0.w,
-                mainAxisSpacing: 1.0.w,
+            return Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio:MediaQuery.sizeOf(context).aspectRatio/0.55,
+                  crossAxisSpacing: 10.0.w,
+                  mainAxisSpacing: 1.0.w,
+                ),
+                itemBuilder: (context, index) => CustomContainerTrip(
+                  width: 140.0.w,
+                  trip: state.bestTrips[index],
+                  cityName: state.bestTrips[index].name,
+                  countryName: state.bestTrips[index].address,
+                  imageName: state.bestTrips[index].imagePath ?? "",
+                  tripPrice: state.bestTrips[index].adultPrice.toString(),
+                  reservationType: "/person",
+                ),
+                itemCount: state.bestTrips.length,
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                padding: EdgeInsets.zero,
               ),
-              itemBuilder: (context, index) => CustomContainerTrip(
-                width: 140.0.w,
-                trip: state.bestTrips[index],
-                cityName: state.bestTrips[index].name,
-                countryName: state.bestTrips[index].address,
-                imageName: state.bestTrips[index].imagePath ?? "",
-                tripPrice: state.bestTrips[index].adultPrice.toString(),
-                reservationType: "/person",
-              ),
-              itemCount: state.bestTrips.length,
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              padding: EdgeInsets.zero,
             );
           case BestTripsStatus.error:
             return ErrorsWidget(

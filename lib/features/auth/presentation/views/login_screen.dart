@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
@@ -12,6 +13,7 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/core/utils/regex.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -37,15 +39,15 @@ class LoginScreen extends StatelessWidget {
                 state.whenOrNull(
                   success: (authenticatedClient) {
                     context.read<MainCubit>().getCachedClient();
-                    context.go(AppStrings.homeScreen);
+                    context.go(AppRoutesString.homeScreen);
                   },
                   error: (message) {
                     showDialog(
                       context: context,
                       builder: (context) => CustomDialog(
                         title: message,
-                        subtitle: 'Sorry',
-                        labelText: 'Close',
+                        subtitle:  LocaleKeys.Sorry.tr(),
+                        labelText:  LocaleKeys.Close.tr(),
                         color: AppColors.redAppColor,
                       ),
                     );
@@ -70,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                'LogIn today',
+                                LocaleKeys.LogIn_today.tr(),
                                 style: Theme.of(context).textTheme.headlineLarge,
                               ),
                             ],
@@ -91,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                           PrimaryTextField(
                             controller: cubit.passwordEditingController,
                             validator: (value) => AppValidator.validatePassword(value),
-                            hint: 'password',
+                            hint: LocaleKeys.password.tr(),
                             padding: EdgeInsets.zero,
                             textColor: AppColors.white,
                             suffix: const Icon(
@@ -107,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                                 onPressed: () {
                                   context.push('/forgetPasswordScreen');
                                 },
-                                text: 'Forgot Password?',
+                                text:  LocaleKeys.Forgot_Password.tr(),
                               ),
                             ],
                           ),
@@ -117,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                               await cubit.login();
                               // context.go(AppStrings.homeScreen);
                             },
-                            text: 'LogIn',
+                            text: LocaleKeys.LogIn.tr(),
                             borderRadius: BorderRadius.circular(12.r),
                             backGroundColor: AppColors.textAndBackgroundColorButton,
                             height: 60.h,
@@ -128,14 +130,14 @@ class LoginScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Didn’t have any account?',
+                                LocaleKeys.Didnt_have_any_account.tr(),
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               DefaultTextButton(
                                 onPressed: () {
                                   context.push('/registerScreen');
                                 },
-                                text: 'Sign Up here',
+                                text: LocaleKeys.Sign_Up_here.tr(),
                               ),
                             ],
                           ),

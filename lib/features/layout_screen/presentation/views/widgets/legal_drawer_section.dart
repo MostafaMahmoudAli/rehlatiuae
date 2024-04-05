@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class LegalDrawerSection extends StatelessWidget {
   const LegalDrawerSection({super.key});
@@ -23,7 +25,7 @@ class LegalDrawerSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Legal",
+                LocaleKeys.Legal.tr(),
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: AppColors.black,
                     ),
@@ -32,7 +34,7 @@ class LegalDrawerSection extends StatelessWidget {
           ),
         ),
         DrawerItem(
-          title: 'Privacy Policy',
+          title: LocaleKeys.Privacy_Policy.tr(),
           iconPath: AppAssets.privacyPolicy,
           trailing: const [
             Icon(
@@ -44,7 +46,7 @@ class LegalDrawerSection extends StatelessWidget {
           },
         ),
         DrawerItem(
-          title: 'Terms of Usage',
+          title: LocaleKeys.Terms_of_Usage.tr(),
           iconPath: AppAssets.terms,
           trailing: const [
             Icon(
@@ -58,17 +60,17 @@ class LegalDrawerSection extends StatelessWidget {
         SizedBox(
           height: 30.h,
         ),
-        const DrawerItem(
-          title: 'Update App',
+        DrawerItem(
+          title: LocaleKeys.Update_App.tr(),
           iconPath: AppAssets.updateApp,
-          trailing: [
+          trailing: const [
             Icon(
               Icons.arrow_forward_ios_sharp,
             ),
           ],
         ),
         DrawerItem(
-          title: 'About App',
+          title: LocaleKeys.About_App.tr(),
           iconPath: AppAssets.aboutApp,
           trailing: const [
             Icon(
@@ -83,7 +85,7 @@ class LegalDrawerSection extends StatelessWidget {
           builder: (context, state) {
             return context.read<MainCubit>().client != null
                 ? DrawerItem(
-                    title: 'Logout',
+                    title: LocaleKeys.Logout.tr(),
                     iconPath: AppAssets.logout,
                     trailing: const [
                       Icon(
@@ -94,9 +96,9 @@ class LegalDrawerSection extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (context) => CustomDialog(
-                          title: "Are you sure from logout",
-                          subtitle: 'Logout',
-                          labelText: 'Logout',
+                          title: 'are you',
+                          subtitle: LocaleKeys.Logout.tr(),
+                          labelText: LocaleKeys.Logout.tr(),
                           color: AppColors.redAppColor,
                           onTap: () async {
                             context.pop();

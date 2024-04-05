@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_item.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class WhyChooseUsSection extends StatelessWidget {
   const WhyChooseUsSection({super.key});
@@ -10,13 +12,13 @@ class WhyChooseUsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:EdgeInsets.symmetric(horizontal:10.0.w),
+      padding: EdgeInsets.symmetric(horizontal:10.0.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            AppStrings.whyChooseUsTitle,
-            style: TextStyle(
+           Text(
+            LocaleKeys.Why_Choose_Us.tr(),
+            style: const TextStyle(
               color: AppColors.black,
             ),
           ),
@@ -24,7 +26,7 @@ class WhyChooseUsSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               WhyChooseUSItem(
-                text: AppStrings.whyChooseUsFastBooking,
+                text: LocaleKeys.Fast_booking.tr(),
                 descriptionText: AppStrings.whyChooseUsFastBookingDescription,
                 descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
                 child: Image.asset(AppStrings.whyChooseUsFastBookingImage),
@@ -33,7 +35,7 @@ class WhyChooseUsSection extends StatelessWidget {
                 width: 20.0.w,
               ),
               WhyChooseUSItem(
-                text: AppStrings.whyChooseUsEasyToShop,
+                text: LocaleKeys.Easy_to_Shop.tr(),
                 descriptionText: AppStrings.whyChooseUsEasyToShopDescription,
                 descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
                 child: Image.asset(AppStrings.whyChooseUsEasyToShopImage),
@@ -56,7 +58,7 @@ class WhyChooseUsSection extends StatelessWidget {
                 width: 20.0.w,
               ),
               WhyChooseUSItem(
-                text: AppStrings.whyChooseUsUniqueexPerience,
+                text: LocaleKeys.Unique_experience.tr(),
                 descriptionText: AppStrings.whyChooseUsUniqueexPerienceDescription,
                 descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
                 child: Image.asset(AppStrings.whyChooseUsUniqueexPerienceImage),

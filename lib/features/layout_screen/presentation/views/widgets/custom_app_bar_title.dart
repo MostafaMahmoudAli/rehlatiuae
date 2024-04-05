@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class CustomAppBarTitle extends StatelessWidget {
@@ -41,7 +43,7 @@ class CustomAppBarTitle extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "Hello, ",
+                      LocaleKeys.Hello.tr(),
                       style: TextStyle(
                         color: AppColors.black,
                         fontSize: 16.0.sp,

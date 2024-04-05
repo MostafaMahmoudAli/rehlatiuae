@@ -1,15 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/verification_email_cubit/verification_email_cubit.dart';
 import 'package:rehlatyuae/features/auth/presentation/views/widgets/custom_otp_text_field.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class VerificationScreen extends StatelessWidget {
   final String email;
@@ -26,15 +28,15 @@ class VerificationScreen extends StatelessWidget {
           listener: (context, state) {
             state.whenOrNull(
               success: (token) {
-                context.push(AppStrings.updatePasswordScreen, extra: token);
+                context.push(AppRoutesString.updatePasswordScreen, extra: token);
               },
               error: (message) {
                 showDialog(
                   context: context,
                   builder: (context) => CustomDialog(
                     title: message,
-                    subtitle: 'Sorry',
-                    labelText: 'Close',
+                    subtitle: LocaleKeys.Sorry.tr(),
+                    labelText: LocaleKeys.Close.tr(),
                     color: AppColors.redAppColor,
                   ),
                 );
@@ -53,7 +55,7 @@ class VerificationScreen extends StatelessWidget {
                 ),
                 children: [
                   Text(
-                    AppStrings.verification,
+                    LocaleKeys.Verification.tr(),
                     style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                           color: AppColors.black,
                           fontSize: 28.sp,
@@ -63,7 +65,7 @@ class VerificationScreen extends StatelessWidget {
                     height: 7.h,
                   ),
                   Text(
-                    AppStrings.checkYourEmail,
+                     LocaleKeys.Check_your_email.tr(),
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: AppColors.greySearchText,
                         ),
@@ -84,7 +86,7 @@ class VerificationScreen extends StatelessWidget {
                     children: [
                       DefaultTextButton(
                         onPressed: () {},
-                        text: AppStrings.didYouReceive,
+                        text:  LocaleKeys.Did_you_receive_any_code.tr(),
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
@@ -93,7 +95,7 @@ class VerificationScreen extends StatelessWidget {
                     height: 30.h,
                   ),
                   CustomActionButton(
-                    text: AppStrings.verify,
+                    text: LocaleKeys.Verify.tr(),
                     borderRadius: BorderRadius.circular(16.sp),
                     backGroundColor: AppColors.textAndBackgroundColorButton,
                     onTap: () async {

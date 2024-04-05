@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
@@ -44,7 +44,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.travelDetailsScreen, extra: widget.popularExperiences);
+        context.push(AppRoutesString.travelDetailsScreen, extra: widget.popularExperiences);
       },
       child: SizedBox(
         height: 180.0.h,
@@ -101,6 +101,10 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
               right: 8,
               child: IconButtonWithWhiteBackground(
                 onPressed: () async {
+                  if (context.read<MainCubit>().client == null) {
+                    context.push(AppRoutesString.loginScreen);
+                    return;
+                  }
                   setState(() {
                     isFavorite = !isFavorite;
                   });

@@ -7,6 +7,7 @@ import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/offer_details_screen.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_count_tickets_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class OfferCard extends StatelessWidget {
   final Trips offer;
@@ -102,7 +103,7 @@ class OfferCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomActionButton(
-                        text: 'select',
+                        text: LocaleKeys.select,
                         borderRadius: BorderRadius.circular(15.sp),
                         backGroundColor: AppColors.textAndBackgroundColorButton,
                         onTap: () {},
@@ -120,7 +121,7 @@ class OfferCard extends StatelessWidget {
                             builder: (context) => OfferDetailsScreen(offer: offer, trip: trip),
                           );
                         },
-                        text: 'view',
+                        text: LocaleKeys.view,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                               color: AppColors.white,
                             ),

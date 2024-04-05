@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../all_trips/data/models/trips_model.dart';
 
@@ -17,22 +19,25 @@ class BestTripsSection extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal:10.0.w),
+          padding:EdgeInsetsDirectional.only(
+            start: 10.0.w,
+            end: 10.0.w,
+            bottom: 10.0.h,
+          ),
           child: CustomRowTitle(
-            text: AppStrings.bestTripsTitle,
+            text: LocaleKeys.Best_Trips.tr(),
             onPressed: () {
-              context.push(
-                AppStrings.bestTripsScreen,
-              );
+              context.push(AppRoutesString.bestTripsScreen);
             },
           ),
         ),
         SizedBox(
           height: 200.0.h,
           child: ListView.separated(
+              padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
               scrollDirection: Axis.horizontal,
               itemCount: bestTrips!.length,
-              physics:const BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return CustomContainerTrip(
                   width: 200.0.w,
@@ -48,7 +53,7 @@ class BestTripsSection extends StatelessWidget {
               },
               separatorBuilder: (context, index) {
                 return SizedBox(
-                  width: 5.0.w,
+                  width: 12.0.w,
                 );
               }),
         ),

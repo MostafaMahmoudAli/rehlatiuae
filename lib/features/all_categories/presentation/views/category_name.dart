@@ -8,9 +8,9 @@ import '../../../../core/utils/custom_sized_box.dart';
 import '../../data/models/categories_model.dart';
 import '../blocs/category_name_cubit.dart';
 
-
 class CategoryNameScreen extends StatelessWidget {
   const CategoryNameScreen({super.key, required this.category});
+
   final Categories category;
 
   @override
@@ -19,7 +19,7 @@ class CategoryNameScreen extends StatelessWidget {
     return Scaffold(
       appBar:  AppBar(),
       body: BlocProvider(
-        create:(context)=>getIt<CategoryNameCubit>()..fetchCategoryNameTrips(categoryNameId: category.id ?? 0),
+        create: (context) => getIt<CategoryNameCubit>()..fetchCategoryNameTrips(categoryNameId: category.id ?? 0),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 20.0.h,
@@ -31,7 +31,7 @@ class CategoryNameScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const CustomSizedBox(),
-                 Text(
+                Text(
                   category.name ?? "",
                 ),
                 const CustomSizedBox(),
@@ -46,5 +46,3 @@ class CategoryNameScreen extends StatelessWidget {
     );
   }
 }
-
-

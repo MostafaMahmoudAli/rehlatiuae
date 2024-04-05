@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
@@ -12,6 +13,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit
 import 'package:rehlatyuae/features/profile/presentation/cubits/profile_cubit/profile_cubit.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/widgets/profile_card_details.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/widgets/profile_photo_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -23,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            AppStrings.profile,
+            LocaleKeys.Profile.tr(),
             style: Theme.of(context).textTheme.displayMedium!.copyWith(
                   color: AppColors.black,
                 ),
@@ -34,12 +36,13 @@ class ProfileScreen extends StatelessWidget {
                 return state.maybeWhen(
                   loaded: (client) => DefaultTextButton(
                     onPressed: () async {
-                      bool isProfileEdited = await context.push(AppStrings.editProfileScreen, extra: client) as bool;
+                      bool isProfileEdited =
+                          await context.push(AppRoutesString.editProfileScreen, extra: client) as bool;
                       if (isProfileEdited && context.mounted) {
                         context.read<ProfileCubit>().getProfile();
                       }
                     },
-                    text: AppStrings.edit,
+                    text: LocaleKeys.Edit.tr(),
                   ),
                   orElse: () => const SizedBox(),
                 );
@@ -55,13 +58,17 @@ class ProfileScreen extends StatelessWidget {
                   context: context,
                   builder: (context) => CustomDialog(
                     title: message,
-                    subtitle: 'Sorry',
-                    labelText: 'Close',
+                    subtitle: LocaleKeys.Sorry.tr(),
+                    labelText: LocaleKeys.Close.tr(),
                   ),
                 );
               },
               loaded: (client) {
                 context.read<MainCubit>().getCachedClient();
+              },
+              deleteSuccess: () {
+                context.read<MainCubit>().changeCurrentTab(0);
+                context.read<MainCubit>().client = null;
               },
             );
           },
@@ -81,24 +88,24 @@ class ProfileScreen extends StatelessWidget {
                       height: 20.h,
                     ),
                     ProfileCardDetails(
-                      title: AppStrings.phone,
+                      title: LocaleKeys.Phone.tr(),
                       value: client.phone ?? '',
                     ),
                     ProfileCardDetails(
-                      title: 'Address',
+                      title: LocaleKeys.Address.tr(),
                       value: client.address,
                     ),
                     CustomActionButton(
-                      text: 'Delete Account',
+                      text: LocaleKeys.Delete_Account.tr(),
                       borderRadius: BorderRadius.circular(16.r),
                       backGroundColor: AppColors.redAppColor,
                       onTap: () {
                         showDialog(
                           context: context,
                           builder: (c) => CustomDialog(
-                            title: "Are you sure to delete the account?",
-                            subtitle: "Are you sure",
-                            labelText: "Yes !",
+                            title: LocaleKeys.Are_you_sure_to_delete.tr(),
+                            subtitle: LocaleKeys.Are_you_sure.tr(),
+                            labelText: LocaleKeys.Yes.tr(),
                             color: AppColors.redAppColor,
                             onTap: () async {
                               await context.read<ProfileCubit>().deleteAccount();
@@ -114,24 +121,12 @@ class ProfileScreen extends StatelessWidget {
                       padding: EdgeInsets.only(top: 10.h),
                       child: DefaultTextButton(
                         onPressed: () {
-                          context.push(AppStrings.forgetPasswordScreen);
+                          context.push(AppRoutesString.forgetPasswordScreen);
                         },
-                        text: "Forget Password",
+                        text: LocaleKeys.Forgot_Password.tr(),
                       ),
                     ),
                   ],
-                ),
-              ),
-              deleteSuccess: () => Center(
-                child: Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(top: 10.h),
-                  child: DefaultTextButton(
-                    onPressed: () {
-                      context.push(AppStrings.registerScreen);
-                    },
-                    text: "Register",
-                  ),
                 ),
               ),
               orElse: () => const SizedBox(),

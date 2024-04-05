@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_button.dart';
 import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/custom_sized_box.dart';
@@ -36,8 +38,8 @@ class AllDestinationBottomSection extends StatelessWidget {
                       builder: (context) =>
                           CustomDialog(
                             title: errorMessage,
-                            subtitle: 'Sorry',
-                            labelText: 'Close',
+                            subtitle: LocaleKeys.Sorry.tr(),
+                            labelText:LocaleKeys.Close.tr(),
                           ),
                     ),
             );
@@ -65,19 +67,25 @@ class AllDestinationBottomSection extends StatelessWidget {
                       const WhyChooseUsSection(),
                       const CustomSizedBox(),
                       const WeHelpYouSection(),
-                      CustomActionButton(
-                        onTap: () {
-                          context.push(AppStrings.allTripsScreen);
-                        },
-                        text: AppStrings.actionButtonName,
-                        height: 70.0.h,
-                        width: double.infinity,
-                        borderRadius: BorderRadius.circular(12.0.r),
-                        backGroundColor: AppColors.orange,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .displayLarge,
+                      Padding(
+                        padding:EdgeInsets.symmetric(
+                          horizontal:15.0.w,
+                          vertical: 8.0.h,
+                        ),
+                        child: CustomActionButton(
+                          onTap: () {
+                            context.push(AppRoutesString.allTripsScreen);
+                          },
+                          text:LocaleKeys.Explore_More.tr(),
+                          height: 70.0.h,
+                          width: double.infinity,
+                          borderRadius: BorderRadius.circular(12.0.r),
+                          backGroundColor: AppColors.orange,
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .displayLarge,
+                        ),
                       ),
                       const CustomSizedBox(),
                       const BestOffersHorizontal(),

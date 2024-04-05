@@ -7,17 +7,22 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/review_operation_section.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/review_count.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/layout_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit/add_review_cubit.dart';
 
 class RatingsReviewsSection extends StatelessWidget {
   final List<Review>? reviews;
   final int? id;
+  final int totalRating;
+  final double aveRating;
   final bool isTrip;
   final ReviewCount? reviewsCount;
 
   const RatingsReviewsSection({
     this.reviews,
+    required this.totalRating,
+    required this.aveRating,
     this.isTrip = true,
     this.reviewsCount,
     this.id,
@@ -48,35 +53,27 @@ class RatingsReviewsSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ChartRatingSection(reviewsCount: reviewsCount),
+            ChartRatingSection(
+              reviewsCount: reviewsCount,
+              aveRating: aveRating,
+              totalRating: totalRating,
+            ),
             ReviewOperationSection(
               id: id ?? 0,
               isTrip: isTrip,
             ),
-            BlocBuilder<AddReviewCubit, AddReviewState>(
+            BlocConsumer<AddReviewCubit, AddReviewState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  loaded: (review) => getIt<LayoutCubit>()..fetchLayoutData(),
+                  deleted: () => getIt<LayoutCubit>()..fetchLayoutData(),
+                );
+              },
               builder: (c, state) {
                 return state.maybeWhen(
-                  edited: (review) => CommentCard(
-                    imageUrl: review.client!.imagePath,
-                    name: review.name!,
-                    date: review.createdAt!,
-                    comment: review.description!,
-                    hasActionsIcons: true,
-                    onEditTap: () {
-                      c.read<AddReviewCubit>().editReview(
-                            review: review,
-                            context: context,
-                          );
-                    },
-                    onDeleteTap: () async {
-                      await c.read<AddReviewCubit>().deleteReview(
-                            id: id!,
-                            isTrip: isTrip,
-                          );
-                    },
-                  ),
                   loaded: (review) => CommentCard(
                     imageUrl: review.client!.imagePath,
+                    attachmentUrl: review.imagePath,
                     name: review.name!,
                     date: review.createdAt!,
                     comment: review.description!,
@@ -98,6 +95,7 @@ class RatingsReviewsSection extends StatelessWidget {
                   orElse: () => clientReviews.isNotEmpty
                       ? CommentCard(
                           imageUrl: clientReviews[0].client!.imagePath,
+                          attachmentUrl: clientReviews[0].imagePath,
                           name: clientReviews[0].name!,
                           date: clientReviews[0].createdAt!,
                           comment: clientReviews[0].description!,
@@ -123,6 +121,7 @@ class RatingsReviewsSection extends StatelessWidget {
               reviews.length,
               (index) => CommentCard(
                 imageUrl: reviews[index].client!.imagePath,
+                attachmentUrl: reviews[index].imagePath,
                 name: reviews[index].name!,
                 date: reviews[index].createdAt!,
                 comment: reviews[index].description!,
