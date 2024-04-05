@@ -7,6 +7,7 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/review_operation_section.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/review_count.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/layout_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit/add_review_cubit.dart';
 
@@ -61,7 +62,13 @@ class RatingsReviewsSection extends StatelessWidget {
               id: id ?? 0,
               isTrip: isTrip,
             ),
-            BlocBuilder<AddReviewCubit, AddReviewState>(
+            BlocConsumer<AddReviewCubit, AddReviewState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  loaded: (review) => getIt<LayoutCubit>()..fetchLayoutData(),
+                  deleted: () => getIt<LayoutCubit>()..fetchLayoutData(),
+                );
+              },
               builder: (c, state) {
                 return state.maybeWhen(
                   loaded: (review) => CommentCard(
