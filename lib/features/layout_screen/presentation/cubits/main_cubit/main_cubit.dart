@@ -20,6 +20,7 @@ class MainCubit extends Cubit<MainState> {
   Client? client;
   double totalUnPayedBookingInUSD = 12;
   double? totalUnPayedBooking = 12;
+  int currentTab = 0;
   Currency currentCurrency = Currency.usd;
   List<Currency> currencies = [
     Currency.aed,
@@ -27,10 +28,6 @@ class MainCubit extends Cubit<MainState> {
     Currency.sar,
     Currency.eur,
   ];
-
-  Future<void> initMain() async {
-    getCachedClient();
-  }
 
   void getCachedClient() {
     _update(const MainState.loading());
@@ -44,8 +41,24 @@ class MainCubit extends Cubit<MainState> {
     );
   }
 
+  Future<void> convert() async {
+    _update(const MainState.loading());
+    totalUnPayedBooking = await CurrencyConverter.convert(
+      from: Currency.usd,
+      to: currentCurrency,
+      amount: totalUnPayedBookingInUSD,
+    );
+    _update(const MainState.success());
+  }
+
+  void changeCurrentTab(int index) {
+    _update(const MainState.loading());
+    currentTab = index;
+    _update(const MainState.success());
+  }
+
   Future<void> addToFavourite({required int tripId}) async {
-    await mainRepo.addToFavourite(tripId: tripId);
+    mainRepo.addToFavourite(tripId: tripId);
   }
 
   Future<void> logout() async {
@@ -58,16 +71,6 @@ class MainCubit extends Cubit<MainState> {
         _update(const MainState.success());
       },
     );
-  }
-
-  Future<void> convert() async {
-    _update(const MainState.loading());
-    totalUnPayedBooking = await CurrencyConverter.convert(
-      from: Currency.usd,
-      to: currentCurrency,
-      amount: totalUnPayedBookingInUSD,
-    );
-    _update(const MainState.success());
   }
 
   void _update(MainState state) {

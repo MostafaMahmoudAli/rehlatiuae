@@ -47,7 +47,7 @@ class AppRouter {
         /// Trips & Blogs Screens
         GoRoute(
           path: AppRoutesString.homeScreen,
-          builder: (context, state) => const MainLayout(),
+          builder: (context, state) => MainLayout(),
         ),
         GoRoute(
           path: AppRoutesString.allCategoriesScreen,

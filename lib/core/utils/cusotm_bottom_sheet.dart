@@ -12,6 +12,7 @@ class CustomBottomSheet extends StatelessWidget {
   final Widget contentSheet;
   final Color avatarColor;
   final bool hasButton;
+  final bool hasAppbar;
   final void Function()? onButtonPreesd;
 
   const CustomBottomSheet({
@@ -21,6 +22,7 @@ class CustomBottomSheet extends StatelessWidget {
     this.avatarText,
     this.avatarColor = AppColors.textAndBackgroundColorButton,
     this.hasButton = true,
+    this.hasAppbar = true,
     this.onButtonPreesd,
     super.key,
   });
@@ -31,39 +33,40 @@ class CustomBottomSheet extends StatelessWidget {
       children: [
         Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-                vertical: 30.h,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      GoRouter.of(context).pop(context);
-                    },
-                    icon: const Icon(Icons.clear),
-                  ),
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
-                      height: 1.42,
+            if (hasAppbar)
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
+                  vertical: 30.h,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        GoRouter.of(context).pop(context);
+                      },
+                      icon: const Icon(Icons.clear),
                     ),
-                  ),
-                  const IconButton(
-                    onPressed: null,
-                    icon: Icon(
-                      Icons.clear,
-                      color: AppColors.white,
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                        height: 1.42,
+                      ),
                     ),
-                  ),
-                ],
+                    const IconButton(
+                      onPressed: null,
+                      icon: Icon(
+                        Icons.clear,
+                        color: AppColors.white,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
             Stack(
               clipBehavior: Clip.none,
               children: [
