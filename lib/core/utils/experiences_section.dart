@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
-import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class ExperiencesSections extends StatelessWidget {
   const ExperiencesSections({
@@ -19,7 +19,7 @@ class ExperiencesSections extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Text(
-             LocaleKeys.Similar_experiences_you.tr(),
+            LocaleKeys.Similar_experiences_you.tr(),
             style: Theme.of(context).textTheme.labelMedium,
           ),
         ),
@@ -35,6 +35,7 @@ class ExperiencesSections extends StatelessWidget {
               cityName: context.read<MainCubit>().bestTrips[index].name,
               countryName: context.read<MainCubit>().bestTrips[index].address,
               tripPrice: context.read<MainCubit>().bestTrips[index].adultPrice?.toString(),
+              trip: context.read<MainCubit>().bestTrips[index],
               reservationType: '/Person',
             ),
             separatorBuilder: (context, index) => SizedBox(width: 12.w),
@@ -59,6 +60,7 @@ class ExperiencesSections extends StatelessWidget {
               cityName: context.read<MainCubit>().popularExperience[index].name,
               countryName: context.read<MainCubit>().popularExperience[index].address,
               tripPrice: context.read<MainCubit>().popularExperience[index].adultPrice?.toString(),
+              trip: context.read<MainCubit>().popularExperience[index],
               reservationType: '/Person',
             ),
             separatorBuilder: (context, index) => SizedBox(width: 12.w),

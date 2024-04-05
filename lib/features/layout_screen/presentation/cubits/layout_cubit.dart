@@ -15,15 +15,21 @@ class LayoutCubit extends Cubit<LayoutState> {
   LayoutCubit({required this.layoutRepository}) : super(const LayoutState.initial());
 
   Future<void> fetchLayoutData() async {
-    emit(const LayoutState.loading());
+    _update(const LayoutState.loading());
     final results = await layoutRepository.fetchLayoutData();
 
     results.fold(
-      (errorMessage) => emit(LayoutState.error(errorMessage)),
+      (errorMessage) => _update(LayoutState.error(errorMessage)),
       (layoutModel) {
         getIt<Logger>().w("Popular experiences ${layoutModel.popularExperience?.length}");
-        emit(LayoutState.loaded(layoutModel));
+        _update(LayoutState.loaded(layoutModel));
       },
     );
+  }
+
+  void _update(LayoutState state) {
+    if (!isClosed) {
+      emit(state);
+    }
   }
 }

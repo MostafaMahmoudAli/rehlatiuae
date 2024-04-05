@@ -101,6 +101,10 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
               right: 8,
               child: IconButtonWithWhiteBackground(
                 onPressed: () async {
+                  if (context.read<MainCubit>().client == null) {
+                    context.push(AppRoutesString.loginScreen);
+                    return;
+                  }
                   setState(() {
                     isFavorite = !isFavorite;
                   });

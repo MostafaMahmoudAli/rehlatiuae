@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
@@ -14,7 +16,6 @@ import 'package:rehlatyuae/features/profile/presentation/views/profile_screen.da
 
 import '../../../search/presentation/views/search_screen.dart';
 
-
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
 
@@ -22,8 +23,7 @@ class MainLayout extends StatefulWidget {
   State<MainLayout> createState() => _MainLayoutState();
 }
 
-class _MainLayoutState extends State<MainLayout>
-{
+class _MainLayoutState extends State<MainLayout> {
   int currentTab = 0;
   List<Widget> tabs = [
     HomeScreen(),
@@ -73,9 +73,13 @@ class _MainLayoutState extends State<MainLayout>
               actions: [
                 InkWell(
                   onTap: () {
-                    setState(() {
-                      currentTab = 4;
-                    });
+                    if (context.read<MainCubit>().client == null) {
+                      context.push(AppRoutesString.loginScreen);
+                    } else {
+                      setState(() {
+                        currentTab = 4;
+                      });
+                    }
                   },
                   child: BlocBuilder<MainCubit, MainState>(
                     builder: (context, state) {

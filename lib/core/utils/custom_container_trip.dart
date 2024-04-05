@@ -120,6 +120,10 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                   icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                   iconColor: AppColors.redAppColor,
                   onPressed: () async {
+                    if (context.read<MainCubit>().client == null) {
+                      context.push(AppRoutesString.loginScreen);
+                      return;
+                    }
                     if (widget.onTapFavoriteIcon != null) {
                       widget.onTapFavoriteIcon?.call();
                       return;
