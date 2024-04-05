@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:currency_converter/currency.dart';
-import 'package:currency_converter/currency_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/auth/domain/repositories/auth_repo.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
@@ -15,8 +13,6 @@ class MainCubit extends Cubit<MainState> {
   final AuthRepo authRepo;
 
   MainCubit({required this.mainRepo, required this.authRepo}) : super(const MainState.initial());
-  List<Trips> popularExperience = [];
-  List<Trips> bestTrips = [];
   Client? client;
   double totalUnPayedBookingInUSD = 12;
   double? totalUnPayedBooking = 12;
@@ -29,26 +25,45 @@ class MainCubit extends Cubit<MainState> {
     Currency.eur,
   ];
 
-  void getCachedClient() {
+  Future<void> initMain() async {
     _update(const MainState.loading());
+    getCachedClient();
+    getCurrentCurrency();
+    _update(const MainState.success());
+  }
+
+  void getCachedClient() {
     final results = mainRepo.getClient();
     results.fold(
       (errorMessage) => _update(MainState.error(errorMessage)),
-      (client) {
-        this.client = client;
-        _update(const MainState.success());
+      (client) => this.client = client,
+    );
+  }
+
+  void getCurrentCurrency() {
+    final results = mainRepo.getCurrentCurrencyAndTotalUnPaid();
+    results.fold(
+      (errorMessage) => _update(MainState.error(errorMessage)),
+      (currentAndTotal) {
+        currentCurrency = currentAndTotal.$1;
+        totalUnPayedBooking = currentAndTotal.$2;
       },
     );
   }
 
   Future<void> convert() async {
     _update(const MainState.loading());
-    totalUnPayedBooking = await CurrencyConverter.convert(
-      from: Currency.usd,
-      to: currentCurrency,
-      amount: totalUnPayedBookingInUSD,
+    final results = await mainRepo.convertCurrency(
+      targetCurrency: currentCurrency,
+      totalAmount: totalUnPayedBookingInUSD,
     );
-    _update(const MainState.success());
+    results.fold(
+      (errorMessage) => _update(MainState.error(errorMessage)),
+      (total) {
+        totalUnPayedBooking = total;
+        _update(const MainState.success());
+      },
+    );
   }
 
   void changeCurrentTab(int index) {

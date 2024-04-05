@@ -368,4 +368,6 @@ Official Channels:
   static const expiresIn = "expiresIn";
   static const client = "client";
   static const currentLanguage = "currentLanguage";
+  static const currentCurrency = "currentCurrency";
+  static const totalUnPaidBooking = "totalUnPayedBooking";
 }
