@@ -27,6 +27,9 @@ class TravelDetailsScreen extends StatefulWidget {
 }
 
 class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
+  int totalRating = 0;
+  double aveRating = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +77,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
               content: widget.trip!.addresses![index].description,
             ),
           ),
-          PreviewTravelsSection(images: widget.trip!.images),
+          PreviewTravelsSection(images: widget.trip!.images, aveRating: aveRating),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
@@ -93,6 +96,8 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             reviews: widget.trip!.reviews,
             id: widget.trip!.id,
             reviewsCount: widget.trip!.reviewsCount,
+            aveRating: aveRating,
+            totalRating: totalRating,
           ),
           const ExperiencesSections(),
         ],
@@ -106,6 +111,21 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
     );
+    totalRating = widget.trip!.reviewsCount!.oneStar! +
+        widget.trip!.reviewsCount!.towStar! +
+        widget.trip!.reviewsCount!.threeStar! +
+        widget.trip!.reviewsCount!.fourStar! +
+        widget.trip!.reviewsCount!.fiveStar!;
+
+    aveRating = 0;
+    if (totalRating != 0) {
+      aveRating = (widget.trip!.reviewsCount!.oneStar! +
+              widget.trip!.reviewsCount!.towStar! * 2 +
+              widget.trip!.reviewsCount!.threeStar! * 3 +
+              widget.trip!.reviewsCount!.fourStar! * 4 +
+              widget.trip!.reviewsCount!.fiveStar! * 5) /
+          totalRating;
+    }
     super.initState();
   }
 

@@ -17,7 +17,7 @@ class AboutUsScreen extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
-           TitleSection(
+          TitleSection(
             title: LocaleKeys.About_Us.tr(),
             subTitle: LocaleKeys.About_Rehlatyuae.tr(),
             imagePath: AppAssets.rectangle,
@@ -27,7 +27,7 @@ class AboutUsScreen extends StatelessWidget {
               top: 34.h,
             ),
             child: Text(
-               LocaleKeys.The_mighty.tr(),
+              LocaleKeys.The_mighty.tr(),
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColors.grey,
                   ),
@@ -49,19 +49,22 @@ class AboutUsScreen extends StatelessWidget {
                   ),
             ),
           ),
-           CustomExpansionTile(
+          CustomExpansionTile(
             title: LocaleKeys.Start_date_Rehlatyuae.tr(),
             content: LocaleKeys.Founding_Year_of_Rehlatyuae.tr(),
           ),
-           CustomExpansionTile(
+          CustomExpansionTile(
             title: LocaleKeys.Number_of_our_clients.tr(),
-            content:  LocaleKeys.Guests_served.tr(),
+            content: LocaleKeys.Guests_served.tr(),
           ),
-           CustomExpansionTile(
+          CustomExpansionTile(
             title: LocaleKeys.Number_of_evaluations_received.tr(),
-            content:  LocaleKeys.Reviews_Rehlatyuae.tr(),
+            content: LocaleKeys.Reviews_Rehlatyuae.tr(),
           ),
-          const PreviewTravelsSection(hasBookButton: false),
+          const PreviewTravelsSection(
+            images: [],
+            aveRating: 0.8,
+          ),
           const ExperiencesSections(),
         ],
       ),

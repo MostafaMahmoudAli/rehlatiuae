@@ -24,6 +24,9 @@ class BlogDetailsScreen extends StatefulWidget {
 }
 
 class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
+  int totalRating = 0;
+  double aveRating = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +55,11 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
               subTitle: widget.blogs.addresses[index].description,
             ),
           ),
-          if (widget.blogs.attachments!.isNotEmpty) PreviewTravelsSection(images: widget.blogs.attachments![0].images),
+          if (widget.blogs.attachments!.isNotEmpty)
+            PreviewTravelsSection(
+              images: widget.blogs.attachments![0].images,
+              aveRating: aveRating,
+            ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
@@ -72,6 +79,8 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
             id: widget.blogs.id,
             reviewsCount: widget.blogs.reviewCount,
             isTrip: false,
+            totalRating: totalRating,
+            aveRating: aveRating,
           ),
           const ExperiencesSections(),
         ],
@@ -85,7 +94,22 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
     );
-    super.initState();
+    totalRating = widget.blogs.reviewCount.oneStar! +
+        widget.blogs.reviewCount.towStar! +
+        widget.blogs.reviewCount.threeStar! +
+        widget.blogs.reviewCount.fourStar! +
+        widget.blogs.reviewCount.fiveStar!;
+
+    aveRating = 0;
+    if (totalRating != 0) {
+      aveRating = (widget.blogs.reviewCount.oneStar! +
+              widget.blogs.reviewCount.towStar! * 2 +
+              widget.blogs.reviewCount.threeStar! * 3 +
+              widget.blogs.reviewCount.fourStar! * 4 +
+              widget.blogs.reviewCount.fiveStar! * 5) /
+          totalRating;
+      super.initState();
+    }
   }
 
   @override

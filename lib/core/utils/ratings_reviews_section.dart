@@ -13,11 +13,15 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit
 class RatingsReviewsSection extends StatelessWidget {
   final List<Review>? reviews;
   final int? id;
+  final int totalRating;
+  final double aveRating;
   final bool isTrip;
   final ReviewCount? reviewsCount;
 
   const RatingsReviewsSection({
     this.reviews,
+    required this.totalRating,
+    required this.aveRating,
     this.isTrip = true,
     this.reviewsCount,
     this.id,
@@ -48,7 +52,11 @@ class RatingsReviewsSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ChartRatingSection(reviewsCount: reviewsCount),
+            ChartRatingSection(
+              reviewsCount: reviewsCount,
+              aveRating: aveRating,
+              totalRating: totalRating,
+            ),
             ReviewOperationSection(
               id: id ?? 0,
               isTrip: isTrip,
@@ -56,27 +64,9 @@ class RatingsReviewsSection extends StatelessWidget {
             BlocBuilder<AddReviewCubit, AddReviewState>(
               builder: (c, state) {
                 return state.maybeWhen(
-                  edited: (review) => CommentCard(
-                    imageUrl: review.client!.imagePath,
-                    name: review.name!,
-                    date: review.createdAt!,
-                    comment: review.description!,
-                    hasActionsIcons: true,
-                    onEditTap: () {
-                      c.read<AddReviewCubit>().editReview(
-                            review: review,
-                            context: context,
-                          );
-                    },
-                    onDeleteTap: () async {
-                      await c.read<AddReviewCubit>().deleteReview(
-                            id: id!,
-                            isTrip: isTrip,
-                          );
-                    },
-                  ),
                   loaded: (review) => CommentCard(
                     imageUrl: review.client!.imagePath,
+                    attachmentUrl: review.imagePath,
                     name: review.name!,
                     date: review.createdAt!,
                     comment: review.description!,
@@ -98,6 +88,7 @@ class RatingsReviewsSection extends StatelessWidget {
                   orElse: () => clientReviews.isNotEmpty
                       ? CommentCard(
                           imageUrl: clientReviews[0].client!.imagePath,
+                          attachmentUrl: clientReviews[0].imagePath,
                           name: clientReviews[0].name!,
                           date: clientReviews[0].createdAt!,
                           comment: clientReviews[0].description!,
@@ -123,6 +114,7 @@ class RatingsReviewsSection extends StatelessWidget {
               reviews.length,
               (index) => CommentCard(
                 imageUrl: reviews[index].client!.imagePath,
+                attachmentUrl: reviews[index].imagePath,
                 name: reviews[index].name!,
                 date: reviews[index].createdAt!,
                 comment: reviews[index].description!,

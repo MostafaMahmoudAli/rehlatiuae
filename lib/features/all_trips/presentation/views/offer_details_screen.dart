@@ -29,6 +29,9 @@ class OfferDetailsScreen extends StatefulWidget {
 }
 
 class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
+  int totalRating = 0;
+  double aveRating = 0;
+
   @override
   Widget build(BuildContext context) {
     getIt<Logger>().w(widget.offer.toString());
@@ -65,7 +68,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
               content: widget.offer!.addresses![index].description,
             ),
           ),
-          PreviewTravelsSection(images: widget.trip!.images),
+          PreviewTravelsSection(images: widget.trip!.images, aveRating: 0),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
@@ -83,6 +86,8 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
           RatingsReviewsSection(
             reviews: widget.trip!.reviews,
             reviewsCount: widget.trip!.reviewsCount,
+            aveRating: aveRating,
+            totalRating: totalRating,
           ),
           const ExperiencesSections(),
         ],
@@ -96,7 +101,22 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
     );
-    super.initState();
+    totalRating = widget.trip!.reviewsCount!.oneStar! +
+        widget.trip!.reviewsCount!.towStar! +
+        widget.trip!.reviewsCount!.threeStar! +
+        widget.trip!.reviewsCount!.fourStar! +
+        widget.trip!.reviewsCount!.fiveStar!;
+
+    aveRating = 0;
+    if (totalRating != 0) {
+      aveRating = (widget.trip!.reviewsCount!.oneStar! +
+              widget.trip!.reviewsCount!.towStar! * 2 +
+              widget.trip!.reviewsCount!.threeStar! * 3 +
+              widget.trip!.reviewsCount!.fourStar! * 4 +
+              widget.trip!.reviewsCount!.fiveStar! * 5) /
+          totalRating;
+      super.initState();
+    }
   }
 
   @override

@@ -7,11 +7,11 @@ import 'package:rehlatyuae/features/best_offers/data/models/images_model.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class PreviewTravelsSection extends StatelessWidget {
-  final bool hasBookButton;
   final List<ImagesModel>? images;
+  final double aveRating;
 
   const PreviewTravelsSection({
-    this.hasBookButton = true,
+    required this.aveRating,
     this.images,
     super.key,
   });
@@ -46,7 +46,7 @@ class PreviewTravelsSection extends StatelessWidget {
                       width: 5.w,
                     ),
                     Text(
-                      "4,8",
+                      aveRating.toStringAsFixed(1),
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ],

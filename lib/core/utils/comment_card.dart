@@ -7,6 +7,7 @@ import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 
 class CommentCard extends StatelessWidget {
   final String imageUrl;
+  final String? attachmentUrl;
   final String name;
   final String date;
   final String comment;
@@ -16,6 +17,7 @@ class CommentCard extends StatelessWidget {
 
   const CommentCard({
     required this.imageUrl,
+    required this.attachmentUrl,
     required this.name,
     required this.date,
     required this.comment,
@@ -106,6 +108,19 @@ class CommentCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
+          if (attachmentUrl != null)
+            Container(
+              height: 250.h,
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 10.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.r),
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(attachmentUrl!),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
         ],
       ),
     );
