@@ -99,6 +99,11 @@ class MainLayout extends StatelessWidget {
             drawer: const CustomDrawer(),
             bottomNavigationBar: const CustomBottomNavigationBar(),
           ),
+          loading: () => const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
           orElse: () => const SizedBox(),
         );
       },

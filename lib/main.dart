@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
               create: (context) => getIt<TripCheckoutDetailsCubit>(),
             ),
             BlocProvider<MainCubit>(
-              create: (context) => getIt<MainCubit>()..getCachedClient(),
+              create: (context) => getIt<MainCubit>()..initMain(),
             ),
           ],
           child: MaterialApp.router(

@@ -46,10 +46,6 @@ class HomeScreen extends StatelessWidget {
                 labelText: LocaleKeys.Close.tr(),
               ),
             ),
-            loaded: (layoutModel) {
-              context.read<MainCubit>().bestTrips = layoutModel.bestTrips ?? [];
-              context.read<MainCubit>().popularExperience = layoutModel.popularExperience ?? [];
-            },
           );
         },
         builder: (context, state) {
