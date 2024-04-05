@@ -18,11 +18,14 @@ class CategoriesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          text: AppStrings.categoriesTitle,
-          onPressed: () {
-            context.push(AppStrings.allCategoriesScreen);
-          },
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal:10.0.w),
+          child: CustomRowTitle(
+            text: AppStrings.categoriesTitle,
+            onPressed: () {
+              context.push(AppStrings.allCategoriesScreen);
+            },
+          ),
         ),
         SizedBox(
           height: 40.0.h,

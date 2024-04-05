@@ -16,11 +16,14 @@ class TopDestinationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          onPressed: () {
-            context.push(AppStrings.topDestinationScreen);
-          },
-          text: AppStrings.topDestinationTitle,
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal:10.0.w),
+          child: CustomRowTitle(
+            onPressed: () {
+              context.push(AppStrings.topDestinationScreen);
+            },
+            text: AppStrings.topDestinationTitle,
+          ),
         ),
         SizedBox(
           height: 200.0.h,

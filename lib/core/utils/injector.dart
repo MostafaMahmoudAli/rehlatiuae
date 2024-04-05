@@ -41,9 +41,11 @@ import '../../features/best_trips/presentation/blocs/best_trips_bloc.dart';
 import '../../features/layout_screen/data/repositories/layout_repo_impl.dart';
 import '../../features/layout_screen/domain/repositories/layout_repo.dart';
 import '../../features/layout_screen/presentation/cubits/layout_cubit.dart';
+import '../../features/layout_screen/presentation/cubits/subcription_section_cubit/subscription_section_cubit.dart';
 import '../../features/our_blogs/data/repositories/blogs_repository_impl.dart';
 import '../../features/our_blogs/domain/repositories/blogs_repository.dart';
 import '../../features/our_blogs/presentation/blocs/blogs_bloc.dart';
+import '../../features/our_blogs/presentation/blocs/blogs_search_cubit.dart';
 import '../../features/popular_experiences/data/repositories/popular_experiences_repo_impl.dart';
 import '../../features/popular_experiences/domain/repositories/popular_experiences_repo.dart';
 import '../../features/popular_experiences/presentation/blocs/popular_experiences_bloc.dart';
@@ -148,6 +150,8 @@ Future<void> setupInjector() async {
 
   getIt.registerLazySingleton(() => LayoutCubit(layoutRepository: getIt()));
 
+  getIt.registerLazySingleton(() => BlogsSearchCubit(blogsRepository: getIt(),));
+
   getIt.registerFactory(() => CategoriesBloc(categoryRepo: getIt()));
 
   getIt.registerFactory(() => BestTripsBloc(bestTripsRepo: getIt()));
@@ -161,6 +165,8 @@ Future<void> setupInjector() async {
   getIt.registerFactory(() => CityDestinationCubit(cityDestinationRepo: getIt()));
 
   getIt.registerFactory(() => CategoryNameCubit(categoryNameRepo: getIt()));
+
+  getIt.registerLazySingleton(() => SubscriptionSectionCubit(layoutRepository: getIt()));
 
   getIt.registerLazySingleton(() => SearchCubit(searchRepo: getIt()));
 

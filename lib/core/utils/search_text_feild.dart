@@ -6,7 +6,7 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 class SearchTextField extends StatelessWidget {
   const SearchTextField({
     super.key,
-    required this.controller, this.onTap, this.onChanged, this.readOnly, this.onSubmitted,
+     this.controller, this.onTap, this.onChanged, this.readOnly, this.onSubmitted,
   });
   final TextEditingController? controller;
 final void Function()? onTap;

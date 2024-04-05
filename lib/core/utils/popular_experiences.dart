@@ -15,12 +15,15 @@ class PopularExperiencesSection extends StatelessWidget {
   {
     return Column(
       children: [
-        CustomRowTitle(
-          text: AppStrings.popularExperiencesTitle,
-          onPressed: ()
-          {
-            context.push(AppStrings.popularExperiencesScreen);
-          },
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal:10.0.w),
+          child: CustomRowTitle(
+            text: AppStrings.popularExperiencesTitle,
+            onPressed: ()
+            {
+              context.push(AppStrings.popularExperiencesScreen);
+            },
+          ),
         ),
         SizedBox(
           height:190.0.h,

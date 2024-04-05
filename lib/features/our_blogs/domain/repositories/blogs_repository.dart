@@ -7,4 +7,6 @@ abstract class BlogsRepository {
     int? startIndex = 0,
     int? limit = 10,
   });
+
+  Future<Either<String, List<Blogs>>> fetchBlogsSearch({String? name});
 }

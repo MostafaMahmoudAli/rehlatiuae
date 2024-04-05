@@ -20,12 +20,13 @@ class CustomAppBarTitle extends StatelessWidget {
           height: 80.0.h,
         ),
         SizedBox(
-          width: 15.0.w,
+          width: 25.0.w,
         ),
         BlocBuilder<MainCubit, MainState>(
           builder: (context, state) {
             var cubit = context.read<MainCubit>();
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "${cubit.totalUnPayedBooking} ${cubit.currentCurrency.name.toUpperCase()}",
@@ -47,8 +48,8 @@ class CustomAppBarTitle extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      context.read<MainCubit>().client != null ? context.read<MainCubit>().client!.name : 'there',
-                      overflow: TextOverflow.fade,
+                      context.read<MainCubit>().client != null ? context.read<MainCubit>().client!.name.characters.first : 'there',
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: AppColors.textAndBackgroundColorButton,
                         fontSize: 16.0.sp,

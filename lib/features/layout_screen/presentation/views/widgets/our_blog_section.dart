@@ -14,12 +14,15 @@ final List<Blogs>blogs;
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          text: AppStrings.ourBlogTitle,
-          onPressed: ()
-          {
-            context.push(AppStrings.ourBlogsScreen);
-          },
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal:10.0.w),
+          child: CustomRowTitle(
+            text: AppStrings.ourBlogTitle,
+            onPressed: ()
+            {
+              context.push(AppStrings.ourBlogsScreen);
+            },
+          ),
         ),
         SizedBox(
           height: 330.0.h,

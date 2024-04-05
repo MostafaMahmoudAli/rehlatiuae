@@ -59,22 +59,21 @@ class HomeScreen extends StatelessWidget
               body:Padding(
                 padding: EdgeInsetsDirectional.only(
                   top: 20.0.h,
-                  start:17.0.w ,
                 ).copyWith(bottom: 0),
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SearchTextField(
-                        controller: _textEditingController,
-                        onTap: () {
-                          context.push(
-                            AppStrings.searchScreen,
-                          );
-                        },
-                        readOnly: true,
+                      Padding(
+                        padding:  EdgeInsets.symmetric(vertical: 10.0.h,horizontal:10.0.h),
+                        child: SearchTextField(
+                          controller: _textEditingController,
+                          onTap: () {
 
+                          },
+                          readOnly: true,
+                        ),
                       ),
                       const CustomSizedBox(),
                       CategoriesSection(
@@ -108,16 +107,19 @@ class HomeScreen extends StatelessWidget
                       const WhyChooseUsSection(),
                       const CustomSizedBox(),
                       const WeHelpYouSection(),
-                      CustomActionButton(
-                        onTap: () {
-                          context.push(AppStrings.allTripsScreen);
-                        },
-                        text: AppStrings.actionButtonName,
-                        height: 70.0.h,
-                        width: double.infinity,
-                        borderRadius: BorderRadius.circular(12.0.r),
-                        backGroundColor: AppColors.orange,
-                        style: Theme.of(context).textTheme.displayLarge,
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal:10.0.w),
+                        child: CustomActionButton(
+                          onTap: () {
+                            context.push(AppStrings.allTripsScreen);
+                          },
+                          text: AppStrings.actionButtonName,
+                          height: 70.0.h,
+                          width: double.infinity,
+                          borderRadius: BorderRadius.circular(12.0.r),
+                          backGroundColor: AppColors.orange,
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
                       ),
                       const CustomSizedBox(),
                       const BestOffersHorizontal(),

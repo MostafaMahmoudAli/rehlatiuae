@@ -413,7 +413,7 @@ Official Channels:
   static const favouritesScreen = "/favouritesScreen";
   static const categoryNameScreen = "/categoryNameScreen";
   static const cityDestinationScreen = "/cityDestinationScreen";
-  static const searchScreen = "/searchScreen";
+
 
   // Keys
   static const accessToken = "accessToken";

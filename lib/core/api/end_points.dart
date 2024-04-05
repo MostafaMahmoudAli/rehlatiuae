@@ -10,6 +10,9 @@ class EndPoints {
   static String searchTripEndPoint = "home/searchTrip";
   static String allTripEndPoint = "home/trips";
   static String cityDestinationEndPoint = "home/tripDestination";
+  static String subscriptionEmailEndPoint = "home/subscriptionEmail";
+  static String blogSearchEndPoint = "home/searchBlog";
+  static String stripePaymentEndPoint = 'https://api.stripe.com/v1/payment_intents';
 
   // Profile Feature EndPoints
   static String getProfileEndPoint = "client/user-profile";

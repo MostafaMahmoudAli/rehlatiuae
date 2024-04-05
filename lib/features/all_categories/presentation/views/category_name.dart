@@ -4,11 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/widgets/category_name_body.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/widgets/category_name_bottom_section.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/custom_circle_avatar.dart';
 import '../../../../core/utils/custom_sized_box.dart';
-import '../../../layout_screen/presentation/views/custom_drawer.dart';
-import '../../../layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
 import '../../data/models/categories_model.dart';
 import '../blocs/category_name_cubit.dart';
 
@@ -18,24 +14,10 @@ class CategoryNameScreen extends StatelessWidget {
   final Categories category;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: AppColors.whiteAppColor,
-        title: const CustomAppBarTitle(),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: CustomCircleAvatar(
-              radius: 40.0.r,
-              backgroundImage: const AssetImage(
-                "assets/images/Ellipse 1.png",
-              ),
-            ),
-          ),
-        ],
-      ),
-      drawer: const CustomDrawer(),
+      appBar:  AppBar(),
       body: BlocProvider(
         create:(context)=>getIt<CategoryNameCubit>()..fetchCategoryNameTrips(categoryNameId: category.id ?? 0),
         child: Padding(

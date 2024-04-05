@@ -3,13 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/city_destination_body.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/city_destination_bottom_section.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/custom_circle_avatar.dart';
 import '../../../../core/utils/custom_dialog.dart';
 import '../../../../core/utils/custom_sized_box.dart';
 import '../../../../core/utils/injector.dart';
-import '../../../layout_screen/presentation/views/custom_drawer.dart';
-import '../../../layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
 import '../blocs/city_destination_cubit.dart';
 
 class CityDestinationScreen extends StatelessWidget {
@@ -21,22 +17,7 @@ class CityDestinationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: AppColors.whiteAppColor,
-        title: const CustomAppBarTitle(),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: CustomCircleAvatar(
-              radius: 40.0.r,
-              backgroundImage: const AssetImage(
-                "assets/images/Ellipse 1.png",
-              ),
-            ),
-          ),
-        ],
-      ),
-      drawer: const CustomDrawer(),
+      appBar:  AppBar(),
       body: BlocProvider(
         create: (context) => getIt<CityDestinationCubit>()
           ..fetchCityDestinations(destinationId: cityDestinationId),

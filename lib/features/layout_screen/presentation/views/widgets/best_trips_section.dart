@@ -16,13 +16,16 @@ class BestTripsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          text: AppStrings.bestTripsTitle,
-          onPressed: () {
-            context.push(
-              AppStrings.bestTripsScreen,
-            );
-          },
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal:10.0.w),
+          child: CustomRowTitle(
+            text: AppStrings.bestTripsTitle,
+            onPressed: () {
+              context.push(
+                AppStrings.bestTripsScreen,
+              );
+            },
+          ),
         ),
         SizedBox(
           height: 200.0.h,

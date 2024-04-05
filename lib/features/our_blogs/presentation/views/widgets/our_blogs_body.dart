@@ -6,8 +6,7 @@ import '../../../../../core/utils/error_widget.dart';
 import '../../blocs/blogs_bloc.dart';
 
 class OurBlogsBody extends StatefulWidget {
-  const OurBlogsBody({super.key, this.ourBlogsScrollController});
-
+  const OurBlogsBody({super.key, this.ourBlogsScrollController,});
   final ScrollController? ourBlogsScrollController;
 
   @override
@@ -55,7 +54,6 @@ class _OurBlogsBodyState extends State<OurBlogsBody> {
                 mainAxisSpacing: 10.0.w,
               ),
               itemBuilder: (context, index) {
-
                 return AllBlogsItem(
                   width: 170.0.w,
                   image: state.blogs[index].imagePath ?? "",

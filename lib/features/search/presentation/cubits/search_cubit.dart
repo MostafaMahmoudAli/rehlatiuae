@@ -18,11 +18,17 @@ class SearchCubit extends Cubit<SearchState> {
 
     var results = await searchRepo.fetchSearchData(name: name);
     results.fold(
-      (errorMessage) => emit(SearchState.error(errorMessage)),
+      (errorMessage) => _update(SearchState.error(errorMessage)),
       (searchList) {
 
-        emit(SearchState.loaded(searchList));
+        _update(SearchState.loaded(searchList));
         },
     );
+  }
+
+  void _update(SearchState state) {
+    if (!isClosed) {
+      emit(state);
+    }
   }
 }

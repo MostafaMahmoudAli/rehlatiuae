@@ -20,11 +20,14 @@ class BestOffersSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          text: AppStrings.bestOffersTitle,
-          onPressed: () {
-            context.push(AppStrings.bestOffersScreen);
-          },
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal:10.0.w),
+          child: CustomRowTitle(
+            text: AppStrings.bestOffersTitle,
+            onPressed: () {
+              context.push(AppStrings.bestOffersScreen);
+            },
+          ),
         ),
         Stack(
           children: [

@@ -9,59 +9,62 @@ class WhyChooseUsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          AppStrings.whyChooseUsTitle,
-          style: TextStyle(
-            color: AppColors.black,
+    return Padding(
+      padding:EdgeInsets.symmetric(horizontal:10.0.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            AppStrings.whyChooseUsTitle,
+            style: TextStyle(
+              color: AppColors.black,
+            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            WhyChooseUSItem(
-              text: AppStrings.whyChooseUsFastBooking,
-              descriptionText: AppStrings.whyChooseUsFastBookingDescription,
-              descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
-              child: Image.asset(AppStrings.whyChooseUsFastBookingImage),
-            ),
-            SizedBox(
-              width: 20.0.w,
-            ),
-            WhyChooseUSItem(
-              text: AppStrings.whyChooseUsEasyToShop,
-              descriptionText: AppStrings.whyChooseUsEasyToShopDescription,
-              descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
-              child: Image.asset(AppStrings.whyChooseUsEasyToShopImage),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 10.0.h,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            WhyChooseUSItem(
-              text: AppStrings.whyChooseUs247Support,
-              descriptionText: AppStrings.whyChooseUs247SupportDescription,
-              descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
-              child: Image.asset(AppStrings.whyChooseUs247SupportImage),
-            ),
-            SizedBox(
-              width: 20.0.w,
-            ),
-            WhyChooseUSItem(
-              text: AppStrings.whyChooseUsUniqueexPerience,
-              descriptionText: AppStrings.whyChooseUsUniqueexPerienceDescription,
-              descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
-              child: Image.asset(AppStrings.whyChooseUsUniqueexPerienceImage),
-            ),
-          ],
-        ),
-      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              WhyChooseUSItem(
+                text: AppStrings.whyChooseUsFastBooking,
+                descriptionText: AppStrings.whyChooseUsFastBookingDescription,
+                descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
+                child: Image.asset(AppStrings.whyChooseUsFastBookingImage),
+              ),
+              SizedBox(
+                width: 20.0.w,
+              ),
+              WhyChooseUSItem(
+                text: AppStrings.whyChooseUsEasyToShop,
+                descriptionText: AppStrings.whyChooseUsEasyToShopDescription,
+                descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
+                child: Image.asset(AppStrings.whyChooseUsEasyToShopImage),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.0.h,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              WhyChooseUSItem(
+                text: AppStrings.whyChooseUs247Support,
+                descriptionText: AppStrings.whyChooseUs247SupportDescription,
+                descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
+                child: Image.asset(AppStrings.whyChooseUs247SupportImage),
+              ),
+              SizedBox(
+                width: 20.0.w,
+              ),
+              WhyChooseUSItem(
+                text: AppStrings.whyChooseUsUniqueexPerience,
+                descriptionText: AppStrings.whyChooseUsUniqueexPerienceDescription,
+                descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
+                child: Image.asset(AppStrings.whyChooseUsUniqueexPerienceImage),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

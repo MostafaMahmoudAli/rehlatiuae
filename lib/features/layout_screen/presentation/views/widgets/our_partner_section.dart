@@ -15,10 +15,13 @@ class OurPartnerSection extends StatelessWidget
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          AppStrings.ourPartnerTitle,
-          style: TextStyle(
-            color: AppColors.black,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal:10.0.w),
+          child: const Text(
+            AppStrings.ourPartnerTitle,
+            style: TextStyle(
+              color: AppColors.black,
+            ),
           ),
         ),
         SizedBox(height: 10.0.h,),

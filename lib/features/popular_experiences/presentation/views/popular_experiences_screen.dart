@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
-import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/custom_drawer.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_body.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_bottom_section.dart';
 
@@ -21,22 +17,7 @@ class PopularExperiencesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: AppColors.whiteAppColor,
-        title: const CustomAppBarTitle(),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: CustomCircleAvatar(
-              radius: 40.0.r,
-              backgroundImage: const AssetImage(
-                "assets/images/Ellipse 1.png",
-              ),
-            ),
-          ),
-        ],
-      ),
-      drawer: const CustomDrawer(),
+      appBar:  AppBar(),
       body: BlocProvider(
         create: (context)=>getIt<PopularExperiencesBloc>()..add(GetPopularExperiencesEvent()),
         child: Padding(

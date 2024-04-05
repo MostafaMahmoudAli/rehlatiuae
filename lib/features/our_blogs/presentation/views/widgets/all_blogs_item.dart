@@ -38,6 +38,7 @@ class AllBlogsItem extends StatelessWidget {
                 image:CachedNetworkImageProvider(
                   image ?? "",
                 ) ,
+                fit:BoxFit.cover,
               ),
             ),
           ),

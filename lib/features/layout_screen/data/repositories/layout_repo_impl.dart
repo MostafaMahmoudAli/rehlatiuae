@@ -11,6 +11,7 @@ import 'package:rehlatyuae/features/layout_screen/domain/repositories/layout_rep
 
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
+import '../models/subscribe_model/subscribe_model.dart';
 
 class LayoutRepoImpl implements LayoutRepository {
   final ApiConsumer apiConsumer;
@@ -94,4 +95,19 @@ class LayoutRepoImpl implements LayoutRepository {
       return Left(error.errorModel.message);
     }
   }
+
+  @override
+  Future<Either<String, Unit>> sendSubscribe({required SubscribeModel message}) async{
+    try {
+      await apiConsumer.post(
+        EndPoints.subscriptionEmailEndPoint,
+        data: message.toJson(),
+      );
+      return const Right(unit);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+
 }

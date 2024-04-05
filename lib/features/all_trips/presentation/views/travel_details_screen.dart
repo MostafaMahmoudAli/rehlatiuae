@@ -81,7 +81,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppStrings.paymentOptionsScreen, extra: widget.trip);
+                context.push(AppStrings.paymentOptionsScreen, extra: widget.trip,);
               },
               width: double.infinity,
               height: 50.h,

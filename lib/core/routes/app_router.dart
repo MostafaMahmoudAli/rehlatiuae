@@ -33,7 +33,9 @@ import 'package:rehlatyuae/features/splash_screen/presentation/views/splash_scre
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/top_destination_screen.dart';
 
 import '../../features/all_categories/data/models/categories_model.dart';
+import '../../features/our_blogs/presentation/views/widgets/blog_search.dart';
 import '../../features/top_destinations_section/presentation/views/city_destination_screen.dart';
+import 'app_routes_strings.dart';
 
 class AppRouter {
   final CacheService _cacheService;
@@ -70,6 +72,10 @@ class AppRouter {
         GoRoute(
           path: AppStrings.allTripsScreen,
           builder: (context, state) => AllTripsScreen(),
+        ),
+        GoRoute(
+          path: AppRoutesStrings.blogsSearchScreen,
+          builder: (context, state) =>  BlogSearch(),
         ),
         GoRoute(
           path: AppStrings.bestOffersScreen,

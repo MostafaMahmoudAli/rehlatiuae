@@ -42,6 +42,7 @@ class DioConsumer implements ApiConsumer {
     String path, {
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? data,
+    Options? options,
     bool isForm = false,
   }) async {
     try {
@@ -49,6 +50,7 @@ class DioConsumer implements ApiConsumer {
         path,
         queryParameters: queryParameters,
         data: isForm ? FormData.fromMap(data!) : data,
+        options: options,
       );
       return response.data;
     } on DioException catch (e) {
