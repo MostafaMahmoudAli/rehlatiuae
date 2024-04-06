@@ -20,6 +20,7 @@ class PaymentDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<TripCheckoutDetailsCubit>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -29,46 +30,46 @@ class PaymentDetailsScreen extends StatelessWidget {
               ),
         ),
       ),
-      body: BlocProvider(
-        create: (context) => getIt<TripCheckoutDetailsCubit>(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                FieldDateBooking(
-                  cubit: context.read<TripCheckoutDetailsCubit>(),
-                  isFirstScreen: false,
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                OrderSummarySection(
-                  total: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.finalSubtotal}',
-                  childrenCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityChild}',
-                  adultCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityAdult}',
-                  address: LocaleKeys.Dubai_United.tr(),
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 10.h),
-              child: TotalPaymentSection(
-                total: "\$${context.read<TripCheckoutDetailsCubit>().allSubtotal}",
-                subtitle: LocaleKeys.View_detailed_bill.tr(),
-                buttonLabel: LocaleKeys.Payment.tr(),
-                onButtonTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
-                    ),
-                    builder: (context) => BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
-                      listener: (context, state) {
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              FieldDateBooking(
+                cubit: cubit,
+                isFirstScreen: false,
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              OrderSummarySection(
+                total: '${cubit.tripCheckoutDetails.finalSubtotal}',
+                childrenCount: '${cubit.tripCheckoutDetails.quantityChild}',
+                adultCount: '${cubit.tripCheckoutDetails.quantityAdult}',
+                address: LocaleKeys.Dubai_United.tr(),
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 10.h),
+            child: TotalPaymentSection(
+              total: "\$${cubit.allSubtotal}",
+              subtitle: LocaleKeys.View_detailed_bill.tr(),
+              buttonLabel: LocaleKeys.Payment.tr(),
+              onButtonTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  ),
+                  builder: (c) => BlocProvider(
+                    create: (context) => getIt<TripCheckoutDetailsCubit>(),
+                    child: BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+                      listener: (c, state) {
                         state.whenOrNull(
                           error: (message) {
                             showDialog(
@@ -85,9 +86,9 @@ class PaymentDetailsScreen extends StatelessWidget {
                             showDialog(
                               context: context,
                               barrierDismissible: false,
-                              builder: (context) => CustomDialog(
+                              builder: (c) => CustomDialog(
                                 title: 'Payment Success',
-                                subtitle: '${context.read<TripCheckoutDetailsCubit>().allSubtotal}',
+                                subtitle: '${cubit.allSubtotal}',
                                 labelText: 'Back to Homepage',
                                 onTap: () {
                                   context.go(AppRoutesString.homeScreen);
@@ -97,8 +98,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                           },
                         );
                       },
-                      builder: (context, state) {
-                        var cubit = context.read<TripCheckoutDetailsCubit>();
+                      builder: (c, state) {
                         return state.maybeWhen(
                           loading: () => const Center(
                             child: CircularProgressIndicator(),
@@ -116,29 +116,29 @@ class PaymentDetailsScreen extends StatelessWidget {
                         );
                       },
                     ),
-                  );
-                },
-                onSubtitleTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
+                  ),
+                );
+              },
+              onSubtitleTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  ),
+                  builder: (c) => CustomBottomSheet(
+                    title: LocaleKeys.Payment_Details.tr(),
+                    labelButton: LocaleKeys.Payment.tr(),
+                    contentSheet: PaymentContentSheet(
+                      tripCheckoutDetails: cubit.tripCheckoutDetails,
                     ),
-                    builder: (context) => CustomBottomSheet(
-                      title: LocaleKeys.Payment_Details.tr(),
-                      labelButton: LocaleKeys.Payment.tr(),
-                      contentSheet: PaymentContentSheet(
-                        tripCheckoutDetails: context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails,
-                      ),
-                      avatarColor: AppColors.backgroundAvatarPayment,
-                    ),
-                  );
-                },
-              ),
+                    avatarColor: AppColors.backgroundAvatarPayment,
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

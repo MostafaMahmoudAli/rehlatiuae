@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -56,7 +57,7 @@ class OrderSummarySection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                     LocaleKeys.Order_Summary,
+                      LocaleKeys.Order_Summary,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
@@ -67,11 +68,11 @@ class OrderSummarySection extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${LocaleKeys.Adult}: $adultCount",
+                          "${LocaleKeys.Adult.tr()}: $adultCount",
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                         Text(
-                          "$LocaleKeys.Children}: $childrenCount",
+                          "${LocaleKeys.Children.tr()}: $childrenCount",
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                       ],
