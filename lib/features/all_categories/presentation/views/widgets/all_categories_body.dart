@@ -51,30 +51,33 @@ class _AllCategoriesBodyState extends State<AllCategoriesBody> {
           case CategoriesStatus.loading:
             return const Center(child: CircularProgressIndicator());
           case CategoriesStatus.success:
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 5 / 2.5,
-                crossAxisSpacing: 14.0.w,
-                mainAxisSpacing: 1.0.w,
-              ),
-              itemBuilder: (context, index) => InkWell(
-                onTap: () {
-                  context.push(AppRoutesString.categoryNameScreen, extra: state.categories[index]);
-                },
-                child: Center(
-                  child: CategoriesItem(
-                    width: 150.0.w,
-                    height: 60.0.h,
-                    image: state.categories[index].imagePath ?? "",
-                    categoryName: state.categories[index].name ?? "",
+            return Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio:MediaQuery.sizeOf(context).aspectRatio/0.2,
+                  crossAxisSpacing: 14.0.w,
+                  mainAxisSpacing: 1.0.w,
+                ),
+                itemBuilder: (context, index) => InkWell(
+                  onTap: () {
+                    context.push(AppRoutesString.categoryNameScreen, extra: state.categories[index]);
+                  },
+                  child: Center(
+                    child: CategoriesItem(
+                      width: 150.0.w,
+                      height: 60.0.h,
+                      image: state.categories[index].imagePath ?? "",
+                      categoryName: state.categories[index].name ?? "",
+                    ),
                   ),
                 ),
+                itemCount: state.categories.length,
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                padding: EdgeInsets.zero,
               ),
-              itemCount: state.categories.length,
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              padding: EdgeInsets.zero,
             );
           case CategoriesStatus.error:
             return ErrorsWidget(

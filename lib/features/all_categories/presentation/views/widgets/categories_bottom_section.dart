@@ -54,6 +54,7 @@ class CategoriesBottomSection extends StatelessWidget
             loading: ()=> const Center(child: CircularProgressIndicator(),),
             loaded: (layoutModelSectionData)=> Column(
               children: [
+               SizedBox(height:20.0.h,),
                  TopDestinationSection(
                   destinations:layoutModelSectionData.topDestinations ?? [],
                 ),
@@ -66,8 +67,8 @@ class CategoriesBottomSection extends StatelessWidget
                   bestTrips:layoutModelSectionData.bestTrips?? [],
                 ),
                 const CustomSizedBox(),
-                const PopularExperiencesSection(
-                  popularExperiences: [],
+                 PopularExperiencesSection(
+                  popularExperiences:layoutModelSectionData.popularExperience?? [],
                 ),
                 const CustomSizedBox(),
                 OurBlogSection(
@@ -81,16 +82,22 @@ class CategoriesBottomSection extends StatelessWidget
                 const WhyChooseUsSection(),
                 const CustomSizedBox(),
                 const WeHelpYouSection(),
-                CustomActionButton(
-                  onTap: () {
-                    context.push(AppRoutesString.allTripsScreen);
-                  },
-                  text:LocaleKeys.Explore_More,
-                  height: 70.0.h,
-                  width: double.infinity,
-                  borderRadius: BorderRadius.circular(12.0.r),
-                  backGroundColor: AppColors.orange,
-                  style: Theme.of(context).textTheme.displayLarge,
+                Padding(
+                  padding:EdgeInsets.symmetric(
+                    horizontal:15.0.w,
+                    vertical: 10.0.h,
+                  ),
+                  child: CustomActionButton(
+                    onTap: () {
+                      context.push(AppRoutesString.allTripsScreen);
+                    },
+                    text:LocaleKeys.Explore_More,
+                    height: 70.0.h,
+                    width: double.infinity,
+                    borderRadius: BorderRadius.circular(12.0.r),
+                    backGroundColor: AppColors.orange,
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
                 ),
                 const CustomSizedBox(),
                 const BestOffersHorizontal(),

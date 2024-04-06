@@ -16,16 +16,24 @@ class OurPartnerSection extends StatelessWidget
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         Text(
-          LocaleKeys.Our_Partner.tr(),
-          style: const TextStyle(
-            color: AppColors.black,
-          ),
-        ),
+         Padding(
+           padding:EdgeInsetsDirectional.only(
+             start: 10.0.w,
+             end: 10.0.w,
+             bottom: 10.0.h,
+           ),
+           child: Text(
+             LocaleKeys.Our_Partner.tr(),
+             style: const TextStyle(
+               color: AppColors.black,
+             ),
+           ),
+         ),
         SizedBox(height: 10.0.h,),
         SizedBox(
           height: 100.0.h,
           child: ListView.separated(
+              padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
               scrollDirection: Axis.horizontal,
               itemCount: ourPartners.length,
               physics:const BouncingScrollPhysics(),

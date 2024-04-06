@@ -19,15 +19,23 @@ class TopDestinationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          onPressed: () {
-            context.push(AppRoutesString.topDestinationScreen);
-          },
-          text: LocaleKeys.All_Destinations.tr(),
+        Padding(
+          padding:EdgeInsetsDirectional.only(
+            start: 10.0.w,
+            end: 10.0.w,
+            bottom: 10.0.h,
+          ),
+          child: CustomRowTitle(
+            onPressed: () {
+              context.push(AppRoutesString.topDestinationScreen);
+            },
+            text: LocaleKeys.All_Destinations.tr(),
+          ),
         ),
         SizedBox(
           height: 200.0.h,
           child: ListView.separated(
+            padding:EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
               scrollDirection: Axis.horizontal,
               itemCount: destinations.length,
               physics:const BouncingScrollPhysics(),
@@ -50,7 +58,7 @@ class TopDestinationSection extends StatelessWidget {
               },
               separatorBuilder: (context, index) {
                 return SizedBox(
-                  width: 5.0.w,
+                  width: 12.0.w,
                 );
               }),
         ),

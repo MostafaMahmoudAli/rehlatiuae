@@ -70,16 +70,22 @@ class CityDestinationBottomSection extends StatelessWidget {
                 const WhyChooseUsSection(),
                 const CustomSizedBox(),
                 const WeHelpYouSection(),
-                CustomActionButton(
-                  onTap: () {
-                    context.push(AppRoutesString.allTripsScreen);
-                  },
-                  text: AppStrings.actionButtonName,
-                  height: 70.0.h,
-                  width: double.infinity,
-                  borderRadius: BorderRadius.circular(12.0.r),
-                  backGroundColor: AppColors.orange,
-                  style: Theme.of(context).textTheme.displayLarge,
+                Padding(
+                  padding:EdgeInsets.symmetric(
+                    horizontal:15.0.w,
+                    vertical: 10.0.h,
+                  ),
+                  child: CustomActionButton(
+                    onTap: () {
+                      context.push(AppRoutesString.allTripsScreen);
+                    },
+                    text: AppStrings.actionButtonName,
+                    height: 70.0.h,
+                    width: double.infinity,
+                    borderRadius: BorderRadius.circular(12.0.r),
+                    backGroundColor: AppColors.orange,
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
                 ),
                 const CustomSizedBox(),
                 const BestOffersHorizontal(),

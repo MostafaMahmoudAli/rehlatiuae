@@ -56,31 +56,34 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
           case AllDestinationsStatus.loading:
             return const Center(child: CircularProgressIndicator());
           case AllDestinationsStatus.success:
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2.2 / 3,
-                crossAxisSpacing: 10.0.w,
-                mainAxisSpacing: 1.0.w,
-              ),
-              itemBuilder: (context, index) => InkWell(
-                onTap: () {
-                  context.push(
-                    AppStrings.cityDestinationScreen,
-                    extra: state.allDestination[index].id,
-                  );
-                },
-                child: CustomContainerTrip(
-                  width: 140.0.w,
-                  cityName: state.allDestination[index].name,
-                  countryName: state.allDestination[index].country,
-                  imageName: state.allDestination[index].imagePath ?? "",
+            return Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.55,
+                  crossAxisSpacing: 10.0.w,
+                  mainAxisSpacing: 1.0.w,
                 ),
+                itemBuilder: (context, index) => InkWell(
+                  onTap: () {
+                    context.push(
+                      AppStrings.cityDestinationScreen,
+                      extra: state.allDestination[index].id,
+                    );
+                  },
+                  child: CustomContainerTrip(
+                    width: 140.0.w,
+                    cityName: state.allDestination[index].name,
+                    countryName: state.allDestination[index].country,
+                    imageName: state.allDestination[index].imagePath ?? "",
+                  ),
+                ),
+                itemCount: state.allDestination.length,
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                padding: EdgeInsets.zero,
               ),
-              itemCount: state.allDestination.length,
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              padding: EdgeInsets.zero,
             );
           case AllDestinationsStatus.error:
             return ErrorsWidget(

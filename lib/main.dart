@@ -10,9 +10,15 @@ import 'package:rehlatyuae/generated/codegen_loader.g.dart';
 
 import 'core/utils/bloc_observer.dart';
 import 'core/utils/injector.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:stripe_sdk/stripe_sdk.dart' as stripeSdk;
+
+import 'features/payment/domain/api_keys.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey=StripeApiKeys.publishableKey;
+  stripeSdk.Stripe.init(StripeApiKeys.publishableKey);
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await setupInjector();

@@ -29,4 +29,21 @@ class BlogsRepositoryImpl implements BlogsRepository {
       return Left(error.errorModel.message);
     }
   }
+
+  @override
+  Future<Either<String, List<Blogs>>> fetchBlogsSearch({String? name}) async {
+    try {
+      var blogsTrip = await apiConsumer.get(
+          EndPoints.blogSearchEndPoint,
+          queryParameters: {
+            "name":name,
+          });
+      List<Blogs> blogsTripList= blogsTrip["data"]["blogs"]
+          .map<Blogs>((e) => Blogs.fromJson(e)).toList();
+      return right(blogsTripList);
+    } on ServerExceptions catch (error)
+    {
+      return Left(error.errorModel.message);
+    }
+  }
 }

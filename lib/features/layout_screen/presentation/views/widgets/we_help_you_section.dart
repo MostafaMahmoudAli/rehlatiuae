@@ -11,128 +11,131 @@ class WeHelpYouSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          LocaleKeys.We_Help_You_Make_Best_Trip.tr(),
-          style: Theme.of(context).textTheme.labelMedium,
-        ),
-        SizedBox(
-          height: 6.0.h,
-        ),
-        Text(
-          AppStrings.weHelpYouMakeBestTripDescription,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        SizedBox(
-          height: 20.0.h,
-        ),
-        SizedBox(
-          width: double.infinity,
-          height: 290.0.h,
-          child: Stack(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal:10.0.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            LocaleKeys.We_Help_You_Make_Best_Trip.tr(),
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+          SizedBox(
+            height: 6.0.h,
+          ),
+          Text(
+            AppStrings.weHelpYouMakeBestTripDescription,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          SizedBox(
+            height: 20.0.h,
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 290.0.h,
+            child: Stack(
+              children: [
+                Container(
+                  height: 190.0.h,
+                  width: 130.0.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(12.0.r),
+                    image: const DecorationImage(
+                      image: AssetImage(
+                        AppStrings.weHelpYouMakeBestTripImage1,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  left: MediaQuery.sizeOf(context).width*0.47,
+                  child: Container(
+                    height: 140.0.h,
+                    width: 110.0.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(12.0.r),
+                      image: const DecorationImage(
+                        image: AssetImage(
+                          AppStrings.weHelpYouMakeBestTripImage2,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top:MediaQuery.sizeOf(context).height*0.19,
+                  left:MediaQuery.sizeOf(context).width*0.3,
+                  child: Container(
+                    height: 140.0.h,
+                    width: 140.0.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(12.0.r),
+                      image: const DecorationImage(
+                        image: AssetImage(
+                          AppStrings.weHelpYouMakeBestTripImage3,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20.0.h,
+          ),
+          Row(
             children: [
-              Container(
-                height: 190.0.h,
-                width: 130.0.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(12.0.r),
-                  image: const DecorationImage(
-                    image: AssetImage(
-                      AppStrings.weHelpYouMakeBestTripImage1,
-                    ),
-                    fit: BoxFit.cover,
-                  ),
+              WhyChooseUSItem(
+                text:AppStrings.weHelpYouMakeBestTripSecondDescription,
+                child: Icon(
+                  Icons.check_box_outlined,
+                  color:AppColors.textAndBackgroundColorButton,
+                  size: 14.0.sp,
                 ),
               ),
-              Positioned(
-                top: 0,
-                left: 175,
-                child: Container(
-                  height: 140.0.h,
-                  width: 110.0.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadiusDirectional.circular(12.0.r),
-                    image: const DecorationImage(
-                      image: AssetImage(
-                        AppStrings.weHelpYouMakeBestTripImage2,
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 150,
-                left: 100,
-                child: Container(
-                  height: 140.0.h,
-                  width: 140.0.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadiusDirectional.circular(12.0.r),
-                    image: const DecorationImage(
-                      image: AssetImage(
-                        AppStrings.weHelpYouMakeBestTripImage3,
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+              WhyChooseUSItem(
+                text:AppStrings.weHelpYouMakeBestTripSecondDescription,
+                child: Icon(
+                  Icons.check_box_outlined,
+                  color: AppColors.textAndBackgroundColorButton,
+                  size: 14.0.sp,
                 ),
               ),
             ],
           ),
-        ),
-        SizedBox(
-          height: 20.0.h,
-        ),
-        Row(
-          children: [
-            WhyChooseUSItem(
-              text:AppStrings.weHelpYouMakeBestTripSecondDescription,
-              child: Icon(
-                Icons.check_box_outlined,
-                color:AppColors.textAndBackgroundColorButton,
-                size: 14.0.sp,
+          SizedBox(
+            height: 15.0.h,
+          ),
+          Row(
+            children: [
+              WhyChooseUSItem(
+                text:AppStrings.weHelpYouMakeBestTripSecondDescription,
+                child: Icon(
+                  Icons.check_box_outlined,
+                  color: AppColors.textAndBackgroundColorButton,
+                  size: 14.0.sp,
+                ),
               ),
-            ),
-            WhyChooseUSItem(
-              text:AppStrings.weHelpYouMakeBestTripSecondDescription,
-              child: Icon(
-                Icons.check_box_outlined,
-                color: AppColors.textAndBackgroundColorButton,
-                size: 14.0.sp,
+              SizedBox(
+                width: 5.0.w,
               ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 15.0.h,
-        ),
-        Row(
-          children: [
-            WhyChooseUSItem(
-              text:AppStrings.weHelpYouMakeBestTripSecondDescription,
-              child: Icon(
-                Icons.check_box_outlined,
-                color: AppColors.textAndBackgroundColorButton,
-                size: 14.0.sp,
+              WhyChooseUSItem(
+                text:AppStrings.weHelpYouMakeBestTripSecondDescription,
+                child: Icon(
+                  Icons.check_box_outlined,
+                  color: AppColors.textAndBackgroundColorButton,
+                  size: 14.0.sp,
+                ),
               ),
-            ),
-            SizedBox(
-              width: 5.0.w,
-            ),
-            WhyChooseUSItem(
-              text:AppStrings.weHelpYouMakeBestTripSecondDescription,
-              child: Icon(
-                Icons.check_box_outlined,
-                color: AppColors.textAndBackgroundColorButton,
-                size: 14.0.sp,
-              ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

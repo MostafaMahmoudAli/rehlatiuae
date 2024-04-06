@@ -22,15 +22,23 @@ class BestOffersSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          text: LocaleKeys.Best_Offers.tr(),
-          onPressed: () {
-            context.push(AppRoutesString.bestOffersScreen);
-          },
+        Padding(
+          padding:EdgeInsetsDirectional.only(
+              start: 10.0.w,
+            end: 10.0.w,
+            bottom: 10.0.h,
+          ),
+          child: CustomRowTitle(
+            text: LocaleKeys.Best_Offers.tr(),
+            onPressed: () {
+              context.push(AppRoutesString.bestOffersScreen);
+            },
+          ),
         ),
         Stack(
           children: [
             ListView.separated(
+              padding:EdgeInsetsDirectional.symmetric(horizontal: 8.0.w),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
@@ -43,7 +51,7 @@ class BestOffersSection extends StatelessWidget {
               },
               separatorBuilder: (context, index) {
                 return SizedBox(
-                  height: 10.0.h,
+                  height: 20.0.h,
                 );
               },
               itemCount: bestOffers.length,

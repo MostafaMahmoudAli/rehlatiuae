@@ -6,8 +6,7 @@ import '../../../../../core/utils/error_widget.dart';
 import '../../blocs/blogs_bloc.dart';
 
 class OurBlogsBody extends StatefulWidget {
-  const OurBlogsBody({super.key, this.ourBlogsScrollController});
-
+  const OurBlogsBody({super.key, this.ourBlogsScrollController,});
   final ScrollController? ourBlogsScrollController;
 
   @override
@@ -47,29 +46,31 @@ class _OurBlogsBodyState extends State<OurBlogsBody> {
             const Center(child: CircularProgressIndicator()),
           BlogsStatus.loading =>
             const Center(child: CircularProgressIndicator()),
-          BlogsStatus.success => GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.45,
-                crossAxisSpacing: 8.0.w,
-                mainAxisSpacing: 10.0.w,
+          BlogsStatus.success => Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+            child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.5,
+                  crossAxisSpacing: 8.0.w,
+                  mainAxisSpacing: 10.0.w,
+                ),
+                itemBuilder: (context, index) {
+                  return AllBlogsItem(
+                    width: 170.0.w,
+                    image: state.blogs[index].imagePath ?? "",
+                    rating: state.blogs[index].reviewAverage.toString(),
+                    createdAt: state.blogs[index].createdAt.toString(),
+                    name: state.blogs[index].name ?? "",
+                    description: state.blogs[index].description ?? '',
+                  );
+                },
+                itemCount: state.blogs.length,
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                padding: EdgeInsets.zero,
               ),
-              itemBuilder: (context, index) {
-
-                return AllBlogsItem(
-                  width: 170.0.w,
-                  image: state.blogs[index].imagePath ?? "",
-                  rating: state.blogs[index].reviewAverage.toString(),
-                  createdAt: state.blogs[index].createdAt.toString(),
-                  name: state.blogs[index].name ?? "",
-                  description: state.blogs[index].description ?? '',
-                );
-              },
-              itemCount: state.blogs.length,
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              padding: EdgeInsets.zero,
-            ),
+          ),
           BlogsStatus.error => ErrorsWidget(
               error: state.errMessage,
             ),

@@ -15,16 +15,23 @@ final List<Blogs>blogs;
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          text: LocaleKeys.Our_Blog.tr(),
-          onPressed: ()
-          {
-            context.push(AppRoutesString.ourBlogsScreen);
-          },
+        Padding(
+          padding:EdgeInsetsDirectional.only(
+            start: 10.0.w,
+            end: 10.0.w,
+            bottom: 10.0.h,
+          ),          child: CustomRowTitle(
+            text: LocaleKeys.Our_Blog.tr(),
+            onPressed: ()
+            {
+              context.push(AppRoutesString.ourBlogsScreen);
+            },
+          ),
         ),
         SizedBox(
           height: 330.0.h,
           child: ListView.separated(
+              padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
               scrollDirection: Axis.horizontal,
               itemCount: blogs.length,
               itemBuilder: (context, index)
@@ -37,7 +44,7 @@ final List<Blogs>blogs;
               separatorBuilder: (context, index)
               {
                 return SizedBox(
-                  width: 5.0.w,
+                  width: 10.0.w,
                 );
               }),
         ),

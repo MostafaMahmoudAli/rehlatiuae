@@ -9,7 +9,7 @@ import 'package:rehlatyuae/generated/locale_keys.g.dart';
 class SearchTextField extends StatelessWidget {
   const SearchTextField({
     super.key,
-    required this.controller, this.onTap, this.onChanged, this.readOnly, this.onSubmitted,
+     this.controller, this.onTap, this.onChanged, this.readOnly, this.onSubmitted,
   });
   final TextEditingController? controller;
 final void Function()? onTap;

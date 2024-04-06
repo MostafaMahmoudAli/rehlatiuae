@@ -56,6 +56,10 @@ dependencies:
   equatable: ^2.0.5
   logger: ^2.2.0
   currency_converter: ^2.0.0
+  flutter_stripe: ^10.1.1
+  stripe_sdk: ^5.0.0
+
+
   gallery_image_viewer: ^1.2.0
 
 dev_dependencies:

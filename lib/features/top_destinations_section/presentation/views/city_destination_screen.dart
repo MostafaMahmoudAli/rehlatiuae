@@ -6,13 +6,9 @@ import 'package:rehlatyuae/features/top_destinations_section/presentation/views/
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/city_destination_bottom_section.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/custom_circle_avatar.dart';
 import '../../../../core/utils/custom_dialog.dart';
 import '../../../../core/utils/custom_sized_box.dart';
 import '../../../../core/utils/injector.dart';
-import '../../../layout_screen/presentation/views/custom_drawer.dart';
-import '../../../layout_screen/presentation/views/widgets/custom_app_bar_title.dart';
 import '../blocs/city_destination_cubit.dart';
 
 class CityDestinationScreen extends StatelessWidget {
@@ -24,28 +20,13 @@ class CityDestinationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: AppColors.whiteAppColor,
-        title: const CustomAppBarTitle(),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: CustomCircleAvatar(
-              radius: 40.0.r,
-              backgroundImage: const AssetImage(
-                "assets/images/Ellipse 1.png",
-              ),
-            ),
-          ),
-        ],
-      ),
-      drawer: const CustomDrawer(),
+      appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => getIt<CityDestinationCubit>()..fetchCityDestinations(destinationId: cityDestinationId),
+        create: (context) => getIt<CityDestinationCubit>()
+          ..fetchCityDestinations(destinationId: cityDestinationId),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
-            vertical: 20.0.h,
-            horizontal: 17.0.w,
+            vertical: 10.0.h,
           ),
           child: SingleChildScrollView(
             controller: cityDestinationScrollController,
@@ -53,7 +34,8 @@ class CityDestinationScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BlocConsumer<CityDestinationCubit, CityDestinationState>(listener: (context, state) {
+                BlocConsumer<CityDestinationCubit, CityDestinationState>(
+                    listener: (context, state) {
                   state.whenOrNull(
                     error: (errorMessage) => showDialog(
                       context: context,
@@ -72,8 +54,16 @@ class CityDestinationScreen extends StatelessWidget {
                     loaded: (cityDestination) => Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          cityDestination.name ?? "",
+                        Padding(
+                          padding: EdgeInsetsDirectional.only(
+                            start: 12.0.w,
+                            end: 12.0.w,
+                            bottom: 10.0.h,
+                            top:10.0.h,
+                          ),
+                          child: Text(
+                            cityDestination.name ?? "",
+                          ),
                         ),
                         const CustomSizedBox(),
                         CityDestinationBody(

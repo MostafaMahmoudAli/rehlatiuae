@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import '../../../../core/utils/custom_container_trip.dart';
 import '../../../../core/utils/custom_dialog.dart';
@@ -58,36 +57,32 @@ class SearchScreen extends StatelessWidget {
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
                       loaded: (searchList) {
-                        getIt<Logger>()
-                            .w("nssdnvksdkjvkas${searchList.length}");
                         return SizedBox(
                           height: 400.0.h,
-                          child: Expanded(
-                            child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio:
-                                    MediaQuery.sizeOf(context).aspectRatio /
-                                        0.58,
-                                crossAxisSpacing: 10.0.w,
-                                mainAxisSpacing: 1.0.w,
-                              ),
-                              itemBuilder: (context, index) =>
-                                  CustomContainerTrip(
-                                width: 140.0.w,
-                                cityName: searchList[index].name,
-                                countryName: searchList[index].address,
-                                imageName: searchList[index].imagePath ?? "",
-                                tripPrice:
-                                    searchList[index].adultPrice.toString(),
-                                reservationType: "/person",
-                              ),
-                              itemCount: searchList.length,
-                              shrinkWrap: true,
-                              physics: const ClampingScrollPhysics(),
-                              padding: EdgeInsets.zero,
+                          child: GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio:
+                                  MediaQuery.sizeOf(context).aspectRatio /
+                                      0.58,
+                              crossAxisSpacing: 10.0.w,
+                              mainAxisSpacing: 1.0.w,
                             ),
+                            itemBuilder: (context, index) =>
+                                CustomContainerTrip(
+                              width: 140.0.w,
+                              cityName: searchList[index].name,
+                              countryName: searchList[index].address,
+                              imageName: searchList[index].imagePath ?? "",
+                              tripPrice:
+                                  searchList[index].adultPrice.toString(),
+                              reservationType: "/person",
+                            ),
+                            itemCount: searchList.length,
+                            shrinkWrap: true,
+                            physics: const ClampingScrollPhysics(),
+                            padding: EdgeInsets.zero,
                           ),
                         );
                       },

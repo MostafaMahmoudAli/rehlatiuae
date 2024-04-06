@@ -18,15 +18,23 @@ class BestTripsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          text: LocaleKeys.Best_Trips.tr(),
-          onPressed: () {
-            context.push(AppRoutesString.bestTripsScreen);
-          },
+        Padding(
+          padding:EdgeInsetsDirectional.only(
+            start: 10.0.w,
+            end: 10.0.w,
+            bottom: 10.0.h,
+          ),
+          child: CustomRowTitle(
+            text: LocaleKeys.Best_Trips.tr(),
+            onPressed: () {
+              context.push(AppRoutesString.bestTripsScreen);
+            },
+          ),
         ),
         SizedBox(
           height: 200.0.h,
           child: ListView.separated(
+              padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
               scrollDirection: Axis.horizontal,
               itemCount: bestTrips!.length,
               physics: const BouncingScrollPhysics(),
@@ -45,7 +53,7 @@ class BestTripsSection extends StatelessWidget {
               },
               separatorBuilder: (context, index) {
                 return SizedBox(
-                  width: 5.0.w,
+                  width: 12.0.w,
                 );
               }),
         ),

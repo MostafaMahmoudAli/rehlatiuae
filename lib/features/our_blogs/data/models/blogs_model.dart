@@ -18,12 +18,14 @@ class Blogs with _$Blogs {
     required final String? name,
     required final String? description,
     required final String? imagePath,
-    @JsonKey(name: "created_at") required final DateTime? createdAt,
-    required final int? reviewAverage,
-    required final List<Review>? blogReview,
-    required final Trips? trip,
-    required final List<AddressModel> addresses,
-    @JsonKey(name: "review_count") required final ReviewCount reviewCount,
+    @JsonKey(name: "created_at")
+    required final DateTime? createdAt,
+    final int? reviewAverage,
+    final List<Review>? blogReview,
+    final Trips? trip,
+    final List<AddressModel>? addresses,
+    @JsonKey(name: "review_count")
+    final ReviewCount? reviewCount,
     final List<Attachment>? attachments,
   }) = _Blogs;
 

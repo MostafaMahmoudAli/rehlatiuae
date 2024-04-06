@@ -331,7 +331,7 @@ Official Channels:
 ''';
 
   // assets images names
-  static const appLogo = "assets/images/Group.svg";
+  static const appLogo = "assets/images/Group 33646.svg";
   static const ourPartnersLogo = "assets/images/download 1.png";
   static const containerTripBackgroundImage = "assets/images/Rectangle 427.png";
   static const whyChooseUsFastBookingImage = "assets/images/Vector.png";

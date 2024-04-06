@@ -6,12 +6,14 @@ part of 'images_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ImagesModelImpl _$$ImagesModelImplFromJson(Map<String, dynamic> json) => _$ImagesModelImpl(
+_$ImagesModelImpl _$$ImagesModelImplFromJson(Map<String, dynamic> json) =>
+    _$ImagesModelImpl(
       id: json['id'] as int,
-      imagePath: json.containsKey('imagePath') ? json['imagePath'] : json['image_path'] as String,
+      imagePath: json['imagePath'] as String,
     );
 
-Map<String, dynamic> _$$ImagesModelImplToJson(_$ImagesModelImpl instance) => <String, dynamic>{
+Map<String, dynamic> _$$ImagesModelImplToJson(_$ImagesModelImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'imagePath': instance.imagePath,
     };

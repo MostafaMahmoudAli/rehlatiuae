@@ -48,21 +48,24 @@ class _BestOffersBodyState extends State<BestOffersBody> {
 
           BestOffersStatus.loading => const Center(child: CircularProgressIndicator()),
 
-          BestOffersStatus.success => GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              childAspectRatio:MediaQuery.sizeOf(context).aspectRatio/0.24,
-              mainAxisSpacing: 10.0.h,
+          BestOffersStatus.success => Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                childAspectRatio:MediaQuery.sizeOf(context).aspectRatio/0.24,
+                mainAxisSpacing: 10.0.h,
+              ),
+              itemBuilder: (context, index) => BestOffersItem(
+                width: 74.0.w,
+                bestOffers: state.bestOffers[index],
+                // review:state.bestOffers[index].reviews?[index],
+              ),
+              itemCount: state.bestOffers.length,
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              padding: EdgeInsets.zero,
             ),
-            itemBuilder: (context, index) => BestOffersItem(
-              width: 74.0.w,
-              bestOffers: state.bestOffers[index],
-              // review:state.bestOffers[index].reviews?[index],
-            ),
-            itemCount: state.bestOffers.length,
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            padding: EdgeInsets.zero,
           ),
 
           BestOffersStatus.error => ErrorsWidget(

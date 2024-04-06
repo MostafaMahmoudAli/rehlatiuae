@@ -26,6 +26,6 @@ class AppRoutesString {
   static const updatePasswordScreen = "/updatePasswordScreen";
   static const categoryNameScreen = "/categoryNameScreen";
   static const cityDestinationScreen = "/cityDestinationScreen";
-
+  static const blogsSearchScreen = "/searchScreen";
   static const initialLocationRoute = "initialLocationRoute";
 }

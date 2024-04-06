@@ -18,7 +18,7 @@ class SearchRepoImpl implements SearchRepo
           queryParameters: {
            "name":name,
           });
-      List<SearchModel> searchTripList= searchTrip["data"]
+      List<SearchModel> searchTripList= searchTrip["data"]["trips"]
           .map<SearchModel>((e) => SearchModel.fromJson(e)).toList();
       return right(searchTripList);
     } on ServerExceptions catch (error)

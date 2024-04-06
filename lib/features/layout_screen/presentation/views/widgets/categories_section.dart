@@ -20,15 +20,23 @@ class CategoriesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          text:  LocaleKeys.Categories.tr(),
-          onPressed: () {
-            context.push(AppRoutesString.allCategoriesScreen);
-          },
+        Padding(
+          padding:EdgeInsetsDirectional.only(
+            start: 10.0.w,
+            end: 10.0.w,
+            bottom: 10.0.h,
+          ),
+          child: CustomRowTitle(
+            text:  LocaleKeys.Categories.tr(),
+            onPressed: () {
+              context.push(AppRoutesString.allCategoriesScreen);
+            },
+          ),
         ),
         SizedBox(
           height: 40.0.h,
           child: ListView.separated(
+            padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
               scrollDirection: Axis.horizontal,
               itemCount: categories?.length ?? 0,
               itemBuilder: (context, index) {
@@ -46,7 +54,7 @@ class CategoriesSection extends StatelessWidget {
               },
               separatorBuilder: (context, index) {
                 return SizedBox(
-                  width: 5.0.w,
+                  width: 12.0.w,
                 );
               }),
         ),

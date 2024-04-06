@@ -17,16 +17,24 @@ class PopularExperiencesSection extends StatelessWidget {
   {
     return Column(
       children: [
-        CustomRowTitle(
-          text: LocaleKeys.Popular_Experiences.tr(),
-          onPressed: ()
-          {
-            context.push(AppRoutesString.popularExperiencesScreen);
-          },
+        Padding(
+          padding:EdgeInsetsDirectional.only(
+            start: 10.0.w,
+            end: 10.0.w,
+            bottom: 10.0.h,
+          ),
+          child: CustomRowTitle(
+            text: LocaleKeys.Popular_Experiences.tr(),
+            onPressed: ()
+            {
+              context.push(AppRoutesString.popularExperiencesScreen);
+            },
+          ),
         ),
         SizedBox(
           height:190.0.h,
           child: ListView.separated(
+              padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
               scrollDirection: Axis.horizontal,
               itemCount: popularExperiences!.length,
               itemBuilder: (context, index) {
@@ -40,7 +48,7 @@ class PopularExperiencesSection extends StatelessWidget {
               separatorBuilder: (context, index)
               {
                 return SizedBox(
-                  width: 5.0.w,
+                  width: 12.0.w,
                 );
               }),
         ),

@@ -7,5 +7,5 @@ abstract class PaymentRepo {
 
   Future<Either<String, Unit>> addTripCheckoutDetails({required TripCheckoutDetails tripCheckoutDetails});
 
-  // Future<Either<String, void>> paymentMethod({required int amount,required String currency});
+  Future<Either<String, Unit>> paymentMethod({required int amount,required String currency});
 }

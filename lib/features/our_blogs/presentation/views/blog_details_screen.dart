@@ -49,10 +49,10 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
             ),
           ),
           ...List.generate(
-            widget.blogs.addresses.length,
+            widget.blogs.addresses!.length,
             (index) => ParagraphSection(
-              title: widget.blogs.addresses[index].name,
-              subTitle: widget.blogs.addresses[index].description,
+              title: widget.blogs.addresses![index].name,
+              subTitle: widget.blogs.addresses![index].description,
             ),
           ),
           if (widget.blogs.attachments!.isNotEmpty)
@@ -67,8 +67,10 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
               borderRadius: BorderRadius.circular(16),
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
-                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppRoutesString.paymentOptionsScreen, extra: widget.blogs.trip);
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                    overlays: SystemUiOverlay.values);
+                context.push(AppRoutesString.paymentOptionsScreen,
+                    extra: widget.blogs.trip);
               },
               width: double.infinity,
               height: 50.h,
@@ -94,19 +96,19 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
     );
-    totalRating = widget.blogs.reviewCount.oneStar! +
-        widget.blogs.reviewCount.towStar! +
-        widget.blogs.reviewCount.threeStar! +
-        widget.blogs.reviewCount.fourStar! +
-        widget.blogs.reviewCount.fiveStar!;
+    totalRating = (widget.blogs.reviewCount?.oneStar ?? 0) +
+        (widget.blogs.reviewCount?.towStar ?? 0) +
+        (widget.blogs.reviewCount?.threeStar ?? 0) +
+        (widget.blogs.reviewCount?.fourStar??0)+
+        (widget.blogs.reviewCount?.fiveStar??0);
 
     aveRating = 0;
     if (totalRating != 0) {
-      aveRating = (widget.blogs.reviewCount.oneStar! +
-              widget.blogs.reviewCount.towStar! * 2 +
-              widget.blogs.reviewCount.threeStar! * 3 +
-              widget.blogs.reviewCount.fourStar! * 4 +
-              widget.blogs.reviewCount.fiveStar! * 5) /
+      aveRating = ((widget.blogs.reviewCount?.oneStar??0) +
+             ( widget.blogs.reviewCount?.towStar?? 0 * 2 ) +
+             ( widget.blogs.reviewCount?.threeStar??0 * 3) +
+            (  widget.blogs.reviewCount?.fourStar??0 * 4 )+
+            (  widget.blogs.reviewCount?.fiveStar ??0 * 5)) /
           totalRating;
       super.initState();
     }
@@ -114,7 +116,8 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
 
   @override
   void dispose() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
     super.dispose();
   }
 }
