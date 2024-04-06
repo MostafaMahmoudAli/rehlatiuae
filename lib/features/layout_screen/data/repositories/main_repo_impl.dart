@@ -9,6 +9,7 @@ import 'package:rehlatyuae/core/errors/exceptions.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
+import 'package:rehlatyuae/features/layout_screen/data/models/social_media/social_media_model.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
 
 class MainRepoImpl implements MainRepo {
@@ -108,6 +109,19 @@ class MainRepoImpl implements MainRepo {
         return Currency.eur;
       default:
         return Currency.usd;
+    }
+  }
+
+  @override
+  Future<Either<String, SocialMedia>> getSocialMedia() async {
+    try {
+      var response = await apiConsumer.get(
+        EndPoints.socialMedia,
+      );
+      var socialMedia = SocialMedia.fromJson(response['data']['SocialMedia']);
+      return Right(socialMedia);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
     }
   }
 }

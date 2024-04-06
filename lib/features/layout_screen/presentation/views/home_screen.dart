@@ -56,14 +56,14 @@ class HomeScreen extends StatelessWidget {
               body: Padding(
                 padding: EdgeInsetsDirectional.only(
                   top: 20.0.h,
-                ).copyWith(bottom: 0),
+                ),
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding:  EdgeInsets.symmetric(vertical: 10.0.h,horizontal:15.0.h),
+                        padding: EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 15.0.h),
                         child: SearchTextField(
                           controller: _textEditingController,
                           onTap: () {
@@ -106,8 +106,8 @@ class HomeScreen extends StatelessWidget {
                       const WeHelpYouSection(),
                       const CustomSizedBox(),
                       Padding(
-                        padding:EdgeInsets.symmetric(
-                            horizontal:20.0.w,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.0.w,
                           vertical: 10.0.h,
                         ),
                         child: CustomActionButton(

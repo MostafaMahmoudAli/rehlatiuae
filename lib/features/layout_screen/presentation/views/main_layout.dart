@@ -24,7 +24,7 @@ class MainLayout extends StatelessWidget {
     HomeScreen(),
     SearchScreen(),
     const BookingScreen(),
-    HomeScreen(),
+    const Center(child: CircularProgressIndicator()),
     const ProfileScreen(),
   ];
 
@@ -103,6 +103,7 @@ class MainLayout extends StatelessWidget {
             body: Center(
               child: CircularProgressIndicator(),
             ),
+            bottomNavigationBar: const CustomBottomNavigationBar(),
           ),
           orElse: () => const SizedBox(),
         );
