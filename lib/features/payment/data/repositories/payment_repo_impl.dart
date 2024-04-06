@@ -9,7 +9,6 @@ import 'package:rehlatyuae/features/payment/data/models/trip_checkout_details_mo
 import 'package:rehlatyuae/features/payment/domain/api_keys.dart';
 import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
 
-
 class PaymentRepoImpl implements PaymentRepo {
   final ApiConsumer apiConsumer;
 
@@ -43,17 +42,18 @@ class PaymentRepoImpl implements PaymentRepo {
   }
 
   @override
-  Future<Either<String, Unit>> paymentMethod({required int amount, required String currency})async {
+  Future<Either<String, Unit>> paymentMethod({required int amount, required String currency}) async {
     try {
-      String clientSecret= await _getClientSecret((amount*100).toString(), currency);
+      String clientSecret = await _getClientSecret((amount * 100).toString(), currency);
       await _initializePaymentSheet(clientSecret);
       await Stripe.instance.presentPaymentSheet();
       return const Right(unit);
-    }on ServerExceptions catch (error) {
+    } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
   }
-   Future<void>_initializePaymentSheet(String clientSecret)async{
+
+  Future<void> _initializePaymentSheet(String clientSecret) async {
     await Stripe.instance.initPaymentSheet(
       paymentSheetParameters: SetupPaymentSheetParameters(
         paymentIntentClientSecret: clientSecret,
@@ -62,8 +62,8 @@ class PaymentRepoImpl implements PaymentRepo {
     );
   }
 
-   Future<String> _getClientSecret(String amount,String currency)async{
-    var response= await apiConsumer.post(
+  Future<String> _getClientSecret(String amount, String currency) async {
+    var response = await apiConsumer.post(
       EndPoints.stripePaymentEndPoint,
       options: Options(
         headers: {
@@ -76,6 +76,6 @@ class PaymentRepoImpl implements PaymentRepo {
         'currency': currency,
       },
     );
-    return response.data["client_secret"];
+    return response["client_secret"];
   }
 }

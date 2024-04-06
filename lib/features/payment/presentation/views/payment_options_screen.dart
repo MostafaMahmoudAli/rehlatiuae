@@ -27,127 +27,130 @@ class PaymentOptionsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-         LocaleKeys.Payment_Options.tr(),
+          LocaleKeys.Payment_Options.tr(),
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
                 color: AppColors.black,
               ),
         ),
       ),
-      body: BlocBuilder<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
-        builder: (context, state) {
-          var cubit = context.read<TripCheckoutDetailsCubit>();
-          return SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FieldDateBooking(cubit: cubit),
-                CountTicketsSection(
-                  adultCost: popularExperiences!.adultPrice!.toDouble(),
-                  childCost: popularExperiences!.childPrice!.toDouble(),
-                  onAdultsCountChange: (count, total) {
-                    cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
-                      quantityAdult: count,
-                      subtotalAdult: total,
-                      finalSubtotal: total + cubit.tripCheckoutDetails.subtotalChild,
-                    );
-                    cubit.changeChangeDetails();
-                  },
-                  onChildrenCountChange: (count, total) {
-                    cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
-                      quantityChild: count,
-                      subtotalChild: total,
-                      finalSubtotal: total + cubit.tripCheckoutDetails.subtotalAdult,
-                    );
-                    cubit.changeChangeDetails();
-                  },
-                ),
-                BlocProvider<CheckCouponCubit>(
-                  create: (context) => getIt<CheckCouponCubit>(),
-                  child: CustomExpansionTile(
-                    title: LocaleKeys.You_Have_Coupon.tr(),
-                    content: LocaleKeys.Your_Coupon.tr(),
-                    initiallyExpanded: false,
-                    children: [
-                      BlocBuilder<CheckCouponCubit, CheckCouponState>(
-                        builder: (c, state) {
-                          var cubitCoupon = c.read<CheckCouponCubit>();
-                          return Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: PrimaryTextField(
-                                      controller: cubitCoupon.couponEditingController,
-                                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                                      textColor: AppColors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  state.maybeWhen(
-                                    loading: () => Center(
-                                      child: Container(
-                                        width: 25,
-                                        height: 25,
-                                        margin: const EdgeInsets.all(15),
-                                        child: const CircularProgressIndicator(
-                                          color: AppColors.textAndBackgroundColorButton,
-                                          strokeWidth: 2,
-                                        ),
+      body: BlocProvider(
+        create: (context) => getIt<TripCheckoutDetailsCubit>(),
+        child: BlocBuilder<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+          builder: (context, state) {
+            var cubit = context.read<TripCheckoutDetailsCubit>();
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FieldDateBooking(cubit: cubit),
+                  CountTicketsSection(
+                    adultCost: popularExperiences!.adultPrice!.toDouble(),
+                    childCost: popularExperiences!.childPrice!.toDouble(),
+                    onAdultsCountChange: (count, total) {
+                      cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
+                        quantityAdult: count,
+                        subtotalAdult: total,
+                        finalSubtotal: total + cubit.tripCheckoutDetails.subtotalChild,
+                      );
+                      cubit.changeChangeDetails();
+                    },
+                    onChildrenCountChange: (count, total) {
+                      cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
+                        quantityChild: count,
+                        subtotalChild: total,
+                        finalSubtotal: total + cubit.tripCheckoutDetails.subtotalAdult,
+                      );
+                      cubit.changeChangeDetails();
+                    },
+                  ),
+                  BlocProvider<CheckCouponCubit>(
+                    create: (context) => getIt<CheckCouponCubit>(),
+                    child: CustomExpansionTile(
+                      title: LocaleKeys.You_Have_Coupon.tr(),
+                      content: LocaleKeys.Your_Coupon.tr(),
+                      initiallyExpanded: false,
+                      children: [
+                        BlocBuilder<CheckCouponCubit, CheckCouponState>(
+                          builder: (c, state) {
+                            var cubitCoupon = c.read<CheckCouponCubit>();
+                            return Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: PrimaryTextField(
+                                        controller: cubitCoupon.couponEditingController,
+                                        padding: EdgeInsets.symmetric(vertical: 10.h),
+                                        textColor: AppColors.white,
                                       ),
                                     ),
-                                    orElse: () => DefaultTextButton(
-                                      onPressed: () async {
-                                        await cubitCoupon.checkCoupon();
-                                      },
-                                      text: 'Apply',
+                                    SizedBox(
+                                      width: 5.w,
                                     ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              state.maybeWhen(
-                                success: (coupon) {
-                                  cubit.coupon = coupon;
-                                  return Text(
-                                    "Discount is ${coupon.couponAmount}%",
-                                    style: Theme.of(c).textTheme.bodyLarge!.copyWith(
-                                          color: AppColors.textAndBackgroundColorButton,
+                                    state.maybeWhen(
+                                      loading: () => Center(
+                                        child: Container(
+                                          width: 25,
+                                          height: 25,
+                                          margin: const EdgeInsets.all(15),
+                                          child: const CircularProgressIndicator(
+                                            color: AppColors.textAndBackgroundColorButton,
+                                            strokeWidth: 2,
+                                          ),
                                         ),
-                                  );
-                                },
-                                orElse: () => const SizedBox(),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    ],
+                                      ),
+                                      orElse: () => DefaultTextButton(
+                                        onPressed: () async {
+                                          await cubitCoupon.checkCoupon();
+                                        },
+                                        text: 'Apply',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                state.maybeWhen(
+                                  success: (coupon) {
+                                    cubit.coupon = coupon;
+                                    return Text(
+                                      "Discount is ${coupon.couponAmount}%",
+                                      style: Theme.of(c).textTheme.bodyLarge!.copyWith(
+                                            color: AppColors.textAndBackgroundColorButton,
+                                          ),
+                                    );
+                                  },
+                                  orElse: () => const SizedBox(),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                PrimaryTextField(
-                  label: LocaleKeys.Description.tr(),
-                  hint: LocaleKeys.insert_notes.tr(),
-                  isTextAria: true,
-                  controller: cubit.descriptionEditingController,
-                ),
-                TotalPaymentSection(
-                  total: "\$${cubit.allSubtotal}",
-                  subtitle: cubit.tripCheckoutDetails.date,
-                  buttonLabel: LocaleKeys.Next_payment.tr(),
-                  onButtonTap: () {
-                    if (!cubit.dateFormKey.currentState!.validate()) return;
-                    cubit.applyTripDetails(tripId: popularExperiences!.id??0);
-                    context.push(AppRoutesString.paymentDetailsScreen);
-                  },
-                ),
-              ],
-            ),
-          );
-        },
+                  PrimaryTextField(
+                    label: LocaleKeys.Description.tr(),
+                    hint: LocaleKeys.insert_notes.tr(),
+                    isTextAria: true,
+                    controller: cubit.descriptionEditingController,
+                  ),
+                  TotalPaymentSection(
+                    total: "\$${cubit.allSubtotal}",
+                    subtitle: cubit.tripCheckoutDetails.date,
+                    buttonLabel: LocaleKeys.Next_payment.tr(),
+                    onButtonTap: () {
+                      if (!cubit.dateFormKey.currentState!.validate()) return;
+                      cubit.applyTripDetails(tripId: popularExperiences!.id ?? 0);
+                      context.push(AppRoutesString.paymentDetailsScreen);
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

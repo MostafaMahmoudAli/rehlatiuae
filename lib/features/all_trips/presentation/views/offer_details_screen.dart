@@ -85,6 +85,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
             reviewsCount: widget.trip!.reviewsCount,
             aveRating: aveRating,
             totalRating: totalRating,
+            id: widget.trip!.id,
           ),
           const ExperiencesSections(),
         ],

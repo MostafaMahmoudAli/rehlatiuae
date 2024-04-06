@@ -19,6 +19,7 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit
 import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../features/all_categories/data/repositories/category_name_repo_impl.dart';
 import '../../features/all_categories/data/repositories/category_repo_impl.dart';
 import '../../features/all_categories/domian/repositories/category_name_repo.dart';
@@ -91,8 +92,6 @@ Future<void> setupInjector() async {
     ),
   );
 
-
-
   // repositories objects
   getIt.registerLazySingleton<BestOffersRepo>(
     () => BestOffersRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
@@ -129,7 +128,7 @@ Future<void> setupInjector() async {
   );
 
   getIt.registerLazySingleton<SearchRepo>(
-        () => SearchRepoImpl(
+    () => SearchRepoImpl(
       apiConsumer: getIt.get<ApiConsumer>(),
     ),
   );
@@ -152,7 +151,9 @@ Future<void> setupInjector() async {
 
   getIt.registerLazySingleton(() => LayoutCubit(layoutRepository: getIt()));
 
-  getIt.registerLazySingleton(() => BlogsSearchCubit(blogsRepository: getIt(),));
+  getIt.registerLazySingleton(() => BlogsSearchCubit(
+        blogsRepository: getIt(),
+      ));
 
   getIt.registerFactory(() => CategoriesBloc(categoryRepo: getIt()));
 
@@ -249,5 +250,5 @@ Future<void> setupInjector() async {
 
   // cubits
   getIt.registerFactory(() => CheckCouponCubit(paymentRepo: getIt()));
-  getIt.registerFactory(() => TripCheckoutDetailsCubit(paymentRepo: getIt()));
+  getIt.registerLazySingleton(() => TripCheckoutDetailsCubit(paymentRepo: getIt()));
 }

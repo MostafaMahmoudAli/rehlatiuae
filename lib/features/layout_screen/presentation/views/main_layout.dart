@@ -103,7 +103,7 @@ class MainLayout extends StatelessWidget {
             body: Center(
               child: CircularProgressIndicator(),
             ),
-            bottomNavigationBar: const CustomBottomNavigationBar(),
+            bottomNavigationBar: CustomBottomNavigationBar(),
           ),
           orElse: () => const SizedBox(),
         );
