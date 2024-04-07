@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                       const CustomSizedBox(),
                       const WhyChooseUsSection(),
                       const CustomSizedBox(),
-                      const WeHelpYouSection(),
+                       WeHelpYouSection(),
                       const CustomSizedBox(),
                       Padding(
                         padding:EdgeInsets.symmetric(

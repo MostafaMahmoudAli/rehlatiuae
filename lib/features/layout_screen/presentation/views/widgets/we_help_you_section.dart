@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as s;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
@@ -7,12 +7,18 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class WeHelpYouSection extends StatelessWidget {
-  const WeHelpYouSection({super.key});
+   WeHelpYouSection({super.key});
 
+  String arabicKey = LocaleKeys.Arabic.tr();
+ late bool isArabic = (arabicKey == 'Arabic');
+
+// Now you can use `isArabic` as needed in your code
+
+  bool isEnglish =true;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal:10.0.w),
+      padding: EdgeInsets.symmetric(horizontal: 10.0.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -48,9 +54,10 @@ class WeHelpYouSection extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
+                Positioned.directional(
+                  textDirection: isArabic  ? TextDirection.rtl : TextDirection.ltr,
                   top: 0,
-                  left: MediaQuery.sizeOf(context).width*0.47,
+                  start:MediaQuery.sizeOf(context).width * 0.1,
                   child: Container(
                     height: 140.0.h,
                     width: 110.0.w,
@@ -65,9 +72,10 @@ class WeHelpYouSection extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  top:MediaQuery.sizeOf(context).height*0.19,
-                  left:MediaQuery.sizeOf(context).width*0.3,
+                Positioned.directional(
+                  textDirection: isArabic  ? TextDirection.rtl : TextDirection.ltr,
+                  top: MediaQuery.sizeOf(context).height * 0.19,
+                  end: MediaQuery.sizeOf(context).width * 0.3,
                   child: Container(
                     height: 140.0.h,
                     width: 140.0.w,
@@ -91,15 +99,15 @@ class WeHelpYouSection extends StatelessWidget {
           Row(
             children: [
               WhyChooseUSItem(
-                text:AppStrings.weHelpYouMakeBestTripSecondDescription,
+                text: AppStrings.weHelpYouMakeBestTripSecondDescription,
                 child: Icon(
                   Icons.check_box_outlined,
-                  color:AppColors.textAndBackgroundColorButton,
+                  color: AppColors.textAndBackgroundColorButton,
                   size: 14.0.sp,
                 ),
               ),
               WhyChooseUSItem(
-                text:AppStrings.weHelpYouMakeBestTripSecondDescription,
+                text: AppStrings.weHelpYouMakeBestTripSecondDescription,
                 child: Icon(
                   Icons.check_box_outlined,
                   color: AppColors.textAndBackgroundColorButton,
@@ -114,7 +122,7 @@ class WeHelpYouSection extends StatelessWidget {
           Row(
             children: [
               WhyChooseUSItem(
-                text:AppStrings.weHelpYouMakeBestTripSecondDescription,
+                text: AppStrings.weHelpYouMakeBestTripSecondDescription,
                 child: Icon(
                   Icons.check_box_outlined,
                   color: AppColors.textAndBackgroundColorButton,
@@ -125,7 +133,7 @@ class WeHelpYouSection extends StatelessWidget {
                 width: 5.0.w,
               ),
               WhyChooseUSItem(
-                text:AppStrings.weHelpYouMakeBestTripSecondDescription,
+                text: AppStrings.weHelpYouMakeBestTripSecondDescription,
                 child: Icon(
                   Icons.check_box_outlined,
                   color: AppColors.textAndBackgroundColorButton,

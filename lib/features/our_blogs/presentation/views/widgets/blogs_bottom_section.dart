@@ -65,7 +65,7 @@ class BlogsBottomSection extends StatelessWidget {
               const CustomSizedBox(),
               const WhyChooseUsSection(),
               const CustomSizedBox(),
-              const WeHelpYouSection(),
+               WeHelpYouSection(),
               Padding(
                 padding:EdgeInsets.symmetric(
                   horizontal:15.0.w,
