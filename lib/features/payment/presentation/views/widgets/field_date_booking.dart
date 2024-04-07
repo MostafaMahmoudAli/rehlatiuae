@@ -8,36 +8,35 @@ import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class FieldDateBooking extends StatelessWidget {
   final TripCheckoutDetailsCubit cubit;
-  final bool isFirstScreen;
 
-  const FieldDateBooking({super.key, required this.cubit, this.isFirstScreen = true});
+  const FieldDateBooking({
+    super.key,
+    required this.cubit,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: isFirstScreen ? cubit.dateFormKey : cubit.date2FormKey,
-      child: PrimaryTextField(
-        label: LocaleKeys.Your_date_booking.tr(),
-        hint: LocaleKeys.Select_a_date.tr(),
-        controller: cubit.dateEditingController,
-        readOnly: true,
-        validator: (value) => AppValidator.validateRequired(value),
-        onTap: () async {
-          cubit.dateEditingController.text = await Pickers.choseDate(
-                context: context,
-                firstDate: DateTime.now(),
-                initialDate: DateTime.now(),
-              ) ??
-              '';
-          if (context.mounted) {
-            cubit.changeChangeDetails();
-            cubit.tripCheckoutDetails = cubit.tripCheckoutDetails!.copyWith(
-              date: cubit.dateEditingController.text,
-            );
-          }
-        },
-        suffix: const Icon(CupertinoIcons.calendar),
-      ),
+    return PrimaryTextField(
+      label: LocaleKeys.Your_date_booking.tr(),
+      hint: LocaleKeys.Select_a_date.tr(),
+      controller: cubit.dateEditingController,
+      readOnly: true,
+      validator: (value) => AppValidator.validateRequired(value),
+      onTap: () async {
+        cubit.dateEditingController.text = await Pickers.choseDate(
+              context: context,
+              firstDate: DateTime.now(),
+              initialDate: DateTime.now(),
+            ) ??
+            '';
+        if (context.mounted) {
+          cubit.changeChangeDetails();
+          cubit.tripCheckoutDetails = cubit.tripCheckoutDetails!.copyWith(
+            date: cubit.dateEditingController.text,
+          );
+        }
+      },
+      suffix: const Icon(CupertinoIcons.calendar),
     );
   }
 }

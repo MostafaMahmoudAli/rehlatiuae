@@ -35,10 +35,7 @@ class PaymentDetailsScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              FieldDateBooking(
-                cubit: cubit,
-                isFirstScreen: false,
-              ),
+              FieldDateBooking(cubit: cubit),
               SizedBox(
                 height: 15.h,
               ),
