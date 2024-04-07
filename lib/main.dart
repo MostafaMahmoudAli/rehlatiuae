@@ -17,6 +17,7 @@ import 'features/payment/domain/api_keys.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
   Stripe.publishableKey=StripeApiKeys.publishableKey;
   stripeSdk.Stripe.init(StripeApiKeys.publishableKey);
   await EasyLocalization.ensureInitialized();

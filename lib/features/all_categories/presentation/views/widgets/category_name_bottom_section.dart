@@ -84,7 +84,9 @@ class CategoryNameBottomSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const CustomSizedBox(),
-                const BestOffersHorizontal(),
+                 BestOffersHorizontal(
+                  bestOffers:layoutModelSectionData.bestOffers ?? [],
+                ),
                 const CustomSizedBox(),
                 ReviewsSection(
                   reviews: layoutModelSectionData.reviews ?? [],

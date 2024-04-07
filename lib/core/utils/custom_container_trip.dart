@@ -85,8 +85,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
             ),
             if ((widget.oldTripPrice != null || widget.percentageSave != null) && widget.percentageSave!.isNotEmpty)
               Positioned(
-                top: 20,
-                left: 18,
+                top: MediaQuery.sizeOf(context).height*0.02,
+                left: MediaQuery.sizeOf(context).width*0.02,
                 child: Row(
                   children: [
                     Text(
@@ -94,9 +94,9 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     Container(
-                      width: 65.0.w,
+                      width: 58.0.w,
                       height: 20.0.h,
-                      margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                      margin: EdgeInsetsDirectional.symmetric(horizontal: 2.0.w),
                       padding: EdgeInsetsDirectional.symmetric(horizontal: 6.0.w, vertical: 1.3.h),
                       decoration: BoxDecoration(
                         color: AppColors.green,
@@ -104,7 +104,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                       ),
                       child: Text(
                         "save ${widget.percentageSave}%",
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 10.0.sp),
                       ),
                     ),
                   ],
@@ -112,8 +112,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
               ),
             if (widget.isTrip)
               Positioned(
-                top: 10,
-                right: 18,
+                top: MediaQuery.sizeOf(context).height*0.01,
+                right: MediaQuery.sizeOf(context).width*0.02,
                 child: CustomIconButton(
                   icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                   iconColor: AppColors.redAppColor,
@@ -135,8 +135,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                 ),
               ),
             Positioned(
-              bottom: 30,
-              left: 10,
+              bottom: MediaQuery.sizeOf(context).height*0.037,
+              left:MediaQuery.sizeOf(context).width*0.02,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -181,8 +181,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
             if ((widget.tripPrice != null || widget.reservationType != null) &&
                 (widget.tripPrice!.isNotEmpty && widget.reservationType!.isNotEmpty))
               Positioned(
-                bottom: 73,
-                right: 10,
+                bottom:MediaQuery.sizeOf(context).height*0.1,
+                right: MediaQuery.sizeOf(context).width*0.02,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

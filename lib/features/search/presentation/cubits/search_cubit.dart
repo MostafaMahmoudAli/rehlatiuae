@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../data/search_model.dart';
+import '../../../all_trips/data/models/trips_model.dart';
 import '../../domain/repositories/search_repo.dart';
 
 part 'search_state.dart';
@@ -20,7 +20,7 @@ class SearchCubit extends Cubit<SearchState> {
     results.fold(
       (errorMessage) => _update(SearchState.error(errorMessage)),
       (searchList) {
-
+        name == null ? _update(const SearchState.loaded([])) :
         _update(SearchState.loaded(searchList));
         },
     );

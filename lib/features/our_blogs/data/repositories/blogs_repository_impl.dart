@@ -22,8 +22,7 @@ class BlogsRepositoryImpl implements BlogsRepository {
           "limit": limit,
         },
       );
-      List<Blogs> blogsList =
-          blogs["data"]["blogs"].map<Blogs>((e) => Blogs.fromJson(e)).toList();
+      List<Blogs> blogsList= blogs["data"]["blogs"].map<Blogs>((e) => Blogs.fromJson(e)).toList();
       return right(blogsList);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
@@ -38,8 +37,12 @@ class BlogsRepositoryImpl implements BlogsRepository {
           queryParameters: {
             "name":name,
           });
-      List<Blogs> blogsTripList= blogsTrip["data"]["blogs"]
-          .map<Blogs>((e) => Blogs.fromJson(e)).toList();
+      List<Blogs> blogsTripList=[];
+      final data = blogsTrip['data']["blogs"] as dynamic;
+      if(data.isNotEmpty)
+      {
+        blogsTripList=data.map<Blogs>((e) => Blogs.fromJson(e)).toList();
+      }
       return right(blogsTripList);
     } on ServerExceptions catch (error)
     {
