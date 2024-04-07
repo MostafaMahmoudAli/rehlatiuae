@@ -64,7 +64,7 @@ class AllTripsBottomSection extends StatelessWidget {
                 const CustomSizedBox(),
                 const WhyChooseUsSection(),
                 const CustomSizedBox(),
-                const WeHelpYouSection(),
+                 WeHelpYouSection(),
                 CustomActionButton(
                   onTap: () {},
                   text: AppStrings.actionButtonName,

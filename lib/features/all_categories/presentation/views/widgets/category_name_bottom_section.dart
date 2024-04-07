@@ -71,7 +71,7 @@ class CategoryNameBottomSection extends StatelessWidget {
                 const CustomSizedBox(),
                 const WhyChooseUsSection(),
                 const CustomSizedBox(),
-                const WeHelpYouSection(),
+                 WeHelpYouSection(),
                 CustomActionButton(
                   onTap: () {
                     context.push(AppRoutesString.allTripsScreen);
