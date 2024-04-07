@@ -74,7 +74,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppRoutesString.paymentOptionsScreen, extra: widget.trip);
+                context.push(AppRoutesString.paymentOptionsScreen, extra: widget.offer);
               },
               width: double.infinity,
               height: 50.h,

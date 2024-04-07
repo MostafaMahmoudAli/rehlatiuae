@@ -1,15 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/number_ticket_card.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CountTicketsSection extends StatefulWidget {
+  final String title;
   final double adultCost;
   final double childCost;
   final void Function(int count, double total) onAdultsCountChange;
   final void Function(int count, double total) onChildrenCountChange;
 
   const CountTicketsSection({
+    required this.title,
     required this.adultCost,
     required this.childCost,
     required this.onChildrenCountChange,
@@ -44,15 +47,15 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
           child: Row(
             children: [
               Text(
-               LocaleKeys.Select_ticket,
+                widget.title,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
           ),
         ),
         CountTicketCard(
-          name: LocaleKeys.Adult,
-          detail: LocaleKeys.Above_four_yrs,
+          name: LocaleKeys.Adult.tr(),
+          detail: LocaleKeys.Above_four_yrs.tr(),
           count: adultCount,
           total: subtotalAdult,
           onIncreasePressed: () {
@@ -77,8 +80,8 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                 },
         ),
         CountTicketCard(
-          name: LocaleKeys.Children,
-          detail: LocaleKeys.Under_three_yrs,
+          name: LocaleKeys.Children.tr(),
+          detail: LocaleKeys.Under_three_yrs.tr(),
           count: childCount,
           total: subtotalChild,
           onIncreasePressed: () {

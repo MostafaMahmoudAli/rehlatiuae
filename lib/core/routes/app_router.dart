@@ -104,7 +104,7 @@ class AppRouter {
         /// Payment Screens
         GoRoute(
           path: AppRoutesString.paymentOptionsScreen,
-          builder: (context, state) => PaymentOptionsScreen(popularExperiences: state.extra! as Trips?),
+          builder: (context, state) => PaymentOptionsScreen(trip: state.extra! as Trips),
         ),
         GoRoute(
           path: AppRoutesString.paymentDetailsScreen,

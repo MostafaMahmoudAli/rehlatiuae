@@ -4,12 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/default_text_button.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/offer_details_screen.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_count_tickets_section.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
-class OfferCard extends StatelessWidget {
+class OfferCard extends StatefulWidget {
   final Trips offer;
   final Trips trip;
 
@@ -20,17 +22,24 @@ class OfferCard extends StatelessWidget {
   });
 
   @override
+  State<OfferCard> createState() => _OfferCardState();
+}
+
+class _OfferCardState extends State<OfferCard> {
+  bool isSelected = false;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: 225.w,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: CachedNetworkImageProvider(
-            offer.imagePath!,
+            widget.offer.imagePath!,
           ),
           fit: BoxFit.fill,
         ),
-        borderRadius: BorderRadius.circular(15.sp),
+        borderRadius: BorderRadius.circular(15.r),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +55,7 @@ class OfferCard extends StatelessWidget {
                     child: SizedBox(
                       width: 150.w,
                       child: Text(
-                        offer.name!,
+                        widget.offer.name!,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.labelMedium!.copyWith(
                               color: AppColors.white,
@@ -63,7 +72,7 @@ class OfferCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "\$${offer.adultPrice}",
+                      "\$${widget.offer.adultPrice}",
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: AppColors.white,
                           ),
@@ -92,8 +101,8 @@ class OfferCard extends StatelessWidget {
                   height: 5.h,
                 ),
                 OfferCountTicketsSection(
-                  adultCost: offer.adultPrice!.toDouble(),
-                  childCost: offer.childPrice!.toDouble(),
+                  adultCost: widget.offer.adultPrice!.toDouble(),
+                  childCost: widget.offer.childPrice!.toDouble(),
                   onChildrenCountChange: (count, total) {},
                   onAdultsCountChange: (count, total) {},
                 ),
@@ -103,10 +112,19 @@ class OfferCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomActionButton(
-                        text: LocaleKeys.select,
+                        text: isSelected ? 'selected' : 'select',
                         borderRadius: BorderRadius.circular(15.sp),
-                        backGroundColor: AppColors.textAndBackgroundColorButton,
-                        onTap: () {},
+                        backGroundColor: isSelected ? AppColors.green : AppColors.textAndBackgroundColorButton,
+                        onTap: () {
+                          setState(() {
+                            isSelected = !isSelected;
+                          });
+                          if (isSelected) {
+                            getIt<TripCheckoutDetailsCubit>().selectedOffers.add(widget.offer);
+                          } else {
+                            getIt<TripCheckoutDetailsCubit>().selectedOffers.remove(widget.offer);
+                          }
+                        },
                         width: 100.w,
                         height: 50.h,
                       ),
@@ -118,7 +136,7 @@ class OfferCard extends StatelessWidget {
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,
                             ),
-                            builder: (context) => OfferDetailsScreen(offer: offer, trip: trip),
+                            builder: (context) => OfferDetailsScreen(offer: widget.offer, trip: widget.trip),
                           );
                         },
                         text: LocaleKeys.view,

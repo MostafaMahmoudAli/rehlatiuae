@@ -43,9 +43,9 @@ class PaymentDetailsScreen extends StatelessWidget {
                 height: 15.h,
               ),
               OrderSummarySection(
-                total: '${cubit.tripCheckoutDetails.finalSubtotal}',
-                childrenCount: '${cubit.tripCheckoutDetails.quantityChild}',
-                adultCount: '${cubit.tripCheckoutDetails.quantityAdult}',
+                total: '${cubit.tripCheckoutDetails!.finalSubtotal}',
+                childrenCount: '${cubit.tripCheckoutDetails!.quantityChild}',
+                adultCount: '${cubit.tripCheckoutDetails!.quantityAdult}',
                 address: LocaleKeys.Dubai_United.tr(),
               ),
               SizedBox(
@@ -107,7 +107,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                             title: LocaleKeys.Payment_Details.tr(),
                             labelButton: LocaleKeys.Payment.tr(),
                             contentSheet: PaymentContentSheet(
-                              tripCheckoutDetails: cubit.tripCheckoutDetails,
+                              tripCheckoutDetails: cubit.tripCheckoutDetails!,
                             ),
                             onButtonPreesd: () async {
                               cubit.addTripCheckoutDetails();
@@ -130,7 +130,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                     title: LocaleKeys.Payment_Details.tr(),
                     labelButton: LocaleKeys.Payment.tr(),
                     contentSheet: PaymentContentSheet(
-                      tripCheckoutDetails: cubit.tripCheckoutDetails,
+                      tripCheckoutDetails: cubit.tripCheckoutDetails!,
                     ),
                     avatarColor: AppColors.backgroundAvatarPayment,
                   ),

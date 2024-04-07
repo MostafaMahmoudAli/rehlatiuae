@@ -16,7 +16,7 @@ class FieldDateBooking extends StatelessWidget {
     return Form(
       key: isFirstScreen ? cubit.dateFormKey : cubit.date2FormKey,
       child: PrimaryTextField(
-        label:  LocaleKeys.Your_date_booking,
+        label: LocaleKeys.Your_date_booking,
         hint: LocaleKeys.Select_a_date,
         controller: cubit.dateEditingController,
         readOnly: true,
@@ -30,7 +30,7 @@ class FieldDateBooking extends StatelessWidget {
               '';
           if (context.mounted) {
             cubit.changeChangeDetails();
-            cubit.tripCheckoutDetails = cubit.tripCheckoutDetails.copyWith(
+            cubit.tripCheckoutDetails = cubit.tripCheckoutDetails!.copyWith(
               date: cubit.dateEditingController.text,
             );
           }
