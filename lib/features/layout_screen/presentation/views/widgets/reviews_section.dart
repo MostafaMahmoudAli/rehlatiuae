@@ -129,7 +129,6 @@ class SubscriptionSection extends StatelessWidget {
   const SubscriptionSection({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
