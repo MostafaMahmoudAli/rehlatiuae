@@ -4,6 +4,6 @@ part of 'search_cubit.dart';
 class SearchState with _$SearchState {
   const factory SearchState.initial() = _Initial;
   const factory SearchState.loading() = _Loading;
-  const factory SearchState.loaded(List<SearchModel>searchList) = _Loaded;
+  const factory SearchState.loaded(List<Trips>searchList) = _Loaded;
   const factory SearchState.error(String errorMessage) = _Error;
 }

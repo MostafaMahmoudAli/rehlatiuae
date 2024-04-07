@@ -28,7 +28,8 @@ class BlogSearch extends StatelessWidget {
                 SearchTextField(
                   controller: _textEditingController,
                   readOnly: false,
-                  onChanged: (String value) {
+                  onChanged: (String value)
+                  {
                     getIt<BlogsSearchCubit>().fetchSearchData(name: value);
                   },
                 ),
@@ -53,6 +54,10 @@ class BlogSearch extends StatelessWidget {
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
                       loaded: (blogsList) {
+                        if(blogsList.isEmpty)
+                        {
+                          return const Center(child:  Text("No Data"));
+                        }
                         return SizedBox(
                           height: 400.0.h,
                           child: GridView.builder(
@@ -91,83 +96,3 @@ class BlogSearch extends StatelessWidget {
     );
   }
 }
-
-//
-// class BlogSearch extends SearchDelegate {
-//   @override
-//   List<Widget>? buildActions(BuildContext context) {
-//     return [
-//       IconButton(
-//         onPressed: ()
-//         {
-//           query ='';
-//         },
-//         icon: const Icon(Icons.close),
-//       ),
-//     ];
-//   }
-//
-//   @override
-//   Widget? buildLeading(BuildContext context) {
-//    return null;
-//   }
-//
-//   @override
-//   Widget buildResults(BuildContext context) {
-//   return Container();
-//   }
-//
-//   @override
-//   Widget buildSuggestions(BuildContext context) {
-//
-//     return BlocProvider(
-//       create: (context) => getIt<BlogsSearchCubit>()..fetchSearchData(name:query),
-//       child: BlocConsumer<BlogsSearchCubit, BlogsSearchState>(
-//         listener: (context, state)
-//         {
-//           state.whenOrNull(
-//             error: (errorMessage) => showDialog(
-//               context: context,
-//               builder: (context) => CustomDialog(
-//                 title: errorMessage,
-//                 subtitle: 'Sorry',
-//                 labelText: 'Close',
-//               ),
-//             ),
-//           );
-//         },
-//         builder: (context, state)
-//         {
-//           return state.maybeWhen(
-//             loading: () => const Center(child: CircularProgressIndicator()),
-//               orElse: ()=>const SizedBox(),
-//             loaded:(blogsList) {
-//               return GridView.builder(
-//               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                 crossAxisCount: 2,
-//                 childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.45,
-//                 crossAxisSpacing: 8.0.w,
-//                 mainAxisSpacing: 10.0.w,
-//               ),
-//               itemBuilder: (context, index) {
-//                 return AllBlogsItem(
-//                   width: 170.0.w,
-//                   image:blogsList[index].imagePath ?? "" ,
-//                   rating:blogsList[index].reviewAverage.toString(),
-//                   createdAt:blogsList[index].createdAt.toString(),
-//                   name:blogsList[index].name ,
-//                   description:blogsList[index].description,
-//                 );
-//               },
-//               itemCount:blogsList.length,
-//               shrinkWrap: true,
-//               physics: const ClampingScrollPhysics(),
-//               padding: EdgeInsets.zero,
-//             );
-//             },
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }

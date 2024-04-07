@@ -67,7 +67,9 @@ class BestTripsBottomSection extends StatelessWidget {
                  ),
                ),
                const CustomSizedBox(),
-               const BestOffersHorizontal(),
+                BestOffersHorizontal(
+                  bestOffers:layoutModelBottomSectionData.bestOffers ?? [],
+                ),
                const CustomSizedBox(),
                 ReviewsSection(
                  reviews:layoutModelBottomSectionData.reviews?? [],

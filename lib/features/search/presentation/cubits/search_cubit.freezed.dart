@@ -20,7 +20,7 @@ mixin _$SearchState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<SearchModel> searchList) loaded,
+    required TResult Function(List<Trips> searchList) loaded,
     required TResult Function(String errorMessage) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$SearchState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<SearchModel> searchList)? loaded,
+    TResult? Function(List<Trips> searchList)? loaded,
     TResult? Function(String errorMessage)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$SearchState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<SearchModel> searchList)? loaded,
+    TResult Function(List<Trips> searchList)? loaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<SearchModel> searchList) loaded,
+    required TResult Function(List<Trips> searchList) loaded,
     required TResult Function(String errorMessage) error,
   }) {
     return initial();
@@ -137,7 +137,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<SearchModel> searchList)? loaded,
+    TResult? Function(List<Trips> searchList)? loaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return initial?.call();
@@ -148,7 +148,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<SearchModel> searchList)? loaded,
+    TResult Function(List<Trips> searchList)? loaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<SearchModel> searchList) loaded,
+    required TResult Function(List<Trips> searchList) loaded,
     required TResult Function(String errorMessage) error,
   }) {
     return loading();
@@ -251,7 +251,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<SearchModel> searchList)? loaded,
+    TResult? Function(List<Trips> searchList)? loaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return loading?.call();
@@ -262,7 +262,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<SearchModel> searchList)? loaded,
+    TResult Function(List<Trips> searchList)? loaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -320,7 +320,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<SearchModel> searchList});
+  $Res call({List<Trips> searchList});
 }
 
 /// @nodoc
@@ -340,7 +340,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
       null == searchList
           ? _value._searchList
           : searchList // ignore: cast_nullable_to_non_nullable
-              as List<SearchModel>,
+              as List<Trips>,
     ));
   }
 }
@@ -348,12 +348,11 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<SearchModel> searchList)
-      : _searchList = searchList;
+  const _$LoadedImpl(final List<Trips> searchList) : _searchList = searchList;
 
-  final List<SearchModel> _searchList;
+  final List<Trips> _searchList;
   @override
-  List<SearchModel> get searchList {
+  List<Trips> get searchList {
     if (_searchList is EqualUnmodifiableListView) return _searchList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_searchList);
@@ -388,7 +387,7 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<SearchModel> searchList) loaded,
+    required TResult Function(List<Trips> searchList) loaded,
     required TResult Function(String errorMessage) error,
   }) {
     return loaded(searchList);
@@ -399,7 +398,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<SearchModel> searchList)? loaded,
+    TResult? Function(List<Trips> searchList)? loaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return loaded?.call(searchList);
@@ -410,7 +409,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<SearchModel> searchList)? loaded,
+    TResult Function(List<Trips> searchList)? loaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -459,9 +458,9 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements SearchState {
-  const factory _Loaded(final List<SearchModel> searchList) = _$LoadedImpl;
+  const factory _Loaded(final List<Trips> searchList) = _$LoadedImpl;
 
-  List<SearchModel> get searchList;
+  List<Trips> get searchList;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -534,7 +533,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<SearchModel> searchList) loaded,
+    required TResult Function(List<Trips> searchList) loaded,
     required TResult Function(String errorMessage) error,
   }) {
     return error(errorMessage);
@@ -545,7 +544,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<SearchModel> searchList)? loaded,
+    TResult? Function(List<Trips> searchList)? loaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return error?.call(errorMessage);
@@ -556,7 +555,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<SearchModel> searchList)? loaded,
+    TResult Function(List<Trips> searchList)? loaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {

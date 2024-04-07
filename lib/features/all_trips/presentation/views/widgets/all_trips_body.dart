@@ -51,7 +51,7 @@ class _AllTripsBodyState extends State<AllTripsBody> {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 2.2 / 3,
+                childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.6,
                 crossAxisSpacing: 10.0.w,
                 mainAxisSpacing: 1.0.w,
               ),
@@ -63,6 +63,8 @@ class _AllTripsBodyState extends State<AllTripsBody> {
                 imageName: state.trips[index].imagePath ?? "",
                 tripPrice: state.trips[index].adultPrice.toString(),
                 reservationType: "/person",
+                oldTripPrice: state.trips[index].beforePrice,
+                percentageSave: state.trips[index].saving,
               ),
               itemCount: state.trips.length,
               shrinkWrap: true,

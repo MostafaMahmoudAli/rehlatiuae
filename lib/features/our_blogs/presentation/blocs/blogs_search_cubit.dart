@@ -19,7 +19,10 @@ class BlogsSearchCubit extends Cubit<BlogsSearchState> {
     );
     results.fold(
       (errorMessage) => _update(BlogsSearchState.error(errorMessage)),
-      (blogsList) => _update(BlogsSearchState.loaded(blogsList)),
+      (blogsList) {
+        name == null ? _update(const BlogsSearchState.loaded([])):
+        _update(BlogsSearchState.loaded(blogsList));
+      },
     );
   }
 

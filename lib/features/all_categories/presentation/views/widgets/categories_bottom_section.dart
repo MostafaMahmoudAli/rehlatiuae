@@ -100,7 +100,9 @@ class CategoriesBottomSection extends StatelessWidget
                   ),
                 ),
                 const CustomSizedBox(),
-                const BestOffersHorizontal(),
+                 BestOffersHorizontal(
+                  bestOffers:layoutModelSectionData.bestOffers ?? [],
+                ),
                 const CustomSizedBox(),
                  ReviewsSection(
                   reviews:layoutModelSectionData.reviews?? [],
