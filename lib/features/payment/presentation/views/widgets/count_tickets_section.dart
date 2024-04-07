@@ -5,14 +5,12 @@ import 'package:rehlatyuae/features/payment/presentation/views/widgets/number_ti
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CountTicketsSection extends StatefulWidget {
-  final String title;
   final double adultCost;
   final double childCost;
   final void Function(int count, double total) onAdultsCountChange;
   final void Function(int count, double total) onChildrenCountChange;
 
   const CountTicketsSection({
-    required this.title,
     required this.adultCost,
     required this.childCost,
     required this.onChildrenCountChange,
@@ -39,20 +37,6 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 24.w,
-            vertical: 10.h,
-          ),
-          child: Row(
-            children: [
-              Text(
-                widget.title,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ],
-          ),
-        ),
         CountTicketCard(
           name: LocaleKeys.Adult.tr(),
           detail: LocaleKeys.Above_four_yrs.tr(),

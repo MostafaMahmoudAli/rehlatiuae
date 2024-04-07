@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rehlatyuae/core/utils/pickers.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
@@ -16,8 +17,8 @@ class FieldDateBooking extends StatelessWidget {
     return Form(
       key: isFirstScreen ? cubit.dateFormKey : cubit.date2FormKey,
       child: PrimaryTextField(
-        label: LocaleKeys.Your_date_booking,
-        hint: LocaleKeys.Select_a_date,
+        label: LocaleKeys.Your_date_booking.tr(),
+        hint: LocaleKeys.Select_a_date.tr(),
         controller: cubit.dateEditingController,
         readOnly: true,
         validator: (value) => AppValidator.validateRequired(value),

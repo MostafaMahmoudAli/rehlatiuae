@@ -20,7 +20,7 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
   final TextEditingController dateEditingController = TextEditingController();
 
   Coupon? coupon;
-  double allSubtotal = 0, adultCost = 0, childCost = 0;
+  double allSubtotal = 0;
   TripCheckoutDetails? tripCheckoutDetails;
   bool isDetailInit = false;
   List<Trips> selectedOffers = [];
@@ -28,8 +28,9 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
   void initTripCheckoutDetails(Trips trip) {
     if (!isDetailInit) {
       allSubtotal = trip.adultPrice!.toDouble();
-      adultCost = trip.adultPrice!.toDouble();
-      childCost = trip.childPrice!.toDouble();
+      for (var element in selectedOffers) {
+        allSubtotal = allSubtotal + element.adultPrice!;
+      }
       tripCheckoutDetails = TripCheckoutDetails(
         tripId: trip.id!,
         subtotalAdult: trip.adultPrice!.toDouble(),
@@ -46,10 +47,9 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     }
   }
 
-  void applyTripDetails({required int tripId}) {
+  void applyTripDetails() {
     double discount = coupon != null ? allSubtotal - (allSubtotal * coupon!.couponAmount) : 0;
     tripCheckoutDetails = tripCheckoutDetails!.copyWith(
-      tripId: tripId,
       description: descriptionEditingController.text,
       discount: discount,
       couponName: coupon != null ? coupon!.couponName : '',
@@ -70,13 +70,9 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
   }
 
   void changeChangeDetails() {
+    _update(const TripCheckoutDetailsState.changeChangeDetails());
     allSubtotal = tripCheckoutDetails!.subtotalAdult + tripCheckoutDetails!.subtotalChild;
-    _update(
-      const TripCheckoutDetailsState.changeChangeDetails(),
-    );
-    _update(
-      const TripCheckoutDetailsState.initial(),
-    );
+    _update(const TripCheckoutDetailsState.initial());
   }
 
   void _update(TripCheckoutDetailsState state) {
