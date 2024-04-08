@@ -33,6 +33,7 @@ class SearchScreen extends StatelessWidget {
                   readOnly: false,
                   onChanged: (String value)
                   {
+
                     getIt<SearchCubit>().fetchSearchData(name: value);
                   },
                 ),
@@ -57,6 +58,10 @@ class SearchScreen extends StatelessWidget {
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
                       loaded: (searchList) {
+                       if(searchList.isEmpty)
+                       {
+                         return const Center(child:  Text("No Data"));
+                       }
                         return SizedBox(
                           height: 400.0.h,
                           child: GridView.builder(
@@ -75,9 +80,12 @@ class SearchScreen extends StatelessWidget {
                               cityName: searchList[index].name,
                               countryName: searchList[index].address,
                               imageName: searchList[index].imagePath ?? "",
-                              tripPrice:
-                                  searchList[index].adultPrice.toString(),
+                              tripPrice:searchList[index].adultPrice.toString(),
                               reservationType: "/person",
+                                  trip:searchList[index],
+                                  oldTripPrice: searchList[index].beforePrice ,
+                                  percentageSave: searchList[index].saving,
+
                             ),
                             itemCount: searchList.length,
                             shrinkWrap: true,

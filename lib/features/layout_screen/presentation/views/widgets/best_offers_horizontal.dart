@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_horizontal_item.dart';
 
+import '../../../../all_trips/data/models/trips_model.dart';
+
 class BestOffersHorizontal extends StatelessWidget {
-  const BestOffersHorizontal({super.key});
+  const BestOffersHorizontal({super.key, required this.bestOffers,});
+  final List<Trips> bestOffers;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,8 @@ class BestOffersHorizontal extends StatelessWidget {
             itemBuilder: (context, index) {
               return BestOffersHorizontalItem(
                 width: 70.0.w,
+                bestOffers:bestOffers[index] ,
+                review:bestOffers[index].reviewAverage ?? 0.0 ,
               );
             },
             itemCount: 5,

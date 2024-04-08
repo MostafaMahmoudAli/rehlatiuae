@@ -22,7 +22,7 @@ abstract class LocaleKeys {
   static const Your_Name = 'Your_Name';
   static const Your_Email = 'Your_Email';
   static const Send_Now = 'Send_Now';
-  static const All_Trip = 'All_Trip';
+  static const All_Trip = 'AllTrip';
   static const All_Categories = 'All_Categories';
   static const Categories_Name = 'Categories_Name';
   static const City_Destination = 'City_Destination';

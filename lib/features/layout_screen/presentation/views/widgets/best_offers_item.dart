@@ -93,8 +93,8 @@ class _BestOffersItemState extends State<BestOffersItem> {
                     ),
                   ),
                   Positioned(
-                    top: 6,
-                    right: 10,
+                    top: MediaQuery.sizeOf(context).height*0.01,
+                    right: MediaQuery.sizeOf(context).width*0.02,
                     child: IconButtonWithWhiteBackground(
                       onPressed: () async {
                         if (context.read<MainCubit>().client == null) {
@@ -215,7 +215,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                               size: 16.0.sp,
                             ),
                             Text(
-                              widget.review.toString(),
+                              widget.review.toString().characters.first,
                               style: Theme.of(context).textTheme.titleSmall,
                               textAlign: TextAlign.justify,
                             ),

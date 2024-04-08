@@ -6,7 +6,11 @@ import 'package:rehlatyuae/features/payment/data/models/coupon_model/coupon_mode
 import 'package:rehlatyuae/features/payment/data/models/trip_checkout_details_model/trip_checkout_details_model.dart';
 import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
 
+import '../../../data/models/chechked_trips_offers_model/check_trips_offers_response.dart';
+import '../../../data/models/chechked_trips_offers_model/checked_trips_offers_request_model.dart';
+
 part 'trip_checkout_details_cubit.freezed.dart';
+
 part 'trip_checkout_details_state.dart';
 
 class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
@@ -73,6 +77,26 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     _update(const TripCheckoutDetailsState.changeChangeDetails());
     allSubtotal = tripCheckoutDetails!.subtotalAdult + tripCheckoutDetails!.subtotalChild;
     _update(const TripCheckoutDetailsState.initial());
+  }
+
+  Future<void> checkoutTripsAndOffers({required CheckedTripsAndOffersRequest checkModel}) async {
+    _update(const TripCheckoutDetailsState.checkedTripLoading());
+    var response = await paymentRepo.checkoutTripsAndOffers(
+      checkModel: checkModel,
+    );
+    response.fold(
+      (errorMessage) => _update(TripCheckoutDetailsState.checkedTripError(errorMessage)),
+      (checkTripsAndOffersResponse) =>
+          _update(TripCheckoutDetailsState.checkedTripSuccess(checkTripsAndOffersResponse)),
+    );
+  }
+
+  Future<void> paymentMethod({required int amount, required String currency}) async {
+    var response = await paymentRepo.paymentMethod(amount: amount, currency: currency);
+    response.fold(
+      (errorMessage) => _update(TripCheckoutDetailsState.stripeError(errorMessage)),
+      (unit) => _update(const TripCheckoutDetailsState.stripeSuccess()),
+    );
   }
 
   void _update(TripCheckoutDetailsState state) {

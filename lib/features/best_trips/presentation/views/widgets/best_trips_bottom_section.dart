@@ -48,7 +48,7 @@ class BestTripsBottomSection extends StatelessWidget {
                const CustomSizedBox(),
                const WhyChooseUsSection(),
                const CustomSizedBox(),
-               const WeHelpYouSection(),
+                WeHelpYouSection(),
                Padding(
                  padding:EdgeInsets.symmetric(
                    horizontal:15.0.w,
@@ -67,7 +67,9 @@ class BestTripsBottomSection extends StatelessWidget {
                  ),
                ),
                const CustomSizedBox(),
-               const BestOffersHorizontal(),
+                BestOffersHorizontal(
+                  bestOffers:layoutModelBottomSectionData.bestOffers ?? [],
+                ),
                const CustomSizedBox(),
                 ReviewsSection(
                  reviews:layoutModelBottomSectionData.reviews?? [],

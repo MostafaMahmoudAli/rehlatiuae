@@ -69,7 +69,7 @@ class FavouritesBottomSection extends StatelessWidget {
                 const CustomSizedBox(),
                 const WhyChooseUsSection(),
                 const CustomSizedBox(),
-                const WeHelpYouSection(),
+                 WeHelpYouSection(),
                 CustomActionButton(
                   onTap: () {
                     context.push(AppRoutesString.allTripsScreen);
@@ -82,7 +82,9 @@ class FavouritesBottomSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const CustomSizedBox(),
-                const BestOffersHorizontal(),
+                 BestOffersHorizontal(
+                   bestOffers:layoutModelSectionData.bestOffers ?? [],
+                 ),
                 const CustomSizedBox(),
                 ReviewsSection(
                   reviews: layoutModelSectionData.reviews ?? [],

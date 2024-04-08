@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                       const CustomSizedBox(),
                       const WhyChooseUsSection(),
                       const CustomSizedBox(),
-                      const WeHelpYouSection(),
+                       WeHelpYouSection(),
                       const CustomSizedBox(),
                       Padding(
                         padding: EdgeInsets.symmetric(
@@ -123,7 +123,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       const CustomSizedBox(),
-                      const BestOffersHorizontal(),
+                       BestOffersHorizontal(
+                        bestOffers: layoutModel.bestOffers ?? [],
+                      ),
                       const CustomSizedBox(),
                       ReviewsSection(
                         reviews: layoutModel.reviews ?? [],
