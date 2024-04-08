@@ -70,8 +70,11 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.read<TripCheckoutDetailsCubit>().selectedTrip = widget.blogs.trip;
-                context.push(AppRoutesString.paymentOptionsScreen);
+                var cubit = context.read<TripCheckoutDetailsCubit>();
+                cubit.selectedTrip = widget.blogs.trip;
+                context.push(AppRoutesString.paymentOptionsScreen).then(
+                      (value) => cubit.onClosePaymentOptionsScreen(),
+                    );
               },
               width: double.infinity,
               height: 50.h,

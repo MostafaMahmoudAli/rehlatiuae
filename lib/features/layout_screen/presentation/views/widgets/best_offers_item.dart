@@ -43,13 +43,8 @@ class _BestOffersItemState extends State<BestOffersItem> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context
-            .push(
-          AppRoutesString.travelDetailsScreen,
-          extra: widget.bestOffers,
-        )
-            .then((value) {
-          context.read<TripCheckoutDetailsCubit>().selectedOffers.clear();
+        context.push(AppRoutesString.travelDetailsScreen, extra: widget.bestOffers).then((value) {
+          context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
         });
       },
       child: Container(

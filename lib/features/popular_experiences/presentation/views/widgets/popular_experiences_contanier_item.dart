@@ -47,7 +47,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
       onTap: () {
         context.push(AppRoutesString.travelDetailsScreen, extra: widget.popularExperiences).then(
           (value) {
-            context.read<TripCheckoutDetailsCubit>().selectedOffers.clear();
+            context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
           },
         );
       },

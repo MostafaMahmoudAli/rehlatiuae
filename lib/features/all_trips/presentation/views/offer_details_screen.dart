@@ -75,8 +75,12 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.read<TripCheckoutDetailsCubit>().selectedTrip = widget.offer;
-                context.push(AppRoutesString.paymentOptionsScreen);
+                var cubit = context.read<TripCheckoutDetailsCubit>();
+                cubit.isTripSelected = true;
+                cubit.selectedTrip = widget.offer;
+                context.push(AppRoutesString.paymentOptionsScreen).then(
+                      (value) => cubit.onClosePaymentOptionsScreen(),
+                    );
               },
               width: double.infinity,
               height: 50.h,

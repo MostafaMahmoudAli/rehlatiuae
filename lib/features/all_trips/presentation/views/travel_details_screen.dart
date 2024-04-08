@@ -8,6 +8,7 @@ import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
+import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
@@ -88,8 +89,23 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                 backGroundColor: AppColors.textAndBackgroundColorButton,
                 onTap: () {
                   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                  context.read<TripCheckoutDetailsCubit>().selectedTrip = widget.trip;
-                  context.push(AppRoutesString.paymentOptionsScreen);
+                  var cubit = context.read<TripCheckoutDetailsCubit>();
+                  if (!cubit.isTripSelected) {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const CustomDialog(
+                        title: 'You must select trip or offer at latest',
+                        subtitle: 'Sorry',
+                        labelText: 'close',
+                        color: AppColors.redAppColor,
+                      ),
+                    );
+                    return;
+                  }
+                  cubit.selectedTrip = widget.trip;
+                  context.push(AppRoutesString.paymentOptionsScreen).then(
+                        (value) => cubit.onClosePaymentOptionsScreen(),
+                      );
                 },
                 width: double.infinity,
                 height: 50.h,

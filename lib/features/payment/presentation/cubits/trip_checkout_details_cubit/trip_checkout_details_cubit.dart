@@ -2,9 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/payment/data/models/chechked_trips_offers_model/selected_data.dart';
 import 'package:rehlatyuae/features/payment/data/models/coupon_model/coupon_model.dart';
@@ -14,7 +12,6 @@ import '../../../data/models/chechked_trips_offers_model/check_trips_offers_resp
 import '../../../data/models/chechked_trips_offers_model/checked_trips_offers_request_model.dart';
 
 part 'trip_checkout_details_cubit.freezed.dart';
-
 part 'trip_checkout_details_state.dart';
 
 class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
@@ -37,7 +34,6 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
   List<SelectedData> selectedData = [];
 
   void initCheckoutDetails() {
-    getIt<Logger>().w(isDetailInit);
     if (isDetailInit) return;
     isDetailInit = true;
     if (isTripSelected) {
@@ -110,6 +106,19 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
         date: dateOffersEditingControllers[i].text,
       );
     }
+  }
+
+  void onClosePaymentOptionsScreen() {
+    coupon = null;
+    allSubtotal = 0;
+    totalAfterDiscount = 0;
+    isDetailInit = false;
+    selectedData = [];
+  }
+
+  void onCloseTripDetailsScreen() {
+    selectedOffers.clear();
+    isTripSelected = true;
   }
 
   Future<void> checkoutTripsAndOffers() async {

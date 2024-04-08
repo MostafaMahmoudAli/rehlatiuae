@@ -139,7 +139,9 @@ class PaymentDetailsScreen extends StatelessWidget {
                         title: LocaleKeys.Payment_Details.tr(),
                         labelButton: LocaleKeys.Payment.tr(),
                         contentSheet: const PaymentContentSheet(),
-                        onButtonPreesd: () {},
+                        onButtonPreesd: () async {
+                          await cubit.checkoutTripsAndOffers();
+                        },
                       ),
                     );
                   },
