@@ -16,7 +16,7 @@ class OfferPreferencesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 265.h,
+      height: 430.h,
       child: ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         scrollDirection: Axis.horizontal,
