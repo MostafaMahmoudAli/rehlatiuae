@@ -92,7 +92,6 @@ class PaymentDetailsScreen extends StatelessWidget {
             ],
           ),
           TotalPaymentSection(
-            subtitle: LocaleKeys.View_detailed_bill.tr(),
             buttonLabel: LocaleKeys.Payment.tr(),
             onButtonTap: () {
               showModalBottomSheet(
@@ -139,12 +138,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                       orElse: () => CustomBottomSheet(
                         title: LocaleKeys.Payment_Details.tr(),
                         labelButton: LocaleKeys.Payment.tr(),
-                        contentSheet: PaymentContentSheet(
-                          tripCheckoutDetails: cubit.tripCheckoutDetails!,
-                        ),
-                        onButtonPreesd: () async {
-                          cubit.addTripCheckoutDetails();
-                        },
+                        contentSheet: const PaymentContentSheet(),
+                        onButtonPreesd: () {},
                       ),
                     );
                   },
@@ -161,9 +156,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                 builder: (c) => CustomBottomSheet(
                   title: LocaleKeys.Payment_Details.tr(),
                   labelButton: LocaleKeys.Payment.tr(),
-                  contentSheet: PaymentContentSheet(
-                    tripCheckoutDetails: cubit.tripCheckoutDetails!,
-                  ),
+                  contentSheet: const PaymentContentSheet(),
                   avatarColor: AppColors.backgroundAvatarPayment,
                 ),
               );

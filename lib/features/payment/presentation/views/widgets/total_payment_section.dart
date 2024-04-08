@@ -6,13 +6,11 @@ import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
 class TotalPaymentSection extends StatelessWidget {
-  final String subtitle;
   final String buttonLabel;
   final void Function() onButtonTap;
   final void Function()? onSubtitleTap;
 
   const TotalPaymentSection({
-    required this.subtitle,
     required this.buttonLabel,
     required this.onButtonTap,
     this.onSubtitleTap,

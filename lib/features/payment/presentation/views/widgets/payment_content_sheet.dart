@@ -6,11 +6,11 @@ import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/row_det
 import 'package:rehlatyuae/features/payment/data/models/trip_checkout_details_model/trip_checkout_details_model.dart';
 
 class PaymentContentSheet extends StatelessWidget {
-  final TripCheckoutDetails tripCheckoutDetails;
+  final TripCheckoutDetails? tripCheckoutDetails;
   final String? referenceNum;
 
   const PaymentContentSheet({
-    required this.tripCheckoutDetails,
+    this.tripCheckoutDetails,
     this.referenceNum,
     super.key,
   });
@@ -26,18 +26,18 @@ class PaymentContentSheet extends StatelessWidget {
               ),
         ),
         Text(
-          "\$ ${tripCheckoutDetails.total}",
+          "\$ ${tripCheckoutDetails?.total}",
           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                 color: AppColors.black,
               ),
         ),
         RowDetails(
           title: "Date",
-          value: tripCheckoutDetails.date,
+          value: tripCheckoutDetails?.date ?? '',
         ),
         RowDetails(
           title: "Details",
-          value: tripCheckoutDetails.description,
+          value: tripCheckoutDetails?.description ?? '',
         ),
         if (referenceNum != null)
           RowDetails(
@@ -46,7 +46,7 @@ class PaymentContentSheet extends StatelessWidget {
           ),
         RowDetails(
           title: "Trip Date",
-          value: tripCheckoutDetails.date,
+          value: tripCheckoutDetails?.date ?? '',
         ),
         SizedBox(
           height: 20.h,
@@ -58,15 +58,15 @@ class PaymentContentSheet extends StatelessWidget {
         ),
         RowDetails(
           title: "Total Payment",
-          value: "\$${tripCheckoutDetails.finalSubtotal}",
+          value: "\$${tripCheckoutDetails?.finalSubtotal}",
         ),
         RowDetails(
           title: "Discount",
-          value: "\$${tripCheckoutDetails.discount}",
+          value: "\$${tripCheckoutDetails?.discount}",
         ),
         RowDetails(
           title: "Total",
-          value: "\$${tripCheckoutDetails.total}",
+          value: "\$${tripCheckoutDetails?.total}",
           textValueColor: AppColors.textAndBackgroundColorButton,
         ),
         SizedBox(

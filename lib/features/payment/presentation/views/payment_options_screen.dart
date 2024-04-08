@@ -211,7 +211,6 @@ class PaymentOptionsScreen extends StatelessWidget {
                 controller: cubit.descriptionEditingController,
               ),
               TotalPaymentSection(
-                subtitle: cubit.tripCheckoutDetails!.date,
                 buttonLabel: 'Next',
                 onButtonTap: () {
                   cubit.addDatesAndDescription(context);
