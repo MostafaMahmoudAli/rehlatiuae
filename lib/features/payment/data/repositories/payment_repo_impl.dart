@@ -94,7 +94,6 @@ class PaymentRepoImpl implements PaymentRepo {
     try {
       var response = await apiConsumer.post(
         EndPoints.checkedTripsAndOffersEndPoint,
-        isForm: true,
         data: {
           'coupon_name': checkModel.couponName,
           'selectedData': checkModel.selectedData?.map((e) => e.toJson()).toList(),
