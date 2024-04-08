@@ -212,7 +212,7 @@ class PaymentOptionsScreen extends StatelessWidget {
               ),
               TotalPaymentSection(
                 subtitle: cubit.tripCheckoutDetails!.date,
-                buttonLabel: LocaleKeys.Next_payment.tr(),
+                buttonLabel: 'Next',
                 onButtonTap: () {
                   cubit.addDatesAndDescription(context);
                 },

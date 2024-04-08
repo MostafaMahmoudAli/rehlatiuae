@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
-import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
 class TotalPaymentSection extends StatelessWidget {
@@ -26,7 +25,7 @@ class TotalPaymentSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: 20.w,
       ),
-      margin: EdgeInsets.only(top: 20.h),
+      margin: EdgeInsets.symmetric(vertical: 10.h),
       color: AppColors.backgroundWhite,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,15 +36,24 @@ class TotalPaymentSection extends StatelessWidget {
             children: [
               BlocBuilder<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
                 builder: (context, state) {
-                  return Text(
-                    "  ${context.read<TripCheckoutDetailsCubit>().totalAfterDiscount}",
-                    style: Theme.of(context).textTheme.labelMedium,
+                  var cubit = context.read<TripCheckoutDetailsCubit>();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (cubit.allSubtotal != cubit.totalAfterDiscount)
+                        Text(
+                          "\$${cubit.allSubtotal.toStringAsFixed(2)}",
+                          style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                        ),
+                      Text(
+                        "\$${cubit.totalAfterDiscount.toStringAsFixed(2)}",
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                    ],
                   );
                 },
-              ),
-              DefaultTextButton(
-                onPressed: onSubtitleTap,
-                text: subtitle,
               ),
             ],
           ),
@@ -54,7 +62,7 @@ class TotalPaymentSection extends StatelessWidget {
             borderRadius: BorderRadius.circular(16.sp),
             backGroundColor: AppColors.textAndBackgroundColorButton,
             onTap: onButtonTap,
-            width: buttonLabel == 'Payment' ? 110.w : 140.w,
+            width: 100.w,
             height: 50.h,
           ),
         ],

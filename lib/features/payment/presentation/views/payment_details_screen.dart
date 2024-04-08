@@ -51,86 +51,83 @@ class PaymentDetailsScreen extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 10.h),
-            child: TotalPaymentSection(
-              subtitle: LocaleKeys.View_detailed_bill.tr(),
-              buttonLabel: LocaleKeys.Payment.tr(),
-              onButtonTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  builder: (c) => BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
-                    listener: (c, state) {
-                      state.whenOrNull(
-                        error: (message) {
-                          showDialog(
-                            context: context,
-                            builder: (context) => CustomDialog(
-                              title: message,
-                              subtitle: 'Sorry',
-                              labelText: 'Close',
-                              color: AppColors.redAppColor,
-                            ),
-                          );
-                        },
-                        success: () {
-                          showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (c) => CustomDialog(
-                              title: 'Payment Success',
-                              subtitle: '${cubit.allSubtotal}',
-                              labelText: 'Back to Homepage',
-                              onTap: () {
-                                context.go(AppRoutesString.homeScreen);
-                              },
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    builder: (c, state) {
-                      return state.maybeWhen(
-                        loading: () => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                        orElse: () => CustomBottomSheet(
-                          title: LocaleKeys.Payment_Details.tr(),
-                          labelButton: LocaleKeys.Payment.tr(),
-                          contentSheet: PaymentContentSheet(
-                            tripCheckoutDetails: cubit.tripCheckoutDetails!,
+          TotalPaymentSection(
+            subtitle: LocaleKeys.View_detailed_bill.tr(),
+            buttonLabel: LocaleKeys.Payment.tr(),
+            onButtonTap: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
+                builder: (c) => BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+                  listener: (c, state) {
+                    state.whenOrNull(
+                      error: (message) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomDialog(
+                            title: message,
+                            subtitle: 'Sorry',
+                            labelText: 'Close',
+                            color: AppColors.redAppColor,
                           ),
-                          onButtonPreesd: () async {
-                            cubit.addTripCheckoutDetails();
-                          },
+                        );
+                      },
+                      success: () {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (c) => CustomDialog(
+                            title: 'Payment Success',
+                            subtitle: '${cubit.allSubtotal}',
+                            labelText: 'Back to Homepage',
+                            onTap: () {
+                              context.go(AppRoutesString.homeScreen);
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  builder: (c, state) {
+                    return state.maybeWhen(
+                      loading: () => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      orElse: () => CustomBottomSheet(
+                        title: LocaleKeys.Payment_Details.tr(),
+                        labelButton: LocaleKeys.Payment.tr(),
+                        contentSheet: PaymentContentSheet(
+                          tripCheckoutDetails: cubit.tripCheckoutDetails!,
                         ),
-                      );
-                    },
+                        onButtonPreesd: () async {
+                          cubit.addTripCheckoutDetails();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
+            onSubtitleTap: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
+                builder: (c) => CustomBottomSheet(
+                  title: LocaleKeys.Payment_Details.tr(),
+                  labelButton: LocaleKeys.Payment.tr(),
+                  contentSheet: PaymentContentSheet(
+                    tripCheckoutDetails: cubit.tripCheckoutDetails!,
                   ),
-                );
-              },
-              onSubtitleTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  builder: (c) => CustomBottomSheet(
-                    title: LocaleKeys.Payment_Details.tr(),
-                    labelButton: LocaleKeys.Payment.tr(),
-                    contentSheet: PaymentContentSheet(
-                      tripCheckoutDetails: cubit.tripCheckoutDetails!,
-                    ),
-                    avatarColor: AppColors.backgroundAvatarPayment,
-                  ),
-                );
-              },
-            ),
+                  avatarColor: AppColors.backgroundAvatarPayment,
+                ),
+              );
+            },
           ),
         ],
       ),
