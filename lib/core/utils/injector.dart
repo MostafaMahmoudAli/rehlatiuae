@@ -250,5 +250,5 @@ Future<void> setupInjector() async {
 
   // cubits
   getIt.registerFactory(() => CheckCouponCubit(paymentRepo: getIt()));
-  getIt.registerLazySingleton(() => TripCheckoutDetailsCubit(paymentRepo: getIt()));
+  getIt.registerFactory(() => TripCheckoutDetailsCubit(paymentRepo: getIt()));
 }

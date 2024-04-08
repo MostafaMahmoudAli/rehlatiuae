@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
@@ -50,7 +49,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
           extra: widget.bestOffers,
         )
             .then((value) {
-          getIt<TripCheckoutDetailsCubit>().selectedOffers.clear();
+          context.read<TripCheckoutDetailsCubit>().selectedOffers.clear();
         });
       },
       child: Container(
@@ -93,8 +92,8 @@ class _BestOffersItemState extends State<BestOffersItem> {
                     ),
                   ),
                   Positioned(
-                    top: MediaQuery.sizeOf(context).height*0.01,
-                    right: MediaQuery.sizeOf(context).width*0.02,
+                    top: MediaQuery.sizeOf(context).height * 0.01,
+                    right: MediaQuery.sizeOf(context).width * 0.02,
                     child: IconButtonWithWhiteBackground(
                       onPressed: () async {
                         if (context.read<MainCubit>().client == null) {

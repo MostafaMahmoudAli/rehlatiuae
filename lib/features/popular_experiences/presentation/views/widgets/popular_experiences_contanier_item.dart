@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
@@ -48,7 +47,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
       onTap: () {
         context.push(AppRoutesString.travelDetailsScreen, extra: widget.popularExperiences).then(
           (value) {
-            getIt<TripCheckoutDetailsCubit>().selectedOffers.clear();
+            context.read<TripCheckoutDetailsCubit>().selectedOffers.clear();
           },
         );
       },

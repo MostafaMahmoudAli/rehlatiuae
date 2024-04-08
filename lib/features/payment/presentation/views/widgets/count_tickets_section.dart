@@ -47,7 +47,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
               () {
                 ++adultCount;
                 subtotalAdult = adultCount * widget.adultCost;
-                widget.onAdultsCountChange(adultCount, subtotalAdult);
+                widget.onAdultsCountChange(adultCount, widget.adultCost);
               },
             );
           },
@@ -58,7 +58,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                     () {
                       --adultCount;
                       subtotalAdult = adultCount * widget.adultCost;
-                      widget.onAdultsCountChange(adultCount, subtotalAdult);
+                      widget.onAdultsCountChange(adultCount, -widget.adultCost);
                     },
                   );
                 },
@@ -73,7 +73,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
               () {
                 ++childCount;
                 subtotalChild = childCount * widget.childCost;
-                widget.onChildrenCountChange(childCount, subtotalChild);
+                widget.onChildrenCountChange(childCount, widget.childCost);
               },
             );
           },
@@ -84,7 +84,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                     () {
                       --childCount;
                       subtotalChild = childCount * widget.childCost;
-                      widget.onChildrenCountChange(childCount, subtotalChild);
+                      widget.onChildrenCountChange(childCount, -widget.childCost);
                     },
                   );
                 },

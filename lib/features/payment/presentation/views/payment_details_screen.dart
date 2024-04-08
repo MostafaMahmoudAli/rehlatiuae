@@ -7,7 +7,6 @@ import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_date_booking.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/order_summary_section.dart';
@@ -35,7 +34,9 @@ class PaymentDetailsScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              FieldDateBooking(cubit: cubit),
+              FieldDateBooking(
+                controller: cubit.dateEditingController,
+              ),
               SizedBox(
                 height: 15.h,
               ),
@@ -53,7 +54,6 @@ class PaymentDetailsScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(bottom: 10.h),
             child: TotalPaymentSection(
-              total: "\$${cubit.allSubtotal}",
               subtitle: LocaleKeys.View_detailed_bill.tr(),
               buttonLabel: LocaleKeys.Payment.tr(),
               onButtonTap: () {
@@ -63,56 +63,53 @@ class PaymentDetailsScreen extends StatelessWidget {
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
                   ),
-                  builder: (c) => BlocProvider(
-                    create: (context) => getIt<TripCheckoutDetailsCubit>(),
-                    child: BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
-                      listener: (c, state) {
-                        state.whenOrNull(
-                          error: (message) {
-                            showDialog(
-                              context: context,
-                              builder: (context) => CustomDialog(
-                                title: message,
-                                subtitle: 'Sorry',
-                                labelText: 'Close',
-                                color: AppColors.redAppColor,
-                              ),
-                            );
-                          },
-                          success: () {
-                            showDialog(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (c) => CustomDialog(
-                                title: 'Payment Success',
-                                subtitle: '${cubit.allSubtotal}',
-                                labelText: 'Back to Homepage',
-                                onTap: () {
-                                  context.go(AppRoutesString.homeScreen);
-                                },
-                              ),
-                            );
-                          },
-                        );
-                      },
-                      builder: (c, state) {
-                        return state.maybeWhen(
-                          loading: () => const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                          orElse: () => CustomBottomSheet(
-                            title: LocaleKeys.Payment_Details.tr(),
-                            labelButton: LocaleKeys.Payment.tr(),
-                            contentSheet: PaymentContentSheet(
-                              tripCheckoutDetails: cubit.tripCheckoutDetails!,
+                  builder: (c) => BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+                    listener: (c, state) {
+                      state.whenOrNull(
+                        error: (message) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => CustomDialog(
+                              title: message,
+                              subtitle: 'Sorry',
+                              labelText: 'Close',
+                              color: AppColors.redAppColor,
                             ),
-                            onButtonPreesd: () async {
-                              cubit.addTripCheckoutDetails();
-                            },
+                          );
+                        },
+                        success: () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (c) => CustomDialog(
+                              title: 'Payment Success',
+                              subtitle: '${cubit.allSubtotal}',
+                              labelText: 'Back to Homepage',
+                              onTap: () {
+                                context.go(AppRoutesString.homeScreen);
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    builder: (c, state) {
+                      return state.maybeWhen(
+                        loading: () => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        orElse: () => CustomBottomSheet(
+                          title: LocaleKeys.Payment_Details.tr(),
+                          labelButton: LocaleKeys.Payment.tr(),
+                          contentSheet: PaymentContentSheet(
+                            tripCheckoutDetails: cubit.tripCheckoutDetails!,
                           ),
-                        );
-                      },
-                    ),
+                          onButtonPreesd: () async {
+                            cubit.addTripCheckoutDetails();
+                          },
+                        ),
+                      );
+                    },
                   ),
                 );
               },

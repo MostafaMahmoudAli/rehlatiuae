@@ -1,9 +1,7 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/category_name.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
@@ -26,7 +24,6 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/main_layout
 import 'package:rehlatyuae/features/our_blogs/data/models/blogs_model.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/blog_details_screen.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/our_blogs_screen.dart';
-import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_details_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/payment_options_screen.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/popular_experiences_screen.dart';
@@ -104,14 +101,11 @@ class AppRouter {
         /// Payment Screens
         GoRoute(
           path: AppRoutesString.paymentOptionsScreen,
-          builder: (context, state) => PaymentOptionsScreen(trip: state.extra! as Trips),
+          builder: (context, state) => const PaymentOptionsScreen(),
         ),
         GoRoute(
           path: AppRoutesString.paymentDetailsScreen,
-          builder: (context, state) => BlocProvider(
-            create: (context) => getIt<TripCheckoutDetailsCubit>(),
-            child: const PaymentDetailsScreen(),
-          ),
+          builder: (context, state) => const PaymentDetailsScreen(),
         ),
 
         /// Info Screens

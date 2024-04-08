@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
-import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
@@ -66,7 +65,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                 extra: widget.trip,
               )
                   .then((value) {
-                getIt<TripCheckoutDetailsCubit>().selectedOffers.clear();
+                context.read<TripCheckoutDetailsCubit>().selectedOffers.clear();
               });
             }
           : null,
@@ -91,8 +90,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
             ),
             if ((widget.oldTripPrice != null || widget.percentageSave != null) && widget.percentageSave!.isNotEmpty)
               Positioned(
-                top: MediaQuery.sizeOf(context).height*0.02,
-                left: MediaQuery.sizeOf(context).width*0.02,
+                top: MediaQuery.sizeOf(context).height * 0.02,
+                left: MediaQuery.sizeOf(context).width * 0.02,
                 child: Row(
                   children: [
                     Text(
@@ -118,8 +117,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
               ),
             if (widget.isTrip)
               Positioned(
-                top: MediaQuery.sizeOf(context).height*0.01,
-                right: MediaQuery.sizeOf(context).width*0.02,
+                top: MediaQuery.sizeOf(context).height * 0.01,
+                right: MediaQuery.sizeOf(context).width * 0.02,
                 child: CustomIconButton(
                   icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                   iconColor: AppColors.redAppColor,
@@ -141,8 +140,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                 ),
               ),
             Positioned(
-              bottom: MediaQuery.sizeOf(context).height*0.037,
-              left:MediaQuery.sizeOf(context).width*0.02,
+              bottom: MediaQuery.sizeOf(context).height * 0.037,
+              left: MediaQuery.sizeOf(context).width * 0.02,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -187,8 +186,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
             if ((widget.tripPrice != null || widget.reservationType != null) &&
                 (widget.tripPrice!.isNotEmpty && widget.reservationType!.isNotEmpty))
               Positioned(
-                bottom:MediaQuery.sizeOf(context).height*0.1,
-                right: MediaQuery.sizeOf(context).width*0.02,
+                bottom: MediaQuery.sizeOf(context).height * 0.1,
+                right: MediaQuery.sizeOf(context).width * 0.02,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

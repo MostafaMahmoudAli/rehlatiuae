@@ -14,6 +14,7 @@ import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class OfferDetailsScreen extends StatefulWidget {
@@ -74,7 +75,8 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppRoutesString.paymentOptionsScreen, extra: widget.offer);
+                context.read<TripCheckoutDetailsCubit>().selectedTrip = widget.offer;
+                context.push(AppRoutesString.paymentOptionsScreen);
               },
               width: double.infinity,
               height: 50.h,

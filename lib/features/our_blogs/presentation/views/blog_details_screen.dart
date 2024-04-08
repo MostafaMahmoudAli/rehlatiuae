@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
@@ -12,6 +13,7 @@ import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/our_blogs/data/models/blogs_model.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/paragraph_section.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class BlogDetailsScreen extends StatefulWidget {
@@ -67,10 +69,9 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
               borderRadius: BorderRadius.circular(16),
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
-                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-                    overlays: SystemUiOverlay.values);
-                context.push(AppRoutesString.paymentOptionsScreen,
-                    extra: widget.blogs.trip);
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+                context.read<TripCheckoutDetailsCubit>().selectedTrip = widget.blogs.trip;
+                context.push(AppRoutesString.paymentOptionsScreen);
               },
               width: double.infinity,
               height: 50.h,
@@ -99,16 +100,16 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
     totalRating = (widget.blogs.reviewCount?.oneStar ?? 0) +
         (widget.blogs.reviewCount?.towStar ?? 0) +
         (widget.blogs.reviewCount?.threeStar ?? 0) +
-        (widget.blogs.reviewCount?.fourStar??0)+
-        (widget.blogs.reviewCount?.fiveStar??0);
+        (widget.blogs.reviewCount?.fourStar ?? 0) +
+        (widget.blogs.reviewCount?.fiveStar ?? 0);
 
     aveRating = 0;
     if (totalRating != 0) {
-      aveRating = ((widget.blogs.reviewCount?.oneStar??0) +
-             ( widget.blogs.reviewCount?.towStar?? 0 * 2 ) +
-             ( widget.blogs.reviewCount?.threeStar??0 * 3) +
-            (  widget.blogs.reviewCount?.fourStar??0 * 4 )+
-            (  widget.blogs.reviewCount?.fiveStar ??0 * 5)) /
+      aveRating = ((widget.blogs.reviewCount?.oneStar ?? 0) +
+              (widget.blogs.reviewCount?.towStar ?? 0 * 2) +
+              (widget.blogs.reviewCount?.threeStar ?? 0 * 3) +
+              (widget.blogs.reviewCount?.fourStar ?? 0 * 4) +
+              (widget.blogs.reviewCount?.fiveStar ?? 0 * 5)) /
           totalRating;
       super.initState();
     }
@@ -116,8 +117,7 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
 
   @override
   void dispose() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
     super.dispose();
   }
 }
