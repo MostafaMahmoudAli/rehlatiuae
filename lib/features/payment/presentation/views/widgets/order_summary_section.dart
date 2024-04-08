@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,16 @@ class OrderSummarySection extends StatelessWidget {
   final String childrenCount;
   final String adultCount;
   final String address;
+  final String imageUrl;
+  final String description;
 
   const OrderSummarySection({
     required this.total,
     required this.childrenCount,
     required this.adultCount,
     required this.address,
+    required this.imageUrl,
+    required this.description,
     super.key,
   });
 
@@ -38,11 +43,11 @@ class OrderSummarySection extends StatelessWidget {
             children: [
               Container(
                 width: 85.w,
-                height: 75.h,
+                height: 100.h,
                 decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage(
-                      'assets/images/preview1.png',
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(
+                      imageUrl,
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -57,11 +62,11 @@ class OrderSummarySection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      LocaleKeys.Order_Summary,
+                      LocaleKeys.Order_Summary.tr(),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
-                      "IMG World",
+                      description,
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                     Row(
@@ -104,7 +109,7 @@ class OrderSummarySection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                LocaleKeys.Total_Amount,
+                LocaleKeys.Total_Amount.tr(),
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       fontWeight: FontWeight.w700,
                     ),

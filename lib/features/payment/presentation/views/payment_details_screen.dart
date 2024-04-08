@@ -34,21 +34,61 @@ class PaymentDetailsScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              FieldDateBooking(
-                controller: cubit.dateEditingController,
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              OrderSummarySection(
-                total: '${cubit.tripCheckoutDetails!.finalSubtotal}',
-                childrenCount: '${cubit.tripCheckoutDetails!.quantityChild}',
-                adultCount: '${cubit.tripCheckoutDetails!.quantityAdult}',
-                address: LocaleKeys.Dubai_United.tr(),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
+              if (cubit.isTripSelected)
+                Column(
+                  children: [
+                    FieldDateBooking(
+                      controller: cubit.dateEditingController,
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    OrderSummarySection(
+                      total:
+                          '${cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!}',
+                      childrenCount: '${cubit.selectedData[0].quantityYoung}',
+                      adultCount: '${cubit.selectedData[0].quantityOld}',
+                      address: cubit.selectedTrip!.address!,
+                      imageUrl: cubit.selectedTrip!.imagePath!,
+                      description: cubit.descriptionEditingController.text,
+                    ),
+                  ],
+                ),
+              // if (cubit.selectedOffers.isNotEmpty)
+              //   Padding(
+              //     padding: EdgeInsets.symmetric(
+              //       horizontal: 20.w,
+              //       vertical: 10.h,
+              //     ),
+              //     child: Row(
+              //       children: [
+              //         Text(
+              //           "Offers Details",
+              //           style: Theme.of(context).textTheme.labelMedium,
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // if (cubit.selectedOffers.isNotEmpty)
+              //   ...List.generate(
+              //     cubit.selectedOffers.length,
+              //     (index) => Column(
+              //       children: [
+              //         FieldDateBooking(
+              //           controller: cubit.dateEditingController,
+              //         ),
+              //         SizedBox(
+              //           height: 15.h,
+              //         ),
+              //         OrderSummarySection(
+              //           total: '${cubit.tripCheckoutDetails!.finalSubtotal}',
+              //           childrenCount: '${cubit.tripCheckoutDetails!.quantityChild}',
+              //           adultCount: '${cubit.tripCheckoutDetails!.quantityAdult}',
+              //           address: LocaleKeys.Dubai_United.tr(),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
             ],
           ),
           TotalPaymentSection(
