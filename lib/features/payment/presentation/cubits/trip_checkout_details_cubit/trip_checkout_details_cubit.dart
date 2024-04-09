@@ -126,6 +126,7 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     var response = await paymentRepo.checkoutTripsAndOffers(
       checkModel: CheckedTripsAndOffersRequest(
         couponName: coupon?.couponName,
+        description: descriptionEditingController.text,
         selectedData: selectedData,
       ),
     );
@@ -139,8 +140,12 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     );
   }
 
-  Future<void> paymentMethod({required int amount, required String currency}) async {
-    var response = await paymentRepo.paymentMethod(amount: amount, currency: currency);
+  Future<void> paymentMethod({required String currency}) async {
+    _update(const TripCheckoutDetailsState.stripeLoading());
+    var response = await paymentRepo.paymentMethod(
+      amount: totalAfterDiscount.ceil(),
+      currency: currency,
+    );
     response.fold(
       (errorMessage) => _update(TripCheckoutDetailsState.stripeError(errorMessage)),
       (unit) => _update(const TripCheckoutDetailsState.stripeSuccess()),

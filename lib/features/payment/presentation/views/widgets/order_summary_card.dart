@@ -6,21 +6,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
-class OrderSummarySection extends StatelessWidget {
+class OrderSummaryCard extends StatelessWidget {
   final String total;
   final String childrenCount;
   final String adultCount;
   final String address;
   final String imageUrl;
-  final String description;
+  final String date;
 
-  const OrderSummarySection({
+  const OrderSummaryCard({
     required this.total,
     required this.childrenCount,
     required this.adultCount,
     required this.address,
     required this.imageUrl,
-    required this.description,
+    required this.date,
     super.key,
   });
 
@@ -28,7 +28,7 @@ class OrderSummarySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16.h),
-      margin: EdgeInsets.symmetric(horizontal: 20.w),
+      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(16.r),
@@ -66,7 +66,7 @@ class OrderSummarySection extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
-                      description,
+                      date,
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                     Row(

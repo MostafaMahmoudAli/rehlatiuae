@@ -8,22 +8,17 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_de
 class TotalPaymentSection extends StatelessWidget {
   final String buttonLabel;
   final void Function() onButtonTap;
-  final void Function()? onSubtitleTap;
 
   const TotalPaymentSection({
     required this.buttonLabel,
     required this.onButtonTap,
-    this.onSubtitleTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 20.w,
-      ),
-      margin: EdgeInsets.symmetric(vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       color: AppColors.backgroundWhite,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
