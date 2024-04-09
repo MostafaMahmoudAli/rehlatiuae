@@ -1,9 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/payment/data/models/coupon_model/coupon_model.dart';
 import 'package:rehlatyuae/features/payment/data/models/trip_checkout_details_model/trip_checkout_details_model.dart';
 import 'package:rehlatyuae/features/payment/domain/api_keys.dart';
@@ -14,8 +17,9 @@ import '../models/chechked_trips_offers_model/checked_trips_offers_request_model
 
 class PaymentRepoImpl implements PaymentRepo {
   final ApiConsumer apiConsumer;
+  final CacheService cacheService;
 
-  PaymentRepoImpl({required this.apiConsumer});
+  PaymentRepoImpl({required this.apiConsumer, required this.cacheService});
 
   @override
   Future<Either<String, Coupon>> checkCoupon({required String name}) async {
@@ -52,7 +56,7 @@ class PaymentRepoImpl implements PaymentRepo {
     required String currency,
   }) async {
     try {
-      String clientSecret = await _getClientSecret((amount * 100).toString(), currency);
+      String? clientSecret = await _getClientSecret((amount * 100).toString(), currency);
       await _initializePaymentSheet(clientSecret);
       await Stripe.instance.presentPaymentSheet();
       return const Right(unit);
@@ -61,30 +65,39 @@ class PaymentRepoImpl implements PaymentRepo {
     }
   }
 
-  Future<void> _initializePaymentSheet(String clientSecret) async {
+  Future<void> _initializePaymentSheet(String? clientSecret) async {
     await Stripe.instance.initPaymentSheet(
       paymentSheetParameters: SetupPaymentSheetParameters(
         paymentIntentClientSecret: clientSecret,
-        merchantDisplayName: "",
+        merchantDisplayName: "Rehlatyuae",
       ),
     );
   }
 
-  Future<String> _getClientSecret(String amount, String currency) async {
-    var response = await apiConsumer.post(
-      EndPoints.stripePaymentEndPoint,
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer ${StripeApiKeys.secretKey}',
-          'Content-Type': 'application/x-www-form-urlencoded'
+  Future<String?> _getClientSecret(String amount, String currency) async {
+    try {
+      await cacheService.setData(
+        key: AppStrings.alternativeToken,
+        value: 'Bearer ${StripeApiKeys.secretKey}',
+      );
+      await cacheService.setData(
+        key: AppStrings.alternativeContentType,
+        value: 'application/x-www-form-urlencoded',
+      );
+      var response = await apiConsumer.post(
+        EndPoints.stripePaymentEndPoint,
+        data: {
+          'amount': amount,
+          'currency': currency,
         },
-      ),
-      data: {
-        'amount': amount,
-        'currency': currency,
-      },
-    );
-    return response["client_secret"];
+      );
+      await cacheService.setData(key: AppStrings.alternativeToken, value: null);
+      await cacheService.setData(key: AppStrings.alternativeContentType, value: null);
+      return response["client_secret"];
+    } catch (error) {
+      getIt<Logger>().e(error);
+      return null;
+    }
   }
 
   @override

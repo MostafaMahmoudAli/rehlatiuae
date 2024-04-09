@@ -364,7 +364,8 @@ Official Channels:
 
   // Keys
   static const accessToken = "accessToken";
-  static const updatePasswordToken = "updatePasswordToken";
+  static const alternativeToken = "Alternative-Token";
+  static const alternativeContentType = "Alternative-Content-Type";
   static const expiresIn = "expiresIn";
   static const client = "client";
   static const currentLanguage = "currentLanguage";

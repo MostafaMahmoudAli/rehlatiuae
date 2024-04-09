@@ -8,8 +8,7 @@ import '../../data/models/chechked_trips_offers_model/checked_trips_offers_reque
 abstract class PaymentRepo {
   Future<Either<String, Coupon>> checkCoupon({required String name});
 
-  Future<Either<String, Unit>> addTripCheckoutDetails(
-      {required TripCheckoutDetails tripCheckoutDetails});
+  Future<Either<String, Unit>> addTripCheckoutDetails({required TripCheckoutDetails tripCheckoutDetails});
 
   Future<Either<String, Unit>> paymentMethod({required int amount, required String currency});
 

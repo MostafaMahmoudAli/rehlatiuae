@@ -37,6 +37,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BolgTravelTitleSection(
               title: widget.trip!.name ?? '',
@@ -63,26 +64,11 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                 trip: widget.trip!,
                 offers: [widget.trip!, ...widget.trip!.offers!],
               ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: Text(
-                widget.trip!.description!,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: AppColors.grey,
-                    ),
-              ),
+            SizedBox(
+              height: 35.h,
             ),
-            ...List.generate(
-              widget.trip!.addresses!.length,
-              (index) => CustomExpansionTile(
-                initiallyExpanded: index == 0,
-                title: widget.trip!.addresses![index].name,
-                content: widget.trip!.addresses![index].description,
-              ),
-            ),
-            PreviewTravelsSection(images: widget.trip!.images, aveRating: aveRating),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: CustomActionButton(
                 text: LocaleKeys.Book_Now.tr(),
                 borderRadius: BorderRadius.circular(16),
@@ -111,6 +97,24 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                 height: 50.h,
               ),
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              child: Text(
+                widget.trip!.description!,
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: AppColors.grey,
+                    ),
+              ),
+            ),
+            ...List.generate(
+              widget.trip!.addresses!.length,
+              (index) => CustomExpansionTile(
+                initiallyExpanded: index == 0,
+                title: widget.trip!.addresses![index].name,
+                content: widget.trip!.addresses![index].description,
+              ),
+            ),
+            PreviewTravelsSection(images: widget.trip!.images, aveRating: aveRating),
             RatingsReviewsSection(
               reviews: widget.trip!.reviews,
               id: widget.trip!.id,

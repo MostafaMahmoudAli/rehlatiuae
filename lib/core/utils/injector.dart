@@ -245,7 +245,10 @@ Future<void> setupInjector() async {
   /// Payment Feature
   // repositories objects
   getIt.registerLazySingleton<PaymentRepo>(
-    () => PaymentRepoImpl(apiConsumer: getIt.get<ApiConsumer>()),
+    () => PaymentRepoImpl(
+      apiConsumer: getIt.get<ApiConsumer>(),
+      cacheService: getIt<CacheService>(),
+    ),
   );
 
   // cubits
