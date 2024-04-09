@@ -11,6 +11,7 @@ class CheckedTripsAndOffersRequest with _$CheckedTripsAndOffersRequest {
 
   const factory CheckedTripsAndOffersRequest({
     required String? couponName,
+    required String? description,
     required List<SelectedData>? selectedData,
   }) = _CheckedTripsAndOffersRequest;
 }

@@ -22,6 +22,7 @@ CheckedTripsAndOffersRequest _$CheckedTripsAndOffersRequestFromJson(
 /// @nodoc
 mixin _$CheckedTripsAndOffersRequest {
   String? get couponName => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   List<SelectedData>? get selectedData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +39,10 @@ abstract class $CheckedTripsAndOffersRequestCopyWith<$Res> {
       _$CheckedTripsAndOffersRequestCopyWithImpl<$Res,
           CheckedTripsAndOffersRequest>;
   @useResult
-  $Res call({String? couponName, List<SelectedData>? selectedData});
+  $Res call(
+      {String? couponName,
+      String? description,
+      List<SelectedData>? selectedData});
 }
 
 /// @nodoc
@@ -56,12 +60,17 @@ class _$CheckedTripsAndOffersRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? couponName = freezed,
+    Object? description = freezed,
     Object? selectedData = freezed,
   }) {
     return _then(_value.copyWith(
       couponName: freezed == couponName
           ? _value.couponName
           : couponName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
       selectedData: freezed == selectedData
           ? _value.selectedData
@@ -80,7 +89,10 @@ abstract class _$$CheckedTripsAndOffersRequestImplCopyWith<$Res>
       __$$CheckedTripsAndOffersRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? couponName, List<SelectedData>? selectedData});
+  $Res call(
+      {String? couponName,
+      String? description,
+      List<SelectedData>? selectedData});
 }
 
 /// @nodoc
@@ -97,12 +109,17 @@ class __$$CheckedTripsAndOffersRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? couponName = freezed,
+    Object? description = freezed,
     Object? selectedData = freezed,
   }) {
     return _then(_$CheckedTripsAndOffersRequestImpl(
       couponName: freezed == couponName
           ? _value.couponName
           : couponName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
       selectedData: freezed == selectedData
           ? _value._selectedData
@@ -118,6 +135,7 @@ class _$CheckedTripsAndOffersRequestImpl
     implements _CheckedTripsAndOffersRequest {
   const _$CheckedTripsAndOffersRequestImpl(
       {required this.couponName,
+      required this.description,
       required final List<SelectedData>? selectedData})
       : _selectedData = selectedData;
 
@@ -127,6 +145,8 @@ class _$CheckedTripsAndOffersRequestImpl
 
   @override
   final String? couponName;
+  @override
+  final String? description;
   final List<SelectedData>? _selectedData;
   @override
   List<SelectedData>? get selectedData {
@@ -139,7 +159,7 @@ class _$CheckedTripsAndOffersRequestImpl
 
   @override
   String toString() {
-    return 'CheckedTripsAndOffersRequest(couponName: $couponName, selectedData: $selectedData)';
+    return 'CheckedTripsAndOffersRequest(couponName: $couponName, description: $description, selectedData: $selectedData)';
   }
 
   @override
@@ -149,13 +169,15 @@ class _$CheckedTripsAndOffersRequestImpl
             other is _$CheckedTripsAndOffersRequestImpl &&
             (identical(other.couponName, couponName) ||
                 other.couponName == couponName) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             const DeepCollectionEquality()
                 .equals(other._selectedData, _selectedData));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, couponName,
+  int get hashCode => Object.hash(runtimeType, couponName, description,
       const DeepCollectionEquality().hash(_selectedData));
 
   @JsonKey(ignore: true)
@@ -178,6 +200,7 @@ abstract class _CheckedTripsAndOffersRequest
     implements CheckedTripsAndOffersRequest {
   const factory _CheckedTripsAndOffersRequest(
           {required final String? couponName,
+          required final String? description,
           required final List<SelectedData>? selectedData}) =
       _$CheckedTripsAndOffersRequestImpl;
 
@@ -186,6 +209,8 @@ abstract class _CheckedTripsAndOffersRequest
 
   @override
   String? get couponName;
+  @override
+  String? get description;
   @override
   List<SelectedData>? get selectedData;
   @override
