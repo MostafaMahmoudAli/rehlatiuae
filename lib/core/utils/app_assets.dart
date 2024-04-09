@@ -12,7 +12,7 @@ class AppAssets {
   static const String credits = 'assets/images/credits.svg';
   static const String currency = 'assets/images/currency.svg';
   static const String language = 'assets/images/language.svg';
-  static const String notifications = 'assets/images/notifications.svg';
+  static const String notifications = 'assets/images/firebase_notifications.svg';
   static const String myBooking = 'assets/images/my_booking.svg';
   static const String sendMessage = 'assets/images/send_message.svg';
   static const String privacyPolicy = 'assets/images/privacy_policy.svg';

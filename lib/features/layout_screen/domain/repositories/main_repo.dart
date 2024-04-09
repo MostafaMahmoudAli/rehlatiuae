@@ -13,4 +13,8 @@ abstract class MainRepo {
     required Currency targetCurrency,
     required double totalAmount,
   });
+
+  Future<Either<String, Unit?>> postNotificationToken({
+    required String token,
+  });
 }

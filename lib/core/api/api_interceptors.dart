@@ -11,6 +11,7 @@ class DioInterceptor extends Interceptor {
    String language = getIt<CacheService>().getData<String>(key: AppStrings.currentLanguage)?? "en";
 
     options.headers["Accept-Language"] = language;
+    options.headers["Accept"] = ["application/json"];
 
     String? token = getIt<CacheService>()
         .getData<String>(key: AppStrings.updatePasswordToken);

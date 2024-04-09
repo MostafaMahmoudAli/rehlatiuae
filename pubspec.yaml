@@ -61,6 +61,8 @@ dependencies:
 
 
   gallery_image_viewer: ^1.2.0
+  firebase_core: ^2.28.0
+  firebase_messaging: ^14.8.0
 
 dev_dependencies:
   flutter_test:
