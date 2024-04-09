@@ -16,6 +16,8 @@ import 'package:rehlatyuae/features/auth/presentation/cubit/login_cubit/login_cu
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
+import '../../../../core/utils/app_strings.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -117,6 +119,7 @@ class LoginScreen extends StatelessWidget {
                           CustomActionButton(
                             onTap: () async {
                               await cubit.login();
+                              await getIt<MainCubit>().postNotificationToken(token:AppStrings.notificationToken??"");
                               // context.go(AppStrings.homeScreen);
                             },
                             text: LocaleKeys.LogIn.tr(),

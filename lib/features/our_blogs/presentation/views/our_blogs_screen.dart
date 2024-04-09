@@ -8,6 +8,7 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/blocs/blogs_bloc.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/blogs_bottom_section.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
 import '../../../../core/routes/app_routes_strings.dart';
 import '../../../../core/utils/search_text_feild.dart';
 import '../../data/models/blogs_model.dart';
@@ -36,7 +37,9 @@ class OurBlogsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 15.0.w,),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 15.0.w,
+                  ),
                   child: SearchTextField(
                     readOnly: true,
                     onTap: () {
@@ -51,7 +54,7 @@ class OurBlogsScreen extends StatelessWidget {
                     start: 12.0.w,
                     end: 12.0.w,
                     bottom: 10.0.h,
-                    top:15.0.h,
+                    top: 15.0.h,
                   ),
                   child: Text(
                     LocaleKeys.Our_Blog.tr(),

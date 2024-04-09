@@ -14,6 +14,7 @@ class EndPoints {
   static String blogSearchEndPoint = "home/searchBlog";
   static String stripePaymentEndPoint = 'https://api.stripe.com/v1/payment_intents';
   static String checkedTripsAndOffersEndPoint = 'client/checkoutTrip';
+  static String notificationTokenEndPoint = 'client/storeToken';
 
   // Profile Feature EndPoints
   static String getProfileEndPoint = "client/user-profile";

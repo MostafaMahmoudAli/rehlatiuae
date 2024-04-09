@@ -12,7 +12,8 @@ class MainCubit extends Cubit<MainState> {
   final MainRepo mainRepo;
   final AuthRepo authRepo;
 
-  MainCubit({required this.mainRepo, required this.authRepo}) : super(const MainState.initial());
+  MainCubit({required this.mainRepo, required this.authRepo})
+      : super(const MainState.initial());
   Client? client;
   double totalUnPayedBookingInUSD = 12;
   double? totalUnPayedBooking = 12;
@@ -29,6 +30,7 @@ class MainCubit extends Cubit<MainState> {
     _update(const MainState.loading());
     getCachedClient();
     getCurrentCurrency();
+
     _update(const MainState.success());
   }
 
@@ -85,6 +87,19 @@ class MainCubit extends Cubit<MainState> {
         client = null;
         _update(const MainState.success());
       },
+    );
+  }
+
+  Future<void> postNotificationToken({
+    required String token,
+  }) async {
+    _update(const MainState.loading());
+    final results = await mainRepo.postNotificationToken(
+      token: token,
+    );
+    results.fold(
+      (errorMessage) => _update(MainState.error(errorMessage)),
+      (unit) => _update(const MainState.success()),
     );
   }
 
