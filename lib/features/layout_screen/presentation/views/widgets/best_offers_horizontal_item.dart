@@ -16,12 +16,12 @@ class BestOffersHorizontalItem extends StatefulWidget {
   const BestOffersHorizontalItem({
     super.key,
     required this.width,
-    required this.bestOffers,
+    required this.offer,
     required this.review,
     this.isFavorite = false,
   });
 
-  final Trips? bestOffers;
+  final Trips? offer;
   final double? review;
   final double width;
   final bool? isFavorite;
@@ -43,7 +43,10 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppRoutesString.travelDetailsScreen, extra: widget.bestOffers).then((value) {
+        context.push(AppRoutesString.travelDetailsScreen, extra: {
+          'trip': widget.offer,
+          'isOffer': true,
+        }).then((value) {
           context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
         });
       },
@@ -80,7 +83,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                       borderRadius: BorderRadiusDirectional.circular(15.0.r),
                       image: DecorationImage(
                         image: CachedNetworkImageProvider(
-                          widget.bestOffers?.imagePath ?? "",
+                          widget.offer?.imagePath ?? "",
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -98,7 +101,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                         setState(() {
                           isFavorite = !isFavorite;
                         });
-                        await context.read<MainCubit>().addToFavourite(tripId: widget.bestOffers!.id ?? 0);
+                        await context.read<MainCubit>().addToFavourite(tripId: widget.offer!.id ?? 0);
                       },
                       width: 22.0.w,
                       height: 26.0.h,
@@ -120,7 +123,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.bestOffers?.name ?? "",
+                    widget.offer?.name ?? "",
                     maxLines: 1,
                     style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
@@ -138,7 +141,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                       SizedBox(
                         width: 100.0.w,
                         child: Text(
-                          widget.bestOffers?.address ?? "",
+                          widget.offer?.address ?? "",
                           style: Theme.of(context).textTheme.displaySmall,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -149,7 +152,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                     height: 1.5.w,
                   ),
                   Text(
-                    widget.bestOffers?.description ?? "",
+                    widget.offer?.description ?? "",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: Theme.of(context).textTheme.bodySmall,
@@ -160,7 +163,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                   Row(
                     children: [
                       Text(
-                        "\$${widget.bestOffers?.adultPrice.toString() ?? ""}",
+                        "\$${widget.offer?.adultPrice.toString() ?? ""}",
                         style: Theme.of(context).textTheme.displaySmall,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -188,11 +191,11 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                   SizedBox(
                     height: 5.0.w,
                   ),
-                  if (widget.bestOffers?.beforePrice != null)
+                  if (widget.offer?.beforePrice != null)
                     Row(
                       children: [
                         Text(
-                          "\$${widget.bestOffers?.beforePrice}",
+                          "\$${widget.offer?.beforePrice}",
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         Container(
@@ -205,7 +208,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                             borderRadius: BorderRadius.circular(8.0.r),
                           ),
                           child: Text(
-                            "Save ${widget.bestOffers?.saving}% ",
+                            "Save ${widget.offer?.saving}% ",
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),

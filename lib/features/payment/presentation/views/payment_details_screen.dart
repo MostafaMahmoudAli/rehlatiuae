@@ -103,7 +103,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                             '${cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!}',
                         childrenCount: '${cubit.selectedData[0].quantityYoung}',
                         adultCount: '${cubit.selectedData[0].quantityOld}',
-                        address: cubit.selectedTrip!.address!,
+                        address: cubit.selectedTrip!.address ?? '',
                         imageUrl: cubit.selectedTrip!.imagePath!,
                         date: cubit.dateEditingController.text,
                       ),
@@ -136,6 +136,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                     buttonLabel: LocaleKeys.Payment.tr(),
                     onButtonTap: () async {
                       cubit.checkoutTripsAndOffers();
+                      // await cubit.paymentMethod(currency: context.read<MainCubit>().currentCurrency.name);
                     },
                   ),
                 ),

@@ -78,7 +78,7 @@ class PaymentRepoImpl implements PaymentRepo {
     try {
       await cacheService.setData(
         key: AppStrings.alternativeToken,
-        value: 'Bearer ${StripeApiKeys.secretKey}',
+        value: StripeApiKeys.secretKey,
       );
       await cacheService.setData(
         key: AppStrings.alternativeContentType,

@@ -18,14 +18,14 @@ class PopularExperiencesContainerItem extends StatefulWidget {
     required this.width,
     this.oldTripPrice,
     this.percentageSave,
-    required this.popularExperiences,
+    required this.trip,
     this.isFavorite = false,
   });
 
   final double width;
   final String? oldTripPrice;
   final String? percentageSave;
-  final Trips? popularExperiences;
+  final Trips? trip;
   final bool? isFavorite;
 
   @override
@@ -45,7 +45,10 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppRoutesString.travelDetailsScreen, extra: widget.popularExperiences).then(
+        context.push(AppRoutesString.travelDetailsScreen, extra: {
+          'trip': widget.trip,
+          'isOffer': false,
+        }).then(
           (value) {
             context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
           },
@@ -64,7 +67,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
                 image: DecorationImage(
                   image: CachedNetworkImageProvider(
-                    widget.popularExperiences?.imagePath ?? "",
+                    widget.trip?.imagePath ?? "",
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -113,7 +116,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                   setState(() {
                     isFavorite = !isFavorite;
                   });
-                  await context.read<MainCubit>().addToFavourite(tripId: widget.popularExperiences!.id ?? 0);
+                  await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
                 },
                 width: 30.0.w,
                 height: 35.0.h,
@@ -133,7 +136,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                   SizedBox(
                     width: 120.0.w,
                     child: Text(
-                      widget.popularExperiences?.name ?? "",
+                      widget.trip?.name ?? "",
                       style: Theme.of(context).textTheme.displayMedium,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -155,7 +158,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                       SizedBox(
                         width: 120.0.w,
                         child: Text(
-                          widget.popularExperiences?.address ?? "",
+                          widget.trip?.address ?? "",
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall
@@ -175,7 +178,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    widget.popularExperiences?.adultPrice.toString() ?? "",
+                    widget.trip?.adultPrice.toString() ?? "",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(

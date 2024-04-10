@@ -59,7 +59,10 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
     return InkWell(
       onTap: widget.isTrip
           ? () {
-              context.push(AppRoutesString.travelDetailsScreen, extra: widget.trip).then(
+              context.push(AppRoutesString.travelDetailsScreen, extra: {
+                'trip': widget.trip,
+                'isOffer': false,
+              }).then(
                 (value) {
                   context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
                 },

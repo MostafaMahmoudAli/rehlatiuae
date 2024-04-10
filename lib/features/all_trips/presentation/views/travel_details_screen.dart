@@ -20,9 +20,14 @@ import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_de
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
-  final Trips? trip;
+  final Trips trip;
+  final bool isOffer;
 
-  const TravelDetailsScreen({super.key, this.trip});
+  const TravelDetailsScreen({
+    required this.trip,
+    required this.isOffer,
+    super.key,
+  });
 
   @override
   State<TravelDetailsScreen> createState() => _TravelDetailsScreenState();
@@ -40,18 +45,18 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BolgTravelTitleSection(
-              title: widget.trip!.name ?? '',
-              address: widget.trip!.address ?? '',
-              price: widget.trip!.adultPrice.toString(),
-              imagePath: widget.trip!.imagePath!,
-              isFavorite: widget.trip!.isFavourite,
-              saving: widget.trip!.saving.toString(),
-              beforePrice: widget.trip!.beforePrice.toString(),
+              title: widget.trip.name ?? '',
+              address: widget.trip.address ?? '',
+              price: widget.trip.adultPrice.toString(),
+              imagePath: widget.trip.imagePath!,
+              isFavorite: widget.trip.isFavourite,
+              saving: widget.trip.saving.toString(),
+              beforePrice: widget.trip.beforePrice.toString(),
               onLikePressed: () async {
-                await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
+                await context.read<MainCubit>().addToFavourite(tripId: widget.trip.id ?? 0);
               },
             ),
-            if (widget.trip!.offers!.isNotEmpty)
+            if (widget.trip.offers!.isNotEmpty)
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                 child: Text(
@@ -59,10 +64,11 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
-            if (widget.trip!.offers!.isNotEmpty)
+            if (widget.trip.offers!.isNotEmpty)
               OfferPreferencesList(
-                trip: widget.trip!,
-                offers: [widget.trip!, ...widget.trip!.offers!],
+                trip: widget.trip,
+                offers: [widget.trip, ...widget.trip.offers!],
+                firstElementIsOffer: widget.isOffer,
               ),
             SizedBox(
               height: 35.h,
@@ -74,9 +80,9 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                 borderRadius: BorderRadius.circular(16),
                 backGroundColor: AppColors.textAndBackgroundColorButton,
                 onTap: () {
-                  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
                   var cubit = context.read<TripCheckoutDetailsCubit>();
-                  if (!cubit.isTripSelected) {
+                  cubit.isOffer = widget.isOffer;
+                  if (!cubit.isTripSelected && cubit.selectedOffers.isEmpty) {
                     showDialog(
                       context: context,
                       builder: (context) => const CustomDialog(
@@ -92,6 +98,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                   context.push(AppRoutesString.paymentOptionsScreen).then(
                         (value) => cubit.onClosePaymentOptionsScreen(),
                       );
+                  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
                 },
                 width: double.infinity,
                 height: 50.h,
@@ -100,25 +107,25 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
               child: Text(
-                widget.trip!.description!,
+                widget.trip.description!,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: AppColors.grey,
                     ),
               ),
             ),
             ...List.generate(
-              widget.trip!.addresses!.length,
+              widget.trip.addresses!.length,
               (index) => CustomExpansionTile(
                 initiallyExpanded: index == 0,
-                title: widget.trip!.addresses![index].name,
-                content: widget.trip!.addresses![index].description,
+                title: widget.trip.addresses![index].name,
+                content: widget.trip.addresses![index].description,
               ),
             ),
-            PreviewTravelsSection(images: widget.trip!.images, aveRating: aveRating),
+            PreviewTravelsSection(images: widget.trip.images, aveRating: aveRating),
             RatingsReviewsSection(
-              reviews: widget.trip!.reviews,
-              id: widget.trip!.id,
-              reviewsCount: widget.trip!.reviewsCount,
+              reviews: widget.trip.reviews,
+              id: widget.trip.id,
+              reviewsCount: widget.trip.reviewsCount,
               aveRating: aveRating,
               totalRating: totalRating,
             ),
@@ -135,19 +142,19 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
     );
-    totalRating = widget.trip!.reviewsCount!.oneStar! +
-        widget.trip!.reviewsCount!.towStar! +
-        widget.trip!.reviewsCount!.threeStar! +
-        widget.trip!.reviewsCount!.fourStar! +
-        widget.trip!.reviewsCount!.fiveStar!;
+    totalRating = widget.trip.reviewsCount!.oneStar! +
+        widget.trip.reviewsCount!.towStar! +
+        widget.trip.reviewsCount!.threeStar! +
+        widget.trip.reviewsCount!.fourStar! +
+        widget.trip.reviewsCount!.fiveStar!;
 
     aveRating = 0;
     if (totalRating != 0) {
-      aveRating = (widget.trip!.reviewsCount!.oneStar! +
-              widget.trip!.reviewsCount!.towStar! * 2 +
-              widget.trip!.reviewsCount!.threeStar! * 3 +
-              widget.trip!.reviewsCount!.fourStar! * 4 +
-              widget.trip!.reviewsCount!.fiveStar! * 5) /
+      aveRating = (widget.trip.reviewsCount!.oneStar! +
+              widget.trip.reviewsCount!.towStar! * 2 +
+              widget.trip.reviewsCount!.threeStar! * 3 +
+              widget.trip.reviewsCount!.fourStar! * 4 +
+              widget.trip.reviewsCount!.fiveStar! * 5) /
           totalRating;
     }
     super.initState();

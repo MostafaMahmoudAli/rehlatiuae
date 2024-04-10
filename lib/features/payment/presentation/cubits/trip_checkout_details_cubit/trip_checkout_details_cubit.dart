@@ -29,6 +29,7 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
   double totalAfterDiscount = 0;
   Trips? selectedTrip;
   bool isTripSelected = true;
+  bool isOffer = false;
   bool isDetailInit = false;
   List<Trips> selectedOffers = [];
   List<SelectedData> selectedData = [];
@@ -40,7 +41,7 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
       allSubtotal = selectedTrip!.adultPrice!.toDouble();
       selectedData.add(
         SelectedData(
-          checkIsTrip: true,
+          checkIsTrip: !isOffer,
           id: selectedTrip!.id,
           date: dateEditingController.text,
           quantityOld: 1,

@@ -7,12 +7,8 @@ class DioInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     String language = getIt<CacheService>().getData<String>(key: AppStrings.currentLanguage) ?? "en";
-
     options.headers["Accept-Language"] = language;
 
-    String? alternativeContentType = getIt<CacheService>().getData<String>(
-      key: AppStrings.alternativeContentType,
-    );
     String? alternativeToken = getIt<CacheService>().getData<String>(
       key: AppStrings.alternativeToken,
     );
@@ -20,8 +16,11 @@ class DioInterceptor extends Interceptor {
       key: AppStrings.accessToken,
     );
     if (alternativeToken != null) {
-      options.headers["Authorization"] = alternativeToken;
+      options.headers["Authorization"] = 'Bearer $alternativeToken';
     }
+    String? alternativeContentType = getIt<CacheService>().getData<String>(
+      key: AppStrings.alternativeContentType,
+    );
     if (alternativeContentType != null) {
       options.headers['Content-Type'] = alternativeContentType;
     }
