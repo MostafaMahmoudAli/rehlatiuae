@@ -19,7 +19,7 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: EdgeInsetsDirectional.only(
-          top:15.0.h,
+          top:14.0.h,
         ),
         child: BlocProvider(
           create:(context)=>getIt<SearchCubit>(),
@@ -28,7 +28,7 @@ class SearchScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding:  EdgeInsetsDirectional.symmetric(horizontal:10.0.w,),
+                  padding:EdgeInsetsDirectional.symmetric(horizontal:10.0.w,),
                   child: SearchTextField(
                     controller: _textEditingController,
                     readOnly: false,
