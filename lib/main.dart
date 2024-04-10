@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:rehlatyuae/core/app_theme/app_theme.dart';
 import 'package:rehlatyuae/core/routes/app_router.dart';
@@ -12,14 +14,20 @@ import 'package:stripe_sdk/stripe_sdk.dart' as stripe_sdk;
 
 import 'core/utils/bloc_observer.dart';
 import 'core/utils/injector.dart';
+import 'features/firebase_notifications/firebase_notification.dart';
 import 'features/payment/domain/api_keys.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   Stripe.publishableKey = StripeApiKeys.publishableKey;
   stripe_sdk.Stripe.init(StripeApiKeys.publishableKey);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await EasyLocalization.ensureInitialized();
+  await FireBaseNotification().initNotification();
   Bloc.observer = MyBlocObserver();
   await setupInjector();
   runApp(

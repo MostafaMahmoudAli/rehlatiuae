@@ -16,4 +16,8 @@ abstract class MainRepo {
   });
 
   Future<Either<String, SocialMedia>> getSocialMedia();
+
+  Future<Either<String, Unit?>> postNotificationToken({
+    required String token,
+  });
 }

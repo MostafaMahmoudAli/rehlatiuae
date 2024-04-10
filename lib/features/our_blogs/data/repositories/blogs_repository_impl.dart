@@ -22,7 +22,13 @@ class BlogsRepositoryImpl implements BlogsRepository {
           "limit": limit,
         },
       );
-      List<Blogs> blogsList= blogs["data"]["blogs"].map<Blogs>((e) => Blogs.fromJson(e)).toList();
+      List<Blogs> blogsList= [];
+      final data =  blogs["data"]["blogs"]as dynamic;
+      if(data.isNotEmpty)
+      {
+        blogsList=data.map<Blogs>((e) => Blogs.fromJson(e)).toList();
+      }
+
       return right(blogsList);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);

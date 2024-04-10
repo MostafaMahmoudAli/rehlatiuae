@@ -32,6 +32,7 @@ class MainCubit extends Cubit<MainState> {
     _update(const MainState.loading());
     getCachedClient();
     getCurrentCurrency();
+
     _update(const MainState.success());
   }
 
@@ -109,6 +110,19 @@ class MainCubit extends Cubit<MainState> {
         }
         _update(const MainState.success());
       },
+    );
+  }
+
+  Future<void> postNotificationToken({
+    required String token,
+  }) async {
+    _update(const MainState.loading());
+    final results = await mainRepo.postNotificationToken(
+      token: token,
+    );
+    results.fold(
+      (errorMessage) => _update(MainState.error(errorMessage)),
+      (unit) => _update(const MainState.success()),
     );
   }
 

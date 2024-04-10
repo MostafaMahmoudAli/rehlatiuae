@@ -8,6 +8,7 @@ class DioInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     String language = getIt<CacheService>().getData<String>(key: AppStrings.currentLanguage) ?? "en";
     options.headers["Accept-Language"] = language;
+    options.headers["Accept"] = ["application/json"];
 
     String? alternativeToken = getIt<CacheService>().getData<String>(
       key: AppStrings.alternativeToken,

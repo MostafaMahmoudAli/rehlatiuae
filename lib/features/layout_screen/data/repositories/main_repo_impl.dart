@@ -124,4 +124,20 @@ class MainRepoImpl implements MainRepo {
       return Left(error.errorModel.message);
     }
   }
+
+  @override
+  Future<Either<String, Unit?>> postNotificationToken({required String token,})async {
+    try {
+      await apiConsumer.post(
+        EndPoints.notificationTokenEndPoint,
+        data: {
+          'token': token,
+          'deviceToken': "mobile App",
+        },
+      );
+      return const Right(unit);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
 }

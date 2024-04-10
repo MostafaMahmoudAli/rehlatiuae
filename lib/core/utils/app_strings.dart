@@ -371,4 +371,6 @@ Official Channels:
   static const currentLanguage = "currentLanguage";
   static const currentCurrency = "currentCurrency";
   static const totalUnPaidBooking = "totalUnPayedBooking";
+
+  static String?notificationToken ;
 }
