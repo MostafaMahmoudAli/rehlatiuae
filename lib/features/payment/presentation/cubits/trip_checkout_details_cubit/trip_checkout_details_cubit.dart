@@ -141,9 +141,9 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     );
   }
 
-  Future<void> paymentMethod({required String currency}) async {
+  Future<void> makePayment({required String currency}) async {
     _update(const TripCheckoutDetailsState.stripeLoading());
-    var response = await paymentRepo.paymentMethod(
+    var response = await paymentRepo.makePayment(
       amount: totalAfterDiscount.ceil(),
       currency: currency,
     );

@@ -51,7 +51,7 @@ class PaymentRepoImpl implements PaymentRepo {
   }
 
   @override
-  Future<Either<String, Unit>> paymentMethod({
+  Future<Either<String, Unit>> makePayment({
     required int amount,
     required String currency,
   }) async {

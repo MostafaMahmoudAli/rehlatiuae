@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
@@ -52,33 +54,28 @@ class PaymentDetailsScreen extends StatelessWidget {
               );
             },
             checkedTripSuccess: (checkTripsAndOffersResponse) async {
-              await cubit.paymentMethod(currency: context.read<MainCubit>().currentCurrency.name);
+              await cubit.makePayment(currency: context.read<MainCubit>().currentCurrency.name);
             },
             stripeSuccess: () {
-              // showDialog(
-              //   context: context,
-              //   barrierDismissible: false,
-              //   builder: (c) => CustomDialog(
-              //     title: 'Payment Success',
-              //     subtitle: '${cubit.allSubtotal}',
-              //     labelText: 'Back to Homepage',
-              //     onTap: () {
-              //       context.go(AppRoutesString.homeScreen);
-              //     },
-              //   ),
-              // );
               showModalBottomSheet(
                 context: context,
                 isScrollControlled: true,
-                isDismissible: false,
+                isDismissible: true,
+                enableDrag: false,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.zero,
                 ),
-                builder: (c) => CustomBottomSheet(
-                  title: LocaleKeys.Payment_Details.tr(),
-                  labelButton: LocaleKeys.Payment.tr(),
-                  contentSheet: const PaymentContentSheet(),
-                  onButtonPreesd: () async {},
+                builder: (c) => PopScope(
+                  canPop: false,
+                  child: CustomBottomSheet(
+                    title: LocaleKeys.Payment_Details.tr(),
+                    hasBackButton: false,
+                    labelButton: 'Back to Homepage',
+                    contentSheet: const PaymentContentSheet(),
+                    onButtonPreesd: () async {
+                      context.go(AppRoutesString.homeScreen);
+                    },
+                  ),
                 ),
               );
             },
