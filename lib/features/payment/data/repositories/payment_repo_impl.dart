@@ -7,8 +7,8 @@ import 'package:rehlatyuae/core/errors/exceptions.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/features/payment/data/models/chechked_trips_offers_model/cart_trips.dart';
 import 'package:rehlatyuae/features/payment/data/models/coupon_model/coupon_model.dart';
-import 'package:rehlatyuae/features/payment/data/models/trip_checkout_details_model/trip_checkout_details_model.dart';
 import 'package:rehlatyuae/features/payment/domain/api_keys.dart';
 import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
 
@@ -30,21 +30,6 @@ class PaymentRepoImpl implements PaymentRepo {
       );
       Coupon coupon = Coupon.fromJson(response['data']['coupon']);
       return Right(coupon);
-    } on ServerExceptions catch (error) {
-      return Left(error.errorModel.message);
-    }
-  }
-
-  @override
-  Future<Either<String, Unit>> addTripCheckoutDetails({
-    required TripCheckoutDetails tripCheckoutDetails,
-  }) async {
-    try {
-      await apiConsumer.post(
-        EndPoints.addTripCheckoutDetailsEndPoint,
-        data: tripCheckoutDetails.toJson(),
-      );
-      return const Right(unit);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
@@ -114,6 +99,29 @@ class PaymentRepoImpl implements PaymentRepo {
       );
       var checkedTripsAndOffers = CheckTripsAndOffersResponse.fromJson(response['data']["checkout"]);
       return Right(checkedTripsAndOffers);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+  @override
+  Future<Either<String, List<CartTrips>>> getBooking() async {
+    try {
+      var client = await apiConsumer.get(
+        EndPoints.getBookingEndPoint,
+      );
+
+      List<CartTrips> cartTrips = client['data']['cartTrips']
+          .map(
+            (e) => CartTrips.fromJson(e),
+          )
+          .toList();
+      List<CartTrips> cartOffers = client['data']['cartOffers']
+          .map(
+            (e) => CartTrips.fromJson(e),
+          )
+          .toList();
+      return Right([...cartTrips, ...cartOffers]);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
