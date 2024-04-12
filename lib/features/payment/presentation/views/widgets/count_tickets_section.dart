@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/number_ticket_card.dart';
@@ -36,23 +37,9 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 24.w,
-            vertical: 10.h,
-          ),
-          child: Row(
-            children: [
-              Text(
-               LocaleKeys.Select_ticket,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ],
-          ),
-        ),
         CountTicketCard(
-          name: LocaleKeys.Adult,
-          detail: LocaleKeys.Above_four_yrs,
+          name: LocaleKeys.Adult.tr(),
+          detail: LocaleKeys.Above_four_yrs.tr(),
           count: adultCount,
           total: subtotalAdult,
           onIncreasePressed: () {
@@ -60,7 +47,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
               () {
                 ++adultCount;
                 subtotalAdult = adultCount * widget.adultCost;
-                widget.onAdultsCountChange(adultCount, subtotalAdult);
+                widget.onAdultsCountChange(adultCount, widget.adultCost);
               },
             );
           },
@@ -71,14 +58,14 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                     () {
                       --adultCount;
                       subtotalAdult = adultCount * widget.adultCost;
-                      widget.onAdultsCountChange(adultCount, subtotalAdult);
+                      widget.onAdultsCountChange(adultCount, -widget.adultCost);
                     },
                   );
                 },
         ),
         CountTicketCard(
-          name: LocaleKeys.Children,
-          detail: LocaleKeys.Under_three_yrs,
+          name: LocaleKeys.Children.tr(),
+          detail: LocaleKeys.Under_three_yrs.tr(),
           count: childCount,
           total: subtotalChild,
           onIncreasePressed: () {
@@ -86,7 +73,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
               () {
                 ++childCount;
                 subtotalChild = childCount * widget.childCost;
-                widget.onChildrenCountChange(childCount, subtotalChild);
+                widget.onChildrenCountChange(childCount, widget.childCost);
               },
             );
           },
@@ -97,7 +84,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                     () {
                       --childCount;
                       subtotalChild = childCount * widget.childCost;
-                      widget.onChildrenCountChange(childCount, subtotalChild);
+                      widget.onChildrenCountChange(childCount, -widget.childCost);
                     },
                   );
                 },

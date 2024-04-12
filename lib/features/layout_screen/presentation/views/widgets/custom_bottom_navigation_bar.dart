@@ -64,12 +64,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
             CurvedNavigationBarItem(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: Image.asset(
+                child: SvgPicture.asset(
                   AppAssets.whatsUpLogo,
-                  fit: BoxFit.contain,
                 ),
               ),
-              label: 'chat',
+              label: 'Chatting',
               labelStyle: TextStyle(
                 color: cubit.currentTab == 3 ? AppColors.textAndBackgroundColorButton : AppColors.white,
                 fontSize: 12.sp,

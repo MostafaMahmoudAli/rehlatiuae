@@ -1,9 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:currency_converter/currency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logger/logger.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/auth/domain/repositories/auth_repo.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'main_cubit.freezed.dart';
 part 'main_state.dart';
@@ -12,8 +15,7 @@ class MainCubit extends Cubit<MainState> {
   final MainRepo mainRepo;
   final AuthRepo authRepo;
 
-  MainCubit({required this.mainRepo, required this.authRepo})
-      : super(const MainState.initial());
+  MainCubit({required this.mainRepo, required this.authRepo}) : super(const MainState.initial());
   Client? client;
   double totalUnPayedBookingInUSD = 12;
   double? totalUnPayedBooking = 12;
@@ -70,6 +72,9 @@ class MainCubit extends Cubit<MainState> {
 
   void changeCurrentTab(int index) {
     _update(const MainState.loading());
+    if (index == 3) {
+      getSocialMedia();
+    }
     currentTab = index;
     _update(const MainState.success());
   }
@@ -85,6 +90,24 @@ class MainCubit extends Cubit<MainState> {
       (message) => _update(MainState.error(message)),
       (unit) {
         client = null;
+        _update(const MainState.success());
+      },
+    );
+  }
+
+  Future<void> getSocialMedia() async {
+    _update(const MainState.loading());
+    final results = await mainRepo.getSocialMedia();
+    results.fold(
+      (message) => _update(MainState.error(message)),
+      (socialMedia) {
+        try {
+          final Uri whatsapp = Uri.parse('https://wa.me/${socialMedia.whatsApp}');
+          launchUrl(whatsapp);
+          changeCurrentTab(0);
+        } catch (e) {
+          getIt<Logger>().e(e);
+        }
         _update(const MainState.success());
       },
     );

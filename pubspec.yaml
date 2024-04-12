@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_native_splash: ^2.3.11
+  flutter_native_splash: ^2.3.10
   cupertino_icons: ^1.0.6
   lite_rolling_switch: ^1.0.1
   flutter_screenutil: ^5.9.0
@@ -61,8 +61,9 @@ dependencies:
 
 
   gallery_image_viewer: ^1.2.0
-  firebase_core: ^2.28.0
-  firebase_messaging: ^14.8.0
+  url_launcher: ^6.2.5
+  firebase_core: ^2.25.4
+  firebase_messaging: ^14.7.15
 
 dev_dependencies:
   flutter_test:

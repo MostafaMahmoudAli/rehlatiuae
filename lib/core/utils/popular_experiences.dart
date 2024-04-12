@@ -6,47 +6,46 @@ import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_contanier_item.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
-import '../../features/all_trips/data/models/trips_model.dart';
 
+import '../../features/all_trips/data/models/trips_model.dart';
 
 class PopularExperiencesSection extends StatelessWidget {
   const PopularExperiencesSection({super.key, required this.popularExperiences});
-  final List<Trips>?popularExperiences;
+
+  final List<Trips>? popularExperiences;
+
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding:EdgeInsetsDirectional.only(
+          padding: EdgeInsetsDirectional.only(
             start: 10.0.w,
             end: 10.0.w,
             bottom: 10.0.h,
           ),
           child: CustomRowTitle(
             text: LocaleKeys.Popular_Experiences.tr(),
-            onPressed: ()
-            {
+            onPressed: () {
               context.push(AppRoutesString.popularExperiencesScreen);
             },
           ),
         ),
         SizedBox(
-          height:190.0.h,
+          height: 190.0.h,
           child: ListView.separated(
-              padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
+              padding: EdgeInsetsDirectional.symmetric(horizontal: 15.0.w),
               scrollDirection: Axis.horizontal,
               itemCount: popularExperiences!.length,
               itemBuilder: (context, index) {
                 return PopularExperiencesContainerItem(
-                  width : 150.0.w,
-                  percentageSave:popularExperiences?[index].saving ?? "",
-                  oldTripPrice:popularExperiences?[index].beforePrice?? "",
-                  popularExperiences:popularExperiences?[index],
+                  width: 150.0.w,
+                  percentageSave: popularExperiences?[index].saving ?? "",
+                  oldTripPrice: popularExperiences?[index].beforePrice ?? "",
+                  trip: popularExperiences?[index],
                 );
               },
-              separatorBuilder: (context, index)
-              {
+              separatorBuilder: (context, index) {
                 return SizedBox(
                   width: 12.0.w,
                 );

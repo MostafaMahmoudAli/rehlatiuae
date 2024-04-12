@@ -23,6 +23,7 @@ mixin _$CartTrips {
   int? get id => throw _privateConstructorUsedError;
   int? get checkoutId => throw _privateConstructorUsedError;
   String? get date => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   int? get quantityAdult => throw _privateConstructorUsedError;
   int? get priceAdult => throw _privateConstructorUsedError;
   int? get subtotalAdult => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $CartTripsCopyWith<$Res> {
       {int? id,
       int? checkoutId,
       String? date,
+      String? status,
       int? quantityAdult,
       int? priceAdult,
       int? subtotalAdult,
@@ -75,6 +77,7 @@ class _$CartTripsCopyWithImpl<$Res, $Val extends CartTrips>
     Object? id = freezed,
     Object? checkoutId = freezed,
     Object? date = freezed,
+    Object? status = freezed,
     Object? quantityAdult = freezed,
     Object? priceAdult = freezed,
     Object? subtotalAdult = freezed,
@@ -96,6 +99,10 @@ class _$CartTripsCopyWithImpl<$Res, $Val extends CartTrips>
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
       quantityAdult: freezed == quantityAdult
           ? _value.quantityAdult
@@ -157,6 +164,7 @@ abstract class _$$CartTripsImplCopyWith<$Res>
       {int? id,
       int? checkoutId,
       String? date,
+      String? status,
       int? quantityAdult,
       int? priceAdult,
       int? subtotalAdult,
@@ -184,6 +192,7 @@ class __$$CartTripsImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? checkoutId = freezed,
     Object? date = freezed,
+    Object? status = freezed,
     Object? quantityAdult = freezed,
     Object? priceAdult = freezed,
     Object? subtotalAdult = freezed,
@@ -205,6 +214,10 @@ class __$$CartTripsImplCopyWithImpl<$Res>
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
       quantityAdult: freezed == quantityAdult
           ? _value.quantityAdult
@@ -249,6 +262,7 @@ class _$CartTripsImpl implements _CartTrips {
       {required this.id,
       required this.checkoutId,
       required this.date,
+      required this.status,
       required this.quantityAdult,
       required this.priceAdult,
       required this.subtotalAdult,
@@ -268,6 +282,8 @@ class _$CartTripsImpl implements _CartTrips {
   @override
   final String? date;
   @override
+  final String? status;
+  @override
   final int? quantityAdult;
   @override
   final int? priceAdult;
@@ -286,7 +302,7 @@ class _$CartTripsImpl implements _CartTrips {
 
   @override
   String toString() {
-    return 'CartTrips(id: $id, checkoutId: $checkoutId, date: $date, quantityAdult: $quantityAdult, priceAdult: $priceAdult, subtotalAdult: $subtotalAdult, quantityChildren: $quantityChildren, priceChildren: $priceChildren, subtotalChildren: $subtotalChildren, total: $total, trip: $trip)';
+    return 'CartTrips(id: $id, checkoutId: $checkoutId, date: $date, status: $status, quantityAdult: $quantityAdult, priceAdult: $priceAdult, subtotalAdult: $subtotalAdult, quantityChildren: $quantityChildren, priceChildren: $priceChildren, subtotalChildren: $subtotalChildren, total: $total, trip: $trip)';
   }
 
   @override
@@ -298,6 +314,7 @@ class _$CartTripsImpl implements _CartTrips {
             (identical(other.checkoutId, checkoutId) ||
                 other.checkoutId == checkoutId) &&
             (identical(other.date, date) || other.date == date) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.quantityAdult, quantityAdult) ||
                 other.quantityAdult == quantityAdult) &&
             (identical(other.priceAdult, priceAdult) ||
@@ -321,6 +338,7 @@ class _$CartTripsImpl implements _CartTrips {
       id,
       checkoutId,
       date,
+      status,
       quantityAdult,
       priceAdult,
       subtotalAdult,
@@ -349,6 +367,7 @@ abstract class _CartTrips implements CartTrips {
       {required final int? id,
       required final int? checkoutId,
       required final String? date,
+      required final String? status,
       required final int? quantityAdult,
       required final int? priceAdult,
       required final int? subtotalAdult,
@@ -367,6 +386,8 @@ abstract class _CartTrips implements CartTrips {
   int? get checkoutId;
   @override
   String? get date;
+  @override
+  String? get status;
   @override
   int? get quantityAdult;
   @override

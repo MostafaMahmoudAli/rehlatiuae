@@ -42,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
                 state.whenOrNull(
                   success: (authenticatedClient) {
                     context.read<MainCubit>().getCachedClient();
-                    context.push(AppRoutesString.homeScreen);
+                    context.go(AppRoutesString.homeScreen);
                   },
                   error: (message) {
                     showDialog(
@@ -76,16 +76,14 @@ class RegisterScreen extends StatelessWidget {
                             children: [
                               Text(
                                 LocaleKeys.Register_now.tr(),
-                                style:
-                                    Theme.of(context).textTheme.headlineLarge,
+                                style: Theme.of(context).textTheme.headlineLarge,
                               ),
                             ],
                           ),
                           SizedBox(height: 30.h),
                           PrimaryTextField(
                             controller: cubit.nameEditingController,
-                            validator: (value) =>
-                                AppValidator.validateName(value),
+                            validator: (value) => AppValidator.validateName(value),
                             hint: LocaleKeys.your_name.tr(),
                             padding: EdgeInsets.only(bottom: 20.h),
                             textColor: AppColors.white,
@@ -96,8 +94,7 @@ class RegisterScreen extends StatelessWidget {
                           ),
                           PrimaryTextField(
                             controller: cubit.emailEditingController,
-                            validator: (value) =>
-                                AppValidator.validateEmail(value),
+                            validator: (value) => AppValidator.validateEmail(value),
                             hint: 'youremail@mail.com',
                             padding: EdgeInsets.only(bottom: 20.h),
                             textColor: AppColors.white,
@@ -109,8 +106,7 @@ class RegisterScreen extends StatelessWidget {
                           ),
                           PrimaryTextField(
                             controller: cubit.passwordEditingController,
-                            validator: (value) =>
-                                AppValidator.validatePassword(value),
+                            validator: (value) => AppValidator.validatePassword(value),
                             hint: LocaleKeys.password.tr(),
                             padding: EdgeInsets.zero,
                             textColor: AppColors.white,
@@ -124,13 +120,11 @@ class RegisterScreen extends StatelessWidget {
                           CustomActionButton(
                             onTap: () async {
                               await cubit.register();
-                              await getIt<MainCubit>().postNotificationToken(
-                                  token: AppStrings.notificationToken ?? "");
+                              await getIt<MainCubit>().postNotificationToken(token: AppStrings.notificationToken ?? "");
                             },
                             text: LocaleKeys.Sign_Up.tr(),
                             borderRadius: BorderRadius.circular(12.r),
-                            backGroundColor:
-                                AppColors.textAndBackgroundColorButton,
+                            backGroundColor: AppColors.textAndBackgroundColorButton,
                             height: 60.h,
                             width: double.infinity,
                           ),

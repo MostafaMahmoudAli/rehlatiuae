@@ -102,7 +102,7 @@ class AuthRepoImpl implements AuthRepo {
       );
       String updatePasswordToken = response['data']['token'];
       await cacheService.setData(
-        key: AppStrings.updatePasswordToken,
+        key: AppStrings.alternativeToken,
         value: updatePasswordToken,
       );
       return Right(updatePasswordToken);
@@ -128,7 +128,7 @@ class AuthRepoImpl implements AuthRepo {
       var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
       await _cacheClient(authenticatedClient: authenticatedClient);
       await cacheService.setData(
-        key: AppStrings.updatePasswordToken,
+        key: AppStrings.alternativeToken,
         value: null,
       );
       return Right(authenticatedClient);

@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
-import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_date_booking.dart';
-import 'package:rehlatyuae/features/payment/presentation/views/widgets/order_summary_section.dart';
+import 'package:rehlatyuae/features/payment/presentation/views/widgets/order_summary_card.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/payment_content_sheet.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_payment_section.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
@@ -28,113 +27,128 @@ class PaymentDetailsScreen extends StatelessWidget {
               ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              FieldDateBooking(
-                cubit: context.read<TripCheckoutDetailsCubit>(),
-                isFirstScreen: false,
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              OrderSummarySection(
-                total: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.finalSubtotal}',
-                childrenCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityChild}',
-                adultCount: '${context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails.quantityAdult}',
-                address: LocaleKeys.Dubai_United.tr(),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 10.h),
-            child: TotalPaymentSection(
-              total: "\$${context.read<TripCheckoutDetailsCubit>().allSubtotal}",
-              subtitle: LocaleKeys.View_detailed_bill.tr(),
-              buttonLabel: LocaleKeys.Payment.tr(),
-              onButtonTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  builder: (context) => BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
-                    listener: (context, state) {
-                      state.whenOrNull(
-                        error: (message) {
-                          showDialog(
-                            context: context,
-                            builder: (context) => CustomDialog(
-                              title: message,
-                              subtitle: 'Sorry',
-                              labelText: 'Close',
-                              color: AppColors.redAppColor,
-                            ),
-                          );
-                        },
-                        success: () {
-                          showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (context) => CustomDialog(
-                              title: 'Payment Success',
-                              subtitle: '${context.read<TripCheckoutDetailsCubit>().allSubtotal}',
-                              labelText: 'Back to Homepage',
-                              onTap: () {
-                                context.go(AppRoutesString.homeScreen);
-                              },
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    builder: (context, state) {
-                      var cubit = context.read<TripCheckoutDetailsCubit>();
-                      return state.maybeWhen(
-                        loading: () => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                        orElse: () => CustomBottomSheet(
-                          title: LocaleKeys.Payment_Details.tr(),
-                          labelButton: LocaleKeys.Payment.tr(),
-                          contentSheet: PaymentContentSheet(
-                            tripCheckoutDetails: cubit.tripCheckoutDetails,
-                          ),
-                          onButtonPreesd: () async {
-                            cubit.addTripCheckoutDetails();
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                );
-              },
-              onSubtitleTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  builder: (context) => CustomBottomSheet(
+      body: BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+        listener: (context, state) {
+          var cubit = context.read<TripCheckoutDetailsCubit>();
+          state.whenOrNull(
+            checkedTripError: (message) {
+              showDialog(
+                context: context,
+                builder: (context) => CustomDialog(
+                  title: message,
+                  subtitle: 'Sorry',
+                  labelText: 'Close',
+                  color: AppColors.redAppColor,
+                ),
+              );
+            },
+            stripeError: (message) {
+              showDialog(
+                context: context,
+                builder: (context) => CustomDialog(
+                  title: message,
+                  subtitle: 'Sorry',
+                  labelText: 'Close',
+                  color: AppColors.redAppColor,
+                ),
+              );
+            },
+            checkedTripSuccess: (checkTripsAndOffersResponse) async {
+              await cubit.makePayment(currency: context.read<MainCubit>().currentCurrency.name);
+            },
+            stripeSuccess: () async {
+              await cubit.succeedCheckoutTrip();
+            },
+            success: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                isDismissible: true,
+                enableDrag: false,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
+                builder: (c) => PopScope(
+                  canPop: false,
+                  child: CustomBottomSheet(
                     title: LocaleKeys.Payment_Details.tr(),
-                    labelButton: LocaleKeys.Payment.tr(),
+                    hasBackButton: false,
+                    labelButton: 'Back to Homepage',
                     contentSheet: PaymentContentSheet(
-                      tripCheckoutDetails: context.read<TripCheckoutDetailsCubit>().tripCheckoutDetails,
+                      totalAfterDiscount: cubit.totalAfterDiscount,
+                      allSubtotal: cubit.allSubtotal,
+                      tripDate: cubit.dateEditingController.text,
+                      paymentId: cubit.sessionId,
                     ),
-                    avatarColor: AppColors.backgroundAvatarPayment,
+                    onButtonPreesd: () async {
+                      context.go(AppRoutesString.homeScreen);
+                    },
                   ),
-                );
-              },
+                ),
+              );
+            },
+          );
+        },
+        builder: (context, state) {
+          var cubit = context.read<TripCheckoutDetailsCubit>();
+          return state.maybeWhen(
+            checkedTripLoading: () => const Center(
+              child: CircularProgressIndicator(),
             ),
-          ),
-        ],
+            stripeLoading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            orElse: () => Stack(
+              children: [
+                ListView(
+                  children: [
+                    if (cubit.isTripSelected)
+                      OrderSummaryCard(
+                        total:
+                            '${cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!}',
+                        childrenCount: '${cubit.selectedData[0].quantityYoung}',
+                        adultCount: '${cubit.selectedData[0].quantityOld}',
+                        address: cubit.selectedTrip!.address ?? '',
+                        imageUrl: cubit.selectedTrip!.imagePath!,
+                        date: cubit.dateEditingController.text,
+                      ),
+                    if (cubit.selectedOffers.isNotEmpty)
+                      ...List.generate(
+                        cubit.selectedOffers.length,
+                        (index) {
+                          int increment = cubit.isTripSelected ? 1 : 0;
+                          int total = cubit.selectedData[index + increment].quantityOld! *
+                                  cubit.selectedOffers[index].adultPrice! +
+                              cubit.selectedData[index + increment].quantityYoung! *
+                                  cubit.selectedOffers[index].childPrice!;
+                          return OrderSummaryCard(
+                            total: '$total',
+                            childrenCount: '${cubit.selectedData[index + increment].quantityYoung}',
+                            adultCount: '${cubit.selectedData[index + increment].quantityOld}',
+                            address: cubit.selectedOffers[index].address ?? cubit.selectedTrip!.address!,
+                            imageUrl: cubit.selectedOffers[index].imagePath!,
+                            date: cubit.dateOffersEditingControllers[index].text,
+                          );
+                        },
+                      ),
+                  ],
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  left: 0,
+                  child: TotalPaymentSection(
+                    buttonLabel: LocaleKeys.Payment.tr(),
+                    onButtonTap: () async {
+                      cubit.checkoutTripsAndOffers();
+                      // await cubit.paymentMethod(currency: context.read<MainCubit>().currentCurrency.name);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

@@ -4,23 +4,32 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class OfferDetailsScreen extends StatefulWidget {
   final Trips? offer;
   final Trips? trip;
+  final bool isTripSelected;
 
-  const OfferDetailsScreen({super.key, required this.offer, this.trip});
+  const OfferDetailsScreen({
+    super.key,
+    required this.offer,
+    required this.isTripSelected,
+    this.trip,
+  });
 
   @override
   State<OfferDetailsScreen> createState() => _OfferDetailsScreenState();
@@ -65,7 +74,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
               content: widget.offer!.addresses![index].description,
             ),
           ),
-          PreviewTravelsSection(images: widget.trip!.images, aveRating: 0),
+          PreviewTravelsSection(images: widget.trip!.images, aveRating: aveRating),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
             child: CustomActionButton(
@@ -74,7 +83,18 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppRoutesString.paymentOptionsScreen, extra: widget.trip);
+                var cubit = context.read<TripCheckoutDetailsCubit>();
+                if (widget.isTripSelected) {
+                  cubit.isOffer = false;
+                } else {
+                  cubit.isOffer = true;
+                }
+                getIt<Logger>().w(cubit.isOffer);
+                cubit.isTripSelected = true;
+                cubit.selectedTrip = widget.offer;
+                context.push(AppRoutesString.paymentOptionsScreen).then(
+                      (value) => cubit.onClosePaymentOptionsScreen(),
+                    );
               },
               width: double.infinity,
               height: 50.h,
@@ -85,6 +105,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
             reviewsCount: widget.trip!.reviewsCount,
             aveRating: aveRating,
             totalRating: totalRating,
+            id: widget.trip!.id,
           ),
           const ExperiencesSections(),
         ],

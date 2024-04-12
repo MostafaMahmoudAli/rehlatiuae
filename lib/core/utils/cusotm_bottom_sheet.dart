@@ -12,6 +12,7 @@ class CustomBottomSheet extends StatelessWidget {
   final Widget contentSheet;
   final Color avatarColor;
   final bool hasButton;
+  final bool hasBackButton;
   final bool hasAppbar;
   final void Function()? onButtonPreesd;
 
@@ -23,6 +24,7 @@ class CustomBottomSheet extends StatelessWidget {
     this.avatarColor = AppColors.textAndBackgroundColorButton,
     this.hasButton = true,
     this.hasAppbar = true,
+    this.hasBackButton = true,
     this.onButtonPreesd,
     super.key,
   });
@@ -40,14 +42,15 @@ class CustomBottomSheet extends StatelessWidget {
                   vertical: 30.h,
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: hasBackButton ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        GoRouter.of(context).pop(context);
-                      },
-                      icon: const Icon(Icons.clear),
-                    ),
+                    if (hasBackButton)
+                      IconButton(
+                        onPressed: () {
+                          GoRouter.of(context).pop(context);
+                        },
+                        icon: const Icon(Icons.clear),
+                      ),
                     Text(
                       title,
                       style: const TextStyle(
@@ -57,13 +60,14 @@ class CustomBottomSheet extends StatelessWidget {
                         height: 1.42,
                       ),
                     ),
-                    const IconButton(
-                      onPressed: null,
-                      icon: Icon(
-                        Icons.clear,
-                        color: AppColors.white,
+                    if (hasBackButton)
+                      const IconButton(
+                        onPressed: null,
+                        icon: Icon(
+                          Icons.clear,
+                          color: AppColors.white,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),

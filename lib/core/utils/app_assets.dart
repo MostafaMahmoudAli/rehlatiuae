@@ -22,7 +22,7 @@ class AppAssets {
   static const String logout = 'assets/images/logout.svg';
   static const String favorite = 'assets/images/favorite.svg';
   static const String mainLogo = 'assets/images/main_logo.svg';
-  static const whatsUpLogo = "assets/images/410201-PD391H-802-Photoroom.png-Photoroom.png";
+  static const String whatsUpLogo = "assets/images/whatsapp.svg";
 
   /// Images
   static const String rectangle = 'assets/images/rectangle.png';

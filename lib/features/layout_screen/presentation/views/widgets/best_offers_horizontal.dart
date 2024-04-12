@@ -6,25 +6,31 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/bes
 import '../../../../all_trips/data/models/trips_model.dart';
 
 class BestOffersHorizontal extends StatelessWidget {
-  const BestOffersHorizontal({super.key, required this.bestOffers,});
+  const BestOffersHorizontal({
+    super.key,
+    required this.bestOffers,
+  });
+
   final List<Trips> bestOffers;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 15.0.h,),
+        SizedBox(
+          height: 15.0.h,
+        ),
         SizedBox(
           height: 150.0.h,
           child: ListView.separated(
-            padding:EdgeInsetsDirectional.symmetric(horizontal: 12.0.w),
+            padding: EdgeInsetsDirectional.symmetric(horizontal: 12.0.w),
             scrollDirection: Axis.horizontal,
-            physics:const BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return BestOffersHorizontalItem(
                 width: 70.0.w,
-                bestOffers:bestOffers[index] ,
-                review:bestOffers[index].reviewAverage ?? 0.0 ,
+                offer: bestOffers[index],
+                review: bestOffers[index].reviewAverage ?? 0.0,
               );
             },
             itemCount: 5,

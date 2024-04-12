@@ -6,25 +6,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
 import '../../../../../core/routes/app_routes_strings.dart';
 import '../../../../all_trips/data/models/trips_model.dart';
 import '../../cubits/main_cubit/main_cubit.dart';
 
 class BestOffersHorizontalItem extends StatefulWidget {
-  const BestOffersHorizontalItem(
-      {
-        super.key,
-      required this.width,
-      required this.bestOffers,
-      required this.review,
-        this.isFavorite=false,
-      });
+  const BestOffersHorizontalItem({
+    super.key,
+    required this.width,
+    required this.offer,
+    required this.review,
+    this.isFavorite = false,
+  });
 
-  final Trips? bestOffers;
+  final Trips? offer;
   final double? review;
   final double width;
   final bool? isFavorite;
+
   @override
   State<BestOffersHorizontalItem> createState() => _BestOffersHorizontalItemState();
 }
@@ -42,10 +43,9 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(
-          AppRoutesString.travelDetailsScreen,
-          extra: widget.bestOffers,
-        );
+        context.push(AppRoutesString.travelDetailsScreen, extra: widget.offer).then((value) {
+          context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
+        });
       },
       child: Container(
         width: 220.0.w,
@@ -79,18 +79,18 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadiusDirectional.circular(15.0.r),
                       image: DecorationImage(
-                        image:CachedNetworkImageProvider(
-                          widget.bestOffers?.imagePath?? "",
+                        image: CachedNetworkImageProvider(
+                          widget.offer?.imagePath ?? "",
                         ),
-                        fit:BoxFit.cover,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   Positioned(
-                    top: MediaQuery.sizeOf(context).height*0.01,
-                    right:MediaQuery.sizeOf(context).width*0.02,
+                    top: MediaQuery.sizeOf(context).height * 0.01,
+                    right: MediaQuery.sizeOf(context).width * 0.02,
                     child: IconButtonWithWhiteBackground(
-                      onPressed: ()async {
+                      onPressed: () async {
                         if (context.read<MainCubit>().client == null) {
                           context.push(AppRoutesString.loginScreen);
                           return;
@@ -98,7 +98,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                         setState(() {
                           isFavorite = !isFavorite;
                         });
-                        await context.read<MainCubit>().addToFavourite(tripId: widget.bestOffers!.id ?? 0);
+                        await context.read<MainCubit>().addToFavourite(tripId: widget.offer!.id ?? 0);
                       },
                       width: 22.0.w,
                       height: 26.0.h,
@@ -120,12 +120,9 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.bestOffers?.name??"",
+                    widget.offer?.name ?? "",
                     maxLines: 1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall!
-                        .copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
@@ -139,9 +136,9 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                         size: 14.0.sp,
                       ),
                       SizedBox(
-                        width:100.0.w,
+                        width: 100.0.w,
                         child: Text(
-                          widget.bestOffers?.address?? "",
+                          widget.offer?.address ?? "",
                           style: Theme.of(context).textTheme.displaySmall,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -152,7 +149,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                     height: 1.5.w,
                   ),
                   Text(
-                    widget.bestOffers?.description?? "",
+                    widget.offer?.description ?? "",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: Theme.of(context).textTheme.bodySmall,
@@ -163,11 +160,13 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                   Row(
                     children: [
                       Text(
-                        "\$${widget.bestOffers?.adultPrice.toString()??""}" ,
+                        "\$${widget.offer?.adultPrice.toString() ?? ""}",
                         style: Theme.of(context).textTheme.displaySmall,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(width: 5.0.w,),
+                      SizedBox(
+                        width: 5.0.w,
+                      ),
                       Text(
                         "/Person",
                         style: Theme.of(context).textTheme.bodySmall,
@@ -189,31 +188,29 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                   SizedBox(
                     height: 5.0.w,
                   ),
-                  if(widget.bestOffers?.beforePrice!=null)
-                  Row(
-                    children: [
-                      Text(
-                        "\$${widget.bestOffers?.beforePrice}",
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                      Container(
-                        width: 65.0.w,
-                        height: 20.0.h,
-                        margin:
-                            EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-                        padding: EdgeInsetsDirectional.symmetric(
-                            horizontal: 6.0.w, vertical: 1.3.h),
-                        decoration: BoxDecoration(
-                          color: AppColors.green,
-                          borderRadius: BorderRadius.circular(8.0.r),
+                  if (widget.offer?.beforePrice != null)
+                    Row(
+                      children: [
+                        Text(
+                          "\$${widget.offer?.beforePrice}",
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
-                        child: Text(
-                          "Save ${widget.bestOffers?.saving}% ",
-                          style: Theme.of(context).textTheme.bodySmall,
+                        Container(
+                          width: 65.0.w,
+                          height: 20.0.h,
+                          margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                          padding: EdgeInsetsDirectional.symmetric(horizontal: 6.0.w, vertical: 1.3.h),
+                          decoration: BoxDecoration(
+                            color: AppColors.green,
+                            borderRadius: BorderRadius.circular(8.0.r),
+                          ),
+                          child: Text(
+                            "Save ${widget.offer?.saving}% ",
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                 ],
               ),
             ),

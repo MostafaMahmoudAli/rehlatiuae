@@ -9,7 +9,7 @@ ThemeData appTheme() {
       shadowColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       scrolledUnderElevation: 0.0,
-      backgroundColor: Colors.transparent
+      backgroundColor: Colors.transparent,
     ),
     primaryColor: AppColors.textAndBackgroundColorButton,
     scaffoldBackgroundColor: AppColors.backgroundWhite,
@@ -87,7 +87,7 @@ ThemeData appTheme() {
         fontFamily: 'Switzer',
         fontSize: 12.sp,
         color: AppColors.white,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w700,
         decoration: TextDecoration.lineThrough,
       ),
       headlineSmall: TextStyle(

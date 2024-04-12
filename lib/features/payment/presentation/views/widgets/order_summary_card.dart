@@ -1,20 +1,26 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
-class OrderSummarySection extends StatelessWidget {
+class OrderSummaryCard extends StatelessWidget {
   final String total;
   final String childrenCount;
   final String adultCount;
   final String address;
+  final String imageUrl;
+  final String date;
 
-  const OrderSummarySection({
+  const OrderSummaryCard({
     required this.total,
     required this.childrenCount,
     required this.adultCount,
     required this.address,
+    required this.imageUrl,
+    required this.date,
     super.key,
   });
 
@@ -22,7 +28,7 @@ class OrderSummarySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16.h),
-      margin: EdgeInsets.symmetric(horizontal: 20.w),
+      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(16.r),
@@ -37,11 +43,11 @@ class OrderSummarySection extends StatelessWidget {
             children: [
               Container(
                 width: 85.w,
-                height: 75.h,
+                height: 100.h,
                 decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage(
-                      'assets/images/preview1.png',
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(
+                      imageUrl,
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -56,22 +62,22 @@ class OrderSummarySection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                     LocaleKeys.Order_Summary,
+                      LocaleKeys.Order_Summary.tr(),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
-                      "IMG World",
+                      date,
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${LocaleKeys.Adult}: $adultCount",
+                          "${LocaleKeys.Adult.tr()}: $adultCount",
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                         Text(
-                          "$LocaleKeys.Children}: $childrenCount",
+                          "${LocaleKeys.Children.tr()}: $childrenCount",
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                       ],
@@ -103,7 +109,7 @@ class OrderSummarySection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                LocaleKeys.Total_Amount,
+                LocaleKeys.Total_Amount.tr(),
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
