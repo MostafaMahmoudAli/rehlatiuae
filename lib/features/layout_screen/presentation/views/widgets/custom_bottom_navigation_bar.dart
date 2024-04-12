@@ -68,7 +68,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   AppAssets.whatsUpLogo,
                 ),
               ),
-              label: 'chat',
+              label: 'Chatting',
               labelStyle: TextStyle(
                 color: cubit.currentTab == 3 ? AppColors.textAndBackgroundColorButton : AppColors.white,
                 fontSize: 12.sp,
