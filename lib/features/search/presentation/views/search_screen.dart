@@ -20,9 +20,8 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 15.0.w,
-          vertical: 20.0.w,
+        padding: EdgeInsetsDirectional.only(
+          top:14.0.h,
         ),
         child: BlocProvider(
           create:(context)=>getIt<SearchCubit>(),
@@ -30,14 +29,17 @@ class SearchScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchTextField(
-                  controller: _textEditingController,
-                  readOnly: false,
-                  onChanged: (String value)
-                  {
+                Padding(
+                  padding:EdgeInsetsDirectional.symmetric(horizontal:10.0.w,),
+                  child: SearchTextField(
+                    controller: _textEditingController,
+                    readOnly: false,
+                    onChanged: (String value)
+                    {
 
-                    getIt<SearchCubit>().fetchSearchData(name: value);
-                  },
+                      getIt<SearchCubit>().fetchSearchData(name: value);
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 15.0.h,
@@ -65,16 +67,15 @@ class SearchScreen extends StatelessWidget {
                          return const Center(child:  Text("No Data"));
                        }
                         return SizedBox(
-                          height: 400.0.h,
+                          height: MediaQuery.sizeOf(context).height,
                           child: GridView.builder(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               childAspectRatio:
                                   MediaQuery.sizeOf(context).aspectRatio /
                                       0.58,
                               crossAxisSpacing: 10.0.w,
-                              mainAxisSpacing: 1.0.w,
+                              mainAxisSpacing: 2.0.w,
                             ),
                             itemBuilder: (context, index) =>
                                 CustomContainerTrip(
@@ -92,7 +93,9 @@ class SearchScreen extends StatelessWidget {
                             itemCount: searchList.length,
                             shrinkWrap: true,
                             physics: const ClampingScrollPhysics(),
-                            padding: EdgeInsets.zero,
+                            padding: EdgeInsetsDirectional.only(
+                              start:10.0.w,end: 10.0.w,
+                            ),
                           ),
                         );
                       },

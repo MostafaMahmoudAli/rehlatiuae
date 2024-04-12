@@ -7,8 +7,7 @@ import '../../../../../core/utils/error_widget.dart';
 import '../../blocs/popular_experiences_bloc.dart';
 
 class PopularExperiencesBody extends StatefulWidget {
-  const PopularExperiencesBody(
-      {super.key, required this.popularExperiencesScrollController});
+  const PopularExperiencesBody({super.key, required this.popularExperiencesScrollController});
 
   final ScrollController? popularExperiencesScrollController;
 
@@ -32,12 +31,10 @@ class _PopularExperiencesBodyState extends State<PopularExperiencesBody> {
   }
 
   void _onScroll() {
-    final maxScroll =
-        widget.popularExperiencesScrollController?.position.maxScrollExtent;
+    final maxScroll = widget.popularExperiencesScrollController?.position.maxScrollExtent;
     final currentScroll = widget.popularExperiencesScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.7)) {
-      BlocProvider.of<PopularExperiencesBloc>(context)
-          .add(GetPopularExperiencesEvent());
+      BlocProvider.of<PopularExperiencesBloc>(context).add(GetPopularExperiencesEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
@@ -53,17 +50,17 @@ class _PopularExperiencesBodyState extends State<PopularExperiencesBody> {
             return const Center(child: CircularProgressIndicator());
           case PopularExperiencesStatus.success:
             return Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.5,
+                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.5,
                   crossAxisSpacing: 10.0.w,
                   mainAxisSpacing: 10.0.w,
                 ),
                 itemBuilder: (context, index) => PopularExperiencesContainerItem(
                   width: 140.w,
-                  popularExperiences: state.popularExperiences[index],
+                  trip: state.popularExperiences[index],
                   oldTripPrice: state.popularExperiences[index].beforePrice ?? "",
                   percentageSave: state.popularExperiences[index].saving ?? "",
                 ),

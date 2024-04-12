@@ -8,6 +8,7 @@ import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
 import '../../../../all_trips/data/models/trips_model.dart';
 
@@ -15,13 +16,13 @@ class BestOffersItem extends StatefulWidget {
   const BestOffersItem({
     super.key,
     required this.width,
-    required this.bestOffers,
+    required this.offer,
     this.review,
     this.isFavorite = false,
   });
 
   final double width;
-  final Trips? bestOffers;
+  final Trips? offer;
   final double? review;
   final bool? isFavorite;
 
@@ -42,10 +43,9 @@ class _BestOffersItemState extends State<BestOffersItem> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(
-          AppRoutesString.travelDetailsScreen,
-          extra: widget.bestOffers,
-        );
+        context.push(AppRoutesString.travelDetailsScreen, extra: widget.offer).then((value) {
+          context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
+        });
       },
       child: Container(
         width: 150.0.w,
@@ -81,14 +81,14 @@ class _BestOffersItemState extends State<BestOffersItem> {
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         image: CachedNetworkImageProvider(
-                          widget.bestOffers?.imagePath ?? "",
+                          widget.offer?.imagePath ?? "",
                         ),
                       ),
                     ),
                   ),
                   Positioned(
-                    top: MediaQuery.sizeOf(context).height*0.01,
-                    right: MediaQuery.sizeOf(context).width*0.02,
+                    top: MediaQuery.sizeOf(context).height * 0.01,
+                    right: MediaQuery.sizeOf(context).width * 0.02,
                     child: IconButtonWithWhiteBackground(
                       onPressed: () async {
                         if (context.read<MainCubit>().client == null) {
@@ -98,7 +98,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                         setState(() {
                           isFavorite = !isFavorite;
                         });
-                        await context.read<MainCubit>().addToFavourite(tripId: widget.bestOffers!.id ?? 0);
+                        await context.read<MainCubit>().addToFavourite(tripId: widget.offer!.id ?? 0);
                       },
                       width: 25.0.w,
                       height: 30.0.h,
@@ -120,7 +120,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.bestOffers?.name ?? "IMG Worlds of Adventure",
+                    widget.offer?.name ?? "IMG Worlds of Adventure",
                     maxLines: 1,
                     style: Theme.of(context).textTheme.bodyMedium,
                     textAlign: TextAlign.justify,
@@ -137,7 +137,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                       ),
                       Expanded(
                         child: Text(
-                          widget.bestOffers?.address ?? "Dubai, United Arab Emirates",
+                          widget.offer?.address ?? "Dubai, United Arab Emirates",
                           style: Theme.of(context).textTheme.titleMedium,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -148,7 +148,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                     height: 2.5.w,
                   ),
                   Text(
-                    widget.bestOffers?.description ?? "This exceptional beach gets ",
+                    widget.offer?.description ?? "This exceptional beach gets ",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: Theme.of(context).textTheme.headlineSmall,
@@ -156,11 +156,11 @@ class _BestOffersItemState extends State<BestOffersItem> {
                   SizedBox(
                     height: 5.0.w,
                   ),
-                  if ((widget.bestOffers?.beforePrice != null || widget.bestOffers?.saving != null))
+                  if ((widget.offer?.beforePrice != null || widget.offer?.saving != null))
                     Row(
                       children: [
                         Text(
-                          "\$${widget.bestOffers?.beforePrice}",
+                          "\$${widget.offer?.beforePrice}",
                           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 color: AppColors.black,
                               ),
@@ -175,7 +175,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                             borderRadius: BorderRadius.circular(8.0.r),
                           ),
                           child: Text(
-                            " Save ${widget.bestOffers?.saving}%",
+                            " Save ${widget.offer?.saving}%",
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
@@ -187,7 +187,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                   Row(
                     children: [
                       Text(
-                        "\$${widget.bestOffers?.adultPrice.toString()}",
+                        "\$${widget.offer?.adultPrice.toString()}",
                         style: Theme.of(context).textTheme.titleSmall,
                         textAlign: TextAlign.justify,
                       ),

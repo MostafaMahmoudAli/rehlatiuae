@@ -7,6 +7,7 @@ import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
 import '../../../../../core/utils/whats_up_botton.dart';
 import '../../../../all_trips/data/models/trips_model.dart';
 
@@ -23,8 +24,8 @@ class BestOffersSection extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding:EdgeInsetsDirectional.only(
-              start: 10.0.w,
+          padding: EdgeInsetsDirectional.only(
+            start: 10.0.w,
             end: 10.0.w,
             bottom: 10.0.h,
           ),
@@ -38,15 +39,15 @@ class BestOffersSection extends StatelessWidget {
         Stack(
           children: [
             ListView.separated(
-              padding:EdgeInsetsDirectional.symmetric(horizontal: 8.0.w),
+              padding: EdgeInsetsDirectional.symmetric(horizontal: 8.0.w),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return BestOffersItem(
                   width: 74.0.w,
-                  bestOffers: bestOffers[index],
-                  review:bestOffers[index].reviewAverage ?? 0.0 ,
+                  offer: bestOffers[index],
+                  review: bestOffers[index].reviewAverage ?? 0.0,
                 );
               },
               separatorBuilder: (context, index) {
@@ -57,8 +58,8 @@ class BestOffersSection extends StatelessWidget {
               itemCount: bestOffers.length,
             ),
             WhatsUpButton(
-              onTap: (){},
-              bottom:MediaQuery.sizeOf(context).height*0.175,
+              onTap: () {},
+              bottom: MediaQuery.sizeOf(context).height * 0.175,
               right: 0,
             ),
           ],

@@ -8,6 +8,7 @@ import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/bolg_travel_title_section.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
+import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/custom_expansion_tile.dart';
 import 'package:rehlatyuae/core/utils/experiences_section.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
@@ -15,12 +16,16 @@ import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_preferences_list.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
-  final Trips? trip;
+  final Trips trip;
 
-  const TravelDetailsScreen({super.key, this.trip});
+  const TravelDetailsScreen({
+    required this.trip,
+    super.key,
+  });
 
   @override
   State<TravelDetailsScreen> createState() => _TravelDetailsScreenState();
@@ -33,74 +38,96 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          BolgTravelTitleSection(
-            title: widget.trip!.name ?? '',
-            address: widget.trip!.address ?? '',
-            price: widget.trip!.adultPrice.toString(),
-            imagePath: widget.trip!.imagePath!,
-            isFavorite: widget.trip!.isFavourite,
-            saving: widget.trip!.saving.toString(),
-            beforePrice: widget.trip!.beforePrice.toString(),
-            onLikePressed: () async {
-              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
-            },
-          ),
-          if (widget.trip!.offers!.isNotEmpty)
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BolgTravelTitleSection(
+              title: widget.trip.name ?? '',
+              address: widget.trip.address ?? '',
+              price: widget.trip.adultPrice.toString(),
+              imagePath: widget.trip.imagePath!,
+              isFavorite: widget.trip.isFavourite,
+              saving: widget.trip.saving.toString(),
+              beforePrice: widget.trip.beforePrice.toString(),
+              onLikePressed: () async {
+                await context.read<MainCubit>().addToFavourite(tripId: widget.trip.id ?? 0);
+              },
+            ),
+            if (widget.trip.offers!.isNotEmpty)
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                child: Text(
+                  LocaleKeys.Select_your_Preferences.tr(),
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+              ),
+            if (widget.trip.offers!.isNotEmpty)
+              OfferPreferencesList(
+                trip: widget.trip,
+                offers: [widget.trip, ...widget.trip.offers!],
+              ),
+            SizedBox(
+              height: 35.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: CustomActionButton(
+                text: LocaleKeys.Book_Now.tr(),
+                borderRadius: BorderRadius.circular(16),
+                backGroundColor: AppColors.textAndBackgroundColorButton,
+                onTap: () {
+                  var cubit = context.read<TripCheckoutDetailsCubit>();
+                  if (!cubit.isTripSelected && cubit.selectedOffers.isEmpty) {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const CustomDialog(
+                        title: 'You must select trip or offer at latest',
+                        subtitle: 'Sorry',
+                        labelText: 'close',
+                        color: AppColors.redAppColor,
+                      ),
+                    );
+                    return;
+                  }
+                  cubit.selectedTrip = widget.trip;
+                  context.push(AppRoutesString.paymentOptionsScreen).then(
+                        (value) => cubit.onClosePaymentOptionsScreen(),
+                      );
+                  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+                },
+                width: double.infinity,
+                height: 50.h,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
               child: Text(
-                LocaleKeys.Select_your_Preferences.tr(),
-                style: Theme.of(context).textTheme.labelMedium,
+                widget.trip.description!,
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: AppColors.grey,
+                    ),
               ),
             ),
-          if (widget.trip!.offers!.isNotEmpty)
-            OfferPreferencesList(
-              trip: widget.trip!,
-              offers: widget.trip!.offers,
+            ...List.generate(
+              widget.trip.addresses!.length,
+              (index) => CustomExpansionTile(
+                initiallyExpanded: index == 0,
+                title: widget.trip.addresses![index].name,
+                content: widget.trip.addresses![index].description,
+              ),
             ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-            child: Text(
-              widget.trip!.description!,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: AppColors.grey,
-                  ),
+            PreviewTravelsSection(images: widget.trip.images, aveRating: aveRating),
+            RatingsReviewsSection(
+              reviews: widget.trip.reviews,
+              id: widget.trip.id,
+              reviewsCount: widget.trip.reviewsCount,
+              aveRating: aveRating,
+              totalRating: totalRating,
             ),
-          ),
-          ...List.generate(
-            widget.trip!.addresses!.length,
-            (index) => CustomExpansionTile(
-              initiallyExpanded: index == 0,
-              title: widget.trip!.addresses![index].name,
-              content: widget.trip!.addresses![index].description,
-            ),
-          ),
-          PreviewTravelsSection(images: widget.trip!.images, aveRating: aveRating),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
-            child: CustomActionButton(
-              text: LocaleKeys.Book_Now.tr(),
-              borderRadius: BorderRadius.circular(16),
-              backGroundColor: AppColors.textAndBackgroundColorButton,
-              onTap: () {
-                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                context.push(AppRoutesString.paymentOptionsScreen, extra: widget.trip);
-              },
-              width: double.infinity,
-              height: 50.h,
-            ),
-          ),
-          RatingsReviewsSection(
-            reviews: widget.trip!.reviews,
-            id: widget.trip!.id,
-            reviewsCount: widget.trip!.reviewsCount,
-            aveRating: aveRating,
-            totalRating: totalRating,
-          ),
-          const ExperiencesSections(),
-        ],
+            const ExperiencesSections(),
+          ],
+        ),
       ),
     );
   }
@@ -111,19 +138,19 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
     );
-    totalRating = widget.trip!.reviewsCount!.oneStar! +
-        widget.trip!.reviewsCount!.towStar! +
-        widget.trip!.reviewsCount!.threeStar! +
-        widget.trip!.reviewsCount!.fourStar! +
-        widget.trip!.reviewsCount!.fiveStar!;
+    totalRating = widget.trip.reviewsCount!.oneStar! +
+        widget.trip.reviewsCount!.towStar! +
+        widget.trip.reviewsCount!.threeStar! +
+        widget.trip.reviewsCount!.fourStar! +
+        widget.trip.reviewsCount!.fiveStar!;
 
     aveRating = 0;
     if (totalRating != 0) {
-      aveRating = (widget.trip!.reviewsCount!.oneStar! +
-              widget.trip!.reviewsCount!.towStar! * 2 +
-              widget.trip!.reviewsCount!.threeStar! * 3 +
-              widget.trip!.reviewsCount!.fourStar! * 4 +
-              widget.trip!.reviewsCount!.fiveStar! * 5) /
+      aveRating = (widget.trip.reviewsCount!.oneStar! +
+              widget.trip.reviewsCount!.towStar! * 2 +
+              widget.trip.reviewsCount!.threeStar! * 3 +
+              widget.trip.reviewsCount!.fourStar! * 4 +
+              widget.trip.reviewsCount!.fiveStar! * 5) /
           totalRating;
     }
     super.initState();

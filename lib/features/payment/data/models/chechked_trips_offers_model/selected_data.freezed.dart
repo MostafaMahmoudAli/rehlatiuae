@@ -22,7 +22,7 @@ SelectedData _$SelectedDataFromJson(Map<String, dynamic> json) {
 mixin _$SelectedData {
   bool? get checkIsTrip => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
-  DateTime? get date => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
   @JsonKey(name: "quantity_old")
   int? get quantityOld => throw _privateConstructorUsedError;
   @JsonKey(name: "quantity_young")
@@ -43,7 +43,7 @@ abstract class $SelectedDataCopyWith<$Res> {
   $Res call(
       {bool? checkIsTrip,
       int? id,
-      DateTime? date,
+      String? date,
       @JsonKey(name: "quantity_old") int? quantityOld,
       @JsonKey(name: "quantity_young") int? quantityYoung});
 }
@@ -79,7 +79,7 @@ class _$SelectedDataCopyWithImpl<$Res, $Val extends SelectedData>
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       quantityOld: freezed == quantityOld
           ? _value.quantityOld
           : quantityOld // ignore: cast_nullable_to_non_nullable
@@ -103,7 +103,7 @@ abstract class _$$SelectedDataImplCopyWith<$Res>
   $Res call(
       {bool? checkIsTrip,
       int? id,
-      DateTime? date,
+      String? date,
       @JsonKey(name: "quantity_old") int? quantityOld,
       @JsonKey(name: "quantity_young") int? quantityYoung});
 }
@@ -137,7 +137,7 @@ class __$$SelectedDataImplCopyWithImpl<$Res>
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       quantityOld: freezed == quantityOld
           ? _value.quantityOld
           : quantityOld // ignore: cast_nullable_to_non_nullable
@@ -168,7 +168,7 @@ class _$SelectedDataImpl implements _SelectedData {
   @override
   final int? id;
   @override
-  final DateTime? date;
+  final String? date;
   @override
   @JsonKey(name: "quantity_old")
   final int? quantityOld;
@@ -219,7 +219,7 @@ abstract class _SelectedData implements SelectedData {
   const factory _SelectedData(
           {required final bool? checkIsTrip,
           required final int? id,
-          required final DateTime? date,
+          required final String? date,
           @JsonKey(name: "quantity_old") required final int? quantityOld,
           @JsonKey(name: "quantity_young") required final int? quantityYoung}) =
       _$SelectedDataImpl;
@@ -232,7 +232,7 @@ abstract class _SelectedData implements SelectedData {
   @override
   int? get id;
   @override
-  DateTime? get date;
+  String? get date;
   @override
   @JsonKey(name: "quantity_old")
   int? get quantityOld;

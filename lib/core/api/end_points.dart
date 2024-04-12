@@ -12,8 +12,10 @@ class EndPoints {
   static String cityDestinationEndPoint = "home/tripDestination";
   static String subscriptionEmailEndPoint = "home/subscriptionEmail";
   static String blogSearchEndPoint = "home/searchBlog";
+  static String socialMedia = "home/socialMedia";
   static String stripePaymentEndPoint = 'https://api.stripe.com/v1/payment_intents';
   static String checkedTripsAndOffersEndPoint = 'client/checkoutTrip';
+  static String notificationTokenEndPoint = 'client/storeToken';
 
   // Profile Feature EndPoints
   static String getProfileEndPoint = "client/user-profile";
@@ -32,6 +34,8 @@ class EndPoints {
   static String sendMessageEndPoint = "home/sendMessage";
   static String checkCouponEndPoint = "client/checkCoupon";
   static String addTripCheckoutDetailsEndPoint = "client/checkoutTrip";
+  static String getBookingEndPoint = "client/myCart";
+  static String succeedCheckoutTrip = "client/succeedCheckoutTrip";
 
   // Review trip
   static String addReview = "client/addReview";

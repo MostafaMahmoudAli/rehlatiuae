@@ -13,8 +13,8 @@ _$CheckTripsAndOffersResponseImpl _$$CheckTripsAndOffersResponseImplFromJson(
       status: json['status'] as String?,
       subtotal: json['subtotal'] as int?,
       couponName: json['couponName'] as String?,
-      discount: json['discount'] as int?,
-      total: json['total'] as int?,
+      discount: (json['discount'] as num?)?.toDouble(),
+      total: (json['total'] as num?)?.toDouble(),
       client: json['client'] == null
           ? null
           : Client.fromJson(json['client'] as Map<String, dynamic>),

@@ -22,15 +22,12 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
-
 import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-
   final TextEditingController _textEditingController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -56,14 +53,14 @@ class HomeScreen extends StatelessWidget {
               body: Padding(
                 padding: EdgeInsetsDirectional.only(
                   top: 20.0.h,
-                ).copyWith(bottom: 0),
+                ),
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding:  EdgeInsets.symmetric(vertical: 10.0.h,horizontal:15.0.h),
+                        padding: EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 15.0.h),
                         child: SearchTextField(
                           controller: _textEditingController,
                           onTap: () {
@@ -106,8 +103,8 @@ class HomeScreen extends StatelessWidget {
                        WeHelpYouSection(),
                       const CustomSizedBox(),
                       Padding(
-                        padding:EdgeInsets.symmetric(
-                            horizontal:20.0.w,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.0.w,
                           vertical: 10.0.h,
                         ),
                         child: CustomActionButton(

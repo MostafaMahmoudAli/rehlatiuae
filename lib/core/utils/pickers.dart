@@ -26,16 +26,16 @@ class Pickers {
   static String formatDate(DateTime date) {
     if (date.month < 10) {
       if (date.day < 10) {
-        return '${date.year}/0${date.month}/0${date.day}';
+        return '${date.year}-0${date.month}-0${date.day}';
       }
-      return '${date.year}/0${date.month}/${date.day}';
+      return '${date.year}-0${date.month}-${date.day}';
     }
     if (date.day < 10) {
       if (date.month < 10) {
-        return '${date.year}/0${date.month}/0${date.day}';
+        return '${date.year}-0${date.month}-0${date.day}';
       }
-      return '${date.year}/${date.month}/0${date.day}';
+      return '${date.year}-${date.month}-0${date.day}';
     }
-    return '${date.year}/${date.month}/${date.day}';
+    return '${date.year}-${date.month}-${date.day}';
   }
 }

@@ -25,8 +25,8 @@ mixin _$CheckTripsAndOffersResponse {
   String? get status => throw _privateConstructorUsedError;
   int? get subtotal => throw _privateConstructorUsedError;
   String? get couponName => throw _privateConstructorUsedError;
-  int? get discount => throw _privateConstructorUsedError;
-  int? get total => throw _privateConstructorUsedError;
+  double? get discount => throw _privateConstructorUsedError;
+  double? get total => throw _privateConstructorUsedError;
   Client? get client => throw _privateConstructorUsedError;
   CartTrips? get cartTrip => throw _privateConstructorUsedError;
   List<dynamic>? get cartOffers => throw _privateConstructorUsedError;
@@ -50,8 +50,8 @@ abstract class $CheckTripsAndOffersResponseCopyWith<$Res> {
       String? status,
       int? subtotal,
       String? couponName,
-      int? discount,
-      int? total,
+      double? discount,
+      double? total,
       Client? client,
       CartTrips? cartTrip,
       List<dynamic>? cartOffers});
@@ -104,11 +104,11 @@ class _$CheckTripsAndOffersResponseCopyWithImpl<$Res,
       discount: freezed == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       total: freezed == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       client: freezed == client
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
@@ -163,8 +163,8 @@ abstract class _$$CheckTripsAndOffersResponseImplCopyWith<$Res>
       String? status,
       int? subtotal,
       String? couponName,
-      int? discount,
-      int? total,
+      double? discount,
+      double? total,
       Client? client,
       CartTrips? cartTrip,
       List<dynamic>? cartOffers});
@@ -218,11 +218,11 @@ class __$$CheckTripsAndOffersResponseImplCopyWithImpl<$Res>
       discount: freezed == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       total: freezed == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       client: freezed == client
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
@@ -268,9 +268,9 @@ class _$CheckTripsAndOffersResponseImpl
   @override
   final String? couponName;
   @override
-  final int? discount;
+  final double? discount;
   @override
-  final int? total;
+  final double? total;
   @override
   final Client? client;
   @override
@@ -347,8 +347,8 @@ abstract class _CheckTripsAndOffersResponse
           required final String? status,
           required final int? subtotal,
           required final String? couponName,
-          required final int? discount,
-          required final int? total,
+          required final double? discount,
+          required final double? total,
           required final Client? client,
           required final CartTrips? cartTrip,
           required final List<dynamic>? cartOffers}) =
@@ -366,9 +366,9 @@ abstract class _CheckTripsAndOffersResponse
   @override
   String? get couponName;
   @override
-  int? get discount;
+  double? get discount;
   @override
-  int? get total;
+  double? get total;
   @override
   Client? get client;
   @override

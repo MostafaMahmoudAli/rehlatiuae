@@ -14,8 +14,10 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/core/utils/regex.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
-import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
+import '../../../../core/utils/app_strings.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -40,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
                 state.whenOrNull(
                   success: (authenticatedClient) {
                     context.read<MainCubit>().getCachedClient();
-                    context.push(AppRoutesString.homeScreen);
+                    context.go(AppRoutesString.homeScreen);
                   },
                   error: (message) {
                     showDialog(
@@ -118,6 +120,7 @@ class RegisterScreen extends StatelessWidget {
                           CustomActionButton(
                             onTap: () async {
                               await cubit.register();
+                              await getIt<MainCubit>().postNotificationToken(token: AppStrings.notificationToken ?? "");
                             },
                             text: LocaleKeys.Sign_Up.tr(),
                             borderRadius: BorderRadius.circular(12.r),
@@ -141,7 +144,7 @@ class RegisterScreen extends StatelessWidget {
                             ],
                           ),
                           Text(
-                           LocaleKeys.By_clicking_Sing_up.tr(),
+                            LocaleKeys.By_clicking_Sing_up.tr(),
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
