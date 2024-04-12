@@ -74,7 +74,12 @@ class PaymentDetailsScreen extends StatelessWidget {
                     title: LocaleKeys.Payment_Details.tr(),
                     hasBackButton: false,
                     labelButton: 'Back to Homepage',
-                    contentSheet: const PaymentContentSheet(),
+                    contentSheet: PaymentContentSheet(
+                      totalAfterDiscount: cubit.totalAfterDiscount,
+                      allSubtotal: cubit.allSubtotal,
+                      tripDate: cubit.dateEditingController.text,
+                      paymentId: cubit.sessionId,
+                    ),
                     onButtonPreesd: () async {
                       context.go(AppRoutesString.homeScreen);
                     },

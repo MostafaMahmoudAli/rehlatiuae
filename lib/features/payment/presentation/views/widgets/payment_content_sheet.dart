@@ -8,10 +8,16 @@ import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/row_det
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
 class PaymentContentSheet extends StatelessWidget {
-  final String? referenceNum;
+  final double totalAfterDiscount;
+  final double allSubtotal;
+  final String? paymentId;
+  final String tripDate;
 
   const PaymentContentSheet({
-    this.referenceNum,
+    required this.totalAfterDiscount,
+    required this.allSubtotal,
+    required this.tripDate,
+    this.paymentId,
     super.key,
   });
 
@@ -27,7 +33,7 @@ class PaymentContentSheet extends StatelessWidget {
               ),
         ),
         Text(
-          "\$ ${cubit.totalAfterDiscount.toStringAsFixed(2)}",
+          "\$ ${totalAfterDiscount.toStringAsFixed(2)}",
           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                 color: AppColors.black,
               ),
@@ -36,10 +42,14 @@ class PaymentContentSheet extends StatelessWidget {
           title: "Payment Date",
           value: Pickers.formatDate(DateTime.now()),
         ),
-        if (referenceNum != null)
+        RowDetails(
+          title: "Trip Date",
+          value: tripDate,
+        ),
+        if (paymentId != null)
           RowDetails(
-            title: "Reference num",
-            value: referenceNum!,
+            title: "Payment Id",
+            value: paymentId!,
           ),
         SizedBox(
           height: 20.h,
@@ -55,11 +65,11 @@ class PaymentContentSheet extends StatelessWidget {
         ),
         RowDetails(
           title: "Discount",
-          value: "\$${(cubit.allSubtotal - cubit.totalAfterDiscount).toStringAsFixed(2)}",
+          value: "\$${(allSubtotal - totalAfterDiscount).toStringAsFixed(2)}",
         ),
         RowDetails(
           title: "Total",
-          value: "\$${cubit.totalAfterDiscount.toStringAsFixed(2)}",
+          value: "\$${totalAfterDiscount.toStringAsFixed(2)}",
           textValueColor: AppColors.textAndBackgroundColorButton,
         ),
         SizedBox(

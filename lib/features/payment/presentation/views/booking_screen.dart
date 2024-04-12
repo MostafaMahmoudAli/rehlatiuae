@@ -26,12 +26,18 @@ class BookingScreen extends StatelessWidget {
               ),
               itemBuilder: (context, index) => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    bookings[index].trip?.name ?? 'Atlantis Aquaventure Waterpark',
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: AppColors.grey,
-                        ),
+                  SizedBox(
+                    width: 160.w,
+                    child: Text(
+                      bookings[index].trip?.name ?? '',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            color: AppColors.grey,
+                          ),
+                    ),
                   ),
                   Row(
                     children: [
@@ -43,7 +49,7 @@ class BookingScreen extends StatelessWidget {
                         width: 10.w,
                       ),
                       Text(
-                        'paid',
+                        bookings[index].status ?? '',
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               color: AppColors.grey,
                             ),
