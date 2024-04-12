@@ -12,13 +12,11 @@ class OfferCard extends StatefulWidget {
   final Trips offer;
   final Trips trip;
   final bool isTripSelected;
-  final bool firstElementIsOffer;
 
   const OfferCard({
     required this.offer,
     required this.trip,
     required this.isTripSelected,
-    required this.firstElementIsOffer,
     super.key,
   });
 
@@ -185,7 +183,7 @@ class _OfferCardState extends State<OfferCard> {
                     builder: (context) => OfferDetailsScreen(
                       offer: widget.offer,
                       trip: widget.trip,
-                      isTripSelected: !widget.firstElementIsOffer,
+                      isTripSelected: widget.isTripSelected,
                     ),
                   );
                 },

@@ -45,10 +45,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppRoutesString.travelDetailsScreen, extra: {
-          'trip': widget.trip,
-          'isOffer': false,
-        }).then(
+        context.push(AppRoutesString.travelDetailsScreen, extra: widget.trip).then(
           (value) {
             context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
           },

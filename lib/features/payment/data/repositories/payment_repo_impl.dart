@@ -36,15 +36,15 @@ class PaymentRepoImpl implements PaymentRepo {
   }
 
   @override
-  Future<Either<String, Unit>> makePayment({
+  Future<Either<String, String?>> makePayment({
     required int amount,
     required String currency,
   }) async {
     try {
-      String? clientSecret = await _getClientSecret((amount * 100).toString(), currency);
-      await _initializePaymentSheet(clientSecret);
+      var clientSecretAndId = await _getClientSecret((amount * 100).toString(), currency);
+      await _initializePaymentSheet(clientSecretAndId.$1);
       await Stripe.instance.presentPaymentSheet();
-      return const Right(unit);
+      return Right(clientSecretAndId.$2);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
@@ -59,7 +59,7 @@ class PaymentRepoImpl implements PaymentRepo {
     );
   }
 
-  Future<String?> _getClientSecret(String amount, String currency) async {
+  Future<(String?, String?)> _getClientSecret(String amount, String currency) async {
     try {
       await cacheService.setData(
         key: AppStrings.alternativeToken,
@@ -78,10 +78,32 @@ class PaymentRepoImpl implements PaymentRepo {
       );
       await cacheService.setData(key: AppStrings.alternativeToken, value: null);
       await cacheService.setData(key: AppStrings.alternativeContentType, value: null);
-      return response["client_secret"];
+      return (
+        response["client_secret"] as String?,
+        response["id"] as String?,
+      );
     } catch (error) {
       getIt<Logger>().e(error);
-      return null;
+      return (null, null);
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> succeedCheckoutTrip({
+    required String sessionId,
+    required int checkoutId,
+  }) async {
+    try {
+      await apiConsumer.post(
+        EndPoints.succeedCheckoutTrip,
+        data: {
+          'session_id': sessionId,
+          'checkout_id': checkoutId,
+        },
+      );
+      return const Right(unit);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
     }
   }
 
@@ -94,6 +116,7 @@ class PaymentRepoImpl implements PaymentRepo {
         EndPoints.checkedTripsAndOffersEndPoint,
         data: {
           'coupon_name': checkModel.couponName,
+          'description': checkModel.description,
           'selectedData': checkModel.selectedData?.map((e) => e.toJson()).toList(),
         },
       );

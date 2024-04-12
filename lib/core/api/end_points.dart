@@ -35,6 +35,7 @@ class EndPoints {
   static String checkCouponEndPoint = "client/checkCoupon";
   static String addTripCheckoutDetailsEndPoint = "client/checkoutTrip";
   static String getBookingEndPoint = "client/myCart";
+  static String succeedCheckoutTrip = "client/succeedCheckoutTrip";
 
   // Review trip
   static String addReview = "client/addReview";

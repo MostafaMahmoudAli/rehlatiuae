@@ -6,11 +6,9 @@ import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/offer_c
 class OfferPreferencesList extends StatelessWidget {
   final List<Trips>? offers;
   final Trips trip;
-  final bool firstElementIsOffer;
 
   const OfferPreferencesList({
     required this.trip,
-    required this.firstElementIsOffer,
     this.offers,
     super.key,
   });
@@ -27,7 +25,6 @@ class OfferPreferencesList extends StatelessWidget {
           offer: offers![index],
           trip: trip,
           isTripSelected: index == 0,
-          firstElementIsOffer: firstElementIsOffer,
         ),
         separatorBuilder: (BuildContext context, int index) => SizedBox(
           width: 10.w,

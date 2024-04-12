@@ -4,6 +4,7 @@ import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/all_categories.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/category_name.dart';
+import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/all_trips_screen.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/travel_details_screen.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
@@ -136,10 +137,7 @@ class AppRouter {
         ),
         GoRoute(
           path: AppRoutesString.travelDetailsScreen,
-          builder: (context, state) => TravelDetailsScreen(
-            trip: (state.extra as Map<String, dynamic>)['trip'],
-            isOffer: (state.extra as Map<String, dynamic>)['isOffer'],
-          ),
+          builder: (context, state) => TravelDetailsScreen(trip: state.extra as Trips),
         ),
         GoRoute(
           path: AppRoutesString.blogScreen,

@@ -56,7 +56,10 @@ class PaymentDetailsScreen extends StatelessWidget {
             checkedTripSuccess: (checkTripsAndOffersResponse) async {
               await cubit.makePayment(currency: context.read<MainCubit>().currentCurrency.name);
             },
-            stripeSuccess: () {
+            stripeSuccess: () async {
+              await cubit.succeedCheckoutTrip();
+            },
+            success: () {
               showModalBottomSheet(
                 context: context,
                 isScrollControlled: true,

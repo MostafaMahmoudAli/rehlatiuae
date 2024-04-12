@@ -21,11 +21,9 @@ import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class TravelDetailsScreen extends StatefulWidget {
   final Trips trip;
-  final bool isOffer;
 
   const TravelDetailsScreen({
     required this.trip,
-    required this.isOffer,
     super.key,
   });
 
@@ -68,7 +66,6 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
               OfferPreferencesList(
                 trip: widget.trip,
                 offers: [widget.trip, ...widget.trip.offers!],
-                firstElementIsOffer: widget.isOffer,
               ),
             SizedBox(
               height: 35.h,
@@ -81,7 +78,6 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                 backGroundColor: AppColors.textAndBackgroundColorButton,
                 onTap: () {
                   var cubit = context.read<TripCheckoutDetailsCubit>();
-                  cubit.isOffer = widget.isOffer;
                   if (!cubit.isTripSelected && cubit.selectedOffers.isEmpty) {
                     showDialog(
                       context: context,

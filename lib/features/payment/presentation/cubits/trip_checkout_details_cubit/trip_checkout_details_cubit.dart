@@ -33,6 +33,8 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
   bool isDetailInit = false;
   List<Trips> selectedOffers = [];
   List<SelectedData> selectedData = [];
+  int currentCheckoutId = 0;
+  String sessionId = '';
 
   void initCheckoutDetails() {
     if (isDetailInit) return;
@@ -135,9 +137,12 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
       (errorMessage) => _update(
         TripCheckoutDetailsState.checkedTripError(errorMessage),
       ),
-      (checkTripsAndOffersResponse) => _update(
-        TripCheckoutDetailsState.checkedTripSuccess(checkTripsAndOffersResponse),
-      ),
+      (checkTripsAndOffersResponse) {
+        currentCheckoutId = checkTripsAndOffersResponse.id ?? 0;
+        _update(
+          TripCheckoutDetailsState.checkedTripSuccess(checkTripsAndOffersResponse),
+        );
+      },
     );
   }
 
@@ -149,7 +154,22 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     );
     response.fold(
       (errorMessage) => _update(TripCheckoutDetailsState.stripeError(errorMessage)),
-      (unit) => _update(const TripCheckoutDetailsState.stripeSuccess()),
+      (id) {
+        sessionId = id ?? '';
+        _update(const TripCheckoutDetailsState.stripeSuccess());
+      },
+    );
+  }
+
+  Future<void> succeedCheckoutTrip() async {
+    _update(const TripCheckoutDetailsState.checkedTripLoading());
+    var response = await paymentRepo.succeedCheckoutTrip(
+      checkoutId: currentCheckoutId,
+      sessionId: sessionId,
+    );
+    response.fold(
+      (errorMessage) => _update(TripCheckoutDetailsState.checkedTripError(errorMessage)),
+      (unit) => _update(const TripCheckoutDetailsState.success()),
     );
   }
 

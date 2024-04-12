@@ -43,10 +43,7 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppRoutesString.travelDetailsScreen, extra: {
-          'trip': widget.offer,
-          'isOffer': true,
-        }).then((value) {
+        context.push(AppRoutesString.travelDetailsScreen, extra: widget.offer).then((value) {
           context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
         });
       },
