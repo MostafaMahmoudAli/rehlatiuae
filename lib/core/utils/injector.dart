@@ -16,6 +16,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/cubits/send_messa
 import 'package:rehlatyuae/features/payment/data/repositories/payment_repo_impl.dart';
 import 'package:rehlatyuae/features/payment/domain/repositories/payment_repo.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit/add_review_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/booking_cubit/booking_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/check_coupon_cubit/check_coupon_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -253,5 +254,6 @@ Future<void> setupInjector() async {
 
   // cubits
   getIt.registerFactory(() => CheckCouponCubit(paymentRepo: getIt()));
+  getIt.registerFactory(() => BookingCubit(paymentRepo: getIt()));
   getIt.registerFactory(() => TripCheckoutDetailsCubit(paymentRepo: getIt()));
 }

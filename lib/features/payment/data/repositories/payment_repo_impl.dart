@@ -112,12 +112,12 @@ class PaymentRepoImpl implements PaymentRepo {
       );
 
       List<CartTrips> cartTrips = client['data']['cartTrips']
-          .map(
+          .map<CartTrips>(
             (e) => CartTrips.fromJson(e),
           )
           .toList();
       List<CartTrips> cartOffers = client['data']['cartOffers']
-          .map(
+          .map<CartTrips>(
             (e) => CartTrips.fromJson(e),
           )
           .toList();
