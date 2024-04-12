@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -15,6 +16,7 @@ import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/add_review_cubit/add_review_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class ReviewOperationSection extends StatefulWidget {
   final int id;
@@ -68,7 +70,7 @@ class _ReviewOperationSectionState extends State<ReviewOperationSection> {
                     width: 10,
                   ),
                   Text(
-                    'Your Name',
+                    LocaleKeys.Your_Name.tr(),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 4,
                     style: Theme.of(context).textTheme.bodyMedium,
@@ -83,8 +85,8 @@ class _ReviewOperationSectionState extends State<ReviewOperationSection> {
                   context: context,
                   builder: (context) => CustomDialog(
                     title: message,
-                    subtitle: 'Sorry',
-                    labelText: 'Close',
+                    subtitle: LocaleKeys.Sorry.tr(),
+                    labelText: LocaleKeys.Close.tr(),
                     color: AppColors.redAppColor,
                   ),
                 );
@@ -108,7 +110,7 @@ class _ReviewOperationSectionState extends State<ReviewOperationSection> {
                     controller: cubit.descriptionEditingController,
                     focusNode: cubit.descriptionFocusNode,
                     padding: EdgeInsets.symmetric(vertical: 20.h),
-                    hint: 'Rating message',
+                    hint: LocaleKeys.Ratings_Reviews.tr(),
                     textColor: AppColors.grayLight,
                     isTextAria: true,
                   ),
@@ -177,7 +179,7 @@ class _ReviewOperationSectionState extends State<ReviewOperationSection> {
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 35.h),
                     child: CustomActionButton(
-                      text: 'Rating Now',
+                      text: LocaleKeys.Rating_Now.tr(),
                       borderRadius: BorderRadius.circular(16),
                       backGroundColor: AppColors.textAndBackgroundColorButton,
                       onTap: () async {

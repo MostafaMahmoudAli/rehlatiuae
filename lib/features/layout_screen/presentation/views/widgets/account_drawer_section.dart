@@ -106,7 +106,7 @@ class AccountDrawerSection extends StatelessWidget {
               ),
               builder: (context) => CustomBottomSheet(
                 title: LocaleKeys.Select_Language.tr(),
-                avatarText: 'AR',
+                avatarText: LocaleKeys.en.tr(),
                 contentSheet: const LanguageContentSheet(),
               ),
             );

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/cus
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/booking_screen.dart';
 import 'package:rehlatyuae/features/profile/presentation/views/profile_screen.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../search/presentation/views/search_screen.dart';
 
@@ -39,8 +41,8 @@ class MainLayout extends StatelessWidget {
               context: context,
               builder: (context) => CustomDialog(
                 title: message,
-                subtitle: 'Sorry',
-                labelText: 'Close',
+                subtitle: LocaleKeys.Sorry.tr(),
+                labelText: LocaleKeys.Close.tr(),
               ),
             );
           },

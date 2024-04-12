@@ -69,7 +69,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
-              label: 'chat',
+              label: LocaleKeys.chat.tr(),
               labelStyle: TextStyle(
                 color: cubit.currentTab == 3 ? AppColors.textAndBackgroundColorButton : AppColors.white,
                 fontSize: 12.sp,

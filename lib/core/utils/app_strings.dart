@@ -343,20 +343,11 @@ Official Channels:
   static const weHelpYouMakeBestTripImage3 = "assets/images/Rectangle 9898.png";
 
   //text names
-  static const whyChooseUsFastBookingDescription =
-      "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
-  static const whyChooseUsEasyToShopDescription =
-      "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
-  static const whyChooseUs247Support = "24/7 Support";
-  static const whyChooseUs247SupportDescription =
-      "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
-  static const whyChooseUsUniqueexPerienceDescription =
-      "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
+
   static const weHelpYouMakeBestTripDescription =
       "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada";
-  static const weHelpYouMakeBestTripSecondDescription =
-      "Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.";
-  static const actionButtonName = "Explore More";
+
+
 
   static const cityDestinationScreen = "/cityDestinationScreen";
   static const searchScreen = "/searchScreen";

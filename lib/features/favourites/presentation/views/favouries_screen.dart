@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/favourites/presentation/views/widgets/favourites_body.dart';
 import 'package:rehlatyuae/features/favourites/presentation/views/widgets/favourites_bottom_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../../../../core/utils/custom_sized_box.dart';
 
 class FavouritesScreen extends StatelessWidget {
@@ -25,8 +27,8 @@ class FavouritesScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CustomSizedBox(),
-              const Text(
-                "My Favorite",
+               Text(
+                LocaleKeys.My_Favorite.tr(),
               ),
               const CustomSizedBox(),
               FavouritesBody(
