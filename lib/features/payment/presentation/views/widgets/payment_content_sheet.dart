@@ -44,9 +44,25 @@ class PaymentContentSheet extends StatelessWidget {
           value: tripDate,
         ),
         if (paymentId != null)
-          RowDetails(
-            title: "Payment Id",
-            value: paymentId!,
+          Column(
+            children: [
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                'Payment Id',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: AppColors.grey,
+                    ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                paymentId!,
+                style: Theme.of(context).textTheme.titleSmall,
+              )
+            ],
           ),
         SizedBox(
           height: 20.h,
