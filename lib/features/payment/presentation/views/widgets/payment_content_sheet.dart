@@ -1,11 +1,9 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/pickers.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/row_details.dart';
-import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
 class PaymentContentSheet extends StatelessWidget {
   final double totalAfterDiscount;
@@ -23,7 +21,6 @@ class PaymentContentSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = context.read<TripCheckoutDetailsCubit>();
     return Column(
       children: [
         Text(
@@ -61,7 +58,7 @@ class PaymentContentSheet extends StatelessWidget {
         ),
         RowDetails(
           title: "Total Payment",
-          value: "\$${cubit.allSubtotal.toStringAsFixed(2)}",
+          value: "\$${allSubtotal.toStringAsFixed(2)}",
         ),
         RowDetails(
           title: "Discount",

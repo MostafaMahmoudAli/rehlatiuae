@@ -4,23 +4,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class OrderSummaryCard extends StatelessWidget {
+  final String? title;
   final String total;
   final String childrenCount;
   final String adultCount;
   final String address;
   final String imageUrl;
   final String date;
+  final String? status;
+  final void Function()? onTapButton;
 
   const OrderSummaryCard({
+    this.title,
     required this.total,
     required this.childrenCount,
     required this.adultCount,
     required this.address,
     required this.imageUrl,
     required this.date,
+    this.status,
+    this.onTapButton,
     super.key,
   });
 
@@ -62,7 +69,7 @@ class OrderSummaryCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      LocaleKeys.Order_Summary.tr(),
+                      title != null ? title! : LocaleKeys.Order_Summary.tr(),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
@@ -122,6 +129,37 @@ class OrderSummaryCard extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: 20.h,
+          ),
+          if (status != null)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      'Status',
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
+                    ),
+                    Text(
+                      status!,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ],
+                ),
+                CustomActionButton(
+                  text: status == 'unPaid' ? 'Payment' : 'View',
+                  borderRadius: BorderRadius.circular(10.sp),
+                  backGroundColor: AppColors.textAndBackgroundColorButton,
+                  onTap: onTapButton,
+                  width: 80.w,
+                  height: 40.h,
+                ),
+              ],
+            ),
         ],
       ),
     );

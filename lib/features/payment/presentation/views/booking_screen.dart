@@ -1,9 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/booking_cubit/booking_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/views/widgets/order_summary_card.dart';
+import 'package:rehlatyuae/features/payment/presentation/views/widgets/payment_content_sheet.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class BookingScreen extends StatelessWidget {
   const BookingScreen({super.key});
@@ -18,43 +24,53 @@ class BookingScreen extends StatelessWidget {
             loading: () => const Center(
               child: CircularProgressIndicator(),
             ),
-            success: (bookings) => ListView.separated(
-              padding: EdgeInsets.symmetric(horizontal: 15.w).copyWith(top: 30.h),
+            success: (bookings) => ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: 10.h),
               itemCount: bookings.length,
-              separatorBuilder: (context, index) => SizedBox(
-                height: 25.h,
-              ),
-              itemBuilder: (context, index) => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              itemBuilder: (context, index) => Column(
                 children: [
-                  SizedBox(
-                    width: 160.w,
-                    child: Text(
-                      bookings[index].trip?.name ?? '',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                            color: AppColors.grey,
+                  OrderSummaryCard(
+                    title: bookings[index].trip?.name,
+                    total: '${bookings[index].total}',
+                    childrenCount: '${bookings[index].quantityChildren}',
+                    adultCount: '${bookings[index].quantityAdult}',
+                    address: bookings[index].trip?.address ?? '',
+                    imageUrl: bookings[index].trip?.imagePath ?? '',
+                    date: bookings[index].date ?? '',
+                    status: bookings[index].status,
+                    onTapButton: () {
+                      if (bookings[index].status == 'unPaid') {
+                        context.read<TripCheckoutDetailsCubit>().makePayment(
+                              amount: bookings[index].total!.toDouble(),
+                              currency: context.read<MainCubit>().currentCurrency.name,
+                            );
+                      } else {
+                        double totalAfterDiscount =
+                            (bookings[index].subtotalAdult! + bookings[index].subtotalChildren!).toDouble();
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.zero,
                           ),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        '${bookings[index].total} \$',
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Text(
-                        bookings[index].status ?? '',
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                              color: AppColors.grey,
+                          builder: (c) => CustomBottomSheet(
+                            title: LocaleKeys.Payment_Details.tr(),
+                            labelButton: bookings[index].status == 'paid' ? 'Back' : 'Payment',
+                            contentSheet: PaymentContentSheet(
+                              totalAfterDiscount: totalAfterDiscount,
+                              allSubtotal: bookings[index].total!.toDouble(),
+                              tripDate: bookings[index].date!,
                             ),
-                      ),
-                    ],
+                            onButtonPreesd: () {
+                              context.read<TripCheckoutDetailsCubit>().makePayment(
+                                    amount: bookings[index].total!.toDouble(),
+                                    currency: context.read<MainCubit>().currentCurrency.name,
+                                  );
+                            },
+                          ),
+                        );
+                      }
+                    },
                   ),
                 ],
               ),
@@ -66,3 +82,74 @@ class BookingScreen extends StatelessWidget {
     );
   }
 }
+/*
+                  InkWell(
+                    onTap: () {
+                      double totalAfterDiscount =
+                          (bookings[index].subtotalAdult! + bookings[index].subtotalChildren!).toDouble();
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.zero,
+                        ),
+                        builder: (c) => CustomBottomSheet(
+                          title: LocaleKeys.Payment_Details.tr(),
+                          labelButton: bookings[index].status == 'paid' ? 'Back' : 'Payment',
+                          contentSheet: PaymentContentSheet(
+                            totalAfterDiscount: totalAfterDiscount,
+                            allSubtotal: bookings[index].total!.toDouble(),
+                            tripDate: bookings[index].date!,
+                          ),
+                          onButtonPreesd: () {
+                            context.read<TripCheckoutDetailsCubit>().makePayment(
+                                  amount: bookings[index].total!.toDouble(),
+                                  currency: context.read<MainCubit>().currentCurrency.name,
+                                );
+                          },
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 15.w,
+                        vertical: 20.h,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 160.w,
+                            child: Text(
+                              bookings[index].trip?.name ?? '',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                                    color: AppColors.grey,
+                                  ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                '${bookings[index].total} \$',
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Text(
+                                bookings[index].status ?? '',
+                                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                                      color: AppColors.grey,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+ */
