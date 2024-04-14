@@ -72,7 +72,7 @@ class _OnBoardingState extends State<OnBoarding> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(height: 270.h),
+                            SizedBox(height: 330.h),
                             Text(
                               contents[currentIndex].title,
                               style: Theme.of(context).textTheme.displayLarge,
@@ -116,10 +116,15 @@ class _OnBoardingState extends State<OnBoarding> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 300.h,
-                      child: Center(child: SvgPicture.asset("assets/images/main_logo.svg")),
+                      height: 100.h,
                     ),
-                    SizedBox(height: 220.h),
+                    SizedBox(
+                      height: 260.h,
+
+                      child: Center(child: Image.asset('assets/images/logo.png'),),
+
+                    ),
+                    SizedBox(height: 200.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
@@ -128,7 +133,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       ),
                     ),
                     SizedBox(
-                      height: 130.h,
+                      height: 80.h,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Text(LocaleKeys.Already_have_an_account.tr(), style: Theme.of(context).textTheme.displaySmall),

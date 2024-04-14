@@ -167,7 +167,6 @@ abstract class  LocaleKeys {
   static const Get_Started = 'Get_Started';
   static const Name = 'Name';
   static const Copyright = 'Copyright';
-  static const chat = 'chat';
   static const When_we_say_that  = 'When_we_say_that ';
   static const Safety_We = 'Safety_We';
   static const Trust_We = 'Trust_We';
@@ -179,5 +178,8 @@ abstract class  LocaleKeys {
   static const No_pain_only_gain = 'No_pain_only_gain';
   static const Support = 'Support';
   static const ME = 'ME';
+  static const selected = 'selected';
+  static const View_Details = 'View_Details';
+  static const chatting = 'chatting';
 
 }

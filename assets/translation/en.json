@@ -149,7 +149,7 @@
   "View_all": "View all",
   "Home": "Home",
   "Search": "Search",
-  "Booking": "Booking",
+  "Booking": "Bookings",
   "Explore": "Explore",
   "Account": "Account",
   "English": "English",
@@ -165,7 +165,6 @@
   "Get_Started": "Get Started",
   "Name": "Name",
   "Copyright": "Copyright ©2024. All Rights Reserved. —  by Rehlatyuai",
-  "chat": "chat",
   "When_we_say_that ": "When we say that all the events that we choose are very exciting events because we have a specialized team that lives the experience and evaluates all the events with the utmost precision, as we at Rehlatiuae select the best and most exciting events so that they serve as a unique souvenir value.",
   "Safety_We": "Safety: We at Rehlatiuae do regular follow-up and conduct some experiments to ensure that all areas are safe for you and your family. We have plans to ensure the best places for you and your family.",
   "Trust_We": "Trust: We visit places periodically and make sure that all places are as we describe them in our descriptions.",
@@ -176,5 +175,8 @@
   "Offbeat_or_mainstream": "Offbeat or mainstream, a tour or a show, a game or a museum - we have ‘em all.",
   "No_pain_only_gain": "Didn't love it? We'll save you your money. Not cocky, just confident.",
   "Support": "24/7 Support",
-  "ME": "ME"
+  "ME": "ME",
+  "selected": "selected",
+  "View_Details": "View Details...",
+  "chatting": "chatting"
 }

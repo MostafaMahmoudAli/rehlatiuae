@@ -18,7 +18,7 @@ class CustomDrawer extends StatelessWidget
         padding: EdgeInsets.symmetric(vertical: 30.h),
         child: Column(
           children: [
-            SvgPicture.asset(AppAssets.blueLogo),
+            SvgPicture.asset(AppAssets.blackLogo),
             const AccountDrawerSection(),
             const HelpDrawerSection(),
             const LegalDrawerSection(),

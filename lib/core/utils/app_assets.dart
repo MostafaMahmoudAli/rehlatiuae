@@ -8,7 +8,7 @@ class AppAssets {
   static const String exploreIcon = 'assets/images/explore_icon.svg';
   static const String bookingIcon = 'assets/images/booking_icon.svg';
   static const String accountIcon = 'assets/images/account_icon.svg';
-  static const String blueLogo = 'assets/images/blue_logo.svg';
+  static const String blackLogo = 'assets/images/black_logo.svg';
   static const String credits = 'assets/images/credits.svg';
   static const String currency = 'assets/images/currency.svg';
   static const String language = 'assets/images/language.svg';
@@ -23,6 +23,9 @@ class AppAssets {
   static const String favorite = 'assets/images/favorite.svg';
   static const String mainLogo = 'assets/images/main_logo.svg';
   static const String whatsUpLogo = "assets/images/whatsapp.svg";
+  static const String appLogo = "assets/images/app_logo.svg";
+
+
 
   /// Images
   static const String rectangle = 'assets/images/rectangle.png';
