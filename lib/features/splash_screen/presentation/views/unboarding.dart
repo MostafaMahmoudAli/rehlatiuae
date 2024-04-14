@@ -1,4 +1,7 @@
 // TODO move to another location and renaming
+import 'package:easy_localization/easy_localization.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
 class UnbordingContent {
   String image;
   String title;
@@ -8,14 +11,14 @@ class UnbordingContent {
 }
 
 List<UnbordingContent> contents = [
-  UnbordingContent(title: 'Discover Incredible', image: 'assets/images/img1.png', discription: "Experiences Worldwide"),
+  UnbordingContent(title: LocaleKeys.Discover_Incredible.tr() , image: 'assets/images/img1.png', discription: LocaleKeys.Experiences_Worldwide.tr()),
   UnbordingContent(
-      title: 'Let’s start planning..', image: 'assets/images/img2.png', discription: "Let’s start planning.."),
+      title: LocaleKeys.Lets_start_planning.tr(), image: 'assets/images/img2.png', discription: LocaleKeys.Lets_start_planning.tr()),
   UnbordingContent(
-      title: 'Choose your experiences', image: 'assets/images/img3.png', discription: "Let’s start planning..."),
+      title: LocaleKeys.Choose_your_experiences.tr(), image: 'assets/images/img3.png', discription:LocaleKeys.Lets_start_planning.tr()),
   UnbordingContent(
-    title: 'Choose your experiences',
+    title: LocaleKeys.Choose_your_experiences.tr(),
     image: 'assets/images/img4.png',
-    discription: "Choose your experiences",
+    discription: LocaleKeys.Choose_your_experiences.tr(),
   )
 ];

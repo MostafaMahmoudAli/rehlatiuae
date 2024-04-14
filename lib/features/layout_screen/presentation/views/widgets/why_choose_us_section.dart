@@ -27,7 +27,7 @@ class WhyChooseUsSection extends StatelessWidget {
             children: [
               WhyChooseUSItem(
                 text: LocaleKeys.Fast_booking.tr(),
-                descriptionText: AppStrings.whyChooseUsFastBookingDescription,
+                descriptionText: LocaleKeys.At_Rehlatiuae_you_only.tr(),
                 descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
                 child: Image.asset(AppStrings.whyChooseUsFastBookingImage),
               ),
@@ -36,7 +36,7 @@ class WhyChooseUsSection extends StatelessWidget {
               ),
               WhyChooseUSItem(
                 text: LocaleKeys.Easy_to_Shop.tr(),
-                descriptionText: AppStrings.whyChooseUsEasyToShopDescription,
+                descriptionText: LocaleKeys.No_pain_only_gain.tr(),
                 descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
                 child: Image.asset(AppStrings.whyChooseUsEasyToShopImage),
               ),
@@ -49,8 +49,8 @@ class WhyChooseUsSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               WhyChooseUSItem(
-                text: AppStrings.whyChooseUs247Support,
-                descriptionText: AppStrings.whyChooseUs247SupportDescription,
+                text: LocaleKeys.Support.tr(),
+                descriptionText: LocaleKeys.With_quality_support.tr(),
                 descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
                 child: Image.asset(AppStrings.whyChooseUs247SupportImage),
               ),
@@ -59,7 +59,7 @@ class WhyChooseUsSection extends StatelessWidget {
               ),
               WhyChooseUSItem(
                 text: LocaleKeys.Unique_experience.tr(),
-                descriptionText: AppStrings.whyChooseUsUniqueexPerienceDescription,
+                descriptionText: LocaleKeys.Offbeat_or_mainstream.tr(),
                 descriptionTextStyle: Theme.of(context).textTheme.bodyLarge,
                 child: Image.asset(AppStrings.whyChooseUsUniqueexPerienceImage),
               ),

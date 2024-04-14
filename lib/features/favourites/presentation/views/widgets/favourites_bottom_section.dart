@@ -1,9 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/custom_button.dart';
@@ -11,6 +11,7 @@ import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/custom_sized_box.dart';
 import '../../../../../core/utils/injector.dart';
 import '../../../../../core/utils/popular_experiences.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import '../../../../layout_screen/presentation/cubits/layout_cubit.dart';
 import '../../../../layout_screen/presentation/views/widgets/best_offers_horizontal.dart';
 import '../../../../layout_screen/presentation/views/widgets/best_offers_section.dart';
@@ -36,8 +37,8 @@ class FavouritesBottomSection extends StatelessWidget {
               context: context,
               builder: (context) => CustomDialog(
                 title: errorMessage,
-                subtitle: 'Sorry',
-                labelText: 'Close',
+                subtitle: LocaleKeys.Sorry.tr(),
+                labelText: LocaleKeys.Close.tr(),
               ),
             ),
           );
@@ -74,7 +75,7 @@ class FavouritesBottomSection extends StatelessWidget {
                   onTap: () {
                     context.push(AppRoutesString.allTripsScreen);
                   },
-                  text: AppStrings.actionButtonName,
+                  text: LocaleKeys.Explore_More.tr(),
                   height: 70.0.h,
                   width: double.infinity,
                   borderRadius: BorderRadius.circular(12.0.r),

@@ -65,7 +65,7 @@ class HelpDrawerSection extends StatelessWidget {
           },
         ),
         DrawerItem(
-          title: 'My Favorite',
+          title: LocaleKeys.My_Favorite.tr(),
           iconPath: AppAssets.favorite,
           trailing: const [
             Icon(
@@ -95,7 +95,7 @@ class HelpDrawerSection extends StatelessWidget {
               ),
               builder: (context) => CustomBottomSheet(
                 title: LocaleKeys.Send_message.tr(),
-                avatarText: 'ME',
+                avatarText: LocaleKeys.ME.tr(),
                 hasButton: false,
                 contentSheet: const SendMessageContentSheet(),
               ),

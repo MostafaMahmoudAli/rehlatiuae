@@ -36,8 +36,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                 context: context,
                 builder: (context) => CustomDialog(
                   title: message,
-                  subtitle: 'Sorry',
-                  labelText: 'Close',
+                  subtitle: LocaleKeys.Sorry.tr(),
+                  labelText: LocaleKeys.Close.tr(),
                   color: AppColors.redAppColor,
                 ),
               );

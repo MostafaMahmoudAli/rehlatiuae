@@ -115,7 +115,7 @@ class ReviewsSection extends StatelessWidget {
           height: 50.0.h,
         ),
         Text(
-          'copyRight',
+          LocaleKeys.Copyright.tr(),
           style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                 fontSize: 14.0.sp,
               ),
@@ -185,7 +185,7 @@ class SubscriptionSection extends StatelessWidget {
                           minLines: 1,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText:"name  Salmaaaaaaaaaaaa" ,
+                            hintText: LocaleKeys.Name.tr() ,
                             hintStyle:
                                 Theme.of(context).textTheme.headlineSmall,
                           ),

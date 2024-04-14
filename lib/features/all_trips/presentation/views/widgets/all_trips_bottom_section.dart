@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/custom_button.dart';
@@ -34,8 +35,8 @@ class AllTripsBottomSection extends StatelessWidget {
               context: context,
               builder: (context) => CustomDialog(
                 title: errorMessage,
-                subtitle: 'Sorry',
-                labelText: 'Close',
+                subtitle: LocaleKeys.Sorry.tr(),
+                labelText: LocaleKeys.Close.tr(),
               ),
             ),
           );
@@ -67,7 +68,7 @@ class AllTripsBottomSection extends StatelessWidget {
                  WeHelpYouSection(),
                 CustomActionButton(
                   onTap: () {},
-                  text: AppStrings.actionButtonName,
+                  text: LocaleKeys.Explore_More.tr(),
                   height: 70.0.h,
                   width: double.infinity,
                   borderRadius: BorderRadius.circular(12.0.r),

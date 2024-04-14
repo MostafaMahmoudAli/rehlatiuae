@@ -30,7 +30,7 @@ class WeHelpYouSection extends StatelessWidget {
             height: 6.0.h,
           ),
           Text(
-            AppStrings.weHelpYouMakeBestTripDescription,
+            LocaleKeys.When_we_say_that.tr(),
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           SizedBox(
@@ -99,7 +99,7 @@ class WeHelpYouSection extends StatelessWidget {
           Row(
             children: [
               WhyChooseUSItem(
-                text: AppStrings.weHelpYouMakeBestTripSecondDescription,
+                text: LocaleKeys.Trust_We.tr(),
                 child: Icon(
                   Icons.check_box_outlined,
                   color: AppColors.textAndBackgroundColorButton,
@@ -107,7 +107,7 @@ class WeHelpYouSection extends StatelessWidget {
                 ),
               ),
               WhyChooseUSItem(
-                text: AppStrings.weHelpYouMakeBestTripSecondDescription,
+                text: LocaleKeys.Safety_We.tr(),
                 child: Icon(
                   Icons.check_box_outlined,
                   color: AppColors.textAndBackgroundColorButton,
@@ -122,7 +122,7 @@ class WeHelpYouSection extends StatelessWidget {
           Row(
             children: [
               WhyChooseUSItem(
-                text: AppStrings.weHelpYouMakeBestTripSecondDescription,
+                text: LocaleKeys.Quick_booking.tr(),
                 child: Icon(
                   Icons.check_box_outlined,
                   color: AppColors.textAndBackgroundColorButton,
@@ -133,7 +133,7 @@ class WeHelpYouSection extends StatelessWidget {
                 width: 5.0.w,
               ),
               WhyChooseUSItem(
-                text: AppStrings.weHelpYouMakeBestTripSecondDescription,
+                text: LocaleKeys.Save_money.tr(),
                 child: Icon(
                   Icons.check_box_outlined,
                   color: AppColors.textAndBackgroundColorButton,
