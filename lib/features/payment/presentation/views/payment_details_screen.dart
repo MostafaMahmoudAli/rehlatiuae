@@ -54,7 +54,10 @@ class PaymentDetailsScreen extends StatelessWidget {
               );
             },
             checkedTripSuccess: (checkTripsAndOffersResponse) async {
-              await cubit.makePayment(currency: context.read<MainCubit>().currentCurrency.name);
+              await cubit.makePayment(
+                amount: cubit.totalAfterDiscount,
+                currency: context.read<MainCubit>().currentCurrency.name,
+              );
             },
             stripeSuccess: () async {
               await cubit.succeedCheckoutTrip();

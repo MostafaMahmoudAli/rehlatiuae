@@ -10,8 +10,8 @@ import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/update_password_cubit/update_password_cubit.dart';
-import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class UpdatePasswordScreen extends StatelessWidget {
   final String token;
@@ -40,6 +40,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                       labelText: LocaleKeys.Back_to_Homepage.tr(),
                       color: AppColors.green,
                       onTap: () {
+                        context.read<MainCubit>().changeCurrentTab(0);
                         context.go(AppRoutesString.homeScreen);
                       },
                     ),
@@ -76,7 +77,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                         LocaleKeys.Update_Password.tr(),
+                          LocaleKeys.Update_Password.tr(),
                           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                                 color: AppColors.black,
                                 fontSize: 28.sp,

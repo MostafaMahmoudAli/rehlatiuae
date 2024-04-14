@@ -36,12 +36,10 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
   }
 
   void _onScroll() {
-    final maxScroll =
-        widget.allDestinationsScrollController?.position.minScrollExtent;
+    final maxScroll = widget.allDestinationsScrollController?.position.minScrollExtent;
     final currentScroll = widget.allDestinationsScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.7)) {
-      BlocProvider.of<AllDestinationsBloc>(context)
-          .add(GetAllDestinationsEvent());
+      BlocProvider.of<AllDestinationsBloc>(context).add(GetAllDestinationsEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
@@ -57,11 +55,11 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
             return const Center(child: CircularProgressIndicator());
           case AllDestinationsStatus.success:
             return Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.55,
+                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.55,
                   crossAxisSpacing: 10.0.w,
                   mainAxisSpacing: 1.0.w,
                 ),
@@ -77,6 +75,7 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
                     cityName: state.allDestination[index].name,
                     countryName: state.allDestination[index].country,
                     imageName: state.allDestination[index].imagePath ?? "",
+                    isTrip: false,
                   ),
                 ),
                 itemCount: state.allDestination.length,

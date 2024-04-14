@@ -15,7 +15,7 @@ class CustomActionButton extends StatelessWidget {
   final String text;
   final BorderRadius borderRadius;
   final Color backGroundColor;
-  final GestureTapCallback onTap;
+  final GestureTapCallback? onTap;
   final TextStyle? style;
   final double? width;
   final double? height;
