@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/city_destination_body.dart';
 import 'package:rehlatyuae/features/top_destinations_section/presentation/views/widgets/city_destination_bottom_section.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
@@ -23,7 +24,10 @@ class CityDestinationScreen extends StatelessWidget {
       appBar: AppBar(),
       body: BlocProvider(
         create: (context) => getIt<CityDestinationCubit>()
-          ..fetchCityDestinations(destinationId: cityDestinationId),
+          ..fetchCityDestinations(
+            destinationId: cityDestinationId,
+            clientId: context.read<MainCubit>().client?.id,
+          ),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 10.0.h,
@@ -34,8 +38,7 @@ class CityDestinationScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BlocConsumer<CityDestinationCubit, CityDestinationState>(
-                    listener: (context, state) {
+                BlocConsumer<CityDestinationCubit, CityDestinationState>(listener: (context, state) {
                   state.whenOrNull(
                     error: (errorMessage) => showDialog(
                       context: context,
@@ -59,7 +62,7 @@ class CityDestinationScreen extends StatelessWidget {
                             start: 12.0.w,
                             end: 12.0.w,
                             bottom: 10.0.h,
-                            top:10.0.h,
+                            top: 10.0.h,
                           ),
                           child: Text(
                             cityDestination.name ?? "",
