@@ -22,16 +22,22 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
 import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
+
   final TextEditingController _textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<LayoutCubit>()..fetchLayoutData(),
+      create: (context) => getIt<LayoutCubit>()
+        ..fetchLayoutData(
+          clientId: context.read<MainCubit>().client?.id,
+        ),
       child: BlocConsumer<LayoutCubit, LayoutState>(
         listener: (context, state) {
           state.whenOrNull(
@@ -100,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                       const CustomSizedBox(),
                       const WhyChooseUsSection(),
                       const CustomSizedBox(),
-                       WeHelpYouSection(),
+                      WeHelpYouSection(),
                       const CustomSizedBox(),
                       Padding(
                         padding: EdgeInsets.symmetric(
@@ -120,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       const CustomSizedBox(),
-                       BestOffersHorizontal(
+                      BestOffersHorizontal(
                         bestOffers: layoutModel.bestOffers ?? [],
                       ),
                       const CustomSizedBox(),
