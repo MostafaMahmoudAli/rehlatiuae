@@ -6,6 +6,7 @@ abstract class CategoryNameRepo {
   Future<Either<String, List<Trips>>> fetchCategoryNameTrips({
     int? startIndex = 0,
     int? limit = 10,
+    int? clientId,
     required int categoryNameId,
   });
 }

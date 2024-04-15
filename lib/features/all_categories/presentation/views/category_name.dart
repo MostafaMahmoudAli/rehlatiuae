@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/widgets/category_name_body.dart';
 import 'package:rehlatyuae/features/all_categories/presentation/views/widgets/category_name_bottom_section.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+
 import '../../../../core/utils/custom_sized_box.dart';
 import '../../data/models/categories_model.dart';
 import '../blocs/category_name_cubit.dart';
@@ -14,12 +16,15 @@ class CategoryNameScreen extends StatelessWidget {
   final Categories category;
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(),
+      appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => getIt<CategoryNameCubit>()..fetchCategoryNameTrips(categoryNameId: category.id ?? 0),
+        create: (context) => getIt<CategoryNameCubit>()
+          ..fetchCategoryNameTrips(
+            categoryNameId: category.id ?? 0,
+            clientId: context.read<MainCubit>().client?.id,
+          ),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 20.0.h,

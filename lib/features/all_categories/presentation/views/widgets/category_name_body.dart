@@ -46,6 +46,7 @@ class CategoryNameBody extends StatelessWidget {
               countryName: categoryNameTrips[index].description ?? "",
               imageName: categoryNameTrips[index].imagePath ?? "",
               tripPrice: categoryNameTrips[index].adultPrice.toString(),
+              isFavorite: categoryNameTrips[index].isFavourite,
               reservationType: "/person",
               trip: categoryNameTrips[index],
             ),
