@@ -33,26 +33,29 @@ class CategoryNameBody extends StatelessWidget {
           loading: () => const Center(
             child: CircularProgressIndicator(),
           ),
-          loaded: (categoryNameTrips) => GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10.0.w,
-              mainAxisSpacing: 15.0.w,
-              childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.6,
+          loaded: (categoryNameTrips) => Padding(
+            padding:  EdgeInsetsDirectional.symmetric(horizontal: 18.0.w,),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0.w,
+                mainAxisSpacing: 15.0.w,
+                childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.6,
+              ),
+              itemBuilder: (context, index) => CustomContainerTrip(
+                width: 200.0.w,
+                cityName: categoryNameTrips[index].name ?? "",
+                countryName: categoryNameTrips[index].description ?? "",
+                imageName: categoryNameTrips[index].imagePath ?? "",
+                tripPrice: categoryNameTrips[index].adultPrice.toString(),
+                reservationType: "/person",
+                trip: categoryNameTrips[index],
+              ),
+              itemCount: categoryNameTrips.length,
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              padding: EdgeInsets.zero,
             ),
-            itemBuilder: (context, index) => CustomContainerTrip(
-              width: 200.0.w,
-              cityName: categoryNameTrips[index].name ?? "",
-              countryName: categoryNameTrips[index].description ?? "",
-              imageName: categoryNameTrips[index].imagePath ?? "",
-              tripPrice: categoryNameTrips[index].adultPrice.toString(),
-              reservationType: "/person",
-              trip: categoryNameTrips[index],
-            ),
-            itemCount: categoryNameTrips.length,
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            padding: EdgeInsets.zero,
           ),
           orElse: () => const SizedBox(),
         );

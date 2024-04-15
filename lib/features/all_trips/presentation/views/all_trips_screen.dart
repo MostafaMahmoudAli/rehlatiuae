@@ -20,29 +20,25 @@ class AllTripsScreen extends StatelessWidget {
       appBar: AppBar(),
       body: BlocProvider(
         create: (context) => getIt<AllTripsBloc>()..add(GetAllTripsEvent()),
-        child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(
-            vertical: 20.0.h,
-            horizontal: 17.0.w,
-          ),
-          child: SingleChildScrollView(
-            controller: allTripsScrollController,
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CustomSizedBox(),
-                 Text(
+        child: SingleChildScrollView(
+          controller: allTripsScrollController,
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:  EdgeInsetsDirectional.symmetric(horizontal:15.0.w,),
+                child: Text(
                   LocaleKeys.All_Trip.tr(),
                 ),
-                const CustomSizedBox(),
-                AllTripsBody(
-                  allTripsScrollController: allTripsScrollController,
-                ),
-                const CustomSizedBox(),
-                const AllTripsBottomSection(),
-              ],
-            ),
+              ),
+              const CustomSizedBox(),
+              AllTripsBody(
+                allTripsScrollController: allTripsScrollController,
+              ),
+              const CustomSizedBox(),
+              const AllTripsBottomSection(),
+            ],
           ),
         ),
       ),
