@@ -104,6 +104,7 @@ class EditProfileScreen extends StatelessWidget {
                           hint: LocaleKeys.Your_Phone_Number.tr(),
                           inputType: TextInputType.phone,
                           validator: (value) => AppValidator.validatePhone(value),
+
                         ),
                         PrimaryTextField(
                           controller: cubit.addressEditingController,
