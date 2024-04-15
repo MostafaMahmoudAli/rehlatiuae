@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/api/api_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
@@ -14,17 +15,19 @@ class PopularExperiencesRepoImpl implements PopularExperiencesRepo {
   Future<Either<String, List<Trips>>> fetchPopularExperiences({
     int? startIndex = 0,
     int? limit = 10,
+    int? clientId,
   }) async {
     try {
-      var popularExperiences = await apiConsumer
-          .get(EndPoints.popularExperiencesEndPoint, queryParameters: {
-        "start": startIndex,
-        "limit": limit,
-      });
+      var popularExperiences = await apiConsumer.get(
+        EndPoints.popularExperiencesEndPoint,
+        queryParameters: {
+          "start": startIndex,
+          "limit": limit,
+          "client_id": clientId,
+        },
+      );
       List<Trips> popularExperiencesList =
-          popularExperiences["data"]["popularExperiencetrips"]
-              .map<Trips>((e) => Trips.fromJson(e))
-              .toList();
+          popularExperiences["data"]["popularExperiencetrips"].map<Trips>((e) => Trips.fromJson(e)).toList();
       return right(popularExperiencesList);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
