@@ -7,6 +7,7 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/best_offers/presentation/blocs/best_offers_bloc.dart';
 import 'package:rehlatyuae/features/best_offers/presentation/views/widgets/best_offers_body.dart';
 import 'package:rehlatyuae/features/best_offers/presentation/views/widgets/best_offers_bottom_section.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class BestOffersScreen extends StatelessWidget {
@@ -19,7 +20,12 @@ class BestOffersScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => getIt<BestOffersBloc>()..add(GetBestOffersEvent()),
+        create: (context) => getIt<BestOffersBloc>()
+          ..add(
+            GetBestOffersEvent(
+              clientId: context.read<MainCubit>().client?.id,
+            ),
+          ),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 20.0.h,
@@ -35,7 +41,7 @@ class BestOffersScreen extends StatelessWidget {
                     start: 12.0.w,
                     end: 12.0.w,
                     bottom: 10.0.h,
-                    top:10.0.h,
+                    top: 10.0.h,
                   ),
                   child: Text(
                     LocaleKeys.Best_Offers.tr(),

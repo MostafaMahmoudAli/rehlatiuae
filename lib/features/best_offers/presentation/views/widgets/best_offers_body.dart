@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_item.dart';
 
 import '../../../../../core/utils/error_widget.dart';
@@ -34,7 +35,11 @@ class _BestOffersBodyState extends State<BestOffersBody> {
     final maxScroll = widget.bestOffersScrollController?.position.minScrollExtent;
     final currentScroll = widget.bestOffersScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.9)) {
-      BlocProvider.of<BestOffersBloc>(context).add(GetBestOffersEvent());
+      BlocProvider.of<BestOffersBloc>(context).add(
+        GetBestOffersEvent(
+          clientId: context.read<MainCubit>().client?.id,
+        ),
+      );
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
