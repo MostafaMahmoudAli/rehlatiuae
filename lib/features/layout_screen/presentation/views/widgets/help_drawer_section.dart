@@ -53,7 +53,27 @@ class HelpDrawerSection extends StatelessWidget {
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.zero,
                 ),
-                builder: (context) => const BookingScreen(),
+                builder: (context) => Scaffold(
+                  appBar: AppBar(
+                    leading: IconButton(
+                      onPressed: () {
+                        GoRouter.of(context).pop(context);
+                      },
+                      icon: const Icon(Icons.clear),
+                    ),
+                    title: Text(
+                      LocaleKeys.My_booking.tr(),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                        height: 1.42,
+                      ),
+                    ),
+                    centerTitle: true,
+                  ),
+                  body: const BookingScreen(),
+                ),
               );
             } else {
               context.push(AppRoutesString.loginScreen);

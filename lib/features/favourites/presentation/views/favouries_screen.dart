@@ -76,6 +76,7 @@ class FavouritesScreen extends StatelessWidget {
                           trips: trips,
                           index: index,
                         );
+                    context.read<MainCubit>().addToFavourite(tripId: trips[index].id!);
                   },
                 ),
                 itemCount: trips.length,
