@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+
 import '../../../../../core/utils/error_widget.dart';
 import '../../blocs/all_trips_bloc.dart';
 
@@ -33,7 +35,9 @@ class _AllTripsBodyState extends State<AllTripsBody> {
     final maxScroll = widget.allTripsScrollController?.position.minScrollExtent;
     final currentScroll = widget.allTripsScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.9)) {
-      BlocProvider.of<AllTripsBloc>(context).add(GetAllTripsEvent());
+      BlocProvider.of<AllTripsBloc>(context).add(GetAllTripsEvent(
+        clientId: context.read<MainCubit>().client?.id,
+      ));
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
@@ -48,28 +52,32 @@ class _AllTripsBodyState extends State<AllTripsBody> {
           case AllTripsStatus.loading:
             return const Center(child: CircularProgressIndicator());
           case AllTripsStatus.success:
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.6,
-                crossAxisSpacing: 10.0.w,
-                mainAxisSpacing: 1.0.w,
+            return Padding(
+              padding:  EdgeInsetsDirectional.symmetric(horizontal:15.0.w,),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.6,
+                  crossAxisSpacing: 10.0.w,
+                  mainAxisSpacing: 1.0.w,
+                ),
+                itemBuilder: (context, index) => CustomContainerTrip(
+                  width: 140.0.w,
+                  trip: state.trips[index],
+                  cityName: state.trips[index].name,
+                  countryName: state.trips[index].address,
+                  imageName: state.trips[index].imagePath ?? "",
+                  tripPrice: state.trips[index].adultPrice.toString(),
+                  reservationType: "/person",
+                  oldTripPrice: state.trips[index].beforePrice,
+                  isFavorite: state.trips[index].isFavourite,
+                  percentageSave: state.trips[index].saving,
+                ),
+                itemCount: state.trips.length,
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                padding: EdgeInsets.zero,
               ),
-              itemBuilder: (context, index) => CustomContainerTrip(
-                width: 140.0.w,
-                trip: state.trips[index],
-                cityName: state.trips[index].name,
-                countryName: state.trips[index].address,
-                imageName: state.trips[index].imagePath ?? "",
-                tripPrice: state.trips[index].adultPrice.toString(),
-                reservationType: "/person",
-                oldTripPrice: state.trips[index].beforePrice,
-                percentageSave: state.trips[index].saving,
-              ),
-              itemCount: state.trips.length,
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              padding: EdgeInsets.zero,
             );
           case AllTripsStatus.error:
             return ErrorsWidget(

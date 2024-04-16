@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/layout_model.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/message_model/message_model.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/review_model.dart';
@@ -13,7 +16,6 @@ import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../models/subscribe_model/subscribe_model.dart';
 
-
 class LayoutRepoImpl implements LayoutRepository {
   final ApiConsumer apiConsumer;
 
@@ -22,10 +24,13 @@ class LayoutRepoImpl implements LayoutRepository {
   });
 
   @override
-  Future<Either<String, LayOutModel>> fetchLayoutData() async {
+  Future<Either<String, LayOutModel>> fetchLayoutData({int? clientId}) async {
     try {
       var layoutData = await apiConsumer.get(
         EndPoints.layoutEndPoint,
+        queryParameters: {
+          "client_id": clientId,
+        },
       );
 
       var layoutModel = LayOutModel.fromJson(layoutData["data"]);
@@ -67,9 +72,17 @@ class LayoutRepoImpl implements LayoutRepository {
       if (!isTrip) {
         map['blog_id'] = map['trip_id'];
       }
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       var response = await apiConsumer.post(
         isTrip ? EndPoints.addReview : EndPoints.addReviewBlog,
         data: map,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
         isForm: true,
       );
       Review review = Review.fromJson(response['data']['review']);
@@ -85,11 +98,19 @@ class LayoutRepoImpl implements LayoutRepository {
     required bool isTrip,
   }) async {
     try {
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       await apiConsumer.delete(
         isTrip ? EndPoints.deleteReview : EndPoints.deleteReviewBlog,
         queryParameters: {
           isTrip ? 'trip_id' : 'blog_id': id,
         },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
       return const Right(unit);
     } on ServerExceptions catch (error) {
@@ -98,7 +119,7 @@ class LayoutRepoImpl implements LayoutRepository {
   }
 
   @override
-  Future<Either<String, Unit>> sendSubscribe({required SubscribeModel message}) async{
+  Future<Either<String, Unit>> sendSubscribe({required SubscribeModel message}) async {
     try {
       await apiConsumer.post(
         EndPoints.subscriptionEmailEndPoint,
@@ -109,6 +130,4 @@ class LayoutRepoImpl implements LayoutRepository {
       return Left(error.errorModel.message);
     }
   }
-
-
 }

@@ -15,7 +15,6 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/preview_travels_section.dart';
 import 'package:rehlatyuae/core/utils/ratings_reviews_section.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
@@ -53,9 +52,6 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
             isFavorite: widget.offer!.isFavourite,
             saving: widget.offer!.saving.toString(),
             beforePrice: widget.offer!.beforePrice.toString(),
-            onLikePressed: () async {
-              await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 8);
-            },
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),

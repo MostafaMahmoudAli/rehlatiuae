@@ -346,15 +346,12 @@ Official Channels:
   static const weHelpYouMakeBestTripDescription =
       "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada";
 
-
-
   static const cityDestinationScreen = "/cityDestinationScreen";
   static const searchScreen = "/searchScreen";
   static const favouritesScreen = "/favouritesScreen";
 
   // Keys
   static const accessToken = "accessToken";
-  static const alternativeToken = "Alternative-Token";
   static const alternativeContentType = "Alternative-Content-Type";
   static const expiresIn = "expiresIn";
   static const client = "client";
@@ -362,5 +359,5 @@ Official Channels:
   static const currentCurrency = "currentCurrency";
   static const totalUnPaidBooking = "totalUnPayedBooking";
 
-  static String?notificationToken ;
+  static String? notificationToken;
 }

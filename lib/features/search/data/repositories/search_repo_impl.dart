@@ -6,29 +6,33 @@ import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../all_trips/data/models/trips_model.dart';
 
-class SearchRepoImpl implements SearchRepo
-{
+class SearchRepoImpl implements SearchRepo {
   final ApiConsumer apiConsumer;
+
   SearchRepoImpl({required this.apiConsumer});
+
   @override
-  Future<Either<String, List<Trips>>> fetchSearchData({String? name}) async {
+  Future<Either<String, List<Trips>>> fetchSearchData({
+    String? name,
+    int? clientId,
+  }) async {
     try {
       var searchTrip = await apiConsumer.get(
-          EndPoints.searchTripEndPoint,
-          queryParameters:  {
-           "name":name,
-          });
+        EndPoints.searchTripEndPoint,
+        queryParameters: {
+          "name": name,
+          "client_id": clientId,
+        },
+      );
 
-      List<Trips> searchTripList=[];
+      List<Trips> searchTripList = [];
       final data = searchTrip['data'] as dynamic;
-      if(data.isNotEmpty){
-      searchTripList =  data["trips"]
-            .map<Trips>((e) => Trips.fromJson(e)).toList();
+      if (data.isNotEmpty) {
+        searchTripList = data["trips"].map<Trips>((e) => Trips.fromJson(e)).toList();
       }
 
       return right(searchTripList);
-    } on ServerExceptions catch (error)
-    {
+    } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
   }

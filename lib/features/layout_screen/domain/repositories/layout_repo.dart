@@ -9,7 +9,7 @@ import 'package:rehlatyuae/features/layout_screen/data/models/review_request_mod
 import '../../data/models/subscribe_model/subscribe_model.dart';
 
 abstract class LayoutRepository {
-  Future<Either<String, LayOutModel>> fetchLayoutData();
+  Future<Either<String, LayOutModel>> fetchLayoutData({int? clientId});
 
   Future<Either<String, Unit>> sendMessage({required Message message});
 

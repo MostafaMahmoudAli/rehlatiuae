@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
@@ -24,9 +25,17 @@ class PaymentRepoImpl implements PaymentRepo {
   @override
   Future<Either<String, Coupon>> checkCoupon({required String name}) async {
     try {
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       var response = await apiConsumer.get(
         EndPoints.checkCouponEndPoint,
         queryParameters: {'coupon_name': name},
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
       Coupon coupon = Coupon.fromJson(response['data']['coupon']);
       return Right(coupon);
@@ -61,23 +70,19 @@ class PaymentRepoImpl implements PaymentRepo {
 
   Future<(String?, String?)> _getClientSecret(String amount, String currency) async {
     try {
-      await cacheService.setData(
-        key: AppStrings.alternativeToken,
-        value: StripeApiKeys.secretKey,
-      );
-      await cacheService.setData(
-        key: AppStrings.alternativeContentType,
-        value: 'application/x-www-form-urlencoded',
-      );
       var response = await apiConsumer.post(
         EndPoints.stripePaymentEndPoint,
         data: {
           'amount': amount,
           'currency': currency,
         },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer ${StripeApiKeys.secretKey}',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
       );
-      await cacheService.setData(key: AppStrings.alternativeToken, value: null);
-      await cacheService.setData(key: AppStrings.alternativeContentType, value: null);
       return (
         response["client_secret"] as String?,
         response["id"] as String?,
@@ -94,12 +99,20 @@ class PaymentRepoImpl implements PaymentRepo {
     required int checkoutId,
   }) async {
     try {
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       await apiConsumer.post(
         EndPoints.succeedCheckoutTrip,
         data: {
           'session_id': sessionId,
           'checkout_id': checkoutId,
         },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
       return const Right(unit);
     } on ServerExceptions catch (error) {
@@ -112,6 +125,9 @@ class PaymentRepoImpl implements PaymentRepo {
     required CheckedTripsAndOffersRequest checkModel,
   }) async {
     try {
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       var response = await apiConsumer.post(
         EndPoints.checkedTripsAndOffersEndPoint,
         data: {
@@ -119,6 +135,11 @@ class PaymentRepoImpl implements PaymentRepo {
           'description': checkModel.description,
           'selectedData': checkModel.selectedData?.map((e) => e.toJson()).toList(),
         },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
       var checkedTripsAndOffers = CheckTripsAndOffersResponse.fromJson(response['data']["checkout"]);
       return Right(checkedTripsAndOffers);
@@ -130,8 +151,16 @@ class PaymentRepoImpl implements PaymentRepo {
   @override
   Future<Either<String, List<CartTrips>>> getBooking() async {
     try {
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       var client = await apiConsumer.get(
         EndPoints.getBookingEndPoint,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
 
       List<CartTrips> cartTrips = client['data']['cartTrips']

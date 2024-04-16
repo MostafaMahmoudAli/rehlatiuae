@@ -67,14 +67,14 @@ class _AllDestinationBodyState extends State<AllDestinationBody> {
                   onTap: () {
                     context.push(
                       AppStrings.cityDestinationScreen,
-                      extra: state.allDestination[index].id,
+                      extra:state.allDestination[index].id,
                     );
                   },
                   child: CustomContainerTrip(
                     width: 140.0.w,
-                    cityName: state.allDestination[index].name,
-                    countryName: state.allDestination[index].country,
-                    imageName: state.allDestination[index].imagePath ?? "",
+                    cityName:state.allDestination[index].name,
+                    countryName:state.allDestination[index].country,
+                    imageName:state.allDestination[index].imagePath ?? "",
                     isTrip: false,
                   ),
                 ),

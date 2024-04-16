@@ -12,6 +12,7 @@ import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/custom_dialog.dart';
+import '../../../../../core/utils/primary_text_field.dart';
 import '../../../../../core/utils/regex.dart';
 import '../../../data/models/review_model.dart';
 import '../../cubits/subcription_section_cubit/subscription_section_cubit.dart';
@@ -33,7 +34,7 @@ class ReviewsSection extends StatelessWidget {
         SizedBox(
           height: 350.0.h,
           child: ListView.separated(
-            padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
+            padding: EdgeInsetsDirectional.symmetric(horizontal: 15.0.w),
             itemCount: reviews?.length ?? 0,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -56,8 +57,7 @@ class ReviewsSection extends StatelessWidget {
                       SizedBox(
                         width: 210.0.w,
                         child: Text(
-                          // reviews?[index].description ??
-                          AppStrings.weHelpYouMakeBestTripDescription,
+                          reviews?[index].description ?? AppStrings.weHelpYouMakeBestTripDescription,
                           style: Theme.of(context).textTheme.bodyLarge,
                           maxLines: 10,
                           overflow: TextOverflow.ellipsis,
@@ -70,12 +70,16 @@ class ReviewsSection extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SizedBox(width: 12.0.w,),
+                      SizedBox(
+                        width: 12.0.w,
+                      ),
                       Text(
                         reviews?[index].name ?? "",
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                      SizedBox(width: MediaQuery.sizeOf(context).width*0.4,),
+                      SizedBox(
+                        width: MediaQuery.sizeOf(context).width * 0.4,
+                      ),
                       if (reviews?[index].starsNumber != null)
                         Row(
                           children: [
@@ -91,7 +95,6 @@ class ReviewsSection extends StatelessWidget {
                         ),
                     ],
                   ),
-
                 ],
               );
             },
@@ -129,6 +132,7 @@ class SubscriptionSection extends StatelessWidget {
   const SubscriptionSection({
     super.key,
   });
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -157,95 +161,41 @@ class SubscriptionSection extends StatelessWidget {
                 child: CircularProgressIndicator(),
               ),
             ),
-            orElse: () => Padding(
-              padding:
-                  EdgeInsets.symmetric(vertical: 12.0.w, horizontal: 12.0.h),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-                child: Form(
-                  key:
-                      context.read<SubscriptionSectionCubit>().subscribeFormKey,
-                  child: Column(
-                    children: [
-                      Container(
-                        width: MediaQuery.sizeOf(context).width,
-                        height: 60.0.h,
-                        padding:
-                            EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0.r),
-                          border: Border.all(color: AppColors.greySearchText),
-                        ),
-                        child: TextFormField(
-                          controller: context
-                              .read<SubscriptionSectionCubit>()
-                              .subscribeNameEditingController,
-                          maxLines: 2,
-                          minLines: 1,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: LocaleKeys.Name.tr() ,
-                            hintStyle:
-                                Theme.of(context).textTheme.headlineSmall,
-                          ),
-                          validator: (value) =>
-                              AppValidator.validateName(value),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.0.h,
-                      ),
-                      Container(
-                        width: MediaQuery.sizeOf(context).width,
-                        height: 60.0.h,
-                        padding:
-                            EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0.r),
-                          border: Border.all(color: AppColors.greySearchText),
-                        ),
-                        child: TextFormField(
-                          controller: context
-                              .read<SubscriptionSectionCubit>()
-                              .subscribeMailEditingController,
-                          maxLines: 2,
-                          minLines: 1,
-                          validator: (value) =>
-                              AppValidator.validateEmail(value),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: LocaleKeys.Email.tr(),
-                            hintStyle:
-                                Theme.of(context).textTheme.headlineSmall,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.0.h,
-                      ),
-                      CustomActionButton(
-                        text: LocaleKeys.Send_Now.tr(),
-                        borderRadius: BorderRadius.circular(8.0.r),
-                        backGroundColor: AppColors.textAndBackgroundColorButton,
-                        onTap: () async {
-                          await context
-                              .read<SubscriptionSectionCubit>()
-                              .sendSubscribe();
-                          getIt<SubscriptionSectionCubit>()
-                              .subscribeMailEditingController
-                              .clear();
-                          getIt<SubscriptionSectionCubit>()
-                              .subscribeNameEditingController
-                              .clear();
-                        },
-                        width: double.infinity,
-                        height: 40.0.h,
-                      ),
-                    ],
+            orElse: () => Form(
+              key: context.read<SubscriptionSectionCubit>().subscribeFormKey,
+              child: Column(
+                children: [
+                  PrimaryTextField(
+                    controller: context.read<SubscriptionSectionCubit>().subscribeNameEditingController,
+                    hint: LocaleKeys.Name.tr(),
+                    inputType: TextInputType.name,
+                    validator: (value) => AppValidator.validateName(value),
                   ),
-                ),
+                  PrimaryTextField(
+                    controller: context.read<SubscriptionSectionCubit>().subscribeMailEditingController,
+                    hint: LocaleKeys.Email.tr(),
+                    inputType: TextInputType.emailAddress,
+                    validator: (value) => AppValidator.validateEmail(value),
+                  ),
+                  SizedBox(
+                    height: 15.0.h,
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.symmetric(horizontal: 20.0.w),
+                    child: CustomActionButton(
+                      text: LocaleKeys.Send_Now.tr(),
+                      borderRadius: BorderRadius.circular(8.0.r),
+                      backGroundColor: AppColors.textAndBackgroundColorButton,
+                      onTap: () async {
+                        await context.read<SubscriptionSectionCubit>().sendSubscribe();
+                        getIt<SubscriptionSectionCubit>().subscribeMailEditingController.clear();
+                        getIt<SubscriptionSectionCubit>().subscribeNameEditingController.clear();
+                      },
+                      width: double.infinity,
+                      height: 40.0.h,
+                    ),
+                  ),
+                ],
               ),
             ),
           );

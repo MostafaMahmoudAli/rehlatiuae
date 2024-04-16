@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/blocs/blogs_bloc.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/blogs_bottom_section.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
@@ -25,7 +26,12 @@ class OurBlogsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => getIt<BlogsBloc>()..add(GetBlogsEvent()),
+        create: (context) => getIt<BlogsBloc>()
+          ..add(
+            GetBlogsEvent(
+              clientId: context.read<MainCubit>().client?.id,
+            ),
+          ),
         child: Padding(
           padding: EdgeInsetsDirectional.symmetric(
             vertical: 20.0.h,
