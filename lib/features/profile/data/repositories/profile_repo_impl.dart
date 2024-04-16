@@ -9,6 +9,7 @@ import 'package:rehlatyuae/core/errors/exceptions.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/profile/domain/repositories/profile_repo.dart';
 
@@ -21,8 +22,16 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   Future<Either<String, Client>> getProfile() async {
     try {
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       var client = await apiConsumer.get(
         EndPoints.getProfileEndPoint,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
 
       final clientModel = Client.fromJson(client['data']['client']);
@@ -48,9 +57,17 @@ class ProfileRepoImpl implements ProfileRepo {
       } else {
         clientMap.remove('image_path');
       }
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       await apiConsumer.post(
         EndPoints.editProfileEndPoint,
         data: clientMap,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
         isForm: true,
       );
       return const Right(unit);
@@ -62,7 +79,17 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   Future<Either<String, Unit>> deleteAccount() async {
     try {
-      await apiConsumer.delete(EndPoints.deleteAccountEndPoint);
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
+      await apiConsumer.delete(
+        EndPoints.deleteAccountEndPoint,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
       await _clearClient();
       return const Right(unit);
     } on ServerExceptions catch (error) {

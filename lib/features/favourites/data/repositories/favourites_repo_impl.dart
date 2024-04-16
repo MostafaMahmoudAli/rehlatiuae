@@ -1,7 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/favourites/domain/repositories/favourites_repo.dart';
 
@@ -13,7 +17,17 @@ class FavouritesRepoImpl implements FavouritesRepo {
   @override
   Future<Either<String, List<Trips>>> getFavouriteTrips() async {
     try {
-      var response = await apiConsumer.get(EndPoints.myFavoriteTrip);
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
+      var response = await apiConsumer.get(
+        EndPoints.myFavoriteTrip,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
       List<Trips> trips = response['data']['trips']
           .map<Trips>(
             (e) => Trips.fromJson(e),

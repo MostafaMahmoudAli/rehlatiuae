@@ -32,18 +32,24 @@ class BestOffersItem extends StatefulWidget {
 
 class _BestOffersItemState extends State<BestOffersItem> {
   bool isFavorite = false;
+  Trips? trip;
 
   @override
   void initState() {
     super.initState();
     isFavorite = widget.isFavorite ?? false;
+    trip = widget.offer;
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppRoutesString.travelDetailsScreen, extra: widget.offer).then((value) {
+        context.push(AppRoutesString.travelDetailsScreen, extra: trip).then((value) {
+          trip = trip!.copyWith(
+            isFavourite: value as bool,
+          );
+          isFavorite = value;
           context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
         });
       },
@@ -98,6 +104,9 @@ class _BestOffersItemState extends State<BestOffersItem> {
                         setState(() {
                           isFavorite = !isFavorite;
                         });
+                        trip = trip!.copyWith(
+                          isFavourite: isFavorite,
+                        );
                         await context.read<MainCubit>().addToFavourite(tripId: widget.offer!.id ?? 0);
                       },
                       width: 25.0.w,

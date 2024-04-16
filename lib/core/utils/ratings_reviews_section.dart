@@ -65,8 +65,14 @@ class RatingsReviewsSection extends StatelessWidget {
             BlocConsumer<AddReviewCubit, AddReviewState>(
               listener: (context, state) {
                 state.whenOrNull(
-                  loaded: (review) => getIt<LayoutCubit>()..fetchLayoutData(),
-                  deleted: () => getIt<LayoutCubit>()..fetchLayoutData(),
+                  loaded: (review) => getIt<LayoutCubit>()
+                    ..fetchLayoutData(
+                      clientId: context.read<MainCubit>().client?.id,
+                    ),
+                  deleted: () => getIt<LayoutCubit>()
+                    ..fetchLayoutData(
+                      clientId: context.read<MainCubit>().client?.id,
+                    ),
                 );
               },
               builder: (c, state) {

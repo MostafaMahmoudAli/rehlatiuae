@@ -7,6 +7,7 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/blocs/all_trips_bloc.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/all_trips_body.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/widgets/all_trips_bottom_section.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class AllTripsScreen extends StatelessWidget {
@@ -19,8 +20,12 @@ class AllTripsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => getIt<AllTripsBloc>()..add(GetAllTripsEvent()),
-        child: SingleChildScrollView(
+        create: (context) => getIt<AllTripsBloc>()
+          ..add(
+            GetAllTripsEvent(
+              clientId: context.read<MainCubit>().client?.id,
+            ),
+          ),child: SingleChildScrollView(
           controller: allTripsScrollController,
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -45,4 +50,3 @@ class AllTripsScreen extends StatelessWidget {
     );
   }
 }
-

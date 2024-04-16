@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/all_blogs_item.dart';
+
 import '../../../../../core/utils/error_widget.dart';
 import '../../blocs/blogs_bloc.dart';
 
 class OurBlogsBody extends StatefulWidget {
-  const OurBlogsBody({super.key, this.ourBlogsScrollController,});
+  const OurBlogsBody({
+    super.key,
+    this.ourBlogsScrollController,
+  });
+
   final ScrollController? ourBlogsScrollController;
 
   @override
@@ -32,8 +38,11 @@ class _OurBlogsBodyState extends State<OurBlogsBody> {
     final maxScroll = widget.ourBlogsScrollController?.position.maxScrollExtent;
     final currentScroll = widget.ourBlogsScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.9)) {
-      BlocProvider.of<BlogsBloc>(context).add(GetBlogsEvent());
-      // context.read<PostsBloc>().add(GetPostsEvent());
+      BlocProvider.of<BlogsBloc>(context).add(
+        GetBlogsEvent(
+          clientId: context.read<MainCubit>().client?.id,
+        ),
+      );
     }
   }
 
@@ -42,16 +51,14 @@ class _OurBlogsBodyState extends State<OurBlogsBody> {
     return BlocBuilder<BlogsBloc, BlogsState>(
       builder: (context, state) {
         return switch (state.status) {
-          BlogsStatus.initial =>
-            const Center(child: CircularProgressIndicator()),
-          BlogsStatus.loading =>
-            const Center(child: CircularProgressIndicator()),
+          BlogsStatus.initial => const Center(child: CircularProgressIndicator()),
+          BlogsStatus.loading => const Center(child: CircularProgressIndicator()),
           BlogsStatus.success => Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
-            child: GridView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.5,
+                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.5,
                   crossAxisSpacing: 8.0.w,
                   mainAxisSpacing: 10.0.w,
                 ),
@@ -70,7 +77,7 @@ class _OurBlogsBodyState extends State<OurBlogsBody> {
                 physics: const ClampingScrollPhysics(),
                 padding: EdgeInsets.zero,
               ),
-          ),
+            ),
           BlogsStatus.error => ErrorsWidget(
               error: state.errMessage,
             ),

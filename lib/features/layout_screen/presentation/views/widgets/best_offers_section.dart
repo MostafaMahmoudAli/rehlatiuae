@@ -47,6 +47,7 @@ class BestOffersSection extends StatelessWidget {
                 return BestOffersItem(
                   width: 74.0.w,
                   offer: bestOffers[index],
+                  isFavorite: bestOffers[index].isFavourite,
                   review: bestOffers[index].reviewAverage ?? 0.0,
                 );
               },

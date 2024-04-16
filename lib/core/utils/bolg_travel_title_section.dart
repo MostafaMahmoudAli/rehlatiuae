@@ -20,7 +20,7 @@ class BolgTravelTitleSection extends StatefulWidget {
   final bool isTrip;
   final bool isOffer;
   final bool? isFavorite;
-  final void Function()? onLikePressed;
+  final void Function(bool)? onLikePressed;
 
   const BolgTravelTitleSection({
     required this.title,
@@ -84,10 +84,10 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                 CustomIconButton(
                   icon: widget.isOffer ? Icons.clear : Icons.arrow_back,
                   onPressed: () {
-                    context.pop();
+                    context.pop(isFavorite);
                   },
                 ),
-                if (widget.isTrip)
+                if (widget.isTrip && !widget.isOffer)
                   CustomIconButton(
                     icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                     iconColor: AppColors.redAppColor,
@@ -99,7 +99,7 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                       setState(() {
                         isFavorite = !isFavorite;
                       });
-                      widget.onLikePressed?.call();
+                      widget.onLikePressed?.call(isFavorite);
                     },
                   ),
               ],

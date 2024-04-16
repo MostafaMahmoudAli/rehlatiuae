@@ -43,6 +43,7 @@ class PopularExperiencesSection extends StatelessWidget {
                   percentageSave: popularExperiences?[index].saving ?? "",
                   oldTripPrice: popularExperiences?[index].beforePrice ?? "",
                   trip: popularExperiences?[index],
+                  isFavorite: popularExperiences?[index].isFavourite,
                 );
               },
               separatorBuilder: (context, index) {

@@ -10,18 +10,16 @@ part 'blogs_search_state.dart';
 class BlogsSearchCubit extends Cubit<BlogsSearchState> {
   final BlogsRepository blogsRepository;
 
-  BlogsSearchCubit({required this.blogsRepository})
-      : super(const BlogsSearchState.initial());
+  BlogsSearchCubit({required this.blogsRepository}) : super(const BlogsSearchState.initial());
 
-  Future<void> fetchSearchData({String? name}) async {
+  Future<void> fetchSearchData({String? name, int? clientId}) async {
     var results = await blogsRepository.fetchBlogsSearch(
       name: name,
     );
     results.fold(
       (errorMessage) => _update(BlogsSearchState.error(errorMessage)),
       (blogsList) {
-        name == null ? _update(const BlogsSearchState.loaded([])):
-        _update(BlogsSearchState.loaded(blogsList));
+        name == null ? _update(const BlogsSearchState.loaded([])) : _update(BlogsSearchState.loaded(blogsList));
       },
     );
   }
