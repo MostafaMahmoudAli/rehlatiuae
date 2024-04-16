@@ -1,13 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rehlatyuae/features/favourites/presentation/views/widgets/favourites_body.dart';
+import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
+import 'package:rehlatyuae/core/utils/custom_dialog.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/features/favourites/presentation/cubits/get_favourite_trips_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class FavouritesScreen extends StatelessWidget {
-  FavouritesScreen({super.key});
-
-  final ScrollController scrollFavouritesController = ScrollController();
+  const FavouritesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,22 +19,67 @@ class FavouritesScreen extends StatelessWidget {
           LocaleKeys.My_Favorite.tr(),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsetsDirectional.symmetric(
-          vertical: 20.0.h,
-          horizontal: 17.0.w,
-        ),
-        child: SingleChildScrollView(
-          controller: scrollFavouritesController,
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FavouritesBody(
-                favouritesScrollController: scrollFavouritesController,
+      body: BlocProvider(
+        create: (context) => getIt<GetFavouriteTripsCubit>()..getFavouriteTrips(),
+        child: BlocConsumer<GetFavouriteTripsCubit, GetFavouriteTripsState>(
+          listener: (context, state) {
+            state.whenOrNull(
+              error: (message) {
+                showDialog(
+                  context: context,
+                  builder: (context) => CustomDialog(
+                    title: message,
+                    subtitle: LocaleKeys.Sorry.tr(),
+                    labelText: LocaleKeys.Close.tr(),
+                  ),
+                );
+              },
+            );
+          },
+          builder: (context, state) {
+            return state.maybeWhen(
+              loading: () => Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 300.h,
+                ),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
-            ],
-          ),
+              loaded: (trips) => GridView.builder(
+                padding: EdgeInsetsDirectional.symmetric(
+                  vertical: 20.0.h,
+                  horizontal: 17.0.w,
+                ),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10.0.w,
+                  mainAxisSpacing: 15.0.w,
+                  mainAxisExtent: 170.0.h,
+                  childAspectRatio: 7 / 6.6,
+                ),
+                itemBuilder: (context, index) => CustomContainerTrip(
+                  width: 200.0.w,
+                  trip: trips[index],
+                  cityName: trips[index].address,
+                  countryName: trips[index].address,
+                  imageName: trips[index].imagePath,
+                  tripPrice: trips[index].adultPrice.toString(),
+                  reservationType: "/person",
+                  isFavorite: true,
+                  onTapFavoriteIcon: () {
+                    context.read<GetFavouriteTripsCubit>().removeTripFromFavourite(
+                          trips: trips,
+                          index: index,
+                        );
+                  },
+                ),
+                itemCount: trips.length,
+                physics: const ClampingScrollPhysics(),
+              ),
+              orElse: () => const SizedBox(),
+            );
+          },
         ),
       ),
     );
