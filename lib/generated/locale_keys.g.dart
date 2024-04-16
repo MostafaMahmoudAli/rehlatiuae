@@ -1,8 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: constant_identifier_names
-
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const Easy_to_Shop = 'Easy_to_Shop';
   static const Fast_booking = 'Fast_booking';
   static const Search_by_activities = 'Search_by_activities';
@@ -22,7 +20,7 @@ abstract class LocaleKeys {
   static const Your_Name = 'Your_Name';
   static const Your_Email = 'Your_Email';
   static const Send_Now = 'Send_Now';
-  static const All_Trip = 'AllTrip';
+  static const All_Trip = 'All_Trip';
   static const All_Categories = 'All_Categories';
   static const Categories_Name = 'Categories_Name';
   static const City_Destination = 'City_Destination';
@@ -118,7 +116,7 @@ abstract class LocaleKeys {
   static const Sorry = 'Sorry';
   static const Address = 'Address';
   static const Delete_Account = 'Delete_Account';
-  static const Are_you_sure_to_delete = 'Are_you_sure_to_delete ';
+  static const Are_you_sure_to_delete  = 'Are_you_sure_to_delete ';
   static const Are_you_sure = 'Are_you_sure';
   static const Yes = 'Yes';
   static const Register = 'Register';
@@ -158,4 +156,30 @@ abstract class LocaleKeys {
   static const Account = 'Account';
   static const English = 'English';
   static const en = 'en';
+  static const Discover_Incredible = 'Discover_Incredible';
+  static const Lets_start_planning = 'Lets_start_planning';
+  static const Choose_your_experiences = 'Choose_your_experiences';
+  static const Experiences_Worldwide = 'Experiences_Worldwide';
+  static const Short_Description = 'Short_Description';
+  static const My_Favorite = 'My_Favorite';
+  static const Already_have_an_account = 'Already_have_an_account';
+  static const Login = 'Login';
+  static const Get_Started = 'Get_Started';
+  static const Name = 'Name';
+  static const Copyright = 'Copyright';
+  static const When_we_say_that  = 'When_we_say_that ';
+  static const Safety_We = 'Safety_We';
+  static const Trust_We = 'Trust_We';
+  static const Save_money = 'Save_money';
+  static const Quick_booking = 'Quick_booking';
+  static const At_Rehlatiuae_you_only = 'At_Rehlatiuae_you_only';
+  static const With_quality_support = 'With_quality_support';
+  static const Offbeat_or_mainstream = 'Offbeat_or_mainstream';
+  static const No_pain_only_gain = 'No_pain_only_gain';
+  static const Support = 'Support';
+  static const ME = 'ME';
+  static const selected = 'selected';
+  static const View_Details = 'View_Details';
+  static const chatting = 'chatting';
+
 }

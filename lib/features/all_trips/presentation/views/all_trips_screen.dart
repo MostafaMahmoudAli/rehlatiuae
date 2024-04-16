@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,30 +25,25 @@ class AllTripsScreen extends StatelessWidget {
             GetAllTripsEvent(
               clientId: context.read<MainCubit>().client?.id,
             ),
-          ),
-        child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(
-            vertical: 20.0.h,
-            horizontal: 17.0.w,
-          ),
-          child: SingleChildScrollView(
-            controller: allTripsScrollController,
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CustomSizedBox(),
-                const Text(
-                  LocaleKeys.All_Trip,
+          ),child: SingleChildScrollView(
+          controller: allTripsScrollController,
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:  EdgeInsetsDirectional.symmetric(horizontal:15.0.w,),
+                child: Text(
+                  LocaleKeys.All_Trip.tr(),
                 ),
-                const CustomSizedBox(),
-                AllTripsBody(
-                  allTripsScrollController: allTripsScrollController,
-                ),
-                const CustomSizedBox(),
-                const AllTripsBottomSection(),
-              ],
-            ),
+              ),
+              const CustomSizedBox(),
+              AllTripsBody(
+                allTripsScrollController: allTripsScrollController,
+              ),
+              const CustomSizedBox(),
+              const AllTripsBottomSection(),
+            ],
           ),
         ),
       ),

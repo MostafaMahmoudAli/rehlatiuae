@@ -27,7 +27,7 @@ class LanguageContentSheet extends StatelessWidget {
         ),
         RowDetails(
           title: LocaleKeys.United_States,
-          value: 'USD \$',
+          value: 'en',
           onTap: () async {
             await context.setLocale(const Locale('en'));
             await getIt<CacheService>().setData(

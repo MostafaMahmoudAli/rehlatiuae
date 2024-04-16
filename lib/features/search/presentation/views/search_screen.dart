@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../core/utils/custom_container_trip.dart';
 import '../../../../core/utils/custom_dialog.dart';
@@ -52,8 +54,8 @@ class SearchScreen extends StatelessWidget {
                         context: context,
                         builder: (context) => CustomDialog(
                           title: errorMessage,
-                          subtitle: 'Sorry',
-                          labelText: 'Close',
+                          subtitle: LocaleKeys.Sorry.tr(),
+                          labelText: LocaleKeys.Close.tr(),
                         ),
                       ),
                     );

@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_rating_bar.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/review_count.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class ChartRatingSection extends StatelessWidget {
   final ReviewCount? reviewsCount;
@@ -22,7 +24,7 @@ class ChartRatingSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Ratings & Reviews",
+          LocaleKeys.Ratings_Reviews.tr(),
           style: Theme.of(context).textTheme.labelMedium,
         ),
         SizedBox(

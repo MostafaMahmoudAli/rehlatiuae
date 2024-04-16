@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/favourites/presentation/views/widgets/favourites_body.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class FavouritesScreen extends StatelessWidget {
   FavouritesScreen({super.key});
@@ -11,8 +13,8 @@ class FavouritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "My Favorite",
+        title: Text(
+          LocaleKeys.My_Favorite.tr(),
         ),
       ),
       body: Padding(

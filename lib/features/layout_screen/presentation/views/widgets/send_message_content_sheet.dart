@@ -81,7 +81,7 @@ class SendMessageContentSheet extends StatelessWidget {
                     controller: cubit.emailEditingController,
                     validator: (value) => AppValidator.validateEmail(value),
                     padding: EdgeInsets.only(bottom: 20.h),
-                    hint: LocaleKeys.your_name.tr(),
+                    hint: LocaleKeys.Your_Email.tr(),
                     textColor: AppColors.grey,
                   ),
                   PrimaryTextField(

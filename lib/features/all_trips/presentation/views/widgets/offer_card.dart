@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:rehlatyuae/core/utils/default_text_button.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/all_trips/presentation/views/offer_details_screen.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class OfferCard extends StatefulWidget {
   final Trips offer;
@@ -138,7 +140,7 @@ class _OfferCardState extends State<OfferCard> {
                 ),
               ),
               CustomActionButton(
-                text: isSelected ? 'selected' : 'select',
+                text: isSelected ? LocaleKeys.selected.tr() : LocaleKeys.select.tr(),
                 borderRadius: BorderRadius.circular(15.sp),
                 backGroundColor: isSelected ? AppColors.green : AppColors.textAndBackgroundColorButton,
                 onTap: () {
@@ -187,7 +189,7 @@ class _OfferCardState extends State<OfferCard> {
                     ),
                   );
                 },
-                text: 'View Details...',
+                text: LocaleKeys.View_Details.tr(),
                 style: Theme.of(context)
                     .textTheme
                     .labelSmall

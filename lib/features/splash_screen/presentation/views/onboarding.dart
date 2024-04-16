@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/features/splash_screen/presentation/views/unboarding.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../core/utils/custom_button.dart';
 import '../../../../core/utils/default_text_button.dart';
@@ -70,7 +71,7 @@ class _OnBoardingState extends State<OnBoarding> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(height: 270.h),
+                            SizedBox(height: 330.h),
                             Text(
                               contents[currentIndex].title,
                               style: Theme.of(context).textTheme.displayLarge,
@@ -83,7 +84,7 @@ class _OnBoardingState extends State<OnBoarding> {
                             SizedBox(height: 100.h),
                             if (currentIndex == 3)
                               CustomActionButton(
-                                  text: "Get Started",
+                                  text: LocaleKeys.Get_Started.tr(),
                                   borderRadius: BorderRadius.circular(12.r),
                                   backGroundColor: AppColors.textAndBackgroundColorButton,
                                   style: Theme.of(context).textTheme.displayMedium,
@@ -114,10 +115,15 @@ class _OnBoardingState extends State<OnBoarding> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 300.h,
-                      child: Center(child: SvgPicture.asset("assets/images/main_logo.svg")),
+                      height: 100.h,
                     ),
-                    SizedBox(height: 220.h),
+                    SizedBox(
+                      height: 260.h,
+
+                      child: Center(child: Image.asset('assets/images/logo.png'),),
+
+                    ),
+                    SizedBox(height: 200.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
@@ -126,15 +132,15 @@ class _OnBoardingState extends State<OnBoarding> {
                       ),
                     ),
                     SizedBox(
-                      height: 130.h,
+                      height: 80.h,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text('Already have an account?', style: Theme.of(context).textTheme.displaySmall),
+                      Text(LocaleKeys.Already_have_an_account.tr(), style: Theme.of(context).textTheme.displaySmall),
                       DefaultTextButton(
                         onPressed: () {
                           GoRouter.of(context).go('/loginScreen');
                         },
-                        text: 'Login',
+                        text: LocaleKeys.LogIn.tr(),
                       )
                     ]),
                   ],

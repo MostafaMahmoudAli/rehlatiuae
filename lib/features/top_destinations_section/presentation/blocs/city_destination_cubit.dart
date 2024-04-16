@@ -13,7 +13,7 @@ class CityDestinationCubit extends Cubit<CityDestinationState> {
   CityDestinationCubit({
     required this.cityDestinationRepo,
   }) : super(const CityDestinationState.initial());
-
+ late final CityDestination cityDestinationList;
   Future<void> fetchCityDestinations({
     required int? destinationId,
     int? clientId,
@@ -26,7 +26,10 @@ class CityDestinationCubit extends Cubit<CityDestinationState> {
 
     results.fold(
       (errorMessage) => emit(CityDestinationState.error(errorMessage)),
-      (cityDestination) => emit(CityDestinationState.loaded(cityDestination)),
+      (cityDestination) {
+        emit(CityDestinationState.loaded(cityDestination));
+        cityDestinationList =cityDestination;
+      },
     );
   }
 }

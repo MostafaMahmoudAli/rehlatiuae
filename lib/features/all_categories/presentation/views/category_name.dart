@@ -25,26 +25,22 @@ class CategoryNameScreen extends StatelessWidget {
             categoryNameId: category.id ?? 0,
             clientId: context.read<MainCubit>().client?.id,
           ),
-        child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(
-            vertical: 20.0.h,
-            horizontal: 17.0.w,
-          ),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CustomSizedBox(),
-                Text(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:EdgeInsetsDirectional.symmetric(horizontal:15.0.w,),
+                child: Text(
                   category.name ?? "",
                 ),
-                const CustomSizedBox(),
-                const CategoryNameBody(),
-                const CustomSizedBox(),
-                const CategoryNameBottomSection(),
-              ],
-            ),
+              ),
+              const CustomSizedBox(),
+              const CategoryNameBody(),
+              const CustomSizedBox(),
+              const CategoryNameBottomSection(),
+            ],
           ),
         ),
       ),
