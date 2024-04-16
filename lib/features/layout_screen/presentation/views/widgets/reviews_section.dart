@@ -57,7 +57,7 @@ class ReviewsSection extends StatelessWidget {
                       SizedBox(
                         width: 210.0.w,
                         child: Text(
-                          // reviews?[index].description ??
+                          reviews?[index].description ??
                           AppStrings.weHelpYouMakeBestTripDescription,
                           style: Theme.of(context).textTheme.bodyLarge,
                           maxLines: 10,

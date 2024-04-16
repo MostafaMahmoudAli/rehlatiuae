@@ -22,13 +22,13 @@ class AllTripsBloc extends Bloc<AllTripsEvent, AllTripsState> {
           if (state.status == AllTripsStatus.loading) {
             var results = await allTripsRepository.fetchAllTrips();
             results.fold(
-              (errorMessage) => emit(
+              (errorMessage) => _update(
                 state.copyWith(
                   status: AllTripsStatus.error,
                   errMessage: errorMessage,
                 ),
               ),
-              (trips) => emit(
+              (trips) => _update(
                 state.copyWith(
                   status: AllTripsStatus.success,
                   trips: trips,
@@ -42,7 +42,7 @@ class AllTripsBloc extends Bloc<AllTripsEvent, AllTripsState> {
             );
             
             results.fold(
-              (errorMessage) => emit(
+              (errorMessage) => _update(
                 state.copyWith(
                   status: AllTripsStatus.error,
                   errMessage: errorMessage,
@@ -50,8 +50,8 @@ class AllTripsBloc extends Bloc<AllTripsEvent, AllTripsState> {
               ),
               (trips) {
                 trips.isEmpty
-                    ? emit(state.copyWith(hasReachedMax: true))
-                    : emit(
+                    ? _update(state.copyWith(hasReachedMax: true))
+                    : _update(
                         state.copyWith(
                           status: AllTripsStatus.success,
                           trips: List.of(state.trips)
@@ -66,5 +66,11 @@ class AllTripsBloc extends Bloc<AllTripsEvent, AllTripsState> {
       },
       transformer: droppable(),
     );
+  }
+
+  void _update(AllTripsState state) {
+    if (!isClosed) {
+      emit(state);
+    }
   }
 }

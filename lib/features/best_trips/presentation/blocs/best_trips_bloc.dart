@@ -19,13 +19,13 @@ class BestTripsBloc extends Bloc<BestTripsEvent, BestTripsState> {
         if (state.status == BestTripsStatus.loading) {
           var results = await bestTripsRepo.fetchBestTrips();
           results.fold(
-                (errorMessage) => emit(
+                (errorMessage) => _update(
               state.copyWith(
                 status: BestTripsStatus.error,
                 errMessage: errorMessage,
               ),
             ),
-                (bestTrips) => emit(
+                (bestTrips) => _update(
               state.copyWith(
                 status: BestTripsStatus.success,
                 bestTrips: bestTrips,
@@ -37,16 +37,16 @@ class BestTripsBloc extends Bloc<BestTripsEvent, BestTripsState> {
           var results = await bestTripsRepo.fetchBestTrips(
               startIndex: state.bestTrips.length);
           results.fold(
-                (errorMessage) => emit(
+                (errorMessage) => _update(
               state.copyWith(
                 status: BestTripsStatus.error,
                 errMessage: errorMessage,
               ),
             ),
                 (bestTrips) {
-                  bestTrips.isEmpty ? emit(state.copyWith(hasReachedMax: true))
+                  bestTrips.isEmpty ? _update(state.copyWith(hasReachedMax: true))
                   :
-              emit(state.copyWith(
+                  _update(state.copyWith(
                 status: BestTripsStatus.success,
                 bestTrips: List.of(state.bestTrips)..addAll(bestTrips),
                 hasReachedMax: false,
@@ -60,4 +60,10 @@ class BestTripsBloc extends Bloc<BestTripsEvent, BestTripsState> {
       transformer:droppable(),
     );
   }
+
+ void _update(BestTripsState state) {
+   if (!isClosed) {
+     emit(state);
+   }
+ }
 }

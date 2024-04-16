@@ -19,13 +19,13 @@ class BlogsBloc extends Bloc<BlogsEvent, BlogsState> {
      if (state.status == BlogsStatus.loading) {
        var results = await blogsRepository.fetchBlogs();
        results.fold(
-             (errorMessage) => emit(
+             (errorMessage) => _update(
            state.copyWith(
              status: BlogsStatus.error,
              errMessage: errorMessage,
            ),
          ),
-             (blogs) => emit(
+             (blogs) => _update(
            state.copyWith(
              status: BlogsStatus.success,
              blogs: blogs,
@@ -37,16 +37,16 @@ class BlogsBloc extends Bloc<BlogsEvent, BlogsState> {
        var results = await blogsRepository.fetchBlogs(
            startIndex: state.blogs.length);
        results.fold(
-             (errorMessage) => emit(
+             (errorMessage) => _update(
            state.copyWith(
              status: BlogsStatus.error,
              errMessage: errorMessage,
            ),
          ),
              (blogs) {
-               blogs.isEmpty ? emit(state.copyWith(hasReachedMax: true))
+               blogs.isEmpty ? _update(state.copyWith(hasReachedMax: true))
                :
-           emit(state.copyWith(
+               _update(state.copyWith(
              status: BlogsStatus.success,
              blogs: List.of(state.blogs)..addAll(blogs),
              hasReachedMax: false,
@@ -59,5 +59,11 @@ class BlogsBloc extends Bloc<BlogsEvent, BlogsState> {
     },
       transformer:droppable(),
    );
+  }
+
+  void _update(BlogsState state) {
+    if (!isClosed) {
+      emit(state);
+    }
   }
 }

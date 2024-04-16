@@ -32,7 +32,7 @@ class _AllTripsBodyState extends State<AllTripsBody> {
   void _onScroll() {
     final maxScroll = widget.allTripsScrollController?.position.minScrollExtent;
     final currentScroll = widget.allTripsScrollController?.offset;
-    if (currentScroll! >= (maxScroll! * 0.9)) {
+    if (currentScroll! >= (maxScroll! * 0.6)) {
       BlocProvider.of<AllTripsBloc>(context).add(GetAllTripsEvent());
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
