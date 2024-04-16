@@ -26,7 +26,7 @@ ThemeData appTheme() {
       ),
       displayLarge: TextStyle(
         fontFamily: 'Switzer',
-        fontSize: 24.sp,
+        fontSize: 18.sp,
         color: AppColors.white,
         fontWeight: FontWeight.w700,
       ),

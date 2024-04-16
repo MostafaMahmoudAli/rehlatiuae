@@ -90,10 +90,10 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                     if (!cubit.isTripSelected && cubit.selectedOffers.isEmpty) {
                       showDialog(
                         context: context,
-                        builder: (context) => const CustomDialog(
-                          title: 'You must select trip or offer at latest',
-                          subtitle: 'Sorry',
-                          labelText: 'close',
+                        builder: (context) => CustomDialog(
+                          title: LocaleKeys.You_must_select_trip_or_offer_at_latest.tr(),
+                          subtitle: LocaleKeys.Sorry.tr() ,
+                          labelText: LocaleKeys.Close.tr(),
                           color: AppColors.redAppColor,
                         ),
                       );

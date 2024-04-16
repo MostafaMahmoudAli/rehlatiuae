@@ -1,9 +1,11 @@
 import 'package:dotted_line/dotted_line.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/pickers.dart';
 import 'package:rehlatyuae/features/our_blogs/presentation/views/widgets/row_details.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class PaymentContentSheet extends StatelessWidget {
   final double totalAfterDiscount;
@@ -24,7 +26,7 @@ class PaymentContentSheet extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "Total Amount",
+          LocaleKeys.Total_Amount.tr(),
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 color: AppColors.grayLight,
               ),

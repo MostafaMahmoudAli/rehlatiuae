@@ -85,7 +85,7 @@ class LegalDrawerSection extends StatelessWidget {
           builder: (context, state) {
             return context.read<MainCubit>().client != null
                 ? DrawerItem(
-                    title: LocaleKeys.Logout.tr(),
+                    title: LocaleKeys.Log_out.tr(),
                     iconPath: AppAssets.logout,
                     trailing: const [
                       Icon(
@@ -96,9 +96,9 @@ class LegalDrawerSection extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (context) => CustomDialog(
-                          title: 'are you',
+                          title: LocaleKeys.Are_you_sure.tr(),
                           subtitle: LocaleKeys.Logout.tr(),
-                          labelText: LocaleKeys.Logout.tr(),
+                          labelText: LocaleKeys.Log_out.tr(),
                           color: AppColors.redAppColor,
                           onTap: () async {
                             context.pop();

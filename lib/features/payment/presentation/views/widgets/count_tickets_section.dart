@@ -95,7 +95,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Total Amount",
+                LocaleKeys.Total_Amount.tr(),
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Text(
