@@ -87,7 +87,7 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                     context.pop();
                   },
                 ),
-                if (widget.isTrip)
+                if (widget.isTrip && !widget.isOffer)
                   CustomIconButton(
                     icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                     iconColor: AppColors.redAppColor,

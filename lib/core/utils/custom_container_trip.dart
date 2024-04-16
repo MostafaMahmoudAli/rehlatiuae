@@ -47,11 +47,13 @@ class CustomContainerTrip extends StatefulWidget {
 
 class _CustomContainerTripState extends State<CustomContainerTrip> {
   bool isFavorite = false;
+  Trips? trip;
 
   @override
   void initState() {
     super.initState();
     isFavorite = widget.isFavorite ?? false;
+    trip = widget.trip;
   }
 
   @override
@@ -59,7 +61,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
     return InkWell(
       onTap: widget.isTrip
           ? () {
-              context.push(AppRoutesString.travelDetailsScreen, extra: widget.trip).then(
+              print('isFavourite: ${trip?.isFavourite}');
+              context.push(AppRoutesString.travelDetailsScreen, extra: trip).then(
                 (value) {
                   context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
                 },
@@ -124,7 +127,6 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                       context.push(AppRoutesString.loginScreen);
                       return;
                     }
-                    context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
                     if (widget.onTapFavoriteIcon != null) {
                       widget.onTapFavoriteIcon?.call();
                       return;
@@ -132,6 +134,12 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                     setState(() {
                       isFavorite = !isFavorite;
                     });
+                    trip = trip!.copyWith(
+                      isFavourite: isFavorite,
+                    );
+                    print('isFavourite: ${trip?.isFavourite}');
+
+                    context.read<MainCubit>().addToFavourite(tripId: trip!.id ?? 0);
                   },
                   size: 35.0.w,
                 ),

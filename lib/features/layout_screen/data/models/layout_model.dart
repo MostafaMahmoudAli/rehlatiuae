@@ -12,14 +12,14 @@ import 'our_partners_model.dart';
 part 'layout_model.freezed.dart';
 part 'layout_model.g.dart';
 
-@freezed
+@unfreezed
 class LayOutModel with _$LayOutModel {
-  const factory LayOutModel({
+  factory LayOutModel({
     required final List<AllDestinations>? topDestinations,
     required final List<Categories>? categories,
-    required final List<Trips>? bestOffers,
-    required final List<Trips>? bestTrips,
-    @JsonKey(name: "popularExperiencetrips") required final List<Trips>? popularExperience,
+    required List<Trips>? bestOffers,
+    required List<Trips>? bestTrips,
+    @JsonKey(name: "popularExperiencetrips") required List<Trips>? popularExperience,
     required final List<Blogs>? blogs,
     required final List<OurPartners>? ourPartners,
     required final List<Review>? reviews,

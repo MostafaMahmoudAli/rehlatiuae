@@ -34,18 +34,21 @@ class PopularExperiencesContainerItem extends StatefulWidget {
 
 class _PopularExperiencesContainerItemState extends State<PopularExperiencesContainerItem> {
   bool isFavorite = false;
+  Trips? trip;
 
   @override
   void initState() {
     super.initState();
     isFavorite = widget.isFavorite ?? false;
+    trip = widget.trip;
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppRoutesString.travelDetailsScreen, extra: widget.trip).then(
+        print('isFavourite: ${trip?.isFavourite}');
+        context.push(AppRoutesString.travelDetailsScreen, extra: trip).then(
           (value) {
             context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
           },
@@ -113,6 +116,10 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                   setState(() {
                     isFavorite = !isFavorite;
                   });
+                  trip = trip!.copyWith(
+                    isFavourite: isFavorite,
+                  );
+                  print('isFavourite: ${trip?.isFavourite}');
                   await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
                 },
                 width: 30.0.w,
