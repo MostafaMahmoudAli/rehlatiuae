@@ -77,7 +77,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/playstore-icon.png"
+  image_path: "assets/images/logo_app.png"
 
 
 flutter:
