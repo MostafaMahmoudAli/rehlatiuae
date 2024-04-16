@@ -10,21 +10,6 @@ class DioInterceptor extends Interceptor {
     options.headers["Accept-Language"] = language;
     options.headers["Accept"] = ["application/json"];
 
-    String? alternativeToken = getIt<CacheService>().getData<String>(
-      key: AppStrings.alternativeToken,
-    );
-    alternativeToken ??= getIt<CacheService>().getData<String>(
-      key: AppStrings.accessToken,
-    );
-    if (alternativeToken != null) {
-      options.headers["Authorization"] = 'Bearer $alternativeToken';
-    }
-    String? alternativeContentType = getIt<CacheService>().getData<String>(
-      key: AppStrings.alternativeContentType,
-    );
-    if (alternativeContentType != null) {
-      options.headers['Content-Type'] = alternativeContentType;
-    }
     super.onRequest(options, handler);
   }
 }

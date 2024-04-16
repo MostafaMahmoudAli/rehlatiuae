@@ -110,10 +110,6 @@ class AuthRepoImpl implements AuthRepo {
         },
       );
       String updatePasswordToken = response['data']['token'];
-      await cacheService.setData(
-        key: AppStrings.alternativeToken,
-        value: updatePasswordToken,
-      );
       return Right(updatePasswordToken);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);

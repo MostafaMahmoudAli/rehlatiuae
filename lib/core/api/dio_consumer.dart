@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
+
 import 'api_interceptors.dart';
 import 'end_points.dart';
 
@@ -30,13 +31,13 @@ class DioConsumer implements ApiConsumer {
       var response = await dio.get(
         path,
         queryParameters: queryParameters,
+        options: options,
       );
       return response.data;
     } catch (e) {
-      if(e is DioException )
-      {
+      if (e is DioException) {
         handelDioException(e);
-      }else{
+      } else {
         return print("Un Expected Exception");
       }
     }
@@ -58,15 +59,12 @@ class DioConsumer implements ApiConsumer {
         options: options,
       );
       return response.data;
-    }  catch (e) {
-      if(e is  DioException)
-      {
+    } catch (e) {
+      if (e is DioException) {
         handelDioException(e);
-      }else
-      {
+      } else {
         return print("Un Expected Exception");
       }
-
     }
   }
 
@@ -83,17 +81,15 @@ class DioConsumer implements ApiConsumer {
         path,
         data: isForm ? FormData.fromMap(data!) : data,
         queryParameters: queryParameters,
+        options: options,
       );
       return response.data;
-    }  catch (e) {
-      if(e is  DioException)
-      {
+    } catch (e) {
+      if (e is DioException) {
         handelDioException(e);
-      }else
-      {
+      } else {
         return print("Un Expected Exception");
       }
-
     }
   }
 
@@ -108,17 +104,15 @@ class DioConsumer implements ApiConsumer {
       var response = await dio.delete(
         path,
         queryParameters: queryParameters,
+        options: options,
       );
       return response.data;
-    }  catch (e) {
-      if(e is  DioException)
-      {
+    } catch (e) {
+      if (e is DioException) {
         handelDioException(e);
-      }else
-      {
+      } else {
         return print("Un Expected Exception");
       }
-
     }
   }
 }
