@@ -13,12 +13,12 @@ class UnbordingContent {
 List<UnbordingContent> contents = [
   UnbordingContent(title: LocaleKeys.Discover_Incredible.tr() , image: 'assets/images/img1.png', discription: LocaleKeys.Experiences_Worldwide.tr()),
   UnbordingContent(
-      title: LocaleKeys.Lets_start_planning.tr(), image: 'assets/images/img2.png', discription: LocaleKeys.Lets_start_planning.tr()),
+      title: LocaleKeys.Distinctive_and_exciting_activities.tr(), image: 'assets/images/img2.png', discription: LocaleKeys.Start_planning_your_events.tr()),
   UnbordingContent(
-      title: LocaleKeys.Choose_your_experiences.tr(), image: 'assets/images/img3.png', discription:LocaleKeys.Lets_start_planning.tr()),
+      title: LocaleKeys.Choose_your_experiences.tr(), image: 'assets/images/img3.png', discription:LocaleKeys.Start_planning_your_events.tr()),
   UnbordingContent(
-    title: LocaleKeys.Choose_your_experiences.tr(),
+    title: LocaleKeys.are_you_ready.tr(),
     image: 'assets/images/img4.png',
-    discription: LocaleKeys.Choose_your_experiences.tr(),
+    discription: LocaleKeys.Create_excitement.tr(),
   )
 ];

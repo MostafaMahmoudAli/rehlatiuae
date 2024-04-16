@@ -139,19 +139,19 @@ class OrderSummaryCard extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'Status',
+                      LocaleKeys.Status.tr(),
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             fontWeight: FontWeight.w700,
                           ),
                     ),
                     Text(
-                      status!,
+                      status!.tr(),
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ],
                 ),
                 CustomActionButton(
-                  text: status == 'unPaid' ? 'Payment' : 'View',
+                  text: status == 'unPaid' ? LocaleKeys.Payment.tr() : LocaleKeys.view.tr(),
                   borderRadius: BorderRadius.circular(10.sp),
                   backGroundColor: AppColors.textAndBackgroundColorButton,
                   onTap: onTapButton,
