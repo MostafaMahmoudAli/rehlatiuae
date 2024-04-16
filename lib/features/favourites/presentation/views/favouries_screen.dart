@@ -6,6 +6,7 @@ import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
 import 'package:rehlatyuae/core/utils/custom_dialog.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/favourites/presentation/cubits/get_favourite_trips_cubit.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class FavouritesScreen extends StatelessWidget {
@@ -20,7 +21,10 @@ class FavouritesScreen extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-        create: (context) => getIt<GetFavouriteTripsCubit>()..getFavouriteTrips(),
+        create: (context) => getIt<GetFavouriteTripsCubit>()
+          ..getFavouriteTrips(
+            clientId: context.read<MainCubit>().client!.id,
+          ),
         child: BlocConsumer<GetFavouriteTripsCubit, GetFavouriteTripsState>(
           listener: (context, state) {
             state.whenOrNull(
@@ -55,13 +59,13 @@ class FavouritesScreen extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 10.0.w,
                   mainAxisSpacing: 15.0.w,
-                  mainAxisExtent: 170.0.h,
+                  mainAxisExtent: 200.0.h,
                   childAspectRatio: 7 / 6.6,
                 ),
                 itemBuilder: (context, index) => CustomContainerTrip(
                   width: 200.0.w,
                   trip: trips[index],
-                  cityName: trips[index].address,
+                  cityName: trips[index].name,
                   countryName: trips[index].address,
                   imageName: trips[index].imagePath,
                   tripPrice: trips[index].adultPrice.toString(),

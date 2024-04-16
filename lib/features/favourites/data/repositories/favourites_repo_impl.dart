@@ -15,13 +15,16 @@ class FavouritesRepoImpl implements FavouritesRepo {
   FavouritesRepoImpl({required this.apiConsumer});
 
   @override
-  Future<Either<String, List<Trips>>> getFavouriteTrips() async {
+  Future<Either<String, List<Trips>>> getFavouriteTrips({required int clientId}) async {
     try {
       var token = getIt<CacheService>().getData<String>(
         key: AppStrings.accessToken,
       );
       var response = await apiConsumer.get(
         EndPoints.myFavoriteTrip,
+        queryParameters: {
+          'client_id': clientId,
+        },
         options: Options(
           headers: {
             'Authorization': 'Bearer $token',

@@ -10,8 +10,8 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/drawer_item.dart';
-import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/my_booking_content_sheet.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/send_message_content_sheet.dart';
+import 'package:rehlatyuae/features/payment/presentation/views/booking_screen.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class HelpDrawerSection extends StatelessWidget {
@@ -53,11 +53,7 @@ class HelpDrawerSection extends StatelessWidget {
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.zero,
                 ),
-                builder: (context) => CustomBottomSheet(
-                  title: LocaleKeys.My_booking.tr(),
-                  avatarText: 'MY',
-                  contentSheet: const MyBookingContentSheet(),
-                ),
+                builder: (context) => const BookingScreen(),
               );
             } else {
               context.push(AppRoutesString.loginScreen);
