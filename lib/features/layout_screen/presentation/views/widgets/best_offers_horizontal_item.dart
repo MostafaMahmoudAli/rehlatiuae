@@ -47,6 +47,10 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
       onTap: () {
         print('isFavourite: ${trip?.isFavourite}');
         context.push(AppRoutesString.travelDetailsScreen, extra: trip).then((value) {
+          trip = trip!.copyWith(
+            isFavourite: value as bool,
+          );
+          isFavorite = value;
           context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
         });
       },

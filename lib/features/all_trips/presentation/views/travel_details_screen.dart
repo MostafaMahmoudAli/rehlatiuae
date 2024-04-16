@@ -34,99 +34,109 @@ class TravelDetailsScreen extends StatefulWidget {
 class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
   int totalRating = 0;
   double aveRating = 0;
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BolgTravelTitleSection(
-              title: widget.trip.name ?? '',
-              address: widget.trip.address ?? '',
-              price: widget.trip.adultPrice.toString(),
-              imagePath: widget.trip.imagePath!,
-              isFavorite: widget.trip.isFavourite,
-              saving: widget.trip.saving.toString(),
-              beforePrice: widget.trip.beforePrice.toString(),
-              onLikePressed: () async {
-                await context.read<MainCubit>().addToFavourite(tripId: widget.trip.id ?? 0);
-              },
-            ),
-            if (widget.trip.offers!.isNotEmpty)
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        context.pop(isFavorite);
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BolgTravelTitleSection(
+                title: widget.trip.name ?? '',
+                address: widget.trip.address ?? '',
+                price: widget.trip.adultPrice.toString(),
+                imagePath: widget.trip.imagePath!,
+                isFavorite: widget.trip.isFavourite,
+                saving: widget.trip.saving.toString(),
+                beforePrice: widget.trip.beforePrice.toString(),
+                onLikePressed: (isFavorite) async {
+                  setState(() {
+                    this.isFavorite = isFavorite;
+                  });
+                  await context.read<MainCubit>().addToFavourite(tripId: widget.trip.id ?? 0);
+                },
+              ),
+              if (widget.trip.offers!.isNotEmpty)
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                  child: Text(
+                    LocaleKeys.Select_your_Preferences.tr(),
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                ),
+              if (widget.trip.offers!.isNotEmpty)
+                OfferPreferencesList(
+                  trip: widget.trip,
+                  offers: [widget.trip, ...widget.trip.offers!],
+                ),
+              SizedBox(
+                height: 35.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: CustomActionButton(
+                  text: LocaleKeys.Book_Now.tr(),
+                  borderRadius: BorderRadius.circular(16),
+                  backGroundColor: AppColors.textAndBackgroundColorButton,
+                  onTap: () {
+                    var cubit = context.read<TripCheckoutDetailsCubit>();
+                    if (!cubit.isTripSelected && cubit.selectedOffers.isEmpty) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const CustomDialog(
+                          title: 'You must select trip or offer at latest',
+                          subtitle: 'Sorry',
+                          labelText: 'close',
+                          color: AppColors.redAppColor,
+                        ),
+                      );
+                      return;
+                    }
+                    cubit.selectedTrip = widget.trip;
+                    context.push(AppRoutesString.paymentOptionsScreen).then(
+                          (value) => cubit.onClosePaymentOptionsScreen(),
+                        );
+                    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+                  },
+                  width: double.infinity,
+                  height: 50.h,
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                 child: Text(
-                  LocaleKeys.Select_your_Preferences.tr(),
-                  style: Theme.of(context).textTheme.labelMedium,
+                  widget.trip.description!,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: AppColors.grey,
+                      ),
                 ),
               ),
-            if (widget.trip.offers!.isNotEmpty)
-              OfferPreferencesList(
-                trip: widget.trip,
-                offers: [widget.trip, ...widget.trip.offers!],
+              ...List.generate(
+                widget.trip.addresses!.length,
+                (index) => CustomExpansionTile(
+                  initiallyExpanded: index == 0,
+                  title: widget.trip.addresses![index].name,
+                  content: widget.trip.addresses![index].description,
+                ),
               ),
-            SizedBox(
-              height: 35.h,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: CustomActionButton(
-                text: LocaleKeys.Book_Now.tr(),
-                borderRadius: BorderRadius.circular(16),
-                backGroundColor: AppColors.textAndBackgroundColorButton,
-                onTap: () {
-                  var cubit = context.read<TripCheckoutDetailsCubit>();
-                  if (!cubit.isTripSelected && cubit.selectedOffers.isEmpty) {
-                    showDialog(
-                      context: context,
-                      builder: (context) => const CustomDialog(
-                        title: 'You must select trip or offer at latest',
-                        subtitle: 'Sorry',
-                        labelText: 'close',
-                        color: AppColors.redAppColor,
-                      ),
-                    );
-                    return;
-                  }
-                  cubit.selectedTrip = widget.trip;
-                  context.push(AppRoutesString.paymentOptionsScreen).then(
-                        (value) => cubit.onClosePaymentOptionsScreen(),
-                      );
-                  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-                },
-                width: double.infinity,
-                height: 50.h,
+              PreviewTravelsSection(images: widget.trip.images, aveRating: aveRating),
+              RatingsReviewsSection(
+                reviews: widget.trip.reviews,
+                id: widget.trip.id,
+                reviewsCount: widget.trip.reviewsCount,
+                aveRating: aveRating,
+                totalRating: totalRating,
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: Text(
-                widget.trip.description!,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: AppColors.grey,
-                    ),
-              ),
-            ),
-            ...List.generate(
-              widget.trip.addresses!.length,
-              (index) => CustomExpansionTile(
-                initiallyExpanded: index == 0,
-                title: widget.trip.addresses![index].name,
-                content: widget.trip.addresses![index].description,
-              ),
-            ),
-            PreviewTravelsSection(images: widget.trip.images, aveRating: aveRating),
-            RatingsReviewsSection(
-              reviews: widget.trip.reviews,
-              id: widget.trip.id,
-              reviewsCount: widget.trip.reviewsCount,
-              aveRating: aveRating,
-              totalRating: totalRating,
-            ),
-            const ExperiencesSections(),
-          ],
+              const ExperiencesSections(),
+            ],
+          ),
         ),
       ),
     );
@@ -153,6 +163,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
               widget.trip.reviewsCount!.fiveStar! * 5) /
           totalRating;
     }
+    isFavorite = widget.trip.isFavourite!;
     super.initState();
   }
 

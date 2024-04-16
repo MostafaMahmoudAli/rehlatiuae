@@ -47,9 +47,12 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('isFavourite: ${trip?.isFavourite}');
         context.push(AppRoutesString.travelDetailsScreen, extra: trip).then(
           (value) {
+            trip = trip!.copyWith(
+              isFavourite: value as bool,
+            );
+            isFavorite = value;
             context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
           },
         );

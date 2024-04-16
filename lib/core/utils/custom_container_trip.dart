@@ -61,9 +61,12 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
     return InkWell(
       onTap: widget.isTrip
           ? () {
-              print('isFavourite: ${trip?.isFavourite}');
               context.push(AppRoutesString.travelDetailsScreen, extra: trip).then(
                 (value) {
+                  trip = trip!.copyWith(
+                    isFavourite: value as bool,
+                  );
+                  isFavorite = value;
                   context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
                 },
               );
@@ -137,8 +140,6 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                     trip = trip!.copyWith(
                       isFavourite: isFavorite,
                     );
-                    print('isFavourite: ${trip?.isFavourite}');
-
                     context.read<MainCubit>().addToFavourite(tripId: trip!.id ?? 0);
                   },
                   size: 35.0.w,

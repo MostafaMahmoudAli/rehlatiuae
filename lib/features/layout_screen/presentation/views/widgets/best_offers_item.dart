@@ -46,6 +46,10 @@ class _BestOffersItemState extends State<BestOffersItem> {
     return InkWell(
       onTap: () {
         context.push(AppRoutesString.travelDetailsScreen, extra: trip).then((value) {
+          trip = trip!.copyWith(
+            isFavourite: value as bool,
+          );
+          isFavorite = value;
           context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
         });
       },
