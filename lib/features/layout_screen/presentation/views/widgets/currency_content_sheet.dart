@@ -1,4 +1,5 @@
 import 'package:currency_converter/currency.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,7 @@ class CurrencyContentSheet extends StatelessWidget {
           (index) {
             var cubit = context.read<MainCubit>();
             return RowDetails(
-              title: AllCurrency.allCurrencyWithCountries[cubit.currencies[index].name] ?? '',
+              title: (AllCurrency.allCurrencyWithCountries[cubit.currencies[index].name] ?? '').tr(),
               value: cubit.currencies[index].name.toUpperCase(),
               onTap: () {
                 cubit.currentCurrency = cubit.currencies[index];

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:currency_converter/currency.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +34,7 @@ class CustomContainerTrip extends StatefulWidget {
   final String? imageName;
   final String? cityName;
   final String? countryName;
-  final String? tripPrice;
+  final int? tripPrice;
   final String? reservationType;
   final String? oldTripPrice;
   final String? percentageSave;
@@ -47,11 +48,13 @@ class CustomContainerTrip extends StatefulWidget {
 
 class _CustomContainerTripState extends State<CustomContainerTrip> {
   bool isFavorite = false;
+  Trips? trip;
 
   @override
   void initState() {
     super.initState();
     isFavorite = widget.isFavorite ?? false;
+    trip = widget.trip;
   }
 
   @override
@@ -59,8 +62,12 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
     return InkWell(
       onTap: widget.isTrip
           ? () {
-              context.push(AppRoutesString.travelDetailsScreen, extra: widget.trip).then(
+              context.push(AppRoutesString.travelDetailsScreen, extra: trip).then(
                 (value) {
+                  trip = trip!.copyWith(
+                    isFavourite: value as bool,
+                  );
+                  isFavorite = value;
                   context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
                 },
               );
@@ -92,7 +99,9 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                 child: Row(
                   children: [
                     Text(
-                      "\$${widget.oldTripPrice.toString()}",
+                      context.read<MainCubit>().currentCurrency == Currency.usd ?
+                      "\$${widget.oldTripPrice.toString()}" :
+                      (context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.oldTripPrice??"") ?? 0).toStringAsFixed(1),
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     Container(
@@ -124,7 +133,6 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                       context.push(AppRoutesString.loginScreen);
                       return;
                     }
-                    context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
                     if (widget.onTapFavoriteIcon != null) {
                       widget.onTapFavoriteIcon?.call();
                       return;
@@ -132,6 +140,10 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                     setState(() {
                       isFavorite = !isFavorite;
                     });
+                    trip = trip!.copyWith(
+                      isFavourite: isFavorite,
+                    );
+                    context.read<MainCubit>().addToFavourite(tripId: trip!.id ?? 0);
                   },
                   size: 35.0.w,
                 ),
@@ -181,7 +193,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
               ),
             ),
             if ((widget.tripPrice != null || widget.reservationType != null) &&
-                (widget.tripPrice!.isNotEmpty && widget.reservationType!.isNotEmpty))
+                (widget.tripPrice!.toString().isNotEmpty && widget.reservationType!.isNotEmpty))
               Positioned(
                 bottom: MediaQuery.sizeOf(context).height * 0.1,
                 right: MediaQuery.sizeOf(context).width * 0.02,
@@ -189,7 +201,8 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "\$${widget.tripPrice}",
+                      context.read<MainCubit>().currentCurrency == Currency.usd ?
+                      "\$${widget.tripPrice}": (context.read<MainCubit>().currentCurrencyPrice! *widget.tripPrice!.toInt()).toStringAsFixed(1),
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     SizedBox(

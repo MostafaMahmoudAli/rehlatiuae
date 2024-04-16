@@ -47,8 +47,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                 context: context,
                 builder: (context) => CustomDialog(
                   title: message,
-                  subtitle: 'Sorry',
-                  labelText: 'Close',
+                  subtitle: LocaleKeys.Sorry.tr(),
+                  labelText: LocaleKeys.Close.tr(),
                   color: AppColors.redAppColor,
                 ),
               );
@@ -96,9 +96,6 @@ class PaymentDetailsScreen extends StatelessWidget {
           var cubit = context.read<TripCheckoutDetailsCubit>();
           return state.maybeWhen(
             checkedTripLoading: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            stripeLoading: () => const Center(
               child: CircularProgressIndicator(),
             ),
             orElse: () => Stack(

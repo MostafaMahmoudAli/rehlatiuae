@@ -31,6 +31,7 @@ class BestOffersHorizontal extends StatelessWidget {
                 width: 70.0.w,
                 offer: bestOffers[index],
                 review: bestOffers[index].reviewAverage ?? 0.0,
+                isFavorite: bestOffers[index].isFavourite,
               );
             },
             itemCount: 5,

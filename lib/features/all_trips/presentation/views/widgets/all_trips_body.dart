@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+
 import '../../../../../core/utils/error_widget.dart';
 import '../../blocs/all_trips_bloc.dart';
 
@@ -32,8 +34,10 @@ class _AllTripsBodyState extends State<AllTripsBody> {
   void _onScroll() {
     final maxScroll = widget.allTripsScrollController?.position.minScrollExtent;
     final currentScroll = widget.allTripsScrollController?.offset;
-    if (currentScroll! >= (maxScroll! * 0.6)) {
-      BlocProvider.of<AllTripsBloc>(context).add(GetAllTripsEvent());
+    if (currentScroll! >= (maxScroll! * 0.5)) {
+      BlocProvider.of<AllTripsBloc>(context).add(GetAllTripsEvent(
+        clientId: context.read<MainCubit>().client?.id,
+      ));
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
@@ -63,9 +67,10 @@ class _AllTripsBodyState extends State<AllTripsBody> {
                   cityName: state.trips[index].name,
                   countryName: state.trips[index].address,
                   imageName: state.trips[index].imagePath ?? "",
-                  tripPrice: state.trips[index].adultPrice.toString(),
+                  tripPrice: state.trips[index].adultPrice,
                   reservationType: "/person",
                   oldTripPrice: state.trips[index].beforePrice,
+                  isFavorite: state.trips[index].isFavourite,
                   percentageSave: state.trips[index].saving,
                 ),
                 itemCount: state.trips.length,

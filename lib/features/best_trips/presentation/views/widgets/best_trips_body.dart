@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/custom_container_trip.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+
 import '../../../../../core/utils/error_widget.dart';
 import '../../../../best_trips/presentation/blocs/best_trips_bloc.dart';
 
@@ -33,7 +35,11 @@ class _AllTripsBodyState extends State<BestTripsBody> {
     final maxScroll = widget.bestTripsScrollController?.position.minScrollExtent;
     final currentScroll = widget.bestTripsScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.4)) {
-      BlocProvider.of<BestTripsBloc>(context).add(GetBestTripsEvent());
+      BlocProvider.of<BestTripsBloc>(context).add(
+        GetBestTripsEvent(
+          clientId: context.read<MainCubit>().client?.id,
+        ),
+      );
       // context.read<PostsBloc>().add(GetPostsEvent());
     }
   }
@@ -49,11 +55,11 @@ class _AllTripsBodyState extends State<BestTripsBody> {
             return const Center(child: CircularProgressIndicator());
           case BestTripsStatus.success:
             return Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio:MediaQuery.sizeOf(context).aspectRatio/0.55,
+                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.55,
                   crossAxisSpacing: 10.0.w,
                   mainAxisSpacing: 1.0.w,
                 ),
@@ -63,7 +69,8 @@ class _AllTripsBodyState extends State<BestTripsBody> {
                   cityName: state.bestTrips[index].name,
                   countryName: state.bestTrips[index].address,
                   imageName: state.bestTrips[index].imagePath ?? "",
-                  tripPrice: state.bestTrips[index].adultPrice.toString(),
+                  tripPrice: state.bestTrips[index].adultPrice,
+                  isFavorite: state.bestTrips[index].isFavourite,
                   reservationType: "/person",
                 ),
                 itemCount: state.bestTrips.length,

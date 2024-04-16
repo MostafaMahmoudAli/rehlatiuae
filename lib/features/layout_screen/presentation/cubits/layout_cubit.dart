@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../data/models/layout_model.dart';
 import '../../domain/repositories/layout_repo.dart';
 
@@ -11,9 +12,9 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   LayoutCubit({required this.layoutRepository}) : super(const LayoutState.initial());
 
-  Future<void> fetchLayoutData() async {
+  Future<void> fetchLayoutData({int? clientId}) async {
     _update(const LayoutState.loading());
-    final results = await layoutRepository.fetchLayoutData();
+    final results = await layoutRepository.fetchLayoutData(clientId: clientId);
 
     results.fold(
       (errorMessage) => _update(LayoutState.error(errorMessage)),
@@ -25,6 +26,5 @@ class LayoutCubit extends Cubit<LayoutState> {
     if (!isClosed) {
       emit(state);
     }
-}
-
+  }
 }

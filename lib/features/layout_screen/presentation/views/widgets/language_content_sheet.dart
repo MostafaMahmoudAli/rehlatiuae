@@ -15,7 +15,7 @@ class LanguageContentSheet extends StatelessWidget {
     return Column(
       children: [
         RowDetails(
-          title: LocaleKeys.Arabic,
+          title: LocaleKeys.Arabic.tr(),
           value: 'AR',
           onTap: () async {
             await context.setLocale(const Locale('ar'));
@@ -26,8 +26,8 @@ class LanguageContentSheet extends StatelessWidget {
           },
         ),
         RowDetails(
-          title: LocaleKeys.United_States,
-          value: 'en',
+          title: LocaleKeys.English.tr(),
+          value: 'EN',
           onTap: () async {
             await context.setLocale(const Locale('en'));
             await getIt<CacheService>().setData(
@@ -37,7 +37,7 @@ class LanguageContentSheet extends StatelessWidget {
           },
         ),
         RowDetails(
-          title: LocaleKeys.URDU,
+          title: LocaleKeys.URDU.tr(),
           value: 'UR',
           onTap: () async {
             await context.setLocale(const Locale('ur'));

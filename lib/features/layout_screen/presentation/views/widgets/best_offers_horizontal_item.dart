@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:currency_converter/currency.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,18 +33,25 @@ class BestOffersHorizontalItem extends StatefulWidget {
 
 class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
   bool isFavorite = false;
+  Trips? trip;
 
   @override
   void initState() {
     super.initState();
     isFavorite = widget.isFavorite ?? false;
+    trip = widget.offer;
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppRoutesString.travelDetailsScreen, extra: widget.offer).then((value) {
+        print('isFavourite: ${trip?.isFavourite}');
+        context.push(AppRoutesString.travelDetailsScreen, extra: trip).then((value) {
+          trip = trip!.copyWith(
+            isFavourite: value as bool,
+          );
+          isFavorite = value;
           context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
         });
       },
@@ -98,6 +106,10 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                         setState(() {
                           isFavorite = !isFavorite;
                         });
+                        trip = trip!.copyWith(
+                          isFavourite: isFavorite,
+                        );
+                        print('isFavourite: ${trip?.isFavourite}');
                         await context.read<MainCubit>().addToFavourite(tripId: widget.offer!.id ?? 0);
                       },
                       width: 22.0.w,
@@ -160,7 +172,9 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                   Row(
                     children: [
                       Text(
-                        "\$${widget.offer?.adultPrice.toString() ?? ""}",
+                        context.read<MainCubit>().currentCurrency == Currency.usd ?
+                        "\$${widget.offer?.adultPrice ?? ""}" :
+                        (context.read<MainCubit>().currentCurrencyPrice! *widget.offer!.adultPrice!.toInt()).toStringAsFixed(1),
                         style: Theme.of(context).textTheme.displaySmall,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -192,7 +206,9 @@ class _BestOffersHorizontalItemState extends State<BestOffersHorizontalItem> {
                     Row(
                       children: [
                         Text(
-                          "\$${widget.offer?.beforePrice}",
+                          context.read<MainCubit>().currentCurrency == Currency.usd ?
+                          "\$${widget.offer?.beforePrice}" :
+                          (context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.offer?.beforePrice??"")).toStringAsFixed(1),
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         Container(

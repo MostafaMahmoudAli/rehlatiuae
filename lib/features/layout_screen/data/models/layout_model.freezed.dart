@@ -24,9 +24,14 @@ mixin _$LayOutModel {
       throw _privateConstructorUsedError;
   List<Categories>? get categories => throw _privateConstructorUsedError;
   List<Trips>? get bestOffers => throw _privateConstructorUsedError;
+  set bestOffers(List<Trips>? value) => throw _privateConstructorUsedError;
   List<Trips>? get bestTrips => throw _privateConstructorUsedError;
+  set bestTrips(List<Trips>? value) => throw _privateConstructorUsedError;
   @JsonKey(name: "popularExperiencetrips")
   List<Trips>? get popularExperience => throw _privateConstructorUsedError;
+  @JsonKey(name: "popularExperiencetrips")
+  set popularExperience(List<Trips>? value) =>
+      throw _privateConstructorUsedError;
   List<Blogs>? get blogs => throw _privateConstructorUsedError;
   List<OurPartners>? get ourPartners => throw _privateConstructorUsedError;
   List<Review>? get reviews => throw _privateConstructorUsedError;
@@ -154,35 +159,35 @@ class __$$LayOutModelImplCopyWithImpl<$Res>
   }) {
     return _then(_$LayOutModelImpl(
       topDestinations: freezed == topDestinations
-          ? _value._topDestinations
+          ? _value.topDestinations
           : topDestinations // ignore: cast_nullable_to_non_nullable
               as List<AllDestinations>?,
       categories: freezed == categories
-          ? _value._categories
+          ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<Categories>?,
       bestOffers: freezed == bestOffers
-          ? _value._bestOffers
+          ? _value.bestOffers
           : bestOffers // ignore: cast_nullable_to_non_nullable
               as List<Trips>?,
       bestTrips: freezed == bestTrips
-          ? _value._bestTrips
+          ? _value.bestTrips
           : bestTrips // ignore: cast_nullable_to_non_nullable
               as List<Trips>?,
       popularExperience: freezed == popularExperience
-          ? _value._popularExperience
+          ? _value.popularExperience
           : popularExperience // ignore: cast_nullable_to_non_nullable
               as List<Trips>?,
       blogs: freezed == blogs
-          ? _value._blogs
+          ? _value.blogs
           : blogs // ignore: cast_nullable_to_non_nullable
               as List<Blogs>?,
       ourPartners: freezed == ourPartners
-          ? _value._ourPartners
+          ? _value.ourPartners
           : ourPartners // ignore: cast_nullable_to_non_nullable
               as List<OurPartners>?,
       reviews: freezed == reviews
-          ? _value._reviews
+          ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
               as List<Review>?,
     ));
@@ -192,148 +197,41 @@ class __$$LayOutModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LayOutModelImpl implements _LayOutModel {
-  const _$LayOutModelImpl(
-      {required final List<AllDestinations>? topDestinations,
-      required final List<Categories>? categories,
-      required final List<Trips>? bestOffers,
-      required final List<Trips>? bestTrips,
-      @JsonKey(name: "popularExperiencetrips")
-      required final List<Trips>? popularExperience,
-      required final List<Blogs>? blogs,
-      required final List<OurPartners>? ourPartners,
-      required final List<Review>? reviews})
-      : _topDestinations = topDestinations,
-        _categories = categories,
-        _bestOffers = bestOffers,
-        _bestTrips = bestTrips,
-        _popularExperience = popularExperience,
-        _blogs = blogs,
-        _ourPartners = ourPartners,
-        _reviews = reviews;
+  _$LayOutModelImpl(
+      {required this.topDestinations,
+      required this.categories,
+      required this.bestOffers,
+      required this.bestTrips,
+      @JsonKey(name: "popularExperiencetrips") required this.popularExperience,
+      required this.blogs,
+      required this.ourPartners,
+      required this.reviews});
 
   factory _$LayOutModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LayOutModelImplFromJson(json);
 
-  final List<AllDestinations>? _topDestinations;
   @override
-  List<AllDestinations>? get topDestinations {
-    final value = _topDestinations;
-    if (value == null) return null;
-    if (_topDestinations is EqualUnmodifiableListView) return _topDestinations;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Categories>? _categories;
+  final List<AllDestinations>? topDestinations;
   @override
-  List<Categories>? get categories {
-    final value = _categories;
-    if (value == null) return null;
-    if (_categories is EqualUnmodifiableListView) return _categories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Trips>? _bestOffers;
+  final List<Categories>? categories;
   @override
-  List<Trips>? get bestOffers {
-    final value = _bestOffers;
-    if (value == null) return null;
-    if (_bestOffers is EqualUnmodifiableListView) return _bestOffers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Trips>? _bestTrips;
+  List<Trips>? bestOffers;
   @override
-  List<Trips>? get bestTrips {
-    final value = _bestTrips;
-    if (value == null) return null;
-    if (_bestTrips is EqualUnmodifiableListView) return _bestTrips;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Trips>? _popularExperience;
+  List<Trips>? bestTrips;
   @override
   @JsonKey(name: "popularExperiencetrips")
-  List<Trips>? get popularExperience {
-    final value = _popularExperience;
-    if (value == null) return null;
-    if (_popularExperience is EqualUnmodifiableListView)
-      return _popularExperience;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Blogs>? _blogs;
+  List<Trips>? popularExperience;
   @override
-  List<Blogs>? get blogs {
-    final value = _blogs;
-    if (value == null) return null;
-    if (_blogs is EqualUnmodifiableListView) return _blogs;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<OurPartners>? _ourPartners;
+  final List<Blogs>? blogs;
   @override
-  List<OurPartners>? get ourPartners {
-    final value = _ourPartners;
-    if (value == null) return null;
-    if (_ourPartners is EqualUnmodifiableListView) return _ourPartners;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Review>? _reviews;
+  final List<OurPartners>? ourPartners;
   @override
-  List<Review>? get reviews {
-    final value = _reviews;
-    if (value == null) return null;
-    if (_reviews is EqualUnmodifiableListView) return _reviews;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final List<Review>? reviews;
 
   @override
   String toString() {
     return 'LayOutModel(topDestinations: $topDestinations, categories: $categories, bestOffers: $bestOffers, bestTrips: $bestTrips, popularExperience: $popularExperience, blogs: $blogs, ourPartners: $ourPartners, reviews: $reviews)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LayOutModelImpl &&
-            const DeepCollectionEquality()
-                .equals(other._topDestinations, _topDestinations) &&
-            const DeepCollectionEquality()
-                .equals(other._categories, _categories) &&
-            const DeepCollectionEquality()
-                .equals(other._bestOffers, _bestOffers) &&
-            const DeepCollectionEquality()
-                .equals(other._bestTrips, _bestTrips) &&
-            const DeepCollectionEquality()
-                .equals(other._popularExperience, _popularExperience) &&
-            const DeepCollectionEquality().equals(other._blogs, _blogs) &&
-            const DeepCollectionEquality()
-                .equals(other._ourPartners, _ourPartners) &&
-            const DeepCollectionEquality().equals(other._reviews, _reviews));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_topDestinations),
-      const DeepCollectionEquality().hash(_categories),
-      const DeepCollectionEquality().hash(_bestOffers),
-      const DeepCollectionEquality().hash(_bestTrips),
-      const DeepCollectionEquality().hash(_popularExperience),
-      const DeepCollectionEquality().hash(_blogs),
-      const DeepCollectionEquality().hash(_ourPartners),
-      const DeepCollectionEquality().hash(_reviews));
 
   @JsonKey(ignore: true)
   @override
@@ -350,13 +248,13 @@ class _$LayOutModelImpl implements _LayOutModel {
 }
 
 abstract class _LayOutModel implements LayOutModel {
-  const factory _LayOutModel(
+  factory _LayOutModel(
       {required final List<AllDestinations>? topDestinations,
       required final List<Categories>? categories,
-      required final List<Trips>? bestOffers,
-      required final List<Trips>? bestTrips,
+      required List<Trips>? bestOffers,
+      required List<Trips>? bestTrips,
       @JsonKey(name: "popularExperiencetrips")
-      required final List<Trips>? popularExperience,
+      required List<Trips>? popularExperience,
       required final List<Blogs>? blogs,
       required final List<OurPartners>? ourPartners,
       required final List<Review>? reviews}) = _$LayOutModelImpl;
@@ -370,11 +268,15 @@ abstract class _LayOutModel implements LayOutModel {
   List<Categories>? get categories;
   @override
   List<Trips>? get bestOffers;
+  set bestOffers(List<Trips>? value);
   @override
   List<Trips>? get bestTrips;
+  set bestTrips(List<Trips>? value);
   @override
   @JsonKey(name: "popularExperiencetrips")
   List<Trips>? get popularExperience;
+  @JsonKey(name: "popularExperiencetrips")
+  set popularExperience(List<Trips>? value);
   @override
   List<Blogs>? get blogs;
   @override

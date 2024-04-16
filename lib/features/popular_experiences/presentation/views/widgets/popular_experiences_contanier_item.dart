@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:currency_converter/currency.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,19 +35,25 @@ class PopularExperiencesContainerItem extends StatefulWidget {
 
 class _PopularExperiencesContainerItemState extends State<PopularExperiencesContainerItem> {
   bool isFavorite = false;
+  Trips? trip;
 
   @override
   void initState() {
     super.initState();
     isFavorite = widget.isFavorite ?? false;
+    trip = widget.trip;
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppRoutesString.travelDetailsScreen, extra: widget.trip).then(
+        context.push(AppRoutesString.travelDetailsScreen, extra: trip).then(
           (value) {
+            trip = trip!.copyWith(
+              isFavourite: value as bool,
+            );
+            isFavorite = value;
             context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
           },
         );
@@ -71,14 +78,16 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
               ),
             ),
             if ((widget.oldTripPrice != null || widget.percentageSave != null) &&
-                (widget.percentageSave!.isNotEmpty || widget.oldTripPrice!.isNotEmpty))
+                (widget.percentageSave!.isNotEmpty))
               Positioned(
                 top: 16,
                 left: 6,
                 child: Row(
                   children: [
                     Text(
-                      "\$${widget.oldTripPrice}",
+                      context.read<MainCubit>().currentCurrency == Currency.usd ?
+                      "\$${widget.oldTripPrice}" :
+                      (context.read<MainCubit>().currentCurrencyPrice! *int.parse(widget.oldTripPrice??"")).toStringAsFixed(1),
                       style: Theme.of(context).textTheme.headlineMedium!,
                     ),
                     Container(
@@ -113,6 +122,10 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                   setState(() {
                     isFavorite = !isFavorite;
                   });
+                  trip = trip!.copyWith(
+                    isFavourite: isFavorite,
+                  );
+                  print('isFavourite: ${trip?.isFavourite}');
                   await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
                 },
                 width: 30.0.w,
@@ -175,7 +188,9 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    widget.trip?.adultPrice.toString() ?? "",
+                    context.read<MainCubit>().currentCurrency == Currency.usd ?
+                    "\$${widget.trip?.adultPrice}" :
+                    (context.read<MainCubit>().currentCurrencyPrice! *widget.trip!.adultPrice!.toInt() ).toStringAsFixed(1),
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(

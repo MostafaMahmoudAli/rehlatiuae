@@ -19,7 +19,7 @@ class BestTripsSection extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding:EdgeInsetsDirectional.only(
+          padding: EdgeInsetsDirectional.only(
             start: 10.0.w,
             end: 10.0.w,
             bottom: 10.0.h,
@@ -34,7 +34,7 @@ class BestTripsSection extends StatelessWidget {
         SizedBox(
           height: 200.0.h,
           child: ListView.separated(
-              padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
+              padding: EdgeInsetsDirectional.symmetric(horizontal: 15.0.w),
               scrollDirection: Axis.horizontal,
               itemCount: bestTrips!.length,
               physics: const BouncingScrollPhysics(),
@@ -45,9 +45,10 @@ class BestTripsSection extends StatelessWidget {
                   cityName: bestTrips?[index].name ?? "",
                   countryName: bestTrips?[index].address ?? "",
                   imageName: bestTrips?[index].imagePath ?? "",
-                  tripPrice: bestTrips?[index].adultPrice.toString() ?? "",
+                  tripPrice: bestTrips?[index].adultPrice,
                   reservationType: "/person",
-                  oldTripPrice: bestTrips?[index].beforePrice.toString() ?? "",
+                  isFavorite: bestTrips?[index].isFavourite,
+                  oldTripPrice: bestTrips?[index].beforePrice,
                   percentageSave: bestTrips?[index].saving ?? "",
                 );
               },

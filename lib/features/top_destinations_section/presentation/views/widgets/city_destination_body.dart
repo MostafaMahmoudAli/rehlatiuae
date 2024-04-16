@@ -12,13 +12,13 @@ class CityDestinationBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 11.0.w),
+      padding: EdgeInsets.symmetric(horizontal: 11.0.w),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10.0.w,
           mainAxisSpacing: 15.0.w,
-          childAspectRatio:MediaQuery.sizeOf(context).aspectRatio/0.55,
+          childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.55,
         ),
         itemBuilder: (context, index) => CustomContainerTrip(
           width: 200.0.w,
@@ -26,8 +26,11 @@ class CityDestinationBody extends StatelessWidget {
           cityName: cityDestination?.trips?[index].name ?? "",
           countryName: cityDestination?.trips?[index].description ?? "",
           imageName: cityDestination?.trips?[index].imagePath ?? "",
-          tripPrice: cityDestination?.trips?[index].adultPrice.toString() ?? "",
+          tripPrice: cityDestination?.trips?[index].adultPrice,
+          isFavorite: cityDestination?.trips?[index].isFavourite,
           reservationType: "/person",
+          oldTripPrice:cityDestination?.trips?[index].beforePrice ,
+          percentageSave:cityDestination?.trips?[index].saving,
         ),
         itemCount: cityDestination?.trips?.length ?? 0,
         shrinkWrap: true,

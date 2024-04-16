@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_contanier_item.dart';
 
 import '../../../../../core/utils/error_widget.dart';
@@ -34,8 +35,11 @@ class _PopularExperiencesBodyState extends State<PopularExperiencesBody> {
     final maxScroll = widget.popularExperiencesScrollController?.position.maxScrollExtent;
     final currentScroll = widget.popularExperiencesScrollController?.offset;
     if (currentScroll! >= (maxScroll! * 0.7)) {
-      BlocProvider.of<PopularExperiencesBloc>(context).add(GetPopularExperiencesEvent());
-      // context.read<PostsBloc>().add(GetPostsEvent());
+      BlocProvider.of<PopularExperiencesBloc>(context).add(
+        GetPopularExperiencesEvent(
+          clientId: context.read<MainCubit>().client?.id,
+        ),
+      );
     }
   }
 
@@ -63,6 +67,7 @@ class _PopularExperiencesBodyState extends State<PopularExperiencesBody> {
                   trip: state.popularExperiences[index],
                   oldTripPrice: state.popularExperiences[index].beforePrice ?? "",
                   percentageSave: state.popularExperiences[index].saving ?? "",
+                  isFavorite: state.popularExperiences[index].isFavourite,
                 ),
                 itemCount: state.popularExperiences.length,
                 shrinkWrap: true,

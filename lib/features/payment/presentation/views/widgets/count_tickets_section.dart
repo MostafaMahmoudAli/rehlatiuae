@@ -24,7 +24,8 @@ class CountTicketsSection extends StatefulWidget {
 
 class _CountTicketsSectionState extends State<CountTicketsSection> {
   String selectedCard = '';
-  int adultCount = 1, childCount = 0;
+  int adultCount = 1,
+      childCount = 0;
   double subtotalAdult = 0, subtotalChild = 0;
 
   @override
@@ -95,7 +96,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Total Amount",
+                LocaleKeys.Total_Amount.tr(),
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Text(

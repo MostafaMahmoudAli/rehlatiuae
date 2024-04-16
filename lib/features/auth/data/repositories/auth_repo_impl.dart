@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/auth/data/models/authenticated_client_model/authenticated_client_model.dart';
 import 'package:rehlatyuae/features/auth/domain/repositories/auth_repo.dart';
 
@@ -63,9 +65,16 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<String, Unit>> logout() async {
     try {
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       await apiConsumer.post(
         EndPoints.logoutEndPoint,
-        data: {},
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
       _clearClient();
       return const Right(unit);
@@ -101,10 +110,6 @@ class AuthRepoImpl implements AuthRepo {
         },
       );
       String updatePasswordToken = response['data']['token'];
-      await cacheService.setData(
-        key: AppStrings.alternativeToken,
-        value: updatePasswordToken,
-      );
       return Right(updatePasswordToken);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
@@ -124,13 +129,14 @@ class AuthRepoImpl implements AuthRepo {
           'password': password,
           'password_confirmation': passwordConfirmation,
         },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
       var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
       await _cacheClient(authenticatedClient: authenticatedClient);
-      await cacheService.setData(
-        key: AppStrings.alternativeToken,
-        value: null,
-      );
       return Right(authenticatedClient);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
@@ -141,10 +147,6 @@ class AuthRepoImpl implements AuthRepo {
     await cacheService.setData(
       key: AppStrings.accessToken,
       value: authenticatedClient.accessToken,
-    );
-    await cacheService.setData(
-      key: AppStrings.expiresIn,
-      value: authenticatedClient.expiresIn,
     );
     await cacheService.setData(
       key: AppStrings.client,
@@ -159,7 +161,6 @@ class AuthRepoImpl implements AuthRepo {
   Future<void> _clearClient() async {
     await cacheService.setData(key: AppStrings.accessToken, value: null);
     await cacheService.setData(key: AppStrings.expiresIn, value: null);
-    await cacheService.setData(key: AppStrings.client, value: null);
     await cacheService.setData(
       key: AppRoutesString.initialLocationRoute,
       value: AppRoutesString.homeScreen,

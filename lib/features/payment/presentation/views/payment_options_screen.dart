@@ -47,7 +47,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            "Trip Ticket",
+                            LocaleKeys.Trip_Ticket.tr(),
                             style: Theme.of(context).textTheme.labelMedium,
                           ),
                         ],
@@ -93,7 +93,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        "Offers Tickets",
+                        LocaleKeys.Offers_Tickets.tr(),
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ],
@@ -176,7 +176,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                                     onPressed: () async {
                                       await cubitCoupon.checkCoupon();
                                     },
-                                    text: 'Apply',
+                                    text: LocaleKeys.Apply.tr(),
                                   ),
                                 ),
                               ],
@@ -211,7 +211,7 @@ class PaymentOptionsScreen extends StatelessWidget {
                 controller: cubit.descriptionEditingController,
               ),
               TotalPaymentSection(
-                buttonLabel: 'Next',
+                buttonLabel: LocaleKeys.Next.tr(),
                 onButtonTap: () {
                   cubit.addDatesAndDescription(context);
                 },

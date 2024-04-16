@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:currency_converter/currency.dart';
 import 'package:currency_converter/currency_converter.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
 import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/layout_screen/data/models/social_media/social_media_model.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
@@ -38,11 +40,19 @@ class MainRepoImpl implements MainRepo {
   @override
   Future<Either<String, Unit>> addToFavourite({required int tripId}) async {
     try {
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
       await apiConsumer.post(
         EndPoints.favoriteTrip,
         data: {
           'trip_id': tripId,
         },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
       return const Right(unit);
     } on ServerExceptions catch (error) {
@@ -127,7 +137,9 @@ class MainRepoImpl implements MainRepo {
   }
 
   @override
-  Future<Either<String, Unit?>> postNotificationToken({required String token,})async {
+  Future<Either<String, Unit?>> postNotificationToken({
+    required String token,
+  }) async {
     try {
       await apiConsumer.post(
         EndPoints.notificationTokenEndPoint,
