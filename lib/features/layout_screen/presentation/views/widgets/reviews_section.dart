@@ -34,7 +34,7 @@ class ReviewsSection extends StatelessWidget {
         SizedBox(
           height: 350.0.h,
           child: ListView.separated(
-            padding: EdgeInsetsDirectional.symmetric(horizontal:15.0.w),
+            padding: EdgeInsetsDirectional.symmetric(horizontal: 15.0.w),
             itemCount: reviews?.length ?? 0,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -57,8 +57,7 @@ class ReviewsSection extends StatelessWidget {
                       SizedBox(
                         width: 210.0.w,
                         child: Text(
-                          // reviews?[index].description ??
-                          AppStrings.weHelpYouMakeBestTripDescription,
+                          reviews?[index].description ?? AppStrings.weHelpYouMakeBestTripDescription,
                           style: Theme.of(context).textTheme.bodyLarge,
                           maxLines: 10,
                           overflow: TextOverflow.ellipsis,
@@ -71,12 +70,16 @@ class ReviewsSection extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SizedBox(width: 12.0.w,),
+                      SizedBox(
+                        width: 12.0.w,
+                      ),
                       Text(
                         reviews?[index].name ?? "",
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                      SizedBox(width: MediaQuery.sizeOf(context).width*0.4,),
+                      SizedBox(
+                        width: MediaQuery.sizeOf(context).width * 0.4,
+                      ),
                       if (reviews?[index].starsNumber != null)
                         Row(
                           children: [
@@ -92,7 +95,6 @@ class ReviewsSection extends StatelessWidget {
                         ),
                     ],
                   ),
-
                 ],
               );
             },
@@ -130,6 +132,7 @@ class SubscriptionSection extends StatelessWidget {
   const SubscriptionSection({
     super.key,
   });
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -159,47 +162,34 @@ class SubscriptionSection extends StatelessWidget {
               ),
             ),
             orElse: () => Form(
-              key:
-                  context.read<SubscriptionSectionCubit>().subscribeFormKey,
+              key: context.read<SubscriptionSectionCubit>().subscribeFormKey,
               child: Column(
                 children: [
-                  PrimaryTextField(controller: context
-                      .read<SubscriptionSectionCubit>()
-                      .subscribeNameEditingController,
+                  PrimaryTextField(
+                    controller: context.read<SubscriptionSectionCubit>().subscribeNameEditingController,
                     hint: LocaleKeys.Name.tr(),
                     inputType: TextInputType.name,
-                    validator:(value) =>
-                        AppValidator.validateName(value),
-
+                    validator: (value) => AppValidator.validateName(value),
                   ),
-                  PrimaryTextField(controller: context
-                      .read<SubscriptionSectionCubit>()
-                      .subscribeMailEditingController,
+                  PrimaryTextField(
+                    controller: context.read<SubscriptionSectionCubit>().subscribeMailEditingController,
                     hint: LocaleKeys.Email.tr(),
                     inputType: TextInputType.emailAddress,
-                    validator:(value) =>
-                        AppValidator.validateEmail(value),
-
+                    validator: (value) => AppValidator.validateEmail(value),
                   ),
                   SizedBox(
                     height: 15.0.h,
                   ),
                   Padding(
-                    padding:  EdgeInsetsDirectional.symmetric(horizontal: 20.0.w),
+                    padding: EdgeInsetsDirectional.symmetric(horizontal: 20.0.w),
                     child: CustomActionButton(
                       text: LocaleKeys.Send_Now.tr(),
                       borderRadius: BorderRadius.circular(8.0.r),
                       backGroundColor: AppColors.textAndBackgroundColorButton,
                       onTap: () async {
-                        await context
-                            .read<SubscriptionSectionCubit>()
-                            .sendSubscribe();
-                        getIt<SubscriptionSectionCubit>()
-                            .subscribeMailEditingController
-                            .clear();
-                        getIt<SubscriptionSectionCubit>()
-                            .subscribeNameEditingController
-                            .clear();
+                        await context.read<SubscriptionSectionCubit>().sendSubscribe();
+                        getIt<SubscriptionSectionCubit>().subscribeMailEditingController.clear();
+                        getIt<SubscriptionSectionCubit>().subscribeNameEditingController.clear();
                       },
                       width: double.infinity,
                       height: 40.0.h,

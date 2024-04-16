@@ -70,6 +70,17 @@ class MainCubit extends Cubit<MainState> {
     );
   }
 
+  Future<double?> getPriceCurrency({required Currency targetCurrency}) async {
+    final results = await mainRepo.convertCurrency(
+      targetCurrency: targetCurrency,
+      totalAmount: 1,
+    );
+    return results.fold(
+      (errorMessage) => null,
+      (total) => total,
+    );
+  }
+
   void changeCurrentTab(int index) {
     _update(const MainState.loading());
     if (index == 3) {

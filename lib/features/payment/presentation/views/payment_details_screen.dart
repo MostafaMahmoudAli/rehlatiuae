@@ -98,9 +98,6 @@ class PaymentDetailsScreen extends StatelessWidget {
             checkedTripLoading: () => const Center(
               child: CircularProgressIndicator(),
             ),
-            stripeLoading: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
             orElse: () => Stack(
               children: [
                 ListView(
