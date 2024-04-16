@@ -93,7 +93,6 @@ abstract class  LocaleKeys {
   static const Select_Language = 'Select_Language';
   static const Notifications = 'Notifications';
   static const Arabic = 'Arabic';
-  static const United_States = 'United_States';
   static const URDU = 'URDU';
   static const Help = 'Help';
   static const My_booking = 'My_booking';
@@ -181,5 +180,23 @@ abstract class  LocaleKeys {
   static const selected = 'selected';
   static const View_Details = 'View_Details';
   static const chatting = 'chatting';
+  static const Start_planning_your_events = 'Start_planning_your_events';
+  static const Distinctive_and_exciting_activities = 'Distinctive_and_exciting_activities';
+  static const are_you_ready = 'are_you_ready';
+  static const Create_excitement = 'Create_excitement';
+  static const United_Arab_Emirates_Dirham = 'United_Arab_Emirates_Dirham';
+  static const United_States_dollar = 'United_States_dollar';
+  static const Saudi_riyal = 'Saudi_riyal';
+  static const Euro = 'Euro';
+  static const Status = 'Status';
+  static const unPaid = 'unPaid';
+  static const View = 'View';
+  static const paid = 'paid';
+  static const Apply = 'Apply';
+  static const Next = 'Next';
+  static const Trip_Ticket = 'Trip_Ticket';
+  static const Offers_Tickets = 'Offers_Tickets';
+  static const You_must_select_trip_or_offer_at_latest = 'You_must_select_trip_or_offer_at_latest';
+  static const Log_out = 'Log_out';
 
 }
