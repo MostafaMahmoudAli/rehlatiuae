@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_item.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
@@ -59,7 +61,10 @@ class BestOffersSection extends StatelessWidget {
               itemCount: bestOffers.length,
             ),
             WhatsUpButton(
-              onTap: () {},
+              onTap: ()
+              {
+                context.read<MainCubit>().getSocialMedia();
+              },
               bottom: MediaQuery.sizeOf(context).height * 0.175,
               right: 0,
             ),

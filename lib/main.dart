@@ -10,7 +10,6 @@ import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/generated/codegen_loader.g.dart';
 import 'package:stripe_sdk/stripe_sdk.dart' as stripe_sdk;
-
 import 'core/utils/bloc_observer.dart';
 import 'core/utils/injector.dart';
 import 'features/firebase_notifications/firebase_notification.dart';
@@ -41,11 +40,18 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  final designSize = const Size(300, 800);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return ScreenUtilInit(
-      designSize: const Size(300, 800),
+      designSize: designSize,
+      fontSizeResolver: (fontSize, instance) {
+        final display = View.of(context).display;
+        final screenSize = display.size / display.devicePixelRatio;
+        final scaleWidth = screenSize.width / designSize.width;
+        return fontSize * scaleWidth;
+      },
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {

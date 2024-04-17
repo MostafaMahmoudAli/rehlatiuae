@@ -68,7 +68,7 @@ class FavouritesScreen extends StatelessWidget {
                   cityName: trips[index].name,
                   countryName: trips[index].address,
                   imageName: trips[index].imagePath,
-                  tripPrice: trips[index].adultPrice.toString(),
+                  tripPrice: trips[index].adultPrice,
                   reservationType: "/person",
                   isFavorite: true,
                   onTapFavoriteIcon: () {

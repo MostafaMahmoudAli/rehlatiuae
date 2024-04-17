@@ -24,7 +24,8 @@ class CountTicketsSection extends StatefulWidget {
 
 class _CountTicketsSectionState extends State<CountTicketsSection> {
   String selectedCard = '';
-  int adultCount = 1, childCount = 0;
+  int adultCount = 1,
+      childCount = 0;
   double subtotalAdult = 0, subtotalChild = 0;
 
   @override

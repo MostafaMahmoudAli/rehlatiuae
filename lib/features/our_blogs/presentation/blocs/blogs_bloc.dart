@@ -23,13 +23,13 @@ class BlogsBloc extends Bloc<BlogsEvent, BlogsState> {
               clientId: event.clientId,
             );
             results.fold(
-              (errorMessage) => emit(
+              (errorMessage) => _update(
                 state.copyWith(
                   status: BlogsStatus.error,
                   errMessage: errorMessage,
                 ),
               ),
-              (blogs) => emit(
+              (blogs) => _update(
                 state.copyWith(
                   status: BlogsStatus.success,
                   blogs: blogs,
@@ -43,7 +43,7 @@ class BlogsBloc extends Bloc<BlogsEvent, BlogsState> {
               clientId: event.clientId,
             );
             results.fold(
-              (errorMessage) => emit(
+              (errorMessage) => _update(
                 state.copyWith(
                   status: BlogsStatus.error,
                   errMessage: errorMessage,
@@ -51,8 +51,8 @@ class BlogsBloc extends Bloc<BlogsEvent, BlogsState> {
               ),
               (blogs) {
                 blogs.isEmpty
-                    ? emit(state.copyWith(hasReachedMax: true))
-                    : emit(
+                    ? _update(state.copyWith(hasReachedMax: true))
+                    : _update(
                         state.copyWith(
                           status: BlogsStatus.success,
                           blogs: List.of(state.blogs)..addAll(blogs),
@@ -66,5 +66,11 @@ class BlogsBloc extends Bloc<BlogsEvent, BlogsState> {
       },
       transformer: droppable(),
     );
+  }
+
+  void _update(BlogsState state) {
+    if (!isClosed) {
+      emit(state);
+    }
   }
 }

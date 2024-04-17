@@ -73,16 +73,19 @@ class CategoryNameBottomSection extends StatelessWidget {
                 const WhyChooseUsSection(),
                 const CustomSizedBox(),
                  WeHelpYouSection(),
-                CustomActionButton(
-                  onTap: () {
-                    context.push(AppRoutesString.allTripsScreen);
-                  },
-                  text: LocaleKeys.Explore_More.tr(),
-                  height: 70.0.h,
-                  width: double.infinity,
-                  borderRadius: BorderRadius.circular(12.0.r),
-                  backGroundColor: AppColors.orange,
-                  style: Theme.of(context).textTheme.displayLarge,
+                Padding(
+                  padding:  EdgeInsetsDirectional.symmetric(horizontal:15.0.w,),
+                  child: CustomActionButton(
+                    onTap: () {
+                      context.push(AppRoutesString.allTripsScreen);
+                    },
+                    text: LocaleKeys.Explore_More.tr(),
+                    height: 70.0.h,
+                    width: double.infinity,
+                    borderRadius: BorderRadius.circular(12.0.r),
+                    backGroundColor: AppColors.orange,
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
                 ),
                 const CustomSizedBox(),
                  BestOffersHorizontal(

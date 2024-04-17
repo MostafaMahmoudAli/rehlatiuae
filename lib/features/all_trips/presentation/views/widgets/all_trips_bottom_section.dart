@@ -66,14 +66,17 @@ class AllTripsBottomSection extends StatelessWidget {
                 const WhyChooseUsSection(),
                 const CustomSizedBox(),
                  WeHelpYouSection(),
-                CustomActionButton(
-                  onTap: () {},
-                  text: LocaleKeys.Explore_More.tr(),
-                  height: 70.0.h,
-                  width: double.infinity,
-                  borderRadius: BorderRadius.circular(12.0.r),
-                  backGroundColor: AppColors.orange,
-                  style: Theme.of(context).textTheme.displayLarge,
+                Padding(
+                  padding:  EdgeInsetsDirectional.symmetric(horizontal:15.0.w,),
+                  child: CustomActionButton(
+                    onTap: () {},
+                    text: LocaleKeys.Explore_More.tr(),
+                    height: 70.0.h,
+                    width: double.infinity,
+                    borderRadius: BorderRadius.circular(12.0.r),
+                    backGroundColor: AppColors.orange,
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
                 ),
                 const CustomSizedBox(),
                  BestOffersHorizontal(

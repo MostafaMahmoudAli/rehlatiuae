@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_circle_avatar.dart';
@@ -148,6 +149,20 @@ class SubscriptionSection extends StatelessWidget {
                   subtitle: LocaleKeys.Sorry.tr(),
                   labelText: LocaleKeys.Close.tr(),
                   color: AppColors.redAppColor,
+                ),
+              );
+            },
+            loaded: () {
+              showDialog(
+                context: context,
+                builder: (context) => CustomDialog(
+                  title: LocaleKeys.Your_Profile_Updated.tr(),
+                  subtitle: LocaleKeys.Done.tr(),
+                  labelText: LocaleKeys.Close.tr(),
+                  onTap: ()
+                  {
+                    context.pop(true);
+                  },
                 ),
               );
             },
