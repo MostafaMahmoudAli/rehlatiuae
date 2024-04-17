@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:currency_converter/currency.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +59,8 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
           Positioned.fill(
             child: InkWell(
               onTap: () {
-                final imageProvider = CachedNetworkImageProvider(widget.imagePath);
+                final imageProvider =
+                    CachedNetworkImageProvider(widget.imagePath);
                 showImageViewer(context, imageProvider);
               },
               child: Container(
@@ -89,7 +91,9 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                 ),
                 if (widget.isTrip && !widget.isOffer)
                   CustomIconButton(
-                    icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                    icon: isFavorite
+                        ? CupertinoIcons.heart_fill
+                        : CupertinoIcons.heart,
                     iconColor: AppColors.redAppColor,
                     onPressed: () {
                       if (context.read<MainCubit>().client == null) {
@@ -133,7 +137,10 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                               widget.title,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
-                              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .copyWith(
                                     color: AppColors.white,
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -142,7 +149,8 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                           if (widget.isOffer || widget.isTrip)
                             Container(
                               height: 20.0.h,
-                              margin: EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
+                              margin: EdgeInsetsDirectional.symmetric(
+                                  horizontal: 4.0.w),
                               decoration: BoxDecoration(
                                 color: AppColors.white,
                                 borderRadius: BorderRadius.circular(8.0.r),
@@ -150,12 +158,29 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                               child: Row(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 4.w),
                                     child: Text(
-                                      "\$${widget.beforePrice}",
-                                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      context
+                                                  .read<MainCubit>()
+                                                  .currentCurrency ==
+                                              Currency.usd
+                                          ? "\$${widget.beforePrice}"
+                                          : (context
+                                                          .read<MainCubit>()
+                                                          .currentCurrencyPrice! *
+                                                      int.parse(
+                                                          widget.beforePrice ??
+                                                              "") ??
+                                                  0)
+                                              .toStringAsFixed(1),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(
                                             color: AppColors.black,
-                                            decoration: TextDecoration.lineThrough,
+                                            decoration:
+                                                TextDecoration.lineThrough,
                                           ),
                                     ),
                                   ),
@@ -166,11 +191,13 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                                     ),
                                     decoration: BoxDecoration(
                                       color: AppColors.green,
-                                      borderRadius: BorderRadius.circular(8.0.r),
+                                      borderRadius:
+                                          BorderRadius.circular(8.0.r),
                                     ),
                                     child: Text(
                                       "save ${widget.saving}%",
-                                      style: Theme.of(context).textTheme.bodySmall,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
                                     ),
                                   ),
                                 ],
@@ -183,12 +210,23 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                         children: [
                           if (widget.isTrip)
                             Text(
-                              "\$${widget.price}",
+                              context.read<MainCubit>().currentCurrency ==
+                                      Currency.usd
+                                  ? "\$${widget.price}"
+                                  : (context
+                                                  .read<MainCubit>()
+                                                  .currentCurrencyPrice! *
+                                              int.parse(widget.price ?? "") ??
+                                          0)
+                                      .toStringAsFixed(1),
                               style: Theme.of(context).textTheme.displayLarge,
                             ),
                           Text(
                             widget.isTrip ? " /Person" : '7,3 2024',
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
                                   color: AppColors.white,
                                 ),
                           ),

@@ -41,7 +41,7 @@ class PopularExperiencesSection extends StatelessWidget {
                 return PopularExperiencesContainerItem(
                   width: 150.0.w,
                   percentageSave: popularExperiences?[index].saving ?? "",
-                  oldTripPrice: popularExperiences?[index].beforePrice ?? "",
+                  oldTripPrice: popularExperiences?[index].beforePrice,
                   trip: popularExperiences?[index],
                   isFavorite: popularExperiences?[index].isFavourite,
                 );

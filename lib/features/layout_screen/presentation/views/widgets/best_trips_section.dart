@@ -45,10 +45,10 @@ class BestTripsSection extends StatelessWidget {
                   cityName: bestTrips?[index].name ?? "",
                   countryName: bestTrips?[index].address ?? "",
                   imageName: bestTrips?[index].imagePath ?? "",
-                  tripPrice: bestTrips?[index].adultPrice.toString() ?? "",
+                  tripPrice: bestTrips?[index].adultPrice,
                   reservationType: "/person",
                   isFavorite: bestTrips?[index].isFavourite,
-                  oldTripPrice: bestTrips?[index].beforePrice.toString() ?? "",
+                  oldTripPrice: bestTrips?[index].beforePrice,
                   percentageSave: bestTrips?[index].saving ?? "",
                 );
               },

@@ -34,7 +34,7 @@ class _AllTripsBodyState extends State<AllTripsBody> {
   void _onScroll() {
     final maxScroll = widget.allTripsScrollController?.position.minScrollExtent;
     final currentScroll = widget.allTripsScrollController?.offset;
-    if (currentScroll! >= (maxScroll! * 0.9)) {
+    if (currentScroll! >= (maxScroll! * 0.5)) {
       BlocProvider.of<AllTripsBloc>(context).add(GetAllTripsEvent(
         clientId: context.read<MainCubit>().client?.id,
       ));
@@ -67,7 +67,7 @@ class _AllTripsBodyState extends State<AllTripsBody> {
                   cityName: state.trips[index].name,
                   countryName: state.trips[index].address,
                   imageName: state.trips[index].imagePath ?? "",
-                  tripPrice: state.trips[index].adultPrice.toString(),
+                  tripPrice: state.trips[index].adultPrice,
                   reservationType: "/person",
                   oldTripPrice: state.trips[index].beforePrice,
                   isFavorite: state.trips[index].isFavourite,

@@ -69,7 +69,7 @@ class _AllTripsBodyState extends State<BestTripsBody> {
                   cityName: state.bestTrips[index].name,
                   countryName: state.bestTrips[index].address,
                   imageName: state.bestTrips[index].imagePath ?? "",
-                  tripPrice: state.bestTrips[index].adultPrice.toString(),
+                  tripPrice: state.bestTrips[index].adultPrice,
                   isFavorite: state.bestTrips[index].isFavourite,
                   reservationType: "/person",
                 ),

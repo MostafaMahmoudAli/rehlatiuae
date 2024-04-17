@@ -33,7 +33,8 @@ class WhyChooseUSItem extends StatelessWidget {
                 child: Text(
                   text,
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                        fontSize: 16.0.sp,
+                        fontSize: 14.0.sp,
+                     fontWeight:FontWeight.w200,
                       ),
                 ),
               ),

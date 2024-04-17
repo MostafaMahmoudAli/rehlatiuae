@@ -81,7 +81,7 @@ class SearchScreen extends StatelessWidget {
                               cityName: searchList[index].name,
                               countryName: searchList[index].address,
                               imageName: searchList[index].imagePath ?? "",
-                              tripPrice: searchList[index].adultPrice.toString(),
+                              tripPrice: searchList[index].adultPrice,
                               isFavorite: searchList[index].isFavourite,
                               reservationType: "/person",
                               trip: searchList[index],
