@@ -105,7 +105,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                     if (cubit.isTripSelected)
                       OrderSummaryCard(
                         total:
-                            '${cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!}',
+                            '${context.read<MainCubit>().currentCurrencyPrice! *(cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
                         childrenCount: '${cubit.selectedData[0].quantityYoung}',
                         adultCount: '${cubit.selectedData[0].quantityOld}',
                         address: cubit.selectedTrip!.address ?? '',

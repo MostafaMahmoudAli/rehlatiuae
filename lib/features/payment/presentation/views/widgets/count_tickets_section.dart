@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/number_ticket_card.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
+import '../../../../layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class CountTicketsSection extends StatefulWidget {
   final double adultCost;
@@ -31,7 +34,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
   @override
   void initState() {
     super.initState();
-    subtotalAdult = widget.adultCost;
+    subtotalAdult = widget.adultCost.roundToDouble();
   }
 
   @override
@@ -47,8 +50,8 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
             setState(
               () {
                 ++adultCount;
-                subtotalAdult = adultCount * widget.adultCost;
-                widget.onAdultsCountChange(adultCount, widget.adultCost);
+                subtotalAdult = adultCount * widget.adultCost.roundToDouble();
+                widget.onAdultsCountChange(adultCount, widget.adultCost.roundToDouble());
               },
             );
           },
@@ -58,8 +61,8 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                   setState(
                     () {
                       --adultCount;
-                      subtotalAdult = adultCount * widget.adultCost;
-                      widget.onAdultsCountChange(adultCount, -widget.adultCost);
+                      subtotalAdult = adultCount * widget.adultCost.roundToDouble();
+                      widget.onAdultsCountChange(adultCount, -widget.adultCost.roundToDouble());
                     },
                   );
                 },
@@ -73,8 +76,8 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
             setState(
               () {
                 ++childCount;
-                subtotalChild = childCount * widget.childCost;
-                widget.onChildrenCountChange(childCount, widget.childCost);
+                subtotalChild = childCount * widget.childCost.roundToDouble();
+                widget.onChildrenCountChange(childCount, widget.childCost.roundToDouble());
               },
             );
           },
@@ -84,8 +87,8 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                   setState(
                     () {
                       --childCount;
-                      subtotalChild = childCount * widget.childCost;
-                      widget.onChildrenCountChange(childCount, -widget.childCost);
+                      subtotalChild = childCount * widget.childCost.roundToDouble();
+                      widget.onChildrenCountChange(childCount, -widget.childCost.roundToDouble());
                     },
                   );
                 },
@@ -100,7 +103,7 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Text(
-                "\$${subtotalAdult + subtotalChild}",
+               ("${subtotalAdult + subtotalChild}${context.read<MainCubit>().currentCurrency.name.toUpperCase()}").substring(0,5),
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],

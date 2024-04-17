@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:currency_converter/currency.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -114,7 +113,7 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
             left: 0,
             right: 0,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 35.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
               decoration: BoxDecoration(
                 color: Colors.black45,
                 borderRadius: BorderRadius.vertical(
@@ -161,19 +160,7 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 4.w),
                                     child: Text(
-                                      context
-                                                  .read<MainCubit>()
-                                                  .currentCurrency ==
-                                              Currency.usd
-                                          ? "\$${widget.beforePrice}"
-                                          : (context
-                                                          .read<MainCubit>()
-                                                          .currentCurrencyPrice! *
-                                                      int.parse(
-                                                          widget.beforePrice ??
-                                                              "") ??
-                                                  0)
-                                              .toStringAsFixed(1),
+                                      "${(context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.beforePrice ?? "")).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodySmall!
@@ -206,19 +193,11 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                         ],
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (widget.isTrip)
                             Text(
-                              context.read<MainCubit>().currentCurrency ==
-                                      Currency.usd
-                                  ? "\$${widget.price}"
-                                  : (context
-                                                  .read<MainCubit>()
-                                                  .currentCurrencyPrice! *
-                                              int.parse(widget.price ?? "") ??
-                                          0)
-                                      .toStringAsFixed(1),
+                              "${(context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.price) ).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                               style: Theme.of(context).textTheme.displayLarge,
                             ),
                           Text(

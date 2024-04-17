@@ -44,7 +44,7 @@ class BookingScreen extends StatelessWidget {
                 onTapButton: () {
                   if (bookings[index].status == 'unPaid') {
                     context.read<TripCheckoutDetailsCubit>().makePayment(
-                          amount: bookings[index].total!.toDouble(),
+                          amount:context.read<MainCubit>().currentCurrencyPrice! * bookings[index].total!.toDouble(),
                           currency: context.read<MainCubit>().currentCurrency.name,
                         );
                   } else {

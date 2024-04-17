@@ -5,6 +5,7 @@ import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
+
 class TotalPaymentSection extends StatelessWidget {
   final String buttonLabel;
   final void Function() onButtonTap;
@@ -41,7 +42,7 @@ class TotalPaymentSection extends StatelessWidget {
                               ),
                         ),
                       Text(
-                        "\$${cubit.totalAfterDiscount.toStringAsFixed(2)}",
+                        "${(cubit.totalAfterDiscount).toStringAsFixed(1)}",
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ],
