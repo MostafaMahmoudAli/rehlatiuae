@@ -101,7 +101,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                     Text(
                       context.read<MainCubit>().currentCurrency == Currency.usd ?
                       "\$${widget.oldTripPrice.toString()}" :
-                      (context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.oldTripPrice??"") ?? 0).toStringAsFixed(1),
+                      (context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.oldTripPrice??"") ).toStringAsFixed(1),
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     Container(
@@ -201,8 +201,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      context.read<MainCubit>().currentCurrency == Currency.usd ?
-                      "\$${widget.tripPrice}": (context.read<MainCubit>().currentCurrencyPrice! *widget.tripPrice!.toInt()).toStringAsFixed(1),
+                      "${(context.read<MainCubit>().currentCurrencyPrice! * widget.trip!.adultPrice!.toInt()).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     SizedBox(
