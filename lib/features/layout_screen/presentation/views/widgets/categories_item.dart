@@ -3,16 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 
-class CategoriesItem extends StatelessWidget
-{
-  const CategoriesItem({super.key, required this.height, required this.width, required this.image, required this.categoryName});
+class CategoriesItem extends StatelessWidget {
+  const CategoriesItem(
+      {super.key,
+      required this.height,
+      required this.width,
+      required this.image,
+      required this.categoryName,
+      });
+
   final double height;
   final double width;
-  final String?image;
-  final String?categoryName;
+  final String? image;
+  final String? categoryName;
+
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Container(
       height: height,
       width: width,
@@ -24,30 +30,32 @@ class CategoriesItem extends StatelessWidget
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            flex: 1,
-            child:Container(
-              decoration:BoxDecoration(
-                image:DecorationImage(
-                  fit:BoxFit.cover,
-                  image: CachedNetworkImageProvider(
-                    image!,
+              flex: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: CachedNetworkImageProvider(
+                      image!,
+                    ),
                   ),
                 ),
-              ),
-            )
-          ),
+              )),
           SizedBox(
             width: 4.0.w,
           ),
-           Expanded(
-             flex: 2,
-             child: Text(
+          Expanded(
+            flex: 2,
+            child: Text(
               categoryName ?? "",
-              style:Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 10.0.sp,color:AppColors.black),
-               overflow: TextOverflow.ellipsis,
-               maxLines: 1,
-                       ),
-           ),
+              style: Theme.of(context)
+                  .textTheme
+                  .labelSmall!
+                  .copyWith(fontSize: 10.0.sp, color: AppColors.black),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+          ),
         ],
       ),
     );

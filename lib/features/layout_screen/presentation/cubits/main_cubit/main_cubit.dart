@@ -8,6 +8,8 @@ import 'package:rehlatyuae/features/auth/domain/repositories/auth_repo.dart';
 import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
+
 part 'main_cubit.freezed.dart';
 
 part 'main_state.dart';
@@ -15,8 +17,7 @@ part 'main_state.dart';
 class MainCubit extends Cubit<MainState> {
   final MainRepo mainRepo;
   final AuthRepo authRepo;
-
-  MainCubit({required this.mainRepo, required this.authRepo}) : super(const MainState.initial());
+  MainCubit({required this.mainRepo, required this.authRepo,}) : super(const MainState.initial());
   Client? client;
   double totalUnPayedBookingInUSD = 1;
   double? totalUnPayedBooking = 1;

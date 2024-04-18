@@ -58,10 +58,10 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => getIt<MainCubit>()..initMain(),
+              create: (context) =>getIt<MainCubit>()..initMain(),
             ),
             BlocProvider(
-              create: (context) => getIt<TripCheckoutDetailsCubit>(),
+              create: (context) =>getIt<TripCheckoutDetailsCubit>(),
             )
           ],
           child: MaterialApp.router(
@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
             locale: context.locale,
             theme: appTheme(),
             debugShowCheckedModeBanner: false,
-            routerConfig: getIt<AppRouter>().router,
+            routerConfig:getIt<AppRouter>().router,
           ),
         );
       },
