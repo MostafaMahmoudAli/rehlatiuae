@@ -122,7 +122,7 @@ class OrderSummaryCard extends StatelessWidget {
                     ),
               ),
               Text(
-                total.substring(0,6),
+                total,
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
