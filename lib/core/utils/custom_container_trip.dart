@@ -161,10 +161,10 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width : 130.0.w,
+                    width : 220.0.w,
                     child: Text(
                     widget.cityName ?? "",
-                      style: Theme.of(context).textTheme.displayMedium,
+                      style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize:14.0.sp),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),

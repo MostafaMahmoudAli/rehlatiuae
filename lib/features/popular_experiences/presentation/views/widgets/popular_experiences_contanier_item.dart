@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:currency_converter/currency.dart';
+import 'package:easy_localization/easy_localization.dart' as s;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +14,7 @@ import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
+import '../../../../../generated/locale_keys.g.dart';
 import '../../../../all_trips/data/models/trips_model.dart';
 
 class PopularExperiencesContainerItem extends StatefulWidget {
@@ -38,7 +42,8 @@ class _PopularExperiencesContainerItemState
     extends State<PopularExperiencesContainerItem> {
   bool isFavorite = false;
   Trips? trip;
-
+  String englishKey = LocaleKeys.English.tr();
+  late bool isEnglish = (englishKey == 'English');
   @override
   void initState() {
     super.initState();
@@ -145,14 +150,15 @@ class _PopularExperiencesContainerItemState
                 ),
               ),
             ),
-            Positioned(
+            Positioned.directional(
+              textDirection:isEnglish?TextDirection.ltr:TextDirection.rtl,
               bottom: 15,
-              left: 5,
+              start: 5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 120.0.w,
+                    width: 220.0.w,
                     child: Text(
                       widget.trip?.name ?? "",
                       style: Theme.of(context).textTheme.displayMedium,
