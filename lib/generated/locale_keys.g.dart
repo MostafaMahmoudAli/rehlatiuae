@@ -198,5 +198,6 @@ abstract class  LocaleKeys {
   static const Offers_Tickets = 'Offers_Tickets';
   static const You_must_select_trip_or_offer_at_latest = 'You_must_select_trip_or_offer_at_latest';
   static const Log_out = 'Log_out';
+  static const You_have_successfully_subscribed_to_the_newsletter = 'You_have_successfully_subscribed_to_the_newsletter';
 
 }

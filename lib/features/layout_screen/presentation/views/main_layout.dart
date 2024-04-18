@@ -102,7 +102,7 @@ class MainLayout extends StatelessWidget {
             bottomNavigationBar:  CustomBottomNavigationBar(),
           ),
           loading: () =>  Scaffold(
-            body: Center(
+            body: const Center(
               child: CircularProgressIndicator(),
             ),
             bottomNavigationBar: CustomBottomNavigationBar(),

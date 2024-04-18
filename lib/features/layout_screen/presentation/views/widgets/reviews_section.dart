@@ -234,10 +234,11 @@ class SubscriptionSection extends StatelessWidget {
               );
             },
             loaded: () {
+              //change
               showDialog(
                 context: context,
                 builder: (context) => CustomDialog(
-                  title: LocaleKeys.Your_Profile_Updated.tr(),
+                  title: LocaleKeys.You_have_successfully_subscribed_to_the_newsletter.tr(),
                   subtitle: LocaleKeys.Done.tr(),
                   labelText: LocaleKeys.Close.tr(),
                   onTap: ()
