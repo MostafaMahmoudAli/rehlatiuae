@@ -153,7 +153,6 @@ class SubscriptionSection extends StatelessWidget {
               );
             },
             loaded: () {
-              //is done
               showDialog(
                 context: context,
                 builder: (context) => CustomDialog(
