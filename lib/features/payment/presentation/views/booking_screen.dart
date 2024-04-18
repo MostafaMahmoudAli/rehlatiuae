@@ -37,7 +37,8 @@ class BookingScreen extends StatelessWidget {
                 total: '${bookings[index].total}',
                 childrenCount: '${bookings[index].quantityChildren}',
                 adultCount: '${bookings[index].quantityAdult}',
-                address: bookings[index].trip?.address ?? '',
+                address: bookings[
+                  index].trip?.address ?? '',
                 imageUrl: bookings[index].trip?.imagePath ?? '',
                 date: bookings[index].date ?? '',
                 status: bookings[index].status,
