@@ -114,7 +114,88 @@ class ReviewsSection extends StatelessWidget {
         SizedBox(
           height: 10.0.h,
         ),
-        const SubscriptionSection(),
+        // BlocProvider(
+        //   create: (context) => SubscriptionSectionCubit(layoutRepository:getIt()),
+        //   child: BlocConsumer<SubscriptionSectionCubit, SubscriptionSectionState>(
+        //     listener: (context, state) {
+        //       state.whenOrNull(
+        //         error: (message) {
+        //           showDialog(
+        //             context: context,
+        //             builder: (context) => CustomDialog(
+        //               title: message,
+        //               subtitle: LocaleKeys.Sorry.tr(),
+        //               labelText: LocaleKeys.Close.tr(),
+        //               color: AppColors.redAppColor,
+        //             ),
+        //           );
+        //         },
+        //         loaded: () {
+        //           showDialog(
+        //             context: context,
+        //             builder: (context) => CustomDialog(
+        //               title: LocaleKeys.Message_Send_Successfully.tr(),
+        //               subtitle: LocaleKeys.Done.tr(),
+        //               labelText: LocaleKeys.Close.tr(),
+        //               onTap: ()
+        //               {
+        //                 context.pop(true);
+        //               },
+        //             ),
+        //           );
+        //         },
+        //       );
+        //     },
+        //     builder: (context, state) {
+        //       return state.maybeWhen(
+        //         loading: () => Padding(
+        //           padding: EdgeInsets.symmetric(vertical: 200.h),
+        //           child: const Center(
+        //             child: CircularProgressIndicator(),
+        //           ),
+        //         ),
+        //         orElse: () => Form(
+        //           key: context.read<SubscriptionSectionCubit>().subscribeFormKey,
+        //           child: Column(
+        //             children: [
+        //               PrimaryTextField(
+        //                 controller: context.read<SubscriptionSectionCubit>().subscribeNameEditingController,
+        //                 hint: LocaleKeys.Name.tr(),
+        //                 inputType: TextInputType.name,
+        //                 validator: (value) => AppValidator.validateName(value),
+        //               ),
+        //               PrimaryTextField(
+        //                 controller: context.read<SubscriptionSectionCubit>().subscribeMailEditingController,
+        //                 hint: LocaleKeys.Email.tr(),
+        //                 inputType: TextInputType.emailAddress,
+        //                 validator: (value) => AppValidator.validateEmail(value),
+        //               ),
+        //               SizedBox(
+        //                 height: 15.0.h,
+        //               ),
+        //               Padding(
+        //                 padding: EdgeInsetsDirectional.symmetric(horizontal: 20.0.w),
+        //                 child: CustomActionButton(
+        //                   text: LocaleKeys.Send_Now.tr(),
+        //                   borderRadius: BorderRadius.circular(8.0.r),
+        //                   backGroundColor: AppColors.textAndBackgroundColorButton,
+        //                   onTap: () async {
+        //                     await context.read<SubscriptionSectionCubit>().sendSubscribe();
+        //                     // getIt<SubscriptionSectionCubit>().subscribeMailEditingController.clear();
+        //                     // getIt<SubscriptionSectionCubit>().subscribeNameEditingController.clear();
+        //                   },
+        //                   width: double.infinity,
+        //                   height: 40.0.h,
+        //                 ),
+        //               ),
+        //             ],
+        //           ),
+        //         ),
+        //       );
+        //     },
+        //   ),
+        // ),
+         SubscriptionSection(),
         SizedBox(
           height: 50.0.h,
         ),
@@ -204,8 +285,8 @@ class SubscriptionSection extends StatelessWidget {
                       backGroundColor: AppColors.textAndBackgroundColorButton,
                       onTap: () async {
                         await context.read<SubscriptionSectionCubit>().sendSubscribe();
-                        getIt<SubscriptionSectionCubit>().subscribeMailEditingController.clear();
-                        getIt<SubscriptionSectionCubit>().subscribeNameEditingController.clear();
+                        // getIt<SubscriptionSectionCubit>().subscribeMailEditingController.clear();
+                        // getIt<SubscriptionSectionCubit>().subscribeNameEditingController.clear();
                       },
                       width: double.infinity,
                       height: 40.0.h,
