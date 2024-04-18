@@ -1,4 +1,3 @@
-import 'package:currency_converter/currency.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,17 +80,7 @@ class _OfferCardState extends State<OfferCard> {
                       child: Row(
                         children: [
                           Text(
-                            context.read<MainCubit>().currentCurrency ==
-                                    Currency.usd
-                                ? "\$${widget.offer.beforePrice} "
-                                : (context
-                                                .read<MainCubit>()
-                                                .currentCurrencyPrice! *
-                                            int.parse(
-                                                widget.offer.beforePrice ??
-                                                    "") ??
-                                        0)
-                                    .toStringAsFixed(1),
+                            "${(context.read<MainCubit>().currentCurrencyPrice! *  int.parse(widget.offer.beforePrice ?? "") ).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                             style:
                                 Theme.of(context).textTheme.bodySmall!.copyWith(
                                       color: AppColors.black,
@@ -121,9 +110,7 @@ class _OfferCardState extends State<OfferCard> {
                     Column(
                       children: [
                         Text(
-                          context.read<MainCubit>().currentCurrency == Currency.usd ?
-                          "\$${widget.offer.adultPrice}" :
-                          (context.read<MainCubit>().currentCurrencyPrice! *widget.offer.adultPrice!.toInt()?? 0).toStringAsFixed(1),
+                          "${(context.read<MainCubit>().currentCurrencyPrice! * widget.offer.adultPrice!.toInt()).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                           style: Theme.of(context)
                               .textTheme
                               .displayLarge!
