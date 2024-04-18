@@ -211,7 +211,8 @@ class CodegenLoader extends AssetLoader{
   "Trip_Ticket": "تذكرة الفعالية",
   "Offers_Tickets": "التذاكر التفضيلية",
   "You_must_select_trip_or_offer_at_latest": "يجب عليك تحديد رحلة أوتذاكرة تفضيلية على الأقل  .",
-  "Log_out": "تسجيل الخروج"
+  "Log_out": "تسجيل الخروج",
+  "You_have_successfully_subscribed_to_the_newsletter": "تم الإشتراك في في النشرة البريدية بنجاح !"
 };
 static const Map<String,dynamic> en = {
   "Easy_to_Shop": "Easy to Shop",
@@ -410,7 +411,8 @@ static const Map<String,dynamic> en = {
   "Trip_Ticket": "Trip Ticket",
   "Offers_Tickets": "Preferences tickets",
   "You_must_select_trip_or_offer_at_latest": "You must select trip or offer at latest",
-  "Log_out": "Log out"
+  "Log_out": "Log out",
+  "You_have_successfully_subscribed_to_the_newsletter": "You have successfully subscribed to the newsletter!"
 };
 static const Map<String,dynamic> ur = {
   "Easy_to_Shop": "خریدنا آسان",
@@ -609,7 +611,8 @@ static const Map<String,dynamic> ur = {
   "Trip_Ticket": "ٹرپ ٹکٹ",
   "Offers_Tickets": "ترجیحات کے ٹکٹ",
   "You_must_select_trip_or_offer_at_latest": "آپ کو تازہ ترین سفر یا پیشکش کا انتخاب کرنا چاہیے۔",
-  "Log_out": "لاگ آوٹ"
+  "Log_out": "لاگ آوٹ",
+  "You_have_successfully_subscribed_to_the_newsletter": "آپ نے کامیابی کے ساتھ نیوز لیٹر کو سبسکرائب کر لیا ہے!"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en, "ur": ur};
 }

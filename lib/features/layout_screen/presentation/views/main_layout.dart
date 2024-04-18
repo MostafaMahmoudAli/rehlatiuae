@@ -99,10 +99,10 @@ class MainLayout extends StatelessWidget {
                     ],
                   ),
             drawer: const CustomDrawer(),
-            bottomNavigationBar: const CustomBottomNavigationBar(),
+            bottomNavigationBar:  CustomBottomNavigationBar(),
           ),
-          loading: () => const Scaffold(
-            body: Center(
+          loading: () =>  Scaffold(
+            body: const Center(
               child: CircularProgressIndicator(),
             ),
             bottomNavigationBar: CustomBottomNavigationBar(),
