@@ -14,7 +14,7 @@ class SearchCubit extends Cubit<SearchState> {
   SearchCubit({required this.searchRepo}) : super(const SearchState.initial());
 
   Future<void> fetchSearchData({String? name, int? clientId}) async {
-    emit(const SearchState.loading());
+    _update(const SearchState.loading());
 
     var results = await searchRepo.fetchSearchData(
       name: name,

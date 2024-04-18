@@ -37,14 +37,15 @@ class BookingScreen extends StatelessWidget {
                 total: '${bookings[index].total}',
                 childrenCount: '${bookings[index].quantityChildren}',
                 adultCount: '${bookings[index].quantityAdult}',
-                address: bookings[index].trip?.address ?? '',
+                address: bookings[
+                  index].trip?.address ?? '',
                 imageUrl: bookings[index].trip?.imagePath ?? '',
                 date: bookings[index].date ?? '',
                 status: bookings[index].status,
                 onTapButton: () {
                   if (bookings[index].status == 'unPaid') {
                     context.read<TripCheckoutDetailsCubit>().makePayment(
-                          amount: bookings[index].total!.toDouble(),
+                          amount:context.read<MainCubit>().currentCurrencyPrice! * bookings[index].total!.toDouble(),
                           currency: context.read<MainCubit>().currentCurrency.name,
                         );
                   } else {

@@ -105,7 +105,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                     if (cubit.isTripSelected)
                       OrderSummaryCard(
                         total:
-                            '${cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!}',
+                            '${context.read<MainCubit>().currentCurrencyPrice! * (cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
                         childrenCount: '${cubit.selectedData[0].quantityYoung}',
                         adultCount: '${cubit.selectedData[0].quantityOld}',
                         address: cubit.selectedTrip!.address ?? '',
@@ -122,7 +122,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                               cubit.selectedData[index + increment].quantityYoung! *
                                   cubit.selectedOffers[index].childPrice!;
                           return OrderSummaryCard(
-                            total: '$total',
+                            total:
+                                '${total.toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
                             childrenCount: '${cubit.selectedData[index + increment].quantityYoung}',
                             adultCount: '${cubit.selectedData[index + increment].quantityOld}',
                             address: cubit.selectedOffers[index].address ?? cubit.selectedTrip!.address!,
@@ -140,8 +141,11 @@ class PaymentDetailsScreen extends StatelessWidget {
                   child: TotalPaymentSection(
                     buttonLabel: LocaleKeys.Payment.tr(),
                     onButtonTap: () async {
+                      if (context.read<MainCubit>().client == null) {
+                        context.push(AppRoutesString.loginScreen);
+                        return;
+                      }
                       cubit.checkoutTripsAndOffers();
-                      // await cubit.paymentMethod(currency: context.read<MainCubit>().currentCurrency.name);
                     },
                   ),
                 ),

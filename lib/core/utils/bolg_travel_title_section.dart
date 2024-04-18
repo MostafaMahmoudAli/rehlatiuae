@@ -58,7 +58,8 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
           Positioned.fill(
             child: InkWell(
               onTap: () {
-                final imageProvider = CachedNetworkImageProvider(widget.imagePath);
+                final imageProvider =
+                    CachedNetworkImageProvider(widget.imagePath);
                 showImageViewer(context, imageProvider);
               },
               child: Container(
@@ -89,7 +90,9 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                 ),
                 if (widget.isTrip && !widget.isOffer)
                   CustomIconButton(
-                    icon: isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                    icon: isFavorite
+                        ? CupertinoIcons.heart_fill
+                        : CupertinoIcons.heart,
                     iconColor: AppColors.redAppColor,
                     onPressed: () {
                       if (context.read<MainCubit>().client == null) {
@@ -110,7 +113,7 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
             left: 0,
             right: 0,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 35.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
               decoration: BoxDecoration(
                 color: Colors.black45,
                 borderRadius: BorderRadius.vertical(
@@ -133,7 +136,10 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                               widget.title,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
-                              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .copyWith(
                                     color: AppColors.white,
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -142,7 +148,8 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                           if (widget.isOffer || widget.isTrip)
                             Container(
                               height: 20.0.h,
-                              margin: EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
+                              margin: EdgeInsetsDirectional.symmetric(
+                                  horizontal: 4.0.w),
                               decoration: BoxDecoration(
                                 color: AppColors.white,
                                 borderRadius: BorderRadius.circular(8.0.r),
@@ -150,12 +157,17 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                               child: Row(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 4.w),
                                     child: Text(
-                                      "\$${widget.beforePrice}",
-                                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      "${(context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.beforePrice ?? "")).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(
                                             color: AppColors.black,
-                                            decoration: TextDecoration.lineThrough,
+                                            decoration:
+                                                TextDecoration.lineThrough,
                                           ),
                                     ),
                                   ),
@@ -166,11 +178,13 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                                     ),
                                     decoration: BoxDecoration(
                                       color: AppColors.green,
-                                      borderRadius: BorderRadius.circular(8.0.r),
+                                      borderRadius:
+                                          BorderRadius.circular(8.0.r),
                                     ),
                                     child: Text(
                                       "save ${widget.saving}%",
-                                      style: Theme.of(context).textTheme.bodySmall,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
                                     ),
                                   ),
                                 ],
@@ -179,16 +193,19 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                         ],
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (widget.isTrip)
                             Text(
-                              "\$${widget.price}",
+                              "${(context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.price) ).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                               style: Theme.of(context).textTheme.displayLarge,
                             ),
                           Text(
                             widget.isTrip ? " /Person" : '7,3 2024',
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
                                   color: AppColors.white,
                                 ),
                           ),

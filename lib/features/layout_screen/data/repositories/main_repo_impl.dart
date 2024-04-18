@@ -83,7 +83,7 @@ class MainRepoImpl implements MainRepo {
   }
 
   @override
-  Future<Either<String, double?>> convertCurrency({
+  Future<Either<String, double?>>convertCurrency({
     required Currency targetCurrency,
     required double totalAmount,
   }) async {
@@ -102,7 +102,8 @@ class MainRepoImpl implements MainRepo {
         value: total,
       );
       return Right(total);
-    } on ServerExceptions catch (error) {
+    } on ServerExceptions catch (error)
+    {
       return Left(error.errorModel.message);
     }
   }

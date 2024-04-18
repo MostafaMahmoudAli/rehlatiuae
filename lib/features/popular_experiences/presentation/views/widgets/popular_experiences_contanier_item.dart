@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:currency_converter/currency.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,10 +30,12 @@ class PopularExperiencesContainerItem extends StatefulWidget {
   final bool? isFavorite;
 
   @override
-  State<PopularExperiencesContainerItem> createState() => _PopularExperiencesContainerItemState();
+  State<PopularExperiencesContainerItem> createState() =>
+      _PopularExperiencesContainerItemState();
 }
 
-class _PopularExperiencesContainerItemState extends State<PopularExperiencesContainerItem> {
+class _PopularExperiencesContainerItemState
+    extends State<PopularExperiencesContainerItem> {
   bool isFavorite = false;
   Trips? trip;
 
@@ -76,21 +79,27 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                 ),
               ),
             ),
-            if ((widget.oldTripPrice != null || widget.percentageSave != null) &&
-                (widget.percentageSave!.isNotEmpty || widget.oldTripPrice!.isNotEmpty))
+            if ((widget.oldTripPrice != null ||
+                    widget.percentageSave != null) &&
+                (widget.percentageSave!.isNotEmpty))
               Positioned(
                 top: 16,
                 left: 6,
                 child: Row(
                   children: [
                     Text(
-                      "\$${widget.oldTripPrice}",
+                      context.read<MainCubit>().currentCurrency == Currency.usd
+                          ? "\$${widget.oldTripPrice}"
+                          : (context.read<MainCubit>().currentCurrencyPrice! *
+                                  int.parse(widget.oldTripPrice ?? ""))
+                              .toStringAsFixed(1),
                       style: Theme.of(context).textTheme.headlineMedium!,
                     ),
                     Container(
                       width: 60.0.w,
                       height: 20.0.h,
-                      margin: EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
+                      margin:
+                          EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
                       padding: EdgeInsetsDirectional.symmetric(
                         horizontal: 4.0.w,
                         vertical: 1.3.h,
@@ -123,7 +132,9 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                     isFavourite: isFavorite,
                   );
                   print('isFavourite: ${trip?.isFavourite}');
-                  await context.read<MainCubit>().addToFavourite(tripId: widget.trip!.id ?? 0);
+                  await context
+                      .read<MainCubit>()
+                      .addToFavourite(tripId: widget.trip!.id ?? 0);
                 },
                 width: 30.0.w,
                 height: 35.0.h,
@@ -169,7 +180,9 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall
-                              ?.copyWith(color: AppColors.textAndBackgroundColorButton),
+                              ?.copyWith(
+                                  color:
+                                      AppColors.textAndBackgroundColorButton),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -185,7 +198,7 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    widget.trip?.adultPrice.toString() ?? "",
+                    "${(context.read<MainCubit>().currentCurrencyPrice! * widget.trip!.adultPrice!.toInt()).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(
@@ -193,7 +206,10 @@ class _PopularExperiencesContainerItemState extends State<PopularExperiencesCont
                   ),
                   Text(
                     "/Person",
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

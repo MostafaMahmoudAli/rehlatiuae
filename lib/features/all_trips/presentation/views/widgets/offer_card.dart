@@ -10,6 +10,8 @@ import 'package:rehlatyuae/features/all_trips/presentation/views/offer_details_s
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
+import '../../../../layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+
 class OfferCard extends StatefulWidget {
   final Trips offer;
   final Trips trip;
@@ -78,11 +80,12 @@ class _OfferCardState extends State<OfferCard> {
                       child: Row(
                         children: [
                           Text(
-                            "\$${widget.offer.beforePrice} ",
-                            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  color: AppColors.black,
-                                  decoration: TextDecoration.lineThrough,
-                                ),
+                            "${(context.read<MainCubit>().currentCurrencyPrice! *  int.parse(widget.offer.beforePrice ?? "") ).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: AppColors.black,
+                                      decoration: TextDecoration.lineThrough,
+                                    ),
                           ),
                           SizedBox(
                             width: 5.w,
@@ -107,8 +110,11 @@ class _OfferCardState extends State<OfferCard> {
                     Column(
                       children: [
                         Text(
-                          "\$${widget.offer.adultPrice}",
-                          style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                          "${(context.read<MainCubit>().currentCurrencyPrice! * widget.offer.adultPrice!.toInt()).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(
                                 color: AppColors.grey,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -123,7 +129,8 @@ class _OfferCardState extends State<OfferCard> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w).copyWith(bottom: 30.h),
+                padding: EdgeInsets.symmetric(horizontal: 10.w)
+                    .copyWith(bottom: 30.h),
                 child: Row(
                   children: [
                     const Icon(
@@ -140,21 +147,32 @@ class _OfferCardState extends State<OfferCard> {
                 ),
               ),
               CustomActionButton(
-                text: isSelected ? LocaleKeys.selected.tr() : LocaleKeys.select.tr(),
+                text: isSelected
+                    ? LocaleKeys.selected.tr()
+                    : LocaleKeys.select.tr(),
                 borderRadius: BorderRadius.circular(15.sp),
-                backGroundColor: isSelected ? AppColors.green : AppColors.textAndBackgroundColorButton,
+                backGroundColor: isSelected
+                    ? AppColors.green
+                    : AppColors.textAndBackgroundColorButton,
                 onTap: () {
                   setState(() {
                     isSelected = !isSelected;
                   });
                   if (widget.isTripSelected) {
-                    context.read<TripCheckoutDetailsCubit>().isTripSelected = isSelected;
+                    context.read<TripCheckoutDetailsCubit>().isTripSelected =
+                        isSelected;
                     return;
                   }
                   if (isSelected) {
-                    context.read<TripCheckoutDetailsCubit>().selectedOffers.add(widget.offer);
+                    context
+                        .read<TripCheckoutDetailsCubit>()
+                        .selectedOffers
+                        .add(widget.offer);
                   } else {
-                    context.read<TripCheckoutDetailsCubit>().selectedOffers.remove(widget.offer);
+                    context
+                        .read<TripCheckoutDetailsCubit>()
+                        .selectedOffers
+                        .remove(widget.offer);
                   }
                 },
                 width: 195.w,
@@ -190,10 +208,8 @@ class _OfferCardState extends State<OfferCard> {
                   );
                 },
                 text: LocaleKeys.View_Details.tr(),
-                style: Theme.of(context)
-                    .textTheme
-                    .labelSmall
-                    ?.copyWith(color: AppColors.grayLight, fontWeight: FontWeight.w700),
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: AppColors.grayLight, fontWeight: FontWeight.w700),
               ),
             ],
           )

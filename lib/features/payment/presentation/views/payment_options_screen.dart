@@ -15,6 +15,8 @@ import 'package:rehlatyuae/features/payment/presentation/views/widgets/field_dat
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_payment_section.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
+import '../../../layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+
 class PaymentOptionsScreen extends StatelessWidget {
   const PaymentOptionsScreen({super.key});
 
@@ -57,8 +59,8 @@ class PaymentOptionsScreen extends StatelessWidget {
                       controller: cubit.dateEditingController,
                     ),
                     CountTicketsSection(
-                      adultCost: cubit.selectedTrip!.adultPrice!.toDouble(),
-                      childCost: cubit.selectedTrip!.childPrice!.toDouble(),
+                      adultCost:context.read<MainCubit>().currentCurrencyPrice! *  cubit.selectedTrip!.adultPrice!.round(),
+                      childCost:context.read<MainCubit>().currentCurrencyPrice! * cubit.selectedTrip!.childPrice!.toDouble(),
                       onAdultsCountChange: (count, total) {
                         cubit.onAdultsCountChange(
                           index: 0,

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:currency_converter/currency.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +34,7 @@ class CustomContainerTrip extends StatefulWidget {
   final String? imageName;
   final String? cityName;
   final String? countryName;
-  final String? tripPrice;
+  final int? tripPrice;
   final String? reservationType;
   final String? oldTripPrice;
   final String? percentageSave;
@@ -98,7 +99,9 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                 child: Row(
                   children: [
                     Text(
-                      "\$${widget.oldTripPrice.toString()}",
+                      context.read<MainCubit>().currentCurrency == Currency.usd ?
+                      "\$${widget.oldTripPrice.toString()}" :
+                      (context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.oldTripPrice??"") ).toStringAsFixed(1),
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     Container(
@@ -190,7 +193,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
               ),
             ),
             if ((widget.tripPrice != null || widget.reservationType != null) &&
-                (widget.tripPrice!.isNotEmpty && widget.reservationType!.isNotEmpty))
+                (widget.tripPrice!.toString().isNotEmpty && widget.reservationType!.isNotEmpty))
               Positioned(
                 bottom: MediaQuery.sizeOf(context).height * 0.1,
                 right: MediaQuery.sizeOf(context).width * 0.02,
@@ -198,7 +201,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "\$${widget.tripPrice}",
+                      "${(context.read<MainCubit>().currentCurrencyPrice! * widget.trip!.adultPrice!.toInt()).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     SizedBox(

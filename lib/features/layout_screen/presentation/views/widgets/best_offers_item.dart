@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:currency_converter/currency.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,10 +40,12 @@ class _BestOffersItemState extends State<BestOffersItem> {
     super.initState();
     isFavorite = widget.isFavorite ?? false;
     trip = widget.offer;
+
   }
 
   @override
   Widget build(BuildContext context) {
+    final resultOfBeforePrice = context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.offer?.beforePrice);
     return InkWell(
       onTap: () {
         context.push(AppRoutesString.travelDetailsScreen, extra: trip).then((value) {
@@ -146,7 +149,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                       ),
                       Expanded(
                         child: Text(
-                          widget.offer?.address ?? "Dubai, United Arab Emirates",
+                          widget.offer?.address ?? "",
                           style: Theme.of(context).textTheme.titleMedium,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -157,7 +160,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                     height: 2.5.w,
                   ),
                   Text(
-                    widget.offer?.description ?? "This exceptional beach gets ",
+                    widget.offer?.description ?? " ",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: Theme.of(context).textTheme.headlineSmall,
@@ -169,7 +172,9 @@ class _BestOffersItemState extends State<BestOffersItem> {
                     Row(
                       children: [
                         Text(
-                          "\$${widget.offer?.beforePrice}",
+                          context.read<MainCubit>().currentCurrency == Currency.usd ?   "\$${widget.offer?.beforePrice}"
+                              :
+                          resultOfBeforePrice.toStringAsFixed(1),
                           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 color: AppColors.black,
                               ),
@@ -196,7 +201,7 @@ class _BestOffersItemState extends State<BestOffersItem> {
                   Row(
                     children: [
                       Text(
-                        "\$${widget.offer?.adultPrice.toString()}",
+                        "${(context.read<MainCubit>().currentCurrencyPrice! * widget.offer!.adultPrice!.toInt()).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                         style: Theme.of(context).textTheme.titleSmall,
                         textAlign: TextAlign.justify,
                       ),

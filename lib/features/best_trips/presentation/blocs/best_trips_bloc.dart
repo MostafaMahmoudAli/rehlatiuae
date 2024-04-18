@@ -24,13 +24,13 @@ class BestTripsBloc extends Bloc<BestTripsEvent, BestTripsState> {
               clientId: event.clientId,
             );
             results.fold(
-              (errorMessage) => emit(
+              (errorMessage) => _update(
                 state.copyWith(
                   status: BestTripsStatus.error,
                   errMessage: errorMessage,
                 ),
               ),
-              (bestTrips) => emit(
+              (bestTrips) => _update(
                 state.copyWith(
                   status: BestTripsStatus.success,
                   bestTrips: bestTrips,
@@ -44,7 +44,7 @@ class BestTripsBloc extends Bloc<BestTripsEvent, BestTripsState> {
               clientId: event.clientId,
             );
             results.fold(
-              (errorMessage) => emit(
+              (errorMessage) => _update(
                 state.copyWith(
                   status: BestTripsStatus.error,
                   errMessage: errorMessage,
@@ -52,8 +52,8 @@ class BestTripsBloc extends Bloc<BestTripsEvent, BestTripsState> {
               ),
               (bestTrips) {
                 bestTrips.isEmpty
-                    ? emit(state.copyWith(hasReachedMax: true))
-                    : emit(
+                    ? _update(state.copyWith(hasReachedMax: true))
+                    : _update(
                         state.copyWith(
                           status: BestTripsStatus.success,
                           bestTrips: List.of(state.bestTrips)..addAll(bestTrips),
@@ -68,4 +68,10 @@ class BestTripsBloc extends Bloc<BestTripsEvent, BestTripsState> {
       transformer: droppable(),
     );
   }
+
+ void _update(BestTripsState state) {
+   if (!isClosed) {
+     emit(state);
+   }
+ }
 }
