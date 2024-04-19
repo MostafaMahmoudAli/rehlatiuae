@@ -21,6 +21,7 @@ CartTrips _$CartTripsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CartTrips {
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "checkout_id")
   int? get checkoutId => throw _privateConstructorUsedError;
   String? get date => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
@@ -46,7 +47,7 @@ abstract class $CartTripsCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      int? checkoutId,
+      @JsonKey(name: "checkout_id") int? checkoutId,
       String? date,
       String? status,
       int? quantityAdult,
@@ -162,7 +163,7 @@ abstract class _$$CartTripsImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      int? checkoutId,
+      @JsonKey(name: "checkout_id") int? checkoutId,
       String? date,
       String? status,
       int? quantityAdult,
@@ -260,7 +261,7 @@ class __$$CartTripsImplCopyWithImpl<$Res>
 class _$CartTripsImpl implements _CartTrips {
   const _$CartTripsImpl(
       {required this.id,
-      required this.checkoutId,
+      @JsonKey(name: "checkout_id") required this.checkoutId,
       required this.date,
       required this.status,
       required this.quantityAdult,
@@ -278,6 +279,7 @@ class _$CartTripsImpl implements _CartTrips {
   @override
   final int? id;
   @override
+  @JsonKey(name: "checkout_id")
   final int? checkoutId;
   @override
   final String? date;
@@ -365,7 +367,7 @@ class _$CartTripsImpl implements _CartTrips {
 abstract class _CartTrips implements CartTrips {
   const factory _CartTrips(
       {required final int? id,
-      required final int? checkoutId,
+      @JsonKey(name: "checkout_id") required final int? checkoutId,
       required final String? date,
       required final String? status,
       required final int? quantityAdult,
@@ -383,6 +385,7 @@ abstract class _CartTrips implements CartTrips {
   @override
   int? get id;
   @override
+  @JsonKey(name: "checkout_id")
   int? get checkoutId;
   @override
   String? get date;

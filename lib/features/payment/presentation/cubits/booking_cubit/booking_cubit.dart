@@ -10,6 +10,7 @@ class BookingCubit extends Cubit<BookingState> {
   final PaymentRepo paymentRepo;
 
   BookingCubit({required this.paymentRepo}) : super(const BookingState.initial());
+  int? currentCheckoutId;
 
   Future<void> getBooking() async {
     _update(const BookingState.loading());
