@@ -160,7 +160,7 @@ class AuthRepoImpl implements AuthRepo {
 
   Future<void> _clearClient() async {
     await cacheService.setData(key: AppStrings.accessToken, value: null);
-    await cacheService.setData(key: AppStrings.expiresIn, value: null);
+    await cacheService.setData(key: AppStrings.client, value: null);
     await cacheService.setData(
       key: AppRoutesString.initialLocationRoute,
       value: AppRoutesString.homeScreen,
