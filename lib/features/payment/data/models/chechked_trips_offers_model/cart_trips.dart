@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../all_trips/data/models/trips_model.dart';
@@ -9,7 +11,7 @@ part 'cart_trips.g.dart';
 class CartTrips with _$CartTrips {
   const factory CartTrips({
     required final int? id,
-    required final int? checkoutId,
+    @JsonKey(name: "checkout_id") required final int? checkoutId,
     required final String? date,
     required final String? status,
     required final int? quantityAdult,
