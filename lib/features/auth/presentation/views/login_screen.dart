@@ -13,13 +13,18 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/primary_text_field.dart';
 import 'package:rehlatyuae/core/utils/regex.dart';
 import 'package:rehlatyuae/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
-import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 import '../../../../core/utils/app_strings.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  final bool isGoBackWhenSuccess;
+
+  const LoginScreen({
+    required this.isGoBackWhenSuccess,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +46,19 @@ class LoginScreen extends StatelessWidget {
                 state.whenOrNull(
                   success: (authenticatedClient) {
                     context.read<MainCubit>().getCachedClient();
-                    context.go(AppRoutesString.homeScreen);
+                    if (!isGoBackWhenSuccess) {
+                      context.go(AppRoutesString.homeScreen);
+                    } else {
+                      context.pop();
+                    }
                   },
                   error: (message) {
                     showDialog(
                       context: context,
                       builder: (context) => CustomDialog(
                         title: message,
-                        subtitle:  LocaleKeys.Sorry.tr(),
-                        labelText:  LocaleKeys.Close.tr(),
+                        subtitle: LocaleKeys.Sorry.tr(),
+                        labelText: LocaleKeys.Close.tr(),
                         color: AppColors.redAppColor,
                       ),
                     );
@@ -111,7 +120,7 @@ class LoginScreen extends StatelessWidget {
                                 onPressed: () {
                                   context.push('/forgetPasswordScreen');
                                 },
-                                text:  LocaleKeys.Forgot_Password.tr(),
+                                text: LocaleKeys.Forgot_Password.tr(),
                               ),
                             ],
                           ),
@@ -119,7 +128,7 @@ class LoginScreen extends StatelessWidget {
                           CustomActionButton(
                             onTap: () async {
                               await cubit.login();
-                              await getIt<MainCubit>().postNotificationToken(token:AppStrings.notificationToken??"");
+                              await getIt<MainCubit>().postNotificationToken(token: AppStrings.notificationToken ?? "");
                               // context.go(AppStrings.homeScreen);
                             },
                             text: LocaleKeys.LogIn.tr(),
@@ -138,7 +147,10 @@ class LoginScreen extends StatelessWidget {
                               ),
                               DefaultTextButton(
                                 onPressed: () {
-                                  context.push('/registerScreen');
+                                  context.push(
+                                    AppRoutesString.registerScreen,
+                                    extra: isGoBackWhenSuccess,
+                                  );
                                 },
                                 text: LocaleKeys.Sign_Up_here.tr(),
                               ),

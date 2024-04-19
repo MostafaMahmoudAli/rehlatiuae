@@ -9,7 +9,7 @@ part of 'cart_trips.dart';
 _$CartTripsImpl _$$CartTripsImplFromJson(Map<String, dynamic> json) =>
     _$CartTripsImpl(
       id: json['id'] as int?,
-      checkoutId: json['checkoutId'] as int?,
+      checkoutId: json['checkout_id'] as int?,
       date: json['date'] as String?,
       status: json['status'] as String?,
       quantityAdult: json['quantityAdult'] as int?,
@@ -27,7 +27,7 @@ _$CartTripsImpl _$$CartTripsImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$CartTripsImplToJson(_$CartTripsImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'checkoutId': instance.checkoutId,
+      'checkout_id': instance.checkoutId,
       'date': instance.date,
       'status': instance.status,
       'quantityAdult': instance.quantityAdult,

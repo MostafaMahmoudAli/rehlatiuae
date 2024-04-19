@@ -142,7 +142,10 @@ class PaymentDetailsScreen extends StatelessWidget {
                     buttonLabel: LocaleKeys.Payment.tr(),
                     onButtonTap: () async {
                       if (context.read<MainCubit>().client == null) {
-                        context.push(AppRoutesString.loginScreen);
+                        context.push(
+                          AppRoutesString.loginScreen,
+                          extra: true,
+                        );
                         return;
                       }
                       cubit.checkoutTripsAndOffers();

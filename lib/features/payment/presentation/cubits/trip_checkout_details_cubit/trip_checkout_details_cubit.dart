@@ -161,10 +161,10 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     );
   }
 
-  Future<void> succeedCheckoutTrip() async {
+  Future<void> succeedCheckoutTrip({int? checkoutId}) async {
     _update(const TripCheckoutDetailsState.checkedTripLoading());
     var response = await paymentRepo.succeedCheckoutTrip(
-      checkoutId: currentCheckoutId,
+      checkoutId: checkoutId ?? currentCheckoutId,
       sessionId: sessionId,
     );
     response.fold(

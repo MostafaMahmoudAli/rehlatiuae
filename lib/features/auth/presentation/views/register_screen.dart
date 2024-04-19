@@ -20,7 +20,12 @@ import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import '../../../../core/utils/app_strings.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+  final bool isGoBackWhenSuccess;
+
+  const RegisterScreen({
+    required this.isGoBackWhenSuccess,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +46,13 @@ class RegisterScreen extends StatelessWidget {
               listener: (context, state) {
                 state.whenOrNull(
                   success: (authenticatedClient) {
-                    context.read<MainCubit>().getCachedClient();
-                    context.go(AppRoutesString.homeScreen);
+                    if (!isGoBackWhenSuccess) {
+                      context.read<MainCubit>().getCachedClient();
+                      context.go(AppRoutesString.homeScreen);
+                    } else {
+                      context.pop();
+                      context.pop();
+                    }
                   },
                   error: (message) {
                     showDialog(
