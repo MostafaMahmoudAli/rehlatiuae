@@ -170,7 +170,7 @@ Future<void> setupInjector() async {
 
   getIt.registerFactory(() => CategoryNameCubit(categoryNameRepo: getIt()));
 
-  getIt.registerLazySingleton(() => SubscriptionSectionCubit(layoutRepository: getIt()));
+  getIt.registerFactory(() => SubscriptionSectionCubit(layoutRepository: getIt()));
 
   getIt.registerLazySingleton(() => SearchCubit(searchRepo: getIt()));
 
