@@ -32,7 +32,7 @@ class LanguageContentSheet extends StatelessWidget {
                 key: AppStrings.currentLanguage,
                 value: "ar",
               );
-               getIt<LayoutCubit>().fetchLayoutData(clientId:getIt<MainCubit>().client?.id,);
+              await  getIt<LayoutCubit>().fetchLayoutData(clientId:getIt<MainCubit>().client?.id,);
             },
           ),
           RowDetails(
@@ -44,7 +44,7 @@ class LanguageContentSheet extends StatelessWidget {
                 key: AppStrings.currentLanguage,
                 value: "en",
               );
-               getIt<LayoutCubit>().fetchLayoutData(clientId:getIt<MainCubit>().client?.id,);
+              await  getIt<LayoutCubit>().fetchLayoutData(clientId:getIt<MainCubit>().client?.id,);
             },
           ),
           RowDetails(
@@ -56,7 +56,7 @@ class LanguageContentSheet extends StatelessWidget {
                 key: AppStrings.currentLanguage,
                 value: "ur",
               );
-              getIt<LayoutCubit>().fetchLayoutData(clientId:getIt<MainCubit>().client?.id,);
+              await getIt<LayoutCubit>().fetchLayoutData(clientId:getIt<MainCubit>().client?.id,);
             },
           ),
           SizedBox(

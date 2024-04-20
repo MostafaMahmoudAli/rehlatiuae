@@ -13,14 +13,16 @@ import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-  const CustomBottomNavigationBar({super.key});
+  const CustomBottomNavigationBar({Key?key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MainCubit, MainState>(
       builder: (context, state) {
         var cubit = context.read<MainCubit>();
+        var currentLanguageCode = context.locale.languageCode; // Get the current language code
         return CurvedNavigationBar(
+          key: Key('curvedNavigationBar_$currentLanguageCode'), // Add a key to force rebuild on language change
           items: [
             CurvedNavigationBarItem(
               child: Padding(
