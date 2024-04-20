@@ -11,6 +11,7 @@ class FireBaseNotification {
       badge: true,
       sound: true,
       provisional: true,
+
     );
     AppStrings.notificationToken = await _firebaseMessaging.getToken();
     handleBackground();
@@ -18,7 +19,7 @@ class FireBaseNotification {
 
   void handelMessage(
     RemoteMessage? message,
-  ) {
+  ){
     if (message == null) return;
   }
 
