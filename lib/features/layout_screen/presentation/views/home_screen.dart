@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const CustomSizedBox(),
                       PopularExperiencesSection(
-                        popularExperiences: layoutModel.popularExperience ?? [],
+                        popularExperiences:layoutModel.popularExperience ?? [],
                       ),
                       const CustomSizedBox(),
                       OurBlogSection(

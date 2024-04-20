@@ -57,7 +57,7 @@ class _AllTripsBodyState extends State<AllTripsBody> {
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.58,
+                  childAspectRatio:MediaQuery.sizeOf(context).aspectRatio/0.58,
                   crossAxisSpacing: 5.0.w,
                   mainAxisSpacing: 1.0.w,
                 ),

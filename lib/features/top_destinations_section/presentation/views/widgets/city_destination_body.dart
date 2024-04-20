@@ -16,12 +16,12 @@ class CityDestinationBody extends StatelessWidget {
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 10.0.w,
-          mainAxisSpacing: 15.0.w,
-          childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.55,
+          crossAxisSpacing: 5.0.w,
+          mainAxisSpacing: 1.0.w,
+          childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.58,
         ),
         itemBuilder: (context, index) => CustomContainerTrip(
-          width: 200.0.w,
+          width: 170.0.w,
           trip: cityDestination?.trips?[index],
           cityName: cityDestination?.trips?[index].name ?? "",
           countryName: cityDestination?.trips?[index].description ?? "",
