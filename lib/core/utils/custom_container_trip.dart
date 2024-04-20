@@ -161,7 +161,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width : 220.0.w,
+                    width : widget.width <= 200.0.w ? 220.0.w : 140.0.w,
                     child: Text(
                     widget.cityName ?? "",
                       style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize:14.0.sp),
@@ -183,7 +183,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                         width: 1.0.w,
                       ),
                       SizedBox(
-                        width: 100.0.w,
+                        width: widget.width >= 200.0.w ? 160.0.w :100.0.w,
                         child: Text(
                           widget.countryName ?? "",
                           style: Theme.of(context)
@@ -191,6 +191,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                               .displaySmall
                               ?.copyWith(color: AppColors.textAndBackgroundColorButton),
                           overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
                       ),
                     ],
