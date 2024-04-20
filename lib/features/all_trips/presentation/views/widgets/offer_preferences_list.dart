@@ -17,17 +17,27 @@ class OfferPreferencesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 470.h,
-      child: ListView.separated(
+      child: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         scrollDirection: Axis.horizontal,
-        itemCount: offers!.length,
-        itemBuilder: (context, index) => OfferCard(
-          offer: offers![index],
-          trip: trip,
-          isTripSelected: index == 0,
-        ),
-        separatorBuilder: (BuildContext context, int index) => SizedBox(
-          width: 10.w,
+        child: Row(
+          children: [
+            ...List.generate(
+              offers!.length,
+              (index) => Row(
+                children: [
+                  OfferCard(
+                    offer: offers![index],
+                    trip: trip,
+                    isTripSelected: index == 0,
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

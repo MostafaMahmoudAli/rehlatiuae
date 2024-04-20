@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
@@ -28,50 +29,66 @@ class BookingScreen extends StatelessWidget {
                 child: const CircularProgressIndicator(),
               ),
             ),
-            success: (bookings) => ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: 10.h),
-              itemCount: bookings.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) => OrderSummaryCard(
-                title: bookings[index].trip?.name,
-                total: '${bookings[index].total}',
-                childrenCount: '${bookings[index].quantityChildren}',
-                adultCount: '${bookings[index].quantityAdult}',
-                address: bookings[
-                  index].trip?.address ?? '',
-                imageUrl: bookings[index].trip?.imagePath ?? '',
-                date: bookings[index].date ?? '',
-                status: bookings[index].status,
-                onTapButton: () {
-                  if (bookings[index].status == 'unPaid') {
-                    context.read<TripCheckoutDetailsCubit>().makePayment(
-                          amount:context.read<MainCubit>().currentCurrencyPrice! * bookings[index].total!.toDouble(),
-                          currency: context.read<MainCubit>().currentCurrency.name,
+            success: (bookings) => BlocListener<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+              listener: (c, state) {
+                state.whenOrNull(
+                  stripeSuccess: () {
+                    getIt<Logger>().w(context.read<BookingCubit>().currentCheckoutId);
+                    context.read<TripCheckoutDetailsCubit>().succeedCheckoutTrip(
+                          checkoutId: context.read<BookingCubit>().currentCheckoutId,
                         );
-                  } else {
-                    double totalAfterDiscount =
-                        (bookings[index].subtotalAdult! + bookings[index].subtotalChildren!).toDouble();
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                      builder: (c) => CustomBottomSheet(
-                        title: LocaleKeys.Payment_Details.tr(),
-                        labelButton: bookings[index].status == 'paid' ? 'Back' : 'Payment',
-                        contentSheet: PaymentContentSheet(
-                          totalAfterDiscount: totalAfterDiscount,
-                          allSubtotal: bookings[index].total!.toDouble(),
-                          tripDate: bookings[index].date!,
+                  },
+                  success: () {
+                    context.read<BookingCubit>().getBooking();
+                  },
+                );
+              },
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                itemCount: bookings.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) => OrderSummaryCard(
+                  title: bookings[index].trip?.name,
+                  total: '${bookings[index].total} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
+                  childrenCount: '${bookings[index].quantityChildren}',
+                  adultCount: '${bookings[index].quantityAdult}',
+                  address: bookings[index].trip?.address ?? '',
+                  imageUrl: bookings[index].trip?.imagePath ?? '',
+                  date: bookings[index].date ?? '',
+                  status: bookings[index].status,
+                  onTapButton: () {
+                    if (bookings[index].status == 'unPaid') {
+                      context.read<BookingCubit>().currentCheckoutId = bookings[index].checkoutId;
+                      getIt<Logger>().w('checkoutId: ${bookings[index].checkoutId}');
+                      context.read<TripCheckoutDetailsCubit>().makePayment(
+                            amount: context.read<MainCubit>().currentCurrencyPrice! * bookings[index].total!.toDouble(),
+                            currency: context.read<MainCubit>().currentCurrency.name,
+                          );
+                    } else {
+                      double totalAfterDiscount =
+                          (bookings[index].subtotalAdult! + bookings[index].subtotalChildren!).toDouble();
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.zero,
                         ),
-                        onButtonPreesd: () {
-                          context.pop();
-                        },
-                      ),
-                    );
-                  }
-                },
+                        builder: (c) => CustomBottomSheet(
+                          title: LocaleKeys.Payment_Details.tr(),
+                          labelButton: bookings[index].status == 'paid' ? 'Back' : 'Payment',
+                          contentSheet: PaymentContentSheet(
+                            totalAfterDiscount: totalAfterDiscount,
+                            allSubtotal: bookings[index].total!.toDouble(),
+                            tripDate: bookings[index].date!,
+                          ),
+                          onButtonPreesd: () {
+                            context.pop();
+                          },
+                        ),
+                      );
+                    }
+                  },
+                ),
               ),
             ),
             orElse: () => const SizedBox(),

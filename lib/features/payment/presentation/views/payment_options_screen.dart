@@ -59,8 +59,10 @@ class PaymentOptionsScreen extends StatelessWidget {
                       controller: cubit.dateEditingController,
                     ),
                     CountTicketsSection(
-                      adultCost:context.read<MainCubit>().currentCurrencyPrice! *  cubit.selectedTrip!.adultPrice!.round(),
-                      childCost:context.read<MainCubit>().currentCurrencyPrice! * cubit.selectedTrip!.childPrice!.toDouble(),
+                      adultCost:
+                          context.read<MainCubit>().currentCurrencyPrice! * cubit.selectedTrip!.adultPrice!.round(),
+                      childCost:
+                          context.read<MainCubit>().currentCurrencyPrice! * cubit.selectedTrip!.childPrice!.toDouble(),
                       onAdultsCountChange: (count, total) {
                         cubit.onAdultsCountChange(
                           index: 0,
@@ -104,39 +106,42 @@ class PaymentOptionsScreen extends StatelessWidget {
               if (cubit.selectedOffers.isNotEmpty)
                 ...List.generate(
                   cubit.selectedOffers.length,
-                  (index) => Column(
-                    children: [
-                      FieldDateBooking(
-                        controller: cubit.dateOffersEditingControllers[index],
-                      ),
-                      CountTicketsSection(
-                        adultCost: cubit.selectedOffers[index].adultPrice!.toDouble(),
-                        childCost: cubit.selectedOffers[index].childPrice!.toDouble(),
-                        onAdultsCountChange: (count, total) {
-                          cubit.onAdultsCountChange(
-                            index: index + 1,
-                            count: count,
-                            total: total,
-                          );
-                        },
-                        onChildrenCountChange: (count, total) {
-                          cubit.onChildrenCountChange(
-                            index: index + 1,
-                            count: count,
-                            total: total,
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.0.h),
-                        child: DottedLine(
-                          dashLength: 8.w,
-                          alignment: WrapAlignment.spaceBetween,
-                          dashColor: AppColors.grey,
+                  (index) {
+                    int increment = cubit.isTripSelected ? 1 : 0;
+                    return Column(
+                      children: [
+                        FieldDateBooking(
+                          controller: cubit.dateOffersEditingControllers[index],
                         ),
-                      ),
-                    ],
-                  ),
+                        CountTicketsSection(
+                          adultCost: cubit.selectedOffers[index].adultPrice!.toDouble(),
+                          childCost: cubit.selectedOffers[index].childPrice!.toDouble(),
+                          onAdultsCountChange: (count, total) {
+                            cubit.onAdultsCountChange(
+                              index: index + increment,
+                              count: count,
+                              total: total,
+                            );
+                          },
+                          onChildrenCountChange: (count, total) {
+                            cubit.onChildrenCountChange(
+                              index: index + increment,
+                              count: count,
+                              total: total,
+                            );
+                          },
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8.0.h),
+                          child: DottedLine(
+                            dashLength: 8.w,
+                            alignment: WrapAlignment.spaceBetween,
+                            dashColor: AppColors.grey,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               BlocProvider<CheckCouponCubit>(
                 create: (context) => getIt<CheckCouponCubit>(),
