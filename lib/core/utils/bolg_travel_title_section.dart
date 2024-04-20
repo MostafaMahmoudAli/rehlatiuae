@@ -113,7 +113,7 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
             left: 0,
             right: 0,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 35.h),
               decoration: BoxDecoration(
                 color: Colors.black45,
                 borderRadius: BorderRadius.vertical(
@@ -149,7 +149,8 @@ class _BolgTravelTitleSectionState extends State<BolgTravelTitleSection> {
                             Container(
                               height: 20.0.h,
                               margin: EdgeInsetsDirectional.symmetric(
-                                  horizontal: 4.0.w),
+                                  horizontal: 4.0.w,
+                              ),
                               decoration: BoxDecoration(
                                 color: AppColors.white,
                                 borderRadius: BorderRadius.circular(8.0.r),
