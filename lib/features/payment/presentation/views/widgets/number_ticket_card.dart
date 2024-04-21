@@ -87,7 +87,7 @@ class CountTicketCard extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  "$total ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
+                  "${(total * context.read<MainCubit>().currentCurrencyPrice).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                   textAlign: TextAlign.end,
                   style: Theme.of(context).textTheme.titleSmall,
                 ),

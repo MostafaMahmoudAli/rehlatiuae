@@ -47,7 +47,8 @@ class BookingScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemBuilder: (context, index) => OrderSummaryCard(
                   title: bookings[index].trip?.name,
-                  total: '${bookings[index].total} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
+                  total:
+                      '${bookings[index].total!.toDouble().toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
                   childrenCount: '${bookings[index].quantityChildren}',
                   adultCount: '${bookings[index].quantityAdult}',
                   address: bookings[index].trip?.address ?? '',
@@ -58,7 +59,7 @@ class BookingScreen extends StatelessWidget {
                     if (bookings[index].status == 'unPaid') {
                       context.read<BookingCubit>().currentCheckoutId = bookings[index].checkoutId;
                       context.read<TripCheckoutDetailsCubit>().makePayment(
-                            amount: context.read<MainCubit>().currentCurrencyPrice! * bookings[index].total!.toDouble(),
+                            amount: context.read<MainCubit>().currentCurrencyPrice * bookings[index].total!.toDouble(),
                             currency: context.read<MainCubit>().currentCurrency.name,
                           );
                     } else {
