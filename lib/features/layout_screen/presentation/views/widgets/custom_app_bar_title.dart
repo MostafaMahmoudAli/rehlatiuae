@@ -6,15 +6,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/generated/locale_keys.g.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CustomAppBarTitle extends StatelessWidget {
   const CustomAppBarTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var currentLanguageCode = context.locale.languageCode; // Get the current language code
     return Row(
+      key: Key(currentLanguageCode),
       children: [
         SvgPicture.asset(
           AppAssets.appLogo,
@@ -48,7 +50,9 @@ class CustomAppBarTitle extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      context.read<MainCubit>().client != null ? context.read<MainCubit>().client!.name.characters.first : 'there',
+                      context.read<MainCubit>().client != null
+                          ? context.read<MainCubit>().client!.name.characters.first
+                          : 'there',
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: AppColors.textAndBackgroundColorButton,

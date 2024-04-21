@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
 import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
@@ -33,7 +32,6 @@ class BookingScreen extends StatelessWidget {
               listener: (c, state) {
                 state.whenOrNull(
                   stripeSuccess: () {
-                    getIt<Logger>().w(context.read<BookingCubit>().currentCheckoutId);
                     context.read<TripCheckoutDetailsCubit>().succeedCheckoutTrip(
                           checkoutId: context.read<BookingCubit>().currentCheckoutId,
                         );
@@ -49,7 +47,8 @@ class BookingScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemBuilder: (context, index) => OrderSummaryCard(
                   title: bookings[index].trip?.name,
-                  total: '${bookings[index].total} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
+                  total:
+                      '${bookings[index].total!.toDouble().toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
                   childrenCount: '${bookings[index].quantityChildren}',
                   adultCount: '${bookings[index].quantityAdult}',
                   address: bookings[index].trip?.address ?? '',
@@ -59,9 +58,8 @@ class BookingScreen extends StatelessWidget {
                   onTapButton: () {
                     if (bookings[index].status == 'unPaid') {
                       context.read<BookingCubit>().currentCheckoutId = bookings[index].checkoutId;
-                      getIt<Logger>().w('checkoutId: ${bookings[index].checkoutId}');
                       context.read<TripCheckoutDetailsCubit>().makePayment(
-                            amount: context.read<MainCubit>().currentCurrencyPrice! * bookings[index].total!.toDouble(),
+                            amount: context.read<MainCubit>().currentCurrencyPrice * bookings[index].total!.toDouble(),
                             currency: context.read<MainCubit>().currentCurrency.name,
                           );
                     } else {
