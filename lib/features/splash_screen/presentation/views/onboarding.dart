@@ -2,7 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/features/splash_screen/presentation/views/unboarding.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
@@ -92,6 +95,10 @@ class _OnBoardingState extends State<OnBoarding> {
                                   height: 55.h,
                                   onTap: () {
                                     GoRouter.of(context).go('/homeScreen');
+                                    getIt<CacheService>().setData(
+                                      key: AppRoutesString.initialLocationRoute,
+                                      value: AppRoutesString.homeScreen,
+                                    );
                                     // _controller.nextPage(
                                     //   duration: const Duration(milliseconds: 100),
                                     //   curve: Curves.bounceIn,
@@ -119,9 +126,9 @@ class _OnBoardingState extends State<OnBoarding> {
                     ),
                     SizedBox(
                       height: 260.h,
-
-                      child: Center(child: Image.asset('assets/images/logo.png'),),
-
+                      child: Center(
+                        child: Image.asset('assets/images/logo.png'),
+                      ),
                     ),
                     SizedBox(height: 200.h),
                     Row(
