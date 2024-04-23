@@ -57,12 +57,12 @@ class _AllTripsBodyState extends State<AllTripsBody> {
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: MediaQuery.sizeOf(context).aspectRatio/0.6,
-                  crossAxisSpacing: 10.0.w,
+                  childAspectRatio:MediaQuery.sizeOf(context).aspectRatio/0.58,
+                  crossAxisSpacing: 5.0.w,
                   mainAxisSpacing: 1.0.w,
                 ),
                 itemBuilder: (context, index) => CustomContainerTrip(
-                  width: 140.0.w,
+                  width: 160.0.w,
                   trip: state.trips[index],
                   cityName: state.trips[index].name,
                   countryName: state.trips[index].address,

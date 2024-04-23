@@ -12,6 +12,7 @@ import '../../../data/models/chechked_trips_offers_model/check_trips_offers_resp
 import '../../../data/models/chechked_trips_offers_model/checked_trips_offers_request_model.dart';
 
 part 'trip_checkout_details_cubit.freezed.dart';
+
 part 'trip_checkout_details_state.dart';
 
 class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
@@ -161,10 +162,10 @@ class TripCheckoutDetailsCubit extends Cubit<TripCheckoutDetailsState> {
     );
   }
 
-  Future<void> succeedCheckoutTrip() async {
+  Future<void> succeedCheckoutTrip({int? checkoutId}) async {
     _update(const TripCheckoutDetailsState.checkedTripLoading());
     var response = await paymentRepo.succeedCheckoutTrip(
-      checkoutId: currentCheckoutId,
+      checkoutId: checkoutId ?? currentCheckoutId,
       sessionId: sessionId,
     );
     response.fold(

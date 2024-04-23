@@ -38,12 +38,12 @@ class CategoryNameBody extends StatelessWidget {
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 10.0.w,
-                mainAxisSpacing: 15.0.w,
-                childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.6,
+                crossAxisSpacing: 5.0.w,
+                mainAxisSpacing:1.0.w,
+                childAspectRatio: MediaQuery.sizeOf(context).aspectRatio / 0.58,
               ),
               itemBuilder: (context, index) => CustomContainerTrip(
-                width: 200.0.w,
+                width: 150.0.w,
                 cityName: categoryNameTrips[index].name ?? "",
                 countryName: categoryNameTrips[index].description ?? "",
                 imageName: categoryNameTrips[index].imagePath ?? "",

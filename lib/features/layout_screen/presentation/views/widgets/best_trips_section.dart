@@ -40,7 +40,7 @@ class BestTripsSection extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return CustomContainerTrip(
-                  width: 200.0.w,
+                  width: 255.0.w,
                   trip: bestTrips?[index],
                   cityName: bestTrips?[index].name ?? "",
                   countryName: bestTrips?[index].address ?? "",

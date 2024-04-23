@@ -6,7 +6,8 @@ import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_item.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
-class WeHelpYouSection extends StatelessWidget {
+class WeHelpYouSection extends StatelessWidget
+{
    WeHelpYouSection({super.key});
 
   String arabicKey = LocaleKeys.Arabic.tr();
@@ -73,7 +74,7 @@ class WeHelpYouSection extends StatelessWidget {
                   ),
                 ),
                 Positioned.directional(
-                  textDirection: isArabic  ? TextDirection.rtl : TextDirection.ltr,
+                  textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
                   top: MediaQuery.sizeOf(context).height * 0.19,
                   end: MediaQuery.sizeOf(context).width * 0.3,
                   child: Container(

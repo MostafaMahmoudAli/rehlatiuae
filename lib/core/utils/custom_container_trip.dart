@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:currency_converter/currency.dart';
+import 'package:easy_localization/easy_localization.dart' as s;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,8 @@ import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
 import 'package:rehlatyuae/features/all_trips/data/models/trips_model.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
+
+import '../../generated/locale_keys.g.dart';
 
 class CustomContainerTrip extends StatefulWidget {
   const CustomContainerTrip({
@@ -49,6 +52,8 @@ class CustomContainerTrip extends StatefulWidget {
 class _CustomContainerTripState extends State<CustomContainerTrip> {
   bool isFavorite = false;
   Trips? trip;
+  String englishKey = LocaleKeys.English.tr();
+  late bool isEnglish = (englishKey == 'English');
 
   @override
   void initState() {
@@ -148,17 +153,18 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                   size: 35.0.w,
                 ),
               ),
-            Positioned(
+            Positioned.directional(
+              textDirection: isEnglish ?TextDirection.ltr : TextDirection.rtl ,
               bottom: MediaQuery.sizeOf(context).height * 0.037,
-              left: MediaQuery.sizeOf(context).width * 0.02,
+              start: MediaQuery.sizeOf(context).width * 0.02,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 120.0.w,
+                    width : widget.width <= 200.0.w ? 220.0.w : 140.0.w,
                     child: Text(
-                      widget.cityName ?? "",
-                      style: Theme.of(context).textTheme.displayMedium,
+                    widget.cityName ?? "",
+                      style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize:14.0.sp),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -177,7 +183,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                         width: 1.0.w,
                       ),
                       SizedBox(
-                        width: 100.0.w,
+                        width: widget.width >= 200.0.w ? 160.0.w :100.0.w,
                         child: Text(
                           widget.countryName ?? "",
                           style: Theme.of(context)
@@ -185,6 +191,7 @@ class _CustomContainerTripState extends State<CustomContainerTrip> {
                               .displaySmall
                               ?.copyWith(color: AppColors.textAndBackgroundColorButton),
                           overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
                       ),
                     ],

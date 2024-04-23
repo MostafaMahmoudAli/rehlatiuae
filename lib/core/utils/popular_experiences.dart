@@ -39,7 +39,7 @@ class PopularExperiencesSection extends StatelessWidget {
               itemCount: popularExperiences!.length,
               itemBuilder: (context, index) {
                 return PopularExperiencesContainerItem(
-                  width: 150.0.w,
+                  width: 255.0.w,
                   percentageSave: popularExperiences?[index].saving ?? "",
                   oldTripPrice: popularExperiences?[index].beforePrice,
                   trip: popularExperiences?[index],

@@ -155,11 +155,15 @@ class AppRouter {
         ),
         GoRoute(
           path: AppRoutesString.loginScreen,
-          builder: (context, state) => const LoginScreen(),
+          builder: (context, state) => LoginScreen(
+            isGoBackWhenSuccess: (state.extra as bool?) ?? false,
+          ),
         ),
         GoRoute(
           path: AppRoutesString.registerScreen,
-          builder: (context, state) => const RegisterScreen(),
+          builder: (context, state) => RegisterScreen(
+            isGoBackWhenSuccess: (state.extra as bool?) ?? false,
+          ),
         ),
         GoRoute(
           path: AppRoutesString.forgetPasswordScreen,
@@ -175,7 +179,7 @@ class AppRouter {
         ),
         GoRoute(
           path: AppStrings.favouritesScreen,
-          builder: (context, state) => FavouritesScreen(),
+          builder: (context, state) => const FavouritesScreen(),
         ),
       ],
       initialLocation: initialLocation,

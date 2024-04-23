@@ -9,18 +9,20 @@ import 'package:rehlatyuae/features/layout_screen/domain/repositories/main_repo.
 import 'package:url_launcher/url_launcher.dart';
 
 part 'main_cubit.freezed.dart';
-
 part 'main_state.dart';
 
 class MainCubit extends Cubit<MainState> {
   final MainRepo mainRepo;
   final AuthRepo authRepo;
 
-  MainCubit({required this.mainRepo, required this.authRepo}) : super(const MainState.initial());
+  MainCubit({
+    required this.mainRepo,
+    required this.authRepo,
+  }) : super(const MainState.initial());
   Client? client;
   double totalUnPayedBookingInUSD = 1;
   double? totalUnPayedBooking = 1;
-  double? currentCurrencyPrice = 1;
+  double currentCurrencyPrice = 1;
   int currentTab = 0;
   Currency currentCurrency = Currency.usd;
   List<Currency> currencies = [
@@ -41,16 +43,16 @@ class MainCubit extends Cubit<MainState> {
   void getCachedClient() {
     final results = mainRepo.getClient();
     results.fold(
-          (errorMessage) => _update(MainState.error(errorMessage)),
-          (client) => this.client = client,
+      (errorMessage) => _update(MainState.error(errorMessage)),
+      (client) => this.client = client,
     );
   }
 
   void getCurrentCurrency() {
     final results = mainRepo.getCurrentCurrencyAndTotalUnPaid();
     results.fold(
-          (errorMessage) => _update(MainState.error(errorMessage)),
-          (currentAndTotal) {
+      (errorMessage) => _update(MainState.error(errorMessage)),
+      (currentAndTotal) {
         currentCurrency = currentAndTotal.$1;
         totalUnPayedBooking = currentAndTotal.$2;
       },
@@ -64,8 +66,8 @@ class MainCubit extends Cubit<MainState> {
       totalAmount: totalUnPayedBookingInUSD,
     );
     results.fold(
-          (errorMessage) => _update(MainState.error(errorMessage)),
-          (total) async {
+      (errorMessage) => _update(MainState.error(errorMessage)),
+      (total) async {
         totalUnPayedBooking = total;
         await getPriceCurrency();
         _update(const MainState.success());
@@ -79,8 +81,8 @@ class MainCubit extends Cubit<MainState> {
       totalAmount: 1,
     );
     results.fold(
-          (errorMessage) => null,
-          (total) => currentCurrencyPrice = total,
+      (errorMessage) => null,
+      (total) => currentCurrencyPrice = total ?? 1,
     );
   }
 
@@ -101,8 +103,8 @@ class MainCubit extends Cubit<MainState> {
     _update(const MainState.loading());
     final results = await authRepo.logout();
     results.fold(
-          (message) => _update(MainState.error(message)),
-          (unit) {
+      (message) => _update(MainState.error(message)),
+      (unit) {
         client = null;
         _update(const MainState.success());
       },
@@ -113,8 +115,8 @@ class MainCubit extends Cubit<MainState> {
     _update(const MainState.loading());
     final results = await mainRepo.getSocialMedia();
     results.fold(
-          (message) => _update(MainState.error(message)),
-          (socialMedia) {
+      (message) => _update(MainState.error(message)),
+      (socialMedia) {
         try {
           final Uri whatsapp = Uri.parse('https://wa.me/${socialMedia.whatsApp}');
           launchUrl(whatsapp);
@@ -135,8 +137,8 @@ class MainCubit extends Cubit<MainState> {
       token: token,
     );
     results.fold(
-          (errorMessage) => _update(MainState.error(errorMessage)),
-          (unit) => _update(const MainState.success()),
+      (errorMessage) => _update(MainState.error(errorMessage)),
+      (unit) => _update(const MainState.success()),
     );
   }
 
