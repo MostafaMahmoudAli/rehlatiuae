@@ -45,9 +45,9 @@
   "Select_a_date": "تاریخ منتخب کریں",
   "Select_ticket": "ٹکٹوں کی تعداد منتخب کریں",
   "Adult": "بالغ",
-  "Above_four_yrs": "4 سال سے زیادہ",
+  "Above_four_yrs": "12 سال سے زیادہ",
   "Children": "بچے",
-  "Under_three_yrs": "3 سال سے کم",
+  "Under_three_yrs": "3 - 12 سال سے اوپر کے بچے",
   "You_Have_Coupon": "آپ کے پاس ایک کوپن ہے!",
   "Your_Coupon": "آپ کا کوپن!",
   "Description": "تفصیل",
@@ -196,5 +196,11 @@
   "Offers_Tickets": "ترجیحات کے ٹکٹ",
   "You_must_select_trip_or_offer_at_latest": "آپ کو تازہ ترین سفر یا پیشکش کا انتخاب کرنا چاہیے۔",
   "Log_out": "لاگ آوٹ",
-  "You_have_successfully_subscribed_to_the_newsletter": "آپ نے کامیابی کے ساتھ نیوز لیٹر کو سبسکرائب کر لیا ہے!"
+  "You_have_successfully_subscribed_to_the_newsletter": "آپ نے کامیابی کے ساتھ نیوز لیٹر کو سبسکرائب کر لیا ہے!",
+  "Payment_Date": "ادائیگی کی تاریخ",
+  "Trip_Date": "سفر کی تاریخ",
+  "Payment_Id": "ادائیگی کی شناخت",
+  "Total_Payment": "کل ادائیگی",
+  "Discount": "چھوٹچھوٹ",
+  "Total": "کل"
 }

@@ -45,9 +45,9 @@
   "Select_a_date": " اختر موعد الحجز",
   "Select_ticket": "اختر عدد التذاكر",
   "Adult": " بالغ",
-  "Above_four_yrs": "فوق 4 سنوات",
+  "Above_four_yrs": "فوق 12 سنوات",
   "Children": "أطفال",
-  "Under_three_yrs": "أقل من 3 سنوات",
+  "Under_three_yrs": "بين 3 - 12 سنة للأطفال",
   "You_Have_Coupon": "لديك كوبون خصم!",
   "Your_Coupon": " قسيمتك!",
   "Description": "الملاحظات",
@@ -178,7 +178,7 @@
   "selected": " اختياري",
   "View_Details": "عرض التفاصيل...",
   "chatting": "المحادثة",
-  "Start_planning_your_events": "فعاليات مميزة ومثيرة ...",
+  "Start_planning_your_events": "إبدأ التخطيط لفعالياتك ...",
   "Distinctive_and_exciting_activities": "فعاليات مميزة ومثيرة ...",
   "are_you_ready": "هل أنت مستعد!",
   "Create_excitement": "عيش المتعة!",
@@ -196,5 +196,11 @@
   "Offers_Tickets": "التذاكر التفضيلية",
   "You_must_select_trip_or_offer_at_latest": "يجب عليك تحديد رحلة أوتذاكرة تفضيلية على الأقل  .",
   "Log_out": "تسجيل الخروج",
-  "You_have_successfully_subscribed_to_the_newsletter": "تم الإشتراك في في النشرة البريدية بنجاح !"
+  "You_have_successfully_subscribed_to_the_newsletter": "تم الإشتراك في في النشرة البريدية بنجاح !",
+  "Payment_Date": "تاريخ الدفع",
+  "Trip_Date": "تاريخ الرحلة",
+  "Payment_Id": "معرّف الدفع",
+  "Total_Payment": "الدفع الإجمالي",
+  "Discount": "خصم",
+  "Total": "الإجمالي"
 }
