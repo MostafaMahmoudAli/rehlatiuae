@@ -61,9 +61,9 @@ class CodegenLoader extends AssetLoader{
   "Select_a_date": " اختر موعد الحجز",
   "Select_ticket": "اختر عدد التذاكر",
   "Adult": " بالغ",
-  "Above_four_yrs": "فوق 4 سنوات",
+  "Above_four_yrs": "فوق 12 سنوات",
   "Children": "أطفال",
-  "Under_three_yrs": "أقل من 3 سنوات",
+  "Under_three_yrs": "بين 3 - 12 سنة للأطفال",
   "You_Have_Coupon": "لديك كوبون خصم!",
   "Your_Coupon": " قسيمتك!",
   "Description": "الملاحظات",
@@ -194,7 +194,7 @@ class CodegenLoader extends AssetLoader{
   "selected": " اختياري",
   "View_Details": "عرض التفاصيل...",
   "chatting": "المحادثة",
-  "Start_planning_your_events": "فعاليات مميزة ومثيرة ...",
+  "Start_planning_your_events": "إبدأ التخطيط لفعالياتك ...",
   "Distinctive_and_exciting_activities": "فعاليات مميزة ومثيرة ...",
   "are_you_ready": "هل أنت مستعد!",
   "Create_excitement": "عيش المتعة!",
@@ -212,7 +212,13 @@ class CodegenLoader extends AssetLoader{
   "Offers_Tickets": "التذاكر التفضيلية",
   "You_must_select_trip_or_offer_at_latest": "يجب عليك تحديد رحلة أوتذاكرة تفضيلية على الأقل  .",
   "Log_out": "تسجيل الخروج",
-  "You_have_successfully_subscribed_to_the_newsletter": "تم الإشتراك في في النشرة البريدية بنجاح !"
+  "You_have_successfully_subscribed_to_the_newsletter": "تم الإشتراك في في النشرة البريدية بنجاح !",
+  "Payment_Date": "تاريخ الدفع",
+  "Trip_Date": "تاريخ الرحلة",
+  "Payment_Id": "معرّف الدفع",
+  "Total_Payment": "الدفع الإجمالي",
+  "Discount": "خصم",
+  "Total": "الإجمالي"
 };
 static const Map<String,dynamic> en = {
   "Easy_to_Shop": "Easy to Shop",
@@ -261,9 +267,9 @@ static const Map<String,dynamic> en = {
   "Select_a_date": "Select a date",
   "Select_ticket": "Select Number off ticket",
   "Adult": "Adult",
-  "Above_four_yrs": "Above 4 yrs",
+  "Above_four_yrs": "Above 12 yrs",
   "Children": "Children",
-  "Under_three_yrs": "Under 3 yrs",
+  "Under_three_yrs": "Above 3 - 12y children",
   "You_Have_Coupon": "You Have Coupon!",
   "Your_Coupon": "Your Coupon!",
   "Description": "Description",
@@ -412,7 +418,13 @@ static const Map<String,dynamic> en = {
   "Offers_Tickets": "Preferences tickets",
   "You_must_select_trip_or_offer_at_latest": "You must select trip or offer at latest",
   "Log_out": "Log out",
-  "You_have_successfully_subscribed_to_the_newsletter": "You have successfully subscribed to the newsletter!"
+  "You_have_successfully_subscribed_to_the_newsletter": "You have successfully subscribed to the newsletter!",
+  "Payment_Date": "Payment Date",
+  "Trip_Date": "Trip Date",
+  "Payment_Id": "Payment Id",
+  "Total_Payment": "Total Payment",
+  "Discount": "Discount",
+  "Total": "Total"
 };
 static const Map<String,dynamic> ur = {
   "Easy_to_Shop": "خریدنا آسان",
@@ -461,9 +473,9 @@ static const Map<String,dynamic> ur = {
   "Select_a_date": "تاریخ منتخب کریں",
   "Select_ticket": "ٹکٹوں کی تعداد منتخب کریں",
   "Adult": "بالغ",
-  "Above_four_yrs": "4 سال سے زیادہ",
+  "Above_four_yrs": "12 سال سے زیادہ",
   "Children": "بچے",
-  "Under_three_yrs": "3 سال سے کم",
+  "Under_three_yrs": "3 - 12 سال سے اوپر کے بچے",
   "You_Have_Coupon": "آپ کے پاس ایک کوپن ہے!",
   "Your_Coupon": "آپ کا کوپن!",
   "Description": "تفصیل",
@@ -612,7 +624,13 @@ static const Map<String,dynamic> ur = {
   "Offers_Tickets": "ترجیحات کے ٹکٹ",
   "You_must_select_trip_or_offer_at_latest": "آپ کو تازہ ترین سفر یا پیشکش کا انتخاب کرنا چاہیے۔",
   "Log_out": "لاگ آوٹ",
-  "You_have_successfully_subscribed_to_the_newsletter": "آپ نے کامیابی کے ساتھ نیوز لیٹر کو سبسکرائب کر لیا ہے!"
+  "You_have_successfully_subscribed_to_the_newsletter": "آپ نے کامیابی کے ساتھ نیوز لیٹر کو سبسکرائب کر لیا ہے!",
+  "Payment_Date": "ادائیگی کی تاریخ",
+  "Trip_Date": "سفر کی تاریخ",
+  "Payment_Id": "ادائیگی کی شناخت",
+  "Total_Payment": "کل ادائیگی",
+  "Discount": "چھوٹچھوٹ",
+  "Total": "کل"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en, "ur": ur};
 }
