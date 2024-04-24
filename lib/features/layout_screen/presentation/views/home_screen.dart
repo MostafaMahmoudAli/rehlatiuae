@@ -32,7 +32,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var currentLanguageCode = context.locale.languageCode;
     return BlocProvider(
+
       create: (context) => getIt<LayoutCubit>()
         ..fetchLayoutData(
           clientId:context.read<MainCubit>().client?.id,
@@ -62,6 +64,7 @@ class HomeScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
+                    key: Key('curvedNavigationBar_$currentLanguageCode'),
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
