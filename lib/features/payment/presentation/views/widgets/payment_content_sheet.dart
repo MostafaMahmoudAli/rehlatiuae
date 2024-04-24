@@ -40,11 +40,11 @@ class PaymentContentSheet extends StatelessWidget {
               ),
         ),
         RowDetails(
-          title: "Payment Date",
+          title: LocaleKeys.Payment_Date.tr(),
           value: Pickers.formatDate(DateTime.now()),
         ),
         RowDetails(
-          title: "Trip Date",
+          title: LocaleKeys.Trip_Date.tr(),
           value: tripDate,
         ),
         if (paymentId != null)
@@ -54,7 +54,7 @@ class PaymentContentSheet extends StatelessWidget {
                 height: 20.h,
               ),
               Text(
-                'Payment Id',
+                LocaleKeys.Payment_Id.tr(),
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: AppColors.grey,
                     ),
@@ -77,11 +77,11 @@ class PaymentContentSheet extends StatelessWidget {
           dashColor: AppColors.grey,
         ),
         RowDetails(
-          title: "Total Payment",
+          title: LocaleKeys.Total_Payment.tr(),
           value: "\$${(allSubtotal * context.read<MainCubit>().currentCurrencyPrice).toStringAsFixed(2)}",
         ),
         RowDetails(
-          title: "Discount",
+          title: LocaleKeys.Discount.tr(),
           value:
               "\$${((allSubtotal - totalAfterDiscount) * context.read<MainCubit>().currentCurrencyPrice).toStringAsFixed(2)}",
         ),
