@@ -20,7 +20,7 @@ class BestOffersScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => getIt<BestOffersBloc>()
+        create: (context) =>getIt<BestOffersBloc>()
           ..add(
             GetBestOffersEvent(
               clientId: context.read<MainCubit>().client?.id,

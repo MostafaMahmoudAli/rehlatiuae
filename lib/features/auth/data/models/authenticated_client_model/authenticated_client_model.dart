@@ -10,7 +10,6 @@ part 'authenticated_client_model.g.dart';
 class AuthenticatedClient with _$AuthenticatedClient {
   const factory AuthenticatedClient({
     required final Client client,
-    @JsonKey(name: "expires_in") required final int expiresIn,
     @JsonKey(name: "access_token") required final String accessToken,
   }) = _AuthenticatedClient;
 

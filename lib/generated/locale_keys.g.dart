@@ -199,5 +199,11 @@ abstract class  LocaleKeys {
   static const You_must_select_trip_or_offer_at_latest = 'You_must_select_trip_or_offer_at_latest';
   static const Log_out = 'Log_out';
   static const You_have_successfully_subscribed_to_the_newsletter = 'You_have_successfully_subscribed_to_the_newsletter';
+  static const Payment_Date = 'Payment_Date';
+  static const Trip_Date = 'Trip_Date';
+  static const Payment_Id = 'Payment_Id';
+  static const Total_Payment = 'Total_Payment';
+  static const Discount = 'Discount';
+  static const Total = 'Total';
 
 }

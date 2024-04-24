@@ -45,9 +45,9 @@
   "Select_a_date": "Select a date",
   "Select_ticket": "Select Number off ticket",
   "Adult": "Adult",
-  "Above_four_yrs": "Above 4 yrs",
+  "Above_four_yrs": "Above 12 yrs",
   "Children": "Children",
-  "Under_three_yrs": "Under 3 yrs",
+  "Under_three_yrs": "Above 3 - 12y children",
   "You_Have_Coupon": "You Have Coupon!",
   "Your_Coupon": "Your Coupon!",
   "Description": "Description",
@@ -196,5 +196,11 @@
   "Offers_Tickets": "Preferences tickets",
   "You_must_select_trip_or_offer_at_latest": "You must select trip or offer at latest",
   "Log_out": "Log out",
-  "You_have_successfully_subscribed_to_the_newsletter": "You have successfully subscribed to the newsletter!"
+  "You_have_successfully_subscribed_to_the_newsletter": "You have successfully subscribed to the newsletter!",
+  "Payment_Date": "Payment Date",
+  "Trip_Date": "Trip Date",
+  "Payment_Id": "Payment Id",
+  "Total_Payment": "Total Payment",
+  "Discount": "Discount",
+  "Total": "Total"
 }

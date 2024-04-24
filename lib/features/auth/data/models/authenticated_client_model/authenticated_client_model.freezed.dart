@@ -21,8 +21,6 @@ AuthenticatedClient _$AuthenticatedClientFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AuthenticatedClient {
   Client get client => throw _privateConstructorUsedError;
-  @JsonKey(name: "expires_in")
-  int get expiresIn => throw _privateConstructorUsedError;
   @JsonKey(name: "access_token")
   String get accessToken => throw _privateConstructorUsedError;
 
@@ -38,10 +36,7 @@ abstract class $AuthenticatedClientCopyWith<$Res> {
           AuthenticatedClient value, $Res Function(AuthenticatedClient) then) =
       _$AuthenticatedClientCopyWithImpl<$Res, AuthenticatedClient>;
   @useResult
-  $Res call(
-      {Client client,
-      @JsonKey(name: "expires_in") int expiresIn,
-      @JsonKey(name: "access_token") String accessToken});
+  $Res call({Client client, @JsonKey(name: "access_token") String accessToken});
 
   $ClientCopyWith<$Res> get client;
 }
@@ -60,7 +55,6 @@ class _$AuthenticatedClientCopyWithImpl<$Res, $Val extends AuthenticatedClient>
   @override
   $Res call({
     Object? client = null,
-    Object? expiresIn = null,
     Object? accessToken = null,
   }) {
     return _then(_value.copyWith(
@@ -68,10 +62,6 @@ class _$AuthenticatedClientCopyWithImpl<$Res, $Val extends AuthenticatedClient>
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
               as Client,
-      expiresIn: null == expiresIn
-          ? _value.expiresIn
-          : expiresIn // ignore: cast_nullable_to_non_nullable
-              as int,
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -96,10 +86,7 @@ abstract class _$$AuthenticatedClientImplCopyWith<$Res>
       __$$AuthenticatedClientImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Client client,
-      @JsonKey(name: "expires_in") int expiresIn,
-      @JsonKey(name: "access_token") String accessToken});
+  $Res call({Client client, @JsonKey(name: "access_token") String accessToken});
 
   @override
   $ClientCopyWith<$Res> get client;
@@ -117,7 +104,6 @@ class __$$AuthenticatedClientImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? client = null,
-    Object? expiresIn = null,
     Object? accessToken = null,
   }) {
     return _then(_$AuthenticatedClientImpl(
@@ -125,10 +111,6 @@ class __$$AuthenticatedClientImplCopyWithImpl<$Res>
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
               as Client,
-      expiresIn: null == expiresIn
-          ? _value.expiresIn
-          : expiresIn // ignore: cast_nullable_to_non_nullable
-              as int,
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -142,7 +124,6 @@ class __$$AuthenticatedClientImplCopyWithImpl<$Res>
 class _$AuthenticatedClientImpl implements _AuthenticatedClient {
   const _$AuthenticatedClientImpl(
       {required this.client,
-      @JsonKey(name: "expires_in") required this.expiresIn,
       @JsonKey(name: "access_token") required this.accessToken});
 
   factory _$AuthenticatedClientImpl.fromJson(Map<String, dynamic> json) =>
@@ -151,15 +132,12 @@ class _$AuthenticatedClientImpl implements _AuthenticatedClient {
   @override
   final Client client;
   @override
-  @JsonKey(name: "expires_in")
-  final int expiresIn;
-  @override
   @JsonKey(name: "access_token")
   final String accessToken;
 
   @override
   String toString() {
-    return 'AuthenticatedClient(client: $client, expiresIn: $expiresIn, accessToken: $accessToken)';
+    return 'AuthenticatedClient(client: $client, accessToken: $accessToken)';
   }
 
   @override
@@ -168,15 +146,13 @@ class _$AuthenticatedClientImpl implements _AuthenticatedClient {
         (other.runtimeType == runtimeType &&
             other is _$AuthenticatedClientImpl &&
             (identical(other.client, client) || other.client == client) &&
-            (identical(other.expiresIn, expiresIn) ||
-                other.expiresIn == expiresIn) &&
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, client, expiresIn, accessToken);
+  int get hashCode => Object.hash(runtimeType, client, accessToken);
 
   @JsonKey(ignore: true)
   @override
@@ -196,7 +172,6 @@ class _$AuthenticatedClientImpl implements _AuthenticatedClient {
 abstract class _AuthenticatedClient implements AuthenticatedClient {
   const factory _AuthenticatedClient(
           {required final Client client,
-          @JsonKey(name: "expires_in") required final int expiresIn,
           @JsonKey(name: "access_token") required final String accessToken}) =
       _$AuthenticatedClientImpl;
 
@@ -205,9 +180,6 @@ abstract class _AuthenticatedClient implements AuthenticatedClient {
 
   @override
   Client get client;
-  @override
-  @JsonKey(name: "expires_in")
-  int get expiresIn;
   @override
   @JsonKey(name: "access_token")
   String get accessToken;

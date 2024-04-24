@@ -20,9 +20,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return BlocBuilder<MainCubit, MainState>(
       builder: (context, state) {
         var cubit = context.read<MainCubit>();
-        var currentLanguageCode = context.locale.languageCode; // Get the current language code
+        var currentLanguageCode = context.locale.languageCode;
         return CurvedNavigationBar(
-          key: Key('curvedNavigationBar_$currentLanguageCode'), // Add a key to force rebuild on language change
+          key: Key('curvedNavigationBar_$currentLanguageCode'),
           items: [
             CurvedNavigationBarItem(
               child: Padding(

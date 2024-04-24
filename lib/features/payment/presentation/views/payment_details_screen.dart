@@ -55,7 +55,7 @@ class PaymentDetailsScreen extends StatelessWidget {
             },
             checkedTripSuccess: (checkTripsAndOffersResponse) async {
               await cubit.makePayment(
-                amount: cubit.totalAfterDiscount,
+                amount: context.read<MainCubit>().currentCurrencyPrice * cubit.totalAfterDiscount,
                 currency: context.read<MainCubit>().currentCurrency.name,
               );
             },
@@ -105,7 +105,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                     if (cubit.isTripSelected)
                       OrderSummaryCard(
                         total:
-                            '${context.read<MainCubit>().currentCurrencyPrice! * (cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
+                            '${(context.read<MainCubit>().currentCurrencyPrice * (cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!)).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
                         childrenCount: '${cubit.selectedData[0].quantityYoung}',
                         adultCount: '${cubit.selectedData[0].quantityOld}',
                         address: cubit.selectedTrip!.address ?? '',
