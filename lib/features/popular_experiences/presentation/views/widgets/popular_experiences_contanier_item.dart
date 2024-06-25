@@ -1,60 +1,107 @@
+import 'dart:ui';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:currency_converter/currency.dart';
+import 'package:easy_localization/easy_localization.dart' as s;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
-class PopularExperiencesContainerItem extends StatelessWidget {
+import '../../../../../generated/locale_keys.g.dart';
+import '../../../../all_trips/data/models/trips_model.dart';
+
+class PopularExperiencesContainerItem extends StatefulWidget {
   const PopularExperiencesContainerItem({
     super.key,
     required this.width,
     this.oldTripPrice,
     this.percentageSave,
+    required this.trip,
+    this.isFavorite = false,
   });
 
   final double width;
-  final int? oldTripPrice;
+  final String? oldTripPrice;
   final String? percentageSave;
+  final Trips? trip;
+  final bool? isFavorite;
+
+  @override
+  State<PopularExperiencesContainerItem> createState() =>
+      _PopularExperiencesContainerItemState();
+}
+
+class _PopularExperiencesContainerItemState
+    extends State<PopularExperiencesContainerItem> {
+  bool isFavorite = false;
+  Trips? trip;
+  String englishKey = LocaleKeys.English.tr();
+  late bool isEnglish = (englishKey == 'English');
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite ?? false;
+    trip = widget.trip;
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(AppStrings.travelDetailsScreen);
+        context.push(AppRoutesString.travelDetailsScreen, extra: trip).then(
+          (value) {
+            trip = trip!.copyWith(
+              isFavourite: value as bool,
+            );
+            isFavorite = value;
+            context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
+          },
+        );
       },
       child: SizedBox(
         height: 180.0.h,
-        width: width,
+        width: widget.width,
         child: Stack(
           children: [
             Container(
               height: 180.0.h,
-              width: width,
+              width: widget.width,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(15.0.r),
-              ),
-              child: Image.asset(
-                "assets/images/Rectangle 427.png",
-                fit: BoxFit.cover,
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(
+                    widget.trip?.imagePath ?? "",
+                  ),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            if ((oldTripPrice != null || percentageSave != null) &&
-                percentageSave!.isNotEmpty)
+            if ((widget.oldTripPrice != null ||
+                    widget.percentageSave != null) &&
+                (widget.percentageSave!.isNotEmpty))
               Positioned(
                 top: 16,
                 left: 6,
                 child: Row(
                   children: [
                     Text(
-                      oldTripPrice.toString(),
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      context.read<MainCubit>().currentCurrency == Currency.usd
+                          ? "\$${widget.oldTripPrice}"
+                          : (context.read<MainCubit>().currentCurrencyPrice! *
+                                  int.parse(widget.oldTripPrice ?? ""))
+                              .toStringAsFixed(1),
+                      style: Theme.of(context).textTheme.headlineMedium!,
                     ),
                     Container(
-                      width: 58.0.w,
+                      width: 60.0.w,
                       height: 20.0.h,
                       margin:
                           EdgeInsetsDirectional.symmetric(horizontal: 4.0.w),
@@ -67,7 +114,7 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       child: Text(
-                        percentageSave ?? "",
+                        " save ${widget.percentageSave}% ",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
@@ -78,25 +125,45 @@ class PopularExperiencesContainerItem extends StatelessWidget {
               top: 8,
               right: 8,
               child: IconButtonWithWhiteBackground(
-                onPressed: () {},
+                onPressed: () async {
+                  if (context.read<MainCubit>().client == null) {
+                    context.push(AppRoutesString.loginScreen);
+                    return;
+                  }
+                  setState(() {
+                    isFavorite = !isFavorite;
+                  });
+                  trip = trip!.copyWith(
+                    isFavourite: isFavorite,
+                  );
+                  print('isFavourite: ${trip?.isFavourite}');
+                  await context
+                      .read<MainCubit>()
+                      .addToFavourite(tripId: widget.trip!.id ?? 0);
+                },
                 width: 30.0.w,
                 height: 35.0.h,
                 icon: Icon(
-                  Icons.favorite_outline,
+                  isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                   color: AppColors.redAppColor,
                   size: 17.0.sp,
                 ),
               ),
             ),
-            Positioned(
+            Positioned.directional(
+              textDirection:isEnglish?TextDirection.ltr:TextDirection.rtl,
               bottom: 15,
-              left: 5,
+              start: 5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Dubai",
-                    style: Theme.of(context).textTheme.displayMedium,
+                  SizedBox(
+                    width: 220.0.w,
+                    child: Text(
+                      widget.trip?.name ?? "",
+                      style: Theme.of(context).textTheme.displayMedium,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   SizedBox(
                     height: 5.0.h,
@@ -106,16 +173,24 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.location_on_sharp,
-                        color: AppColors.whiteAppColor,
+                        color: AppColors.textAndBackgroundColorButton,
                         size: 14.0.sp,
                       ),
                       SizedBox(
                         width: 2.0.w,
                       ),
-                      Text(
-                        "United Arab Emirates",
-                        style: Theme.of(context).textTheme.bodySmall,
-                        overflow: TextOverflow.ellipsis,
+                      SizedBox(
+                        width: 120.0.w,
+                        child: Text(
+                          widget.trip?.address ?? "",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
+                                  color:
+                                      AppColors.textAndBackgroundColorButton),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
                   ),
@@ -123,13 +198,13 @@ class PopularExperiencesContainerItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 40,
-              right: 8,
+              bottom: MediaQuery.sizeOf(context).height * 0.075,
+              right: MediaQuery.sizeOf(context).width * 0.02,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "43",
+                    "${(context.read<MainCubit>().currentCurrencyPrice! * widget.trip!.adultPrice!.toInt()).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   SizedBox(
@@ -137,7 +212,10 @@ class PopularExperiencesContainerItem extends StatelessWidget {
                   ),
                   Text(
                     "/Person",
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

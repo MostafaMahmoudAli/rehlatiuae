@@ -1,39 +1,54 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/custom_row_title.dart';
 import 'package:rehlatyuae/features/popular_experiences/presentation/views/widgets/popular_experiences_contanier_item.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
+import '../../features/all_trips/data/models/trips_model.dart';
 
 class PopularExperiencesSection extends StatelessWidget {
-  const PopularExperiencesSection({super.key});
+  const PopularExperiencesSection({super.key, required this.popularExperiences});
+
+  final List<Trips>? popularExperiences;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomRowTitle(
-          text: AppStrings.popularExperiencesTitle,
-          onPressed: ()
-          {
-            context.push(AppStrings.popularExperiencesScreen);
-          },
+        Padding(
+          padding: EdgeInsetsDirectional.only(
+            start: 10.0.w,
+            end: 10.0.w,
+            bottom: 10.0.h,
+          ),
+          child: CustomRowTitle(
+            text: LocaleKeys.Popular_Experiences.tr(),
+            onPressed: () {
+              context.push(AppRoutesString.popularExperiencesScreen);
+            },
+          ),
         ),
         SizedBox(
-          height:170.0.h,
+          height: 190.0.h,
           child: ListView.separated(
+              padding: EdgeInsetsDirectional.symmetric(horizontal: 15.0.w),
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: popularExperiences!.length,
               itemBuilder: (context, index) {
                 return PopularExperiencesContainerItem(
-                  width : 140.0.w,
-                  percentageSave: "Save 45 %",
-                  oldTripPrice: 100,
+                  width: 255.0.w,
+                  percentageSave: popularExperiences?[index].saving ?? "",
+                  oldTripPrice: popularExperiences?[index].beforePrice,
+                  trip: popularExperiences?[index],
+                  isFavorite: popularExperiences?[index].isFavourite,
                 );
               },
               separatorBuilder: (context, index) {
                 return SizedBox(
-                  width: 5.0.w,
+                  width: 12.0.w,
                 );
               }),
         ),

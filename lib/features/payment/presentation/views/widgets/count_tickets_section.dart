@@ -1,10 +1,25 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/number_ticket_card.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
+import '../../../../layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class CountTicketsSection extends StatefulWidget {
-  const CountTicketsSection({super.key});
+  final double adultCost;
+  final double childCost;
+  final void Function(int count, double total) onAdultsCountChange;
+  final void Function(int count, double total) onChildrenCountChange;
+
+  const CountTicketsSection({
+    required this.adultCost,
+    required this.childCost,
+    required this.onChildrenCountChange,
+    required this.onAdultsCountChange,
+    super.key,
+  });
 
   @override
   State<CountTicketsSection> createState() => _CountTicketsSectionState();
@@ -12,60 +27,69 @@ class CountTicketsSection extends StatefulWidget {
 
 class _CountTicketsSectionState extends State<CountTicketsSection> {
   String selectedCard = '';
-  int adultNumber = 1, childCount = 0;
+  int adultCount = 1, childCount = 0;
+  double subtotalAdult = 0, subtotalChild = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    subtotalAdult = widget.adultCost.roundToDouble();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 24.w,
-            vertical: 10.h,
-          ),
-          child: Row(
-            children: [
-              Text(
-                AppStrings.selectNumberTicket,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ],
-          ),
-        ),
         CountTicketCard(
-          name: AppStrings.adult,
-          detail: AppStrings.above4Yrs,
-          count: adultNumber,
-          total: adultNumber * 10,
+          name: LocaleKeys.Adult.tr(),
+          detail: LocaleKeys.Above_four_yrs.tr(),
+          count: adultCount,
+          total: subtotalAdult,
           onIncreasePressed: () {
-            setState(() {
-              ++adultNumber;
-            });
+            setState(
+              () {
+                ++adultCount;
+                subtotalAdult = adultCount * widget.adultCost.roundToDouble();
+                widget.onAdultsCountChange(adultCount, widget.adultCost.roundToDouble());
+              },
+            );
           },
-          onDecreasePressed: adultNumber <= 1
+          onDecreasePressed: adultCount <= 1
               ? null
               : () {
-                  setState(() {
-                    --adultNumber;
-                  });
+                  setState(
+                    () {
+                      --adultCount;
+                      subtotalAdult = adultCount * widget.adultCost.roundToDouble();
+                      widget.onAdultsCountChange(adultCount, -widget.adultCost.roundToDouble());
+                    },
+                  );
                 },
         ),
         CountTicketCard(
-          name: AppStrings.children,
-          detail: AppStrings.under3Yrs,
+          name: LocaleKeys.Children.tr(),
+          detail: LocaleKeys.Under_three_yrs.tr(),
           count: childCount,
-          total: childCount * 5,
+          total: subtotalChild,
           onIncreasePressed: () {
-            setState(() {
-              ++childCount;
-            });
+            setState(
+              () {
+                ++childCount;
+                subtotalChild = childCount * widget.childCost.roundToDouble();
+                widget.onChildrenCountChange(childCount, widget.childCost.roundToDouble());
+              },
+            );
           },
           onDecreasePressed: childCount <= 0
               ? null
               : () {
-                  setState(() {
-                    --childCount;
-                  });
+                  setState(
+                    () {
+                      --childCount;
+                      subtotalChild = childCount * widget.childCost.roundToDouble();
+                      widget.onChildrenCountChange(childCount, -widget.childCost.roundToDouble());
+                    },
+                  );
                 },
         ),
         Padding(
@@ -74,11 +98,11 @@ class _CountTicketsSectionState extends State<CountTicketsSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Total Amount",
+                LocaleKeys.Total_Amount.tr(),
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Text(
-                "\$0.00",
+                ("${((subtotalAdult + subtotalChild) * context.read<MainCubit>().currentCurrencyPrice).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}"),
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],

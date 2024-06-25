@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logger/logger.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
-import 'package:rehlatyuae/core/utils/default_text_button.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
 class TotalPaymentSection extends StatelessWidget {
-  final String total;
-  final String subtitle;
   final String buttonLabel;
   final void Function() onButtonTap;
-  final void Function()? onSubtitleTap;
 
   const TotalPaymentSection({
-    required this.total,
-    required this.subtitle,
     required this.buttonLabel,
     required this.onButtonTap,
-    this.onSubtitleTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 20.w,
-      ),
-      margin: EdgeInsets.only(top: 20.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       color: AppColors.backgroundWhite,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,13 +30,27 @@ class TotalPaymentSection extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "  $total",
-                style: Theme.of(context).textTheme.labelMedium,
-              ),
-              DefaultTextButton(
-                onPressed: onSubtitleTap,
-                text: subtitle,
+              BlocBuilder<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+                builder: (context, state) {
+                  var cubit = context.read<TripCheckoutDetailsCubit>();
+                  getIt<Logger>().w(context.read<MainCubit>().currentCurrencyPrice);
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (cubit.allSubtotal != cubit.totalAfterDiscount)
+                        Text(
+                          "\$${(cubit.allSubtotal * context.read<MainCubit>().currentCurrencyPrice).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
+                          style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                        ),
+                      Text(
+                        "${(cubit.totalAfterDiscount * context.read<MainCubit>().currentCurrencyPrice).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                    ],
+                  );
+                },
               ),
             ],
           ),
@@ -50,7 +59,7 @@ class TotalPaymentSection extends StatelessWidget {
             borderRadius: BorderRadius.circular(16.sp),
             backGroundColor: AppColors.textAndBackgroundColorButton,
             onTap: onButtonTap,
-            width: buttonLabel == 'Payment' ? 110.w : 140.w,
+            width: 100.w,
             height: 50.h,
           ),
         ],

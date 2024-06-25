@@ -19,8 +19,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     _update(const ForgetPasswordState.loading());
     final results = await authRepo.forgetPassword(email: emailEditingController.text);
     results.fold(
-      (message) => _update(ForgetPasswordState.error(message)),
-      (unit) => _update(const ForgetPasswordState.success()),
+          (message) => _update(ForgetPasswordState.error(message)),
+          (unit) => _update(const ForgetPasswordState.success()),
     );
   }
 

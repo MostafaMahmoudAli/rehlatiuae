@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/profile/domain/repositories/profile_repo.dart';
 
 part 'profile_cubit.freezed.dart';
@@ -12,11 +12,11 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit({required this.profileRepo}) : super(const ProfileState.initial());
 
   Future<void> getProfile() async {
-    emit(const ProfileState.loading());
+    _update(const ProfileState.loading());
     final results = await profileRepo.getProfile();
     results.fold(
-      (error) => emit(ProfileState.error(error)),
-      (client) => emit(ProfileState.loaded(client)),
+      (error) => _update(ProfileState.error(error)),
+      (client) => _update(ProfileState.loaded(client)),
     );
   }
 

@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
+
+import '../../../../layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 
 class CountTicketCard extends StatelessWidget {
   final String name;
@@ -84,7 +87,7 @@ class CountTicketCard extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  "\$ $total",
+                  "${(total * context.read<MainCubit>().currentCurrencyPrice).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
                   textAlign: TextAlign.end,
                   style: Theme.of(context).textTheme.titleSmall,
                 ),

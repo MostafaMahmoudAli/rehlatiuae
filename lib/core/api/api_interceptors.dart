@@ -1,12 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 
 class DioInterceptor extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers["Accept-Language"] = "en";
-    // TODO this header for test because auth screens not connected with apis
-    options.headers["Authorization"] =
-        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JlaGxhdGl1YWUuY29tL2FwaS92MS9jbGllbnQvbG9naW4iLCJpYXQiOjE3MTEzMTQ2NzksImV4cCI6MTcxMTQwMTA3OSwibmJmIjoxNzExMzE0Njc5LCJqdGkiOiIzWnRtbTlLWlRxQzlqVmlOIiwic3ViIjoiMSIsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzcifQ.4nv8aBREOqgoKGRoEVpF02bKhcae7So-LHVPloBT5KA";
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler)
+  {
+    String language = getIt<CacheService>().getData<String>(key: AppStrings.currentLanguage) ?? "en";
+    options.headers["Accept-Language"] = language;
+    options.headers["Accept"] = ["application/json"];
+
     super.onRequest(options, handler);
   }
 }

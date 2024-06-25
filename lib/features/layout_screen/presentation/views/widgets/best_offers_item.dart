@@ -1,170 +1,241 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:currency_converter/currency.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
 import 'package:rehlatyuae/core/utils/icon_button_with_white_background.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
 
-class BestOffersItem extends StatelessWidget {
+import '../../../../all_trips/data/models/trips_model.dart';
+
+class BestOffersItem extends StatefulWidget {
   const BestOffersItem({
     super.key,
     required this.width,
+    required this.offer,
+    this.review,
+    this.isFavorite = false,
   });
 
   final double width;
+  final Trips? offer;
+  final double? review;
+  final bool? isFavorite;
+
+  @override
+  State<BestOffersItem> createState() => _BestOffersItemState();
+}
+
+class _BestOffersItemState extends State<BestOffersItem> {
+  bool isFavorite = false;
+  Trips? trip;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite ?? false;
+    trip = widget.offer;
+
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 170.0.h,
-      width: 150.0.w,
-      padding: EdgeInsetsDirectional.symmetric(
-        horizontal: 8.0.w,
-        vertical: 10.0.h,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.whiteAppColor,
-        borderRadius: BorderRadiusDirectional.circular(12.0.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.13),
-            spreadRadius: 0,
-            blurRadius: 7,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          SizedBox(
-            height: 100.0.h,
-            width: width,
-            child: Stack(
-              children: [
-                Container(
-                  height: 100.0.h,
-                  width: width,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadiusDirectional.circular(15.0.r),
-                  ),
-                  child: Image.asset(
-                    "assets/images/Rectangle 427.png",
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  top: 6,
-                  right: 10,
-                  child: IconButtonWithWhiteBackground(
-                    onPressed: () {},
-                    width: 25.0.w,
-                    height: 30.0.h,
-                    icon: Icon(
-                      Icons.favorite_outline,
-                      color: AppColors.redAppColor,
-                      size: 14.0.sp,
-                    ),
-                  ),
-                ),
-              ],
+    final resultOfBeforePrice = context.read<MainCubit>().currentCurrencyPrice! * int.parse(widget.offer?.beforePrice);
+    return InkWell(
+      onTap: () {
+        context.push(AppRoutesString.travelDetailsScreen, extra: trip).then((value) {
+          trip = trip!.copyWith(
+            isFavourite: value as bool,
+          );
+          isFavorite = value;
+          context.read<TripCheckoutDetailsCubit>().onCloseTripDetailsScreen();
+        });
+      },
+      child: Container(
+        width: 150.0.w,
+        padding: EdgeInsetsDirectional.symmetric(
+          horizontal: 8.0.w,
+          vertical: 10.0.h,
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.whiteAppColor,
+          borderRadius: BorderRadiusDirectional.circular(12.0.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.13),
+              spreadRadius: 0,
+              blurRadius: 7,
+              offset: const Offset(0, 3),
             ),
-          ),
-          SizedBox(
-            width: 5.5.w,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "IMG Worlds of Adventure",
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  textAlign: TextAlign.justify,
-                ),
-                SizedBox(
-                  height: 2.5.w,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.location_on_sharp,
-                      color: AppColors.textAndBackgroundColorButton,
-                      size: 14.0.sp,
-                    ),
-                    Text(
-                      "Dubai, United Arab Emirates",
-                      style: Theme.of(context).textTheme.titleMedium,
-                      textAlign: TextAlign.justify,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 2.5.w,
-                ),
-                Text(
-                  "This exceptional beach gets sasafadvd avdsdsfcasvsdvsdvsdvsd",
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-                SizedBox(
-                  height: 5.0.w,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "100",
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    Container(
-                      width:65.0.w,
-                      height:20.0.h,
-                      margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
-                      padding: EdgeInsetsDirectional.symmetric(horizontal:6.0.w,vertical: 1.3.h),
-                      decoration:BoxDecoration(
-                        color:AppColors.green,
-                        borderRadius:BorderRadius.circular(8.0.r),
-                      ),
-                      child: Text(
-                        "Save 45 %",
-                        style: Theme.of(context).textTheme.bodySmall,
+          ],
+        ),
+        child: Row(
+          children: [
+            SizedBox(
+              height: 120.0.h,
+              width: widget.width,
+              child: Stack(
+                children: [
+                  Container(
+                    height: 140.0.h,
+                    width: widget.width,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(15.0.r),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: CachedNetworkImageProvider(
+                          widget.offer?.imagePath ?? "",
+                        ),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5.0.w,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "48",
-                      style: Theme.of(context).textTheme.titleSmall,
-                      textAlign: TextAlign.justify,
+                  ),
+                  Positioned(
+                    top: MediaQuery.sizeOf(context).height * 0.01,
+                    right: MediaQuery.sizeOf(context).width * 0.02,
+                    child: IconButtonWithWhiteBackground(
+                      onPressed: () async {
+                        if (context.read<MainCubit>().client == null) {
+                          context.push(AppRoutesString.loginScreen);
+                          return;
+                        }
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                        trip = trip!.copyWith(
+                          isFavourite: isFavorite,
+                        );
+                        await context.read<MainCubit>().addToFavourite(tripId: widget.offer!.id ?? 0);
+                      },
+                      width: 25.0.w,
+                      height: 30.0.h,
+                      icon: Icon(
+                        isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                        color: AppColors.redAppColor,
+                        size: 14.0.sp,
+                      ),
                     ),
-                    SizedBox(width: 5.0.w,),
-                    Text(
-                      "/Person",
-                      style: Theme.of(context).textTheme.headlineSmall,
-                      textAlign: TextAlign.justify,
-                    ),
-                    const Spacer(),
-                    Icon(
-                      Icons.star_border_outlined,
-                      color: AppColors.textAndBackgroundColorButton,
-                      size: 16.0.sp,
-                    ),
-                    Text(
-                      "4.2 (852)",
-                      style: Theme.of(context).textTheme.titleSmall,
-                      textAlign: TextAlign.justify,
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            SizedBox(
+              width: 5.5.w,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.offer?.name ?? "IMG Worlds of Adventure",
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    textAlign: TextAlign.justify,
+                  ),
+                  SizedBox(
+                    height: 2.5.w,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_sharp,
+                        color: AppColors.textAndBackgroundColorButton,
+                        size: 14.0.sp,
+                      ),
+                      Expanded(
+                        child: Text(
+                          widget.offer?.address ?? "",
+                          style: Theme.of(context).textTheme.titleMedium,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 2.5.w,
+                  ),
+                  Text(
+                    widget.offer?.description ?? " ",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  SizedBox(
+                    height: 5.0.w,
+                  ),
+                  if ((widget.offer?.beforePrice != null || widget.offer?.saving != null))
+                    Row(
+                      children: [
+                        Text(
+                          context.read<MainCubit>().currentCurrency == Currency.usd ?   "\$${widget.offer?.beforePrice}"
+                              :
+                          resultOfBeforePrice.toStringAsFixed(1),
+                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                color: AppColors.black,
+                              ),
+                        ),
+                        Container(
+                          width: 65.0.w,
+                          height: 20.0.h,
+                          margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0.w),
+                          padding: EdgeInsetsDirectional.symmetric(horizontal: 6.0.w, vertical: 1.3.h),
+                          decoration: BoxDecoration(
+                            color: AppColors.green,
+                            borderRadius: BorderRadius.circular(8.0.r),
+                          ),
+                          child: Text(
+                            " Save ${widget.offer?.saving}%",
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ),
+                      ],
+                    ),
+                  SizedBox(
+                    height: 5.0.w,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "${(context.read<MainCubit>().currentCurrencyPrice! * widget.offer!.adultPrice!.toInt()).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}",
+                        style: Theme.of(context).textTheme.titleSmall,
+                        textAlign: TextAlign.justify,
+                      ),
+                      SizedBox(
+                        width: 5.0.w,
+                      ),
+                      Text(
+                        "/Person",
+                        style: Theme.of(context).textTheme.headlineSmall,
+                        textAlign: TextAlign.justify,
+                      ),
+                      const Spacer(),
+                      if (widget.review != null)
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star_border_outlined,
+                              color: AppColors.textAndBackgroundColorButton,
+                              size: 16.0.sp,
+                            ),
+                            Text(
+                              widget.review.toString().characters.first,
+                              style: Theme.of(context).textTheme.titleSmall,
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

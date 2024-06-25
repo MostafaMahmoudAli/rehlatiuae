@@ -34,16 +34,13 @@ void handelDioException(DioException e) {
       throw ServerExceptions(
         errorModel: ErrorModel.fromJson({'message': 'Unknown Problem'}),
       );
-    // TODO this case related with response also
     case DioExceptionType.badResponse:
     case DioExceptionType.badCertificate:
       switch (e.response?.statusCode) {
         case 400:
           throw ServerExceptions(errorModel: ErrorModel.fromJson(e.response!.data));
-        // TODO what will do if this case happened
         case 401:
           throw ServerExceptions(errorModel: ErrorModel.fromJson(e.response!.data));
-        // TODO what will do if this case happened
         case 403:
           throw ServerExceptions(errorModel: ErrorModel.fromJson(e.response!.data));
         case 404:

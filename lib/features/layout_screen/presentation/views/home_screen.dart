@@ -1,11 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_button.dart';
 import 'package:rehlatyuae/core/utils/custom_sized_box.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
 import 'package:rehlatyuae/core/utils/popular_experiences.dart';
+import 'package:rehlatyuae/core/utils/search_text_feild.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_horizontal.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_offers_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/best_trips_section.dart';
@@ -13,10 +18,13 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/cat
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/our_blog_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/our_partner_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/reviews_section.dart';
-import 'package:rehlatyuae/core/utils/search_text_feild.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top_destination_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
+import '../../../../core/utils/custom_dialog.dart';
+import '../cubits/layout_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -25,56 +33,119 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 20.0.h,
-          horizontal: 17.0.w,
-        ).copyWith(bottom: 0),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SearchTextField(
-                controller: _textEditingController,
-              ),
-              const CustomSizedBox(),
-              const CategoriesSection(),
-              const CustomSizedBox(),
-              const TopDestinationSection(),
-              const CustomSizedBox(),
-              const BestOffersSection(),
-              const CustomSizedBox(),
-              const BestTripsSection(),
-              const CustomSizedBox(),
-              const PopularExperiencesSection(),
-              const CustomSizedBox(),
-              const OurBlogSection(),
-              const CustomSizedBox(),
-              const OurPartnerSection(),
-              const CustomSizedBox(),
-              const WhyChooseUsSection(),
-              const CustomSizedBox(),
-              const WeHelpYouSection(),
-              CustomActionButton(
-                onTap: () {
-                  context.push(AppStrings.allTripsScreen);
-                },
-                text: AppStrings.actionButtonName,
-                height: 70.0.h,
-                width: double.infinity,
-                borderRadius: BorderRadius.circular(12.0.r),
-                backGroundColor: AppColors.orange,
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-              const CustomSizedBox(),
-              const BestOffersHorizontal(),
-              const CustomSizedBox(),
-              const ReviewsSection(),
-            ],
-          ),
+    var currentLanguageCode = context.locale.languageCode;
+    return BlocProvider(
+      create: (context) => getIt<LayoutCubit>()
+        ..fetchLayoutData(
+          clientId: context.read<MainCubit>().client?.id,
         ),
+      child: BlocConsumer<LayoutCubit, LayoutState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            error: (errorMessage) => showDialog(
+              context: context,
+              builder: (context) => CustomDialog(
+                title: errorMessage,
+                subtitle: LocaleKeys.Sorry.tr(),
+                labelText: LocaleKeys.Close.tr(),
+              ),
+            ),
+          );
+        },
+        builder: (context, state) {
+          return state.maybeWhen(
+            initial: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            loaded: (layoutModel) => Scaffold(
+              body: Padding(
+                padding: EdgeInsetsDirectional.only(
+                  top: 20.0.h,
+                ),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    key: Key('curvedNavigationBar_$currentLanguageCode'),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10.0.h,
+                          horizontal: 15.0.h,
+                        ),
+                        child: SearchTextField(
+                          controller: _textEditingController,
+                          onTap: () {
+                            context.read<MainCubit>().changeCurrentTab(1);
+                          },
+                          readOnly: true,
+                        ),
+                      ),
+                      const CustomSizedBox(),
+                      CategoriesSection(
+                        categories: layoutModel.categories ?? [],
+                      ),
+                      const CustomSizedBox(),
+                      TopDestinationSection(
+                        destinations: layoutModel.topDestinations ?? [],
+                      ),
+                      const CustomSizedBox(),
+                      BestOffersSection(
+                        bestOffers: layoutModel.bestOffers ?? [],
+                      ),
+                      const CustomSizedBox(),
+                      BestTripsSection(
+                        bestTrips: layoutModel.bestTrips ?? [],
+                      ),
+                      const CustomSizedBox(),
+                      PopularExperiencesSection(
+                        popularExperiences: layoutModel.popularExperience ?? [],
+                      ),
+                      const CustomSizedBox(),
+                      OurBlogSection(
+                        blogs: layoutModel.blogs ?? [],
+                      ),
+                      const CustomSizedBox(),
+                      OurPartnerSection(
+                        ourPartners: layoutModel.ourPartners ?? [],
+                      ),
+                      const CustomSizedBox(),
+                      const WhyChooseUsSection(),
+                      const CustomSizedBox(),
+                      WeHelpYouSection(),
+                      const CustomSizedBox(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.0.w,
+                          vertical: 10.0.h,
+                        ),
+                        child: CustomActionButton(
+                          onTap: () {
+                            context.push(AppRoutesString.allTripsScreen);
+                          },
+                          text: LocaleKeys.Explore_More.tr(),
+                          height: 70.0.h,
+                          width: double.infinity,
+                          borderRadius: BorderRadius.circular(12.0.r),
+                          backGroundColor: AppColors.orange,
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
+                      ),
+                      const CustomSizedBox(),
+                      BestOffersHorizontal(
+                        bestOffers: layoutModel.bestOffers ?? [],
+                      ),
+                      const CustomSizedBox(),
+                      ReviewsSection(
+                        reviews: layoutModel.reviews ?? [],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            orElse: () => const SizedBox(),
+          );
+        },
       ),
     );
   }

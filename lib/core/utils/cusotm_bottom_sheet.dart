@@ -1,4 +1,3 @@
-import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +12,9 @@ class CustomBottomSheet extends StatelessWidget {
   final Widget contentSheet;
   final Color avatarColor;
   final bool hasButton;
-  final bool isPaymentSheet;
+  final bool hasBackButton;
+  final bool hasAppbar;
+  final void Function()? onButtonPreesd;
 
   const CustomBottomSheet({
     required this.title,
@@ -22,57 +23,54 @@ class CustomBottomSheet extends StatelessWidget {
     this.avatarText,
     this.avatarColor = AppColors.textAndBackgroundColorButton,
     this.hasButton = true,
-    this.isPaymentSheet = true,
+    this.hasAppbar = true,
+    this.hasBackButton = true,
+    this.onButtonPreesd,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return isPaymentSheet
-        ? SingleChildScrollView(
-            child: body(context),
-          )
-        : body(context);
-  }
-
-  Widget body(BuildContext context) {
     return Column(
       children: [
         Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-                vertical: 30.h,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      GoRouter.of(context).pop(context);
-                    },
-                    icon: const Icon(Icons.clear),
-                  ),
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
-                      height: 1.42,
+            if (hasAppbar)
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
+                  vertical: 30.h,
+                ),
+                child: Row(
+                  mainAxisAlignment: hasBackButton ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
+                  children: [
+                    if (hasBackButton)
+                      IconButton(
+                        onPressed: () {
+                          GoRouter.of(context).pop(context);
+                        },
+                        icon: const Icon(Icons.clear),
+                      ),
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                        height: 1.42,
+                      ),
                     ),
-                  ),
-                  const IconButton(
-                    onPressed: null,
-                    icon: Icon(
-                      Icons.clear,
-                      color: AppColors.white,
-                    ),
-                  ),
-                ],
+                    if (hasBackButton)
+                      const IconButton(
+                        onPressed: null,
+                        icon: Icon(
+                          Icons.clear,
+                          color: AppColors.white,
+                        ),
+                      ),
+                  ],
+                ),
               ),
-            ),
             Stack(
               clipBehavior: Clip.none,
               children: [
@@ -92,18 +90,18 @@ class CustomBottomSheet extends StatelessWidget {
                       ),
                       child: contentSheet,
                     ),
-                    Positioned(
-                      bottom: -10.h,
-                      left: 50.w,
-                      right: 50.w,
-                      child: DottedLine(
-                        dashLength: 25.w,
-                        lineThickness: 25.w,
-                        alignment: WrapAlignment.spaceBetween,
-                        dashColor: AppColors.grey.shade100,
-                        dashRadius: 100.sp,
-                      ),
-                    ),
+                    // Positioned(
+                    //   bottom: -10.h,
+                    //   left: 50.w,
+                    //   right: 50.w,
+                    //   child: DottedLine(
+                    //     dashLength: 25.w,
+                    //     lineThickness: 25.w,
+                    //     alignment: WrapAlignment.spaceBetween,
+                    //     dashColor: AppColors.grey.shade100,
+                    //     dashRadius: 100.sp,
+                    //   ),
+                    // ),
                   ],
                 ),
                 Positioned(
@@ -135,7 +133,10 @@ class CustomBottomSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(16.r),
               backGroundColor: AppColors.textAndBackgroundColorButton,
               onTap: () {
-                context.pop();
+                if (onButtonPreesd == null) {
+                  context.pop();
+                }
+                onButtonPreesd?.call();
               },
               width: 250.w,
               height: 50.h,

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
+import 'package:rehlatyuae/features/auth/data/models/client_model/client_model.dart';
 import 'package:rehlatyuae/features/profile/domain/repositories/profile_repo.dart';
 
 part 'edit_profile_cubit.freezed.dart';
@@ -25,7 +25,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   void init(Client client) {
     fullNameEditingController.text = client.name;
     emailEditingController.text = client.email;
-    phoneEditingController.text = client.phone;
+    phoneEditingController.text = client.phone ?? '';
     addressEditingController.text = client.address;
   }
 

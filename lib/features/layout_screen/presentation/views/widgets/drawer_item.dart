@@ -29,7 +29,9 @@ class DrawerItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SvgPicture.asset(iconPath),
+                    SvgPicture.asset(
+                      iconPath,
+                    ),
                     SizedBox(
                       width: 10.w,
                     ),

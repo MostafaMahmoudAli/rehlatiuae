@@ -23,7 +23,8 @@ class CustomIconButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Container(
       width: size.h,
       height: size.h,

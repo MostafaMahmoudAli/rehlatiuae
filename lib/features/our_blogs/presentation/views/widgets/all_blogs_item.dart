@@ -1,15 +1,26 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 
 class AllBlogsItem extends StatelessWidget {
   const AllBlogsItem({
     super.key,
     required this.width,
+    required this.image,
+     this.rating,
+    required this.createdAt,
+    required this.name,
+    required this.description,
   });
 
   final double width;
+  final String? image;
+  final String? rating;
+  final String? createdAt;
+  final String? name;
+  final String? description;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -23,10 +34,12 @@ class AllBlogsItem extends StatelessWidget {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.circular(15.0.r),
-            ),
-            child: Image.asset(
-               AppStrings.containerTripBackgroundImage,
-              fit: BoxFit.cover,
+              image:DecorationImage(
+                image:CachedNetworkImageProvider(
+                  image ?? "",
+                ) ,
+                fit:BoxFit.cover,
+              ),
             ),
           ),
           Positioned(
@@ -39,7 +52,7 @@ class AllBlogsItem extends StatelessWidget {
                 color: AppColors.blogItemBackgroundColor.withOpacity(0.3),
                 borderRadius: BorderRadiusDirectional.circular(12.0.r),
               ),
-              child:  Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(
@@ -47,8 +60,8 @@ class AllBlogsItem extends StatelessWidget {
                     color: AppColors.whiteAppColor,
                   ),
                   Text(
-                    "4.8",
-                    style:Theme.of(context).textTheme.displaySmall,
+                    rating ?? "",
+                    style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ],
               ),
@@ -64,16 +77,19 @@ class AllBlogsItem extends StatelessWidget {
                 color: AppColors.blogItemBackgroundColor.withOpacity(0.3),
                 borderRadius: BorderRadiusDirectional.circular(12.0.r),
               ),
-              child:  Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(
                     Icons.calendar_month,
                     color: AppColors.whiteAppColor,
                   ),
-                  Text(
-                    "2/2/2024",
-                    style:Theme.of(context).textTheme.displaySmall,
+                  Expanded(
+                    child: Text(
+                      createdAt ?? "",
+                      style: Theme.of(context).textTheme.displaySmall,
+                      overflow:TextOverflow.ellipsis,
+                    ),
                   ),
                 ],
               ),
@@ -85,18 +101,25 @@ class AllBlogsItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Blog name",
-                  style: Theme.of(context).textTheme.displayMedium,
+                SizedBox(
+                  width: 120.0.w,
+                  child: Text(
+                    name ?? "",
+                    style: Theme.of(context).textTheme.displayMedium,
+                    overflow:TextOverflow.ellipsis,
+                  ),
                 ),
                 SizedBox(
                   height: 6.0.h,
                 ),
-                Text(
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    "Short Description Short Description Short Description",
-                    style: Theme.of(context).textTheme.displaySmall
+                SizedBox(
+                  width:115.0.w,
+                  child: Text(
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                     description ?? "",
+                      style: Theme.of(context).textTheme.displaySmall,
+                  ),
                 ),
               ],
             ),

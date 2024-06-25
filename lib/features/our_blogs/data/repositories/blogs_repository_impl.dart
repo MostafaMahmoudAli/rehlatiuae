@@ -6,23 +6,58 @@ import 'package:rehlatyuae/features/our_blogs/domain/repositories/blogs_reposito
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exceptions.dart';
 
-class BlogsRepositoryImpl implements BlogsRepository
-{
+class BlogsRepositoryImpl implements BlogsRepository {
   final ApiConsumer apiConsumer;
+
   BlogsRepositoryImpl({required this.apiConsumer});
+
   @override
-  Future<Either<String, List<Blogs>>> fetchBestOffers({int? startIndex = 0, int? limit = 10}) async {
+  Future<Either<String, List<Blogs>>> fetchBlogs({
+    int? startIndex = 0,
+    int? limit = 10,
+    int? clientId,
+  }) async {
     try {
-      var blogs =
-      await apiConsumer.get(EndPoints.blogsEndPoint, queryParameters: {
-        "start": startIndex,
-        "limit": limit,
-      });
-      final blogsList =
-      blogs.map((e) => Blogs.fromJson(e.data)).toList();
+      var blogs = await apiConsumer.get(
+        EndPoints.blogsEndPoint,
+        queryParameters: {
+          "start": startIndex,
+          "limit": limit,
+          "client_id": clientId,
+        },
+      );
+      List<Blogs> blogsList = [];
+      final data = blogs["data"]["blogs"] as dynamic;
+      if (data.isNotEmpty) {
+        blogsList = data.map<Blogs>((e) => Blogs.fromJson(e)).toList();
+      }
+
       return right(blogsList);
-    } on ServerExceptions catch (error)
-    {
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+  @override
+  Future<Either<String, List<Blogs>>> fetchBlogsSearch({
+    String? name,
+    int? clientId,
+  }) async {
+    try {
+      var blogsTrip = await apiConsumer.get(
+        EndPoints.blogSearchEndPoint,
+        queryParameters: {
+          "name": name,
+          "client_id": clientId,
+        },
+      );
+      List<Blogs> blogsTripList = [];
+      final data = blogsTrip['data']["blogs"] as dynamic;
+      if (data.isNotEmpty) {
+        blogsTripList = data.map<Blogs>((e) => Blogs.fromJson(e)).toList();
+      }
+      return right(blogsTripList);
+    } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
   }

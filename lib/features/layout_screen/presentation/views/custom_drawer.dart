@@ -15,10 +15,12 @@ class CustomDrawer extends StatelessWidget
     return Drawer(
       width: 270.w,
       child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 30.h),
+        padding: EdgeInsets.symmetric(
+            vertical: 30.h,
+        ),
         child: Column(
           children: [
-            SvgPicture.asset(AppAssets.blueLogo),
+            SvgPicture.asset(AppAssets.blackLogo),
             const AccountDrawerSection(),
             const HelpDrawerSection(),
             const LegalDrawerSection(),

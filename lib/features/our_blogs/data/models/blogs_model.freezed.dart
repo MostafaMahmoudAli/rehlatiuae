@@ -24,7 +24,15 @@ mixin _$Blogs {
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imagePath => throw _privateConstructorUsedError;
-  List<Trips>? get trips => throw _privateConstructorUsedError;
+  @JsonKey(name: "created_at")
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  int? get reviewAverage => throw _privateConstructorUsedError;
+  List<Review>? get blogReview => throw _privateConstructorUsedError;
+  Trips? get trip => throw _privateConstructorUsedError;
+  List<AddressModel>? get addresses => throw _privateConstructorUsedError;
+  @JsonKey(name: "review_count")
+  ReviewCount? get reviewCount => throw _privateConstructorUsedError;
+  List<Attachment>? get attachments => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +49,16 @@ abstract class $BlogsCopyWith<$Res> {
       String? name,
       String? description,
       String? imagePath,
-      List<Trips>? trips});
+      @JsonKey(name: "created_at") DateTime? createdAt,
+      int? reviewAverage,
+      List<Review>? blogReview,
+      Trips? trip,
+      List<AddressModel>? addresses,
+      @JsonKey(name: "review_count") ReviewCount? reviewCount,
+      List<Attachment>? attachments});
+
+  $TripsCopyWith<$Res>? get trip;
+  $ReviewCountCopyWith<$Res>? get reviewCount;
 }
 
 /// @nodoc
@@ -61,7 +78,13 @@ class _$BlogsCopyWithImpl<$Res, $Val extends Blogs>
     Object? name = freezed,
     Object? description = freezed,
     Object? imagePath = freezed,
-    Object? trips = freezed,
+    Object? createdAt = freezed,
+    Object? reviewAverage = freezed,
+    Object? blogReview = freezed,
+    Object? trip = freezed,
+    Object? addresses = freezed,
+    Object? reviewCount = freezed,
+    Object? attachments = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -80,11 +103,59 @@ class _$BlogsCopyWithImpl<$Res, $Val extends Blogs>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      trips: freezed == trips
-          ? _value.trips
-          : trips // ignore: cast_nullable_to_non_nullable
-              as List<Trips>?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reviewAverage: freezed == reviewAverage
+          ? _value.reviewAverage
+          : reviewAverage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      blogReview: freezed == blogReview
+          ? _value.blogReview
+          : blogReview // ignore: cast_nullable_to_non_nullable
+              as List<Review>?,
+      trip: freezed == trip
+          ? _value.trip
+          : trip // ignore: cast_nullable_to_non_nullable
+              as Trips?,
+      addresses: freezed == addresses
+          ? _value.addresses
+          : addresses // ignore: cast_nullable_to_non_nullable
+              as List<AddressModel>?,
+      reviewCount: freezed == reviewCount
+          ? _value.reviewCount
+          : reviewCount // ignore: cast_nullable_to_non_nullable
+              as ReviewCount?,
+      attachments: freezed == attachments
+          ? _value.attachments
+          : attachments // ignore: cast_nullable_to_non_nullable
+              as List<Attachment>?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TripsCopyWith<$Res>? get trip {
+    if (_value.trip == null) {
+      return null;
+    }
+
+    return $TripsCopyWith<$Res>(_value.trip!, (value) {
+      return _then(_value.copyWith(trip: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ReviewCountCopyWith<$Res>? get reviewCount {
+    if (_value.reviewCount == null) {
+      return null;
+    }
+
+    return $ReviewCountCopyWith<$Res>(_value.reviewCount!, (value) {
+      return _then(_value.copyWith(reviewCount: value) as $Val);
+    });
   }
 }
 
@@ -100,7 +171,18 @@ abstract class _$$BlogsImplCopyWith<$Res> implements $BlogsCopyWith<$Res> {
       String? name,
       String? description,
       String? imagePath,
-      List<Trips>? trips});
+      @JsonKey(name: "created_at") DateTime? createdAt,
+      int? reviewAverage,
+      List<Review>? blogReview,
+      Trips? trip,
+      List<AddressModel>? addresses,
+      @JsonKey(name: "review_count") ReviewCount? reviewCount,
+      List<Attachment>? attachments});
+
+  @override
+  $TripsCopyWith<$Res>? get trip;
+  @override
+  $ReviewCountCopyWith<$Res>? get reviewCount;
 }
 
 /// @nodoc
@@ -118,7 +200,13 @@ class __$$BlogsImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? imagePath = freezed,
-    Object? trips = freezed,
+    Object? createdAt = freezed,
+    Object? reviewAverage = freezed,
+    Object? blogReview = freezed,
+    Object? trip = freezed,
+    Object? addresses = freezed,
+    Object? reviewCount = freezed,
+    Object? attachments = freezed,
   }) {
     return _then(_$BlogsImpl(
       id: freezed == id
@@ -137,10 +225,34 @@ class __$$BlogsImplCopyWithImpl<$Res>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      trips: freezed == trips
-          ? _value._trips
-          : trips // ignore: cast_nullable_to_non_nullable
-              as List<Trips>?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      reviewAverage: freezed == reviewAverage
+          ? _value.reviewAverage
+          : reviewAverage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      blogReview: freezed == blogReview
+          ? _value._blogReview
+          : blogReview // ignore: cast_nullable_to_non_nullable
+              as List<Review>?,
+      trip: freezed == trip
+          ? _value.trip
+          : trip // ignore: cast_nullable_to_non_nullable
+              as Trips?,
+      addresses: freezed == addresses
+          ? _value._addresses
+          : addresses // ignore: cast_nullable_to_non_nullable
+              as List<AddressModel>?,
+      reviewCount: freezed == reviewCount
+          ? _value.reviewCount
+          : reviewCount // ignore: cast_nullable_to_non_nullable
+              as ReviewCount?,
+      attachments: freezed == attachments
+          ? _value._attachments
+          : attachments // ignore: cast_nullable_to_non_nullable
+              as List<Attachment>?,
     ));
   }
 }
@@ -149,12 +261,20 @@ class __$$BlogsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BlogsImpl implements _Blogs {
   const _$BlogsImpl(
-      {this.id,
-      this.name,
-      this.description,
-      this.imagePath,
-      final List<Trips>? trips})
-      : _trips = trips;
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.imagePath,
+      @JsonKey(name: "created_at") required this.createdAt,
+      this.reviewAverage,
+      final List<Review>? blogReview,
+      this.trip,
+      final List<AddressModel>? addresses,
+      @JsonKey(name: "review_count") this.reviewCount,
+      final List<Attachment>? attachments})
+      : _blogReview = blogReview,
+        _addresses = addresses,
+        _attachments = attachments;
 
   factory _$BlogsImpl.fromJson(Map<String, dynamic> json) =>
       _$$BlogsImplFromJson(json);
@@ -167,19 +287,49 @@ class _$BlogsImpl implements _Blogs {
   final String? description;
   @override
   final String? imagePath;
-  final List<Trips>? _trips;
   @override
-  List<Trips>? get trips {
-    final value = _trips;
+  @JsonKey(name: "created_at")
+  final DateTime? createdAt;
+  @override
+  final int? reviewAverage;
+  final List<Review>? _blogReview;
+  @override
+  List<Review>? get blogReview {
+    final value = _blogReview;
     if (value == null) return null;
-    if (_trips is EqualUnmodifiableListView) return _trips;
+    if (_blogReview is EqualUnmodifiableListView) return _blogReview;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final Trips? trip;
+  final List<AddressModel>? _addresses;
+  @override
+  List<AddressModel>? get addresses {
+    final value = _addresses;
+    if (value == null) return null;
+    if (_addresses is EqualUnmodifiableListView) return _addresses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: "review_count")
+  final ReviewCount? reviewCount;
+  final List<Attachment>? _attachments;
+  @override
+  List<Attachment>? get attachments {
+    final value = _attachments;
+    if (value == null) return null;
+    if (_attachments is EqualUnmodifiableListView) return _attachments;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'Blogs(id: $id, name: $name, description: $description, imagePath: $imagePath, trips: $trips)';
+    return 'Blogs(id: $id, name: $name, description: $description, imagePath: $imagePath, createdAt: $createdAt, reviewAverage: $reviewAverage, blogReview: $blogReview, trip: $trip, addresses: $addresses, reviewCount: $reviewCount, attachments: $attachments)';
   }
 
   @override
@@ -193,13 +343,36 @@ class _$BlogsImpl implements _Blogs {
                 other.description == description) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
-            const DeepCollectionEquality().equals(other._trips, _trips));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.reviewAverage, reviewAverage) ||
+                other.reviewAverage == reviewAverage) &&
+            const DeepCollectionEquality()
+                .equals(other._blogReview, _blogReview) &&
+            (identical(other.trip, trip) || other.trip == trip) &&
+            const DeepCollectionEquality()
+                .equals(other._addresses, _addresses) &&
+            (identical(other.reviewCount, reviewCount) ||
+                other.reviewCount == reviewCount) &&
+            const DeepCollectionEquality()
+                .equals(other._attachments, _attachments));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, imagePath,
-      const DeepCollectionEquality().hash(_trips));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      description,
+      imagePath,
+      createdAt,
+      reviewAverage,
+      const DeepCollectionEquality().hash(_blogReview),
+      trip,
+      const DeepCollectionEquality().hash(_addresses),
+      reviewCount,
+      const DeepCollectionEquality().hash(_attachments));
 
   @JsonKey(ignore: true)
   @override
@@ -217,11 +390,17 @@ class _$BlogsImpl implements _Blogs {
 
 abstract class _Blogs implements Blogs {
   const factory _Blogs(
-      {final int? id,
-      final String? name,
-      final String? description,
-      final String? imagePath,
-      final List<Trips>? trips}) = _$BlogsImpl;
+      {required final int? id,
+      required final String? name,
+      required final String? description,
+      required final String? imagePath,
+      @JsonKey(name: "created_at") required final DateTime? createdAt,
+      final int? reviewAverage,
+      final List<Review>? blogReview,
+      final Trips? trip,
+      final List<AddressModel>? addresses,
+      @JsonKey(name: "review_count") final ReviewCount? reviewCount,
+      final List<Attachment>? attachments}) = _$BlogsImpl;
 
   factory _Blogs.fromJson(Map<String, dynamic> json) = _$BlogsImpl.fromJson;
 
@@ -234,7 +413,21 @@ abstract class _Blogs implements Blogs {
   @override
   String? get imagePath;
   @override
-  List<Trips>? get trips;
+  @JsonKey(name: "created_at")
+  DateTime? get createdAt;
+  @override
+  int? get reviewAverage;
+  @override
+  List<Review>? get blogReview;
+  @override
+  Trips? get trip;
+  @override
+  List<AddressModel>? get addresses;
+  @override
+  @JsonKey(name: "review_count")
+  ReviewCount? get reviewCount;
+  @override
+  List<Attachment>? get attachments;
   @override
   @JsonKey(ignore: true)
   _$$BlogsImplCopyWith<_$BlogsImpl> get copyWith =>

@@ -1,15 +1,17 @@
-import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/cusotm_bottom_sheet.dart';
-import 'package:rehlatyuae/core/utils/pickers.dart';
-import 'package:rehlatyuae/core/utils/primary_text_field.dart';
-import 'package:rehlatyuae/features/payment/presentation/views/widgets/credit_debit_cards_section.dart';
-import 'package:rehlatyuae/features/payment/presentation/views/widgets/order_summary_section.dart';
+import 'package:rehlatyuae/core/utils/custom_dialog.dart';
+import 'package:rehlatyuae/features/layout_screen/presentation/cubits/main_cubit/main_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/cubits/trip_checkout_details_cubit/trip_checkout_details_cubit.dart';
+import 'package:rehlatyuae/features/payment/presentation/views/widgets/order_summary_card.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/payment_content_sheet.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/total_payment_section.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class PaymentDetailsScreen extends StatelessWidget {
   const PaymentDetailsScreen({super.key});
@@ -19,103 +21,141 @@ class PaymentDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppStrings.paymentDetails,
+          LocaleKeys.Payment_Details.tr(),
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
                 color: AppColors.black,
               ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            PrimaryTextField(
-              label: AppStrings.yourDateBooking,
-              hint: "12/12/2024",
-              controller: TextEditingController(),
-              readOnly: true,
-              onTap: () async {
-                var duration = const Duration();
-                await Pickers.choseDate(
-                  context: context,
-                  firstDate: DateTime.now().add(duration),
-                  initialDate: DateTime.now().add(duration),
-                );
-              },
-              suffix: const Icon(CupertinoIcons.calendar),
-            ),
-            SizedBox(
-              height: 15.h,
-            ),
-            const OrderSummarySection(
-              total: '5,451',
-              childrenCount: '2',
-              adultCount: '3',
-              address: "Dobai, United Arab Emarates",
-            ),
-            SizedBox(
-              height: 15.h,
-            ),
-            const CreditDebitCardsSection(
-              total: 'total',
-              childrenCount: 'childrenCount',
-              adultCount: 'adultCount',
-              address: 'address',
-            ),
-            TotalPaymentSection(
-              total: "\$6,699",
-              subtitle: "View detailed bill",
-              buttonLabel: AppStrings.payment,
-              onButtonTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  builder: (context) => const CustomBottomSheet(
-                    title: 'Payment Details',
-                    labelButton: 'Payment',
+      body: BlocConsumer<TripCheckoutDetailsCubit, TripCheckoutDetailsState>(
+        listener: (context, state) {
+          var cubit = context.read<TripCheckoutDetailsCubit>();
+          state.whenOrNull(
+            checkedTripError: (message) {
+              showDialog(
+                context: context,
+                builder: (context) => CustomDialog(
+                  title: message,
+                  subtitle: LocaleKeys.Sorry.tr(),
+                  labelText: LocaleKeys.Close.tr(),
+                  color: AppColors.redAppColor,
+                ),
+              );
+            },
+            stripeError: (message) {
+              showDialog(
+                context: context,
+                builder: (context) => CustomDialog(
+                  title: message,
+                  subtitle: LocaleKeys.Sorry.tr(),
+                  labelText: LocaleKeys.Close.tr(),
+                  color: AppColors.redAppColor,
+                ),
+              );
+            },
+            checkedTripSuccess: (checkTripsAndOffersResponse) async {
+              await cubit.makePayment(
+                amount: context.read<MainCubit>().currentCurrencyPrice * cubit.totalAfterDiscount,
+                currency: context.read<MainCubit>().currentCurrency.name,
+              );
+            },
+            stripeSuccess: () async {
+              await cubit.succeedCheckoutTrip();
+            },
+            success: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                isDismissible: true,
+                enableDrag: false,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
+                builder: (c) => PopScope(
+                  canPop: false,
+                  child: CustomBottomSheet(
+                    title: LocaleKeys.Payment_Details.tr(),
+                    hasBackButton: false,
+                    labelButton: 'Back to Homepage',
                     contentSheet: PaymentContentSheet(
-                      totalPayment: "12.00",
-                      date: '12 / 12 / 2021',
-                      tripDate: '12 / 2 / 2024',
-                      details: 'IMG World ',
-                      referenceNum: 'A06453826151',
-                      account: 'Mike Wazowsky',
-                      discount: '1.00',
-                      total: '11.00',
+                      totalAfterDiscount: cubit.totalAfterDiscount,
+                      allSubtotal: cubit.allSubtotal,
+                      tripDate: cubit.dateEditingController.text,
+                      paymentId: cubit.sessionId,
                     ),
+                    onButtonPreesd: () async {
+                      context.go(AppRoutesString.homeScreen);
+                    },
                   ),
-                );
-              },
-              onSubtitleTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  builder: (context) => const CustomBottomSheet(
-                    title: 'Payment Details',
-                    labelButton: 'Payment',
-                    contentSheet: PaymentContentSheet(
-                      totalPayment: "12.00",
-                      date: '12 / 12 / 2021',
-                      tripDate: '12 / 2 / 2024',
-                      details: 'IMG World',
-                      referenceNum: 'A06453826151',
-                      account: 'Mike Wazowsky',
-                      discount: '1.00',
-                      total: '11.00',
-                    ),
-                    avatarColor: AppColors.backgroundAvatarPayment,
-                  ),
-                );
-              },
+                ),
+              );
+            },
+          );
+        },
+        builder: (context, state) {
+          var cubit = context.read<TripCheckoutDetailsCubit>();
+          return state.maybeWhen(
+            checkedTripLoading: () => const Center(
+              child: CircularProgressIndicator(),
             ),
-          ],
-        ),
+            orElse: () => Stack(
+              children: [
+                ListView(
+                  children: [
+                    if (cubit.isTripSelected)
+                      OrderSummaryCard(
+                        total:
+                            '${(context.read<MainCubit>().currentCurrencyPrice * (cubit.selectedData[0].quantityOld! * cubit.selectedTrip!.adultPrice! + cubit.selectedData[0].quantityYoung! * cubit.selectedTrip!.childPrice!)).toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
+                        childrenCount: '${cubit.selectedData[0].quantityYoung}',
+                        adultCount: '${cubit.selectedData[0].quantityOld}',
+                        address: cubit.selectedTrip!.address ?? '',
+                        imageUrl: cubit.selectedTrip!.imagePath!,
+                        date: cubit.dateEditingController.text,
+                      ),
+                    if (cubit.selectedOffers.isNotEmpty)
+                      ...List.generate(
+                        cubit.selectedOffers.length,
+                        (index) {
+                          int increment = cubit.isTripSelected ? 1 : 0;
+                          int total = cubit.selectedData[index + increment].quantityOld! *
+                                  cubit.selectedOffers[index].adultPrice! +
+                              cubit.selectedData[index + increment].quantityYoung! *
+                                  cubit.selectedOffers[index].childPrice!;
+                          return OrderSummaryCard(
+                            total:
+                                '${total.toStringAsFixed(1)} ${context.read<MainCubit>().currentCurrency.name.toUpperCase()}',
+                            childrenCount: '${cubit.selectedData[index + increment].quantityYoung}',
+                            adultCount: '${cubit.selectedData[index + increment].quantityOld}',
+                            address: cubit.selectedOffers[index].address ?? cubit.selectedTrip!.address!,
+                            imageUrl: cubit.selectedOffers[index].imagePath!,
+                            date: cubit.dateOffersEditingControllers[index].text,
+                          );
+                        },
+                      ),
+                  ],
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  left: 0,
+                  child: TotalPaymentSection(
+                    buttonLabel: LocaleKeys.Payment.tr(),
+                    onButtonTap: () async {
+                      if (context.read<MainCubit>().client == null) {
+                        context.push(
+                          AppRoutesString.loginScreen,
+                          extra: true,
+                        );
+                        return;
+                      }
+                      cubit.checkoutTripsAndOffers();
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

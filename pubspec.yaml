@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_native_splash: ^2.3.11
+  flutter_native_splash: ^2.3.10
   cupertino_icons: ^1.0.6
   lite_rolling_switch: ^1.0.1
   flutter_screenutil: ^5.9.0
@@ -53,7 +53,17 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   cached_network_image: ^3.3.1
   image_picker: ^1.0.7
+  equatable: ^2.0.5
+  logger: ^2.2.0
+  currency_converter: ^2.0.0
+  flutter_stripe: ^10.1.1
+  stripe_sdk: ^5.0.0
 
+
+  gallery_image_viewer: ^1.2.0
+  url_launcher: ^6.2.5
+  firebase_core: ^2.25.4
+  firebase_messaging: ^14.7.15
 
 dev_dependencies:
   flutter_test:
@@ -67,28 +77,18 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/playstore-icon.png"
+  image_path: "assets/images/logo_app.png"
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
 
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
+
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/translation/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

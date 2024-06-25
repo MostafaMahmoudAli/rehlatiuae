@@ -19,8 +19,8 @@ class VerificationEmailCubit extends Cubit<VerificationEmailState> {
       email: email,
     );
     results.fold(
-      (message) => _update(VerificationEmailState.error(message)),
-      (code) => _update(VerificationEmailState.success(code)),
+          (message) => _update(VerificationEmailState.error(message)),
+          (code) => _update(VerificationEmailState.success(code)),
     );
   }
 

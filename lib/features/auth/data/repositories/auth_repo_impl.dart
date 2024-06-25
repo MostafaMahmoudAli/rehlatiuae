@@ -1,14 +1,87 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:rehlatyuae/core/api/api_consumer.dart';
 import 'package:rehlatyuae/core/api/end_points.dart';
 import 'package:rehlatyuae/core/errors/exceptions.dart';
+import 'package:rehlatyuae/core/routes/app_routes_strings.dart';
+import 'package:rehlatyuae/core/services/cache_service.dart';
+import 'package:rehlatyuae/core/utils/app_strings.dart';
+import 'package:rehlatyuae/core/utils/injector.dart';
+import 'package:rehlatyuae/features/auth/data/models/authenticated_client_model/authenticated_client_model.dart';
 import 'package:rehlatyuae/features/auth/domain/repositories/auth_repo.dart';
-import 'package:rehlatyuae/features/profile/data/models/client_model.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final ApiConsumer apiConsumer;
+  final CacheService cacheService;
 
-  AuthRepoImpl({required this.apiConsumer});
+  AuthRepoImpl({required this.apiConsumer, required this.cacheService});
+
+  @override
+  Future<Either<String, AuthenticatedClient>> login({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      var response = await apiConsumer.post(
+        EndPoints.loginEndPoint,
+        data: {
+          'email': email,
+          'password': password,
+        },
+      );
+      var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
+      await _cacheClient(authenticatedClient: authenticatedClient);
+      return Right(authenticatedClient);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+  @override
+  Future<Either<String, AuthenticatedClient>> register({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      var response = await apiConsumer.post(
+        EndPoints.registerEndPoint,
+        data: {
+          'name': name,
+          'email': email,
+          'password': password,
+        },
+      );
+      var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
+      await _cacheClient(authenticatedClient: authenticatedClient);
+      return Right(authenticatedClient);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> logout() async {
+    try {
+      var token = getIt<CacheService>().getData<String>(
+        key: AppStrings.accessToken,
+      );
+      await apiConsumer.post(
+        EndPoints.logoutEndPoint,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      _clearClient();
+      return const Right(unit);
+    } on ServerExceptions catch (error) {
+      return Left(error.errorModel.message);
+    }
+  }
 
   @override
   Future<Either<String, Unit>> forgetPassword({required String email}) async {
@@ -36,14 +109,15 @@ class AuthRepoImpl implements AuthRepo {
           'code': code,
         },
       );
-      return Right(response['data']['token']);
+      String updatePasswordToken = response['data']['token'];
+      return Right(updatePasswordToken);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
   }
 
   @override
-  Future<Either<String, (Client, String)>> resetPassword({
+  Future<Either<String, AuthenticatedClient>> updatePassword({
     required String password,
     required String passwordConfirmation,
     required String token,
@@ -55,15 +129,41 @@ class AuthRepoImpl implements AuthRepo {
           'password': password,
           'password_confirmation': passwordConfirmation,
         },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
-      apiConsumer;
-      final client = Client.fromJson(response['data']['client']);
-      return Right((
-        client,
-        response['data']['token'],
-      ));
+      var authenticatedClient = AuthenticatedClient.fromJson(response['data']);
+      await _cacheClient(authenticatedClient: authenticatedClient);
+      return Right(authenticatedClient);
     } on ServerExceptions catch (error) {
       return Left(error.errorModel.message);
     }
+  }
+
+  Future<void> _cacheClient({required AuthenticatedClient authenticatedClient}) async {
+    await cacheService.setData(
+      key: AppStrings.accessToken,
+      value: authenticatedClient.accessToken,
+    );
+    await cacheService.setData(
+      key: AppStrings.client,
+      value: json.encode(authenticatedClient.client.toJson()),
+    );
+    await cacheService.setData(
+      key: AppRoutesString.initialLocationRoute,
+      value: AppRoutesString.homeScreen,
+    );
+  }
+
+  Future<void> _clearClient() async {
+    await cacheService.setData(key: AppStrings.accessToken, value: null);
+    await cacheService.setData(key: AppStrings.client, value: null);
+    await cacheService.setData(
+      key: AppRoutesString.initialLocationRoute,
+      value: AppRoutesString.homeScreen,
+    );
   }
 }

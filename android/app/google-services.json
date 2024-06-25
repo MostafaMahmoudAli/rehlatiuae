@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "98100644822",
+    "project_id": "rehlatiuae-131bb",
+    "storage_bucket": "rehlatiuae-131bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98100644822:android:6c86c0ce4e14ef89203277",
+        "android_client_info": {
+          "package_name": "com.example.rehlatyuae"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtk_vDIjumgJybcZhz_5U0v_VbtpIIw0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

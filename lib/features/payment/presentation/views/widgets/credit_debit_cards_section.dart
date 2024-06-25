@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rehlatyuae/core/utils/app_assets.dart';
 import 'package:rehlatyuae/core/utils/app_colors.dart';
-import 'package:rehlatyuae/core/utils/app_strings.dart';
 import 'package:rehlatyuae/core/utils/custom_icon_button.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/add_card_bottom_sheet.dart';
 import 'package:rehlatyuae/features/payment/presentation/views/widgets/cusotm_radio_tile.dart';
+import 'package:rehlatyuae/generated/locale_keys.g.dart';
 
 class CreditDebitCardsSection extends StatefulWidget {
   final String total;
@@ -47,7 +47,7 @@ class _CreditDebitCardsSectionState extends State<CreditDebitCardsSection> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppStrings.creditDebitCards,
+               LocaleKeys.Credit_Cards,
               style: Theme.of(context).textTheme.displayMedium!.copyWith(
                     color: AppColors.black,
                   ),
@@ -110,7 +110,7 @@ class _CreditDebitCardsSectionState extends State<CreditDebitCardsSection> {
                       width: 15,
                     ),
                     Text(
-                      AppStrings.addNewCard,
+                      LocaleKeys.Add_New_Card,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],

@@ -4,6 +4,13 @@ import 'package:rehlatyuae/core/utils/app_colors.dart';
 
 ThemeData appTheme() {
   return ThemeData(
+    appBarTheme: const AppBarTheme(
+      elevation: 0.0,
+      shadowColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+      scrolledUnderElevation: 0.0,
+      backgroundColor: Colors.transparent,
+    ),
     primaryColor: AppColors.textAndBackgroundColorButton,
     scaffoldBackgroundColor: AppColors.backgroundWhite,
     // colorScheme: ColorScheme.fromSwatch(
@@ -19,7 +26,7 @@ ThemeData appTheme() {
       ),
       displayLarge: TextStyle(
         fontFamily: 'Switzer',
-        fontSize: 24.sp,
+        fontSize: 18.sp,
         color: AppColors.white,
         fontWeight: FontWeight.w700,
       ),
@@ -29,7 +36,6 @@ ThemeData appTheme() {
         color: AppColors.black,
         fontWeight: FontWeight.w700,
       ),
-//white w700 large
       displayMedium: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 16.sp,
@@ -42,21 +48,18 @@ ThemeData appTheme() {
         color: AppColors.backgroundWhite,
         fontWeight: FontWeight.w400,
       ),
-//small white
       bodyLarge: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 14.sp,
         color: AppColors.black,
         fontWeight: FontWeight.w400,
       ),
-//large black
       bodyMedium: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 14.sp,
         color: AppColors.black,
         fontWeight: FontWeight.w700,
       ),
-      //white w700 medium
       displaySmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 12.sp,
@@ -68,29 +71,30 @@ ThemeData appTheme() {
         fontSize: 12.sp,
         color: AppColors.textAndBackgroundColorButton,
       ),
-      //text in bottom
       titleSmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 12.sp,
         color: AppColors.black,
         fontWeight: FontWeight.w400,
       ),
-
       labelSmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 12.sp,
         color: AppColors.greySearchText,
         fontWeight: FontWeight.w400,
       ),
-//medium black
-
+      headlineMedium: TextStyle(
+        fontFamily: 'Switzer',
+        fontSize: 12.sp,
+        color: AppColors.white,
+        fontWeight: FontWeight.w700,
+        decoration: TextDecoration.lineThrough,
+      ),
       headlineSmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 10.sp,
         color: AppColors.grey,
       ),
-//small grey
-
       bodySmall: TextStyle(
         fontFamily: 'Switzer',
         fontSize: 10.sp,
