@@ -22,6 +22,7 @@ import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/top
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/we_help_you_section.dart';
 import 'package:rehlatyuae/features/layout_screen/presentation/views/widgets/why_choose_us_section.dart';
 import 'package:rehlatyuae/generated/locale_keys.g.dart';
+
 import '../../../../core/utils/custom_dialog.dart';
 import '../cubits/layout_cubit.dart';
 
@@ -34,10 +35,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var currentLanguageCode = context.locale.languageCode;
     return BlocProvider(
-
       create: (context) => getIt<LayoutCubit>()
         ..fetchLayoutData(
-          clientId:context.read<MainCubit>().client?.id,
+          clientId: context.read<MainCubit>().client?.id,
         ),
       child: BlocConsumer<LayoutCubit, LayoutState>(
         listener: (context, state) {
@@ -68,7 +68,10 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 15.0.h),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10.0.h,
+                          horizontal: 15.0.h,
+                        ),
                         child: SearchTextField(
                           controller: _textEditingController,
                           onTap: () {
@@ -95,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const CustomSizedBox(),
                       PopularExperiencesSection(
-                        popularExperiences:layoutModel.popularExperience ?? [],
+                        popularExperiences: layoutModel.popularExperience ?? [],
                       ),
                       const CustomSizedBox(),
                       OurBlogSection(
@@ -103,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const CustomSizedBox(),
                       OurPartnerSection(
-                        ourPartners:layoutModel.ourPartners ?? [],
+                        ourPartners: layoutModel.ourPartners ?? [],
                       ),
                       const CustomSizedBox(),
                       const WhyChooseUsSection(),

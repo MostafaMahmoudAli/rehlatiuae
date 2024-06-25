@@ -5,7 +5,8 @@ import 'package:rehlatyuae/core/utils/injector.dart';
 
 class DioInterceptor extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler)
+  {
     String language = getIt<CacheService>().getData<String>(key: AppStrings.currentLanguage) ?? "en";
     options.headers["Accept-Language"] = language;
     options.headers["Accept"] = ["application/json"];
